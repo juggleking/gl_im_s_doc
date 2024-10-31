@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Consult registration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Consult registration - Configuration</title>
+        <link rel="StyleSheet" href="../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1847"></a>
+            <MadCap:concept term="Consults" />Consult registration - Configuration</h1>
+        <h2>Introduction</h2>
+        <p>Before a consult can be registered, the content of the consult registration screen needs to be configured. GLIMS allows the user to define:</p>
+        <ol>
+            <li value="1"><a href="#Property">Property classifications</a>
+            </li>
+            <li value="2"><a href="#Consult_type">Consult types</a>
+            </li>
+            <li value="3"><a href="#3.">Consult statuses</a>
+            </li>
+        </ol>
+        <h2><a name="Property"></a>Property classifications</h2>
+        <p>A <a href="../../configuration/property_classifications/property_classifications.htm">property classification</a> is used to define the tab pages, sections and fields that will be visualized in the <a href="consult_registration_register_consult.htm#Result_section">result section</a> of the registration screen.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="consult_registration_config_outline.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="760" data-mc-height="416" src="consult_registration_config_outline_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><a href="consult_registration_register_consult.htm#Work_screen">Click here to see how the example above is visualized in the Consult registration screen.</a>
+        </p>
+        <h4>How to define tab pages?</h4>
+        <p>A <a href="../../configuration/property_classifications/property_classifications.htm#Property">property classification node</a> with a <span class="ui_element">Label</span>, but without a reference to a <span class="ui_element">Property</span> is a title node. A&#160;1st level title node will be shown as a tab page which can contain sections and fields.</p>
+        <h4>How to define sections?</h4>
+        <p>A 2nd level title node will be shown as a collapsible section which can contain fields.</p>
+        <h4><a name="How"></a>How to define fields?</h4>
+        <p>A property classification node that refers to a <a href="../../configuration/properties/properties.htm">property</a> will be shown as a labeled field for which the user can enter a result value. How this value can be specified depends on the property's configuration. Some property classification node fields are relevant as well for the definition of fields.</p>
+        <p class="fieldlabel">Property classification node</p>
+        <div class="indented">
+            <p class="fieldlabel">Default value</p>
+            <div class="indented">
+                <p>If an Order-based MISPL function of data type <span class="ui_element">String</span> is specified, the return value of the MISPL function will be used as default value for the corresponding field in the consult registration screen.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">The MISPL function should return the mnemonic of a <a href="../../configuration/choice_lists/choice_lists.htm#Choices">choice</a> if the property classification node is linked to a property for which a <a href="../../configuration/properties/properties.htm#Enumerat">choice list</a> is specified.</li>
+                        <li value="2">The MISPL function is only evaluated for new consults and not for registered consults that are being edited.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="fieldlabel">Mandatory</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Property classification node</span> field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Mandatory</span> is set, the corresponding field in the consult registration screen will be a mandatory field with an asterisk next to its label. A warning message will be shown when trying to save the consult registration screen and the mandatory field does not have a value.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Property</p>
+        <div class="indented">
+            <p class="fieldlabel">Description</p>
+            <div class="indented">
+                <p>The field label that is shown in the registration screen will be determined as follows:</p>
+                <ol>
+                    <li value="1"><span class="ui_element">Label</span> of the property classification node (multilingual)</li>
+                    <li value="2"><span class="ui_element">Description</span> of the property (multilingual)</li>
+                    <li value="3"><span class="ui_element">Short name</span> of the property </li>
+                    <li value="4"><span class="ui_element">Mnemonic</span> of the property</li>
+                </ol>
+            </div>
+            <p class="fieldlabel">Datatype</p>
+            <div class="indented">
+                <p class="fieldlabel">String</p>
+                <div class="indented">
+                    <p>Properties with datatype <span class="ui_element">String</span> will be shown as text boxes. When <span class="ui_element">Number of editor lines</span> &gt; 1, a multiline text box will be shown.</p>
+                    <div class="text_box_examples">
+                        <p><span style="color: #003366;font-weight: bold;">Example</span> </p>
+                        <p>Properties with datatype <span class="ui_element">String</span> and <span class="ui_element">Number of editor lines</span> set to 2:</p>
+                        <p>
+                            <img src="consult_registration_config_string.png" />
+                        </p>
+                    </div>
+                    <div class="text_box_tips">
+                        <p><span style="color: #C29D0A; font-weight: bold;">Tips</span>
+                        </p>
+                        <ul>
+                            <li value="1">Use the F6 key in the text box to open a larger text box that allows you to run spell checking on the entered text.</li>
+                            <li value="2">Enter <a href="../../configuration/result_codes/result_codes.htm" xmlns="http://www.w3.org/1999/xhtml">result codes</a> by using the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expansion sign for result codes</span> specified in the <a href="../../configuration/specificsite/glims_general_options.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS general settings</a>, followed by the <a href="../../configuration/result_codes/result_codes.htm" xmlns="http://www.w3.org/1999/xhtml">result code</a>. This is only supported in non rich text boxes.</li>
+                            <li value="3">Configure text boxes as rich text boxes, if required. Click on the following  links for more information on how results can be displayed in an <a href="../../routine/results/results_images.htm">image</a>, <a href="../../routine/results/results_graphs.htm">graph</a> or in the <a href="../../routine/results/results_rich_text.htm">rich text</a> format.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fieldlabel">Numeric</p>
+                <div class="indented">
+                    <p>Properties with datatype <span class="ui_element">Numeric</span> will be shown as a numeric field in which it is possible to use the up/down arrows.</p>
+                    <p>See <span class="ui_element">Reported decimals</span> and <span class="ui_element">Decimal threshold</span> for more information on the number of decimal places shown.</p>
+                    <p>The <span class="ui_element">Unit</span> is mandatory for numeric properties and will be shown between brackets next to the label. The unit's <span class="ui_element">Description</span> (or <span class="ui_element">Name</span>, if the description is not specified) will be used for visualization.</p>
+                    <div class="text_box_examples">
+                        <p><span style="color: #003366;font-weight: bold;">Example</span> </p>
+                        <p>Property with datatype <span class="ui_element">Numeric</span> (<span class="ui_element">Unit</span> is mandatory)</p>
+                        <p>
+                            <img src="consult_registration_config_numeric.png" />
+                        </p>
+                    </div>
+                </div>
+                <p class="fieldlabel">Enumerated</p>
+                <div class="indented">
+                    <p>Properties with datatype <span class="ui_element">Enumerated</span> for which a <a href="../../configuration/choice_lists/choice_lists.htm">Choice list</a> is specified :</p>
+                    <ul>
+                        <li value="1">will be shown as radio buttons<ul><li value="1">if the number of choices is not higher than 8, and</li><li value="2">if the <a href="../../configuration/properties/properties.htm#Strict">Strict result checking</a> option is activated.</li></ul></li>
+                        <li value="2">will be shown as a drop down list<ul><li value="1">if the number of choices is higher than 8, or</li><li value="2">if the <span class="ui_element">Strict result checking</span> option is not activated, or</li><li value="3">if a diagnosis code system is linked to the property.</li></ul></li>
+                    </ul>
+                    <div class="text_box_examples">
+                        <p><span style="color: #003366;font-weight: bold;">Example</span> </p>
+                        <p>Properties with datatype <span class="ui_element">Enumerated</span> and a <span class="ui_element">Choice list</span> with a number of choices &lt; 8:</p>
+                        <p>
+                            <img src="consult_registration_config_enumerated.png" />
+                        </p>
+                        <p>Property with datatype <span class="ui_element">Enumerated</span> and a <span class="ui_element">Choice list</span> with a number of choices &gt; 8:</p>
+                        <p>
+                            <img src="consult_registration_config_enumerated2.png" />
+                        </p>
+                    </div>
+                </div>
+                <p class="fieldlabel">Image</p>
+                <div class="indented">Properties with datatype <span class="ui_element">Image</span> will be shown as fields that can contain a file path.&#160;The field features an icon to open the <a href="../../routine/results/results_images.htm#About">image viewer</a>.
+			<div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Example</span></p><p><img src="consult_registration_config_image.png" /></p></div></div>
+            </div>
+            <p class="fieldlabel">Diagnosis code system</p>
+            <div class="indented">
+                <p>When specified, the codes of the diagnosis code system will be selectable as a result value. This does not apply for properties with datatype <span class="ui_element">Numeric</span>.</p>
+            </div>
+            <p class="fieldlabel">Allow general result codes</p>
+            <div class="indented">
+                <p>When enabled, it will be possible to use or select a result code. The expanded version will be shown in the <span class="ui_element">Consult overview</span> screen.</p>
+            </div>
+            <p class="fieldlabel">Strict result checking</p>
+            <div class="indented">
+                <p>When enabled, it will not be possible to enter text in the corresponding field in the consult registration screen.</p>
+            </div>
+            <p class="fieldlabel"><a name="Rich"></a>Rich text</p>
+            <div class="indented">This field is described in chapter <a href="../../configuration/properties/properties.htm#Rich">Properties</a>.</div>
+            <p class="fieldlabel">Reported decimals</p>
+            <div class="indented">
+                <p>Determines the number of decimal places (digits after the decimal point) for properties with datatype <span class="ui_element">Numeric</span>.</p>
+            </div>
+            <p class="fieldlabel">Decimal threshold</p>
+            <div class="indented">
+                <p>When specified, the number of decimal places (digits after the decimal point) for properties with datatype <span class="ui_element">Numeric</span> will be equal to <span class="ui_element">Reported decimals</span> + 2.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366;font-weight: bold;">Example</span> </p>
+                    <p>When</p>
+                    <div class="indented">
+                        <p><span class="ui_element">Reported decimals</span> = 2</p>
+                        <p><span class="ui_element">Decimal threshold</span> = 8</p>
+                    </div>
+                    <p>this will result in <b>4</b> decimal places.</p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="2."></a><a name="Consult_type"></a>Consult types</h2>
+        <p>A <span class="ui_element">Consult type</span> represents a question form. You can define multiple consult types and choose one of them during consult registration.</p>
+        <p>Consult types can be accessed / created via <span class="ui_element">Start &gt; Configuration &gt; Consult types</span>.</p>
+        <p class="fieldlabel">Property classification </p>
+        <div class="indented">
+            <p>Defines the make-up (see above) of the registration screen's <a href="consult_registration_register_consult.htm#Result_section">result section</a>. The property classification of the consult type is also taken into account when displaying the results of the preceding / subsequent consults.</p>
+        </div>
+        <p class="fieldlabel">Valid from / Valid until</p>
+        <div class="indented">
+            <p>Users can only select <span class="ui_element">Consult types</span> that are valid at the time of consult registration. This allows e.g. to start the configuration of a new consult type without already presenting it to the user.</p>
+        </div>
+        <p class="fieldlabel">Comment</p>
+        <div class="indented">
+            <p>Internal comment.</p>
+        </div>
+        <h2><a name="3."></a>Consult statuses</h2>
+        <h4>Configuration</h4>
+        <p>Consult statuses can be defined via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; Configuration &gt; Consult statuses</span>.</p>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Seq</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+            <p>The sequence number of the status determines the sorting order of the status in the life cycle of the consult. A newly created consult will have the status with the lowest sequence number.</p>
+        </div>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Is editable</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+            <p>Determines if a consult with this status can be <a href="consult_registration_search.htm#Overview" xmlns="">edited</a>.</p>
+        </div>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Role</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+            <p>If set, only users with this role can change the consult's status to this status.</p>
+        </div>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml"> By default, GLIMS contains one <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Consult status</span> record with:</p>
+            <ul>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1"> Seq =1</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2"> Name = Created</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="3">Is editable = enabled</li>
+            </ul>
+        </div>
+        <h4 xmlns="http://www.w3.org/1999/xhtml">Visualisation</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Status</span> of the consult is visible in the <a href="consult_registration_register_consult.htm#Work_screen" xmlns="http://www.w3.org/1999/xhtml">consult registration screen</a>, the <a href="consult_registration_search.htm#Overview" xmlns="http://www.w3.org/1999/xhtml">consult overview</a> and the <a href="consult_registration_search.htm#Browser" xmlns="http://www.w3.org/1999/xhtml">Consults browser</a>.</p>
+        <h4 xmlns="http://www.w3.org/1999/xhtml">Status update</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml">The status of a consult can be changed via the contextual menu / ribbon items <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade status</span> / <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Downgrade status</span>.</p>
+    </body>
+</html>

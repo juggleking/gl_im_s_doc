@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - PaymentAgreement</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2358"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+PaymentAgreement&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Payment agreement</td>
+                <td>
+paya</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Each payment agreement represents an agreement (policy name) which can be used to tariff an order (set). If the agreement is only applicable for a specific correspondent, then that correspondent is specified in the party field. If the party field is left empty, then the agreement is generally applicable for all kinds of orders (sets).</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AlternateFundId"></a>
+        <h3>
+Alternate fund id</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the fund's identification provided by the alternate HC Code provider. 
+<br />In Germany we will use this to refer to the 'IK' number. </p>
+            <p class="Synopsis"><span class="Type"><a href="idnt.htm">Identification</a></span>&#160;<b>AlternateFundId</b></p>
+        </div><a name="F_CardData"></a>
+        <h3>
+Card data</h3>
+        <div class="MemberHelp">
+            <p>
+Raw card data</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>CardData</b></p>
+        </div><a name="F_CardEndDate"></a>
+        <h3>
+Card &gt; Card expires</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the health care insurance card's validity period end date. The card is valid up to and including the specified end date. If there is no end date, the validity period is considered as not ending.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>CardEndDate</b></p>
+        </div><a name="F_Checked"></a>
+        <h3>
+Checked</h3>
+        <div class="MemberHelp">
+            <p>
+As long as this field is not set, the agreement cannot be used by the tariffication program. Setting this field to 'true' triggers the evaluation of the associated policy's payment agreement check function. If the evaluation of that function returns the empty string, then the payment agreement can be set as checked. If it returns a non empty string, which is considered as an error message, the agreement can only be saved as not checked. Note that in this way, incomplete payment agreements can be introduced and associated with an order(set) without creating the possibility to tariff the order(set).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Checked</b></p>
+        </div><a name="F_Container"></a>
+        <h3>
+Holder's agreement</h3>
+        <div class="MemberHelp">
+            <p>
+This is field provides access the holder's payment agreement. This field can only be provided if the agreement's relation type is not holder.</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">PaymentAgreement</a></span>&#160;<b>Container</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DefaultSeqNo"></a>
+        <h3>
+Default seq no</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the default sequence number for child financing records.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>DefaultSeqNo</b></p>
+        </div><a name="F_DiscountCode"></a>
+        <h3>
+Special &gt; Discount code</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access the payment agreement's discount code. All invoice items that are created (by the tariffication program) as a result of the application of the payment agreement will be discounted according to the specified discount code.</p>
+            <p class="Synopsis"><span class="Type"><a href="dscc.htm">DiscountCode</a></span>&#160;<b>DiscountCode</b></p>
+        </div><a name="F_Discriminator"></a>
+        <h3>
+Discr.</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies a number which distinguishes payment agreements with the same matriculation.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>Discriminator</b></p>
+        </div><a name="F_EndDate"></a>
+        <h3>
+Valid until</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the validity period's end date. The payment agreement is valid up to and including the specified end date. If there is no end date, the validity period is considered as not ending.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>EndDate</b></p>
+        </div><a name="F_FieldProtection"></a>
+        <h3>
+Field protection</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany this field is used to prohibit manual changes to payment agreement that are imported from the official KBV file ('KostentragerStammdatei').</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>FieldProtection</b></p>
+        </div><a name="F_Fund"></a>
+        <h3>
+Fund</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the payment agreement's fund. This is typically an organization which is not directly involved with the order. It's only function is to pay a part or the entire cost of the order.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="fnd.htm">Fund</a></span>&#160;<b>Fund</b></p>
+        </div><a name="F_General"></a>
+        <h3>
+General</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>General</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">PaymentAgreement</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InsuranceLevel"></a>
+        <h3>
+Insurance level</h3>
+        <div class="MemberHelp">
+            <p>
+For french FSE specify the AMC formula STS in Order entry.
+<br />Only used for '3th payer agreements' where this factor indicates the (variable) part that will be reimbursed by the thirth payer (funds). A value of 0.5 means that 50% of a base amount will be reimbursed to the billing codes that are part of a clauses with an unknown (?) multiplier.
+<br />The base amount is defined as the total amount of the billing codes that are part of a clauses with a known multiplier.
+<br />ps: If both insurance level and order entry formule is specified then the formula is applied.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>InsuranceLevel</b></p>
+        </div><a name="F_InsurantStatus"></a>
+        <h3>
+Insurant status</h3>
+        <div class="MemberHelp">
+            <p>
+Status assigned by the fund to the insurant (party)</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>InsurantStatus</b></p>
+        </div><a name="F_IsThirdPayerAgreement"></a>
+        <h3>
+3rd p. agr.</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates that this is a 3rd payer agreement that can only be used in combination with a other (non 3rd payer) agreement.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type">Logical</span>&#160;<b>IsThirdPayerAgreement</b></p>
+        </div><a name="F_LastScanDate"></a>
+        <h3>
+Card &gt; Last scan date</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the most recent date that the payment agreement's card was read. Since this field is supposed to be provided only by a card reader, it is not editable.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Date</span>&#160;<b>LastScanDate</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_LastVerificationDate"></a>
+        <h3>
+Last verification date</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the most recent date that the payment agreement's data was verified. Since this field is supposed to be filled during import of insurance data, it is not editable.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Date</span>&#160;<b>LastVerificationDate</b></p>
+        </div><a name="F_Matriculation"></a>
+        <h3>
+Matriculation</h3>
+        <div class="MemberHelp">
+            <p>
+This is the fund's identification of the party or the agreement. In case there is no fund or party, then this field can be used to facilitate the identification of the payment agreement.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">String</span>&#160;<b>Matriculation</b></p>
+        </div><a name="F_MatriculationType"></a>
+        <h3>
+Matriculation type</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="paymentagreementmatrtype.htm">PaymentAgreementMatrType</a></span>&#160;<b>MatriculationType</b></p>
+            <p>
+One of: <span class="Parameter">Belgian national number, Belgian matriculation number, Belgian internationaltreaties number, Belgian free number, German eGknumber, German Versichertennumber, German free number</span></p>
+        </div><a name="F_Party"></a>
+        <h3>
+Party</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to payment agreement's party. It is the correspondent, the (payment) agreement was made with. If this field is provided, the payment agreement is specific, otherwise it's a general payment agreement. General payment agreements can be applied for all kinds of order sets. Specific payment agreements can only be applied, if the order set reimbursement party is the payment agreement party.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Party</b></p>
+        </div><a name="F_PolicyName"></a>
+        <h3>
+Policy name</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the agreement's policy name. It is an essential link between a payment agreement and its policy.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="plcn.htm">PolicyName</a></span>&#160;<b>PolicyName</b></p>
+        </div><a name="F_PriceList"></a>
+        <h3>
+Special &gt; Price list</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the agreement's price list. If specified, The tariffication program will use this price list, unless it is overruled at the policy clause level.</p>
+            <p class="Synopsis"><span class="Type"><a href="prcl.htm">PriceList</a></span>&#160;<b>PriceList</b></p>
+        </div><a name="F_PriceMultipicator"></a>
+        <h3>
+Special &gt; Price multipicator</h3>
+        <div class="MemberHelp">
+            <p>
+Not in use.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveFractional</span>&#160;<b>PriceMultipicator</b></p>
+        </div><a name="F_ReceivingLab"></a>
+        <h3>
+Receiving lab</h3>
+        <div class="MemberHelp">
+            <p>
+Not in use.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<b>ReceivingLab</b></p>
+        </div><a name="F_ReferenceNumber"></a>
+        <h3>
+Reference number</h3>
+        <div class="MemberHelp">
+            <p>
+This is the referencenumber given by another party : in Belgium for example this is used in relation with provider MyCareNet.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ReferenceNumber</b></p>
+        </div><a name="F_Relation"></a>
+        <h3>
+Relation</h3>
+        <div class="MemberHelp">
+            <p>
+This is the relational position of the agreement's party.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="relationtype.htm">RelationType</a></span>&#160;<b>Relation</b></p>
+            <p>
+One of: <span class="Parameter">Holder, Spouse, Ascendent, Descendent, Relative, Pensioner, Child, Divorced, Cohabitant, Separated, Widow, Others having rights</span></p>
+        </div><a name="F_RemoteId"></a>
+        <h3>
+Remote id</h3>
+        <div class="MemberHelp">
+            <p>
+External payment agreement reference</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>RemoteId</b></p>
+        </div><a name="F_StartDate"></a>
+        <h3>
+Valid from</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the validity start date of the payment agreement.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Date</span>&#160;<b>StartDate</b></p>
+        </div><a name="F_StatusComplement"></a>
+        <h3>
+Status complement</h3>
+        <div class="MemberHelp">
+            <p>
+Extra status specification assigned by the fund</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>StatusComplement</b></p>
+        </div><a name="F_VATCode"></a>
+        <h3>
+Special &gt; VAT code</h3>
+        <div class="MemberHelp">
+            <p>
+This optional field provides access to the payment agreement's VAT code. If supplied, the tariffication program will apply the specified VAT code for each invoice item which is created based on this payment agreement. This VAT code specification overrules the VAT code specified in the tariff table.</p>
+            <p class="Synopsis"><span class="Type"><a href="vatc.htm">VATCode</a></span>&#160;<b>VATCode</b></p>
+        </div><a name="F_VATLiable"></a>
+        <h3>
+Special &gt; VAT liable</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates whether VAT should be calculated.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>VATLiable</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_AlternateFundId"></a>
+        <h3>
+Alternate fund id&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AlternateFundId</b> ()</p>
+        </div><a name="M_FinancingsOfPaymentagreementByLastScanDate"></a>
+        <h3>
+By Last scan date&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FinancingsOfPaymentagreementByLastScanDate</b> ()</p>
+        </div><a name="M_Close"></a>
+        <h3>
+Close&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function closes a (set of) payment agreement(s).
+<br />When override current enddate is not set, all agreements already closed are skipped.
+<br />When override current endddate is set, then all selected payment agreements, already closed or not, are adapted.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Close</b> (<span class="Type">Date</span>&#160;<span class="Parameter">AgreementEndDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OverrideEndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">AgreementEndDate</span></dt>
+                <dd>
+Enddate to use for close of payment agreement</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OverrideEndDate</span></dt>
+                <dd>
+Should already closed payment agreements be overridden ?
+<br /></dd>
+            </dl>
+        </div><a name="M_DiscountCode"></a>
+        <h3>
+Discount code&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DiscountCode</b> ()</p>
+        </div><a name="M_VisualizeCardData"></a>
+        <h3>
+Display card data&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+In france, this function will display the 'carte vitale' data in xml format.
+<br />optional, the user can define its own style in $GLIMBILLDAT/carteVitale.xsl.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VisualizeCardData</b> ()</p>
+        </div><a name="M_FinancingsOfPaymentagreement"></a>
+        <h3>
+Financings of Payment agreement&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FinancingsOfPaymentagreement</b> ()</p>
+        </div><a name="M_Fund"></a>
+        <h3>
+Fund&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Fund</b> ()</p>
+        </div><a name="M_Container"></a>
+        <h3>
+Holder's agreement&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Container</b> ()</p>
+        </div><a name="M_InvoicesBasedOn"></a>
+        <h3>
+Invoices based on&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoicesBasedOn</b> ()</p>
+        </div><a name="M_NonholdersAgreements"></a>
+        <h3>
+Non-holders' agreements&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>NonholdersAgreements</b> ()</p>
+        </div><a name="M_Party"></a>
+        <h3>
+Party&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Party</b> ()</p>
+        </div><a name="M_PolicyName"></a>
+        <h3>
+Policy name&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PolicyName</b> ()</p>
+        </div><a name="M_PriceList"></a>
+        <h3>
+Price list&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PriceList</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_VATCode"></a>
+        <h3>
+VAT code&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VATCode</b> ()</p>
+        </div><a name="M_Verify"></a>
+        <h3>
+Verify&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function (re)executes the payment agreement validation (policy's payment agreement check) and formatting (policy's payment agreement update). If the validation fails, the 'checked' field is set to NO and no update takes place.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Verify</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">ReportFailures</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ReportFailures</span></dt>
+                <dd>
+Should failures be reported ?</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_CheckBelgianMatriculation"></a>
+        <h3>
+CheckBelgianMatriculation</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function checks the consistency of a number of payment agreement related fields (matriculation, birth date, ...), according to belgian HC regulations.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>CheckBelgianMatriculation</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Agreements of a holder's agreement</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="#" class="selected">PaymentAgreement</a>.<a href="#F_Container">Container</a></p>
+        </div>
+        <h3>
+Invoices based on payment agreement</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="inv.htm">Invoice</a>.<a href="inv.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Instantiations of payment agreement</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fnc.htm">Financing</a>.<a href="fnc.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Reimbursement clauses</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rmbc.htm">w_ReimbursementClause</a>.<a href="rmbc.htm#F_HolderAgreement">HolderAgreement</a></p>
+        </div>
+        <h3>
+Reimbursement clauses</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rmbc.htm">w_ReimbursementClause</a>.<a href="rmbc.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Sub contract contexts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="sbcn.htm">w_SubContractContext</a>.<a href="sbcn.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Budget contexts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bucn.htm">w_BudgetContext</a>.<a href="bucn.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div>
+        <h3>
+Contracts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="cntr.htm">Contract</a>.<a href="cntr.htm#F_PaymentAgreement">PaymentAgreement</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Matriculation - Discriminator </b>
+            </li>
+            <li value="3"><b>+ AlternateFundId </b>
+            </li>
+            <li value="4"><b>+ Container </b>
+            </li>
+            <li value="5"><b>+ DiscountCode </b>
+            </li>
+            <li value="6"><b>+ Fund + Matriculation </b>
+            </li>
+            <li value="7"><b>+ General </b>
+            </li>
+            <li value="8"><b>+ Party </b>
+            </li>
+            <li value="9"><b>+ PolicyName </b>
+            </li>
+            <li value="10"><b>+ PriceList </b>
+            </li>
+            <li value="11"><b>+ ReceivingLab </b>
+            </li>
+            <li value="12"><b>+ RemoteId </b>
+            </li>
+            <li value="13"><b>+ VATCode </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+Container.Fund = Fund</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

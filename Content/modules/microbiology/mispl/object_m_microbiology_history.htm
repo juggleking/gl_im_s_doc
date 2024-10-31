@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|MISPL functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Object.MicrobiologyHistory">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Microbiology - Object.MicrobiologicHistory</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1118"></a>
+            <MadCap:concept term="Microbiology" /><a name="kanchor98"></a>Microbiology - Object.MicrobiologicHistory</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Parameters">Parameters</a> - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This MISPL function offers a textual summary of all microbiology actions (with status at least <span class="ui_element">ReadConfirmed</span> and not <span class="ui_element">Discontinued</span>) of an object. For each action, the result (pos/neg) + isolations found + antibiotic results are included. The purpose is e.g. to show the patient history on printed outline worklists, object data sheets, ...</p>
+        <h2><a name="Parameters" id="Parameters"></a>Parameters</h2>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;"><i style="font-style: italic;"><span class="Type">String</span>&#160;</i><b>MicrobiologicHistory</b> (<span class="Type"><i>Mnemonic</i></span><span style="color: #008000;"><b>&#160;<span class="Parameter">SpecimenLayout</span></b></span>, <span class="Type"><i>PositiveInteger</i></span><span style="color: #008000;"><b>&#160;<span class="Parameter">MaximumDaysAgo</span></b></span>, <span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><span style="color: #008000;"><b>SkipCount</b></span></span>, <span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MaximumCount</span></b></span>, <span class="Type"><i>String</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MaterialMnemonic</span></b></span>, <span class="Type"><i>String</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">ProcedureMnemonic</span></b></span>, <span class="Type"><i>Logical</i></span><span style="color: #008000;"><b>&#160;<span class="Parameter">PositiveOnly</span></b></span>, <span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MinimalSeverity</span></b></span>, <span class="Type"><i>DateTime</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">ReferenceTime</span></b></span>, <span class="Type">String</span>&#160;<b><span style="color: #008000;">ViewFormat</span></b>)</td>
+            </tr>
+        </table>
+        <dl>
+            <dt><span class="Type"><i>Mnemonic</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">SpecimenLayout</span></b></span></dt>
+            <dd>If specified, the information specific to the specimen will be displayed as defined in the 'Specimen'-based text module with this mnemonic. If not specified, the text module 'isol_SpecimenExternalization' is used. If this text module is not available, the default specimen externalization is used (internal id, identification code, volume, material and material variables, sampling date and time).</dd>
+            <dd>&#160;</dd>
+            <dd>
+           This text module is also allowed to be based on the MicrobiologyAction table. If so, this has 2 consequences:
+           
+                <ol><li value="1">There will be no grouping of all microbiology actions of the same specimen.</li><li value="2">The function will not show standard information on the microbiology action itself. Instead the specified text module is used to give information on each microbiology action.<br />&#160;</li></ol></dd>
+            <dt><span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MaximumDaysAgo</span></b></span></dt>
+            <dd>If specified, microbiology actions on specimen sampled more than this number of days ago will not be reported.<br />&#160;&#160;</dd>
+            <dt><span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">SkipCount</span></b></span></dt>
+            <dd>This parameter can be used to skip a number of specimen. In conjunction with the 'MaximumCount' parameter, this provides a way to circumvent the restriction of 4kb limiting the output of MISPL functions.</dd>
+            <dd>&#160;</dd>
+            <dd>The function self-restricts its own output length to 4kb finishing with '... [history too long to display in whole]'. So this message could appear if the blocks are chosen too large.</dd>
+            <dd>&#160;</dd>
+            <dd>Another way to avoid the 4kb limit is to use the ViewFormat parameter with value "File=Yes".<br />&#160;&#160;</dd>
+            <dt><span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MaximumCount</span></b></span></dt>
+            <dd>If specified, this maximal number of specimen will be reported (the most recent ones).</dd>
+            <dd>&#160;&#160;</dd>
+            <dt><span class="Type"><i>String</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MaterialMnemonic</span></b></span></dt>
+            <dd>If specified, only microbiology actions on this material will be reported. You can also specify multiple materials, separated by commas. For instance, to select all microbiology actions of materials "HEMO1" and "HEMO2", specify:
+<blockquote><p>.MicrobiologicHistory( "SpecimenInfo", ?, ?, ?, "HEMO1,HEMO2", ?, ?, ?, ?, ? );</p></blockquote></dd>
+            <dt><span class="Type"><i>String</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">ProcedureMnemonic</span></b></span></dt>
+            <dd>Is specified, only microbiology procedures with this mnemonic will be reported. You can also specify multiple mnemonics, separated by commas.&#160;&#160;For instance, to select all microbiology actions with mnemonic "AER" or "ANA", specify:
+<blockquote><p>.MicrobiologicHistory( "SpecimenInfo", ?, ?, ?, ?, "AER,ANA", ?, ?, ?, ? );</p></blockquote></dd>
+            <dt><span class="Type"><i>Logical</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">PositiveOnly</span></b></span></dt>
+            <dd>If YES, only microbiology actions with positive result (one or more isolations with positive appraisal) and only positive isolations will be reported. Any negative answers will be suppressed as well.<br />&#160;&#160;</dd>
+            <dt><span class="Type"><i>PositiveInteger</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">MinimalSeverity</span></b></span></dt>
+            <dd>If specified, only microbiology actions and isolations with this severity or higher will be reported. Any negative answers will be suppressed as well.<br />&#160;&#160;</dd>
+            <dt><span class="Type"><i>DateTime</i></span>&#160;<span class="Parameter"><b><span style="color: #008000;">ReferenceTime</span></b></span></dt>
+            <dd>If specified, only microbiology actions for specimen sampled before this reference time will be displayed.<br />&#160;&#160;&#160;</dd>
+            <dt><span class="Type"><i>String</i></span>&#160;<b><span style="color: #008000;">ViewFormat</span></b></dt>
+            <dd>View format for the results. Possible values (separated by semicolons ';'):</dd>
+            <dd>&#160;</dd>
+            <dd><span style="color: #FF9900;">Classification = &lt;name&gt;</span>: By default, the default property classification (or the default of your department_) is used sort the results and cultures. This option allows to specify a different classification. Example: Classification = Bacterio</dd>
+            <dt>&#160;</dt>
+            <dd><span style="color: #FF9900;">ResultSeparator = ...</span> : By default, the regular tests that were executed during the microbiology actions are listed in the history one after the other on the same line and separated by ', '. Example output:&#160;&#160;Gram: neg, Cell count: &gt;10000, ...</dd>
+            <dd>&#160;</dd>
+            <dd>You can choose to separate them in a different way e.g. '; ' by specifying: ResultSeparator ='; '. You can also have them listed on separate lines. In order to do so,&#160;&#160;use '~n' to indicate the position of the newline character. Example: ResultSeparator =';~n'&#160;will put ';' after each result and each result will start at a new line.<br />The example output would then become:</dd>
+            <dd>&#160;</dd>
+            <dd>Gram: neg;<br />Cell count: &gt;10000;<br />...</dd>
+            <dd> Note: if the result separator contains at least one newline character, then this separator is not only used to separate the regular results from each other, but also between normal results and culture results or conclusion results, and also between the different isolations of a culture (in case there is more than one isolation).<br />&#160;</dd>
+            <dd><span style="color: #FF9900;">PageWidth = ...</span> : By default, the length of the lines in the output text is not restricted. You can restrict the line length by specifying e.g. PageWidth = 120 characters.</dd>
+        </dl>
+        <dl>
+            <dd><span style="color: #FF9900;">File=YES</span>: this option allows to bypass the 4kb MISPL output limit when including the object's MB history in reports and data sheets.</dd>
+            <dd>
+                <blockquote>
+                    <p>When the output exceeds 3kB, the function will not be replaced by the history text itself. Instead the function will <a href="../../../general/files_text_inclusion.htm">store its text output into a temporary file</a><a name="kanchor99"></a>. In the containing text module the history text will not appear, but {=.Object.MicrobiologyHistory(...)} will be replaced with an indication that the text can be found in a file and in which file.&#160;&#160;The reference to the temporary file has the following format:&#160;</p>
+                    <blockquote>
+                        <p>&lt;FILE SRC='e:\tmp\m16062.txt' DEL=YES&gt;</p>
+                    </blockquote>
+                    <p>The user will not be bothered by this, as the object data sheet and the report generation program support such 'file inclusion' indications. This means that in the object data sheet and in generated reports, this indication '&lt;FILE SRC='e:\tmp\m16062.txt' DEL=YES&gt;' will be automatically replaced by the contents of the file 'e:\tmp\m16062.txt'. Additionally 'DEL=YES' means that the specified file will also be deleted after being included.</p>
+                    <dl>
+                        <dt>If the text does not exceed the limit, the function will behave as normal (without file), even if 'File=Yes' has been specified (for performance reasons).</dt>
+                    </dl>
+                </blockquote>
+            </dd>
+        </dl>
+        <dl>
+            <dd><span style="color: #FF9900;">Format = ...</span> : By default the values of results are shown in a format called "WorkFormat". You can choose to have them displayed in one of the following formats:</dd>
+            <dd>&#160;
+<dl><dd>WorkFormat: when the value contains text modules (e.g. '{&lt;TB}'), the text modules will not be expanded. Only the name of the text module will be shown (e.g. 'TB').</dd><dd>&#160;</dd><dd>ReportFormat: when the value contains text modules, the text modules are expanded (e.g.: 'Tube broken').<br />&#160;&#160;</dd></dl></dd>
+            <dd><span style="color: #FF9900;">Nonreportable = YES</span> :&#160;By default, isolations and antibiotic results that are marked as 'non-reportable' (which means they will not appear on reports) are not listed by this function. However if you nevertheless want to report these 'non-reportable' items with this function, specify Nonreportable = YES.&#160;Note that isolation and antibiotic names will be prefixed by '~' to indicate their non-reportability.</dd>
+        </dl>
+        <blockquote>
+            <p><span style="color: #FF9900;">EncounterId = ...</span> :&#160;When specified, the MISPL function will check if the encounter id supplied is correct and known in Glims. A message will be shown when the id supplied is incorrect. Please note that it is the <b>encounter's internal id</b> which is required (and not the external id as the latter may not be unique throughout the database).</p>
+            <p><span style="color: #FF9900;">IncludeCultures = NO</span> : allows to exclude cultures</p>
+            <p><span style="color: #FF9900;">IncludeAntibiograms = NO</span> : allows to exclude antibiograms</p>
+            <p><span style="color: #FF9900;">ExpandIsolationAppraisal = NO</span>: by default, GLIMS 
+will use the expanded IsolationAppraisal.Text in the output of the 
+Object.MicrobiologicHistory MISPL function. This parameter&#160;allows to 
+prevent the automatic expansion of the IsolationAppraisal.Text.</p>
+        </blockquote>
+        <p>An example of the ViewFormat parameter with combined options:</p>
+        <p>"Format = ReportFormat; PageWidth = 120; Classification = Bacterio; ResultSeparator =';~n'; File = Yes; Nonreportable = YES "</p>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <p>The previously supported methods of specifying the Format and/or the Page width are also accepted.</p>
+        <p>Examples:</p>
+        <blockquote>
+            <p>"ReportFormat"<br />":120"<br />"ReportFormat:120"</p>
+        </blockquote>
+        <p>However, they should not be combined with the format specifications as described above.</p>
+    </body>
+</html>

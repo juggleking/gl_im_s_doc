@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Patient blood characteristics</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor812"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Patient blood characteristics</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Blood%20characteristics">Blood characteristics</a> - <a href="#person%20medical%20record">Person medical record</a> - <a href="#Patient%20data%20sheet">Patient data sheet</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The first step in blood transfusion management is the determination of a patient's blood group, rhesus and antigen/antibody presence. In GLIMS this is implemented through 'normal' procedures which do not relate to the actual Blood Transfusion Module. This document merely gives some examples of how this could be configured in GLIMS. You can implement these procedures according to your own needs.</p>
+        <h2><a name="Blood characteristics"></a>Blood characteristics</h2>
+        <p>A patient's blood characteristics are measured by determining:</p>
+        <ul>
+            <li value="1">Blood group</li>
+            <li value="2">Rhesus-D</li>
+            <li value="3">Rhesus phenotype C,c,E,e</li>
+            <li value="4">Other antigens such as Lewis, Kell, Duffy, Luther, etc..</li>
+        </ul>
+        <p>These characteristics can be measured by checking antigen presence (e.g. on EDTA) and antibody presence (e.g. on SERUM).</p>
+        <p>GLIMS allows you to</p>
+        <ul>
+            <li value="1">Calculate or derive results from sub-tests</li>
+            <li value="2">Execute consistency checks between different tests (EDTA/Serum), the same test done by different people (e.g. ABO), current and previous results, etc.</li>
+            <li value="3">Reuse previous test results (e.g. final ABO)</li>
+            <li value="4">Validate test results with property choices</li>
+            <li value="5">Schedule and execute only necessary steps on a conditional basis (e.g. patient age)</li>
+            <li value="6">....</li>
+        </ul>
+        <h3>Blood group and rhesus determination</h3>
+        <p>The figure below shows a possible procedure configuration for blood group and rhesus determination, taking into account the age of the patient.</p>
+        <p style="text-align: center;">
+            <img src="bloodgroupdetermination.gif" />
+        </p>
+        <p>Some of the procedures above contain an eligibility expression to determine when they should be executed. Some of the properties have property triggers and procedure output MISPL expressions. Click the links below to see the MISPL expressions used in this example:</p>
+        <ul>
+            <li value="1"><a href="mispl_examples/bgrhesus.htm">BGRhesus as procedure output of BGPP</a>
+            </li>
+            <li value="2"><a href="mispl_examples/BGRhesus_BGDP.htm">BGRhesus as procedure output of BGDP</a>
+            </li>
+            <li value="3"><a href="mispl_examples/BGRhesus_property_trigger.htm">BGRhesus property trigger</a>
+            </li>
+            <li value="4"><a href="mispl_examples/bgap.htm">Eligibility for procedure BGAP</a>
+            </li>
+            <li value="5"><a href="mispl_examples/bgpp.htm">Eligibility for procedure BGPP</a>
+            </li>
+            <li value="6"><a href="mispl_examples/bgdp.htm">Eligibility for procedure BGDP</a>
+            </li>
+            <li value="7"><a href="mispl_examples/bgp.htm">Bloodgroup as procedure output of BGP</a>
+            </li>
+            <li value="8"><a href="mispl_examples/bgep.htm">Bloodgroup Ery as procedure output of BGEP</a>
+            </li>
+            <li value="9"><a href="mispl_examples/bgsp.htm">Bloodgroup Serum as procedure output of BGSP</a>
+            </li>
+            <li value="10"><a href="mispl_examples/brep.htm">Rhesus Ery as procedure output of BREP</a>
+            </li>
+            <li value="11"><a href="mispl_examples/Rhesus_BRP.htm">Rhesus as procedure output of BRP</a>
+            </li>
+        </ul>
+        <h3>Screening test</h3>
+        <p>The image below outlines a possible procedure structure for a screening test.</p>
+        <p style="text-align: center;">
+            <img src="screeningtest.gif" />
+        </p>
+        <p>The request definition which triggers this procedure is IrrAntiScr. The last procedure is a calculation which has three properties as input and the final screening result as output. This calculation can be configured using a MISPL expression in the <span class="ui_element">Value</span> field of the procedure output (e.g. IrrAntiScr):</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="screening_output.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="596" data-mc-height="469" src="screening_output_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p><b>MISPL:</b>
+                    </p>
+                    <blockquote><pre>
+/* Name : panelstoscreen.prco */
+/* What : As soon as at least one of the screeningpanels */
+/* SI, SII, SIII is positive, the screening is positive. */
+/* A negative result can only occur when each panel is negative */
+/* Basetable: action */
+RETURN( if SI = "+" or SI = "+" or SII = "+" or SIII = "+"
+then "pos"
+else "neg");
+</pre>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <h2>Storing the blood characteristics in the <a name="person medical record"></a>person medical record</h2>
+        <p>The final blood characteristics can be automatically stored in the patient's medical record. The automatic storage is configured by means of a property trigger. In order to do so, you can use the MISPL function "Person.SetMedicalRecord()". For an example, see the <a href="mispl_examples/BGRhesus_property_trigger.htm">BGRhesus property trigger</a> as defined in the example above.</p>
+        <p>The field <span class="ui_element">determination status</span> in the person medical record can also be changed from within MISPL functions by using the MISPL function 'SetMedicalRecord' on 'Person'. The specified value must be either "1", "2" or "3" (including quotes) or the unknown value.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>.Person.SetMedicalRecord( "DeterminationStatus", "2" );</p>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The meaning of the values 1/2/3 is defined in the site-domain "ABODeterminationStatus".</p>
+                </div>
+            </div>
+        </div>
+        <p>The person medical record allows to store the</p>
+        <ul>
+            <li value="1">Blood group, rhesus, pheno information</li>
+            <li value="2">Presence or absence of antigens and antibodies</li>
+            <li value="3">Screening info</li>
+            <li value="4">Transfusion reactions</li>
+            <li value="5">Transfusion advices</li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="pmr.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="629" data-mc-height="509" src="pmr_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The person medical record can be consulted via a contextual menu function on <span class="ui_element">Object</span> (<span class="ui_element">Transfusion</span> -&gt; <span class="ui_element">Person medical record</span>).</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #C29D0A;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Tip</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                    </p>
+                    <p>The Person.SetMedicalRecord() MISPL function also allows to specify unknown (?) as value for the blood group or the rhesus. This way the blood group or rhesus can be cleared again by means of a MISPL function.</p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Patient data sheet"></a>Patient data sheet</h2>
+        <p>Beside the person medical record, GLIMS offers another solution to consult the blood characteristics of a patient: the data sheet. For a full description of this functionality, please check the <a href="../../../../configuration/objects/objects_data_sheet.htm">Object data sheet</a> chapter.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p style="text-align: center;font-weight: bold;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="btm_datasheet.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="716" data-mc-height="629" src="btm_datasheet_thumb_0_120.png" alt="" tabindex="" /></a>
+                    </p>
+                    <p style="font-weight: bold;">The text module used for this data sheet:</p>
+                    <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+                        <tr>
+                            <td style="width: 100%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" bgcolor="#E8E8E8"><pre>
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;TITLE&gt;Data sheet of object {=.Externalization} (produced on: {=DateToString(ToDay(),"%d/%m/%y")})                  
+&lt;/TITLE&gt;
+</pre><pre>
+&lt;LINK REL="stylesheet" HREF="D:\GLIMS\DAT\Data-Sheet.css" TYPE="text/css"&gt;
+</pre><pre>
+&lt;script LANGUAGE="JavaScript"&gt;function SwitchWindow() ~{ if (window.name != 'fullscreen') 
+window.open(self.location, 'fullscreen', 'fullscreen=yes, scrollbars=auto'); else window.close();}
+&lt;/script&gt;
+</pre><pre>
+&lt;/HEAD&gt;
+</pre><pre>
+&lt;BODY&gt;
+</pre><pre>
+&lt;p align="right"&gt;
+&lt;a href="javascript:void(0);" onClick="SwitchWindow();" style="float: right; margin-top:0; margin-left:20 padding-top: 0"&gt;
+&lt;img src='D:\Glims\img\fullscreen-u.gif' title="Full screen on/off" border="0" &gt;&lt;/a&gt;
+</pre><pre>
+&lt;H1&gt;  Datasheet for patient {=.Person().LastName} {=.Person().FirstName}
+Birthdate: {=DateToString(.Person().BirthDate,"%d/%m/%y")} Sex:{=.Persondata("sex")}
+&lt;/H1&gt;
+</pre><pre>
+&lt;H2&gt; General&lt;/H2&gt;
+</pre><pre>
+&lt;UL Type="Square"&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Name:  &lt;/B&gt; {=.Person().LastName} {=.Person().FirstName} &lt;/LI&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Birthdate:          &lt;/B&gt;{=DateToString(.Person().BirthDate,"%d/%m/%y")}&lt;/LI&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Sex:                      &lt;/B&gt;{=.Persondata("sex")}&lt;/LI&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Ward:      &lt;/B&gt; {=.Person().Stay().Ward.Name}  &lt;/LI&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Room:      &lt;/B&gt;{=.Person().Stay().Room}  &lt;/LI&gt;
+&lt;LI&gt;
+&lt;B&gt;
+Since:      &lt;/B&gt;{= datetimetostring(.Person().Stay().StartTime, "%x")}  &lt;/LI&gt;
+&lt;/UL&gt;
+</pre><pre>
+&lt;H2&gt; Blood group&lt;/H2&gt;
+&lt;UL Type="Square"&gt;
+&lt;LI&gt; Definite blood group: &lt;b&gt; {=EnumeratedToString("bloodgroup",.Person().GetMedicalRecord().Bloodgroup) + 
+" " + EnumeratedToString("bloodrhesus",.Person().GetMedicalRecord().Rhesus)} &lt;/b&gt;&lt;/li&gt;
+&lt;li&gt; First determination: {= datetostring( .Person().GetMedicalRecord().DeterminationDate1, "%x") } &lt;/li&gt;
+&lt;li&gt; Second determination: {= datetostring( .Person().GetMedicalRecord().DeterminationDate2, "%x") } &lt;/li&gt;
+&lt;/ul&gt;
+</pre><pre>
+&lt;h2&gt; Rhesus feno antibodies &lt;/h2&gt;
+&lt;pre&gt;
+ C: {=IF .Person().GetAntibody("C") THEN "YES" ELSE
+IF NOT .Person().GetAntibody("C") THEN "NO" ELSE "Unknown"}
+ c: {=IF .Person().GetAntibody("c") THEN "YES" ELSE 
+IF NOT .Person().Getantibody("c") THEN "NO" ELSE "Unknown"}
+ E: {=IF .Person().Getantibody("E") THEN "YES" ELSE 
+IF NOT .Person().Getantibody("E") THEN "NO" ELSE "Unknown"}
+ e: {=IF .Person().Getantibody("e") THEN "YES" ELSE 
+IF NOT .Person().Getantibody("e") THEN "NO" ELSE "Unknown"}
+&lt;/pre&gt;
+</pre><pre>
+&lt;h2&gt; Rhesus feno antigens &lt;/h2&gt;
+&lt;pre&gt;
+ C: {=IF .Person().GetAntigen("C") THEN "YES" ELSE
+IF NOT .Person().GetAntigen("C") THEN "NO" ELSE "Unknown"}
+ c: {=IF .Person().GetAntigen("c") THEN "YES" ELSE 
+IF NOT .Person().Getantigen("c") THEN "NO" ELSE "Unknown"}
+ E: {=IF .Person().Getantigen("E") THEN "YES" ELSE 
+IF NOT .Person().Getantigen("E") THEN "NO" ELSE "Unknown"}
+ e: {=IF .Person().Getantigen("e") THEN "YES" ELSE 
+IF NOT .Person().Getantigen("e") THEN "NO" ELSE "Unknown"}
+&lt;/pre&gt;
+</pre><pre>
+{:
+string list;
+BloodBag BagId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  BagId := .person().AvailableBloodBagByNumber(?, ?,  ?, i);
+  if BagId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + EnumeratedToString("BloodBagStatus", BagId.Status) +
+           "&lt;/td&gt;&lt;td&gt;" +datetimetostring(BagId.ReceiptTime, "%x") +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic + "&lt;/td&gt;&lt;td&gt;" + BagId.InternalId + + "&lt;/td&gt;&lt;td&gt;" + 
+           EnumeratedToString("DonationType", BagId.DonationType) + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL BagId = ?;
+</pre><pre>
+if list = "" then return "&lt;h2&gt; No autologous or directed units waiting to be selected for this patient.&lt;/h2&gt;"; endif;
+return "&lt;h2&gt; Available autologous or directed units that are not selected yet&lt;/h2&gt; &lt;table border=1&gt;&lt;tr align=center&gt;&lt;td&gt;
+&lt;b&gt;Status&lt;/td&gt;&lt;td&gt;&lt;b&gt;Received on&lt;/td&gt;&lt;td&gt;&lt;b&gt;Product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Unit number &lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Donation type &lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;" 
++ list + "&lt;/table&gt;";
+}
+{:
+string list;
+BloodBag BagId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  BagId := .person().AvailableBloodBagByNumber(?, ?, BloodbagStatus["Checked"], i);
+  if BagId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + EnumeratedToString("BloodBagStatus", BagId.Status) +
+           "&lt;/td&gt;&lt;td&gt;" +datetimetostring(BagId.ReceiptTime, "%x") +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic + "&lt;/td&gt;&lt;td&gt;" + BagId.InternalId + + "&lt;/td&gt;&lt;td&gt;" + 
+            EnumeratedToString("DonationType", BagId.DonationType) + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL BagId = ?;
+</pre><pre>
+if list = "" then return "&lt;h2&gt; No autologous or directed units for this patient (that are not checked out yet).&lt;/h2&gt;"; endif;
+return "&lt;h2&gt; Autologous or directed units for this patient (not checked out yet)&lt;/h2&gt; &lt;table border=1&gt;&lt;tr align=center&gt;&lt;td&gt;
+&lt;b&gt;Status&lt;/td&gt;&lt;td&gt;&lt;b&gt;Received on&lt;/td&gt;&lt;td&gt;&lt;b&gt;Product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Unit number &lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Donation type &lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;" 
++ list + "&lt;/table&gt;";
+}
+</pre><pre>
+{:
+string list;
+BloodBag BagId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  BagId := .GetCheckedOutBag(?, i, ?, ?);
+  if BagId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + datetimetostring(BagId.CheckoutTime, "%x") +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic + "&lt;/td&gt;&lt;td&gt;" + BagId.ExternalId + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL BagId = ?;
+if list = "" then return "&lt;h2&gt; Currently no units are checked out for this patient. &lt;/h2&gt;"; endif;
+return "&lt;h2&gt; Currently check-out units for this patient&lt;/h2&gt; &lt;table border=1&gt;&lt;tr align=center&gt;&lt;td&gt;&lt;b&gt;Checked out on&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;Product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Unit number &lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;" + list + "&lt;/table&gt;";
+}
+</pre><pre>
+{:
+string list;
+BloodBag BagId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  BagId := .GetBloodBag(?, i, ?, ?);
+  if BagId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + datetimetostring(BagId.TransfusionEndTime, "%x") +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic + "&lt;/td&gt;&lt;td&gt;" + BagId.InternalId + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL BagId = ?;
+</pre><pre>
+if list = "" then return "&lt;h2&gt; No units have been administered to this patient yet.&lt;/h2&gt;"; endif;
+return "&lt;h2&gt; Units administered to this patient&lt;/h2&gt; &lt;table border=1&gt;&lt;tr align=center&gt;&lt;td&gt;&lt;b&gt;Transfusion date&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;Product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Unit number &lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;" + list + "&lt;/table&gt;";
+}
+</pre><pre>
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

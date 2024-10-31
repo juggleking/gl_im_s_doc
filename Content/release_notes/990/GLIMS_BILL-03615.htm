@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling,Primary.50_translation_exclude_for_GER">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Financial export in RIZIV format: export of "registratiecode" (art.33ter) (GLIMS_BILL-03615)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor324"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Financial export in RIZIV format: export of "registratiecode" (art.33ter) (GLIMS_BILL-03615)</h1>
+        <h2>Introduction</h2>
+        <p>The <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm">export of financial data</a> in the <span class="ui_element">RIZIV</span> format now exports  the "registratiecode" (registration code) for billing items related to art.33ter (in record type 50 Zone 57-59).</p>
+        <h2>Entering the registration code in GLIMS</h2>
+        <p>For GLIMS to be able to export it, the registration code needs to be entered as an informational result during order entry. The (dummy) <a href="../../configuration/properties/properties.htm">property</a> used for this purpose needs to be indicated in the <span class="ui_element">SpecificSite</span>-based site attribute <span class="ui_element">_RegistrationCodeProperty</span> with <span class="ui_element">Data type</span> = <span class="ui_element">Reference</span> and <span class="ui_element">Target table</span> = <span class="ui_element">Property</span>.</p>
+        <p class="fieldlabel">Adding the site attribute</p>
+        <blockquote>
+            <ol>
+                <li value="1">Choose <span class="ui_element">Start &gt; System management &gt; Scheme &gt; Tables</span></li>
+                <li value="2">Select the <span class="ui_element">SpecificSite</span> table</li>
+                <li value="3">Right mouse click &gt; <span class="ui_element">Site attributes</span></li>
+                <li value="4">Press Insert</li>
+            </ol>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03615_site_attribute.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="501" data-mc-height="506" src="GLIMS_BILL-03615_site_attribute_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </blockquote>
+        </blockquote>
+        <p class="fieldlabel">Filling in the site attribute </p>
+        <blockquote>
+            <p style="text-indent: 0.5in;">Choose <span class="ui_element">Start &gt; System management &gt; Customize &gt; GLIMS general</span>. The selected dummy <a href="../../configuration/properties/properties.htm">property</a> can have the datatype <span class="ui_element">String</span> or <span class="ui_element">Numeric</span>.</p>
+            <blockquote>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03615_site_attribute_specific_site.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="731" data-mc-height="630" src="GLIMS_BILL-03615_site_attribute_specific_site_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </blockquote>
+        </blockquote>
+        <p class="fieldlabel">Note</p>
+        <blockquote>
+            <p>One registration code result per order should be sufficient. However, if more than one is required, the dummy property can be configured as an output of the procedure that also delivers the result of the art.33ter related billing item.</p>
+        </blockquote>
+        <h2>Recognizing art.33ter related billing items</h2>
+        <p>For GLIMS to be able to recognize the art.33ter related billing items, the <span class="ui_element">Tariff &gt; PriceCode.Mnemonic</span> should be "*[Art]33ter" (for instance Art33ter, Artikel33ter or 33ter).</p>
+        <p class="fieldlabel"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03615_price_code.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="623" data-mc-height="543" src="GLIMS_BILL-03615_price_code_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>In addition</h2>
+        <p>The marker ("merker") which is also required for art.33ter related billing items is exported in the BV ("betrekkelijke verstrekking") field. It is obtained from the <span class="ui_element">BillingItem</span>-based site attribute.</p>
+        <p>For art.33ter, art.33bis and NIPT related billing items, the part of the invoice to be paid by the patient is exported in the "bedrag patient" (and not the "supplement") field. The recognition of art.33bis related billing items via their <span class="ui_element">PriceCode.Mnemonic</span> ("33bis" for instance) is also supported.</p>
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Communication" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Monitoring services</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Monitoring services</h1>
+        <h2>Introduction</h2>
+        <p>The <span class="ui_element">Monitor services</span> function (<span class="ui_element">Start -&gt; System management -&gt; Services -&gt; Monitor</span>) allows automatic restart of services and translators that unintentionally stopped. &#160;It executes the following tasks sequentially:</p>
+        <ol>
+            <li value="1">It performs a <span class="ui_element">Check activity</span> on all services for which the option <span class="ui_element">Auto start</span> is enabled. If inactive, the service is (re-)started.</li>
+            <li value="2">After checking all auto-start services, the same is done for all translators which the option <span class="ui_element">Auto start</span> is enabled. Again, inactive translators are (re-)started.</li>
+        </ol>
+        <p>This function should be implemented as a periodically running task. Configure a <a href="../commands_tasks/commands_tasks.htm">command</a> on table <span class="ui_element">gp_Site</span>. Combine the <span class="ui_element">Default</span> query with the <span class="ui_element">MonitorServices</span> function.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #C29D0A;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Tips</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>: Via this mechanism, it is also possible to re-start a service or a translator from a client PC. When stopping a process by means of the Stop() function, it will automatically be recovered by the monitor process on the server a few minutes later (provided its "Auto start" flag is set of course!).</p>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>: This tool is intended to increase the availability of external interfaces. It uses a symptomatic approach rather than a curative one. As it always remains our primary intention to avoid services/translators from unintentionally stopping after all, we still request contacting MIPS in case any anomalies are suspected. In that case it is very helpful if the corresponding log-files (or the relevant part of it) are sent to MIPS along with the problem report.</p>
+                </div>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>: The function hibernates until 15 minutes after database startup allowing the database and all related processes to come up properly, without causing interference.</p>
+                </div>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>: GLIMS also offers a gp_Site-based function <a href="gp_site_startup_services.htm">Start up services</a> which is similar to the <span class="ui_element">Monitor services</span> function but performs some additional tasks. For pure monitoring and automatic recovery, we recommend to use the <span class="ui_element">Monitor services</span> function.</p>
+                </div>
+            </div>
+        </div>
+        <h2>Parameters</h2>
+        <p class="fieldlabel">Local services only</p>
+        <p class="fielddescription">If this option is set, only services/translators on the local server will be monitored. Is designed for larger environments, where services and translators are spread over multiple application servers.</p>
+        <p class="fielddescription">This means system managers can setup and schedule a <span class="ui_element">MonitorServices</span> task per application server in order to automatically restart services that aren't running at the moment of checking - but limited to the specific host.</p>
+        <p class="fielddescription"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="monitor_services_local.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="654" data-mc-height="612" src="monitor_services_local_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Using a script on OS command level</h2>
+        <p>The <span class="ui_element">Monitor services</span> function can be used in a script on OS command level.</p>
+        <p class="fieldlabel">On Windows</p>
+        <p class="fielddescription">Monitor all services</p>
+        <blockquote>
+            <p class="fielddescription">prowin32.exe -b  -basekey ini  -T tmp -param "-P gp_MonitorServices -V High -L  MonitorAll.log"</p>
+        </blockquote>
+        <p class="fielddescription">Monitor only local services </p>
+        <blockquote>
+            <p class="fielddescription">prowin32.exe -b  -basekey ini  -T tmp -param "-P gp_ MonitorServicesLocal -V High -L  MonitorLocal.log"</p>
+        </blockquote>
+        <p class="fieldlabel">On UNIX</p>
+        <p class="fielddescription">Monitor all services</p>
+        <blockquote>
+            <p class="fielddescription">mam glims run -s -P gp_MonitorServices -LMonitorAll.log or</p>
+            <p class="fielddescription">mam glims run -b -P gp_MonitorServices -LMonitorAll.log</p>
+        </blockquote>
+        <p class="fielddescription">Monitor only local services</p>
+        <blockquote>
+            <p class="fielddescription">mam glims run -s -P gp_MonitorServicesLocal -LMonitorLocal.log or</p>
+            <p class="fielddescription">mam glims run -b -P gp_MonitorServicesLocal -LMonitorLocal.log</p>
+        </blockquote>
+        <blockquote>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>"-s" will block the OS from returning to the user shell until the monitor process has completed.</p>
+                <p>"-b" will directly return control to the OS user. The monitor will continue executing in the background.</p>
+            </div>
+        </blockquote>
+    </body>
+</html>

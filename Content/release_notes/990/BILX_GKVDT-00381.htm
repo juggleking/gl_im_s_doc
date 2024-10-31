@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Financial export in German "KVDT" format: Strukturpauschale (Bereitschaftsdienst) (BILX_GKVDT-00381)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2371"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Financial export in German "KVDT" format: Strukturpauschale (Bereitschaftsdienst) (BILX_GKVDT-00381)</h1>
+        <h2>Introduction</h2>
+        <p>In accordance with the conventions for <i>KV Sachsen</i>, the export of financial data in the German <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">KVDT</span> format (via the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</a> function) now supports <i>Strukturpauschale</i> <i>(Bereitschaftsdienst)</i>.</p>
+        <h2>Configuration</h2>
+        <p>The <i xmlns="http://www.w3.org/1999/xhtml">Strukturpauschale</i> to be sent needs to be specified in a <a href="../../configuration/mispl_texts/texts_syntax_grammar.htm" xmlns="http://www.w3.org/1999/xhtml">Text</a> expression. The <span class="ui_element">FinancialShipment</span>-based <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Text</span> must have <b xmlns="http://www.w3.org/1999/xhtml">KVBDYYYYQq</b> as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Mnemonic</span>.</p>
+        <p>Example for quarter 3 of 2018:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00381.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="494" data-mc-height="404" src="BILX_GKVDT-00381_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The text expression should contain all fields to be added (except FK80000104 Notfall which will be added if needed). It contains:</p>
+        <p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">
+                    <p xmlns="http://www.w3.org/1999/xhtml">(optional) Header information (dummy patient, etc.)</p>
+                    <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>If none of the header fields are specified, a hard-coded default header will be used.</p>
+                    </div>
+                </li>
+                <li style="font-style: normal;" value="2">
+                    <p xmlns="http://www.w3.org/1999/xhtml">the <i xmlns="http://www.w3.org/1999/xhtml">Leistungen</i> <i xmlns="http://www.w3.org/1999/xhtml">(Pauschale)</i> (which need to be re-entered each quarter)</p>
+                    <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>The <i xmlns="http://www.w3.org/1999/xhtml">Leistung</i> fields must be preceded by a declaration line such as 'FK5000,FK5001,FK5005,FK5009,FK5098,FK5099...'</p>
+                    </div>
+                </li>
+            </ul>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <p class="fieldlabel">Comment</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">Comments can be used in the text expression. Text which comes after the ";" character will be ignored during the creation of the KVDT file. For example :</p>
+            </div>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">; Comment line<br xmlns="http://www.w3.org/1999/xhtml" />FK4101A; Comment<br xmlns="http://www.w3.org/1999/xhtml" />FK4101A ; Comment</p>
+            </div>
+            <p class="fieldlabel" xmlns="">Quartal</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The <i xmlns="http://www.w3.org/1999/xhtml">Quartal</i> field should match the quarter of the shipment. This can for instance be configured as follows in the text expression:</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">FK4101{:<br xmlns="http://www.w3.org/1999/xhtml"></br>STRING QYYYY;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">IF .ExternalDate &lt;&gt; ? THEN<br xmlns="http://www.w3.org/1999/xhtml" /> QYYYY := DateToString(.ExternalDate, "%q%Y");<br xmlns="http://www.w3.org/1999/xhtml" />ELSE<br xmlns="http://www.w3.org/1999/xhtml" /> QYYYY := DateToString(TODAY(), "%q%Y");<br xmlns="http://www.w3.org/1999/xhtml" />ENDIF;<br xmlns="http://www.w3.org/1999/xhtml" />RETURN(QYYYY);<br xmlns="http://www.w3.org/1999/xhtml" />}</p>
+            </div>
+        </div>
+        <h2>Routine</h2>
+        <p>When creating the KVDT file in GLIMS via the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</a> function, the new option  <span class="ui_element">Add record for 'Bereitschaftsdienst'</span> needs to be enabled.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00381_send.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="545" data-mc-height="460" src="BILX_GKVDT-00381_send_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The text expression will be evaluated (against the financial shipment which allows dynamic content such as the quarter) and the expanded text will be added as a  0104 (Notfall) Satz at the end of the KVDT file (after the last <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Invoice</span>).</p>
+        <p>For example: </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00381_kvdt_file.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="238" data-mc-height="827" src="BILX_GKVDT-00381_kvdt_file_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The used input text is logged in the KVDT log type. </p>
+        <p>For example:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00381_log.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1122" data-mc-height="731" src="BILX_GKVDT-00381_log_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The added record 0104  will be checked against the KVDT rules. Failures will be logged as log entry with severity <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Error</span>. However, the KVDT file itself will still be created but without the additional record. A (warning) log entry will indicate that the record was not added. </p>
+        <p>For example:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00381_error_log.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1127" data-mc-height="197" src="BILX_GKVDT-00381_error_log_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>It is therefore necessary to carefully check the (error) log entries in the KVDT log type!</p>
+    </body>
+</html>

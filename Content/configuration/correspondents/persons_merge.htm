@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Double patient/encounter administration" data-mc-ignored-words="PersonMergeExternalization" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\double patient admin\person merge\merge_persons.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Person merge program</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Person merge program</h1>
+        <h2>Introduction</h2>
+        <p>It is possible to merge one or more incorrect persons with a correct 
+ person. Persons can be merged by</p>
+        <ol>
+            <li value="1">selecting the contextual menu/ribbon item <span class="ui_element">Merge</span> for the selected <span class="ui_element">Person</span> record(s)</li>
+            <li value="2">using the <span class="ui_element">Merge</span> button in the <a href="persons_doubles.htm">double 
+ patient browser</a>.</li>
+        </ol>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Use this program with care. Although the changes 
+ are logged in the logging database (under the log type <span class="ui_element">Person Merge</span>), 
+ this operation can NOT be undone.</p>
+        </div>
+        <h2>Merge screen</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="persons_merge.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="524" data-mc-height="473" src="persons_merge_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Correct persons</h3>
+        <p>By default, the selected person is chosen as the correct person. When 
+ more than 1 person is selected before choosing the <span class="ui_element">Merge</span> function, the first person 
+ will be considered as the correct person and the other will 
+ be added to the incorrect person list.</p>
+        <h3>Incorrect persons</h3>
+        <ul>
+            <li value="1"><span class="ui_element">Add</span> incorrect persons by double-clicking in one of the <span class="ui_element">Incorrect persons</span> fields. The selected person will be shown in the list below.</li>
+            <li value="2"><span class="ui_element">Remove</span> 'incorrect persons' by selecting them in the list and pressing the <span class="ui_element">Delete</span> key.</li>
+        </ul>
+        <h3>Person information</h3>
+        <p>For both the correct person and the incorrect persons, detailed information is shown. </p>
+        <p class="fieldlabel">Default</p>
+        <div class="indented">
+            <p>By default, 
+ the <span class="ui_element">Person.Externalization</span> field is shown, together with some address 
+ data. The person internal id is also displayed which allows making 
+ a distinction between persons with the same externalization.</p>
+        </div>
+        <p class="fieldlabel">Custom info</p>
+        <div class="indented">
+            <p>This information can be customized by creating a 
+ Person-based dynamic text named <span class="ui_element">PersonMergeExternalization</span>. </p>
+        </div>
+        <h3>Test mode</h3>
+        <p>The option <span class="ui_element">Test mode</span> allows executing the merge in test mode: all the database 
+ changes are undone at the end. This allows a 'what if' simulation.</p>
+        <h3>Merging</h3>
+        <p class="fieldlabel">Merge fails</p>
+        <div class="indented">
+            <p>Trying to merge <a href="persons.htm">persons</a> raises an error if they have incompatible sex, blood group, rhesus or 
+ antigen   (see <a href="#About2">about PMR data</a>), mother, genotypic gender or before birth information. This must be fixed manually before 
+ merging is allowed. When an error occurs during this method, everything is undone and the 
+ database is restored to its original status.</p>
+        </div>
+        <p class="fieldlabel">Merge succeeds</p>
+        <div class="indented">
+            <p>When merging, all records referring to the incorrect person 
+ (and his related object and correspondent) are moved to the correct person. 
+ This includes results, order, billing data, ...</p>
+            <p>When a conflict arises (e.g. an order set with the same internal id 
+ already exists for the correct person), the program tries to resolve this 
+ by adding an underscore ('_') to the end of the first character key field 
+ (in this case, the Order Set Internal Id). If this fails, the original 
+ record is not copied.</p>
+            <p>At the end of the merge operation, the incorrect person (and his related 
+ object and correspondent) is removed from the database.</p>
+            <p class="fieldlabel">About identifications</p>
+            <div class="indented">
+                <p>The incorrect person's identification records are not deleted. 
+ Only the identification records which have the same code and source as 
+ the records of the correct person will be deleted. The other identification 
+ records from the same source will be moved to the correct person but they 
+ will be invalidated (end date will be set to day before the merge happened).</p>
+                <p>This 
+ means that if the user searches a correspondent by identification code, 
+ s/he will now be able to find the correct person using the incorrect person's 
+ identification codes.</p>
+            </div>
+            <p class="fieldlabel">About encounters</p>
+        </div>
+        <div class="indented">
+            <div class="indented">
+                <p>The person merge program will, on its turn, silently call the <a href="../encounters/encounters_merge.htm">encounter 
+ merge program</a> to avoid the situation that after merging of 2 or more 
+ persons, the correct person has different encounters with the same external 
+ id. </p>
+                <ul>
+                    <li value="1">Encounters with the same external id will be merged automatically, 
+ provided they are assigned by the same institution.</li>
+                    <li value="2">For safety reasons, encounters with unknown external id will only be 
+ merged with an existing encounter with unknown external id of the correct 
+ person when only ONE such correct encounter can be found. Encounters 
+ with known external id will be merged with the MOST RECENT correct encounter 
+ with the same external id.</li>
+                </ul>
+            </div>
+            <p class="fieldlabel"><a name="About"></a>About reports</p>
+            <div class="indented">
+                <p>When merging persons, all orders of the last month of both the correct and incorrect object will be examined in order to determine if 
+ any electronic reports are defined for these orders. If this is the case 
+ then these reports will be marked with <span class="ui_element">Needs checking</span> if they 
+ have been sent before (unless the option <a href="../report_templates/report_templates.htm#Electronic">Only result changes</a> is activated). This will cause these reports to be resent.</p>
+                <p>When merging persons, the <a href="../../routine/reports/types/reports_scope.htm">ReportGroup.Reorganize</a> 
+function is automatically executed for each year, object or encounter report. Typically, 
+ after a person merge operation the pages of the 2 original object 
+ reports are merged together, thus yielding a bad sorting order of the 
+ contained columns. The automatic execution of ReportGroup.Organize function makes 
+ sure the columns are reorganized as necessary.</p>
+            </div>
+            <p class="fieldlabel">About attachments</p>
+            <div class="indented">
+                <p>When persons are merged, <span class="ui_element">Attachment</span> records and the associated files 
+ are also moved from the old record to the new record. This will be done for Persons, Objects, Medical records, Correspondents and Encounters.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li class="mips_list_bulleted" value="1">GLIMS will change the file name to another 
+	 one with the same extension (using a seq no) if an attachment with 
+	 the same name already exists on the target record.</li>
+                        <li class="mips_list_bulleted" value="2">In test mode there is a slight difference 
+	 in behaviour: the program will only attempt to move attachment records, 
+	 not the associated files. In test mode the database transaction is 
+	 completely rolled back, which cannot be done with the OS files.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">About Log entries</p>
+            <div class="indented">
+                <p>When persons are merged, log entry records are also moved from the old 
+ record to the new record. While merging persons, related records are merged 
+ too, and so are the log entries. This will be done for Persons, Objects, Medical records, Correspondents and Encounters.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The program will add a string [MERGED] 
+	 to the log entry description (to have a trace of its origin).</p>
+                </div>
+            </div>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel"><a name="About2"></a>About PMR data</p>
+            <div class="indented">
+                <p>If the correct person does not yet have a Person Medical Record, the incorrect person's PMR  is copied. If both persons have a medical record, 
+ some information is merged with the correct person's record (e.g. blood group 
+ when only known for the incorrect person):</p>
+                <p>Sex:</p>
+                <div class="indented">The merge does not take place if the sex is known and different.</div>
+                <p>Blood group and rhesus:</p>
+                <div class="indented">The merge does not take place if the blood group/rhesus is known and different.</div>
+                <p>HLA, antigens, antibodies and person relations:</p>
+                <ul>
+                    <li value="1">
+                        <p>Existing (HLA) 
+ antigens or antibodies are compared and if no conflict arises, 
+ the (HLA) records from the incorrect person is 
+ moved to the correct person.</p>
+                        <p>A conflict can be: Person 'P1' has an antigen 'A1' which is present and 
+ person 'P2' has the same antigen 'A1' but here it is absent. For antibodies, 
+ the presence is date dependent.</p>
+                        <p>The typing advice value may not be different either.</p>
+                    </li>
+                    <li value="2">The Person <span class="ui_element">Antigen</span> records are copied to the correct person (when not 
+ conflicting).</li>
+                    <li value="3">The  fields <span class="ui_element">HLA type sero</span> and <span class="ui_element">HLA type DNA</span> 
+ are merged.</li>
+                    <li value="4">Person relations are moved from the incorrect person to the correct 
+ one. GLIMS checks that the 2 persons used for merging have 
+ no relation with each other.</li>
+                </ul>
+                <p>Crossmatch advices:</p>
+                <div class="indented">Different crossmatch advices do not prevent the merge operation. The crossmatch advice of the incorrect person record is added to the crossmatch advice of the correct person record.</div>
+                <p>Site attributes:</p>
+                <div class="indented">When the value of a site attribute is different in the two persons' PMR, merging is only allowed  if this attribute is both of datatype <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">String</span> and displayed in a widget of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Editor</span>. Otherwise, the merge does not take place.</div>
+            </div>
+        </div>
+        <p class="fieldlabel">Merge via a communication interface</p>
+        <div class="indented">
+            <p>It is possible to merge patients without using the Person merge programme  by sending an HL7 MRG event message to GLIMS.</p>
+            <p>In that case, it is possible to merge 2 patients with different genders when the HIS is master.</p>
+            <p>See option <a href="../../communication/internal_protocol/service_options/classes/service_options_correspondent.htm">MergeCheckList</a> for a description of all possibilities.</p>
+        </div>
+    </body>
+</html>

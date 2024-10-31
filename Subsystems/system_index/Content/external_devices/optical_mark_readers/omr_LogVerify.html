@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="External devices|Optical Mark Reading" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\omr\omr_LogVerify.html">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>OMR log verify</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>OMR log verify</h1>
+        <p><b>Howto</b>:</p>
+        <ul>
+            <li value="1">
+                <p align="left"><b>Log creation:<br /></b>Start all OMR translators with the <a href="omr_parameters.html">'-p'
+ command-option</a> enabled. This option will set the used LogType::Name.
+ Each time the OMR translator is started, a new log will be created. The
+ log::Process will always be the translatorname. If needed, a <a href="omr_start.html#Stop%20sheet%20usage">stop
+ sheet</a> can be used to create a new log under the used log type.</p>
+            </li>
+            <li value="2">
+                <p align="left"><b>Log verification:</b>
+                </p>
+                <ul>
+                    <li value="1">
+                        <p align="left">Via LogTypes::Logs:
+          </p>
+                        <ul>
+                            <li value="1">
+                                <p align="left">Select the concerning log type.</p>
+                            </li>
+                            <li value="2">
+                                <p align="left">Open log browser of selected log type.</p>
+                            </li>
+                            <li value="3">
+                                <p align="left">Select all logs which need to be checked.</p>
+                            </li>
+                            <li value="4">
+                                <p align="left">Run Verify() method.</p>
+                            </li>
+                            <li value="5">
+                                <p align="left">Start log verification.</p>
+                            </li>
+                            <li value="6">
+                                <p align="left">Remark: the log type and log process are read-only
+ fields. They will show the correct values but won't be editable.
+ Open the Log::Verify() method via the menu when the above fields are
+ expected to be editable.</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li value="2">
+                        <p align="left">Via menu:
+                      </p>
+                        <ul>
+                            <li value="1">
+                                <p align="left">Version 5.4 only:
+                          </p>
+                                <ul>
+                                    <li value="1">
+                                        <p align="left">The function
+ Start\Configuration\SharedSpecimenGroupsByName will be used to
+ call the Log::Verify() method. However, the item's place in the
+ menu as well as its name&#160; can be changed easily.<br />
+                HowTo:<br />
+                Select table gp_Site - Start\System Management\Tables\gp_Site.
+ Edit gp_Site's menu. Rename method 'SharedSpecimenGroupsByName'
+ to something more apllicable. Put the method under the
+ Start\Routine if wanted.</p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li value="2">
+                                <p align="left">From version 5.4 on:
+                            </p>
+                                <ul>
+                                    <li value="1">
+                                        <p align="left">The Log::Verify() method can be called directly
+ from within the menu. Open it.</p>
+                                    </li>
+                                    <li value="2">
+                                        <p align="left">Select the log type. All log processes will be
+ calculated.<br />
+                Remark: only logs created at a date no longer than after 2 days
+ ago will be shown. Currently this is hardcoded.</p>
+                                    </li>
+                                    <li value="3">
+                                        <p align="left">Select the log process to verify.</p>
+                                    </li>
+                                    <li value="4">
+                                        <p align="left">The title bart will now show how many logs there
+ are to be verified.</p>
+                                    </li>
+                                    <li value="5">
+                                        <p align="left">The browser will show the current log's entries.</p>
+                                    </li>
+                                    <li value="6">
+                                        <p align="left">Start log verification.</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li value="3">
+                        <p align="left">Log::Verify() user interface behaviour:
+                                    </p>
+                        <ul>
+                            <li value="1">
+                                <p align="left">Only logs with at least one containing log entry
+ with the NeedsChecking flag set, will be shown.</p>
+                            </li>
+                            <li value="2">
+                                <p align="left">Only the log's log entries with the NeedsChecking
+ flag will be shown.</p>
+                            </li>
+                            <li value="3">
+                                <p align="left">Editing a log entry or opening a log entrie's
+ Subject will unset the entrie's NeedsChecking flag.</p>
+                            </li>
+                            <li value="4">
+                                <p align="left">When the NeedsChecking flag is unset, the entry will
+ be shown in black. A red entry has the NeedsChecking flag set.</p>
+                            </li>
+                            <li value="5">
+                                <p align="left">To set the NeedsChecking flag of an entry, open the
+ entry for edit (F6) and set the flag.</p>
+                            </li>
+                            <li value="6">
+                                <p align="left">The Previous and Next buttons can be used to go to
+ the previous or next log.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li value="3">
+                <p align="left"><b>Log entry message layout:</b>
+                </p>
+                <ul>
+                    <li value="1">
+                        <p align="left">The first line will show the sheet sequence number.</p>
+                    </li>
+                    <li value="2">
+                        <p align="left">Error messages follows, than all warning messages and
+ last all informational messages.</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

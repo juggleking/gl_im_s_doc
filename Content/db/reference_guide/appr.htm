@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Approach</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2414"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Approach&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Approach</td>
+                <td>
+appr</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This table stores the approaches of a certain specimen of a genetic exam </p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_ApproachPlan"></a>
+        <h3>
+Approach plan</h3>
+        <div class="MemberHelp">
+            <p>
+Reference to the ApproachPlan that was used/chosen.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="aprp.htm">ApproachPlan</a></span>&#160;<b>ApproachPlan</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_EndTime"></a>
+        <h3>
+End</h3>
+        <div class="MemberHelp">
+            <p>
+End date+time of the approach, depending on the status:<br />- As long as the start date is empty (approach status is ‘Initial’), the end date is also empty.<br />- If it is not finished yet (status ‚Running‘), it contains the expected end date.<br />This expected date is calculated as:<br />Start date + Number of days TAT of the approach plan (config).<br />- If the approach is finished, it contains the effective date that the end node was reached.<br />- If the approach status is Discontinued or Error, the end date is also empty.<br /></p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>EndTime</b></p>
+        </div><a name="F_GeneticExam"></a>
+        <h3>
+Genetic exam</h3>
+        <div class="MemberHelp">
+            <p>
+Reference to the GeneticExam <br />(hence indirectly to the Order). <br />Each approach record is directly related to the GeneticExam (hence indirectly to the Order).<br />1-N relation from Approach to GeneticExam.<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="gnte.htm">GeneticExam</a></span>&#160;<b>GeneticExam</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Approach</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Specimen"></a>
+        <h3>
+Specimen</h3>
+        <div class="MemberHelp">
+            <p>
+Reference to the received specimen that is being investigated.<br />Can only be empty when there is no specimen for the genetic exam.<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<b>Specimen</b></p>
+        </div><a name="F_StartTime"></a>
+        <h3>
+Start</h3>
+        <div class="MemberHelp">
+            <p>
+This is the date+time that the approach was actually started to be executed. Or more accurately, date-time on which the first (classic) Action started.<br />The execution of the approach can be delayed.<br />e.g. when created on a Friday but the execution should start on Monday.<br />How is this start marked in Glims? <br />As soon as an Action is created for a certain Activity in the approach, and this Action is ‘started’ (i.e. gets a start time), then the Approach record gets a start time. <br /><br /></p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>StartTime</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+Initial:	approach was created but execution still has to start.<br />Note: will never exist in reality, because plan immediately starts. Foresee this status anyway.<br />Running:	execution has started and is running, but not finished yet. So at least 1 activity in the Approach has status Running.<br />Error: One of the contained activities has run into an Error status.<br />Finished: Execution of the approach has finished (end of the plan has been reached)<br />Discontinued:	e.g. due to discontinue of the order<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="approachstatus.htm">ApproachStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Running, Error, Finished, Discontinued</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_ApproachActivities"></a>
+        <h3>
+Approach activities&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ApproachActivities</b> ()</p>
+        </div><a name="M_ApproachLog"></a>
+        <h3>
+Approach log&#160;</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ApproachLog</b> ()</p>
+        </div><a name="M_ApproachPlan"></a>
+        <h3>
+Approach plan&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ApproachPlan</b> ()</p>
+        </div><a name="M_ApproachRequests"></a>
+        <h3>
+Approach requests&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ApproachRequests</b> ()</p>
+        </div><a name="M_ApproachrequestsOfApproachByOrigin"></a>
+        <h3>
+By Origin&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ApproachrequestsOfApproachByOrigin</b> ()</p>
+        </div><a name="M_GeneticExam"></a>
+        <h3>
+Genetic exam&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticExam</b> ()</p>
+        </div><a name="M_GeneticResult"></a>
+        <h3>
+Result screen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticResult</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer. This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_Specimen"></a>
+        <h3>
+Specimen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Specimen</b> ()</p>
+        </div><a name="M_VisualizeApproach"></a>
+        <h3>
+Visualize&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VisualizeApproach</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_GetActivities"></a>
+        <h3>
+GetActivities&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get a list of activities linked to an approach with an optional filter on the status</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>GetActivities</b> (<span class="Type"><a href="approachactivitystatus.htm">ApproachActivityStatus</a></span>&#160;<span class="Parameter">Status</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="approachactivitystatus.htm">ApproachActivityStatus</a></span>&#160;<span class="Parameter">Status</span></dt>
+                <dd>
+One of: <span class="Parameter">Pending, Running, Error, Finished, Discontinued</span><br /></dd>
+            </dl>
+        </div><a name="M_GetActivity"></a>
+        <h3>
+GetActivity&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get 1 approach activity with a given id</p>
+            <p class="Synopsis"><span class="Type"><a href="apac.htm">ApproachActivity</a></span>&#160;<b>GetActivity</b> (<span class="Type">Integer</span>&#160;<span class="Parameter">ApproachActivityId</span>)</p>
+            <dl>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">ApproachActivityId</span></dt>
+            </dl>
+        </div><a name="M_GetVariantResult"></a>
+        <h3>
+GetVariantResult</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a reference to a specific variant result of the order</p>
+            <p class="Synopsis"><span class="Type"><a href="vrnr.htm">VariantResult</a></span>&#160;<b>GetVariantResult</b> (<span class="Type">String</span>&#160;<span class="Parameter">VariantName</span>, <span class="Type"><a href="variantresultstatus.htm">VariantResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinimalClassification</span>, <span class="Type"><a href="variantreteststatus.htm">VariantRetestStatus</a></span>&#160;<span class="Parameter">RetestStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">Index</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">VariantName</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Variant.Name = VariantName if &lt;&gt; ?, otherwise the VariantName is not taken into account.<br></br></dd>
+                <dt><span class="Type"><a href="variantresultstatus.htm">VariantResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Available, Confirmed, Validated, Discontinued</span><br></br>Only VariantResults will be selected where VariantResult.Status is at least this status; if not specified, VariantResultStatus["Available"] is assumed. Previously this was VariantResultStatus["Validated"]. This means that customers that depend on the old behavior by specifying ?, must explicitly state VariantResultStatus ["Validated"] in their current MISPL.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Severity &gt;= minimal Severity.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinimalClassification</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Classification &gt;= minimal classification; when empty, 1 is assumed.</dd>
+                <dt><span class="Type"><a href="variantreteststatus.htm">VariantRetestStatus</a></span>&#160;<span class="Parameter">RetestStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Not requested, To do, Success, Failed</span><br></br>Only return variant results which have the same retest status. If unknown is provided then this filter is ignored.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+This is the only mandatory parameter which must be &lt;&gt; 0. This is a loop counter variable: <br />- when 1, the first variant result is returned (in sequence of field availability time)<br />  when 2, second result etc <br />  ... until the return value becomes unknown.<br />- when -1, the last variant result is returned (in sequence of field availability time)<br />  when -2, the one but last result is returned etc <br />  ... until the return value becomes unknown.</dd>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Approach activities</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="apac.htm">ApproachActivity</a>.<a href="apac.htm#F_Approach">Approach</a></p>
+        </div>
+        <h3>
+Approach requests</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="arqt.htm">ApproachRequest</a>.<a href="arqt.htm#F_Approach">Approach</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ ApproachPlan + Specimen </b>
+            </li>
+            <li value="3"><b>+ ApproachPlan + Status </b>
+            </li>
+            <li value="4"><b>+ GeneticExam </b>
+            </li>
+            <li value="5"><b>+ Specimen </b>
+            </li>
+            <li value="6"><b>+ Status </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />All rights reserved.</p>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\term_server\dec90.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Dec 90m</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor23"></a>
+            <MadCap:concept term="System management" />Terminal servers: Dec 90m</h1>
+        <h2>Installation</h2>
+        <ul>
+            <li class="kadov-p" value="1">telnet `tcp-ip address of the terminal server`</li>
+            <li class="kadov-p" value="2">access (default password at the prompt, to log in)</li>
+            <li class="kadov-p" value="3">c (connect)</li>
+            <li class="kadov-p" value="4">set priv (to make sure that you can change the settings)</li>
+            <li class="kadov-p" value="5">system (default password)</li>
+        </ul>
+        <p>To see the settings of a port :</p>
+        <ul>
+            <li class="kadov-p" value="1">show port `port-number` (port-number is the number of the port between 1-16)</li>
+        </ul>
+        <p>Do not forget to change the following options for the ports</p>
+        <ul>
+            <li class="kadov-p" value="1">change port `port-number` dedicated none</li>
+            <li class="kadov-p" value="2">change port `port-number` access remote</li>
+            <li class="kadov-p" value="3">change port `port-number` default protocol telnet</li>
+            <li class="kadov-p" value="4">change port `port-number` telnet listener `tcp-port` (take a number for "tcp-port" between 2001 – 2016).</li>
+            <li class="kadov-p" value="5">change telnet listener `tcp-port` type raw tcp</li>
+            <li class="kadov-p" value="6">change telnet listener `tcp-port` port `port-number` enabled</li>
+            <li class="kadov-p" value="7">change telnet listener `tcp-port` connections enabled</li>
+        </ul>
+        <p>Normally we try not to have any settings by the option "ENABLED CHARACTERISTICS"</p>
+        <ul>
+            <li class="kadov-p" value="1">change port `port-number` lock disabled</li>
+            <li class="kadov-p" value="2">…</li>
+        </ul>
+        <p>and so on until you don't have any options after "ENABLED CHARACTERISTICS".</p>
+        <p>If all options are set type</p>
+        <ul>
+            <li class="kadov-p" value="1">lo `port-number`</li>
+        </ul>
+        <p>To exit the telnet session type</p>
+        <ul>
+            <li class="kadov-p" value="1">logout</li>
+        </ul>&#160;
+
+  <h2>Cabling</h2><p>The pinout of the MJ8 Port is shown below. &#160;In case of 8 pins, the first and last pin are not used.</p><p><img src="dec90_cabling.gif" style="border: none;width: 400px;height: 119px;float: none;" width="400" height="119" border="0" /></p><p>&#160;</p><h2>How to change the IP address on a DEC 90M</h2><p>In dos:</p><p>telnet 128.18.30.200<br />
+  &lt;return&gt;<br />
+  # &lt;return&gt;<br />
+  # access &lt;return&gt;<br />
+  #&lt;return&gt;<br />
+  Enter Username &gt; mips &lt;return&gt;<br />
+  Local &gt;<br />
+  Local &gt; set priv &lt;return&gt;<br />
+  password system &lt;return&gt;<br />
+  Local &gt; &lt;return&gt;<br />
+  Local &gt; define int ad 10.x.x.x &lt;return&gt;<br />
+  Local &gt; define int mask 255.x.x.x &lt;return&gt;<br />
+  Local &gt; logout&lt;return&gt;<br /><br />
+  Reboot the server ( remove power cable and re-activate).</p><p>The dec 90m now has a new IP address</p></body>
+</html>

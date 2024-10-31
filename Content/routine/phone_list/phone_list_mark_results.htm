@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Phone list" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\phone program\phonelist_02.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Phone: mark as to be phoned</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Phone list - Mark results as "to be phoned"</h1>
+        <p>Contents: <a href="#At%20order%20entry" name="kanchor278">Order entry</a> - <a href="#Result.ToBePhoned">Result.ToBePhoned</a> 
+ - <a href="#Result">Result editor</a> - <a href="#Via%20a%20phone%20severity">Via a severity</a> - <a href="#Via%20a%20phone%20urgency">Via 
+ a phone urgency</a> - <a href="#Via_MISPL">Via MISPL</a> - <a href="#Exclude_a_property">Exclude 
+ a property</a> - <a href="#Remarks">Remarks</a></p>
+        <h2>Introduction</h2>
+        <p>In order for a result to appear on the phone list, it must be marked as <span class="ui_element">To be phoned</span>.</p>
+        <p>GLIMS offers several ways to accomplish this.</p>
+        <h2><a name="At order entry"></a>Order entry</h2>
+        <p class="fieldlabel">Phone results</p>
+        <div class="indented">
+            <p>Enable the <span class="ui_element">Phone results</span> option in the <span class="ui_element">Extra</span> tab page of the <span class="ui_element">Order entry</span> screen and  all explicitly 
+ requested properties of the order will be marked as <span class="ui_element">To be phoned</span>.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">When 
+ <b>disabling this option afterward</b>, the phone status of the properties to 
+ be phoned (which have not yet been phoned through) will be reset. Note 
+ that this does not apply to results which have automatically been marked 
+ as to be phoned (via the phone severity or phone urgency).</li>
+                    <li value="2">When <b>adding requests</b> to an existing order, the 
+	 additional results will always take this setting into account.</li>
+                    <li value="3">
+                        <p><b>Restrictions</b>: </p>
+                        <ul>
+                            <li value="1">the property should be externally visible (<b>Property.Visible 
+		 = Yes</b>) </li>
+                            <li value="2">the property should have a report format different from Hidden 
+		 (<b>Property.ReportFormat &lt;&gt; Hidden</b>).</li>
+                            <li value="3">the option <a href="#Exclude_a_property">On phone list</a> should be activated.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Phone number</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Phone</span> field  in the <span class="ui_element">Extra</span> tab page of the <span class="ui_element">Order entry</span> screen allows entering the phone number to 
+ be used. Note that you can still select another phone number when actually <a href="phone_list_phone_results.htm">phoning the results</a>.</p>
+        </div>
+        <p class="fieldlabel">Phone status</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Phone status</span> field  in the <span class="ui_element">Extra</span> tab page of the <span class="ui_element">Order entry</span> screen provides a summary of the phone status of 
+ all results in the order.</p>
+            <div class="indented">
+                <p class="fieldlabel">No</p>
+                <div class="indented">
+                    <p>There are no results to be phoned.</p>
+                </div>
+                <p class="fieldlabel">Yes</p>
+                <div class="indented">
+                    <p>There is at least 1 result that still is to 
+	 be phoned.</p>
+                </div>
+                <p class="fieldlabel">Done</p>
+                <div class="indented">
+                    <p>All results are phoned.</p>
+                </div>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Result.ToBePhoned" id="Result.ToBePhoned"></a>Contextual function "To be phoned"</h2>
+        <p style="text-align: left;">You can select one or more results and choose the contextual menu / ribbon item <span class="ui_element">To be phoned</span>.</p>
+        <h2><a name="Result"></a>Result editor</h2>
+        <p>In the <span class="ui_element">Result</span> editor, you can manually change the <span class="ui_element">Phone status</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="result_editor_phone_status.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="563" data-mc-height="343" src="result_editor_phone_status_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2 style="text-align: left;"><a name="Via a phone severity"></a>Via a severity</h2>
+        <p class="fieldlabel">Phone list severity of a result</p>
+        <div class="indented">
+            <p>A result can have a <a href="../../configuration/severities/severities.htm">phone list severity</a> which is used to decide whether a result should be marked as <span class="ui_element">To be phoned</span>. </p>
+            <p>When 
+	 the value of a patient result is outside the <a href="../../configuration/norms/norms.htm">norm range</a>, its phone list severity will inherit 
+	 the <span class="ui_element">Severity</span> defined for the <a href="../../configuration/norms/norms.htm">norm</a> if the <span class="ui_element">Norm</span> option <span class="ui_element">For phone</span> is enabled.</p>
+        </div>
+        <p class="fieldlabel">Phone severity limit</p>
+        <div class="indented">
+            <p>In the assessment method, you can specify a <span class="ui_element">Phone severity</span>. The <span class="ui_element">Phone severity</span>  defined in the <span class="ui_element">Assessment method</span> is compared with the maximum of the result's phone list severity, delta norm severity and manual severity to decide whether the result should be marked as <span class="ui_element">To be phoned</span>.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_list_amtd_phone_severity.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="677" data-mc-height="674" src="phone_list_amtd_phone_severity_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">
+                        <p style="text-align: justify;">The phone severity is not checked when the <span class="ui_element">Property</span> option <span class="ui_element">Visible</span> 
+	 is set to <span class="ui_element">Internal</span></p>
+                    </li>
+                    <li value="2">The 
+ phone status of a result which was automatically marked as <span class="ui_element">To be phoned</span> 
+ via the <span class="ui_element">AssessmentMethod.PhoneSeverity</span> is automatically cleared when the 
+ result is repeated, modified or recalculated.</li>
+                </ul>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Via a phone urgency"></a>Via a phone 
+ urgency</h2>
+        <p class="fieldlabel">Phone urgency range</p>
+        <div class="indented">
+            <p>The general options (<span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; GLIMS General</span>) allow to specify a <span class="ui_element">Phone urgency range</span>. Results 
+ with an urgency within this range will automatically be marked as <span class="ui_element">To be 
+ phoned.</span></p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_urgency.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="754" data-mc-height="360" src="phone_urgency_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <p>When only the <span class="ui_element">From</span> field is specified (maximal urgency = ?), 
+ all results with an urgency equal or higher than this minimal phone urgency 
+ will be marked as <span class="ui_element">To be phoned</span>.</p>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Via_MISPL" id="Via_MISPL"></a>Via MISPL</h2>
+        <p class="fieldlabel">Result.ToBePhoned</p>
+        <div class="indented">
+            <p>Allows to mark an individual result as <span class="ui_element">To be phoned</span>. Can e.g. be used in a <a href="../../configuration/properties/properties.htm#Triggers">Property</a> trigger.</p>
+        </div>
+        <p class="fieldlabel">Order.ToBePhoned</p>
+        <div class="indented">
+            <p>Allows to mark a complete order as <span class="ui_element">To be phoned</span>. The effect is the same as if the order was marked manually at <a href="#At%20order%20entry">order entry</a>.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <p style="text-align: left;">These MISPL functions have some 
+ built-in restrictions:</p>
+            <ul>
+                <li value="1">They will not mark <span class="ui_element">Discontinued</span> results.</li>
+                <li value="2">They will not mark results where .Property.ReportFormat 
+	 = Hidden.</li>
+                <li value="3">They will only mark results for which at least 
+	 one property classification node can be found.</li>
+            </ul>
+        </div>
+        <h2 style="text-align: left;"><a name="Exclude_a_property" id="Exclude_a_property"></a>Exclude 
+ a property from the phone list</h2>
+        <p class="fieldlabel">Property.OnPhoneList</p>
+        <div class="indented">
+            <p style="text-align: left;">If the <span class="ui_element">Property</span> option <span class="ui_element">On Phone list</span> is disabled, results for this property will never be shown on a phone list. By default, this option is enabled.</p>
+        </div>
+        <h2 style="text-align: left;"><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <p class="fieldlabel">Track how phone status was reached</p>
+        <div class="indented">
+            <p>The field <span class="ui_element">Result.PhoneMarkMethod</span> keeps 
+	 track of how the current phone status of the result was reached. This 
+	 field is used to decide whether to activate or deactivate the 
+	 current phone status when the value, severity or urgency of a result 
+	 changes.</p>
+            <p>Its 
+	 possible values are:</p>
+            <p class="fieldlabel">Manual </p>
+            <p class="fieldlabel">Automatic </p>
+            <div class="indented">
+                <p>Example:	via AssessmentMethod.PhoneSeverity.</p>
+            </div>
+            <p class="fieldlabel">Urgency </p>
+            <div class="indented">
+                <p>Example: via SpecificSite.MinimalPhoneUrgency.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Reset automatically assigned phone status</p>
+        <div class="indented">
+            <p>If you want to reset the phone status of results 
+	 that have automatically been marked as <span class="ui_element">To be phoned</span> (e.g. by means 
+	 of the phone severity or phone urgency), you must do this explicitly 
+	 by using the <a href="phone_list_phone_results.htm">phone list program</a>.You 
+	 can not do this by disabling the Order.PhoneResults field.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Security|Shielding">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" /><title>Shielding - Routine</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Shielding - Routine</h1>
+        <p>This chapter presents how shielding works in routine.</p>
+        <h2><a name="Order_entry"></a>Order entry and test requesting</h2>
+        <ol>
+            <li value="1">We cannot prevent users from requesting a test, and thus from triggering the creation of a result for this test. However the <a href="../../routine/orders/order_entry/order_entry_action_scheduling.htm">scheduler</a> will 
+ not choose a procedure of a department for which the user has no Create 
+ access. This means that no action will be 
+ scheduled in a department where users have no Result creation right.<p>When a result cannot be scheduled due to shielding, a warning is 
+ shown.</p></li>
+            <li value="2">Order creation or update via order entry is not allowed when 
+ Class=Order, Level=Create/Modify is not granted for the order's department.</li>
+            <li value="3">
+                <p>If the Order shielding levels View and Modify are not activated, the order entry screen opens in 'Hide' and 'Read-only' mode respectively.</p>
+            </li>
+        </ol>
+        <h2>Results</h2>
+        <h3>Value and update</h3>
+        <p>The central result value program and the central result update program check if the current user has View or Modify access rights. If s/he does not,</p>
+        <ul>
+            <li value="1"> the result value program (which is used to fetch the current result value) returns a code like "XXX" to indicate that the result value is protected,</li>
+            <li value="2">the result update program  issues an error message each time the value, confirmation time, validation time or discontinuation time of a protected result is altered.</li>
+        </ul>
+        <p>A result which already has a value can no longer be discontinued if the 
+ user has no Modify rights for this result.</p>
+        <h3><a name="Confirmation_and_validation_browsers"></a>Confirmation and validation</h3>
+        <ol>
+            <li value="1">Results which cannot be modified are read-only in browsers.</li>
+            <li value="2">Results which cannot be confirmed/validated are not pre-selected in browsers.</li>
+            <li value="3">A confirmed result cannot be modified by a user who has no Confirm 
+ access right for this result (the logic is the same as for the Confirm privilege).</li>
+            <li value="4">Automatic confirmation of a result is allowed, even when the user has no 
+ confirmation access right for this result.</li>
+        </ol>
+        <h2><a name="MISPL"></a><a name="Shielding support in MISPL"></a>MISPL</h2>
+        <p>In MISPL contexts, the shielding configured for results and orders is taken in consideration: </p>
+        <ul>
+            <li value="1">On access to a result or order record without access right Read (and thus no access right View), none of the fields of the target record are accessible from MISPL. The unknown value is always be returned instead. All table methods on such protected records are ignored silently and also return the unknown value. </li>
+            <li value="2">On access to a result record WITH access right Read but WITHOUT access right View , only the value-related fields are hidden.</li>
+        </ul>
+        <p>The shielding configured for other records (object attributes, persons) is NOT taken in consideration.</p>
+        <p>The following table summarizes which fields can be retrieved by MISPL:</p>
+        <table style="border-collapse: separate;border-collapse: separate;width: 100%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col style="width: 167px;" class="TableStyle-Alternating-Column-Column1" />
+            <col style="width: 75px;" class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 216px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Access=None</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Access   Read=Yes,  View=NO</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Access   Read=YES,  View=YES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Order</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">No fields</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">All fields</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">All fields</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Result</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">No fields</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Only fields that show no result value</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">All fields</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">Other tables (including Object attribute and Person)</td>
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">All fields (!)</td>
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">All fields</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">All fields</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>MISPL does NOT respect the shielding in the following cases: </p>
+            <ul>
+                <li value="1">execution of a property 
+trigger, </li>
+                <li value="2">assessment method conversion, </li>
+                <li value="3">order evaluation function,</li>
+                <li value="4"> 
+property output calculation.</li>
+            </ul>
+        </div>
+        <h2><a name="Restrict"></a>Restriction to data shown in the user interface</h2>
+        <p>Shielding only applies to data shown in the user interface. Here are two examples:</p>
+        <ul>
+            <li value="1">In the <a href="../../modules/business_activity_monitor/business_activity_monitor_introduction.htm">Business Activity Monitor</a>, the number of results awaiting validation is displayed. Shielded results are included in this number. However, when clicking on the number to view the results in a browser, the shielded results are not displayed in the list.</li>
+            <li value="2">The function 'Recalculate result responsibles' on <a href="../../db/reference_guide/ord.htm">orders</a> is executed on both shielded and non-shielded results.</li>
+        </ul>
+        <h2><a name="Notes"></a>Person merge</h2>
+        <p>Shielding is deactivated during person merge operations.</p>
+    </body>
+</html>

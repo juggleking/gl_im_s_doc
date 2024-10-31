@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\coding system.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Release notes 9.3.0 - Support for LOINC coding system (GLIMS-05863)</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1460"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.3.0 - </MadCap:conditionalText>Support for LOINC coding system (GLIMS-05863)</h1>
+        <p><a href="#Introduction" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Introduction</a> - <a href="#supported" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">What 
+ is supported</a> - <a href="#Configuration" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Configuration</a> 
+ - <a href="#Lookup" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Lookup of LOINC code</a> - <a href="#MISPL_access" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">MISPL 
+ access</a> - <a href="#Variable_text_reporting" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Variable 
+ text reporting</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p><a href="http://loinc.org/" target="_blank" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">LOINC</a> is a universal 
+ code system for identifying laboratory and clinical observations. </p>
+        <p>The <a href="../../configuration/coding_systems/coding_systems.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">coding 
+ system concept</a> in GLIMS offers specific support for LOINC codes. This 
+ document describes the LOINC-specific features in GLIMS, the general coding 
+ system features are described in the chapter "<a href="../../configuration/coding_systems/coding_systems.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Coding 
+ systems</a>".</p>
+        <p>The main difference with a "regular" coding system is that 
+ a single property can have different LOINC codes based on a number of 
+ variables such as material, assessment method, ...</p>
+        <h2>What is <a name="supported"></a>supported</h2>
+        <h3>Configuration</h3>
+        <p>GLIMS supports the definition of LOINC codes for the following tables:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">Property (for tests)</li>
+            <li class="mips_list_bulleted" value="2">Property classification node (for titles)</li>
+        </ul>
+        <p>LOINC codes have to be configured manually and cannot be imported.</p>
+        <h3>Usage</h3>
+        <p>GLIMS only uses the LOINC codes when sending result reports, not for 
+ order/result import.</p>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <h3>Coding system</h3>
+        <ol>
+            <li class="mips_list_numbered" value="1">Set the <span style="font-weight: bold;">Type</span> 
+	 field to "<span style="font-weight: bold;">LOINC</span>"</li>
+            <li class="mips_list_numbered" value="2">The <span style="font-weight: bold;">OID</span> 
+	 for the LOINC coding system is "<span style="font-weight: bold;">2.16.840.1.113883.6.1</span>".<br /><br /><br /><img src="../../configuration/coding_systems/LOINC_coding_system_configuration.png" alt="" style="border: none;" border="0" /><br /></li>
+        </ol>
+        <h3>Code set</h3>
+        <p>Starting from the LOINC coding system, use the contextual ribbon/menu 
+ item "<span style="font-weight: bold;">Code sets</span>". &#160;&#160;&#160;</p>
+        <ol>
+            <li class="mips_list_numbered" value="1"><span style="font-weight: bold;">Table</span>: 
+	 GLIMS only supports LOINC code sets for the tables "<span style="font-weight: bold;">Property</span>" 
+	 and "<span style="font-weight: bold;">PropertyClassificationNode</span>".</li>
+            <li class="mips_list_numbered" value="2"><span style="font-weight: bold;">Unique 
+	 value</span>: should be checked, as LOINC codes should be unique.</li>
+            <li class="mips_list_numbered" value="3"><span style="font-weight: bold;">Unique 
+	 record</span>: should be unchecked, as a single property can have 
+	 several LOINC codes.</li>
+        </ol>
+        <p>
+            <img src="../../configuration/coding_systems/LOINC_code_set_configuration.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h3>Code</h3>
+        <p>Once the LOINC coding system and code set(s) are defined, GLIMS offers 
+ different ways to define the actual LOINC codes.</p>
+        <h4>Starting from the code set</h4>
+        <ol>
+            <li class="mips_list_numbered" value="1">Starting from the LOINC code set, use 
+	 the contextual ribbon/menu item "<span style="font-weight: bold;">Codes</span>". 
+	 </li>
+            <li class="mips_list_numbered" value="2">Click <span style="font-weight: bold;">Insert 
+	 </span>to define the actual LOINC codes.</li>
+        </ol>
+        <h4>Starting from the property (classification node) browser</h4>
+        <ol>
+            <li class="mips_list_numbered" value="1">Starting from the Property browser, 
+	 use the <span style="font-weight: bold;">ribbon item "Codes"</span> 
+	 in the <span style="font-weight: bold;">contextual ribbon "Tools"</span>.<br />
+	&#160;&#160;<br /><img src="../../configuration/coding_systems/LOINC_ribbon_item_codes.png" alt="" style="border: none;" border="0" /><br />
+	&#160;&#160;</li>
+            <li class="mips_list_numbered" value="2">GLIMS will show all codes (possibly 
+	 from different coding systems) for the selected property.</li>
+            <li class="mips_list_numbered" value="3">Click <span style="font-weight: bold;">Insert</span><span>.</span></li>
+            <li class="mips_list_numbered" style="font-weight: normal;" value="4"><span>In 
+	 the </span><span style="font-weight: bold;">Coding system</span><span> 
+	 field, </span><span style="font-weight: bold;">select the LOINC coding 
+	 system</span><span> and all applicable fields (see below) will be 
+	 shown.</span>
+            </li>
+        </ol>
+        <h4>Code fields</h4>
+        <ol>
+            <li class="mips_list_numbered" value="1"><span style="font-weight: bold;">Record</span>: 
+	 reference to the property (classification node)</li>
+            <li class="mips_list_numbered" value="2"><span style="font-weight: bold;">Seq 
+	 no</span>: this is a very important field, as it determines the sequence 
+	 in which GLIMS evaluates the codes during lookup of the appropriate 
+	 LOINC code for a result. So when a property has several LOINC codes, 
+	 make sure that the most specific code (e.g. with a material, material 
+	 variable, station, discriminator) has the lowest sequence number and 
+	 that the more general code has the highest sequence number..</li>
+            <li class="mips_list_numbered" value="3"><span style="font-weight: bold;">Value</span>: 
+	 the actual LOINC code.</li>
+            <li class="mips_list_numbered" value="4"><span style="font-weight: bold;">Discriminator</span><span>: 
+	 if specified, the code is only valid for results with this discriminator.</span>
+            </li>
+            <li class="mips_list_numbered" value="5"><span style="font-weight: bold;">Material</span>: 
+	 <span>if specified, the code is only valid for results derived from 
+	 this material.</span></li>
+            <li class="mips_list_numbered" value="6"><span style="font-weight: bold;">Variables</span>: 
+	 <span>if specified, the code is only valid for results with this variable. 
+	 Multiple variable can be specified.</span></li>
+            <ol>
+                <li class="mips_list_numbered" value="1"><span>Click the </span><span style="font-weight: bold;">"..."</span><span> 
+		 button.</span>
+                </li>
+                <li class="mips_list_numbered" value="2">For each of the available material 
+		 variables, a choice can be selected.</li>
+                <li class="mips_list_numbered" value="3">The selected choices will be shown 
+		 in the Variables field.<br /><br /><img src="../../configuration/coding_systems/LOINC_code_configuration_variables.png" alt="" style="border: none;" border="0" /></li>
+            </ol>
+            <li class="mips_list_numbered" value="7"><span style="font-weight: bold;">Station</span>: 
+	 <span>if specified, the code is only valid for results measured on 
+	 this station.</span></li>
+            <li class="mips_list_numbered" value="8"><span style="font-weight: bold;">Eligible</span>: 
+	 logical-valued MISPL function that can be used to set even more specific 
+	 criteria for the code.</li>
+        </ol>
+        <p>
+            <img src="../../configuration/coding_systems/LOINC_code_configuration.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h2><a name="Lookup"></a>Lookup of LOINC code for result reports</h2>
+        <p>When sending out result reports for which the LOINC code must be exported, 
+ GLIMS uses the mechanism below to determine the appropriate LOINC code 
+ for the result.</p>
+        <ol style="list-style-type: decimal;">
+            <li value="1">GLIMS first makes a list of all LOINC codes for which<br />
+	&#160; </li>
+            <ol style="list-style-type: decimal;">
+                <li value="1">the property matched the result's property</li>
+                <li value="2">the material matches the result's specimen (or for which the 
+		 material is not specified)<br />
+		&#160;</li>
+            </ol>
+            <li value="2">This list of LOINC codes is ordered ascending by the code's sequence 
+	 number: this implies that the sequence number of the defined LOINC 
+	 codes is very important. GLIMS will first check the code with the 
+	 lowest sequence number. &#160;So when a property has several LOINC 
+	 codes, make sure that the most specific code (e.g. with a material, 
+	 material variable, station, discriminator) has the lowest sequence 
+	 number, else GLIMS will always select the more general LOINC code.<br />
+	&#160;</li>
+            <li value="3">From this list, GLIMS selects the most appropriate LOINC code as 
+	 described in the decision chart below.</li>
+        </ol>
+        <p>
+            <img src="../../configuration/coding_systems/LOINC_code_lookup.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h2><a name="MISPL_access"></a>MISPL access</h2>
+        <p>GLIMS offers a Result-based MISPL function "GetCode" which 
+ uses the same lookup logic as described above.</p>
+        <p>Synopsis:</p>
+        <div class="MemberHelp">
+            <p class="Synopsis" style="margin-left: 40px;"><span class="Type" style="font-style: italic;">String</span> <b>GetCode</b> (<span class="Type" style="font-style: italic;">Mnemonic</span> <span class="Parameter" style="color: #008000;">CodingSystemMnemonic</span>)</p>
+        </div>
+        <h2><a name="Variable_text_reporting"></a>Variable text reporting</h2>
+        <p>For variable text reports (configured with dynamic text modules), the 
+ content can be based on the w_Result table. If a coding system is defined 
+ in the report template, the w_Result field "Mnemonic" will contain 
+ the code from the specified coding system. This is also supported for 
+ the LOINC coding system.</p>
+    </body>
+</html>

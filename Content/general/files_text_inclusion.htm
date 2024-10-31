@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports|Advanced" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="File_inclusion_in_texts">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>File inclusion in texts</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor250"></a><a href="../configuration/index_advanced.htm">Advanced configuration</a> 
+ -&gt; Including files in object data sheet and text reports</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Syntax">Syntax</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Purpose">Purpose</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#In%20the%20object%20data%20sheet">In the object 
+ data sheet</a>
+            </li>
+            <li class="kadov-p" value="5"><a href="#In%20text%20reports">In text reports</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>Both in the <a href="../configuration/objects/objects_data_sheet.htm">object 
+ data sheet</a> text and in <a href="../routine/reports/index_reports.htm">text 
+ reports</a>, it is possible to insert an external file.&#160; This file 
+ should of course exist and be accessible from the executing computer (the 
+ client for the object data sheets and the client or the server for text 
+ reports).&#160; Moreover, it is possible to have this file automatically 
+ deleted after it has been included.</p>
+        <h2><a name="Syntax"></a>Syntax</h2>
+        <p>Including a file can be done by introducing in the text module itself 
+ an indication of the following format:</p>
+        <blockquote>
+            <p>&lt;FILE SRC=xxx &gt;&#160;</p>
+        </blockquote>
+        <p>in which 'xxx' is the path of the file, either the full path name or 
+ a relative path name (in which case PROPATH will be searched for the file). 
+ If the file is to be deleted after it has been included you should use 
+ the syntax:</p>
+        <blockquote>
+            <p>&lt;FILE SRC=xxx DEL=YES&gt;</p>
+        </blockquote>
+        <h2><a name="Purpose"></a>Purpose</h2>
+        <p>The original reason why this functionality was created is to allow some 
+ MISPL methods to create very large text output.&#160; As MISPL itself 
+ has a 4kb output limit, this functionality allows saving its output text 
+ into a (temporary) file and specify the pathname of this file.&#160; After 
+ this temporary file has been included into the text, it is simply deleted 
+ again.&#160; Example: <a href="../modules/microbiology/mispl/object_m_microbiology_history.htm">Object.MicrobiologicHistory()</a></p>
+        <h2><a name="In the object data sheet"></a>In the object data sheet</h2>
+        <p>There is no restriction with respect to the type and size of the file 
+ that is included, as long as the total text is:</p>
+        <ol>
+            <li class="kadov-p" value="1">A plain text file&#160;</li>
+            <li class="kadov-p" value="2">A HTML or XML file that can be viewed with a normal 
+ web browser (so in this case the included file might contain HTML or XML).</li>
+        </ol>
+        <h2><a name="In text reports"></a>In text reports</h2>
+        <p>A file can be included in a <a href="../configuration/property_classifications/property_classifications.htm">property 
+ classification node</a>.&#160; As long as the total size of the paragraph 
+ (including the file) does not exceed 30kB, the file is included in the 
+ current paragraph.&#160; If not, new paragraphs with a maximum size of 
+ 30kB will be created.&#160; These added paragraphs will have the same 
+ settings as the original paragraph, but with PageBreakBefore=NO.&#160; 
+ In that case the original paragraph will have 'KeepWithNext=Yes' if it 
+ had 'KeepLinesToGether=Yes'.</p>
+        <p><a name="kanchor251"></a>File inclusion is also possible in the <a href="../configuration/report_templates/report_templates.htm">headers 
+ and footers</a> of the report, but with the restriction that the file 
+ is always included in the current section and that no additional sections 
+ can be created if the file is too large.</p>
+    </body>
+</html>

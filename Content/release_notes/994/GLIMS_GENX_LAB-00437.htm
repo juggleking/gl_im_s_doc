@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Fix rich text and text expansion related issues and improve (rich) text results functionality (GLIMS_GENX_LAB-00437)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 xmlns="http://www.w3.org/1999/xhtml"><a name="aanchor1919"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Fix rich text and text expansion related issues and improve (rich) text results functionality (GLIMS_GENX_LAB-00437)</h1>
+        <p xmlns="">This modification fixes several issues with the <a href="../../configuration/properties/properties.htm#Rich" xmlns="http://www.w3.org/1999/xhtml">rich text</a> / plain text functionality and introduces a number of improvements.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Issues with rich text results and normal text results</h2>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Preview</span> button in the texts browser opens the rich text preview in the large rich text editor. It is accessible via the genetics <a href="../../modules/genetics/routine/results/result_screen.htm#Center" xmlns="http://www.w3.org/1999/xhtml">results screen</a>, if a genetic exam contains a genetic procedure with configured text results, or via the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Preview</span> button in the <a href="../../configuration/mispl_texts/texts_syntax_grammar.htm" xmlns="http://www.w3.org/1999/xhtml">texts</a> browser ribbon (via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System Management</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Texts</span>).</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Attempting to open the classic text browser on a (rich) text in a genetics screen via <span class="ui_element">SHIFT+Insert</span> does not lead to errors anymore, but an informational message is shown that this is not supported any longer.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Adding a text expression as value for a dynamic property in the genetic exam, genetic result and the specimen info screen by using <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Insert</span> now opens the result-based text browser (and not a list of all texts as before).</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">Before this modification, newline characters were not handled correctly in plain text inside rich text. This has been corrected.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="5">For backwards compatibility, the behavior of <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Insert</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">CTRL+F</span> inside rich text or normal text results in the Genetics module was updated to be consistent with other parts of GLIMS (i.e. the Pathology screen).</li>
+        </ol>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Inserting text modules (CTRL+F)</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">An extra space was added in front of the text if the text box was empty before inserting text via CTRL+F. This issue has been corrected.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>When using result codes, note that the user is only able to insert multiple result codes via CTRL+F or Insert if <a href="../../configuration/properties/properties.htm#Allow" xmlns="http://www.w3.org/1999/xhtml">Allow multiple result codes</a> is enabled on the corresponding property. Otherwise the insertion of code will replace the existing content of the text box.</p>
+        </div>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Inserting dynamic text (Insert)</h3>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">Dynamic text was not expanded, this did not correspond to the expected behavior.</li>
+            <li value="2">Dynamic text always added unnecessary expansion characters ({}), even if the text contained fixed text.</li>
+            <li value="3">Dynamic text was always retrieved in the <a href="../../user_interface/user_interface_languages.htm#Changing" xmlns="http://www.w3.org/1999/xhtml">User interface language</a>. If there was no text available in that language, an error appeared. To determine the language in which the text is expanded in the dynamic properties, the same logic for both result code and text expansions should be used, which is the following:<ol xmlns="http://www.w3.org/1999/xhtml"><li value="1">Use the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Report language</span> defined in the <a href="../../routine/orders/order_entry/order_entry_tab_order.htm#Report" xmlns="http://www.w3.org/1999/xhtml">Order tab of the order entry</a></li><li value="2">If not available, use the language of the order issuer (specified in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondent</span> record)</li><li value="3">If not available, use the language of the site (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System management</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Customize</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">MATE</span>)</li><li value="4">If not available, use the language of the user</li></ol></li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">These issues have been corrected.</p>
+        <div class="text_box_tips" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <ul>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">Several preconfigured text modules are now available on the general <a href="../../routine/results/results_rich_text.htm#MISPL" xmlns="http://www.w3.org/1999/xhtml">Rich text results</a> page and can be implemented for reporting.</li>
+                <li value="2">MISPL&#160;functions that can be used to report  locus and variant results for the extended Genetics module are described on the page <a href="../../modules/genetics/config/mispl/reporting.htm">Site functions for reporting</a>.</li>
+            </ul>
+        </div>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Known issues for Rich text properties</span>
+            </p>
+            <ul>
+                <li value="1">Inserting {&lt;txtmodule&gt; in the HTML source text leads to invalid HTML and is known to cause issues.</li>
+                <li value="2">Users should <b>not</b> edit the HTML source text directly. Instead, they should use the provided rich text editor.</li>
+                <li value="3">For now, including rich text inside rich text is not supported. Only plain text can be used within rich text, see the point below.</li>
+                <li value="4">It is <b>expressly</b> not recommended to use unnecessarily complex expressions in the rich text editor.</li>
+            </ul>
+            <div class="indented">
+                <p>This means: the use of spaces, quotation marks, brackets, etc. within MISPL expressions like {=IfKnownString(.AllelicState.Name)} would not work.</p>
+                <p>Example: {=IfKnownString("(" + .AllelicState.Name +")")}</p>
+            </div>
+        </div>
+    </body>
+</html>

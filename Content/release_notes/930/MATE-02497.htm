@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.3.0 - Visual indication for active filter</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2836"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.3.0 - </MadCap:conditionalText>Import/export of table fields of datatype "BLOB" or "CLOB" (MATE-02497)</h1>
+        <p><a href="../../application_management/import_export/general/import_export_denormalized.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">Import/export of table fields</a> of datatype "BLOB" or "CLOB" is now fully supported.</p>
+        <h2>Export</h2>
+        <p>When exporting records from a table with "CLOB" or "BLOB" fields, an export file will be created with as CLOB/BLOB field data the name of a CLOB/BLOB file with format</p>
+        <ul>
+            <li value="1">CLOBS: &lt;TableShortName&gt;!&lt;FieldName&gt;!&lt;CodePage&gt;!&lt;Id&gt;.blb</li>
+            <li value="2">BLOBS: &lt;TableShortName&gt;!&lt;FieldName&gt;!&lt;Id&gt;.blb</li>
+        </ul>
+        <p>&lt;CodePage&gt; is the code page used in this session, example "UTF-8". &lt;Id&gt; is the id of the table record.</p>
+        <p>For each exported record, a file with matching name is created in the same folder as the .csv file. This file contains the data from the exported BLOB/CLOB column. In case of CLOB this is in text format, for BLOB it is in binary format. </p>
+        <h2>Import</h2>
+        <p>When importing records from a table with "CLOB" or "BLOB" fields, the import file will be examined. For CLOB/BLOB fields the matching file will be searched in the folder containing the .csv file.  The import will fail if the .blb file is not available.</p>
+        <p>Before attempting to import files, the data in the .blb files will be compared with the data in the database. For CLOB fields this is a "RAW" comparison, for BLOB fields this is a byte to byte comparison, although the import program will apply other, more performant comparison techniques first.</p>
+    </body>
+</html>

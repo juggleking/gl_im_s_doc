@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|External QC" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\external\biorad.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>BioRad configuration</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor930"></a>
+            <MadCap:concept term="Quality control" /><a href="../../index_qc.htm">Quality control</a> -&gt; External QC: BioRad</h1>
+        <h2>Introduction</h2>
+        <p>The <span class="ui_element">Format</span> field in the <a href="../index_qc_external.htm">QC export screen</a> allows to select Biorad. The <span class="ui_element">Specifics</span> button in the <a href="../index_qc_external.htm">QC export screen</a> allows to indicate if GLIMS should use the Biorad <span class="ui_element">Unity</span> of <span class="ui_element">Flex</span> format.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Results of both quantitative and qualitative QC populations are exported. For qualitative QC populations, only the results of properties with the datatype <span class="ui_element">Enumerated</span> will be exported.</p>
+        </div>
+        <h2>Export details for Unity format</h2>
+        <table style="border-left-style: solid;border-left-width: 1px;border-left-color: #ffffff;border-right-style: solid;border-right-width: 1px;border-right-color: #ffffff;border-top-style: solid;border-top-width: 1px;border-top-color: #ffffff;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #ffffff;mc-table-style: url('../../../../Resources/TableStyles/Standard.css');width: 100%;" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" style="width: 70px;" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Standard-Head-Header1">
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">Biorad field</th>
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">Syntax</th>
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">GLIMS field</th>
+                    <th class="TableStyle-Standard-HeadD-Column1-Header1">Used when</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Level </td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">1, 2 or 3</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        Last digit of QCLot.LotNumber
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">QCLot.NumberHasBioradLevel = Yes and QCLot.LotNumber length = 5 and last digit of QCLotNumber = 1, 2 or 3</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        QCPopulation.Level                        </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Level could not be derived from QCLot.LotNumber</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Lab</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">6 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">QCPopulation.BioradLabCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Lot</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">5 digits, <br />ending with 0, 1, 2 or 3</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        <p>QCLot.LotNumber
+</p>
+                        <p>If QCLot.NumberHasBioradLevel = Yes and last digit of QCLotNumber = 1, 2 or 3, then last digit in exported LotNumber is replaced with 0
+</p>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Analyte</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">3 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Property.BioradCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Method</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">3 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">AssessmentMethod.BioradMethodCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="3">Instrument</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="3">4 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">AssessmentMethod.BioradInstrumentCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Station.BioradInstrumentCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">AssessmentMethod.BioradInstrumentCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Station.Code</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Station.BioradInstrumentCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Reagent</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">4 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Reagent.Code</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Export option "Use reagent code" is enabled.</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">ReagentLot.LotNumber</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Export option "Use reagent code" is disabled.</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Unit</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">2 digits</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Unit.BioradCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Temperature</td>
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">1 digit</td>
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">AssessmentMethod.BioradTemperatureCode</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Always</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Export details for Flex format</h2>
+        <table style="border-left-style: solid;border-left-width: 1px;border-left-color: #ffffff;border-right-style: solid;border-right-width: 1px;border-right-color: #ffffff;border-top-style: solid;border-top-width: 1px;border-top-color: #ffffff;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #ffffff;mc-table-style: url('../../../../Resources/TableStyles/Standard.css');width: 100%;" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" style="width: 70px;" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Standard-Head-Header1">
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">Biorad field</th>
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">Syntax</th>
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">GLIMS field</th>
+                    <th class="TableStyle-Standard-HeadD-Column1-Header1">Used when</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Level </td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        Last digit of QCLot.LotNumber
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">QCLot. NumberHasBioradLevel = Yes and QCLot.LotNumber length = 5 and last digit of QCLotNumber = 1, 2 or 3</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        QCPopulation.Level                        </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Level could not be derived from QCLot.LotNumber</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Lab</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">QCPopulation.BioradLabCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Lot</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">QCLot.LotNumber
+<br /><br />If QCLot.NumberHasBioradLevel = Yes and last digit of QCLotNumber = 1, 2 or 3, then last digit in exported LotNumber is replaced with 0
+</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Analyte</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Property.BioradCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Property.Mnemonic</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Property.BioradCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Method</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">AssessmentMethod.BioradMethodCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="3">Instrument</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="3">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">AssessmentMethod.BioradInstrumentCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Station.BioradInstrumentCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">AssessmentMethod.BioradInstrumentCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Station.Mnemonic</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Station.BioradInstrumentCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Reagent</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Reagent.Code</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Export option "Use reagent code" is enabled.</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">ReagentLot.LotNumber</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Export option "Use reagent code" is disabled.</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Unit</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" rowspan="2">Not verified</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Unit.BioradCode</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Always</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Unit.Name</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Unit.BioradCode unknown</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Temperature</td>
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Not verified</td>
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">AssessmentMethod.BioradTemperatureCode</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Always</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Customizing the Flex format</h3>
+        <p>The FLEX format is customizable in fields and fields order.&#160;GLIMS uses the following default format:</p>
+        <blockquote>
+            <p>StationCode + "|" + AnalyteCode + "|" + LotCode + "|" + LevelCode + "|" + ResultDate (YYMMDD) + "|" + ResultTime (HHMM) + "|" + ResultValue + "|" + ReagentCode</p>
+        </blockquote>
+        <p>However, you can customize the Flex record format in the QC population export <span class="ui_element">Specifics</span> screen.&#160;&#160;Some fields can be enabled or disabled.&#160;&#160;Each field can be changed in position.&#160;&#160;The following fields are mandatory and cannot be disabled: Instrument, Analyte, Lot, Level, Date, Time and Result. </p>
+        <p>The <span class="ui_element">Default</span> button allows to restore the default GLIMS format.</p>
+        <p style="text-align: center;">
+            <img src="flex_customize.png" style="border: none;" alt="" width="418" height="439" border="0" />
+        </p>
+    </body>
+</html>

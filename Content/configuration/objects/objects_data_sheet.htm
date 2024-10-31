@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Objects|Functions" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\datasheet\obj\index.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Object data sheet</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor330"></a>Object / Person data sheet</h1>
+        <h2>Introduction</h2>
+        <p>The object data sheet produces an overview with the most important data of the object.</p>
+        <p>Select an <span class="ui_element">Object</span> or <span class="ui_element">Person</span> and choose the contextual menu / ribbon item <span class="ui_element">Data sheet</span>.</p>
+        <h2>Content</h2>
+        <p class="fieldlabel">Text module</p>
+        <div class="indented">
+            <p>The content of the data sheet is defined in a <span class="ui_element">Text</span> with mnemonic <span class="ui_element">DataView</span>.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>If the text module contains HTML (i.e. it starts with <span class="ui_element">&lt;HTML&gt;</span>), the HTML viewer will display the datasheet.&#160;</p>
+            </div>
+        </div>
+        <p class="fieldlabel">External file inclusion</p>
+        <div class="indented">
+            <p>GLIMS allows to <a href="../../general/files_text_inclusion.htm">include an external file</a> in the data sheet. </p>
+        </div>
+        <p class="fieldlabel">Example</p>
+        <div class="indented">
+            <p class="fieldlabel">Text</p>
+            <div class="indented">
+                <div class="box_grey">
+                    <p>&lt;HTML&gt;<br></br>&lt;HEAD&gt;<br></br>&lt;TITLE&gt;M I C R O B I O L O G Y D A T A S H E E T<br></br>&lt;/TITLE&gt;<br></br>&lt;LINK REL="stylesheet" HREF="D:\GLIMS\GLIMSData-Sheet.css" TYPE="text/css"&gt;<br></br>&lt;/HEAD&gt;</p>
+                    <p>&lt;BODY&gt;<br></br>&lt;H1&gt; Data sheet for patient {=.Person().LastName} {=.Person().FirstName} &lt;/H1&gt;<br></br>&lt;H2&gt; General&lt;/H2&gt;</p>
+                    <p>&lt;UL TYPE="Square"&gt;<br></br>&lt;LI&gt;<br></br>&lt;B&gt;Name: &lt;/B&gt; {=.Person().LastName} {=.Person().FirstName} &lt;/LI&gt;<br></br>&lt;LI&gt; &lt;B&gt; Birthdate: &lt;/B&gt;{=DateToString(.Person().BirthDate,"%d/%m/%y")}&lt;/LI&gt;<br></br>&lt;LI&gt; &lt;B&gt; Sex: &lt;/B&gt;{=.Persondata("sex")}&lt;/LI&gt;<br></br>&lt;LI&gt;&lt;B&gt; Ward: &lt;/B&gt; {=.Person().Stay().Ward.Name} &lt;/LI&gt;<br></br>&lt;LI&gt; &lt;B&gt; Room: &lt;/B&gt;{=.Person().Stay().Room} &lt;/LI&gt;<br></br>&lt;LI&gt; &lt;B&gt; Since: &lt;/B&gt;{= datetimetostring(.Person().Stay().StartTime, "%x")} &lt;/LI&gt;<br></br>&lt;/UL&gt;</p>
+                    <p>&lt;H2&gt; History&lt;/H2&gt;</p>
+                    <p>&lt;PRE&gt;</p>
+                    <p>{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 0, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 10, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 20, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 30, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 40, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 50, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 60, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 70, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 80, 10, ?, ?, ?, ?, ?, "ReportFormat") }{= .MicrobiologicHistory("MB-hist-spmn-info", ?, 90, 10, ?, ?, ?, ?, ?, "ReportFormat") }</p>
+                    <p>&lt;/Pre&gt;<br></br>&lt;/BODY&gt;</p>
+                    <p>&lt;/HTML&gt;</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Data sheet</p>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="objects_data_sheet_example.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="797" data-mc-height="557" src="objects_data_sheet_example_thumb_0_120.png" alt="" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <h2>Pre-configuration</h2>
+        <p>The <span class="ui_element">Data sheet</span> function can be pre-configured. </p>
+        <p>This implies that you can add several menu / ribbon items that open the data sheet, each with different content. The <span class="ui_element">Function parameter set</span> allows to specify a different <span class="ui_element">Text</span>.</p>
+        <p>
+            <img src="objects_data_sheet_preconfig.png" />
+        </p>
+    </body>
+</html>

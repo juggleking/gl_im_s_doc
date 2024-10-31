@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\specimen_labels.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Root and work specimen labels</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Specimen labels</h1>
+        <p>Contents: </p>
+        <ul>
+            <li class="mips_list_bulleted" value="1"><a href="#Introduction">Label content</a>
+            </li>
+            <li class="mips_list_bulleted" value="2"><a href="#Definitions">Terminology</a>
+            </li>
+            <li class="mips_list_bulleted" value="3"><a href="#Possible%20label%20definitions">Possible 
+	 label definitions</a>
+            </li>
+            <li class="mips_list_bulleted" value="4"><a href="#Which%20labels%20will%20be%20printed">Which 
+	 labels will be printed</a>
+            </li>
+            <li class="mips_list_bulleted" value="5"><a href="#Only_print_specimen_labels_for_next_step_in_workflow" name="kanchor191">Only 
+	 print specimen labels for next step in workflow</a>
+            </li>
+            <li class="mips_list_bulleted" value="6"><a href="#In%20which%20sequence%20are%20the%20labels%20printed">Label 
+	 printing sequence</a>
+            </li>
+            <li class="mips_list_bulleted" value="7"><a href="#Label%20printers">Label printers</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Label content</h2>
+        <p class="fieldlabel">Material vs Material input</p>
+        <div class="indented">
+            <p>GLIMS allows to define specimen labels (via a multilingual text) on two different levels: </p>
+            <p class="fieldlabel">Material</p>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../materials/materials_label.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="610" data-mc-height="850" src="../materials/materials_label_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <div class="indented">
+                        <p><i>.Object.Person().LastName</i>
+                            <br style="font-style: italic;" /><i>{&lt; .InternalId} {&lt; .Material.ShortName}</i>
+                            <br style="font-style: italic;" /><i>Dep.: {DepartmentMnemonic}, Size: {Size}</i>
+                            <br style="font-style: italic;" /><i>Work: {&lt; .DepartmentPropertyCodeList:{DepartmentMnemonic}}</i>
+                        </p>
+                    </div>
+                    <p>In the definition of the label, the <span class="ui_element">{Size}</span> parameter passed to this text also takes the minimal and maximal size of the material definition into account, as opposed to the Specimen.Size reference.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Material input</p>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../materials/material_inputs_label.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="529" data-mc-height="433" src="../materials/material_inputs_label_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The label on <span class="ui_element">Material input</span> has the advantage 
+ 					that more information is available at this level.&#160;&#160;It allows for instance to include the procedure or station name.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Language</p>
+        <div class="indented">
+            <p class="fieldlabel">Default</p>
+            <div class="indented">
+                <p>By default, the content of the specimen label is expanded in the language of 
+ the current user. </p>
+            </div>
+            <p class="fieldlabel">Use issuer language</p>
+            <div class="indented">
+                <p>If the general option <span class="ui_element">Labels 
+ in issuer language</span> is enabled, the specimen 
+ labels will be expanded in the language of the issuer (as defined in the issuer's  correspondent configuration).</p>
+                <p>Click <span class="ui_element">Start</span> -&gt; <span class="ui_element">System 
+ management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS general</span>.</p>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../materials/specimen_labels_language.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="755" data-mc-height="673" src="../materials/specimen_labels_language_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <h2><a name="Definitions"></a>Terminology</h2>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Root specimen</b>
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">A root specimen is a specimen where 
+		 Specimen.ParentSpecimen = ?.</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Work specimen</b>
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">A work specimen is a specimen where 
+		 Specimen.ParentSpecimen &lt;&gt; ?.</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Own labels</b>
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">The own labels of a specimen are either 
+		 the Material label or the MaterialInput labels with MaterialInput.IsSubLabel=NO.&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Sub labels</b>
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">The sub labels of a specimen are the 
+		 MaterialInput labels with MaterialInput.IsSubLabel = YES.</td>
+            </tr>
+        </table>
+        <p class="fieldlabel">Material input - Is sub label</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Material input</span> option <span class="ui_element">Is sub label</span> allows to make a clear distinction between material input labels which are 
+ to be considered as 'daughter' labels of the material and material input 
+ labels which are to be considered as being part of the own labels of 
+ the material.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../materials/specimen_labels_material_input_is_sublabel.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="530" data-mc-height="434" src="../materials/specimen_labels_material_input_is_sublabel_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">Disabled</p>
+            <div class="indented">
+                <p> The 
+	 material input labels are considered to be part of the 'own' labels 
+	 of the specimen.</p>
+                <p>This 
+	 label will be printed together with the material label (if defined), 
+	 and the specimen on which the label is put is not to be considered 
+	 as a daughter specimen of the actual specimen.</p>
+            </div>
+            <p class="fieldlabel">Enabled</p>
+            <div class="indented">
+                <p>Indicates that 
+	 this material input label is actually to be considered as a label 
+	 intended for a subspecimen of the actual specimen, and should not 
+	 always be printed together with the material label of the specimen.</p>
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                    </p>
+                    <p>This offers the possibility to treat material input labels as work labels and allows the definition of so-called 'root' labels and 'work' labels without having to define the work material or the procedure needed to convert the root material into the work material.</p>
+                </div>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Possible label definitions"></a>Possible 
+ label definitions</h2>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="width: 5%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p style="text-align: center;">1</p>
+                </td>
+                <td style="width: 95%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;Material label for root specimen</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;width: 5%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">2</td>
+                <td style="width: 95%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;Material input label for root 
+		 specimen</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;width: 5%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">3</td>
+                <td style="width: 95%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;Material label for work specimen</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;width: 5%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">4</td>
+                <td style="width: 95%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;Material input label for work 
+		 specimen</td>
+            </tr>
+        </table>
+        <h2><a name="Which labels will be printed"></a>Which labels will be printed</h2>
+        <h3>General</h3>
+        <p class="fieldlabel">Root specimen or work specimen</p>
+        <div class="indented">
+            <p>When deciding which labels are to be printed, GLIMS first evaluates 
+ for each specimen if it is a root specimen (no parent specimen) or a work 
+ specimen (has a parent specimen) as defined by your procedure configuration.</p>
+        </div>
+        <p class="fieldlabel">Labels for each department</p>
+        <div class="indented">
+            <p>When a specimen is used as input for actions executed in different departments, 
+ then the <span class="ui_element">Order-based function Print labels</span> function (also used during order entry) will 
+ by default print the Specimen.Material.Label once for each department, 
+ to indicate that the original specimen should be split into several equivalent 
+ specimens.&#160;&#160;</p>
+            <p>You can deactivate this built-in functionality by 
+ disabling the general option "Label per department". The 
+ Specimen.Material label will then only be printed once.</p>
+            <p>Click <span class="ui_element">Start</span> -&gt; <span class="ui_element">System 
+ management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS general</span>.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../materials/specimen_labels_per_department.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="757" data-mc-height="675" src="../materials/specimen_labels_per_department_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Avoid printing unnecessary specimen labels</p>
+        <div class="indented">
+            <p class="MsoNormal"><span lang="EN-US">Specimen labels 
+ will only be printed when output is expected. </span> <span lang="EN-US">Overview of the 
+ implemented checks:</span></p>
+            <ol style="list-style-type: decimal;">
+                <li value="1">
+                    <p class="MsoNormal"><span lang="EN-US">Labels 
+	 on the material of a specimen are only printed if the specimen is 
+	 not discontinued. </span>
+                    </p>
+                </li>
+                <li value="2">
+                    <p class="MsoNormal"><span lang="EN-US">Labels 
+	 on the material of a specimen are only printed if there is at least 
+	 1 specimen input with an action that contains at least 1 (solicited) 
+	 result or specimen that is not discontinued. </span>
+                    </p>
+                    <p class="MsoNormal"><span lang="EN-US">If the general option <span class="ui_element">Label 
+	 per department</span> is set, then labels will only be printed for 
+	 those departments where the procedure's action contains at least 1 
+	 result or specimen that is not discontinued. </span>
+                    </p>
+                </li>
+                <li value="3">
+                    <p class="MsoNormal"><span lang="EN-US">Labels 
+	 for specimen inputs (defined on material input) are printed if the 
+	 actions contain at least 1 (solicited) result or specimen that is 
+	 not discontinued. </span>
+                    </p>
+                </li>
+                <li value="4">
+                    <p class="MsoNormal"><span lang="EN-US">Carrier 
+	 labels are printed only if the associated microbiology action is not 
+	 discontinued. </span>
+                    </p>
+                </li>
+            </ol>
+            <p class="MsoNormal"><span lang="EN-US">The checks mentioned 
+ above are limited to the next level in the action hierarchy, i.e. if the 
+ specimen (level 1) has an input pointing to another non-discontinued specimen 
+ (level2) that has only discontinued results, then the label will be printed 
+ for the first specimen (level1) anyway.</span>
+            </p>
+        </div>
+        <p class="fieldlabel">Avoid reprinting already printed specimen labels</p>
+        <div class="indented">
+            <p>Both the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_main.htm">order 
+ entry options</a> and the Order-based function <span class="ui_element">Print labels</span> have an option <span class="ui_element">Check if printed</span>.</p>
+            <p>If enabled, GLIMS will first 
+ check whether the specimen labels have already been printed before. &#160;More 
+ precisely, GLIMS will check if the Specimen option <span class="ui_element">Label printed</span> 
+ is enabled.</p>
+        </div>
+        <h3>During order entry</h3>
+        <p>In the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_main.htm">order 
+ entry options</a>, you can indicate which labels should be printed.</p>
+        <p class="fieldlabel">Root specimen labels</p>
+        <div class="indented">
+            <p>If enabled, GLIMS will print the own labels of the root 
+	 specimens.</p>
+        </div>
+        <p class="fieldlabel">Work specimen labels</p>
+        <div class="indented">
+            <p>If enabled, GLIMS will print the own labels of the work 
+	 specimens AND the material input labels of the root specimens with 
+	 MaterialInput.IsSubLabel=YES.</p>
+        </div>
+        <h3>Order.PrintLabels</h3>
+        <p>This function behaves identically to the label printing mechanism during 
+ order entry, but always prints both the root and work specimen labels.</p>
+        <h3>Specimen scan</h3>
+        <p>The specimen scan program has two fields that indicate which labels should be printed.</p>
+        <p class="fieldlabel">Own&#160;labels</p>
+        <div class="indented">
+            <p>If enabled, GLIMS will print the own labels of the scanned specimen.</p>
+        </div>
+        <p class="fieldlabel">Sublabels</p>
+        <div class="indented">
+            <p>If enabled, GLIMS 
+	 will print the own labels of the actual, physical subspecimens (if 
+	 any) AND the sublabels of the scanned specimen (material input labels 
+	 with MaterialInput.IsSubLabel=YES).</p>
+        </div>
+        <h3>Worklist.PrintLabels</h3>
+        <p class="kadov-p">This function will print the own labels of the 
+	 output specimens.</p>
+        <h3>Specimen.PrintLabel</h3>
+        <p class="kadov-p">This function will print the own labels of the 
+	 selected specimen.</p>
+        <h3>From within MISPL</h3>
+        <p class="kadov-p">When printing specimen labels from within MISPL 
+	 by using the Order.PrintLabels() function or the Order.PostProcess() 
+	 function, the root and work specimen labels are printed, taking the 
+	 Specimen.LabelPrinted mark into account. </p>
+        <p class="kadov-p">This implies that a label 
+	 which was marked as printed will not be re-printed via these function 
+	 calls.&#160;</p>
+        <h2><a name="Only_print_specimen_labels_for_next_step_in_workflow"></a>Only 
+ print specimen labels for next step in workflow</h2>
+        <h3>Case description</h3>
+        <p>GLIMS offers a two-level concept for specimen handling: root specimens 
+ and work specimens. &#160;In case of a third level (sub specimens of sub 
+ specimens), GLIMS does not make a distinction between the 2nd and the 
+ 3rd level; they are both considered as "work labels".</p>
+        <p>A solution is required to print labels for sub specimens by level, e.g. 
+ first the labels for the 2nd level sub specimens and later the labels 
+ for the 3rd level sub specimens. &#160;</p>
+        <h3>Solution</h3>
+        <p>All programs that allow to print <span class="ui_element">Work labels</span> or <span class="ui_element">Sub
+ labels</span> offer an option to only print the labels for sub specimens 
+ that have at least status <span class="ui_element">Expected</span>. &#160;This allows to limit 
+ printing of work specimen labels to the next step in the work flow.</p>
+        <p>This option is available in the following programs:</p>
+        <p class="fieldlabel">Order entry options</p>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_labels_workflow_oe_options.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="668" data-mc-height="504" src="specimens_labels_workflow_oe_options_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Specimen scan</p>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_labels_workflow_spmn_scan.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="600" data-mc-height="617" src="specimens_labels_workflow_spmn_scan_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Specimens of order browser</p>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_labels_workflow_spmn_of_order.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="818" data-mc-height="495" src="specimens_labels_workflow_spmn_of_order_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Order function "Print labels"</p>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_labels_workflow_ord_print_labels.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="368" data-mc-height="275" src="specimens_labels_workflow_ord_print_labels_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Create order series</p>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_labels_workflow_create_order_series.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="548" data-mc-height="465" src="specimens_labels_workflow_create_order_series_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>There are two categories of specimen label printing programs, which 
+ have a slightly different functionality: </p>
+            <p class="fieldlabel">Printing labels for an order (order entry, Order.PrintLabels or Create 
+ order series program)</p>
+            <div class="indented">
+                <p>The check is applied for any work specimen label, whether they have 
+ sub specimens or not (cfr. order entry option <span class="ui_element">Work specimen labels</span>). 
+ &#160;When an order is created with the option to activate the actions 
+ automatically, then the 1st level work specimens will get status <span class="ui_element">Expected</span>, 
+ while the 2nd level specimens are still in status <span class="ui_element">Initial</span>, 
+ so the labels will be printed for the 1st level specimens only. For root 
+ specimens the labels are always printed.</p>
+            </div>
+            <p class="fieldlabel">Printing labels for a specimen (Specimen.PrintLabel() or Specimen scan 
+ program)</p>
+            <div class="indented">
+                <p>The check is applied for sub specimens (cfr. specimen print option <span class="ui_element">Sublabels</span>), 
+ so even for work specimens in status <span class="ui_element">Initial</span>, own labels can 
+ always be printed on demand. It is the printing of labels of their sub 
+ specimens that is suppressed.</p>
+            </div>
+        </div>
+        <h2><a name="In which sequence are the labels printed"></a>Sequence in which the labels are printed</h2>
+        <p>Sequence in which the labels are printed when both root and work specimen 
+ labels are requested:</p>
+        <p class="fieldlabel">Root specimen labels</p>
+        <div class="indented">
+            <p>To produce the root specimen labels, the 'own' labels of the root specimens 
+ are printed.&#160;&#160;</p>
+        </div>
+        <p class="fieldlabel">Work specimen labels</p>
+        <div class="indented">
+            <p>Next, to produce the work specimen labels, the 
+ 'sub' labels of the root specimens and both the 'own' and 'sub' labels 
+ of the work specimens are printed.</p>
+        </div>
+        <p>Within each of these groups, the ordering is determined by Material.LabelSeqNo 
+ + Material.Mnemonic + Specimen.SamplingTime + Specimen.InternalId + Procedure.SeqNo 
+ (for the material input labels).</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The above ordering is used when the <a href="../correspondents/departments.htm#Printers">Department</a> option <span class="ui_element">Print order specimen label</span> is set to <span class="ui_element">Default</span>.&#160;However, if <span class="ui_element">Print order specimen label</span> is set to <span class="ui_element">By internal ID</span>, the labels are printed based on the Specimen.InternalId (e.g. for pathology).</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The labels generated by the WorkList.PrintLabels() function are sorted 
+ in the following order:</p>
+            <ul>
+                <li value="1">For output specimen labels (i.e. sampling lists): By ProcedureOutput.SeqNo, 
+	 By Material.LabelSeqNo, By Material.Mnemonic, By Specimen.InternalId</li>
+                <li value="2">For input specimen labels (i.e. for regular worklists): By ProcedureInput.SeqNo, 
+	 By Material.LabelSeqNo, By Material.Mnemonic</li>
+            </ul>
+            <p>The ProcedureOutput/Input.SeqNo sorting should ensure that labels are 
+ printed in the same order as they are shown on a grid or outline printout 
+ of the sampling list. The Material.LabelSeqNo sorting ensures that when 
+ all ProcedureOutput.SeqNo values are the same (e.g. unknown), the default 
+ label sorting is followed like in the Order.PrintLabels function.</p>
+        </div>
+        <h2><a name="Label printers"></a>Label printers</h2>
+        <p>Please 
+ check the chapter <a href="../printers/set_devices.htm">Set devices</a>.</p>
+    </body>
+</html>

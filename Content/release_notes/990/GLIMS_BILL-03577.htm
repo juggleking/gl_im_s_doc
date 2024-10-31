@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Avoid failure of budget calculation for incomplete orders (GLIMS_BILL-03577)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4075"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Avoid failure of budget calculation for incomplete orders (GLIMS_BILL-03577)</h1>
+        <h2>Issue</h2>
+        <p>When calculating the budget for an incomplete order (during reporting or tariffication), the error "Tariffication time cannot be determined" occurred if a policy with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tariff time type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Completion</span> and a budget-related policy*  with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tariff time type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Object</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Receipt</span> was used.</p>
+        <p style="font-size: 7pt;">* Budget-related policy = the <span class="ui_element">Policy</span> referred to by the <span class="ui_element">Budget definition</span> via the <span class="ui_element">Budget policy name</span> field.</p>
+        <h2>Solution</h2>
+        <p>For budget calculation, only the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tariff time type</span> of the budget-related policy  will now be taken into account in order to find the valid budget definitions.  This modification will avoid the above-mentioned error during the budget calculation for incomplete orders. However, if  the budget-related policy's <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tariff time type</span> is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Completion</span>, then a complete order is required for budget calculation.</p>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - Improved LAS status communication during (un)linking of station in LAS hierarchy (GLIMS_ANLZ-01100)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2274"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>Improved LAS status communication during (un)linking of station in LAS hierarchy (GLIMS_ANLZ-01100)</h1>
+        <p>Linking a station (in)directly to a LAS, will now have the effect that:</p>
+        <ol>
+            <li value="1">     the station (and also its substations, if any) receive the same <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">station status message queue</span> as the LAS station (i.e. the queue name used for LAS status communication on the message queue).</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">the station and its assessment methods (and also the substations and their assessment methods, if any) receive the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connect</span> LAS status. This will trigger a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connect</span> LAS status message being sent to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">station status message queue</span> for:</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">the station itself</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">      the assessment methods of the station</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="3">the substations</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="4">      the assessment methods of the substations</li>
+                </ol>
+            </li>
+        </ol>
+        <p>Unlinking a station from a LAS (in)directly, will now have the effect that:</p>
+        <ol>
+            <li value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">     the LAS it was connected to knows that the station and its assessment methods are not available anymore for usage =&gt; a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Disconnect</span> LAS status message is sent when the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LAS status</span> of the station goes from <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connect</span> =&gt; "?" for:</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">      the station itself</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">      the assessment methods of the station</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="3">      the substations</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="4">      the assessment methods of the substations</li>
+                </ol>
+            </li>
+            <li value="2">the station (and all its underlying stations) do not have the <span class="ui_element">station status message queue</span> name of the LAS station anymore.</li>
+        </ol>&#160;</body>
+</html>

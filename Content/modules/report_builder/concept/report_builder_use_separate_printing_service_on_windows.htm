@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report Builder - Optionally use separate printing service on Windows</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1636"></a>
+            <MadCap:concept term="Report builder" />Report Builder - Optionally use separate printing service on Windows</h1>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>The use of a MipsJvmDaemon service is deprecated. MIPS strongly recommends using the integrated <a href="report_builder_service.htm">Report builder service solution</a> introduced in GLIMS&#160;9.4.</p>
+            <p>As soon as a default Report builder service is defined in the general settings (Start -&gt; System management -&gt; Customize -&gt; MATE), GLIMS&#160;will ignore any MipsJvmDaemon configuration.</p>
+            <p>For more information, please check the chapter <a href="report_builder_service.htm">Report builder service</a>.</p>
+        </div>
+        <h2>Introduction</h2>
+        <p>On servers with a heavy workload, printing reports using Report Builder 
+ may experience slow performance. To alleviate this performance penalty, 
+ we have added an option to delegate printing to MipsJvmDaemon service, 
+ a separate process running on the same computer. Internal tests have shown 
+ that for the exact same set of result reports, printing took:</p>
+        <ul type="disc">
+            <li value="1">2 minutes using the standard method (where printing is done within 
+	 the GLIMS process)</li>
+            <li value="2">20 seconds using the alternative method (where printing is handled 
+	 by the service)</li>
+        </ul>
+        <h2>Implementation</h2>
+        <p>To use this functionality, take the following steps:</p>
+        <h3>MIPS JVM Daemon service setup</h3>
+        <p>In &lt;GLIMS-directory&gt;\jar\bin you will see the following files:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">installJvmService.bat</li>
+            <li class="mips_list_bulleted" value="2">JavaService.exe</li>
+            <li class="mips_list_bulleted" value="3">JavaService_x64.exe</li>
+            <li class="mips_list_bulleted" value="4">uninstallJvmService.bat</li>
+        </ul>
+        <p>Edit the file 'installJvmService.bat' and modify the variables to match 
+ your local environment:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">JRE_HOME: only change the default if 
+	 you want to use a Java Runtime Environment other than the one shipped 
+	 with GLIMS</li>
+            <li class="mips_list_bulleted" value="2">GLIMS: update the path to the GLIMS 
+	 directory</li>
+            <li class="mips_list_bulleted" value="3">JAVA_OPTS: update the path to the MipsJvmDaemon 
+	 home directory; update the MipsJvmDaemon port if the default port 
+	 50000 is not available</li>
+        </ul>
+        <p>Edit the file 'uninstallJvmService.bat' and modify the variables to 
+ match your local environment:</p>
+        <ul type="disc">
+            <li value="1">GLIMS: update the path to the GLIMS directory</li>
+        </ul>
+        <p>Now you can install and uninstall the MIPS JVM Daemon service by using 
+ the appropriate batch file.</p>
+        <h3>GLIMS progress.ini changes</h3>
+        <p>In &lt;GLIMS-directory&gt;\bin\progress.ini, make the following changes 
+ to the [MA Section]:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">MA_JVM_DAEMONHOST=OurServer -&gt; match 
+	 the name of the host where you installed the MIPS JVM Daemon service 
+	 earlier</li>
+            <li class="mips_list_bulleted" value="2">MA_JVM_DAEMONPORT=50000 &#160;&#160;-&gt; 
+	 match the port that you set earlier</li>
+            <li class="mips_list_bulleted" value="3">MA_JVM_PRINTVIADAEMON=YES &#160;-&gt; 
+	 change this to NO or remove the line to return to the standard printing 
+	 method</li>
+        </ul>
+        <h2>Important notes</h2>
+        <ul>
+            <li class="mips_list_bulleted" value="1">If you add a new printer in the operating 
+	 system, you will have to restart the MIPS JVM Daemon service so that 
+	 it can recognize this new printer and use it for printing reports.</li>
+            <li class="mips_list_bulleted" value="2">If the printer is a shared printer (e.g. 
+	 \\OurServer\OurBigPrinter) you still have to locally install the necessary 
+	 printer driver.</li>
+            <li class="mips_list_bulleted" value="3">If you are using a shared printer (e.g. 
+	 \\OurServer\OurBigPrinter) from a GLIMS session or MIPS JVM Daemon 
+	 service running on the same server machine (in this case 'OurServer') 
+	 then the local printer name must match the shared printer name (in 
+	 this case 'OurBigPrinter')</li>
+            <li class="mips_list_bulleted" value="4">If you are accessing the report template 
+	 layouts (.jasper files) from a Windows UNC path, you may experience 
+	 slower performance if the UNC path loops back to the same server. 
+	 This appears to be dependent on the Windows version, and performance 
+	 may improve by moving the report template layout files to a dedicated 
+	 file server.</li>
+        </ul>
+    </body>
+</html>

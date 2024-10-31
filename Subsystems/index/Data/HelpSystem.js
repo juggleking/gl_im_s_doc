@@ -1,0 +1,10 @@
+var xmlHelpSystemData = "";
+xmlHelpSystemData += '<?xml version=\"1.0\" encoding=\"utf-8\"?>';
+xmlHelpSystemData += '<WebHelpSystem DefaultUrl=\"Content/Watchdog/Watchdog_about.htm\" Toc=\"Data/Tocs/Watchdog.js\" Index=\"Data/Index.js\" Concepts=\"Data/Concepts.js\" BrowseSequence=\"Data/BrowseSequences/Watchdog.js\" SearchDatabase=\"Data/Search.js\" Alias=\"Data/Alias.xml\" Synonyms=\"Data/Synonyms.xml\" PathToScriptsFolder=\"Resources/Scripts/\" SkinName=\"SampleNet_GLIMS\" SkinID=\"SampleNet_GLIMS\" Multilingual=\"false\" Skins=\"SampleNet_GLIMS\" BuildTime=\"8/22/2022 3:03:41 PM\" BuildVersion=\"15.1.7283.32587\" TargetType=\"WebHelp2\" SkinTemplateFolder=\"Skin/\" InPreviewMode=\"false\" TopNavTocPath=\"true\" MoveOutputContentToRoot=\"false\" ReplaceReservedCharacters=\"false\" MakeFileLowerCase=\"false\" UseCustomTopicFileExtension=\"false\" PreventExternalUrls=\"false\" EnableResponsiveOutput=\"false\" IncludeGlossarySearchResults=\"true\" ResultsPerPage=\"20\" xml:lang=\"en-us\" LanguageName=\"English\" SearchEngine=\"MadCapSearch\" IncludeCSHRuntime=\"true\" DebugMode=\"false\" ShowMadCapBacklink=\"false\">';
+xmlHelpSystemData += '    <!-- saved from url=(0016)http://localhost -->';
+xmlHelpSystemData += '    <CatapultSkin Version=\"3\" SkinType=\"WebHelp2\" Comment=\"HTML5 skin\" Anchors=\"Width,Height\" Width=\"800\" Height=\"600\" Top=\"0\" Left=\"0\" Bottom=\"0\" Right=\"0\" Tabs=\"TOC\" DefaultTab=\"TOC\" UseBrowserDefaultSize=\"True\" UseDefaultBrowserSetup=\"True\" AutoSyncTOC=\"true\" Name=\"SampleNet_GLIMS\" SkinID=\"SampleNet_GLIMS\" SkinClass=\"_Skins_SampleNet_GLIMS\" HideNavOnStartup=\"False\" LogoUrl=\"\">';
+xmlHelpSystemData += '        <Toc LinesBetweenItems=\"false\" LinesFromRoot=\"false\" SingleClick=\"true\" PlusMinusSquares=\"false\" AlwaysShowSelection=\"false\" UseFolderIcons=\"false\" ImageListWidth=\"16\" />';
+xmlHelpSystemData += '        <WebHelpOptions />';
+xmlHelpSystemData += '    </CatapultSkin>';
+xmlHelpSystemData += '</WebHelpSystem>';
+MadCap.Utilities.Xhr._FilePathToXmlStringMap.Add('HelpSystem', xmlHelpSystemData);

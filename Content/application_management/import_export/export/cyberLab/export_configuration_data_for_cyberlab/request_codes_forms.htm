@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific export|CyberLab|Export configuration data for Cyberlab">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Export configuration data for CyberLab</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor826"></a>
+            <MadCap:concept term="System management;Application management" />Export configuration data for CyberLab - Request codes and request forms</h1>
+        <h2>Introduction</h2>
+        <p>To export request code and request form information, the option <span class="ui_element">Export request codes</span> of the <a href="introduction.htm">CyberLab export</a> window should be enabled.</p>
+        <p><b style="font-weight: bold;">Output file</b>: "RequestCodes.xml". This file contains:</p>
+        <ul>
+            <li value="1">a list of all request codes</li>
+            <li value="2">a hierarchically structured list of request forms containing request codes</li>
+        </ul>
+        <h2>Request codes: fields exported to CyberLab 9.11 and higher</h2>
+        <p>Additionally to the commonly exported data, the following fields are also exported if your version of CyberLab is 9.11 or higher and if you chose <span class="ui_element">v9.11 and above</span> in the <span class="ui_element">CyberLab version</span> field of the <span class="ui_element">CyberLab export</span> window.</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="" value="1"><code>&lt;RequestCode.Explicit&gt;</code>: indicates whether the request definitions are explicit or not. CyberLab can use this information for panel members.</li>
+            <li xmlns="" value="2"><code>&lt;RequestCode.Enabled&gt;</code>: indicates whether the request definitions are active or not.&#160;CyberLab can use this information to update existing request definitions.</li>
+            <li xmlns="" value="3"><code>&lt;RequestCode.Universal&gt;</code>: indicates if the underlying request definitions are universal or material/issuer specific.</li>
+            <li value="4">
+                <p xmlns="">additional information about each valid request definition of the request code (the validity is based on the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start date</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">End date</span> of the <a href="../../../../../configuration/requestables/requestables.htm" xmlns="http://www.w3.org/1999/xhtml">request definition</a>):</p>
+                <ul xmlns="">
+                    <li value="1"><code>&lt;request definition.IsDefaultRequestable&gt;</code>
+                    </li>
+                    <li value="2">
+                        <p><code>&lt;Requestable.Issuer&gt;</code>
+                        </p>
+                        <ul>
+                            <li value="1"><code>&lt;Issuer.Type&gt;</code>
+                            </li>
+                            <li value="2"><code>&lt;Issuer.Mnemonic&gt;</code>
+                            </li>
+                            <li value="3"><code>&lt;Issuer.InternalID&gt;</code>
+                            </li>
+                            <li value="4">
+                                <p><code>&lt;Issuer.IssuerCodes&gt;</code>
+                                </p>
+                                <ul>
+                                    <li value="1"><code>&lt;IssuerCode.Code&gt;</code>
+                                    </li>
+                                    <li value="2"><code>&lt;IssuerCode.Provider&gt;</code>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li value="3"><code>&lt;Requestable.Type&gt;</code>
+                    </li>
+                    <li value="4"><code>&lt;Requestable.TemplateMnemonic&gt;</code> </li>
+                    <li value="5"><code>&lt;Requestable.Discriminator&gt;</code>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li value="1">
+                <p>additional information about preferred materials/specimen volume. For each material:
+</p>
+                <ul>
+                    <li value="1"><code>&lt;Material.Code&gt;</code>: mnemonic of the material</li>
+                    <li value="2"><code>&lt;Material.Unit&gt;</code>: unit used to measure the material</li>
+                    <li value="3"><code>&lt;Material.Dimension&gt;</code>: dimension the unit represents</li>
+                    <li value="4">
+                        <p><code>&lt;Material.Value&gt;</code>: maximal size of the material</p>
+                        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #ff0000;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Warning</a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <div class="text_box_warnings">
+                                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                                    </p>
+                                    <p>Units and values are exported as they are, without conversion.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span>
+                            <div class="MCDropDownBody dropDownBody">
+                                <div class="text_box_notes">
+                                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                                    </p>
+                                    <p>For property request definitions, all input materials of the preferred procedure will be listed. Moreover, the <span class="ui_element">Consumption</span> of the <a href="../../../../../configuration/procedure_outputs/procedure_outputs.htm">property output</a> is exported instead of the <span class="ui_element">Maximal size</span> of the <a href="../../../../../configuration/materials/materials.htm">Material</a>.</p>
+                                    <p>For microbiology request definitions, the MicrobiologyProcedure material will be listed.</p>
+                                    <p>For pathology request definitions, the PathologyProcedure material will be listed.</p>
+                                    <p>For material request definitions, the material itself will be listed.</p>
+                                    <p>For blood request definitions, the BloodProduct material will be listed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li value="1">
+                <p>If a request definition is a panel:</p>
+                <ul>
+                    <li value="1"> &lt;PanelMember.RequestCode&gt;</li>
+                    <li value="2">&lt;PanelMember.Discriminator&gt;</li>
+                </ul>
+            </li>
+        </ul>
+        <h2>Request forms</h2>
+        <p>CyberLab uses the hierarchical structure Platform &gt;&#160;Discipline &gt; Section &gt; Test/request definition. Upon XML export, GLIMS automatically maps the hierarchical structure of its <a href="../../../../../configuration/request_forms/request_forms.htm#Usage%20in%20order%20entry">request forms</a> (request form -&gt; request tab -&gt; request tab member) onto the CyberLab structure.</p>
+        <h2>Unique identifiers when using CyberLab 9.11 and higher</h2>
+        <p>Several tags contain a unique identifier.&#160;When configuration data changes in GLIMS, these identifiers allow CyberLab to notice that existing information has been modified and should be updated: </p>
+        <ul>
+            <li value="1">The section tags in the request code information contain a unique identifier composed of the discipline's key followed by "-01".</li>
+            <li value="2">The tags of each request form, request tab and request tab member comprise a unique identifier composed of the id and creation time of the corresponding record. </li>
+        </ul>
+    </body>
+</html>

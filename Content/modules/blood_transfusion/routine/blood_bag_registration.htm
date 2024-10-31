@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific import" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Registering blood bags</title>
+        <link href="../../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <link href="../../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4010"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Registering blood bags</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Scan%20program">Scan 
+ program</a> - <a href="#Import%20programs">Import program</a></p>
+        <h2><a name="Introduction" id="Introduction">Introduction</a>
+        </h2>
+        <p>A stock of blood bags has to be created in GLIMS. Blood bags 
+ can be entered in GLIMS by means of a scan program or a specific import 
+ program.</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>The blood product field <a href="../configuration/blood_products.htm">When 
+	 received</a> allows specifying a MISPL expression that is executed 
+	when a blood bag has been entered.</p>
+        </div>
+        <h2><a name="Scan program">Scan program</a>
+        </h2>
+        <p>The scan program is available from the main menu <span class="ui_element">Start</span> -&gt; <span class="ui_element">Transfusion 
+ management</span> -&gt; <span class="ui_element">Entry</span> -&gt; <span class="ui_element">By scanning barcodes</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bloodbags_register_scan.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="549" data-mc-height="455" src="bloodbags_register_scan_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3 xmlns="">Barcode recognition</h3>
+        <p>When scanning the barcodes from a blood unit, GLIMS will recognize the 
+ type of barcode and automatically enter the related fields in the scan 
+ screen.</p>
+        <p>This automatic barcode recognition is based on fixed 
+ prefixes which are determined by the ISBT (International Society of Blood 
+ Transfusion). When using ISBT-128, the barcodes that 
+ contain blood group, rhesus and phenotype information are decoded by GLIMS 
+ (so you do not need to configure this in the <span class="ui_element">Typing</span> table).</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>When a barcode is scanned, GLIMS searches for a blood bag having that <span class="ui_element">External 
+ id as barcode</span>. In ISBT-128, this barcode has the following 
+ structure: = a pp pp yy nn nn nn ff K  where 'ff' are flag digits 
+ and 'K' is a check digit.<br /><br />According to the ISBT-128 specifications (June 2001, Version 1.4.0, Section 
+ 3, Page 3-18) by the International Society of Blood Transfusion (ICCBBA), 
+ Appendix F (Modifications to Tables and Re-Definition of International 
+ and National Data Identifiers), Table 2 (ISBT 128-Specified Values for 
+ Donation Identification Number Flag Digits), the value of the 'flag' characters 
+ (at positions 15 and 16) are only to be interpreted if they have certain 
+ values:</p>
+            <ul>
+                <li class="kadov-p" value="1">'01' till '04' means 'Container 1 through 4 of 
+	 a set'</li>
+                <li class="kadov-p" value="2">'15' till '19' means 'Container 5 through 9 of 
+	 a set'</li>
+            </ul>
+            <p>If the flag characters contain any other value, GLIMS will NOT interpret 
+ them. Thus, for instance, when a blood bag contains 2 barcode labels for its identification:</p>
+            <ul>
+                <li class="kadov-p" value="1">a label with '=N034003033796002' (flag '00'),</li>
+                <li class="kadov-p" value="2">a label with '=N034003033796052' (flag '05'),</li>
+            </ul>
+            <p>then GLIMS will always find the same blood bag, no matter which of both 
+ labels is scanned.</p>
+        </div>
+        <h3>ISBT barcode for special antigens</h3>
+        <p>The ISBT barcode for special antigens (which starts with the 
+ prefix <span class="ui_element">"={" or "=\"</span>) is also interpreted by 
+ the blood bag scan program. This means that when this barcode is scanned:</p>
+        <ul>
+            <li class="kadov-p" value="1">the list of antigens is shown in the scan program</li>
+            <li class="kadov-p" value="2">these antigens are stored automatically with the 
+	 blood bag (in the BloodBagAntigen table), when OK is clicked.</li>
+            <li class="p" value="3">
+                <p>the actual antigen barcode is stored (without its 
+	 prefix) in a blood bag site attribute named <span class="ui_element">_SpecialTestingCode</span>. 
+	 This barcode can then be used for MISPL purposes.</p>
+            </li>
+        </ul>
+        <p>The actually interpreted antigens are: <span class="ui_element">Kell, Cellano, Duffy-A/B, Lewis-A/B, 
+ Kidd-A/B, Luther-A/B, M, N, S, s, P1, Cw, CMV</span>.</p>
+        <h3>Use of extended antigen meaning list</h3>
+        <p>GLIMS supports all antigen meanings that can be scanned using an ISBT-128 
+ barcode.</p>
+        <p class="fieldlabel">Activation</p>
+        <div class="indented" xmlns="">
+            <p>In the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a>, enable the option <span class="ui_element">Use extended 
+ antigen list</span>.</p>
+        </div>
+        <p class="fieldlabel">Antigen configuration</p>
+        <div class="indented" xmlns="">
+            <p>Antigens must be configured for each possible antigen meaning.</p>
+        </div>
+        <p class="fieldlabel">Usage</p>
+        <div class="indented" xmlns="">
+            <p>GLIMS will enforce that antigens are configured for all antigen meanings 
+ (similar to the standard antigens). This check is performed by several 
+ programs, such as the blood bag scan program. When scanning a 
+ blood bag, GLIMS will recognize extra antigens. Check the reference 
+ manual for the full list of supported antigen meanings.</p>
+        </div>
+        <p>For more information, please check the 
+ PDF document <a href="ISBT.pdf">ISBT 128 Bar Code Symbology and 
+ Application Specification for Labeling of Whole Blood and Blood Components.</a></p>
+        <h3>Other features</h3>
+        <ul>
+            <li value="1">If a bag is scanned for a <a href="../configuration/blood_products.htm">blood 
+ product</a> of which the option <span class="ui_element">Verification of contents</span> is set, you 
+ can manually overrule this setting for that bag by enabling the <span class="ui_element">Ignore 
+ verify</span> option in the scan program.</li>
+            <li value="2">The Blood bag typing  option <span class="ui_element">Obsolete</span>
+	 can be used to deactivate certain typing records so that the scan 
+	 program does no longer recognize these.</li>
+            <li value="3">The identification of the division (the last 2 characters 
+	 of the ISBT product code) is stored in the field <span class="ui_element">Division</span>. When 
+	 an ISBT product code is scanned, the division id is stored in the dedicated 
+	 <span class="ui_element">Division</span> field.</li>
+            <li value="4"> If a Blood bag typing or a blood product 
+	 is chosen (either manually or with a barcode) that is marked as <span class="ui_element">Autologous</span>, 
+	 the <span class="ui_element">Donation type</span> automatically switches to <span class="ui_element">Autologous</span>.</li>
+            <li value="5">
+                <p>When a blood bag was discontinued (for example 
+	 because it has been returned to the supplier) and afterwards it is 
+	 again delivered to the lab (with same number of course), it is possible 
+	 to re-use this same number in GLIMS.</p>
+                <p>When doing so, the <span class="ui_element">Internal id</span> (and the <span class="ui_element">External id as barcode</span>) 
+	 of the old blood bag (that had status <span class="ui_element">Discontinued</span>) is suffixed 
+	 with "#1". For instance, blood bag '12345' will be renamed to '12345#1'. If 
+	 this is done a second time, it will be renamed to '12345#2' etc.</p>
+            </li>
+        </ul>
+        <h3><a name="Donation"></a>Donation type when scanning blood bags</h3>
+        <p>By default, the barcode scan program for blood bags requires that the <span class="ui_element">Donation type</span> (normal, directed or autologous) be indicated for each blood bag that is scanned as the <span class="ui_element">Donation type</span> option is always reset to its initial value, i.e <span class="ui_element">Normal</span>.</p>
+        <p>However, it is possible to indicate the <span class="ui_element">Donation type</span> for several blood bags at once. To this purpose, the gp_Site-based function <span class="ui_element">EnterBloodbags</span> can be pre-configured, i.e. it is possible to define a <a href="../../../user_interface/user_interface_start_menu_customization.htm#Adding">menu option</a> / ribbon item with a tool that has a parameter set.</p>
+        <p class="fieldlabel">Skip setup enabled</p>
+        <div class="indented">
+            <p>If the <a href="../../../user_interface/user_interface_tools.htm">Tool</a> option <span class="ui_element">Skip setup</span> is enabled, and the user clicks on the  menu option / ribbon item using this tool, the scan program is immediately opened for the donation type specified in the tool's function parameter set. For each scanned blood bag, this donation type will be used.</p>
+        </div>
+        <p class="fieldlabel">Skip setup disabled</p>
+        <div class="indented">
+            <p>If the <a href="../../../user_interface/user_interface_tools.htm">Tool</a> option <span class="ui_element">Skip setup</span> is disabled, and the user clicks on the  menu option / ribbon item using this tool, a window appears allowing to change the donation type that will be used when scanning barcodes. Subsequently, the scan program is opened for the chosen donation type. For each scanned blood bag, the chosen donation type will be used.</p>
+        </div>
+        <div class="indented">
+            <p>
+                <img src="bloodbags_register_donation_type.png" />
+            </p>
+        </div>
+        <h3>Eurocode barcodes</h3>
+        <p>GLIMS provides limited support for Eurocode barcodes in the blood bag scan program. The currently supported barcodes contain the expiration time and the blood group and antigen typing information. Any other type of Eurocode barcode is not supported yet, and will result in an error/warning.</p>
+        <ul>
+            <li value="1">Blood group and antigen typing</li>
+        </ul>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">Format : !Rxxxx</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><b>!</b>: Primary data identifer (Eurocode)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><b>R</b>: Secondary data identifer (blood group information)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><b xmlns="http://www.w3.org/1999/xhtml">xxxx</b> are numbers (0-9)</p>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p xmlns="">!R1131 encodes the red cell antig. of the unit A Rh pos (D pos) CcD.ee Kell pos.</p>
+            </div>
+        </div>
+        <div class="indented">
+            <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">The special(s) of the blood group / blood typing barcode (digit 9) are not supported!</p>
+            </div>
+        </div>
+        <ul>
+            <li value="1">Expiration date</li>
+        </ul>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml"><b xmlns="http://www.w3.org/1999/xhtml">!E</b>YYYYMMDD: Expiry date (day)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><b xmlns="http://www.w3.org/1999/xhtml">!F</b>YYYYMMDDHH: Expiry date (hour)</p>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">!E20191224 encodes the expiry date of the unit: 24 December 2019.</p>
+            </div>
+        </div>
+        <h2><a name="Import programs">Import program</a>
+        </h2>
+        <h3>Introduction</h3>
+        <p>GLIMS supports the import of blood bags via disk. The 
+ blood bag import program is available from the main menu through <span class="ui_element">Start</span> 
+ -&gt; <span class="ui_element">Transfusion managemen</span>t -&gt; <span class="ui_element">Entry</span> -&gt; <span class="ui_element">Read 
+ supplier diskette</span>.</p>
+        <p style="text-align: left;">
+            <img src="bloodbags_register_import_formats.png" />
+        </p>
+        <ol>
+            <li value="1">Select the <a href="#Import">format of the import file</a>.</li>
+            <li value="2">The blood bags will be imported and displayed in a <a href="#Blood%20bag%20browser">browser</a>. </li>
+        </ol>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>It is possible to pre-configure the directory where the file should 
+ be found without knowing the file name in advance. Specify a path with a valid directory + a non-existent file name 
+ for the parameter <span class="ui_element">FileName</span> of the parameter set .</p>
+                    <div class="indented">
+                        <p>Example: //TheServer/GLIMS/BloodTransfusion/DeliveryDiskettes/*</p>
+                    </div>
+                    <p>Caution: the easiest way to achieve this is to first perform <span class="ui_element">Setup</span> 
+ on the parameter set and select a valid filename in this directory. After 
+ having set up the parameter set, go to its parameter <span class="ui_element">FileName</span> and replace 
+ the filename (at the end) by a <span class="ui_element">*</span>.</p>
+                    <p>When the program is started, the file dialog directly opens in this 
+ directory to allow the choice of correct file.</p>
+                </div>
+            </div>
+        </div>
+        <h3>Configuration</h3>
+        <p>You can use the antigen's <span class="ui_element">Meaning</span> field to tell GLIMS 
+ which antigens have which medical meaning. This is important for those 
+ antigens that are specified in the import file. Before such a file can 
+ be read, these antigens must all have been defined and have their <span class="ui_element">Meaning</span> 
+ field set correctly.</p>
+        <p class="fieldlabel">Antigens 
+		 to be defined in GLIMS</p>
+        <div class="indented" xmlns="">
+            <p class="fieldlabel"><span style="font-weight: normal;">Large 
+		 C, Small C,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Large E, Small E,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Kell, Cellano,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Duffy A, Duffy B,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Kidd A, Kidd B,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">M, N,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Large S, Small S,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Luther A, Luther B,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Lewis A, Lewis B,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">P1,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">Cw,</span>
+                <br style="font-weight: normal;" /><span style="font-weight: normal;">CMV</span>
+            </p>
+        </div>
+        <p class="fieldlabel">Product code</p>
+        <div class="indented" xmlns="">
+            <p>In the <span class="ui_element">Blood product specification</span> configuration, the <span class="ui_element">Barcode</span> field 
+ must contain the product code according to your supplier's definitions.</p>
+            <p>
+ You can also store these product codes in the <span class="ui_element">Alternative codes</span> for 
+ the blood product specification (it is allowed to map multiple codes to 
+ the same blood product specification).</p>
+        </div>
+        <p class="fieldlabel">Blood bag supplier</p>
+        <div class="indented" xmlns="">
+            <p>The <span class="ui_element">Bloodbag supplier</span> option in the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a> allows the specification of the default blood bag supplier.</p>
+        </div>
+        <h3><a name="Blood bag browser">Blood bag browser</a>
+        </h3>
+        <p>The blood bags read from disk are displayed in a browser.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bloodbags_register_import_browser.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="835" data-mc-height="451" src="bloodbags_register_import_browser_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel" xmlns="">Barcode</p>
+        <div class="indented" xmlns="">
+            <p style="text-align: left;">Allows scanning the blood bags one by one to make sure that the blood bags on the disk match the actual blood 
+ bags. Please also check the chapter <a href="../configuration/blood_bag_isbt.htm">Unique identification of an ISBT blood bag</a>.</p>
+            <p style="text-align: left;">If a blood bag is scanned and all the fields are filled out correctly, 
+ the blood bag will be grayed out and the status will be displayed in the 
+ browser.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>When a blood supplier disk has been read, it is also possible to 
+ enter all blood units into GLIMS at once, without scanning each 
+ individual unit separately. </p>
+                <p>This can be done with the key CTRL-F1. A confirmation 
+ question will be asked before entering the whole list into GLIMS.</p>
+            </div>
+        </div>
+        <h3>Possible import issues</h3>
+        <p>If an error occurred during import, the blood 
+ bag will be displayed in red and a message will be displayed indicating 
+ the cause. There are several reasons why a blood bag can be rejected:</p>
+        <p class="fieldlabel">Expiration date not available</p>
+        <div class="indented">
+            <p>The expiration date is not available (or lies in 
+	 the past) in the import file. This field is not mandatory in the red 
+	 cross format but is mandatory in GLIMS. </p>
+            <p>Solution: adapt the 
+	 import files by adding an expiration date.</p>
+        </div>
+        <p class="fieldlabel">Blood product (specification) not found</p>
+        <div class="indented">
+            <p>The blood product or blood product specification 
+	 defined in the import file is not found in GLIMS. <span class="ui_element">???</span> will be used 
+	 to mark such fields.</p>
+            <p>Solution: define the blood 
+	 product and blood product specifications in GLIMS.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>The blood bag typing should not have antigens defined on it. This 
+	 allows customers to define other typings with the same mnemonic 
+	 and rhesus but with antigens defined on them.</p>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">
+                            <p>The diskette import program is able to handle multiple blood bags with 
+ the same external id, but with a different product code. This can occur 
+when reading Progesa diskettes.</p>
+                            <p>If a bag is scanned and its 
+ number is not unique, the program will ask to enter or scan the unit's 
+ product code, so it can select the correct unit from the list.</p>
+                        </li>
+                        <li value="2">The 
+ identification of the division (the last 2 characters of the ISBT product 
+ code) are stored the field <span class="ui_element">Division</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h3><a name="Import"></a>Import formats</h3>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />General "Glims" blood bag import protocol</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="indented">
+                    <p>In order to avoid that a specific import protocol has to be developed for each customer, a general blood bag import protocol that each customer can use is available.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml" class="fieldlabel">Import file</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">The import file should consist of:</p>
+                        <ol xmlns="http://www.w3.org/1999/xhtml">
+                            <li value="1">a header containing the name and the version of the import protocol.</li>
+                            <li value="2">consecutive blocks starting with BLOODBAG.BEGIN and ending with BLOODBAG.END containing the data of each blood bag.</li>
+                        </ol>
+                        <p>For instance:</p>
+                        <div class="indented">
+                            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="blood_bag_registration_glims_import_file.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="456" data-mc-height="475" src="blood_bag_registration_glims_import_file_thumb_0_120.png" tabindex="" /></a>
+                            </p>
+                        </div>
+                        <p xmlns="http://www.w3.org/1999/xhtml">The "Directed to" person should be provided in the format &lt;identification code&gt;:&lt;pin provider&gt;.</p>
+                        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                            <p><span style="color: #003366; font-weight: bold;">Example</span>
+                            </p>
+                            <p xmlns="">BLOODBAG.DESTINEDPERSON.PIN=123456789:INS-A</p>
+                        </div>
+                        <p xmlns="http://www.w3.org/1999/xhtml">Attributes can be provided as follows:</p>
+                        <table style="width: 100%;mc-table-style: url('../../../Resources/TableStyles/Standard.css');" xmlns="http://www.w3.org/1999/xhtml" class="TableStyle-Standard" cellspacing="0">
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <tbody>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&lt;attribute name&gt;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">The attribute will be shown as being present.</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&lt;attribute name&gt;:&lt;Y|N&gt;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">The value after the colon will decide on  the attribute's presence.</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&lt;attribute name&gt;:&lt;info&gt;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">The attribute will be shown as being present and will have extra information.</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">&lt;attribute name&gt;:&lt;Y|N&gt; &lt;info&gt;</td>
+                                    <td class="TableStyle-Standard-BodyA-Column1-Body1">The attribute will be shown as being present or not and will have extra information.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="fieldlabel">Field mapping</p>
+                    <div class="indented">
+                        <table style="mc-table-style: url('../../../Resources/TableStyles/Standard.css');width: 100%;" class="TableStyle-Standard" cellspacing="0">
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <col class="TableStyle-Standard-Column-Column1" />
+                            <tbody>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Header</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Example</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">Description</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">1</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">GLIMS_BLOODBAG_IMPORT</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Name of the import protocol</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">2</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">VERSION</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">1.0</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Version number of the import protocol</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Field lines</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Example</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Mandatory</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">GLIMS</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">Description</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">1</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DELIVERYNUMBER</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">434155</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_DeliveryNumber</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Delivery number</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">2</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.MANUFACTURER.MNEMONIC</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">B310</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Manufacturer</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Manufacturer organization of the blood bag</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">3</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.BATCH</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Batch</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Batch number</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">4</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.SUPPLIER.MNEMONIC</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">B310</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Supplier</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Supplier organization of the blood bag</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">5</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.RECEIPTTIME</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20190909</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_ReceiptTime</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Receipt time of the blood bag</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">6</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.EXTERNALID</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">=B03101995132000</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_ExternalId</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Blood bag external id</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">7</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.EXTERNALIDASBARCODE</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">=B031019951320M</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_ExternalIdAsBarCode</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Barcode representation of the blood bag's external id</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">8</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.SPECIFICATION.MNEMONIC</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">E6642V00</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_SpecificationMnemonic</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Product specification of blood bag: mnemonic</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">9</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.SPECIFICATION.BARCODE</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&lt;E6642V00</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Specification</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Product specification of blood bag: barcode</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">10</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.EXPIRATIONTIME</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20201110235959</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_ExpirationTime</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Expiration time of the blood bag</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">11</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.PRODUCTIONTIME</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20190901160000</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_ProductionTime</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Date and time this blood bag was produced in format YYYYMMDDHHMMSS</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">12</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.PREPARATIONTIME</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20190905150000</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_PreparationTime</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Date and time this blood bag was prepared in format YYYYMMDDHHMMSS</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">13</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.QUANTITY</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">347</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Quantity</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Blood bag quantity</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">14</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.UNIT.NAME</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">mL</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Unit</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Blood bag quantity expressed in &lt;unit&gt;</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">15</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.BLOODGROUP</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">A</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_BloodGroup</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">One of the available blood groups: A,B,AB,O,A2,A2B,N.A.,H,A1,A1B,A3,A3B</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">16</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.RHESUS</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">+</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Y</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Rhesus</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">One of the available rhesus: +,-,n.a.,wk,var,par</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">17</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.ANTIGENLIST</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">D+ C+ c- E+ e- Jka+ S- M+ K+ CMV-</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_HasAntigen</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">List of the antigens</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">18</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DONATIONTYPE</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Normal</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_DonationType</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">One of Directed, Autologous, Normal (default)</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">19</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DONOR</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Donor</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">PIN of the donor</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.COMMENT</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_Comment</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Name of the donor</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">21</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DESTINEDPERSON.PIN</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N (1)</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">wbbag_PersonIdentification</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">PIN of the "Directed to" person (specify the code set after the colon)</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">22</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DESTINEDPERSON.SEX</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">M</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N (1)</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Gender: one of M, F, O, U, A, N</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">23</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">BLOODBAG.DESTINEDPERSON.BIRTHDATE</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">20000501</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">N (1)</td>
+                                    <td class="TableStyle-Standard-BodyE-Column1-Body1">&#160;</td>
+                                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Birth date of the "Directed to" person in format YYYYMMDD</td>
+                                </tr>
+                                <tr class="TableStyle-Standard-Body-Body1">
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">24</td>
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">BLOODBAG.ATTRIBUTE</td>
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">CIT:6</td>
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">N</td>
+                                    <td class="TableStyle-Standard-BodyB-Column1-Body1">wbbag_AttributeList</td>
+                                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Each attribute value should be repeated on a single line. Value always
+ contains the attribute code and its value.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>(1) Mandatory when Donation type = Directed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Octaplas</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="indented">
+                    <p>The following fields from the "Octaplas" import file are processed 
+ by GLIMS:</p>
+                    <table style="vertical-align: top;width: 100%;mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" cellspacing="0" class="TableStyle-Alternating">
+                        <col style="width: 15.711%;" class="TableStyle-Alternating-Column-Column1">
+                        </col>
+                        <col style="width: 22.091%;" class="TableStyle-Alternating-Column-Column1">
+                        </col>
+                        <col style="width: 62.198%;" class="TableStyle-Alternating-Column-Column1">
+                        </col>
+                        <thead>
+                            <tr class="TableStyle-Alternating-Head-Header1">
+                                <th class="TableStyle-Alternating-HeadE-Column1-Header1">Import file field</th>
+                                <th class="TableStyle-Alternating-HeadE-Column1-Header1">Octaplas description</th>
+                                <th class="TableStyle-Alternating-HeadD-Column1-Header1">GLIMS field</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body1">
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>C1</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>Internal 
+								Order Number</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                                    <p>BloodBag.DeliveryNumber</p>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body2">
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                                    <p>C2</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                                    <p>Lot 
+								Number</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyD-Column1-Body2">
+                                    <p>BloodBag.Batch</p>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body1">
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>C4</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>Unique 
+								identification</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                                    <p>BloodBag.ExternalIdAsBarCode 
+								(Internal/External ID are calculated by MISPL)</p>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body2">
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                                    <p>C5</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                                    <p>m.d.y. 
+								expiration date</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyD-Column1-Body2">
+                                    <p>BloodBag.ExpirationTime</p>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body1">
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>C6</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                    <p>product 
+								code</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                                    <p>BloodBag.ProductCode 
+									(also see below). A product specification with matching 
+								barcode is searched.</p>
+                                </td>
+                            </tr>
+                            <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body2">
+                                <td class="TableStyle-Alternating-BodyB-Column1-Body2">
+                                    <p>C7</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyB-Column1-Body2">
+                                    <p>Blood 
+								group</p>
+                                </td>
+                                <td class="TableStyle-Alternating-BodyA-Column1-Body2">
+                                    <p>BloodBag.BloodGroup 
+								(textual representation)</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                        <div class="MCDropDownBody dropDownBody">
+                            <div class="text_box_notes">
+                                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                                </p>
+                                <ul type="1">
+                                    <li class="p" value="1">
+                                        <p>The supplier will be searched using the FIN number 
+	 (first 5 digits after the prefix) of the barcode. An organization 
+	 with that mnemonic will be searched. If it is not found, the import 
+	 is halted.</p>
+                                    </li>
+                                    <li class="p" value="2">
+                                        <p>Only one supplier will be available in the file (this 
+	 may be subject to change in the future).</p>
+                                    </li>
+                                    <li class="p" value="3">
+                                        <p>The rhesus of the plasma bags will always be <span class="ui_element">Not 
+	 Ass.</span> since the plasma contains no rhesus antigens.</p>
+                                    </li>
+                                    <li class="p" value="4">
+                                        <p>The import is protected with a license for Octaplas 
+	 import. When executing the import for the first time, 
+	 a demo period is provided.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />ETS Charleroi (Belgium)</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="indented">
+                    <p class="fieldlabel">Always scan the product code</p>
+                    <p>It is advised to enable the <a href="../configuration/blood_transfusion_general_options.htm">BTM general setting</a> <span class="ui_element">Always scan the product code</span> when using the <span class="ui_element">ETS Charleroi</span> format because the same external id is used for several products.</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bloodbags_register_import_ssit_always_scan_product_code.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="611" data-mc-height="801" src="bloodbags_register_import_ssit_always_scan_product_code_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                    <p class="fieldlabel">Field mapping</p>
+                    <table style="mc-table-style: url('../../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;"> </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Header (H)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Transféré OUT</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Note</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">
+							Import logic</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							1</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Type de Record</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Code ‘H’</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+								Checked if the first line contains this 
+							character</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							2</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N° établissement INLOG</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Voir Structuration des codes de dossiers et de 
+							fichiers – N° Etab. Télécom.</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Receiving lab name</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							3</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N° établissement CTS V3</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Voir Structuration des codes de dossiers et de 
+							fichiers – N° Etab. AS400</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							4</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Coordonnées établissement</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							5</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N° distribution (note d’envoi)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Corresponds to nnnnnn in the CAReee_ 
+							nnnnnn.txt file</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Delivery number</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							6</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date livraison</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							ReceiptDate</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							7</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N° référence (bon de commande ou de retour)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Inclus dans le nom de fichier 
+		
+							CMD ou RET</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import blood bag: delivery number</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							8</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date référence (commande)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							9</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Remarque entête</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Les remarques IN ne sont pas forcément 
+								identiques
+		
+							aux remarques OUT</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;"> </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Detail (D)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Transféré OUT</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Note</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">
+							Import logic</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							1</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Type de Record</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Code ‘D’</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Checked</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							2</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N° de poste de commande</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Un numéro de poste de commande par bloc (Voir 
+							layout bon de commande ou de retour)</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							3</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nature du produit</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Valeurs autorisées : 
+								GRC UA ; GRC UN ;
+		
+							PVI ; PLQ</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							4</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nombre de poches</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							5</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date de livraison souhaitée </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							6</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date de transfusion prévue</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							7</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Irradié ?</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+								Valeurs autorisées : Irradié ou laisser la 
+							zone à blanc</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							8</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nom Patient</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							9</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date identification anticorps</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							10</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nom biologiste</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							11</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Code produit INLOG</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							5 positions numériques </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: ProductCode</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							12</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Code produit CTS V3</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							3 positions numériques ; Donnée obsolète</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							13</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Numéro de poche</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: ExternalId</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							14</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Volume </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+                                <p>
+								Import : Quantity 
+								</p>
+                                <p>Note: unit is taken from the related blood 
+							product.</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							15</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							QPA (unités)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+								Import : Blood bag attribute with attribute 
+							name QPA </td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							16</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date du don (ou fabrication)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Production time</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							17</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Date de péremption</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Format DD/MM/YYYY</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Expiration time</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							18</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Groupe</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : A, B, AB, O</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Bloodgroup</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							19</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Rhésus</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -, (/ si plasma)</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: Rhesus</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							20</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							C</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLargeC</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							21</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							c</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningSmallc</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							22</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							D</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLargeD</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							23</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							E</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLargeE</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							24</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							e</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningSmalle</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							25</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							K</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningKell</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							26</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Fya</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningDuffya</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							27</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Fyb</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningDuffyb</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							28</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Jka</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningKidda</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							29</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Jkb</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningKiddb</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							30</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							S</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLargeS</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							31</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							s</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningSmalls</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							32</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							M</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningM</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							33</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							N</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningN</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							34</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							P1</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningP1</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							35</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Cw</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningCw</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							36</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Lua</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLuthera</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							37</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Lub</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLutherb</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							38</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Lea</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLewisa</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							39</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Leb</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningLewisb</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							40</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Kpa</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningKellKpa</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							41</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Kpb</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningKellKpb</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							42</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							CMV</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Valeurs autorisées : +, -</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Import: AntigenMeaningCMV</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							43</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Remarque ligne détail</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;"> </td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							End (E)</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Transféré OUT</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">
+							Note</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">
+							Import logic</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							1</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Type de Record</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Code ‘E’</td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Checked</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							2</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nombre total de postes de commande</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							3</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nombre total de poches commandées</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Non</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+							Not used</td>
+                        </tr>
+                        <tr class="TableStyle-Standard-Body-Body1">
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							4</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Nombre total de lignes ‘D’ transférées</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1">
+							Oui</td>
+                            <td class="TableStyle-Standard-BodyE-Column1-Body1"> </td>
+                            <td class="TableStyle-Standard-BodyD-Column1-Body1">
+								Check with total number of <b>D</b>etail 
+							lines.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />EFS France (Etablissement Français du Sang)</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p>When an institution receives blood bags from the EFS, EFS will supply:</p>
+                <ol>
+                    <li class="mips_list_numbered" value="1">The physical blood bags + a paper summary.</li>
+                    <li class="mips_list_numbered" value="2">Blood bag delivery ("LIV") 
+	 file. This is the file that should be imported and checked against 
+	 the physically delivered blood bags by use of barcode scanning.</li>
+                </ol>
+                <p>Required configuration:</p>
+                <ol type="1">
+                    <li value="1">
+                        <p>An <span class="ui_element">Institution</span> must be 
+	 defined with <span class="ui_element">Mnemonic "EFS"</span></p>
+                        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="EFS_institution_former.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="624" data-mc-height="537" src="EFS_institution_former_thumb_0_120.png" alt="" tabindex="" /></a>
+                        </p>
+                    </li>
+                    <li value="2">All <a href="http://www.hemovigilance-cncrh.fr/regions/paca/echange_donnees/interechange_protocole_efs_es.pdf" target="_blank">EFS sites</a> (e.g. EFS_IDF, 
+	 EFS_AquiLimou, ...) must be defined as <span class="ui_element">Organizations</span> with an identification 
+	 assigned by the <span class="ui_element">EFS institution</span>.<br /><br /><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="EFS_sites.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1054" data-mc-height="672" src="EFS_sites_thumb_0_120.png" tabindex="" /></a><br /></li>
+                </ol>
+                <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <div class="text_box_notes">
+                            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                            </p>
+                            <ul>
+                                <li class="mips_list_numbered" value="1">In the import file, several volumes 
+	 are defined for each blood bag. Only the "Volume total du produit" 
+	 will be imported in GLIMS.</li>
+                                <li class="mips_list_numbered" value="2">Antigens are identified directly by 
+	 mnemonic.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" /></a><a name="DGTI"></a><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" aria-expanded="false">DGTI (Germany)</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="indented">
+                    <ul>
+                        <li value="1">If the <span class="ui_element">rhesus phenotype</span> 
+	 field is empty (blanks), the blood bag will be linked to a blood bag 
+	 typing with rhesus = <span class="ui_element">not.ass.</span> and neither of the antigens 'C/c/E/e' 
+	 specified.</li>
+                        <li value="2">If the <span class="ui_element">rhesus phenotype</span> contains 'Cwc' the blood 
+	 bag will be linked to a blood bag typing with the antigen 'C' negative. 
+	 </li>
+                        <li value="3">If the <span class="ui_element">phenotype</span> contains 'CwC', the blood bag will be linked to a 
+	 blood bag typing with the antigen 'C' positive.</li>
+                    </ul>
+                    <p class="fieldlabel">Version</p>
+                    <div class="indented">
+                        <p>Version 2.2 of the DGTI import format should be used.</p>
+                    </div>
+                    <p class="fieldlabel">Additional identifier "!"</p>
+                    <p>We recommend using the following MISPL in the <span class="ui_element">Blood bag external id</span> field of the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a>.</p>
+                    <div class="indented">
+                        <div class="box_grey">
+                            <p>String Hersteller, Result;</p>
+                            <p>/* Strip off the leading ! when using ExternalIdAsBarcode */</p>
+                            <p>IF LEN(.ExternalIdAsBarcode) &gt; 1</p>
+                            <p>THEN</p>
+                            <div class="indented">
+                                <p>IF SUBSTR(.ExternalIdAsBarcode,1,1) = "!"</p>
+                                <p>THEN Result := SUBSTR(.ExternalIdAsBarcode,2,-1) ;</p>
+                                <p>ELSE Result := .ExternalIdAsBarcode;</p>
+                                <p>ENDIF;</p>
+                            </div>
+                            <p>ELSE Result := .ExternalId;</p>
+                            <p>ENDIF;</p>
+                            <p>RETURN Result;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Red Cross Luxembourg</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="indented">
+                    <p class="fieldlabel">Antigens</p>
+                    <ul>
+                        <li value="1">Only phenotypes "+" or "-" are supported as antigen values.</li>
+                        <li value="2">Antigens "CH/RG", "Ag Public" and "Ag Privé" are not supported.</li>
+                        <li value="3">Antigen values "indéterminé", "double population", "non testé", "u", "p" and "faible" are not supported.</li>
+                    </ul>
+                    <p class="fieldlabel"> Blood attributes</p>
+                    <p>When unknown blood attributes are encountered during the import, GLIMS will automatically create new blood attributes using the code in the import file. The <span class="ui_element">Mnemonic</span> and <span class="ui_element">Name</span> fields of the blood attribute will by default be filled with the <span class="ui_element">Code</span> and should be updated manually.</p>
+                    <p class="fieldlabel">Additional "@" or "A" identifier</p>
+                    <p>We recommend using the following MISPL in the <span class="ui_element">Blood bag external id</span> field of the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a>:</p>
+                    <div class="indented">
+                        <div class="box_grey">
+                            <p>String ExternalId;</p>
+                            <p>IF LOOKUP(SUBSTR(.ExternalIdAsBarcode,1,1), "@,A", ",") &gt; 0</p>
+                            <p>THEN ExternalId := SUBSTR(.ExternalIdAsBarcode,2,-1) ;</p>
+                            <p>ELSE ExternalId := .ExternalIdAsBarcode;</p>
+                            <p>ENDIF;</p>
+                            <p>RETURN ExternalId;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

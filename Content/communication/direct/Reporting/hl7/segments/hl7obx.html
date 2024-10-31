@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>HL7 OBX segment</title>
+        <meta name="Microsoft Border" content="none, default" />
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>HL7: OBX - observation/result segment</h1>
+        <p>The OBX segment is used to transmit a single observation or observation 
+ fragment. It represents the smallest indivisible unit of a report.</p>
+        <p>Its principal mission is to carry information about observations in 
+ report messages. But the OBX can also be part of an observation order. 
+ In this case, the OBX carries clinical information needed by the filler 
+ to interpret the observation the filler makes. For example, an OBX is 
+ needed to report the inspired oxygen on an order for a blood oxygen to 
+ a blood gas lab, or to report the menstrual phase information which should 
+ be included on an order for a pap smear to a cytology lab. OBX is also 
+ found in other HL7 messages that need to include patient clinical information.</p>
+        <h2>Non-microbiological OBX segment</h2>
+        <table style="width: 584px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="584" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="background-color: #ffffff;width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="157px"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Value%20Type">Value Type</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#bservation%20Identifier">Observation 
+ Identifier</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#SubId">Sub id</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Result%20Value">Result Value</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Units">Units</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#References%20Range%20:%20Low-High%20Limit">Low-High 
+ Limit</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Flags">Abnormal Flags</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Result%20Statu">Observation 
+ Result Status</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">Result ObjectTime</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Result%20Department">Result Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Validation%20User">Validation user</a>
+                </td>
+            </tr>
+        </table>
+        <h4>2. <a name="Value Type"></a>Value Type </h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">
+		NTE segment use enabled 
+		
+		<ul><li class="kadov-p" value="1">Depending of the Result Datatype - check 
+ table -.</li></ul></li><li class="kadov-p" value="2">
+		NTE segment use disabled 
+		
+		<ul><li class="kadov-p" value="1">Result ExternalComment present or Request 
+ ExternalComment present or Result Value contains newlines: 'FT'.</li><li class="kadov-p" value="2">Otherwise: Depending of the Result Property 
+ Datatype.</li></ul></li></ul><p>Supported Datatypes: </p><ul><li class="kadov-p" value="1">Numeric: 'NM'</li><li class="kadov-p" value="2">String: 'ST'</li><li class="kadov-p" value="3">Image: 'RP'</li><li class="kadov-p" value="4">Graph: 'ED'</li><li class="kadov-p" value="5">Structured Numeric: 'SN' - from HL7 version 2.3 
+ and +.</li><li class="kadov-p" value="6">All other types: 'FT'</li></ul></li>
+        </ul>
+        <blockquote>
+            <p>In case of 'Online' reporting with HL7 translation, the value type can 
+ be "<b>RP</b>", indicating that the actual result value is an 
+ image (path of the file containing the image) (RP = Reference pointer: 
+ The RP value must be used if the actual observation value is not sent 
+ in OBX but exists somewhere else.)&#160; The online report generator will 
+ report the absolute path of the specified Image file.&#160; At least if 
+ the program is able to determine the full path. </p>
+            <blockquote>
+                <ul>
+                    <li class="kadov-p" value="1">If the result.rawvalue contains an absolute path, 
+ then that path is returned. (independent whether the program can locate 
+ that file)</li>
+                    <li class="kadov-p" value="2">If the result.rawvalue contains a relative path started 
+ from the root directory which is specified by the ImageServerDir environment 
+ variable, then the absolute path is returned.</li>
+                    <li class="kadov-p" value="3">If the result.rawvalue contains a relative path started 
+ from one of the directories specified in the propath, then the absolute 
+ path is returned.</li>
+                    <li class="kadov-p" value="4">If the result.rawvalue contains a relative path which 
+ can't be found on the server on which the report program is running, then 
+ the relative path is returned.</li>
+                </ul>
+            </blockquote>
+        </blockquote>
+        <ul>
+            <li class="kadov-p" value="1">Import: -</li>
+        </ul>
+        <h4>3. <a name="bservation Identifier"></a>Observation Identifier </h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">3.1: Property Mnemonic</li><li class="kadov-p" value="2">
+		3.2: 
+		
+		<ul><li class="kadov-p" value="1">NTE segments enabled: Property Description 
+ or Property Mnemonic if the first is unknown</li><li class="kadov-p" value="2">NTE segments disabled: Property Classification 
+ Node Label or Property Description if the first is not known. Property 
+ Mnemonic if Label and Description are unknown.</li></ul></li><li class="kadov-p" value="3">3.3: Coding System (default 'GLIMS')</li><li class="kadov-p" value="4">3.4: Code defined in property code set of coding 
+ system</li><li class="kadov-p" value="5">3.5: Property Description or Property Mnemonic 
+ if the first is unknown</li><li class="kadov-p" value="6">3.6: Coding system mnemonic</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">
+		ORU: 
+		
+		<ul><li class="kadov-p" value="1">3.1: Property mnemonic</li></ul></li><li class="kadov-p" value="2">
+		ORM 
+		
+		<ul><li class="kadov-p" value="1">
+			Order/Specimen based: 
+			
+			<ul><li class="kadov-p" value="1">3.1: request definition mnemonic</li></ul></li><li class="kadov-p" value="2">
+			Request based: 
+			
+			<ul><li class="kadov-p" value="1">3.1: Property mnemonic</li></ul></li></ul></li></ul></li>
+        </ul>
+        <h4>4. <a name="SubId"></a>SubId </h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />      When a test is requested multiple times for a specific order (at different object
+ times), a discriminator value will be put into OBX.4.&#160; Note that this applies for<br />      all tests, not only the tests for which DynamicType &lt;&gt; None.&#160; If a non-dynamic test&#160;
+ is only requested once, no discriminator will be put into OBX.4.<br />	e.g. 00:30 or 01:00, ...</li>
+        </ul>
+        <blockquote>
+            <p>Note:&#160; if a test is entered, then discontinued and then re-requested at the same
+ object time, no discriminator will be added for either of the tests.</p>
+        </blockquote>
+        <h4>5. <a name="Result Value"></a>Result Value </h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">Result export disallowed (Result Status &lt; 
+ minimal allowed Result Status) :<br />		ReportTemplate::EmptyResultText. e.g. 'volgt', 'follows', ... or 
+ empty if no EmptyResultText defined.</li><li class="kadov-p" value="2">"RejectionReason" when&#160;
+          <ol><li value="1">The result is discontinued</li><li value="2">The report has already been marked as outputted</li><li value="3">The option "Report discontinued results" of the corresponding default report is enabled.<br />              &#160;&#160;&#160;</li></ol></li><li class="kadov-p" value="3">
+		Result export allowed (Result Status &gt;= minimal allowed Result 
+ Status): 
+		
+		<ul><li class="kadov-p" value="1">
+			NTE segment use enabled 
+			
+			<ul><li class="kadov-p" value="1">Result Value</li></ul></li><li class="kadov-p" value="2">
+			NTE segment use disabled 
+			
+			<ul><li class="kadov-p" value="1">Result ExternalComment present:<br />				Value ::= Result Value + &lt;BR&gt; + Result ExternalComment</li><li class="kadov-p" value="2">Request ExternalComment present:<br />				Value ::= Result Value + &lt;BR&gt; + Request ExternalComment</li><li class="kadov-p" value="3">Result ExternalComment and Request ExternalComment 
+ present :<br />				Value ::= Result Value + &lt;BR&gt; + Result ExternalComment 
+ &lt;BR&gt; Request ExternalComment</li><li class="kadov-p" value="4">No Result ExternalComment :<br />				Result Value</li></ul></li></ul><p>In case of 'Online' reporting with HL7 translation, the value 
+ type can be "RP", indicating that the actual result value is 
+ an <b>image</b>.&#160; The result value will then be the path of the file 
+ containing the image.&#160;&#160; </p><p>The online report generator will report the absolute path of 
+ the specified Image file.&#160; At least if the program is able to determine 
+ the full path. </p><blockquote><ul><li class="kadov-p" value="1">If the result.rawvalue contains an absolute 
+ path, then that path is returned. (independent whether the program can 
+ locate that file)</li><li class="kadov-p" value="2">If the result.rawvalue contains a relative 
+ path started from the root directory which is specified by the ImageServerDir 
+ environment variable, then the absolute path is returned.</li><li class="kadov-p" value="3">If the result.rawvalue contains a relative 
+ path started from one of the directories specified in the propath, then 
+ the absolute path is returned.</li><li class="kadov-p" value="4">If the result.rawvalue contains a relative 
+ path which can't be found on the server on which the report program is 
+ running, then the relative path is returned.</li></ul></blockquote><p>In case of 'Online' reporting with HL7 translation, GLIMS also 
+ supports results for <b>graph </b>properties: </p><blockquote><blockquote><p>OBX.5.1.2 = "Graph"<br />		OBX.5.1.3 = "MPGF"<br />		OBX.5.1.5 = &lt;XML Format of the Graph&gt;.<br />		&#160;&#160;</p></blockquote></blockquote></li></ul></li>
+            <li class="kadov-p" value="2">Import: Result value</li>
+        </ul>
+        <h4>6.<a name="Units"></a> Units</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">6.1: Property.Unit Name</li><li class="kadov-p" value="2">6.2: Property.Unit Description</li><li class="kadov-p" value="3">6.3: Coding System (default "GLIMS")</li><li class="kadov-p" value="4">6.4: Code defined in unit code set of coding 
+ system</li><li class="kadov-p" value="5">6.5: Property.Unit Description</li><li class="kadov-p" value="6">6.6: Coding system mnemonic</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">6.1: Property.Unit Name</li></ul></li>
+        </ul>
+        <h4>7. <a name="References Range : Low-High Limit"></a>References Range : Low-High 
+ Limit</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">Syntax: LowLimit + LimitSeperator + HighLimit 
+ </li><li class="kadov-p" value="2">LowLimit : Norm LowLimit</li><li class="kadov-p" value="3">LimitSeperator: "&lt;", "&gt;" 
+ or "-"</li><li class="kadov-p" value="4">HighLimit : Norm HighLimit</li></ul></li>
+            <li class="kadov-p" value="2">Import: Result ReferenceString</li>
+        </ul>
+        <h4>8. <a name="Observation Flags"></a>Observation Flags</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">Result Severity 0 : Flags = "N" in 
+ case of alpha-numeric result value.&#160; In case of numeric value, nothing 
+ is sent.</li><li class="kadov-p" value="2">
+		Result Severity &lt;&gt; 0 : 
+		
+		<ul><li class="kadov-p" value="1">Result DeltaNormSeverity &gt; 0 : Flags = 
+ "U"</li><li class="kadov-p" value="2">Result DeltaNormSeverity &lt; 0 : Flags = 
+ "D"</li></ul></li><li class="kadov-p" value="3">
+		Result PropertyTypeNumeric 
+		
+		<ul><li class="kadov-p" value="1">Numeric Result present :</li><ul><li class="kadov-p" value="1">NormSeverity &gt; 0 :</li><ul><li class="kadov-p" value="1">Flags empty: Flags = "H"</li><li class="kadov-p" value="2">Flags not empty: Flags = Flags + 
+ "H" (as 2<sup>nd</sup> repeat)</li></ul><li class="kadov-p" value="2">NormSeverity &lt; 0 :</li><ul><li class="kadov-p" value="1">Flags empty: Flags = "L"</li><li class="kadov-p" value="2">Flags not empty: Flags = Flags + 
+ "L" (as 2<sup>nd</sup> repeat)</li></ul></ul><li class="kadov-p" value="2">Conversion to numeric failed :</li><ul><li class="kadov-p" value="1">Flags empty: Flags = "A"</li><li class="kadov-p" value="2">Flags not empty: Flags = Flags + "A" 
+ (as 2<sup>nd</sup> repeat)</li></ul></ul></li></ul></li>
+            <li class="kadov-p" value="2">Import<span style="font-size: x-small;">: -</span></li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Remark for export</span>
+            </p>
+            <p>For all drivers supporting online URL report generation (e.g. hl7.exe, 
+ xcare.exe, ...), GLIMS allows configuring the value for OBX.8 via the 
+ ReportTemplate.ResultMark field.&#160; This can be done by specifying 
+ a dynamic text with the following format:</p>
+            <blockquote>
+                <p>NormSeverity=&lt;Value&gt;\DeltaNormSeverity=&lt;Value&gt;</p>
+            </blockquote>
+            <p>Example:</p>
+            <blockquote>
+                <p>NormSeverity=HH\DeltaNormSeverity=U</p>
+            </blockquote>
+            <p>would result in an OBX segment with:&#160;</p>
+            <p>'OBX|1|....|U~HH|...'</p>
+            <p>meaning that the result is very high and is a significant change up 
+ compared with the previously sampled result value.</p>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #868686" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />MISPL example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_code_snippet">
+                    <p>{:
+    String List;
+
+    List := "";
+    IF .Severity &lt;&gt; ? AND .Severity &lt;&gt; 0
+    THEN
+        IF ((.Property.DataType = StringToEnumerated("PropertyDatatype", "Numeric") OR
+                .Property.DataType = StringToEnumerated("PropertyDatatype", "Titer")) AND
+            (.Mantissa &lt;&gt; ? OR .RawValue = ?))
+        THEN
+            IF .NormSeverity &lt;&gt; ? AND .NormSeverity &lt;&gt; 0
+            THEN
+                List := List + "NormSeverity=";
+                IF .NormSeverity &gt; 0
+                THEN
+                    IF .NormSeverity = 1
+                    THEN List := List + "H";
+                    ELSE List := List + "HH";
+                    ENDIF;
+                ELSE
+                    IF .NormSeverity = -1
+                    THEN List := List + "L";
+                    ELSE List := List + "LL";
+                    ENDIF;
+                ENDIF;
+                List := List + "\";
+            ENDIF;
+        ELSE
+            IF .NormSeverity &lt;&gt; ? and .NormSeverity &lt;&gt; 0
+            THEN
+                List := List + "NormSeverity=";
+                IF .NormSeverity = 0
+                THEN List := List + "N";
+                ELSE
+                    IF Abs(.NormSeverity) = 1
+                    THEN List := List + "A";
+                    ELSE List := List + "AA";
+                    ENDIF;
+                ENDIF;
+                List := List + "\";
+            ENDIF;
+        ENDIF;
+
+        IF .DeltaNormSeverity &lt;&gt; ? and .DeltaNormSeverity &lt;&gt; 0
+        THEN
+            List := List + "DeltaNormSeverity=";
+            IF .DeltaNormSeverity &gt; 0
+            THEN
+                IF .DeltaNormSeverity = 1
+                THEN List := List + "U";
+                ELSE List := List + "UU";
+                ENDIF;
+            ELSE
+                IF .DeltaNormSeverity = -1
+                THEN List := List + "D";
+                ELSE List := List + "DD";
+                ENDIF;
+            ENDIF;
+            List := List + "\";
+        ENDIF;
+
+    ENDIF;
+
+    RETURN List;
+}
+</p>
+                </div>
+            </div>
+        </div>
+        <h4>11. <a name="Observation Result Statu"></a>Observation Result Status 
+ </h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">Initial, Expected : 'I'</li><li class="kadov-p" value="2">Available: "R"</li><li class="kadov-p" value="3">Confirmed: "P"</li><li class="kadov-p" value="4">Validated: "F"</li><li class="kadov-p" value="5">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">'I' : Expected</li><li class="kadov-p" value="2">'R', 'C', 'S' : Available</li><li class="kadov-p" value="3">'P' : Confirmed</li><li class="kadov-p" value="4">'F', 'U' : Validated</li><li class="kadov-p" value="5">'D'. 'X' : Discontinued</li></ul></li>
+        </ul>
+        <h4>15. <a name="Result Department"></a>Result Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h4>16. <a name="Validation User"></a>Validation User</h4>
+        <ul>
+            <li class="kadov-p" value="1">1 = If a CodingSystem is defined and the user has 
+ got an identifictaion code =&gt; this code.&#160; If not available =&gt; 
+ ValidationUser.Initials.&#160;</li>
+            <li class="kadov-p" value="2">2 = ValidationUser.LastName</li>
+            <li class="kadov-p" value="3">3 = ValidationUser.FirstName</li>
+        </ul>
+        <h2>Microbiological OBX segments</h2>
+        <h3>'No Culture found'&#160; OBX segment</h3>
+        <table style="width: 584px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="584" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="background-color: #ffffff;width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="157px"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">"ST"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Identifier_2">Observation 
+ Identifier</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">Negative answer</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Result%20Status_2">Observation 
+ Result Status</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">MicrobiologyAction ObjectTime</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#MicrobiologyAction%20Department_1">MicrobiologyAction 
+ Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+        </table>
+        <h4>3.<i><a name="Observation Identifier_2"></a>Observation Identifier</i></h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">3.1: MicrobiologyProcedure mnemonic</li><li class="kadov-p" value="2">3.2: MicrobiologyProcedure Description</li><li class="kadov-p" value="3">3.3: Coding System (default 'GLIMS')</li></ul></li>
+        </ul>
+        <h4>11. <a name="Observation Result Status_2"></a>Observation Result Status</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export (MicrobiologyAction status): 
+	
+	<ul><li class="kadov-p" value="1">Initial, Grafting, Microscopy: "I"</li><li class="kadov-p" value="2">Reading, ReReading: "R"</li><li class="kadov-p" value="3">ReadConfirmed, Ready: "P"</li><li class="kadov-p" value="4">ReadValidated, Closed: "F"</li><li class="kadov-p" value="5">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">Import: Unsupported</li>
+        </ul>
+        <h4>15. <a name="MicrobiologyAction Department_1"></a>MicrobiologyAction Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h3>Culture OBX segment</h3>
+        <table style="width: 584px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="584" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="background-color: #ffffff;width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="157px"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">"CE"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">"CUL*"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Micro-Organism%20Count">Micro-Organism 
+ Count</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Micro-Organism">Micro-Organism</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Result%20Status_3">Result 
+ status of Culture Result</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#14.%20Iolation%20ObjectTime">ObjectTime</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#MicrobiologyAction%20Department_2">MicrobiologyAction 
+ Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+        </table>
+        <h4>4. <a name="Micro-Organism Count"></a>Micro-Organism Count</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Counter for each Micro-organism. Using the micro-organism count one 
+ can tell which quantity and comment refers to which Micro-organism.</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>5. <a name="Micro-Organism"></a>Micro-Organism</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">5.1: Micro-Organism mnemonic</li><li class="kadov-p" value="2">5.2: Micro-Organism description</li><li class="kadov-p" value="3">5.3: Coding System (default 'GLIMS')</li><li class="kadov-p" value="4">5.4: Code defined in micro-organism code set 
+ of coding system</li><li class="kadov-p" value="5">5.5: Micro-Organism description</li><li class="kadov-p" value="6">5.6: Coding system mnemonic</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">5.1: Micro-Organism mnemonic</li></ul></li>
+        </ul>
+        <p><b style="font-weight: bold;">11. <a name="Observation Result Status_3"></a>Observation 
+ Result Status</b>
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export (Isolation status): 
+	
+	<ul><li class="kadov-p" value="1">Available: "R"</li><li class="kadov-p" value="2">Confirmed: "F"</li><li class="kadov-p" value="3">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">Import:<br />	Used to calculate the MicrobiologyAction status. Here also, the Action's 
+ status will be the minimal of all its Isolation statusses.</li>
+        </ul>
+        <h4><a name="14. Iolation ObjectTime"></a>14. Iolation ObjectTime</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Isolation ObjectTime</li>
+            <li class="kadov-p" value="2">Import:<br />	Isolation ObjectTime</li>
+        </ul>
+        <h4>15. <a name="MicrobiologyAction Department_2"></a>MicrobiologyAction Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h3>Culture-Quantity OBX segment</h3>
+        <table style="width: 584px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="584" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="background-color: #ffffff;width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="157px"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">"CE"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">"QUA*"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Micro-Organism%20Count_2">Micro-Organism 
+ Count</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Isolation%20Appraisal">Isolation 
+ Appraisal</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#Observation%20Result%20Status_5">Result 
+ status of Culture Result</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#14.%20Isolation%20ObjectTime_qua">ObjectTime</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px"><a href="#MicrobiologyAction%20Department_3">MicrobiologyAction 
+ Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 157px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="157px">-</td>
+            </tr>
+        </table>
+        <h4>4. <a name="Micro-Organism Count_2"></a>Micro-Organism Count</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Counter for each Micro-organism. Using the micro-organism count one 
+ can tell which quantity and comment refers to which Micro-organism.</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <blockquote>
+            <p>&#160;</p>
+        </blockquote>
+        <h4>5. <a name="Isolation Appraisal"></a>Isolation Appraisal</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">5.1: Isolation appraisal mnemonic</li><li class="kadov-p" value="2">5.2:&#160; Isolation appraisal description</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">5.1: Isolation appraisal mnemonic</li></ul></li>
+        </ul>
+        <p><b style="font-weight: bold;">11. <a name="Observation Result Status_4"></a>Observation 
+ Result Status</b>
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export (Isolation status): 
+	
+	<ul><li class="kadov-p" value="1">Available: "R"</li><li class="kadov-p" value="2">Confirmed: "F"</li><li class="kadov-p" value="3">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4><a name="14. Isolation ObjectTime_qua"></a>14. Isolation ObjectTime</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Isolation ObjectTime</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>15. <a name="MicrobiologyAction Department_3"></a>MicrobiologyAction Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h3>Culture-Comment OBX segment</h3>
+        <table style="width: 585px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="585" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="background-color: #ffffff;width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="158px"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">"FT"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">"REM*"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Micro-Organism%20Count_3">Micro-Organism 
+ Count</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Isolation%20External%20Comment">Isolation 
+ External Comment</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Observation%20Result%20Status_5">Result 
+ status of Culture Result</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#14.%20Isolation%20ObjectTime_rem">ObjectTime</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#MicrobiologyAction%20Department_4">MicrobiologyAction 
+ Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+        </table>
+        <h4>4. <a name="Micro-Organism Count_3"></a>Micro-Organism Count</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Counter for each Micro-organism. Using the micro-organism count one 
+ can tell which quantity and comment refers to which Micro-organism.</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>5.<a name="Isolation External Comment"></a> Isolation External Comment</h4>
+        <ul>
+            <li class="kadov-p" value="1">5.1: Isolation ExternalComment</li>
+        </ul>
+        <p><b style="font-weight: bold;">11. <a name="Observation Result Status_5"></a>Observation 
+ Result Status</b>
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export (Isolation status): 
+	
+	<ul><li class="kadov-p" value="1">Available: "R"</li><li class="kadov-p" value="2">Confirmed: "F"</li><li class="kadov-p" value="3">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4><a name="14. Isolation ObjectTime_rem"></a>14. Isolation ObjectTime</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Isolation ObjectTime</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>15. <a name="MicrobiologyAction Department_4"></a>MicrobiologyAction Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h3>Antibiotic OBX segment</h3>
+        <table style="width: 585px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="585" border="1">
+            <tr>
+                <td style="background-color: #ffffff;width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="24px">
+                    <p style="text-align: CENTER;" align="center">SEQ</p>
+                </td>
+                <td style="background-color: #ffffff;width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="51px">
+                    <p style="text-align: CENTER;" align="center">LEN</p>
+                </td>
+                <td style="background-color: #ffffff;width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="40px">
+                    <p style="text-align: CENTER;" align="center">DT</p>
+                </td>
+                <td style="background-color: #ffffff;width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="34px">
+                    <p style="text-align: CENTER;" align="center">OPT</p>
+                </td>
+                <td style="background-color: #ffffff;width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="28px">
+                    <p style="text-align: CENTER;" align="center">RP/#</p>
+                </td>
+                <td style="background-color: #ffffff;width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="110px">ELEMENT NAME</td>
+                <td style="background-color: #ffffff;width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" bgcolor="#FFFFFF" width="158px">GLIMS</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">1</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">4</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">SI</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Set ID - OBX</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">OBX sequence number</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">2</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Value Type</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">"SN"</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">3</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Identifier</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Antibiotic">Antibiotic</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">4</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Sub-ID</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Micro-Organism%20Count_4">Micro-Organism 
+ Count</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">5</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">65536</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">*</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">C</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observation Value</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">MIC Value</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">6</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Units</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">7</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">References Range</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">8</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">10</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">Y/5</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Abnormal Flags</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">RIS Value</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">9</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">5</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">NM</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Probability</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">10</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">2</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Nature of Abnormal Test</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">11</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">1</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ID</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">R</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Observ Result Status</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#Observation%20Result%20Status_A">Result 
+ status of Antibiotic Result</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">12</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date Last Obs Normal Values</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">13</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">20</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">ST</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">User Defined Access Checks</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">14</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">26</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">TS</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Date/Time of the Observation</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#14.%20ObjectTime_ab">ObjectTime</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">15</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">60</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CE</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Producer's ID</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px"><a href="#MicrobiologyAction%20Department_5">MicrobiologyAction 
+ Department</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 24px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="24px">16</td>
+                <td style="width: 51px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="51px">80</td>
+                <td style="width: 40px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="40px">CN</td>
+                <td style="width: 34px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="34px">
+                    <p style="text-align: CENTER;" align="center">O</p>
+                </td>
+                <td style="width: 28px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="28px">&#160;</td>
+                <td style="width: 110px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="110px">Responsible Observer</td>
+                <td style="width: 158px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="158px">-</td>
+            </tr>
+        </table>
+        <h4>3.<a name="Antibiotic"></a> Antibiotic</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export: 
+	
+	<ul><li class="kadov-p" value="1">3.1: Antibiotic Mnemonic</li><li class="kadov-p" value="2">3.2: Antibiotic Description</li><li class="kadov-p" value="3">3.3: "GLIMS"</li><li class="kadov-p" value="4">3.4: Code defined in antibiotic code set of coding 
+ system</li><li class="kadov-p" value="5">3.5: Antibiotic Description</li><li class="kadov-p" value="6">3.6: Coding system mnemonic</li></ul></li>
+            <li class="kadov-p" value="2">
+	Import: 
+	
+	<ul><li class="kadov-p" value="1">3.1: Antibiotic Mnemonic</li></ul></li>
+        </ul>
+        <h4>4. <a name="Micro-Organism Count_4"></a>Micro-Organism Count</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Counter for each Micro-organism. Using the micro-organism count one 
+ can tell which quantity and comment refers to which Micro-organism.</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>11. <a name="Observation Result Status_A"></a>Observation Result Status</h4>
+        <ul>
+            <li class="kadov-p" value="1">
+	Export (AntibioticResult Isolation status): 
+	
+	<ul><li class="kadov-p" value="1">Available: "R"</li><li class="kadov-p" value="2">Confirmed: "F"</li><li class="kadov-p" value="3">Discontinued: "X"</li></ul></li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4><a name="14. ObjectTime_ab"></a>14. ObjectTime</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Isolation ObjectTime</li>
+            <li class="kadov-p" value="2">Import: -</li>
+        </ul>
+        <h4>15. <a name="MicrobiologyAction Department_5"></a>MicrobiologyAction Department</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:<br />	Department correspondent identification code or its internalid if the 
+ first is not known.</li>
+        </ul>
+        <h2>Examples</h2>
+        <p><span style="font-size: x-small;font-family: 'Courier New';"><b style="font-weight: bold;">Nummer&#160;&#160;&#160; 
+ : 20010320-00004&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ Order&#160;&#160;&#160;&#160;&#160; : Partial&#160;<br />Name&#160;&#160;&#160;&#160;&#160; : Test003&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ Order No.&#160; : 20010320-00004<br /><br />Description&#160;&#160;&#160;&#160; |&#160; 20/03/01&#160; |Norm&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |Units&#160;&#160; | Prev. value|Prev. date&#160;&#160;&#160;&#160;<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; 17:07:00&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; 0320-00004|&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />Chemistry&#160;&#160;&#160;&#160;&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |<br />&#160;&#160;&#160;&#160; Sodium&#160;&#160;&#160;&#160; |&#160; follows&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; |mmol/l&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160; Potassium&#160;&#160;&#160; |&#160; follows&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |mmol/l&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />Microbiology&#160;&#160;&#160; |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |<br />Material&#160;&#160;&#160;&#160;&#160;&#160;&#160; | M_Urine - Sonded&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |<br />Procedure(s)&#160;&#160;&#160; | Research for fungi,General microbiological 
+ examination&#160;&#160;&#160;&#160;&#160; |<br />No fungi detect | &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />Material&#160;&#160;&#160;&#160;&#160;&#160;&#160; | M_Pus&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |<br />Procedure(s)&#160;&#160;&#160; | General germ examination,General microbiological 
+ examination|<br />1: Actinobacill |&#160; +++, Antibiogram follows&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />2: AlcalescensD |&#160; ++&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />3: Aeromonas&#160;&#160;&#160; |&#160; +++, Antibiogram follows&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />4: Aspergillus&#160; |&#160; +, Antibiogram follows&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />5: AlcaligenesF |&#160; -&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />Antibiogram&#160;&#160; &#160; |#&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ 1&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160; 4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ </b></span><span style="font-family: 'Courier New';"><span style="font-size: x-small;"><b>|&#160; Aztron&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ R&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; S&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|</b></span><b><span style="font-size: x-small;"><br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; </span></b><b><span style="font-size: x-small;">Ciprofloxacine&#160;&#160; S&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ R&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; Gentamycin&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ S&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; Temocilin&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ R&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ |&#160; Cefazolin&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+ I&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|<br /><br />Resultstatus:&#160;<br />&#160; X: Expected<br />&#160; *: Norm violation<br />&#160; #: Delta norm violation</span></b></span><b><br /><br />HL7 representation: OBR per specimen</b>
+        </p>
+        <p><span style="font-size: x-small;">MSH|^~\&amp;|GLIMS|xcare|MIPSN|xcare|20010320172108||ORU^R01|1|P|2.3|||AL|NE<br />PID|1||Test003||Test003|||||||||||||||||||N<br />PV1|1|I|||||||||||||||||199912161240a|||||||||||||||||||||||||19971028094900<br /><br />ORC|RE||20010320-00004||A||^^^20010320170700^^R|||||Faber1^Faber^Hendrik^^^^dr.<br /><br />OBR|1||20010320-00004||||20010320170700||9^ml&amp;&amp;GLIMS|||||20010320170700|DryBlood^Dry 
+ blood |Faber1^Faber^Hendrik^^^^dr.||||||20010320172108||DEPZ|I||^^^^^R<br />OBX|1|ST|Na^Sodium^GLIMS^Na^Sodium^MIPS||Follows|mol/l^mol/l^GLIMS^micro 
+ mol/l^mol/l^Ext||N|||I|||20010320170700<br />OBX|2|ST|K^Potassium^GLIMS^K^Potassium^MIPS||Follows|mol/l^mol/l^GLIMS^micro 
+ mol/l^mol/l^Ext||H|||R|||20010320170700<br /><br />OBR|2||20010320-00004||||20010320170700||2^ml&amp;&amp;GLIMS|||||20010320171158|M_Urine^Urine^Method=Sonded, 
+ Location=midstr|Faber1^Faber^Hendrik^^^^dr.||||||20010320172108||DEPZ|I||^^^^^R<br />OBX|1|ST|Fungi^Research for fungi^GLIMS||No fungi detected||||||F|||20010320170700<br /><br />OBR|3||20010320-00004||||20010320170700||0^ml&amp;&amp;GLIMS|||||20010320171308|M_Pus^Pus 
+ ^Origin=LeftArm, Color=Grey, Testing=Blue|Faber1^Faber^Hendrik^^^^dr.||||||20010320172108||DEPZ|P||^^^^^R<br />OBX|1|CE|CUL*|1|ACTB^Actinobacill^GLIMS||||||F|||20010320170700<br />OBX|2|CE|QUA*|1|+++/^in abundance||||||F|||20010320170700<br />OBX|3|FT|REM*|1|Ok||||||F|||20010320170700<br />OBX|4|SN|Aztron^^GLIMS^^Aztron|1||||R|||P|||20010320170700<br />OBX|5|SN|Ciprofloxacine^Ciprofloxacine^GLIMS^^Ciprofloxacine|1||||S|||P|||20010320170700<br />OBX|6|CE|CUL*|2|ADIS^AlcalescensD^GLIMS||||||F|||20010320170700<br />OBX|7|CE|QUA*|2|++^many||||||F|||20010320170700<br />OBX|8|CE|CUL*|3|AERO^Aeromonas^GLIMS||||||F|||20010320170700<br />OBX|9|CE|QUA*|3|+++/^in abundance||||||F|||20010320170700<br />OBX|10|SN|Gent^Gentamycin^GLIMS^^Gentamycin|3||||S|||F|||20010320170700<br />OBX|11|SN|TM^Temocilin^GLIMS^^Temocilin|3||||R|||F|||20010320170700<br />OBX|12|SN|Cefa^Cefazolin^GLIMS^^Cefazolin|3||||I|||F|||20010320170700<br />OBX|13|CE|CUL*|4|Asper^Aspergillus^GLIMS^^Aspergillus||||||F|||20010320170700<br />OBX|14|CE|QUA*|4|+^few||||||F|||20010320170700<br />OBX|15|SN|Aztron^Aztron^GLIMS^^Aztron|4||||S|||F|||20010320170700<br />OBX|16|SN|Ciprofloxacine^Ciprofloxacine^GLIMS^^Ciprofloxacine|4||||R|||F|||20010320170700<br />OBX|17|CE|CUL*|5|AFAE^AlcaligenesF^GLIMS||||||F|||20010320170700<br />OBX|18|CE|QUA*|5|-^none||||||F|||20010320170700</span>
+        </p>
+    </body>
+</html>

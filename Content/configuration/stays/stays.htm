@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Encounters - stays" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Stays">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>stays</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Stays</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> -  <a href="#Stays%20of%20ward%20query%20in%20command">Closing a stay</a> - <a href="#Stay">Stay report</a> - <a href="#Failed">Failed deletion of stays</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Each <a href="../encounters/encounters.htm">encounter</a> can have a number of stays.&#160;&#160;This is used in hospital environments, mainly to determine where the sampling has to take place. A stay also refers to the ward in which the patient resides.&#160;&#160;</p>
+        <p>Stays can be accessed:</p>
+        <ul>
+            <li value="1">By selecting an <span class="ui_element">Encounter</span> and choosing the contextual menu / ribbon item <span class="ui_element">Stays</span></li>
+            <li value="2">By selecting a <span class="ui_element">Ward</span> and choosing the contextual menu / ribbon item <span class="ui_element">Stays</span></li>
+        </ul>
+        <h2><a name="Fields" id="Fields"></a>Fields</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="stays_fields.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="663" data-mc-height="556" src="stays_fields_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Encounter institution</p>
+        <div class="indented">
+            <p>The <a href="../correspondents/institutions.htm">institution</a> of the related encounter.</p>
+        </div>
+        <p class="fieldlabel">Encounter external id</p>
+        <div class="indented">
+            <p>The external id of the related <a href="../encounters/encounters.htm">encounter</a>.</p>
+        </div>
+        <p class="fieldlabel">Ward</p>
+        <div class="indented">
+            <p><a href="../correspondents/wards.htm">Ward</a> where the patient is located.</p>
+        </div>
+        <p class="fieldlabel">External id</p>
+        <div class="indented">
+            <p>Alternate identification for the stay.</p>
+        </div>
+        <p class="fieldlabel">Start, End</p>
+        <p class="fieldlabel">Room</p>
+        <div class="indented">
+            <p>The room number.</p>
+        </div>
+        <p class="fieldlabel">Specialism</p>
+        <div class="indented">
+            <p>The <a href="../specialisms/specialisms.htm">medical specialism</a> currently taking care of this patient.&#160;</p>
+        </div>
+        <h2><a name="Stays of ward query in command"></a>Closing a stay</h2>
+        <p>A large number of open stays (stays without <span class="ui_element">End</span>) can have a negative impact on the performance of the <span class="ui_element">Stays of ward</span> and <span class="ui_element">Patients of ward</span> browsers.</p>
+        <p>Stays can be closed:</p>
+        <div class="indented">
+            <p class="fieldlabel">Automatically</p>
+            <div class="indented">
+                <p>When an encounter is closed, its open stays are automatically closed. Each open stay will receive an <span class="ui_element">End time</span> that matches either:</p>
+                <ul>
+                    <li value="1">the start time of the next stay record in the same encounter or</li>
+                    <li value="2"> the end time of the encounter itself.</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">With a maintenance tool</p>
+            <div class="indented">
+                <p>GLIMS&#160;offers  a maintenance tool which goes through all the encounters in the database and tries to close all open stay records using either the start time of their successor or the end time of the encounter. </p>
+                <p>The tool can be started from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Development</span> -&gt; <span class="ui_element">4GL</span> -&gt; <span class="ui_element">Run procedure</span> and specifying <span class="ui_element">enct_syn</span> as <span class="ui_element">File name</span>.</p>
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                    </p>
+                    <p>We recommend to consult MIPS before running this tool.</p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Stay"></a>Stay report</h2>
+        <p>GLIMS offers a <span class="ui_element">Stay</span> query which can be used in a <a href="../generic/commands_tasks/commands_tasks.htm">command</a>. This allows e.g. to make a report with  the microbiology history of all patients residing in intensive care.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <div class="indented">
+                <p class="fieldlabel">Command query</p>
+                <div class="indented">
+                    <p>Define a <span class="ui_element">command</span> on the <span class="ui_element">Stay</span> table. The query allows to select a <span class="ui_element">ward</span>.</p>
+                </div>
+                <p class="fieldlabel">Command function</p>
+                <div class="indented">
+                    <p>Select <span class="ui_element">Report</span> as function. Example of a <span class="ui_element">Text</span> that can be used as <span class="ui_element">Body</span>:</p>
+                    <div class="indented">
+                        <div class="box_grey">
+                            <p>Since: {= tostring( .StartTime, "%x %X") } Patient: {=.Encounter.Person.Externalization }<br />-------------------------------------------------------------------------------------------<br />{=.Encounter.Person.Object.MicrobiologicHistory(?, ?, ?, 5, ?, ?, ?, ?, ?, ?) }</p>
+                        </div>
+                    </div>
+                    <p>This will show the last 5 microbiology actions of each patient currently staying in the specified ward. </p>
+                    <div class="indented">
+                        <div class="box_grey">
+                            <p>Patients in intensive care unit:<br />================================<br /><br />Since: 15/01/01 10:14:00 Patient: AALDERS, ANTOINETTA (F), 21/07/1944<br />------------------------------------------------------------------------------------------------<br />Specimen 991126-006, 1 ml Urine Catheter, sampled at 26/11/1999 10:05<br />General microbiological examination (RRead):<br />[currently no reportable isolations entered yet]<br />(Ur. graft.: OK), Microscopy: OK<br /><br />Specimen 011030-006, Pus 01892 03352, sampled at 30/10/2001 11:58<br />General germ examination:<br />AEROMONAS Present Gent:S Temo:I Cefa:S<br />E. Coli Present Gent:R Temo:S Cefa:R<br />CARDIOBAC in abundance Norflo:I Tetra:S Amp:R Nitro:R<br />Search for fungi in pus:<br />ALCALIG many&#160;<br />Clostridium none&#160;<br />C.FOETUS many Norflo:I Amp:S Oxa:S Nitro:I Clind:R<br /><br />Since: 30/01/02 13:46:00 Patient: AARSEN, CAR (F), 24/03/1945<br />------------------------------------------------------------------------------------------------<br />...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Failed" id="Failed"></a>Failed deletion of stays</h2>
+        <p style="text-align: left;">The HIS system can send messages to GLIMS indicating that a given encounter or stay must be deleted.&#160;&#160;If an encounter must be deleted, GLIMS will first try to delete all stays referring to that encounter.</p>
+        <p style="text-align: left;">If GLIMS cannot delete the stay, the following actions will be taken:</p>
+        <ol>
+            <li class="kadov-p" value="1">The stay's <span class="ui_element">End time</span> is set to its <span class="ui_element">Start time</span>.&#160;&#160;If the start time is unknown, the event time of the HIS message is used to fill both the <span class="ui_element">Start time</span> and <span class="ui_element">End time</span>.&#160;&#160;If no event time is specified in the communication message, then the current date/time is assumed.&#160;&#160;</li>
+            <li class="kadov-p" value="2">The following site attributes are created and filled:</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li class="kadov-p" value="1"><span class="ui_element">_AnnulationError</span>: reason why the stay could not be deleted.</li>
+                <li class="kadov-p" value="2"><span class="ui_element">_AnnulationTime</span>: time at which deletion was performed.</li>
+                <li class="kadov-p" value="3"><span class="ui_element">_AnnulationSource</span>: translator name which sent the message.</li>
+                <li class="kadov-p" value="4"><span class="ui_element">_AnnulationUser</span> : user by which the concerned communication broker is running.</li>
+            </ul>
+        </blockquote>
+    </body>
+</html>

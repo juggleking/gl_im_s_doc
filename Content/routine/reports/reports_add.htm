@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\gen_sched\addreports.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Adding reports manually or via MISPL</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_reports.htm" name="kanchor339">Reports</a> -&gt; Manually adding reports</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#AddReport">Adding a report</a> - <a href="#AddMediumReport">Adding a report for a specific report medium</a> - <a href="#In%20the%20report%20page%20of%20the%20order%20entry%20screen">In 
+ the report page of the order entry screen</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>GLIMS offers several ways to add a report for an existing order in addition to the reports that were originally scheduled during order entry. For 
+ all methods, you need to specify a <span class="ui_element">Code</span> in the <span class="ui_element">Default report</span>.</p>
+        <h2><a name="AddReport"></a>Adding a report</h2>
+        <h3>Using the Order.AddReport 
+ menu function</h3>
+        <p>When using the contextual function <span class="ui_element">Add report</span> on <span class="ui_element">Order</span>, a 
+ list of all the organization's default reports having a known code are 
+ retrieved. You will then be offered a choice between these 
+ codes.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="addreport.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="462" data-mc-height="220" src="addreport_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h4>Parameters</h4>
+        <div class="indented">
+            <p class="fieldlabel">Report code</p>
+            <div class="indented">
+                <p>After selecting a code, all eligible default reports (either 
+ issuer-specific or organization-default, see standard <a href="reports_schedule.htm">report scheduling</a>) 
+ having this code are scheduled, regardless of their <span class="ui_element">Usage</span> setting (except 
+ when set to <span class="ui_element">Screen</span>). This allows adding a specific type of report (e.g. 
+ a fax report) simply by choosing the appropriate code from the list.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p> When the 'Forced' option is set, and no eligible 
+ report is found, the program still creates only the first default report 
+ (else the risk exists that too many reports are created). Also note 
+ that the above is also true when adding a specific report via MISPL.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Target</p>
+            <div class="indented">
+                <p>This function also allows to specify an explicit <span class="ui_element">Target</span> for the 
+ new report. During the search for the most suitable default report, 
+ the program reacts as if the specified target is the issuer of the order 
+ (much the same as for Order.ReportCopyReceiver).</p>
+            </div>
+            <p class="fieldlabel">Forced</p>
+            <div class="indented">
+                <p>If the <span class="ui_element">Forced</span> option is set, the <span class="ui_element">DefaultReport.Eligibility</span> settings 
+ are ignored (if necessary) when no report could be created due to these 
+ eligibility checks. This option is by default enabled.</p>
+            </div>
+            <p class="fieldlabel">Generate now</p>
+            <div class="indented">
+                <p>The <span class="ui_element">Generate now</span> option allows to immediately generate the desired 
+ report after having created it. If enabled, the report generation 
+ program will immediately be called for all the created (or reused) reports.</p>
+            </div>
+            <p class="fieldlabel">Parameter set</p>
+            <div class="indented">
+                <p>The field <span class="ui_element">Parameter</span> set can be filled with a reference to an 
+ existing parameter set for the function <span class="ui_element">Report.Generate</span>.</p>
+                <ul>
+                    <li value="1">If this reference is filled, the report generation 
+ program will be called with the parameter settings as defined in this 
+ parameter set, without further user interaction.</li>
+                    <li value="2">If it is not filled, the report generation program 
+ will first show its own parameter setup screen in order to allow specifying 
+ the necessary parameters (like printer,...).</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Medium info</p>
+            <div class="indented">
+                <p>The field <span class="ui_element">Medium info</span> can be used to specify e.g. an alternative fax 
+number which will be used during report generation. It is stored in the 
+report.</p>
+            </div>
+        </div>
+        <h4>Pre-configuration</h4>
+        <div class="indented">
+            <p>The Order.AddReport function can be implemented as a pre-configured menu/ribbon item.</p>
+            <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                <div class="MCDropDownBody dropDownBody">
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>: The &lt;Code&gt; parameter is mandatory. However, there is a workaround 
+ by first selecting an existing code during the parameter set setup, and 
+ afterwards deleting or emptying the &lt;Code&gt; parameter by means of 
+ ParameterSet.Parameters().</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Using the Order.CreateReport MISPL function</h3>
+        <p>The same rules apply when adding a report to an order via the <span class="ui_element">Order.CreateReport</span> 
+ MISPL function. This function takes a default report code as single 
+ argument and simply schedules all eligible default reports having this 
+ value in their Code field.</p>
+        <h2><a name="AddMediumReport"></a>Adding a report for a specific report medium</h2>
+        <h3>Using the Order.AddMediumReport menu function</h3>
+        <p>This function is similar to the Order.AddReport function (see above), but offers some additional functionality. </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../release_notes/930/GLIMS-06241.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="556" data-mc-height="349" src="../../release_notes/930/GLIMS-06241_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h4>Parameters</h4>
+        <div class="indented">
+            <p class="fieldlabel">Report medium</p>
+            <div class="indented">
+                <p>Allows to filter on report medium type. Possible values: Fax, Phone, Modem, E-mail, Courier, Communication, File. The value of this field determines which default report codes will be selectable in the <span class="ui_element">Report code</span> field (see below).</p>
+            </div>
+            <p class="fieldlabel">Report code</p>
+            <div class="indented">
+                <p>Lists all default report codes with the same report medium type as the one selected in the <span class="ui_element">Report medium</span> field (see above). After selecting a code, all eligible default reports  having this code and the specified report medium are scheduled.</p>
+            </div>
+            <p class="fieldlabel">Target</p>
+            <div class="indented">
+                <p>Lists the most obvious targets of which the user can select one:</p>
+                <ul>
+                    <li value="1">Patient related to the order</li>
+                    <li value="2">Issuer related to the order</li>
+                    <li value="3">Agent related to the order</li>
+                    <li value="4">"Explicit": allows to explicitly specify a target.</li>
+                </ul>
+                <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <div class="text_box_notes">
+                            <p><span style="color: #616E14;font-weight: bold;">Note</span>: when multiple orders have been selected, only the targets that are shared by all orders will be displayed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="fieldlabel">Medium info / Fax number / E-mail address</p>
+            <div class="indented">
+                <p>This field can have different labels depending on the  report medium  that has been chosen. It contains additional information (e.g. fax number, phone number, ...) that is linked to the report medium and that is displayed (if available) when the target is selected. The displayed information can only be overruled for the report medium <span class="ui_element">Fax</span>. The information will be used during report generation and is stored in the report.</p>
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span> </p>
+                    <p>The field <span class="ui_element">Fax number validity </span>in the general options (<span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; GLIMS general</span>) allows to define a MISPL expression that checks the validity of fax numbers in GLIMS.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Forced </p>
+            <div class="indented">
+                <p>If the <span class="ui_element">Forced</span> option is set, the <span class="ui_element">DefaultReport.Eligibility</span> settings 
+ are ignored (if necessary) when no report could be created due to these 
+ eligibility checks.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>: when the <span class="ui_element">Forced</span> option is set, and no eligible 
+ report is found, the program still creates only the first default report 
+ (else the risk exists that too many reports are created). Also note 
+ that the above is also true when adding a specific report via MISPL.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Generate now</p>
+            <div class="indented">
+                <p>The <span class="ui_element">Generate now</span> option allows to immediately generate the desired 
+ report after having created it. If enabled, the report generation 
+ program will immediately be called. A <span class="ui_element">Generation parameter set</span> can be specified when this option is set (see below).</p>
+            </div>
+            <p class="fieldlabel">Generation parameter set</p>
+            <div class="indented">
+                <p>Can only be specified when the <span class="ui_element">Generate now</span> option is enabled. The field <span class="ui_element">Generation parameter set</span> can be filled with a reference to an 
+ existing parameter set for the function <span class="ui_element">Report.Generate</span>.</p>
+                <ul>
+                    <li value="1">If this reference is filled, the report generation 
+ program will be called with the parameter settings as defined in this 
+ parameter set, without further user interaction.</li>
+                    <li value="2">If it is not filled, the report generation program 
+ will first show its own parameter setup screen in order to allow specifying 
+ the necessary parameters (like printer,...)</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Generate only once</p>
+            <div class="indented">
+                <p>Allows to indicate that the requested report has to be generated only once. This means any possible subsequent triggering of the report is blocked and does not retrigger a generation of the report. In the report editor (from an Order, select Reports &gt; Reports), it will be indicated whether or not the report was requested as 'Generate only once'. If the 'Generate only once' option is enabled and the report has been generated, the 'Needs checking' option of the report will be disabled and will remain disabled so that the report will not be generated again when the order changes.</p>
+            </div>
+        </div>
+        <h4>Pre-configuration</h4>
+        <div class="indented">
+            <p>The Order.AddMediumReport function can be implemented as a pre-configured menu/ribbon item.</p>
+        </div>
+        <h3>Using the Order.CreateMediumReport MISPL function</h3>
+        <p>When adding a report via the <span class="ui_element">Order.CreateMediumReport</span> MISPL function, the following parameters can be supplied:</p>
+        <p class="fieldlabel">Code </p>
+        <p class="fielddescription">Allows to filter on the <span class="ui_element">Code</span> field of the default reports that will be taken into consideration when selecting default reports.</p>
+        <p class="fieldlabel">Medium</p>
+        <p class="fielddescription">Allows to filter on the <span class="ui_element">Report medium</span> field of the default reports that will be taken into consideration when selecting default reports. Possible values are: Courier, Fax, Phone, Modem, E-mail, Communication, File.</p>
+        <p class="fieldlabel"> Target</p>
+        <p class="fielddescription"> Internal id of the report's target.</p>
+        <p class="fieldlabel"> Forced</p>
+        <p class="fielddescription">If the <span class="ui_element">Forced</span> option is set, the <span class="ui_element">DefaultReport.Eligibility</span> settings 
+ are ignored (if necessary) when no report could be created due to these 
+ eligibility checks.</p>
+        <p class="fieldlabel"> GenerationParameterSet</p>
+        <div class="indented">
+            <p>This field can be filled with a reference to an existing parameter set for the function <span class="ui_element">Report.Generate</span>.</p>
+            <ul>
+                <li value="1"> If this reference is filled, the report generation program will be called with the parameter settings as defined in this parameter set, without further user interaction.</li>
+                <li value="2"> If it is not filled, the report is scheduled, but not generated.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">MediumInfo</p>
+        <p class="fielddescription"> Can be used to specify e.g. an alternative fax 
+number which will be used during report generation. It is stored in the 
+report.</p>
+        <h2><a name="In the report page of the order entry screen"></a>In the report 
+ page of the order entry screen</h2>
+        <p>You can also manually add reports for an order in <a href="../orders/order_entry/order_entry_tab_reports.htm">the 
+ 'Report' page of the order entry screen</a>.</p>
+    </body>
+</html>

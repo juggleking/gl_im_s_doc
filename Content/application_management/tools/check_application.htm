@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Tools" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Application_check_up_tool">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Application check up tool</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4018"></a>
+            <MadCap:concept term="System management;Application management" />Application checkup</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#The%20amount%20of%20reports%20to%20be%20checked">Reports to be checked</a> - <a href="#The%20amount%20of%20incomplete%20orders">Incomplete orders</a> - <a href="#The%20amount%20of%20unfinished%20actions">Unfinished actions</a> - <a href="#Phone_status">Phone status</a> - <a href="#Events">Events</a> - <a href="#The%20state%20of%20the%20temporary%20directory">Temporary directory</a> - <a href="#Automation">Automation</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The gp_Site.CheckUp() function (<span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Tools</span> -&gt; <span class="ui_element">Check up</span>) is a very useful tool to track down the origin of performance degradation, and even better to prevent problems. It is strongly recommended to run this tool on a regular basis.</p>
+        <p>As its name suggests, the tool performs an application check up, i.e. determines if GLIMS is in good shape. It reports (configuration) situations that may lead to severe performance degradations. Next to slow down of specific programs, such problems may cause an overall system degradation because they keep on fetching old records from the database, obstructing normal routine traffic.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="check_application.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="546" data-mc-height="478" src="check_application_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>This tool not only shows the total number of records (reports, orders, actions) to be reviewed, but also includes a figure as to how many of them are older than 30 days (for reports 7 days).</p>
+        <p>This should give an idea about the distribution of e.g. orders to be phoned in time. If e.g. there are 1500 order marked to be phoned, of which only a few are older than 30 days, then this does not look very unusual. If however there are 1500 orders marked to be phoned, of which more than 1000 are older than 30 days, then this shows a structural problem in the configuration: the amount of orders to be phoned appears to build up in time and will result in a performance problem.</p>
+        <h2><a name="The amount of reports to be checked"></a>The amount of reports to be checked</h2>
+        <p>This is the most important check and is often the primary cause of performance problems. It verifies how many reports have their NeedsChecking flag set. This amount may silently grow because of:</p>
+        <ul>
+            <li value="1">A report type that is no longer used. The report records may still be created due to the existence of default reports, without any corresponding task that generates them.</li>
+            <li value="2">Persistent errors during report generation, due to which the report generator will continuously re-attempt to sends such reports.</li>
+        </ul>
+        <p>The reports are logged per report template, with the template having the largest amount of unsent reports at the top. For each template, the oldest and the most recent report is logged. And the end, the grand total is given.</p>
+        <p>The solution depends on the origin of the problem. An unused report type can be disabled by clearing the DefaultReport.Active flag. Afterwards the corresponding unsent reports can be deleted or generated to a dummy output destination.</p>
+        <h2><a name="The amount of incomplete orders"></a>The amount of incomplete orders</h2>
+        <p>This may cause performance degradation in some specific programs making use of an order query, such as e.g. the order review program. Next to performance, the orders may also not get tariffed because of their insufficient status. Of these incomplete orders, the 10 oldest are logged.</p>
+        <p>Orders can be incomplete because of different reasons. The most obvious ones are unconfirmed specimens or hidden properties. There is no standard technique to correct such orders; each order is to be verified individually.</p>
+        <h2><a name="The amount of unfinished actions"></a>The amount of unfinished actions</h2>
+        <p>This may cause performance degradation in some specific programs making use of an action query, such as e.g. the confirmation and work list generation program.</p>
+        <p>Analogous to the reports, the actions are logged per procedure, with the procedure having the largest amount of non-ready actions at the top. For each procedure, the oldest and the most recent action is logged. At the end, the grand total is given.</p>
+        <h2><a name="Phone_status" id="Phone_status"></a>Phone status</h2>
+        <p>The number of orders in status <span class="ui_element">To be phoned</span> is also verified, as this can have an influence on the system performance.</p>
+        <h2><a name="Events"></a>Events</h2>
+        <p>To avoid high numbers of gp_Event records which could increase conversion times when upgrading GLIMS and a site attribute conversion is required for gp_Event, the checkup tool detects the presence of old events so that they can be cleaned up prior to the upgrade. Among other things, the total number of events and the number of old events are reported. If the number of old events is equal to or higher than 25%, an exclamation mark is displayed to draw the user's attention.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">When upgrading GLIMS (to 9.9.4 or higher), a command (for table gp_EventHandler and function Purge) and task are created automatically to automate the execution of this function with the following default settings:</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="check_application_events.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="508" data-mc-height="146" src="check_application_events_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2><a name="The state of the temporary directory"></a>The state of the temporary directory</h2>
+        <p>When the directory where temporary files are created is getting full, the system will also slow down or normal operation will even no longer be possible. Therefore, the amount of free space, the number of files and the largest files in the temporary directory are reported too. Always keep this directory as empty as possible.</p>
+        <h2><a name="Automation" id="Automation"></a>Automation</h2>
+        <p>The Application check up tool can be automated with a <a href="../../configuration/generic/commands_tasks/commands_tasks.htm">command and task</a>. Moreover, a task will automatically be created to run the command weekly (if no such task is present). When upgrading from one functional release to another (8.4 and higher), the application looks for a command with function gp_Site.Checkup(). If it does not find one, it creates it. Then it looks if there is at least one task available for this command. If it does not find any, it creates a task for the command. In that case the task is configured to execute once a week, each Tuesday at 3 AM.</p>
+        <p>If a category (actions/reports/orders) shows an abnormality, system managers will automatically be notified by mail.</p>
+    </body>
+</html>

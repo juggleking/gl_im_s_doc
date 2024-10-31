@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Genetics|Configuration|MISPL functions">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title> Site functions for reporting</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor424"></a>
+            <MadCap:concept term="Genetics" /> Site functions for reporting</h1>
+        <h2>Object-based MISPL functions</h2>
+        <p>The following MISPL&#160;functions can be used to <a href="../reporting_config.htm">report</a> information regarding the <a href="../../routine/results/locus_results.htm">locus</a> and <a href="../../routine/results/variant_results.htm">variant results</a> of a specific person:</p>
+        <h3><a name="GetLocus"></a>GetLocusResult</h3>
+        <p>Object.GetLocusResult(<i>LocusName</i> <span style="color: #228b22;">LocusName</span>, <i>LocusResultStatus</i> <span style="color: #228b22;">MinimalStatus</span>, <i>Integer</i> <span style="color: #228b22;">MinimalSeverity</span>, <i>Integer</i> <span style="color: #228b22;">Index</span>)</p>
+        <p>Index is the only mandatory parameter and has to be different from 0.</p>
+        <p>If  MinimalStatus  is not specified, the lowest status will be assumed (<span class="ui_element">Expected</span> for locus results).</p>
+        <p>If MinimalSeverity  is not specified, severity <span class="ui_element">0</span> is assumed.</p>
+        <p>Discontinued results are not taken into account, unless <span class="ui_element">Discontinued</span> is specified as MinimalStatus.</p>
+        <p>The returned information is sorted on the basis of the results' availability time, which is indicated in the field <a href="../../routine/results/locus_results.htm">Entered on</a> of the <span class="ui_element">Locus result</span> editor. For instance, if the Index parameter has value "1", the returned information is that of the oldest locus result for which the specified parameters hold.&#160;If the value is "-1", the returned information is that of the most recent locus result. Add a "+1" increment in the site function to retrieve information on all the locus results that fulfill the specified parameters.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>The following site function allows you to retrieve information on the results</p>
+            <ul>
+                <li value="1">of locus ACTL6B </li>
+                <li value="2">that have status <span class="ui_element">Available</span> or higher, and</li>
+                <li value="3"> a severity of at least 1. </li>
+            </ul>
+            <p>For each locus result found, the information retrieved is</p>
+            <ul>
+                <li value="1">the availability time</li>
+                <li value="2">the value</li>
+                <li value="3">the comment</li>
+            </ul>
+            <p>The line "i : i+1;" allows you to get the information of all the locus results found, starting with that of the oldest locus result. </p><pre xml:space="preserve">
+		integer i;
+		LocusResult rslt;
+		string text;
+
+		rslt := .GetLocusResult("ACTL6B", LocusResultStatus["Available"], 1, 1);
+		i := 1;
+		WHILE rslt NE ? DO
+	
+			rslt := .GetLocusResult("ACTL6B", LocusResultStatus["Available"], 1, i);
+	
+			IF rslt NE ?
+			THEN 
+				text := text + IntegerToString(i, "%d");
+				text := text + " " + IfKnownString(DateTimeToString(rslt.AvailabilityTime, "%d/%m/%Y %H:%M"));
+				text := text + " " + IfKnownString(rslt.RawValue);
+				text := text + " " + IfKnownString(rslt.Comment);
+				text := text + CHR(13);
+			ENDIF;
+			i := i + 1;
+
+		DONE;
+				
+		RETURN text;
+			</pre>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="reporting_config_mispl.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="944" data-mc-height="616" src="reporting_config_mispl_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <h3><a name="GetVaria"></a>GetVariantResult</h3>
+        <p>Object.GetVariantResult(<i>VariantName</i> <span style="color: #228b22;">VariantName</span>, <i>VariantResultStatus</i> <span style="color: #228b22;">MinimalStatus</span>, <i>Integer</i> <span style="color: #228b22;">MinimalSeverity</span>, <i>Integer</i> <span style="color: #228b22;">MinimalClassification</span>,<i>VariantRetestStatus</i> <span style="color: #228b22;">RetestStatus</span>,<i>Integer</i> <span style="color: #228b22;">Index</span>)</p>
+        <p>Index is the only mandatory parameter and has to be different from 0.</p>
+        <p>If MinimalStatus is not specified, the lowest status will be assumed (<span class="ui_element">Available</span> for variant results).</p>
+        <p>If MinimalSeverity  is not specified, severity <span class="ui_element">0</span> is assumed.</p>
+        <p>If MinimalClassification is not specified, classification <span class="ui_element">1</span> is assumed.</p>
+        <p>Discontinued results are not taken into account, unless <span class="ui_element">Discontinued</span> is specified as MinimalStatus.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p>Example 1</p>
+            <p>To know if important variant results have been found for a given person, set the VariantName parameter to "?" and specify a high minimal severity and classification:</p><pre xml:space="preserve">	Object.GetVariantResult(?,?,2,4,?,1)</pre>
+            <p>Example 2</p>
+            <p>The following site function returns the variant results whose status is at least <span class="ui_element">Available</span> and whose retest status is <span class="ui_element">To do</span>:</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="reporting_config_mispl_retest.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="915" data-mc-height="978" src="reporting_config_mispl_retest_thumb_0_120.png" tabindex="" /></a>
+            </p><pre xml:space="preserve">integer i;
+VariantResult rslt;
+string text;
+
+rslt := .GetVariantResult(?, VariantResultStatus["Available"], ?, ?, VariantRetestStatus["To do"], 1);
+i := 1;
+WHILE rslt NE ? DO
+	
+	rslt := .GetVariantResult(?, VariantResultStatus["Available"], ?, ?, VariantRetestStatus["To do"], i);
+	
+	IF rslt NE ?
+	THEN 
+		text := text + IntegerToString(i, "%d");
+		text := text + " " + IfKnownString(DateTimeToString(rslt.AvailabilityTime, "%d/%m/%Y %H:%M"));
+		text := text + " " + IfKnownString(ToString("ParentalOrigin", rslt.ParentalOrigin));
+		text := text + " " + IfKnownString(rslt.AllelicState.Name);
+		text := text + CHR(13);
+			ENDIF;
+	i := i + 1;
+DONE;
+
+RETURN text;
+			</pre>
+        </div>
+        <p>The returned information is sorted on the basis of the result's availability time, which is indicated in the field <a href="../../routine/results/variant_results.htm">Entered on</a> of the <span class="ui_element">Variant result</span> editor. For instance, if the Index parameter has value "1", the returned information is that of the oldest variant result.&#160;If the value is "-1", the returned information is that of the most recent variant result.</p>
+        <h2><a name="Genetic"></a>Genetic exam-based MISPL&#160;functions</h2>
+        <p>The same MISPL functions, .GetLocusResult and .GetVariantResult, can be based on the GeneticExam table.&#160;They can then be used to report information regarding tested and/or found loci and variants. The parameters are identical to those described in the previous section.</p>
+        <h2>Approach-based MISPL function</h2>
+        <p>The MISPL function .GetVariantResult can also be based on the Approach table. The parameters are identical to those described in the previous section.</p>
+    </body>
+</html>

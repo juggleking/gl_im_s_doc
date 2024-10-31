@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Allow storing different serial numbers for one reagent lot (GLIMS_QC-00725)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1822"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Allow storing different serial numbers for one reagent lot (GLIMS_QC-00725)</h1>
+        <h2>Context</h2>
+        <p>In previous versions, the reagent's serial number (number of the bottle) was <a href="../../modules/qc/reagents/reagent_info_from_instrument.htm">stored</a> in GLIMS&#160;on <span class="ui_element">Reagent lot</span> level. In order to allow using one reagent lot for multiple bottles with different serial numbers, the following changes have been implemented.</p>
+        <h2>What's new?</h2>
+        <p class="fieldlabel">Serial number stored on Reagent usage</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Serial number</span> is now stored on <span class="ui_element">Reagent lot usage</span> and <span class="ui_element">Result reagent usage</span> level.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_QC-00725_reagent_lot_usage.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="563" data-mc-height="508" src="GLIMS_QC-00725_reagent_lot_usage_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Last serial number stored on Reagent lot</p>
+        <div class="indented">
+            <p>The serial number field on <span class="ui_element">Reagent lot</span> has been renamed to <span class="ui_element">Last serial number</span>. It contains the last serial number used for the reagent lot.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_QC-00725_reagent_lot.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="537" data-mc-height="534" src="GLIMS_QC-00725_reagent_lot_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>For customers using one serial number per reagent lot, the  field will behave as before.</p>
+            </div>
+        </div>
+        <h2>How does it work?</h2>
+        <p>When GLIMS receives a  result message from an instrument containing a reagent with a known lot number but an unknown serial number, then a new <span class="ui_element">Reagent lot usage</span> record will be created for the specified <span class="ui_element">Reagent lot</span> which contains the new serial number. The <span class="ui_element">Last serial number</span> of the <span class="ui_element">Reagent lot</span> will also be updated. The <span class="ui_element">Result reagent usage</span> record that will be created will also refer to the new serial number.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Should the error "unique index violation" occur when multiple reagent usage records are created for the same reagent lot, it can be solved by changing the <span class="ui_element">Start time</span> of the reagent usage record by e.g. one minute.</p>
+        </div>
+        <h2>Conversion procedure</h2>
+        <p>When upgrading to GLIMS&#160;9.8.0, the <span class="ui_element">Serial number</span> stored on the <span class="ui_element">Reagent lot</span> will be copied to the corresponding reagent usage records.</p>
+    </body>
+</html>

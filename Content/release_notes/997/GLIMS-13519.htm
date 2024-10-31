@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Incorrect scheduling when adding properties to an existing order (GLIMS-13519)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2235"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Incorrect scheduling when adding properties to an existing order (GLIMS-13519)</h1>
+        <h2>Issue</h2>
+        <p>When multiple requests (at least one request directly linked to the root specimen, and at least one that reuses an existing specimen) were added to an existing order, the requests added to the existing specimen were assigned the wrong root specimen.</p>
+        <h2>Configuration</h2>
+        <ul>
+            <li value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">Properties for secondary material (K_bld_LH3_S_X).</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_config1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="930" data-mc-height="171" src="GLIMS-13519_config1_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">Properties with primary material (K_bld_LH3_P_X) as procedure input.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_config2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="937" data-mc-height="188" src="GLIMS-13519_config2_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+            <li value="3">
+                <p xmlns="http://www.w3.org/1999/xhtml">Connection between primary and secondary materials.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_config3.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="940" data-mc-height="129" src="GLIMS-13519_config3_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+        </ul>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Scenario</h2>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">Request a property for a secondary material.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_step1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="340" data-mc-height="127" src="GLIMS-13519_step1_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">-&gt; The result browser shows the correct root specimen id (21280000502) for the test result.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_result1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="752" data-mc-height="224" src="GLIMS-13519_result1_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+            <li xmlns="" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">Add requests for another property of the secondary material and simultaneously for a property of the primary material.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_step2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="532" data-mc-height="157" src="GLIMS-13519_step2_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">-&gt; The outline looks normal, but the result browser shows the wrong root specimen id for the added test ("Ureum"). The parent specimen id should be 21280000402, not 21280000401.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-13519_result2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="516" data-mc-height="239" src="GLIMS-13519_result2_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+        </ol>
+        <h2>Solution</h2>
+        <p>This issue, which occurred since GLIMS 9.9, has been corrected.</p>
+    </body>
+</html>

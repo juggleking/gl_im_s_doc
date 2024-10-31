@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Eligibility for procedure BGAP</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor594"></a>
+            <MadCap:concept term="Blood transfusion" />Eligibility for procedure BGAP</h1>
+        <table border="1" width="100%" cellspacing="0" cellpadding="2">
+            <tr>
+                <td width="33%"><b>Inputs</b>
+                </td>
+                <td width="33%"><b>Procedure</b>
+                </td>
+                <td width="34%"><b>Output</b>
+                </td>
+            </tr>
+            <tr>
+                <td width="33%" valign="top">prop. BGSerum <br />      prop. Rhesus</td>
+                <td width="33%" valign="top">BGAP(merge blgr/rh(age)</td>
+                <td width="34%" valign="top">prop. BGRhesus</td>
+            </tr>
+        </table><pre>Eligible table	: Request                                                 
+Description	: merge bloodgroup/rhesus&lt;age) eligibility                   
+Data type	: Logical             [V]                                     
+Definition	: /* Name     : babybgrh.elig */
+/* What: age less than 90 days implies that only the erypart of */
+/* the bloodgroup/rhesus-derivation can be carried out */
+/* Basetable: request */</pre><pre>logical proceed;</pre><pre>proceed := false;
+/* Message(" &lt; 3*30 days"); */
+if .order.object.person().id = ?  then
+   Message(" this is an unknown object");
+   return (proceed);
+endif;</pre><pre>IF Today() - .Order.Object.Person().BirthDate &lt; 3*30 THEN
+   Message(" person is younger than 90 days"); 
+   IF EnumeratedToString("BloodGroup",
+         .Order.Object.Person().GetMedicalRecord().Bloodgroup) = ?
+             and
+       EnumeratedToString("BloodRhesus",
+         .Order.Object.Person().GetMedicalRecord().Rhesus) = ?          
+   THEN
+      proceed := true;
+/*      Message("Bloodgroup and rhesus request continued"); */
+   ELSE
+      IF EnumeratedToString("BloodGroup",
+            .Order.Object.Person().GetMedicalRecord().Bloodgroup) &lt;&gt; ?
+                and
+         EnumeratedToString("BloodRhesus",
+            .Order.Object.Person().GetMedicalRecord().Rhesus) &lt;&gt; ?     
+      THEN
+         proceed := false;
+/*         Message(" Bg/rh in medical record were filled");     */
+/*         MESSAGE("Inconsistency in bloodgroup and rhesus");*/
+      ENDIF;
+   ENDIF;
+ENDIF;</pre><pre>return(proceed);</pre>
+    </body>
+</html>

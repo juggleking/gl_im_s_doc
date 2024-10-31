@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Orders" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\other\environment_variables2.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order update</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../../index_routine.htm">Basic routine</a> -&gt; <a href="../index_orders.htm">Orders</a> 
+ -&gt; Order update</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Via%20the%20%22Order%20update%22%20program">Order 
+ update program</a> - <a href="#Via">MA_ExitEditorViaFind</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>In some organizations, the order entry process is divided into two phases. 
+ First all orders are created with the requested tests. In a second 
+ phase, all patient data is added to the created orders. GLIMS offers 
+ two features that allow easy update of the created orders.</p>
+        <h2><a name="Via the &quot;Order update&quot; program"></a>Via the "Order 
+ update" program</h2>
+        <p>The order entry program can be called from the main menu in <b>Update 
+ mode</b> (<span class="ui_element">Start</span> -&gt; <span class="ui_element">Routine</span> -&gt; <span class="ui_element">Orders</span> -&gt; <span class="ui_element">Update</span>).</p>
+        <p>In this mode, the order update program starts by asking an internal 
+ id via the find interface. When entering a valid order number, the order 
+ is shown in the order editor. When leaving the order editor, a new number 
+ is asked, an so on.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_entry_update_mode.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="362" data-mc-height="137" src="order_entry_update_mode_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Internal 
+ id</p>
+        <div class="indented">Specify the internal id of the order you wish to update</div>
+        <p class="fieldlabel">Aut. increment
+ </p>
+        <div class="indented">Each time the screen pops up, the last number is increased and proposed 
+ as default number. When processing several orders with increasing numbers, 
+ this may be helpful.</div>
+        <p class="fieldlabel">Prefix</p>
+        <div class="indented">
+ A manually entered prefix will be used to look up the order.</div>
+        <p class="fieldlabel">Use default 
+ prefix</p>
+        <div class="indented">If enabled, the program searches for the existence of 
+ a gp_Site-based, string-valued site function with the name OrderInternalIdPrefix. 
+ When such a site function is found, it is executed in order to calculate 
+ the prefix in function of the current user, the current date, etc...
+        <div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>When called from the <a href="../orders_query_browser.htm">order 
+ browser</a> (see below), the order find screen inherits the prefix settings 
+ from the browser, on condition that the <span class="ui_element">Use prefix as positioner</span> order 
+ browser option has been set.</p></div></div>
+        <h2><a name="Via"></a>Via 
+ the environment variable "MA_ExitEditorViaFind"</h2>
+        <p>The same functionality can be obtained by using the environment variable 
+ "MA_ExitEditorViaFind". In theory, this environment variable 
+ can be used for any browser and its corresponding editor. However, this 
+ variable has been designed for usage in order entry.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+            </p><pre xmlns="">MA_ExitEditorViaFind=ed_ord:br_ord6
+</pre>
+            <ul xmlns="">
+                <li value="1">Ed_ord is the name of the order entry editor.</li>
+                <li value="2">Br_ord6 is the name of the OrdersByInternalId browser 
+ (Br_ord8 is the name of the OrdersByShortId browser)</li>
+            </ul>
+        </div>
+        <p>Open the OrdersByInternalId browser and zoom into a record. When hitting 
+ the <span class="ui_element">OK</span> button, in the order entry screen, the <span class="ui_element">Find Order</span> box (as documented 
+ above) will be displayed, allowing to select a new order from the OrdersByInternalId 
+ browser. This way, the editor is never closed and does not have 
+ to be opened each time you select a new record from the browser.</p>
+    </body>
+</html>

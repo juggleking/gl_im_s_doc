@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|RiliBÄK (Germany)">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Quality control: Rilibak 2008</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1014"></a>
+            <MadCap:concept term="Quality control" />Quality control: RiliBÄK 2008</h1>
+        <p>Contents : <a href="#Introduc">Introduction</a> - <a href="#Database">Database changes</a> - <a href="#Changes">QC population browser</a> - <a href="#QC">QC population query</a> - <a href="#Browsers">Browsers showing results with QC norms</a> - <a href="#QC2">QC Audit query</a> - <a href="#QC3">Close QC Evaluation Period</a> - <a href="#QC4">Evaluation upon new result</a> - <a href="#Configur">Configuration check feature</a> - <a href="#RMSD2">RMSD QC population life cycle</a> - <a href="#QC5">QC Audit report for RMSD populations</a> - <a href="#Calculat">Calculation of the RMSD</a> - <a href="#QC6">QC Graph</a></p>
+        <h2><a name="Introduc"></a>Introduction</h2>
+        <p class="Body">In Germany, the quality control of lab results has to be 
+ performed under strict regulations dictated by RiliBÄK. Since 15-2-2008, 
+ new regulations are defined and had to be fully operational in the 
+ German laboratories at the latest on 1-4-2010.</p>
+        <p class="Body">The RiliBÄK feature requires a separate license "Quality 
+ Control RiliBÄK 2008". The license activates parts of the QC module 
+ user interface.</p>
+        <h2><a name="Database"></a>Database changes</h2>
+        <h3>Table QC population</h3>
+        <h4>Prefix</h4>
+        <p class="Body">All new fields related to the ‘QMMA‘ (<b>Q</b>uadratischer 
+ <b>M</b>ittelwert der <b>M</b>ess<b>a</b>bweichung) regulation are prefixed 
+ with ‘RMSD’ (<b>R</b>oot <b>m</b>ean <b>s</b>quare <b>d</b>eviation).</p>
+        <p class="Body">See also: <a target="_blank" href="http://en.wikipedia.org/wiki/Root_mean_square_deviation" style="color: #0000ff;text-underline: single;text-decoration: underline;">http://en.wikipedia.org/wiki/Root_mean_square_deviation</a></p>
+        <h4>RMSD target value</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name: RMSDTargetValue</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Fractional</p>
+            </li>
+        </ul>
+        <p class="Body">A target value (“Zielwert”) can be delivered by the supplier 
+ or might be calculated as the mean of RMSD supplier low limit and RMSD 
+ supplier high limit.</p>
+        <h4>RMSD reference value</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name: RMSDReferenceValue</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Positive fractional (percentage)</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Size: 5 (inclusive decimal point)</p>
+            </li>
+        </ul>
+        <p class="Body">Allowed relative value for deviation described in the RiliBÄK 
+ regulations annex table B1 3rd column (Spalte 3).</p>
+        <h4>RMSD low limit and RMSD high limit</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Names: RMSDLowLimit, RMSDHighLimit</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Fractional.</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Access: Display</p>
+            </li>
+        </ul>
+        <p class="Body">Read-only fields, calculated from the RMSD target value 
+ and the RMSD reference value. If the RMSD reference value is unknown, 
+ the values are taken over from RMSD supplier low limit and RMSD supplier 
+ high limit.</p>
+        <h4><a name="RMSD"></a>RMSD supplier low limit and RMSD supplier high limit</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Names: RMSDSupplLowLimit, RMSDSupplHighLimit</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Fractional.</p>
+            </li>
+        </ul>
+        <p class="Body">Reference values as documented by the QC-material supplier 
+ in low and high value.</p>
+        <h4>RMSD severity</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name RMSDSeverity</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Positive integer.</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Size: 3</p>
+            </li>
+        </ul>
+        <p class="Body">An alarm severity when results are not within the reference 
+ values (RMSD low limit and RMSD high limit). The concept remains the same 
+ as with “AccuracySeverity” , “Severity2S”, and “Severity3S”.</p>
+        <h4>RiliBÄK origin</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name: RilibakOrigin</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Char 10.</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Initial value: “B1”</p>
+            </li>
+        </ul>
+        <p class="Body">This is an informational text to reference the used annex 
+ or table from RiliBÄK documentation. </p>
+        <h4>RMSD factor K</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name: RMSDFactorK</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: Fractional.</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Initial value: 3.00</p>
+            </li>
+        </ul>
+        <p class="Body">QC Audits are calculated using a formula with a “K” factor. 
+ Currently only the value 3.00 is used in formulas. It is suggested to 
+ initialize this field with “3.00” as the default value during new configuration 
+ since this is currently the only value that is known by the current RiliBÄK 
+ tables. Future RiliBÄK tables might suggest using other K-factors.</p>
+        <h4>Needs evaluation period</h4>
+        <p>This field is used to decide if an evaluation period is to be created 
+ when <a href="../routine/qc_lots_create_new.htm">creating a new lot</a>. 
+ Default value = NO. &#160;This option will only be shown when the RiliBÄK 
+ license is active. &#160;</p>
+        <h4>Auditable</h4>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body">Name: Auditable</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data type: LogicalBox</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Initial value: Checked (YES)</p>
+            </li>
+        </ul>
+        <p class="Body">Under some conditions, RiliBÄK accepts no <a href="../management/qc_audits.htm">audits</a>. Example: 
+ When less than 15 results are measured within a time frame of 3 months, 
+ no audits are required.</p>
+        <p class="Body">&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>QC population data provided by suppliers can be imported in the fields of the QC population table via Excel or XML files: <a href="../../../../application_management/import_export/import/import_qc_configuration_sysmex.htm">Sysmex</a>, <a href="../../../../application_management/import_export/import/import_qc_configuration_sapphire.htm">Sapphire</a>, <a href="../../../../application_management/import_export/import/import_qc_configuration_advia_120.htm">Advia</a>.</p>
+        </div>
+        <h3>Table QC audit</h3>
+        <h4>Extent of QCAudit.Type</h4>
+        <p class="Body">The enumerated field QCAudit.Type consists of: ’ Accuracy’, 
+ ‘Precision’, ‘Combined’. Item RMSD (in German: ‘QMMA’) has been added</p>
+        <h4>RMSD value</h4>
+        <p class="Body">Name: RMSDValue: this is the calculated Root mean square 
+ deviation (in German: ‘QMMA’) value, shown as a fractional.</p>
+        <p style="font-weight: bold;">RMSD low limit, RMSD high limit, RMSD reference 
+ value</p>
+        <p>These values are specified:</p>
+        <ul type="disc">
+            <li class="p" value="1">
+                <p>When closing an RMSD evaluation period while requesting 
+	 the creation of a QC audit and a control period. The limits and reference 
+	 value calculated for the control period are stored in the QC Audit. 
+	 One of the purposes of storing these values in the QC audit, is not 
+	 to lose them when control period creation failed because of a deviation 
+	 was detected in this closing process.</p>
+            </li>
+            <li class="p" value="2">
+                <p>When printing an RMSD QC population in evaluation 
+	 status 'Evaluation'. GLIMS will calculate the low and high limits 
+	 as if a control period is created while printing. If audit storage 
+	 is requested, the values are stored in the audit record. The calculated 
+	 RMSD limits are available on the printout (even if no audit storage 
+	 is requested).</p>
+            </li>
+        </ul>
+        <h2><a name="Changes"></a>Changes in the QC population browser</h2>
+        <h3>Type column</h3>
+        <p class="Body">The browser has a column showing information that types 
+ the population.&#160;&#160;The values the column can have are:</p>
+        <ul>
+            <li class="p-ListIndent" value="1">
+                <p class="ListIndent"><span lang="NL-BE">‘C’ 
+	 = Combined (TargetValue and MaximalInaccuracy and MaximalVC), in German: 
+	 ‘K’</span>
+                </p>
+            </li>
+            <li class="p-ListIndent" value="2">
+                <p class="ListIndent">‘A’ = Accuracy (TargetValue 
+	 or AccuracyLimit or AccuractyHighLimit or AccuractyLowLimit), in German: 
+	 ‘R’</p>
+            </li>
+            <li class="p-ListIndent" value="3">
+                <p class="ListIndent">‘P’ = Precision (TargetMean 
+	 or TargetDeviation), in German: ‘P’</p>
+            </li>
+            <li class="p-ListIndent" value="4">
+                <p class="ListIndent">‘AP’ = Accuracy &amp; 
+	 Precision, in German: ‘RP’</p>
+            </li>
+            <li class="p-ListIndent" value="5">
+                <p class="ListIndent">‘CE’ = Combined &amp; 
+	 Evaluation, in German: ‘KE’</p>
+            </li>
+            <li class="p-ListIndent" value="6">
+                <p class="ListIndent">‘AE’ = Accuracy &amp; 
+	 Evaluation , in German: ‘RE’</p>
+            </li>
+            <li class="p-ListIndent" value="7">
+                <p class="ListIndent">‘PE’ = Precision &amp; 
+	 Evaluation, in German: ‘PE’</p>
+            </li>
+            <li class="p-ListIndent" value="8">
+                <p class="ListIndent">‘DMed’ (Sub type = day 
+	 median)</p>
+            </li>
+        </ul>
+        <p class="ListIndent">Evaluation means 'in evaluation' or 'evaluation period 
+ closed'&#160;</p>
+        <p class="Body">New values for type column are: ‘S’ (RMSD) and ‘SE’ (RMSD 
+ + evaluation),&#160;&#160;in German: ‘Q’ (QMMA) and ‘QE’ (QMMA + Evaluation)</p>
+        <h3>New column ‘verification’</h3>
+        <p class="Body">This column is shared with other columns (by means of a 
+ column cycle). The column cycle items are ‘cluster name’, ‘quality’ and 
+ ‘verification’</p>
+        <p class="Body">The verification column shows the defects of RMSD QC population 
+ for which the configuration parameters are not correct (not complete).</p>
+        <h3>Info box</h3>
+        <p class="Body">The population browser now has an information box at the 
+ bottom of the browser showing the main QC population configuration parameters.</p>
+        <p class="Body">The information shown is:<br />&#160;</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Type</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Parameters shown</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Accuracy</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Target value</p>
+                    <p class="MsoNormal">Accuracy limit</p>
+                    <p class="MsoNormal">Accuracy high limit</p>
+                    <p class="MsoNormal">Accuracy low limit</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Precision</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Target mean,</p>
+                    <p class="MsoNormal">Target deviation</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Combined</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">Target value</p>
+                    <p class="MsoNormal">Maximal R</p>
+                    <p class="MsoNormal">Maximal coefficient of variation</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">RMSD</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="251">
+                    <p class="MsoNormal">RMSD target value</p>
+                    <p class="MsoNormal">RMSD reference value</p>
+                    <p class="MsoNormal">RMSD low limit</p>
+                    <p class="MsoNormal">RMSD high limit</p>
+                </td>
+            </tr>
+        </table>
+        <p class="Body">The contents of the info box can be overruled by specifying 
+ a text named ‘QCPopulationExternalization’</p>
+        <h2><a name="QC"></a>QC population query</h2>
+        <h3>New parameter ‘Root mean square deviation’</h3>
+        <p class="Body">This field parameter is only shown with an active RiliBÄK&#160;8 
+ license.</p>
+        <ul>
+            <li class="p-Body" value="1">
+                <p class="Body"><span lang="NL-BE">in German: 
+	 Quadratrischer Mittelwert</span>
+                </p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Data Type:&#160;&#160;logical (toggle 
+	 box)</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body"><span lang="NL-BE">Help 
+	 text:</span>
+                </p>
+                <ul>
+                    <li class="p-ListIndent" value="1">
+                        <p class="ListIndent">EN: Include populations 
+		 with square root mean value deviation</p>
+                    </li>
+                    <li class="p-ListIndent" value="2">
+                        <p class="ListIndent"><span lang="NL-BE">in German: 
+		 QMMA QK Verteilungen einfügen</span>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h3>Parameter ‘auditable’</h3>
+        <p class="Body">The QC population query has a parameter ‘Special’, which 
+ is an enumerated. One of the existing items is ‘auditable’. &#160;The 
+ meaning was: Auditable only selects precision control populations with 
+ at least 15 unaudited results from different days and accuracy control 
+ populations with at least 1 unaudited result (both since the date of the 
+ last QC audit).</p>
+        <p class="Body">For RMSD populations, the minimal required results is different 
+ depending on the evaluation status of the population: When not in evaluation, 
+ the minimum is 15 results, for populations in evaluation, the limit is 
+ 15 results, but only a single result per day.</p>
+        <p class="Body">This ‘auditable’ query criteria has been extended by doing 
+ an additional check on QC population field ‘auditable’. If latter is not 
+ set, the QC population is not selected. It is not a RMSD-specific feature 
+ , it is also valid for other types of QC populations</p>
+        <h3><a name="QC7"></a>QC population editor</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_rilibak_QC_population_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1117" data-mc-height="780" src="qc_rilibak_QC_population_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="p-MsoList">
+            <p class="MsoList">The editor title shows 
+	 the type of QC population (like the Type column in the browser). For 
+	 instance: "QC population <b>(AP)</b>".</p>
+        </p>
+        <h2><a name="Browsers"></a>Browsers showing results with QC norms</h2>
+        <p class="Body">When ‘QC norms’ shown with RMSD populations the values 
+ are: RMSD low limit and RMSD high limit.</p>
+        <h2><a name="QC2"></a>QC Audit query</h2>
+        <h3>Parameter ‘type’</h3>
+        <p class="Body">The query parameter type has the values (combo box): ‘?’,’ 
+ Accuracy’, ‘Precision’, and ‘Combined’. The choice ‘RMSD’ has been added, 
+ in German: ‘QMMA’ . This choice is only shown with an active RiliBÄK&#160;8 license.</p>
+        <h2><a name="QC3"></a>QC Population – Close QC Evaluation Period</h2>
+        <p class="Body">This existing method on QC population has been adapted 
+ for RMSD QC populations (see also work scenario below).&#160;&#160;The 
+ restriction for RMSD QC is that a minimal of 15 results (only one per 
+ day) is required to close an evaluation period (as for other population 
+ types).</p>
+        <p class="Body">When closing the population, the fields RMSD reference 
+ value, RMSD low limit and RMSD high limit are calculated (see life cycle 
+ below for details) for the control period population.</p>
+        <p class="Body">When audit report creation was requested, it will also 
+ mark the audit record when a deviation is detected, being: the calculated 
+ limits have a conflict with the supplier limits (more specifically, when the RMSD
+ <span class="ui_element">Low limit</span> is lower than the RMSD <span class="ui_element">Supplier low limit</span> or the RMSD <span class="ui_element">High 
+ limit</span> is higher than the RMSD <span class="ui_element">Supplier high limit</span>).</p>
+        <h2><a name="QC4"></a>QC population – Evaluation upon new result</h2>
+        <p class="Body">As for any other QC result, QC results of a RMSD population 
+ are also evaluated against the limits. The result gets a severity when 
+ a deviation is detected. </p>
+        <h4>Evaluation&#160;QC&#160;populations</h4>
+        <p class="Body">For evaluation QC populations, the check is against 
+ the supplier limits.</p>
+        <p class="Body">If a result of an evaluation QC population lies outside the supplier low and high limits, the Channel quality of the assessment method is set to <a href="../management/qc_deviation_actions.htm#Reliabil2" xmlns="http://www.w3.org/1999/xhtml">Unreliable</a>.</p>
+        <h4>Control QC&#160;populations</h4>
+        <p class="Body">For control QC populations, the check is done against 
+ the calculated limits.</p>
+        <h2><a name="Configur"></a>Configuration check feature</h2>
+        <p class="Body">A new browser named ‘verify’ has been introduced on the 
+ property table.&#160;&#160;Default available columns are:</p>
+        <ul>
+            <li class="p-MsoList" value="1">
+                <p class="MsoList">Property mnemonic</p>
+            </li>
+            <li class="p-MsoList" value="2">
+                <p class="MsoList">Property description</p>
+            </li>
+            <li class="p-MsoList" value="3">
+                <p class="MsoList">Property data type</p>
+            </li>
+            <li class="p-MsoList" value="4">
+                <p class="MsoList">Lab</p>
+            </li>
+            <li class="p-MsoList" value="5">
+                <p class="MsoList">Department</p>
+            </li>
+        </ul>
+        <p class="MsoList">The browser option button allows specifying criteria:</p>
+        <p class="MsoList">Selection criteria:</p>
+        <ol>
+            <li class="p-MsoList" value="1">
+                <p class="MsoList">Department</p>
+            </li>
+            <li class="p-MsoList" value="2">
+                <p class="MsoList">Lab</p>
+            </li>
+            <li class="p-MsoList" value="3">
+                <p class="MsoList">Data type</p>
+            </li>
+            <li class="p-MsoList" value="4">
+                <p class="MsoList">Include public domain (includes 
+	 properties not related to a department)</p>
+            </li>
+            <li class="p-MsoList" value="5">
+                <p class="MsoList">A filter function</p>
+            </li>
+        </ol>
+        <p class="MsoList">Verification criteria</p>
+        <ol>
+            <li class="p-ListIndent" value="1">
+                <p class="ListIndent">Verify RMSD populations: 
+	 when enabled, the browser will appear differently:</p>
+            </li>
+        </ol>
+        <ul>
+            <li class="p-MsoList" value="1">
+                <p class="MsoList">The properties that available 
+	 in the browser: Only properties with at least 2 active RMSD QC populations 
+	 are shown<br />	&#160;</p>
+            </li>
+            <li class="p-MsoList" value="2">
+                <p class="MsoList">Two additional columns:<br />	&#160;</p>
+                <ul>
+                    <li class="p-MsoList" value="1">
+                        <p class="MsoList">Valid RMSD (if valid, 
+		 the row-cell contains a ‘<span style="font-family: Wingdings;">ü</span>’)</p>
+                    </li>
+                    <li class="p-MsoList" value="2">
+                        <p class="MsoList">Number of active QC populations 
+		 on this property (column header is ‘#’)<br />		&#160;</p>
+                    </li>
+                </ul>
+            </li>
+            <li class="p-MsoList" value="3">
+                <p class="MsoList">The ‘QC populations’ button 
+	 at the bottom of the browser is enabled</p>
+            </li>
+        </ul>
+        <blockquote>
+            <p class="ListIndent">This button will show the QC population browser containing 
+ the active RMSD populations of the properties in the property verify browser. 
+ One can limit the populations to show by selecting the properties in the 
+ verify browser first.</p>
+            <p class="ListIndent">The RMSD QC population verifications are:</p>
+        </blockquote>
+        <blockquote>
+            <ol>
+                <li class="p-MsoList" value="1">
+                    <p class="MsoList">Is the&#160;&#160;RMSD target 
+	 value known ?</p>
+                </li>
+                <li class="p-MsoList" value="2">
+                    <p class="MsoList">Are RMSD low and high limit 
+	 known ?</p>
+                </li>
+                <li class="p-MsoList" value="3">
+                    <p class="MsoList">Are RMSD supplier low and 
+	 high limit known ?</p>
+                </li>
+                <li class="p-MsoList" value="4">
+                    <p class="MsoList">Is the RMSD reference value 
+	 known when the RMSD Origin is filled in ?</p>
+                </li>
+            </ol>
+        </blockquote>
+        <h2><a name="RMSD2"></a>RMSD QC population life cycle (work scenarios)</h2>
+        <p class="Body">There are 2 possible scenarios, depending of the availability 
+ of Spalte 3 (field RMSD reference value). If Spalte 3 is not available, 
+ an evaluation period is to be created first.</p>
+        <h3>Scenario A: Spalte3 is available</h3>
+        <h4>Starting a control period</h4>
+        <p class="Body">An evaluation period is not created. The new population 
+ is a for a control period. Depending of the availability of the target 
+ value, creation of the control period can be done in two manners:</p>
+        <h4><span style="font-weight: 400;">Target value is known, supplier limits 
+ are not known</span>
+        </h4>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Parameter</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Origin</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Note</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Target 
+		 Value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">QC material Supplier</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Supplier 
+		 low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Unknown</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Reference 
+		 value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">RiliBÄK&#160;&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">K</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">RiliBÄK&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Enter value only if different 
+		 from default 3,00</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Low 
+		 &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Calculated</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Target value ± (Reference 
+		 value * Target value) / 100</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Severity</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Origin</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">RiliBÄK&#160;&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Default value is ‘B1’</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">Auditable</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h4><span style="font-weight: 400;">Supplier limits are known, target value 
+ is not known</span>
+        </h4>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Parameter</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Origin</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Note</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Target Value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Calculated 
+		 (because unknown)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">(Supplier 
+		 low limit + Supplier high limit) / 2</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Supplier low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">QC 
+		 material Supplier</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Reference value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">RiliBÄK&#160;&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">K</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">RiliBÄK&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Enter 
+		 value only if different from default 3,00</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Calculated</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Target 
+		 value ± (Reference value * Target value) / 100</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Severity</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Origin</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">RiliBÄK&#160;&#160;regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Default 
+		 value is ‘B1’</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Auditable</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h4>During the control period</h4>
+        <p class="Body">Result values are evaluated against the low and high limits</p>
+        <h3>Scenario B: Spalte3 is <i>not</i> available</h3>
+        <h4>Create an evaluation period</h4>
+        <p class="Body">If &#160;the reference value (spalte 3) is not available, 
+ a QC population for an evaluation period should be created first:&#160;</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Parameter</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Origin</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Note</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Target Value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">QC 
+		 material Supplier</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Supplier low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">QC 
+		 material Supplier</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Reference value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Empty</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">(Not 
+		 available)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">K</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">RiliBÄK 
+		 regulation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Enter 
+		 value only if different from default 3,00</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Copied</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Values 
+		 copied from supplier low &amp; high limits</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Severity</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Origin</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Empty</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">(Not 
+		 available)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Auditable</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">User</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h4>During the evaluation period</h4>
+        <p class="Body">Results are evaluated against RMSD low limit and RMSD high 
+ limit, since they will be copied from RMSD supplier low limit and RMSD 
+ supplier high limit</p>
+        <h4>Starting a control period</h4>
+        <p class="Body">When enough valid results are available in the evaluation 
+ period (≥15, only one per day), the evaluation period can be closed and 
+ a new population can be created with a calculated reference value&#160;&#160;(Spalte 
+ 3, ∆pct):</p>
+        <p class="Body">
+            <img src="rilibak_01.png" alt="" style="border: none;" width="430" height="371" border="0" />
+        </p>
+        <p class="Body">The new created population for the control period will 
+ have the following properties:&#160;</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Parameter</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Origin</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Note</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Target Value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Evaluation 
+		 period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Copied</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Supplier low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Evaluation 
+		 period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Copied</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Reference value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Calculated</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">&#160;See 
+		 above</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">K</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Evaluation 
+		 period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Copied</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Low &amp; high limits</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Calculated</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">See 
+		 above</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Severity</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Evaluation 
+		 period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="167">
+                    <p class="MsoListParagraph" style="margin-left: 0in;">Copied</p>
+                </td>
+            </tr>
+        </table>
+        <h2><a name="QC5"></a>QC Audit report for RMSD populations</h2>
+        <h3>General</h3>
+        <p class="Body">The QC audit print allows using fixed default header, body 
+ and footer texts.&#160;&#160;Alternative outputs are possible via MISPL 
+ texts.</p>
+        <h3>QC Audit report for an RMSD evaluation period</h3>
+        <h4>Header</h4>
+        <p class="Body">The following items will be available in the header of 
+ the evaluation period report:</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Indication of control or 
+		 evaluation period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of department and laboratory</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of Station</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of the property</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Unit of the property</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">6</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Method of the assessment 
+		 method</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">7</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Material of the population</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">8</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Description of the QC-material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">9</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Lot number of the QC-lot</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">10</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of the supplier of the 
+		 QC-material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">11</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">RMSD Target value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">12</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">RMSD Supplier boundaries</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">13</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Date of the first and last 
+		 result of the period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">14</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Number of results</p>
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">15</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Calculated low and high limit 
+		 for the next control period (calculated with the values of the 
+		 evaluation period)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">16</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Calculated reference value&#160;&#160;(Spalte 
+		 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">17</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Indicator whether the calculated 
+		 high and low limit are within the supplier boundaries</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h4>Body</h4>
+        <p class="Body">The following items will be available in the body of the 
+ evaluation period report:</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result date &amp; time</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result confirmation/rejection 
+		 user</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result external comment, 
+		 result rejection reason</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">QC audit result official?<br />		&#160;A ‘* ‘ is added when a result is used for calculation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">6</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Relative deviation<br />		= value&#160;&#160;– RMSD Target value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">7</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Absolute deviation<br />		= yes | no (in range of RMSD supplier boundaries)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h4>Footer</h4>
+        <p class="Body">The following items will be available in the footer of 
+ the evaluation period report:</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Creation Date and Time 
+		 of the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Initials of user who created 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Date and Time reviewing 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Initials of user who reviewed 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Review note of audit report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3>QC Audit report for an RMSD control period</h3>
+        <h4>Header</h4>
+        <p class="Body">The following items will be available in the header of 
+ the control period report:</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Indication of control or 
+		 evaluation period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of department and laboratory</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of Station</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of the property</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Unit of the property</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">6</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Method of the assessment 
+		 method</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">7</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Material of the population</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">8</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Description of the QC-material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">9</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Lot number of the QC-lot</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">10</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Name of the supplier of the 
+		 QC-material</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">11</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">RMSD Target value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">12</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">RMSD Supplier boundaries</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">13</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">RMSD Boundaries</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">14</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Date of the first and last 
+		 result of the period</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">15</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Number of results</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">16</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Reference value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">17</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Info</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">18</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Calculated RMSD (in German: QMMA)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">19</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNormal">Indicator whether the calculated 
+		 RMSD (in German: QMMA) is lower than reference value (Spalte 3)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h4>12.3.2<span style="font: 7.0pt 'Times New Roman';">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>Body</h4>
+        <p class="MsoNormal" style="margin-left: .5in;">The following items will 
+ be available in the body of the control period report:&#160;</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result date &amp; time</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result confirmation/rejection 
+		 user</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Result external comment, 
+		 result rejection reason</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">QC audit result official?<br />		&#160;A ‘* ‘ is added when a result is used for calculation</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">6</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Relative deviation<br />		= value&#160;&#160;– RMSD target value</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">7</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Absolute deviation<br />		= yes | no (in range of boundaries)</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h4>12.3.3<span style="font: 7.0pt 'Times New Roman';">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>Footer</h4>
+        <p class="Body">The following items will be available in the footer of 
+ the control period report:</p>
+        <table class="MsoNormalTable" style="border: medium none;margin-left: 59.4pt;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41" bgcolor="#00415D">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387" bgcolor="#00415D">
+                    <p class="MsoNormal"><span style="color: #FFFFFF;"><b style="font-weight: bold;">Item</b></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: 1.0pt solid #999999;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73" bgcolor="#00415D">
+                    <p class="MsoNormal" style="text-align: center;"><span style="color: #FFFFFF;"><b style="font-weight: bold;">New ?</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">1</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Creation Date and Time 
+		 of the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">2</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Initials of user who created 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-family: Wingdings;">ü</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">3</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Date and Time reviewing 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">4</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Initials of user who reviewed 
+		 the Audit Report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: 1.0pt solid #999999;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="41">
+                    <p class="MsoNormal" style="text-align: right;">5</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="387">
+                    <p class="MsoNoSpacing">Review note of audit report</p>
+                </td>
+                <td style="vertical-align: top;border-left: medium none;border-right: 1.0pt solid #999999;border-top: medium none;border-bottom: 1.0pt solid #999999;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="73">
+                    <p class="MsoNormal" style="text-align: center;">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <p class="Body">&#160;</p>
+        <h3>Graph on the report</h3>
+        <p class="Body"><span lang="NL-BE">The ‘print graph’ check 
+ box has been split in 4 check boxes (print graph for accuracy, precision, 
+ combined or RMSD).</span>
+        </p>
+        <h2><a name="Calculat"></a>Calculation of the RMSD (in German: QMMA)</h2>
+        <p>
+            <img src="rilibak_02.png" alt="" width="469" height="235" border="0" />
+        </p>
+        <h2><a name="QC6"></a>QC Graph</h2>
+        <h3>New page ‘RMSD’ (in German: QMMA)</h3>
+        <h4>General</h4>
+        <p class="Body"><span lang="NL-BE">A new page will be 
+ added to the QC graph editor, the ‘RMSD’ page will be similar to accuracy 
+ page.</span>
+        </p>
+        <h4>For a evaluation period population</h4>
+        <p class="Body"><span lang="NL-BE">The graph bandwidth 
+ is the maximal value of the differences between target value and supplier 
+ limits</span>
+        </p>
+        <h4>For a control period population</h4>
+        <p class="Body"><span lang="NL-BE">The graph bandwidth 
+ is the maximal value of the differences between target value and limits</span>
+        </p>
+    </body>
+</html>

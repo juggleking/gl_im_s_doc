@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Phone list" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\phone program\phonelist_03.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Phone: program</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Phone list - Phone the results</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#order%20query">Order query</a> - <a href="#Outline">Outline</a> - <a href="#One%20by%20one">One by one</a> - <a href="#Multi-user%20support">Multi-user support</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The phone list program is available via the main menu through <span class="ui_element">Start -&gt; Routine -&gt; Orders -&gt; Phone list</span>. The program has two modes of operation: <a href="#Outline">Outline</a> or <a href="#One%20by%20one">One by one</a>:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_list_phone_results_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="346" data-mc-height="113" src="phone_list_phone_results_options_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The last choice is remembered per user. If the function is pre-parameterized this initial dialog is skipped.&#160;&#160;</p>
+        <p>The phone list program contains a composite query. It always starts with an <a href="#order%20query">order query</a> (the so-called "Master" query), yielding all orders for which something is to be phoned.&#160;&#160;For each individual order, a separate query is performed on all results of the order (the so-called <a href="#Options">"Detail" query</a>).</p>
+        <p>You can also phone all results from a single order using the <b>Order.PhoneThrough()</b> function.</p>
+        <h2><a name="order query"></a>Order query</h2>
+        <p>After selecting the view type, a query dialog allows looking for orders of which you would like to phone through the results.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_orderquery.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="548" data-mc-height="366" src="phone_orderquery_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Sampled/ Received</p>
+        <div class="indented">Allows querying on the order's sampling date/time or reception date/time.</div>
+        <p class="fieldlabel"><a name="Minimal"></a>Minimal result status</p>
+        <div class="indented">
+            <p>This is a very important option. It determines which orders will be selected for display. The effect on the order query depends on the view type :</p>
+            <p class="fieldlabel">One by one</p>
+            <div class="indented">
+                <p>An order will only be selected if at least one of its results has reached this minimal status.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The <span class="ui_element">Minimal result status</span> also has an effect on the (detail) <a href="#Options">result query</a>.&#160;Results that have not reached the minimal result status (or results with a status lower than <span class="ui_element">Available</span>) are not supposed to be phoned. Therefore, their value is hidden. That way, you can see there is a result to be phoned, but it isn't available yet. Instead of the value, the status is displayed in order to have an indication when it is to be expected. To avoid confusion, the status is shown in a different font (italic + not bold).</p>
+                    <p>Note that, if the status indication is <span class="ui_element">Available</span> (which may happen if the minimal result status is set to <span class="ui_element">Confirmed</span> or <span class="ui_element">Validated</span>), you can still press F6 where the value can be seen anyhow.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Outline</p>
+            <div class="indented">
+                <p>In <span class="ui_element">Outline</span> mode, whether or not the <span class="ui_element">Minimal result status</span> is taken into account during order selection depends on the <span class="ui_element">Only Orders with Results</span> option:</p>
+                <ul>
+                    <li value="1">With <span class="ui_element">Only Orders with Results</span> checked, an order will only be selected if at least one of its results has reached this minimal status.</li>
+                    <li value="2">With <span class="ui_element">Only Orders with Results</span> unchecked, all orders with results marked as <span class="ui_element">To be phoned</span> are selected, regardless of the <span class="ui_element">Minimal result status</span>.</li>
+                </ul>
+                <p>The <span class="ui_element">Minimal result status</span> is taken into account to decide if a result will appear in the <span class="ui_element">Available</span> or <span class="ui_element">Pending</span> column: results below the <span class="ui_element">Minimal result status</span> will be displayed in the <span class="ui_element">Pending</span> column, while the others will be displayed in the <span class="ui_element">Available</span> column.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Sort by</p>
+        <div class="indented">
+            <p>Five possible sort options are available: by agent, by issuer, by phone number, by location and by a MISPL function. The "Sort function" field is only available when the sort criterion "Free" is chosen.</p>
+            <table style="height: 100px;border-collapse: separate;border-collapse: separate;" cellspacing="0" width="50%" border="1">
+                <tr>
+                    <td style="width: 25%;" height="13">Sort criteria</td>
+                    <td height="13">Sorted by</td>
+                </tr>
+                <tr>
+                    <td style="width: 25%;" height="13">Agent</td>
+                    <td height="13">Agent name</td>
+                </tr>
+                <tr>
+                    <td style="width: 25%;" height="13">Issuer</td>
+                    <td height="13">Issuer name</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;width: 25%;" height="11">Phone number</td>
+                    <td style="vertical-align: top;" height="11">'The' phone number is the first one found in the following default list:&#160;
+<p>Order.Phone,&#160;<br />Issuer.[Phone|Phone2|MobilePhone],<br />Agent.[Phone|Phone2|MobilePhone] and<br />Ward.[Phone|Phone2|MobilePhone].&#160;</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>This default <a href="#phone%20number">phone number</a> sequence can be overruled by making use of the SpecificSite field <span class="ui_element">Phone number sequence</span> (<span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; GLIMS</span>) which allows influencing which phone numbers are evaluated and in which sequence.&#160;</p></div></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;width: 25%;" height="13">Location</td>
+                    <td style="vertical-align: top;" height="13">The name of the ward of the current patient location</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;width: 25%;" height="13">Free</td>
+                    <td style="vertical-align: top;" height="13">The string returned from the sort MISPL function</td>
+                </tr>
+            </table>
+            <p>If set to '?', default sorting is applied:</p>
+            <ol>
+                <li value="1">Correspondent group member sequence no (if a correspondent group was specified in the order query)</li>
+                <li value="2">Phone number</li>
+                <li value="3">Issuer name</li>
+            </ol>
+            <p>Records with the same ranking are sorted by creation time. Unknown values (e.g. for phone number of issuer) sort at the end.</p>
+        </div>
+        <p class="fieldlabel">Sort function</p>
+        <div class="indented">Only available when <span class="ui_element">Sort by</span> is set to <span class="ui_element">Free</span>.</div>
+        <p class="fieldlabel">Only complete</p>
+        <div class="indented">
+            <p>This option is closely linked to the <span class="ui_element">Minimal result status</span> option (see above). It means that only orders should be shown where all results to be phoned have reached the <span class="ui_element">Minimal result status</span>. This option behaves identically for both view types.</p>
+            <p>If this option is enabled, the <span class="ui_element">Pending</span> column of the order browser is hidden as it is empty by definition in that case.</p>
+        </div>
+        <p>During the query, a progress indicator shows how many orders are verified, and how many of them are eligible to be shown in the phone list program. Orders may not be selected due to: order shielding, inappropriate result statuses or mismatching filter criteria.</p>
+        <h2><a name="Outline" id="Outline"></a>Outline</h2>
+        <p>The outline mode shows all orders selected by the order query, along with the phone number, and a list of pending and available results.&#160;</p>
+        <p>Orders are pre-selected according to the sort criterion, but they can be selected/de-selected manually too.&#160;The first three browse columns have an alternating background color to distinguish blocks of orders belonging together.</p>
+        <p>In the example below the orders are sorted by issuer.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../release_notes/930/sibling/8110/GLIMS-06070.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="776" data-mc-height="343" src="../../release_notes/930/sibling/8110/GLIMS-06070_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>The column selection icon allows defining which columns should be shown:</p>
+        <p class="fieldlabel">Phone number</p>
+        <div class="indented">
+            <p>The phone number shown in this column is the first available phone number.&#160;&#160;<a href="#phone%20number">Click here for more information about which phone numbers are used and in which sequence</a>.</p>
+        </div>
+        <p class="fieldlabel">Issuer </p>
+        <div class="indented">
+            <p>Of the order.</p>
+        </div>
+        <p class="fieldlabel">Comment</p>
+        <div class="indented">
+            <p>Comment stored with the issuer (see '<a href="#Phone%20through">Buttons</a>' chapter).&#160;&#160;Due to space limitations, the column only appears if the screen resolution is larger than 800 x 600.&#160;&#160;As the phone comment may contain several lines, the browse column cell may provide insufficient space to display all information. Therefore, an info box is available at the lower left corner of the frame, displaying the full contents of the Correspondent.PhoneComment field for the focused record. This info box is always shown, regardless of the screen resolution.</p>
+        </div>
+        <p class="fieldlabel">Contact</p>
+        <p class="fieldlabel">Location</p>
+        <p class="fieldlabel">Object</p>
+        <div class="indented">
+            <p> Order's patient.</p>
+        </div>
+        <p class="fieldlabel">Pending</p>
+        <div class="indented">
+            <p>Pending tests (no results ready to be phoned yet).</p>
+        </div>
+        <p class="fieldlabel">Available</p>
+        <div class="indented">
+            <p>Tests with results ready to be phoned.</p>
+        </div>
+        <p style="font-weight: bold;">
+            <p>Order internal ID</p>
+        </p>
+        <p style="font-weight: bold;">Order short ID</p>
+        <div class="indented">
+            <p>Analogous to the confirmation and order review program, there are two buttons at the bottom: <span class="ui_element">Phone through</span> and <span class="ui_element">Skip</span>. The first button starts the <a href="#One%20by%20one">phone list interface</a> on the selected orders, which automatically terminates after processing the last order.&#160;&#160;The <span class="ui_element">Skip</span> button skips to the next block and pre-selects it (also possible via arrow keys).&#160;&#160;The <span class="ui_element">Options</span> button takes you back to the order query.</p>
+        </div>
+        <h2><a name="One by one"></a>One by one</h2>
+        <p>Click OK in the order phone query and you will obtain a list of orders which contain at least one result that has to be phoned through:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_phonelist.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="782" data-mc-height="318" src="phone_phonelist_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3>General functionality</h3>
+        <p class="fieldlabel">By default, only the results to be phoned or already phoned are shown.&#160;&#160;</p>
+        <table style="border-collapse: separate;border-collapse: separate;" width="70%" border="1">
+            <tr>
+                <td style="vertical-align: top;" width="24">
+                    <img src="phonelist_phonelog.gif" style="border: none;" alt="" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;">This button provides direct access to the <a href="phone_list_phone_log.htm">phone log</a>.</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;" width="24">
+                    <img src="phonelist_showcompleteorder.gif" style="border: none;" alt="" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;">The complete order can be viewed anyhow by pressing the <span class="ui_element">Show complete order</span> button on the main screen, or by checking the "Show complete order" toggle-box in the <a href="#Options">options</a> screen.&#160;&#160;The button and the toggle-box have exactly the same effect and are coupled. If enabled, all results of the current order are shown, using the default property classification. Any classification specified in the order query screen is ignored in this case.&#160;</td>
+            </tr>
+        </table>
+        <p><b style="font-weight: bold;">Results with a lower status than the minimal result status</b> are shown, but their value is masked. This is done by putting the result status in the value cell, in a different (italic) font.</p>
+        <p>The results which have to be phoned through are <b>marked with a P</b> in the second column.&#160;You can select or deselect results by hitting the space bar. This implies that you can also phone through results which were originally not marked as such.&#160;</p>
+        <p>At the top of the screen, you can <b>select a <a name="phone number"></a>phone number</b> which should be used to phone through the results.&#160;&#160;The following contact data will be displayed:</p>
+        <ul>
+            <li value="1">Order's phone number (specified in the order entry screen)</li>
+            <li value="2">Issuer phone numbers</li>
+            <li value="3">Agent phone numbers</li>
+            <li value="4">Ward phone numbers</li>
+            <li value="5">Issuer's practice phone numbers</li>
+            <li value="6">
+                <p>Patient's family doctor, mother and company phone numbers</p>
+            </li>
+        </ul>
+        <p>For all contacts, the following contact data will be displayed:</p>
+        <ul>
+            <li value="1">Correspondent.Phone</li>
+            <li value="2">Correspondent.Phone2</li>
+            <li value="3">Correspondent.MobilePhone</li>
+            <li value="4">Correspondent.Fax</li>
+            <li value="5">Correspondent.Fax2</li>
+            <li value="6">Correspondent.Email</li>
+        </ul>
+        <p>By making use of the SpecificSite field <span class="ui_element">Phone number sequence</span> (Start -&gt; System management -&gt; Customize -&gt; GLIMS), it is possible to influence which phone numbers are presented by the phone list program, and in which sequence.&#160;&#160;&#160;When you want to change the default behavior, supply a comma-separated list composed of one or more of the following keywords: "Order", "Issuer", "Agent", "Ward", "Patient" or "Private". The phone program(s) will:</p>
+        <ul>
+            <li value="1">Only show the phone numbers for the tags included in the list.</li>
+            <li value="2">Show them in the specified sequence.</li>
+            <li value="3">"Order,Issuer,Agent,Ward" is the default.</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns=""><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul xmlns="">
+                <li value="1">The keyword "Patient" includes the patient's family doctor, mother and company phone numbers</li>
+                <li value="2">The keyword "Private" includes the patient's phone 1, phone 2 and mobile phone</li>
+                <li value="3">If the issuer phone numbers are shown, the phone numbers of the issuer's practice will be shown as well.</li>
+                <li value="4">Make sure that the list does not contain spaces between the keyword</li>
+            </ul>
+        </div>
+        <p>When selecting a phone number, you use the F6 key to view the details of the contact person.</p>
+        <p>By hitting the Page Up and the Page Down key, you can <b>scroll through the different orders</b>.</p>
+        <p>The <span class="ui_element">property column</span> displays:</p>
+        <ul>
+            <li value="1">The multi-lingual property description. The language to be used is searched in the following order until a value is found: the report language of the order (Order.ReportLanguage), the language of the issuer, the site language, and finally the user language.</li>
+            <li value="2">The property short name if no description was found.</li>
+            <li value="3">The property mnemonic if the short name is empty.</li>
+        </ul>
+        <p>An icon is available in the column header which allows switching between the property description and the property mnemonic.</p>
+        <h4>Request mark and urgency columns</h4>
+        <div class="indented">
+            <p>The phone list program has a request mark column that indicates the urgency and phone status. An urgency level &gt; 1 is signaled by means of an exclamation mark ("!"). A result that is to be phoned is flagged by an uppercase "P" (or "T"), while a result that has already been phoned is flagged by a lowercase "p" (or "t").&#160;&#160;</p>
+            <p>Next to the request mark column, the urgency column displays the single-character urgency code as defined by the "Urgency" <a href="../../configuration/site_attributes/site_attributes_site_domains.htm#Site%20domains">site domain</a>, but only if the urgency value &gt; 1.&#160;&#160;&#160;Actually, this new column makes the "!" indication superfluous, but the latter was left for consistency reasons.</p>
+        </div>
+        <h4>Result mark column</h4>
+        <ul>
+            <li value="1">If a result is unsolicited, an <b>X</b> will be displayed in the column with the label <b>U</b>.&#160;&#160;&#160;It is possible to create a request for an unsolicited result by double-clicking on the X.</li>
+            <li value="2"><a href="../results/results_browsers.htm">Click here for more information on result flags.</a>
+            </li>
+        </ul>
+        <h4>Browser columns</h4>
+        <div class="indented">
+            <p>The previous result values are displayed in right-side hand cells. The dynamic time discriminator (dynamic panels) of a result is also taken into account when searching for a previous value for this result.</p>
+            <p>On entry, any available comment is displayed in the box at the bottom left-hand side of the screen. The result can be zoomed by means of mouse double click, RETURN or F6.&#160;&#160;If the result is updateable, the Result.Modify() dialog is invoked on RETURN or F6. Else, the standard result editor is called in view mode.</p>
+        </div>
+        <h3><a name="Phone through"></a>Buttons</h3>
+        <h4>Final</h4>
+        <div class="indented">
+            <p>Phone the currently available results, mark them and remove the other non-available results from the list. This happens silently, without any subsequent user interface. This option aims to remove the order permanently from the phone list. </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>However, if any of the (phoned) result values is changed later on, the order will re-appear anyhow.</p>
+            </div>
+        </div>
+        <h4>Partial</h4>
+        <div class="indented">
+            <p>Phone the currently available results, mark them and leave the others untouched. Again, no user-interface follows. This option will cause the order to re-appear as other results become available.</p>
+        </div>
+        <h4>Comment</h4>
+        <div class="indented">
+            <p>Simply add a phone comment to the order without any further processing. The entered comment will become visible in the <a href="../confirmation_validation/confirmation_validation_order_review.htm">order overview</a> browser (in front of the standard issuer comment, if any).</p>
+        </div>
+        <h4>Advanced</h4>
+        <div class="indented">
+            <p>After explicit selection (by means of space bar) of the records to be processed, a user interface follows where the user may enter comment, and select the required option:</p>
+            <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phone_process.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="474" data-mc-height="232" src="phone_process_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">Selected</p>
+            <div class="indented">
+                <p>Displays the results selected to be phoned through.&#160;</p>
+            </div>
+            <p class="fieldlabel">Contact</p>
+            <div class="indented">
+                <p>Show the list of available phone numbers (as described above)</p>
+            </div>
+            <p class="fieldlabel">Comments</p>
+            <div class="indented">
+                <p>Allows to enter additional information.&#160;These comments will be stored with the order's issuer (Correspondent.PhoneComment).&#160;&#160;The user-interface allows</p>
+                <ul>
+                    <li value="1">Zooming (F6) on the comment field.</li>
+                    <li value="2">Pressing the &lt;INSERT&gt; key in the comment field for text module lookup. The texts are assumed to be PhoneLog-based.</li>
+                    <li value="3">Expanding any embedded text modules in the comment field by pressing the expand button. Unless the text is modified, the expansion can be reverted by releasing the button.</li>
+                </ul>
+            </div>
+            <p>Any embedded text modules (in the form of "{&lt;XXX}") are automatically expanded in the order overview browser of the phone list program.<br />&#160;&#160;</p>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="80%" border="1">
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="80">
+                        <img src="phone_nolonger.gif" alt="" width="75" height="40" border="0" />
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;">The selected results should no longer be phoned, i.e. when hitting this button, they will no longer be marked as 'To be phoned'.&#160;&#160;In this case, you will be obliged to enter a comment.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="80">
+                        <img src="phone_ok.gif" alt="" width="75" height="40" border="0" />
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;"><a name="Click"></a>Click this button if you were able to phone through the results.&#160;&#160;The selected results will be marked as 'Phoned'.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="80">
+                        <img src="phone_notable.gif" alt="" width="75" height="40" border="0" />
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;">Click this button if you were NOT able to phone through the results, e.g. you were not able to reach the contact person.&#160;&#160;In this case, you will be obliged to enter a comment.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="80">
+                        <p>
+                            <img src="phone_cancel.gif" alt="" width="75" height="38" border="0" />
+                        </p>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;">
+                        <p>Do not change anything.&#160;&#160;The next order will be displayed in the phone list browser.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="80">
+                        <p>
+                            <img src="../orders/order_entry/consult_phonebutton.gif" style="border: none;" alt="" width="75" height="40" border="0" />
+                        </p>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;">
+                        <p>Allows to register a consult via<a href="../orders/order_entry/order_entry_consult_registration.htm"> Consult registration</a> or <a href="../../modules/consult_registration/consult_registration.htm">Consult registration (extended version)</a>, depending on the  license that is available.</p>
+                    </td>
+                </tr>
+            </table>
+            <p>This program is also available via the Result-based contextual menu function "Phone through".</p>
+        </div>
+        <h4>Skip</h4>
+        <div class="indented">
+            <p>When hitting the 'Skip' button, GLIMS will leave the current order unprocessed and continue with the next order.</p>
+        </div>
+        <h4><a name="Options" id="Options"></a>Options</h4>
+        <div class="indented">
+            <p>The <span class="ui_element">Options</span> button allows to further narrow down your result selection criteria:</p>
+            <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="phonequeryoptions.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="416" data-mc-height="280" src="phonequeryoptions_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">General</p>
+            <div class="indented">
+                <p class="fieldlabel">Result status from-to</p>
+                <div class="indented">
+                    <p>These options have absolutely NO relation with the minimal result status option of the order query described above. In the (detail) result query their meaning is: only display results within this status range. This applies to any result that is eligible to be displayed.<br /></p>
+                </div>
+                <p class="fieldlabel">Enforce comment</p>
+                <div class="indented">
+                    <p>when checked, the user will always be prompted for comment when using the <a href="#Phone%20through">"Final" or "Partial" buttons</a>.&#160;&#160;The initial value of this option is 'NO'.&#160;&#160;The gp_site.PhoneList() or Order.PhoneThrough() functions can both be preparameterized however to impose all users entering phone comment.<br /></p>
+                </div>
+                <p class="fieldlabel">Show complete order</p>
+                <div class="indented">
+                    <p>The default value of this option is "NO". It means that only results to be phoned or already phoned will be shown. When this option is set to "YES", all results of the current order will be shown, using the standard property classification.<br /></p>
+                    <p>
+                        <p>Even when the <span class="ui_element">Hide unsolicited results</span> toggle-box is checked, to be phoned unsolicited results will be shown in the browser.&#160;<br /></p>
+                    </p>
+                </div>
+            </div>
+            <p class="fieldlabel">Previous results&#160;</p>
+            <div class="indented">
+                <p class="fieldlabel">Count</p>
+                <div class="indented">
+                    <p>Number of previous results to be shown.<br /></p>
+                </div>
+                <p>
+                    <p class="fieldlabel">Minimal status<br /></p>
+                </p>
+                <p class="fieldlabel">Restricted to the same material</p>
+                <div class="indented">
+                    <p>Only show previous results that were assessed on the same material.<br /></p>
+                </div>
+                <p class="fieldlabel">Relative time indication</p>
+                <div class="indented">
+                    <p>Allows for the switching between an absolute or relative delta time indication for the previous results.&#160;&#160;When this option is enabled, times are shown as a lapse, with a unit depending on the time difference. When disabled, an absolute date will be displayed; or when both results are of the same day, the time is shown instead.</p>
+                </div>
+            </div>
+        </div>
+        <h3>Remarks&#160;</h3>
+        <ul>
+            <li value="1">Results without a value will not be displayed in the phone list.</li>
+            <li value="2">The result browsers can detect that the displayed result value is too wide to fit in its column. This may lead to misinterpretation. Therefore, this is made clear to the user by replacing the last part of the value with the <b>'@'-sign</b>.&#160;&#160;<br /></li>
+            <li value="3">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>Such a situation may sometimes quickly be resolved by double-clicking the frame title in order to maximize the browse window.</p>
+                </div>
+            </li>
+            <li value="4">As there is no means to make results with Property.Visible &lt;&gt; "Yes" visible in the phone list program, such results can never be processed and may cause an order to keep on re-occurring on the phone list without (at first sight) a reason.&#160;&#160;Therefore, several programs disallow putting such results on the phone list:
+<ul><li value="1">The Minimal/Maximal urgency trigger on SpecificSite</li><li value="2">Result.Modify()</li><li value="3">Result.ToBePhoned()</li><li value="4">The AssessmentMethod.PhoneSeverity mechanism</li></ul></li>
+        </ul>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>When trying to phone an already phoned order: to avoid a user from inattentively phoning an order that has already been phoned, some mechanisms have been built-in that should draw the user's attention to such a situation:</p>
+            <p>
+                <ul>
+                    <li value="1">A transient message "Nothing to be phoned" now appears for about 1 second, unless earlier removed by pressing any key.</li>
+                    <li value="2">The browser background color changes from white to gray.</li>
+                    <li value="3">The <span class="ui_element">Final</span> and/or <span class="ui_element">Partial</span> button may become insensitive.</li>
+                </ul>
+            </p>
+        </div>
+        <h2><a name="Multi-user support"></a>Multi-user support&#160;</h2>
+        <p>The phone list program provides multi-user support in both <span class="ui_element">One by one</span> and <span class="ui_element">Outline</span> mode. This means that users, which are simultaneously processing the same phone list, will not interfere. Orders processed by one user will automatically be skipped or hidden for another.</p>
+        <h3>View type "One by one"</h3>
+        <p>When an order is shown, it is marked (or locked) as being phoned for the current property classification. This lock is held until the user leaves the phone list program completely or re-executes the query.&#160;&#160;When moving forward through the query, each new order is checked whether another user has already marked it for the same property classification. If so, the order will be skipped.</p>
+        <h3>View type "Outline"</h3>
+        <p>For this mode, multi-user support has been implemented as follows:</p>
+        <ul>
+            <li value="1">Orders are allocated in blocks. A block is a group of orders to be phoned together. This grouping depends on the <span class="ui_element">Sort by</span> option, and is visualized by means of the alternating background color of the first two columns. From the moment that one order of a new candidate block is marked as being phoned by another user, the complete block will be skipped.<br /></li>
+            <li value="2">A block is allocated to the current user from the moment that either the <span class="ui_element">Phone through</span> or <span class="ui_element">Skip</span> button is pressed while the block is focused. Explicitly skipping a group of others is interpreted as "I had a quick glance at the orders and decided not to phone them for the moment". As a result, another user shouldn't be bothered with the same group of orders.</li>
+        </ul>
+    </body>
+</html>

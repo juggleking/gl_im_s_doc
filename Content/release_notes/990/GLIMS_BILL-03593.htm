@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Enhancements for payment import in STUZZA CREMUL format (Austria) (GLIMS_BILL-03593)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3453"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Enhancements for payment import in STUZZA CREMUL format (Austria) (GLIMS_BILL-03593)</h1>
+        <h2>Context</h2>
+        <p>GLIMS allows to <a href="../../modules/billing/payments/payments_import.htm" xmlns="http://www.w3.org/1999/xhtml">import payments</a> in the Austrian <a href="../../modules/billing/payments/import_formats/cremul.htm" xmlns="http://www.w3.org/1999/xhtml">STUZZA&#160;CREMUL</a> format since GLIMS&#160;8.5.</p>
+        <h2>Past functionality</h2>
+        <p>The payment import program used the field preceded by the keyword "FTX" (which actually contains the reason why the payment was made, as entered by the payer) from the import file to link the payment to an invoice summary.</p>
+        <p>In this case, the invoice summary could not be found automatically and the user had to manually select the invoice summary.</p>
+        <h2>Current functionality</h2>
+        <h4>Payment reference</h4>
+        <p>The payment import program now uses the payment reference preceded by the keyword "RFF+PQ" from the import file. The payment reference which is extracted from the import file will be compared with the invoice summary's <span class="ui_element">Payment reference</span> or <span class="ui_element">Doc no</span>.</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">If no invoice summary can be found using the payment reference from the "RFF+PQ" field or if no "RFF+PQ" field is available, the field "FTX+VWZ" will be taken into account.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2"> If no "FTX+VWZ" field is available, the field "FTX+ZV2" is taken into account. Note that, in this case, the invoice summary needs to be balanced manually.</li>
+        </ol>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <p>The length of the payment reference is still checked. It should be at least 6 characters long. Leading "0" will be removed if the payment reference was extracted from the "FTX+VWZ" or "FTX+ZV2" field (and its length is 12 characters).</p>
+        </div>
+        <h4>Payment.Date</h4>
+        <p>GLIMS now uses the DTM+202 field on LIN level (if DTM on SEQ level is not available) to fill the <span class="ui_element">Date</span> field in the <span class="ui_element">Payment</span> editor.</p>
+        <h4>Logging</h4>
+        <p>Logging has been improved so that it is now easier to find out which payment reference was used to find the invoice summary.</p>
+    </body>
+</html>

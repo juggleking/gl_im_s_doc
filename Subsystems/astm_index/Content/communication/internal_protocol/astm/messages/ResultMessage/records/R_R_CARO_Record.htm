@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en" xml:lang="en" data-mc-search-type="Stem" data-mc-help-system-file-name="astm_index.xml" data-mc-path-to-help-system="../../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Result message - Isolation carrier observation record (M)</title>
+        <link rel="stylesheet" href="../../../../../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script src="../../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h2>Result message - Isolation carrier observation record (M)</h2>
+        <h3>Usage</h3>
+        <p>The carrier observation information in this record is related to the <a href="R_R_CARR_Record.htm">isolation carrier record</a> preceding it. <br />
+Grafting or checking a carrier for any growth during incubation are considered possible state changes on a carrier that can be observed and for with the outcome can be sent in a result message.
+</p>
+        <h3>Element Layout</h3>
+        <table class="msg1">
+            <tr>
+                <td class="cdm1"><b>Reference</b>
+                </td>
+                <td class="cdm2"><b>Name</b>
+                </td>
+                <td class="cdm3"><b>Description</b>
+                </td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.3.1.1</td>
+                <td class="cdm2">Record type code</td>
+                <td class="cdm3">Fixed: 'caro'</td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.4.1.1</td>
+                <td class="cdm2">Growth result</td>
+                <td class="cdm2"><a href="#Growth_result">Growth result</a> ('N','P','C','U')</td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.4.1.2</td>
+                <td class="cdm2">Status</td>
+                <td class="cdm2"><a href="#Observation_status">Status</a> ('P','F')</td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.4.1.3</td>
+                <td class="cdm2">Offset</td>
+                <td class="cdm2"><a href="#Observation_offset">Time-offset "marker" to the grafting time</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.4.1.4</td>
+                <td class="cdm2">Start time</td>
+                <td class="cdm2"><a href="#Start_time">Start time of the "action" that lead to this observation.</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.4.1.5</td>
+                <td class="cdm2">Completion time</td>
+                <td class="cdm2"><a href="#Completion_time">Completion time</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="cdm1">M.6.1.1</td>
+                <td class="cdm2">Grafting result</td>
+                <td class="cdm2"><a href="#Grafting_result">Grafting reuslt</a>('S','T','F','U')</td>
+            </tr>
+        </table>
+        <h3>Element Descriptions</h3>
+        <h4><a name="Growth_result"></a>Growth result (M.4.1.1)</h4>
+        <p>This field contains a growth result. Hereby indicating that the observation done was to inspect the carrier for growth.<br />
+The possible value are:
+</p>
+        <ul>
+            <li value="1">N: negative</li>
+            <li value="2">P: positive</li>
+            <li value="3">C: contaminated</li>
+            <li value="4">U: unclassified</li>
+        </ul>
+        <h4><a name="Observation_status"></a>Status (M.4.1.2)</h4>
+        <p>This field contains the status of the observation.<br />
+The possible value are:
+</p>
+        <ul>
+            <li value="1">P: preliminary. Indicates that this can still change in the future.</li>
+            <li value="2">F: final. Indicates that the provided observation data will (and should) not change anymore.</li>
+        </ul>
+        <h4><a name="Observation_offset"></a>Offset (M.4.1.3)</h4>
+        <p>This field contains a marker (or label) to indicate a time offset of the last observation since grafting.</p>
+        <p>For example, '8h' or '16h' could be valid markers to indicate that the observation is 8 hours (or 16 hours) after the carrier was grafted. <br />
+Consider it way to indicate a certain phase in the incubation process.</p>
+        <h4><a name="Start_time"></a>Start time (M.4.1.4)</h4>
+        <p>Optional datetime field to indicate at what time the observation started.</p>
+        <h4><a name="Completion_time"></a>Completion time(M.4.1.5)</h4>
+        <p>A datetime to indicate the actual completion time of the observation.<br />
+In case of a grafting result, this one is considered to be the grafting time of the carrier.</p>
+        <h4><a name="#Grafting_result"></a>Grafting reuslt (M.6.1.1)</h4>
+        <p>This field contains a grafting result. Hereby indicating that the observation is the observed outcome of the grafting of the carrier.<br />
+The possible value are:
+</p>
+        <ul>
+            <li value="1">S: success</li>
+            <li value="2">T: temporary failure</li>
+            <li value="3">F: failed</li>
+            <li value="4">U: unfinished</li>
+        </ul>
+    </body>
+</html>

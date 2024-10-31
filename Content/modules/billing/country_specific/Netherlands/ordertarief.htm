@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Country-specific|The Netherlands" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\country-specific\ordertarief.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Nederlandse Ordertarief berekening</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3970"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor377"></a>Nederlandse Ordertarief berekening</h1>
+        <ul>
+            <li value="1"><a href="#1.%20%20%20Inleiding">Inleiding</a>
+            </li>
+            <li value="2"><a href="#2.%20%20%20Implementatie">Implementatie</a>
+            </li>
+            <li value="3"><a href="#3.%20%20%20Voorbeeld%20praktische%20uitvoering">Voorbeeld praktische
+ uitvoering</a>
+            </li>
+        </ul>
+        <h3><a name="1.   Inleiding"></a>1.&#160;&#160; Inleiding</h3>
+        <p>Dit document beschrijft een voorstel voor de berekening van de Nederlandse
+ordertarieven in GLIMS.</p>
+        <p>Een ordertarief omvat:</p>
+        <ol>
+            <li value="1">Een vaste (administratieve) kost voor de uitvoering van een aantal testen.</li>
+            <li value="2">De afnamekosten (prikken, in ontvangst nemen).</li>
+        </ol>
+        <p>In principe mag een ordertarief aangerekend worden per afnametijd. Alle
+monsters, van welke aard dan ook (urine, bloed, enz), die op eenzelfde moment
+zijn bekomen (afgenomen en/of aangenomen) mogen slechts aanleiding geven tot 1
+ordertarief.</p>
+        <p>Voor een aantal testen (vb trombotest), is de afnamekost inbegrepen in de
+prijs van de test zelf. Derhalve mogen monsters waarop uitsluitend zulke testen
+zijn uitgevoerd geen aanleiding geven tot een ordertarief.</p>
+        <p>Voor huisbezoeken mag voor elk ordertarief een bijkomende toeslag gerekend
+worden.</p>
+        <h3><a name="2.   Implementatie"></a>2.&#160;&#160; Implementatie</h3>
+        <h4>2.1&#160; Toekenning van ordertarief-verrekencodes</h4>
+        <p>In GLIMS wordt aan elk materiaal, dat mogelijks aangewend wordt als een
+moedermonster, een ordertariefverrekencode gekoppeld. Dit wil dus zeggen dat de
+aanvraagcodes van deze materialen moeten aangevinkt worden als aanrekenbaar. Aan
+de standaard aanvraagcode van het desbetreffende materiaal wordt dan een
+ordertariefverrekencode gekoppeld.</p>
+        <p>Om te vermijden dat dit ordertarief in rekening wordt gebracht voor monsters</p>
+        <ul>
+            <li value="1">waarop geen testen zijn uitgevoerd,</li>
+            <li value="2">of waarop enkel testen zijn uitgevoerd waarvoor geen ordertarief mag
+ gerekend worden</li>
+            <li value="3">of wanneer het niet echt een moedermonster is</li>
+        </ul>
+        <p>moet de toekenning van die verrekencode conditioneel zijn. Dit kan door in
+het "geldig aantal" veld een overeenkomstige site-functie te
+specifieren. In figuur 1 staat een voorbeeld van zo'n site functie. (gebaseerd
+op de tabel: Requestable, return type: positieve integer):</p><span style="font-family: 'Courier New';"><p>/* Deze MISPL-functie controleert of het specimen dat verrekend wordt in
+aanmerking</p></span><span style="font-family: 'Courier New';">komt voor een OT (=
+ordertarief) aanrekening.
+<ul><li value="1">indien op het specimen geen bepalingen werden uiLgevoerd, of</li><li value="2">indien al de uirgevoerde bepalingen behoren tot een lijstje van testen
+ waarvoor de</li></ul></span><span style="font-family: 'Courier New';">staalnamekosten in de
+ prijs is inbegrepen of</span>
+        <li value="19"><span style="font-family: 'Courier New';">indien het monster geen moedernonster is (dus
+ niet rechtstreeks afgeleid van de</span><span style="font-family: 'Courier New';">patient)</span> <span style="font-family: 'Courier New';">dan wordt een nul teruggageven. */</span></li>
+        <p>STRING BepalingenLijst, Bepaling, BCMGOTLijst;&#160;<br />
+INTEGER Teller' AantalBepalingen;&#160;<br />
+LOGICAL MagAanrekenen;</p>
+        <p>/* Lijst van korte nanen van bepalingen waarvoor geen order tarieven ~ogen
+aangerekend worden */&#160;</p>
+        <p>BC~GOTLijst := "TT1,TTZ,TT3";</p>
+        <p><span style="font-family: 'Courier New';">MagAanrekenen := FALSE;
+<br />THEN
+</span>
+            <br />IF .SpecimenRequest().Specimen.ParentSpecimen = ?
+<br />&#160; <span style="font-family: 'Courier New';">BepalingenLijst :=</span><span style="font-family: 'Courier New';">IfKnownString(.SpecimenRequest().Specimen.Attribute("PropertyShortNameList"));<br />
+&#160;AantalBepalingen := NumEntries(BepalingenLijst, ?);<br /></span>&#160; <span style="font-family: 'Courier New';">Teller := 1;<br /></span>&#160; <span style="font-family: 'Courier New';">WHILE (Teller &lt;=
+AantalBepalingen) AND NOT MagAanrekenen<br /></span>&#160; <span style="font-family: 'Courier New';">DO<br /></span>&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">Bepaling
+:= ENTRY(Teller, BepalingenLijst, ?);<br /></span>&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">IF
+LOOKUP(Bepaling, BCWGOTLijst, ?) = 0<br /></span>&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">THEN
+MagAanrekenen := TRUE;<br /></span>&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">ELSE
+Teller := Teller + 1;<br /></span>&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">ENDIF;<br /></span>&#160; <span style="font-family: 'Courier New';">DONE;<br />
+ENDIF;</span></p><span style="font-family: 'Courier New';"> </span>
+        <h4>2.2&#160; Beperking van 1 ordertarief per afnametijd</h4><u>2.2.1 Verrekenregel</u>
+        <p>Ten einde slechts 1 ordertarief aan te rekenen per afnametijd (moment) wordt
+een verrekenregel ingezet. In het voorbeeld van figuur 2 stelt de verrekencode
+"OT" de ordertariefverrekencode voor.</p>
+        <p align="center">
+            <img border="0" src="ordertarief2.gif" width="631" height="456" />
+        </p>
+        <p align="center"><b>Figuur 2</b>
+        </p><u>2.2.2&#160; Order set scope</u>
+        <p>Tijdens het tariferen worden alle orders van eenzelfde orderset samen
+getarifeerd. Alle afnametijden van de diverse orders worden in rekening gebracht.</p>
+        <p>Wanneer echter 2 orders die (deels) betrekking hebben op eenzelfde afnametijd
+niet in eenzelfde order set opgenomen zijn, dan zullen beide dossiers apart
+beschouwd worden. Derhalve zullen mogelijks beide afnames aanleiding geven tot
+een ordertarief, wat principieel fout is. De situatie waar voor elk order een
+order set wordt gereserveerd is dus te vermijden. Anderzijds moet vermeden
+worden bijzonder grote order sets op te bouwen omdat de tarificatie pas kan
+doorgaan indien alle orders van de set in de gepaste status (volledig) zijn
+beland. Indien dus 1 order lang op zich laat wachten, vertraagt dit de
+verrekening van de andere orders.</p>
+        <p>Een dikwijls gebruikt compromis is als ordersetlabel de ontvangstdatum, de
+voorschrijfdatum of nog beter de datum van de lowest-object-time aan te wenden.
+Als reimbursement party (vorderingspartij) wordt de patient aangeduid (object
+person)) In mensentaal is dat dus: alle orders van eenzelfde patient van 1 dag
+in 1 orderset opnemen. De kans dat hierbij orders, die betrekking hebben op een
+zelfde afnametijd, in verschillende ordersets terecht komen is zeer klein. De
+ordersets zijn doorgaans nooit erg groot (meestal maar 1 order).</p>
+        <h4>2.3&#160; Huisbezoektoeslag</h4>
+        <p>Voor huisbezoeken mag een toeslag gerekend worden. Doorgaans wordt dan voor
+elk ordertarief van het desbetreffende order een extra verrekencode toegevoegd.
+Dit kan eenvoudig gerealiseerd worden met behulp van een verrekenregel.</p>
+        <p>De verrekenregel van figuur 4 zal voor elke verrekencode "OT", een
+bijkomende verrekencode "HuisBezoek" genereren op voorwaarde dat de
+sitefunctie "Indien huisbezoek" (figuur 3) de logische waarde "Ja"
+teruggeeft. (gebaseerd op tabel: Order, return type: Logische waarde)</p>
+        <p align="center">
+            <img border="1" src="ordertarief3.gif" width="584" height="80" />
+        </p>
+        <p align="center"><b>Figuur 3</b>
+        </p>
+        <p align="center">
+            <img border="0" src="ordertarief4.gif" width="613" height="418" />
+        </p>
+        <p align="center"><b>Figuur 4</b>
+        </p>
+        <h3 align="left"><a name="3.   Voorbeeld praktische uitvoering"></a>3.&#160;&#160;
+Voorbeeld praktische uitvoering</h3>
+        <h4>3.1 Verrekencodes</h4>
+        <ul>
+            <li value="1">Er zijn twee verrekencodes beschikbaar. In onderstaand voorbeeld zijn dit:</li>
+        </ul>
+        <blockquote>
+            <ul>
+                <li value="1">Verrekencode Ordertarief = 7999901</li>
+                <li value="2">Verrekencode Huisbezoek = 7999904</li>
+                <li value="3">Aan deze verrekencodes zijn een Tarief en Prijscode (+eventueel
+ prijsformule) opgenomen: Let erop dat voor de verrekencode Huisbezoek
+ alleen het toeslag-bedrag wordt gespecificeerd.</li>
+            </ul>
+        </blockquote>
+        <h4>3.2&#160; Verrekenregels</h4>
+        <p>Definieer 2 verrekenregels volgens onderstaande voorbeelden:</p>
+        <ul>
+            <li value="1">OrderTarief:</li>
+        </ul>
+        <p align="center">
+            <img border="0" src="ordertarief5.gif" width="625" height="324" />
+        </p>
+        <ul>
+            <li value="1">
+                <p align="left">Huisbezoek</p>
+            </li>
+        </ul>
+        <p align="center">
+            <img border="0" src="ordertarief6.gif" width="628" height="326" />
+        </p>
+        <blockquote>
+            <blockquote>
+                <p align="left">Beschrijvings diagnosecontrole:<br />
+    RETURN EnumeratedToString("SamplingLocation", .SamplingLocation) =
+ "Object site";</p>
+            </blockquote>
+        </blockquote>
+        <h4 align="left">3.3&#160;&#160; Regels van verrekenregel</h4>
+        <p align="left">Voeg aan beide verrekenregels een Regel toe (rechtermuismenu):</p>
+        <ul>
+            <li value="1">
+                <p align="left">OrderTarief:</p>
+            </li>
+        </ul>
+        <p align="center">
+            <img border="0" src="ordertarief8.gif" width="586" height="440" />
+        </p>
+        <ul>
+            <li value="1">
+                <p align="left">Huisbezoek</p>
+            </li>
+        </ul>
+        <p align="center">
+            <img border="0" src="ordertarief9.gif" width="548" height="479" />
+        </p>
+        <h4 align="left">3.4&#160;&#160; Toevoegen aan Verrekencode</h4>
+        <p><u>3.4.1&#160; Voeg aan de verrekencode 7999901 (=Ordertarief) het volgende
+toe:</u>
+        </p>
+        <ul>
+            <li value="1">Voeg 2 Verrekeningsregelijninputs toe:</li>
+        </ul>
+        <blockquote>
+            <p>1. Regellijnregel = OrderTarief, Regellijn volgnr = 10</p>
+        </blockquote>
+        <p align="center">
+            <img border="0" src="ordertarief10.gif" width="492" height="354" />
+        </p>
+        <blockquote>
+            <blockquote>
+                <p align="left">2. Idem, maar nu Regellijnregel = Huisbezoek, Regellijn
+ volgnr = 20</p>
+            </blockquote>
+        </blockquote>
+        <ul>
+            <li value="1">
+                <p align="left">Voeg 2 Verrekeningsregellijnoutputs toe</p>
+            </li>
+        </ul>
+        <blockquote>
+            <p align="left">1. Regellijnregel = OrderTarief, Regel = 10</p>
+        </blockquote>
+        <p align="center">
+            <img border="0" src="ordertarief11.gif" width="452" height="366" />
+        </p>
+        <blockquote>
+            <p align="left">2. Idem, Regellijnregel = Huisbezoek, Regellijn volgnr = 20</p>
+        </blockquote><u>3.4.2&#160; Voeg aan de verrekencode 7999904 (=Huisbezoek) het volgende toe:</u>
+        <ul>
+            <li value="1">Voeg 1 Verrekeningsregellijnoutput toe:</li>
+        </ul>
+        <blockquote>
+            <blockquote>
+                <p>Regellijnregel = Huisbezoek, Regel = 20</p>
+            </blockquote>
+        </blockquote>
+        <p align="left"><u>3.4.3 Verrekenregellijn</u>
+        </p>
+        <ul>
+            <li value="1">Bekijk de Lijnexpansie van de Regels van Verrekenregel nu opnieuw:
+            <ul><li value="1">Ordertarief LijnExpansie: +7999901=7999901|</li><li value="2">Huisbezoek LijnExpansie: +7999901=7999904,7999901|</li></ul></li>
+        </ul>
+        <p><u>3.4.4 Voeg aan Verrekencode de Aanvraagcodes toe</u>
+        </p>
+        <p>Voeg aan de Verrekencode 7999901 alle Aanvraagcodes van het Type Materiaal
+toe.</p>
+        <p align="center">
+            <img border="0" src="ordertarief12.gif" width="396" height="248" />
+        </p>
+        <ul>
+            <li value="1">
+                <p align="left">Geldig aantal:</p>
+            </li>
+        </ul><span style="font-family: 'Courier New';"><p>/* Deze MISPL-functie controleert of het specimen dat verrekend wordt in
+aanmerking</p></span><span style="font-family: 'Courier New';">komt voor een OT (=
+ordertarief) asnrekening.</span>
+        <ul>
+            <li value="1"><span style="font-family: 'Courier New';">- indien op het specimen geen bepalingen
+ werden uitgevoerd, of</span>
+            </li>
+            <li value="2"><span style="font-family: 'Courier New';">- indien al de uirgevoerde bepalingen
+ behoren tot een lijstje van testen waarvoor de</span><span style="font-family: 'Courier New';">staalnamekosten
+ in de prijs is inbegrepen of</span>
+            </li>
+            <li value="3"><span style="font-family: 'Courier New';">- indien het monster geen mcedermonster is Idus niet rechtstreeks
+ afgeleid van de</span><span style="font-family: 'Courier New';">patient) dan
+ wordt een nul teruggageven. */</span>
+            </li>
+        </ul>
+        <p><span style="font-family: 'Courier New';">STRING BepalingenLijst, Bepaling' BCWGOTLijst;<br />INTEGER Teller</span>&#160;
+  <span style="font-family: Arial;">, </span><span style="font-family: 'Courier New';">AantalBepalingen;&#160;<br />
+  LOGICAL MagAanrekenen;</span></p>
+        <p>/* Lijst van korte namen van bepalingen wearvoor geen order tarieven mogen
+ aangerekend worden */</p>
+        <p>BCWGOTLijst := "";</p>
+        <p>MagAanrekenen := FALSE;</p>
+        <p><span style="font-family: 'Courier New';">IF .Specimen.ParentSpecimen = ?
+  <br /></span>
+            <br />THEN
+  &#160; <span style="font-family: 'Courier New';">BepalingenLijst :=</span><span style="font-family: 'Courier New';">IfKnownString(.Specimen.Attribute("PropertyShortNameList"));<br /></span>&#160; <span style="font-family: 'Courier New';">AantalBepalingen :=
+ NumEntries(BepalingenLijst, ?);<br /></span>&#160; <span style="font-family: 'Courier New';">Teller := 1;<br /></span>&#160; <span style="font-family: 'Courier New';">WHILE (Teller &lt;=
+ AantalBepalingen) AND NOT MagAanrekenen<br />
+  &#160;DO<br />
+  &#160;&#160;&#160; Bepaling := ENTRY(Teller, BepalingenLijst, '?);<br />
+  &#160;&#160;&#160; /* Message(Bepaling); */<br /></span>&#160;&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">IF
+ LOOKUP(Bepaling, BCWGOTLijst, ?) = 0<br /></span>&#160;&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">THEN<br /></span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">MagAanrekenen
+ := TRUE;<br /></span>&#160;&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">ELSE<br /></span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span style="font-family: 'Courier New';">Teller
+ := Teller + 1;&#160;<br />
+  &#160;&#160;&#160; ENDIF;<br /></span>&#160; <span style="font-family: 'Courier New';">DONE;&#160;<br />
+  ENDIF;<br /><br />
+  RETURN IF MagAanrekenen THEN 1 ELSE O;</span></p><span style="font-family: 'Courier New';"> </span>
+        <p align="left"><u>3.4.5 Supplementlijst</u>
+        </p>
+        <p>Denk eraan een eventuele supplementlijst bij de polis(sen) uit te schakelen</p>
+    </body>
+</html>

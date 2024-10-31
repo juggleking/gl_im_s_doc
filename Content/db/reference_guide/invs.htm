@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - InvoiceSummary</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1105"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+InvoiceSummary&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Invoice summary</td>
+                <td>
+invs</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+With Delete Audit</td>
+            </tr>
+        </table>
+        <p>
+InvoiceSummary is one of the three possible subtypes of a financial transaction. An invoice summary in GLIMS is the actual document that is sent to a customer (fund, patient, ..) with a friendly request to pay: so the 'invoice summary' plays the role of the 'real world' invoice: do not use the GLIMS' table 'Invoice' for that purpose.
+<br /><br />Invoice summaries group one or more invoices, based on the definitions of the 'invoice grouping type' table. It is possible to create reminders for invoice summaries and to register payments for them.
+<br /></p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Amount"></a>
+        <h3>
+Amounts &gt; Amount</h3>
+        <div class="MemberHelp">
+            <p>
+The amount represents the sum of net amounts of the invoice children. This means that billing item level discounts are included in this amount, but not VAT and not any invoice summary level discounts.
+<br />This is also the amount on which any discount defined with the DiscountGroups is calculated.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>Amount</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DocNo"></a>
+        <h3>
+Doc no</h3>
+        <div class="MemberHelp">
+            <p>
+The document number of the invoice summary. This number is assigned by a dedicated site function defined in GLIMS's configuration.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>DocNo</b></p>
+        </div><a name="F_DueDate"></a>
+        <h3>
+Main &gt; Payment due date</h3>
+        <div class="MemberHelp">
+            <p>
+This is the due date of the invoice summary. It is set during document numbering to a certain number of days after the invoice summary external date. This number of days is the 'payment term' defined by the payer in the Correspondent table. If the payer has no 'payment term' specified, then the payment term defined by the firm is used.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>DueDate</b></p>
+        </div><a name="F_ExternalDate"></a>
+        <h3>
+External date</h3>
+        <div class="MemberHelp">
+            <p>
+The invoice summary's external date. It is explicitely set during document numbering. The external date has no relation with the 'grouping date'</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>ExternalDate</b></p>
+        </div><a name="F_FinancialTransaction"></a>
+        <h3>
+Main &gt; Transaction</h3>
+        <div class="MemberHelp">
+            <p>
+This field refers to the financial transaction.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Invariant </span><span class="Type"><a href="ftr.htm">FinancialTransaction</a></span>&#160;<b>FinancialTransaction</b></p>
+        </div><a name="F_Firm"></a>
+        <h3>
+Firm</h3>
+        <div class="MemberHelp">
+            <p>
+The firm is the sender of the invoice summary. It is therefore also the firm that receives the corresponding payments.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<b>Firm</b></p>
+        </div><a name="F_GrossVAT"></a>
+        <h3>
+Amounts &gt; Gross VAT</h3>
+        <div class="MemberHelp">
+            <p>
+The invoice summary's gross VAT is the sum of the VAT of the invoice children. It is the total gross VAT on the invoice summary's 'amount' field: this is the amount BEFORE any invoice summary discounts are granted. Therefore this field is NOT the total VAT to be paid!</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Fractional</span>&#160;<b>GrossVAT</b></p>
+        </div><a name="F_GroupingDate"></a>
+        <h3>
+Main &gt; Grouping date</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the 'invoice grouping type' field references a type with a 'per period' grouping. In that case the 'grouping date' defines the last day of the corresponding period for this invoice summary. It is set during invoice summary creation.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type">Date</span>&#160;<b>GroupingDate</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">InvoiceSummary</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InvoiceGroupingType"></a>
+        <h3>
+Main &gt; Invoice grouping type</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the 'invoice grouping type' record which was used to create the invoice summary. It is read the next time that an invoice is put on this invoice summary to determine if this is the correct one.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<b>InvoiceGroupingType</b></p>
+        </div><a name="F_InvoiceTypes"></a>
+        <h3>
+More &gt; Invoice types</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates what the type of the Invoices is that figures on this InvoiceSummary: only 'Credit' invoices, only 'Debit' invoices or 'Mixed'. This field does NOT indicate debet/credit of the invoice summary itself: that is determined by the sign of the Amount. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="extendedfinancetype.htm">ExtendedFinanceType</a></span>&#160;<b>InvoiceTypes</b></p>
+            <p>
+One of: <span class="Parameter">Debit, Credit, Mixed</span></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Original"></a>
+        <h3>
+More &gt; Original invoice summary</h3>
+        <div class="MemberHelp">
+            <p>
+When a new invoice summary is made using the 'collect changes' method, this field is used to refer to the original invoice summary.</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">InvoiceSummary</a></span>&#160;<b>Original</b></p>
+        </div><a name="F_OriginalDueDate"></a>
+        <h3>
+Audit &gt; Original due date</h3>
+        <div class="MemberHelp">
+            <p>
+Original due date (before reminder)</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>OriginalDueDate</b></p>
+        </div><a name="F_Payer"></a>
+        <h3>
+Main &gt; Payer</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the invoice summary's payer. It is the correspondent that will effectively receive this invoice summary.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Payer</b></p>
+        </div><a name="F_PayerType"></a>
+        <h3>
+Main &gt; Payer type</h3>
+        <div class="MemberHelp">
+            <p>
+The payer type of the invoice invoice summary. It reflects the relation of the payer with the invoice's orders. All invoices on an invoice summary have the same payer type.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<b>PayerType</b></p>
+            <p>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span></p>
+        </div><a name="F_PaymentReference"></a>
+        <h3>
+Main &gt; Payment reference</h3>
+        <div class="MemberHelp">
+            <p>
+The value of this field is intended to be printed on invoice summaries as a reference to be used by the Payer when paying his bill. In Belgium, this would typically be an 'OGM' number. The value of this field is set by the same site function that sets the document number. See the 'SpecificSite' table.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>PaymentReference</b></p>
+        </div><a name="F_Phrase"></a>
+        <h3>
+More &gt; Phrase</h3>
+        <div class="MemberHelp">
+            <p>
+This is a free format phrase. It is not explicitly used by GLIMS. It is possible however to print this phrase on billing documents.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Phrase</b></p>
+        </div><a name="F_PrintOutCount"></a>
+        <h3>
+Audit &gt; Print out count</h3>
+        <div class="MemberHelp">
+            <p>
+The print out count indicates the number of times this invoice summary was printed with the 'mark' setting on.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>PrintOutCount</b></p>
+        </div><a name="F_ReminderLevel"></a>
+        <h3>
+Main &gt; Reminder level</h3>
+        <div class="MemberHelp">
+            <p>
+This field reflects the level of the highest 'InvoiceSummaryReminder' that is created for this invoice summary. The values of this field are defined by the site enumerated 'ReminderLevel'. If no invoice summary reminders exist for this invoice summary, this level has its lowest possible value.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">SiteEnumerated</span>&#160;<b>ReminderLevel</b></p>
+        </div><a name="F_Series"></a>
+        <h3>
+Main &gt; Series</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the invoice summary series. It allows to group invoices of a payer into 2 or more invoice summaries for the same period, but for different purposes. This field is set with the value returned by the 'series' site function defined in the 'invoice grouping type' table.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Series</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Main &gt; Status</h3>
+        <div class="MemberHelp">
+            <p>
+The status of the invoice summary. The final status is 'Balanced' (after 'Fixed') and indicates that the invoice summary is completely paid. This is also reflected by the fact that 'unbalanced amount' equals 0 and that the sum of the Balance records pointing to this invoice summary equals the 'total amount' field.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Numbered, Fixed, Balanced, Purged</span></p>
+        </div><a name="F_ToCheck"></a>
+        <h3>
+Main &gt; To check</h3>
+        <div class="MemberHelp">
+            <p>
+An indication marking the fact that this invoice summary needs to be verified before being send to the payer. GLIMS does not use the value of this field itself, but the invoice summary query allows selecting on this field. 
+<br />The value of this field can be changed manually (i.e. set to FALSE after verification), but is initially set by GLIMS to 'no' except if any of the following conditions was true:
+<br />- for one of the order sets billed in this invoice summary the 'check invoicing' was set
+<br />- the 'check invoicing' field of the payer (correspondent) was set.
+<br />- the 'check mark' parameter was set when using the invoice's method 'invoice summary creation'.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ToCheck</b></p>
+        </div><a name="F_TotalAmount"></a>
+        <h3>
+Total amount</h3>
+        <div class="MemberHelp">
+            <p>
+This is the invoice summary's total amount, including VAT and any discounts on this invoice summary. This is the amount that must be paid. 
+<br />Note: field is calculated as: (invs_Amount + invs_Vat - total of disc_Amount)
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>TotalAmount</b></p>
+        </div><a name="F_TotalDiscount"></a>
+        <h3>
+Amounts &gt; Total discount</h3>
+        <div class="MemberHelp">
+            <p>
+The invoice summary's total discount is the sum of its discounts.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>TotalDiscount</b></p>
+        </div><a name="F_UnbalancedAmount"></a>
+        <h3>
+Amounts &gt; Unbalanced amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field reflects the part of 'total amount' that is not paid yet. It is initially set to the value of 'total amount'. It is automatically updated when payments or gains (or other invoice summaries) are 'balanced' with this invoice summary.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>UnbalancedAmount</b></p>
+        </div><a name="F_VAT"></a>
+        <h3>
+Amounts &gt; VAT</h3>
+        <div class="MemberHelp">
+            <p>
+This is the VAT to be paid. It is the rounded value of the 'GrossVAT', taking into account the Discount.
+<br />Value of VAT = round(GrossVAT(1-TotalDiscount/Amount)).
+<br />It is rounded according to the invoice item rounding factor specified in the GLIMS configuration.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Fractional</span>&#160;<b>VAT</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_AssignDocumentNumber"></a>
+        <h3>
+Assign document number&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method assigns a document number (and the payment reference!) to the invoice summary. The invoice summary number is generated by a dedicated site function, defined in the GLIMS's configuration. This method skips invoices summaries that are already in the status numbered or higher.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>AssignDocumentNumber</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The external date that must be assigned to the invoice summary during numbering. If this parameter is unknown ("?") then the default of 'today' is applied.</dd>
+            </dl>
+        </div><a name="M_AutoBalance"></a>
+        <h3>
+Automatic balance&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method will try to balance an unbalanced invoice summary with other financial transactions. Candidate financial transactions for balancing are scanned in the order as explained below until a financial transaction is found that was not yet balanced. That one is used to (partially) balance the InvoiceSummary. The scanning order is as follows:
+<br />1. First the invoice summary's 'original' link is followed if available.
+<br />2. Then the other invoice summary records that point to the same 'original' are tried next.
+<br />3. Then other invoice summary records for the same Payer and Firm are checked (i.e. credit notes etc...)
+<br />4. Finally, Payments for the same Payer and Firm are checked.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>AutoBalance</b> ()</p>
+        </div><a name="M_InvoicesummaryremindersOfInvoicesummaryByExternalDate"></a>
+        <h3>
+By External date&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoicesummaryremindersOfInvoicesummaryByExternalDate</b> ()</p>
+        </div><a name="M_InvoicesummaryremindersOfInvoicesummaryByLevel"></a>
+        <h3>
+By Level&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoicesummaryremindersOfInvoicesummaryByLevel</b> ()</p>
+        </div><a name="M_InvoiceSummaryStatusChange"></a>
+        <h3>
+Change status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Upgrades or downgrades the status of the invoice summary. If an invoice summary is upgraded to the status 'fixed' and its unbalanced amount already equals 0, then the resulting status will be 'balanced'.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>InvoiceSummaryStatusChange</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span></dt>
+                <dd>
+If TRUE, the invoice summary status is upgraded. Otherwise it is downgraded. Invoice summaries that already have the lowest (downgrading) or highest (upgrading) status are ignored. Any non-allowed status change (like downgrading an invoice summary on a financial shipment that is already fixed) causes an error. </dd>
+            </dl>
+        </div><a name="M_CleanOrCredit"></a>
+        <h3>
+Clean or credit invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Credits (or deletes) invoices of the selected invoice summaries. This function will make credit invoices (or delete the invoices) and will downgrade the Order set(s) status so that re-tariffication is possible. 
+<br /><br />Optionally a browser, with associated orders or order sets, can be launched at the end so that the corrections can be made immediately.
+<br /><br />Remarks:
+<br />- If the invoice summary contains more than one invoice then the user has to select the invoice(s) that must be credited. 
+<br />- If the credit option was used but the invoice was not yet fixed (which means it was not sent/printed) then it will be deleted.
+<br />- The delete option is also capable of deleting fixed invoices (except already credited invoice that can not be deleted).
+<br /><br />Limitation: if the 'Browse order sets' option is used then the associated order sets are not preselected but the browser is positioned on the first one).</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>CleanOrCredit</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span>, <span class="Type"><a href="cleanorcreditbrowseoptions.htm">CleanOrCreditBrowseOptions</a></span>&#160;<span class="Parameter">BrowseOption</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PlaceCNOnOriginalInvoiceSummary</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixTouchedInvoiceSummary</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span></dt>
+                <dt><span class="Type"><a href="cleanorcreditbrowseoptions.htm">CleanOrCreditBrowseOptions</a></span>&#160;<span class="Parameter">BrowseOption</span></dt>
+                <dd>
+One of: <span class="Parameter">Orders, Order sets</span><br />
+Indicate what kind of browser should be started after the cleaning.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PlaceCNOnOriginalInvoiceSummary</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixTouchedInvoiceSummary</span></dt>
+            </dl>
+        </div><a name="M_CollectChangesToShip"></a>
+        <h3>
+Collect changes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Collects all the changes, made to an invoice summary's invoices, and assigns those new invoices to one or more new invoice summaries. The function's input parameters control the program behaviour. This function is especially useful when an invoice summary turns out to be incorrect after is was sent to the payer (therefore it is fixed).
+<br />The incorrect invoices must be (partially) credited, and as a result, new invoices can be created. After these corrections are made, one wants to 'collect' the new invoices and/or credit notes in order to send a new correct invoice summary and/or credit note to the payer. This method is also used by the 'make new version' method on the financial shipment table.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>CollectChangesToShip</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvsDocNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">KeepInvoiceDocNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ReuseInvoiceSummaries</span>, <span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MixedInvoiceSummary</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticBalance</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CollectCreditNotes</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CollectNewInvoices</span>, <span class="Type">String</span>&#160;<span class="Parameter">InvoicesOfArguedCNOnly</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span></dt>
+                <dd>
+If FALSE, only the previously created credit notes and new invoices related to the original invoice summary are collected.
+<br />If TRUE, the 'collecting' is preceded with a full crediting. This means that any non (or partially) creditted invoice of the original invoice summary is also fully credited and new invoices are made as copies of the originals. This means that all the invoices of the orginal invoice summary are affected.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvsDocNo</span></dt>
+                <dd>
+If TRUE, newly created invoice summaries will be numbered.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">KeepInvoiceDocNo</span></dt>
+                <dd>
+If TRUE, new invoices that are created during the 'collect changes' will have the same document number as the original invoice, but with a higher version number. If FALSE, new invoice document numbers are assigned.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ReuseInvoiceSummaries</span></dt>
+                <dd>
+If TRUE, this method will try to reuse open (non-fixed) invoice summaries. Only invoice summaries that already refer to the current invoice summary as the 'original' are candidates. If none are found, new ones are created anyhow. </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span></dt>
+                <dd>
+The external date to be used for the invoice summaries that will be created. If left unknown "?", then the default date is used. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MixedInvoiceSummary</span></dt>
+                <dd>
+Indicates if invoice summaries with 'InvoiceTypes' mixed should be made. If false, credit and debit invoices will be collected on seperate invoice summaries</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticBalance</span></dt>
+                <dd>
+Try to balance the invoice summary(ies).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CollectCreditNotes</span></dt>
+                <dd>
+Should credit notes be collected or not.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CollectNewInvoices</span></dt>
+                <dd>
+Should new invoices be collected or not.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">InvoicesOfArguedCNOnly</span></dt>
+                <dd>
+In case new invoices are collected, restrict to invoices of credit notes matching the specified template. (? = all credit notes, *= all credit notes with a rejection reason filled in, ' '= all credit notes without a rejection reason.
+<br />You can make use of a period . or an asterisk * or any other Progress MATCHES pattern.
+<br /></dd>
+            </dl>
+        </div><a name="M_CreateReminder"></a>
+        <h3>
+Create a reminder&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method creates a new 'invoice summary reminder' record for the InvoiceSummary.  
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>CreateReminder</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">SupplementAmount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SupplementIsAbsolute</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">NextLevel</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Print</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">Template</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+the date that will be given to the reminder. "?" defaults to TODAY.</dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">SupplementAmount</span></dt>
+                <dd>
+mandatory field that specifies the supplement amount to be added to the supplement. This amount is not included in the invoice summary's total amount.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SupplementIsAbsolute</span></dt>
+                <dd>
+indicates if the supplement amount is an absolute amount or must be calculated in addition to the previous supplement amount for this invoice summary</dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">NextLevel</span></dt>
+                <dd>
+Specifies the reminder level for the new reminders. If "?" is specified, then the next available reminder level will be used. By specifying 'next level' explicitly, it is possible to skip reminder levels, as long as the new reminderlevel is higher then the previous. The invoice summary's reminder level is also set to this new value.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Print</span></dt>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">Template</span></dt>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span></dt>
+            </dl>
+        </div><a name="M_CreditAndDebetNotes"></a>
+        <h3>
+Credit and debet notes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CreditAndDebetNotes</b> ()</p>
+        </div><a name="M_Discounts"></a>
+        <h3>
+Discounts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Discounts</b> ()</p>
+        </div><a name="M_Firm"></a>
+        <h3>
+Firm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Firm</b> ()</p>
+        </div><a name="M_InvoiceGroupingType"></a>
+        <h3>
+Invoice grouping type&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceGroupingType</b> ()</p>
+        </div><a name="M_Invoices"></a>
+        <h3>
+Invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Invoices</b> ()</p>
+        </div><a name="M_Original"></a>
+        <h3>
+Original invoice summary&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Original</b> ()</p>
+        </div><a name="M_Payer"></a>
+        <h3>
+Payer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Payer</b> ()</p>
+        </div><a name="M_PlaceOnFinancialShipment"></a>
+        <h3>
+Place on financial shipment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method places the selected invoice summaries on one or more financial shipments, according to the specifications. See also the corresponding method on the financial transaction table.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PlaceOnFinancialShipment</b> (<span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignExternalId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AutoAssignment</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultExternalDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixInvoiceSummary</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">DestinationSiteFunction</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberInvoiceSummary</span>, <span class="Type"><a href="afps.htm">bt_ActualFunctionParameterSet</a></span>&#160;<span class="Parameter">SendParameterSet</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span></dt>
+                <dd>
+If manual assignment of the external id of the shipment is choosen (with the AutoAssignment parameter), then this parameter defines that external id. </dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span></dt>
+                <dd>
+If manual assignment of the external id of the shipment is choosen (with the AutoAssignment parameter), then this parameter defines that version number of the shipment.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignExternalId</span></dt>
+                <dd>
+Defines if an external Id must be assigned to newly created financial shipments. If YES, then the value of the AutoAssignment parameter defines how the external id is assigned. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutoAssignment</span></dt>
+                <dd>
+If the external Id must be assigned (see the AssignExternalId parameter), then this parameter defines how it is assigned. If this parameter is TRUE, then the dedicated site function defined in the GLIMS configuration is used to create the external id. If set to FALSE, the external Id and version number must be explicitely defined in the dedicated parameters.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultExternalDate</span></dt>
+                <dd>
+In case the external Id must be assigned, this parameter defines if the default date (today) must be used as external date or not. If not, the external date must be specified in the ExternalDate parameter. </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The ExternalDate for the new financial shipment, in case one chooses to manually assign it (see UseDefaultExternalDate parameter). </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixInvoiceSummary</span></dt>
+                <dd>
+If TRUE, this method tries to fix the invoice summary as well as the invoices on it. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">DestinationSiteFunction</span></dt>
+                <dd>
+Invoice summary based site function that determinates the shipment's destination; the return value of this site function must be a valid correspondent id. You should either specify this site function or the Destination correspondent parameter: not both!
+<br />Using this site function, it is possible to create several financial shipments in a single run. </dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span></dt>
+                <dd>
+The shipments destination (addressee for received shipments). If you use this parameter, you should not specify the DestinationSiteFunction.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberInvoiceSummary</span></dt>
+                <dd>
+Optional numbering of invoice summaries (and invoices).</dd>
+                <dt><span class="Type"><a href="afps.htm">bt_ActualFunctionParameterSet</a></span>&#160;<span class="Parameter">SendParameterSet</span></dt>
+                <dd>
+if specified, the produced financial shipments are directly send with this parameters.
+<br /></dd>
+            </dl>
+        </div><a name="M_PostBalanceAsGain"></a>
+        <h3>
+Post unbalanced amount as loss&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method creates a Gain record for the unbalanced amount of the invoice summary and uses it to balance the invoice summary. As a result the unbalanced amount will be 0. If the invoice summary was Fixed, it will become automatically 'Balanced'. The Gain is created with the same Firm and Payer as the invoice summary. </p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PostBalanceAsGain</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The date that will be given to the created Gains. "?" is TODAY.</dd>
+            </dl>
+        </div><a name="M_Print"></a>
+        <h3>
+Print&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Prints the selected invoice summary according to the specifications</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Print</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PayerLayoutAsDefault</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToPrinter</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+The layout (billing document template) with which the invoice summary will be printed. Note that this can be overriden by the 'JobExpressionId' parameter. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+If TRUE, the fact that this invoice summary is printed will be logged in the BillingDocumentOutPrint table. In that case also the printoutcount field of the invoice summary will be incremented</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+If TRUE, the invoice summary will be fixed after printing.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dd>
+If output to file is selected, this parameter must contain the filename.</dd>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dd>
+The printer</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dd>
+The number of copies to print</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dd>
+If TRUE, an on-screen preview of the printout is shown before printing. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span></dt>
+                <dd>
+Invoice summary based, string valued site function. If present, this site function returns a "\" seperated list of tags that override the other parameter specifications. The following tags are supported:
+<br />\Layout=&lt;layoutname&gt;
+<br />\Printer=&lt;printername&gt;
+<br />\Copies=&lt;number&gt; 
+<br />\Language=&lt;languangecode&gt;
+<br />\Columns=&lt;n&gt;
+<br />\Orientation=&lt;[v]&gt;
+<br />Each tag is optional, but if specified it overrides the value specified in the dialog box.
+<br />It is possible to return multiple list, each seperated by a ",". Each tagged list starts its own printjob.
+<br />As an example:
+<br />"\Layout=INVSSimpel\Printer=cat &gt; PrintFile1,\Layout=Test\Printer=_Wordpad"
+<br />This starts 2 printjobs.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span></dt>
+                <dd>
+If output to file is selected, this indicates that the default filename should be used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dd>
+In case of output to file indicates that the new printout must be appended to the output file.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span></dt>
+                <dd>
+Indicates that output must be written to file. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+If TRUE, the invoices on this invoice summary will be fixed after printing, but before fixing the invoice summary itself (if the 'fix' parameter was specified).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PayerLayoutAsDefault</span></dt>
+                <dd>
+If true, the 'invoice summary layout' specified by the payer is used in stead of the 'templateid'. Note that any layout returned by the 'job expression' site function has even higher precedence.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span></dt>
+                <dd>
+Indicate if the selected records must be printed as one document or separately. Seperatly means that each selected invoice summary is printed individually using the specified settings. Otherwise, the selected invoice summaries are treated as a single 'virtual' financial shipment and can be printed with a billing document template of type 'FinancialShipment'.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span></dt>
+                <dd>
+If TRUE, invoice sumamries that are not numbered yet are first numbered before they are printed.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+If TRUE, unnumbered invoices on this invoice summary are numbered before printing takes place (and before any numbering of the invoice summary itself).</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span></dt>
+                <dd>
+Explicit external that is applied for unnumbered invoices summaries when the option numbering during the printing was used. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span></dt>
+                <dd>
+Indicates if the selected records must be dumped in one file or separately. 
+<br />Separately means that for each selected invoice summary one unique file is created. 
+<br />Otherwise, the selected invoice summaries are treated as a single 'virtual' financial shipment and are dumped into one global file.
+<br /><br /><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToPrinter</span></dt>
+                <dd>
+Indicates that output must be routed to a printer. </dd>
+            </dl>
+        </div><a name="M_Printouts"></a>
+        <h3>
+Printouts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Printouts</b> ()</p>
+        </div><a name="M_Rebalance"></a>
+        <h3>
+Rebalance credited invoice summary(ies)&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Moves the payment (balance record) of a credited invoice summary to the new invoice summary version.
+<br />The original Invoice summary must be invoice specific and fully credited.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Rebalance</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">TestRun</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NewAmountMustBeTheSame</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">LogWhenNewVersionIsMissing</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">BalanceCreditInvoiceSummary</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PostAsLoss</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PostAsGain</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">TestRun</span></dt>
+                <dd>
+YES=test run without update</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NewAmountMustBeTheSame</span></dt>
+                <dd>
+If Yes then the payment is only moved when the new invoice summary has the same amount.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">LogWhenNewVersionIsMissing</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">BalanceCreditInvoiceSummary</span></dt>
+                <dd>
+When enabled, the credit invoice summary will (if possible) be balanced with the original invoice summary.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PostAsLoss</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PostAsGain</span></dt>
+            </dl>
+        </div><a name="M_RecalculateDiscounts"></a>
+        <h3>
+Recalculate discounts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Forces a reevaluation of all discounts of this invoice summary. Discounts are calculated automatically when an invoice summary reaches the status 'Numbered' and are from then on recalculated automatically when the invoice summary amount changes. It is possible however that the configuration of discounts (the discount group table) is changed and that one wanst to force reevaluation of the discounts.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RecalculateDiscounts</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">OnlyExistingDiscounts</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">KeepManualDiscounts</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OnlyExistingDiscounts</span></dt>
+                <dd>
+If TRUE, recalculates only existing discount records. Otherwise all discount goups are reevaluated, possibly giving raise to new discount records for this invoice summary.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">KeepManualDiscounts</span></dt>
+                <dd>
+If TRUE, manually created discounts are not changed. Manually added discounts are recognized by the fact that the 'auto update' flag of their discount group is set to FALSE.</dd>
+            </dl>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SendMail"></a>
+        <h3>
+Send mail&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Mail billing document</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SendMail</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+Billing document template</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span></dt>
+                <dd>
+Use billing document template of payer</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+Mark that document has been mailed</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span></dt>
+                <dd>
+Number invoices before mailing</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+Number also the child invoices </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+External date of the invoice summary (? = today)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+Fix the document</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+Fix child invoices</dd>
+                <dt><span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span></dt>
+                <dd>
+One of: <span class="Parameter">Invoice, Invoice summary, Financial transaction, Financial shipment, Billing document printout</span><br />
+Recordtype</dd>
+            </dl>
+        </div><a name="M_FinancialTransaction"></a>
+        <h3>
+Transaction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FinancialTransaction</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_CompareInvoiceReimburser"></a>
+        <h3>
+CompareInvoiceReimburser&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Compares the invoice summary payer with the reimbursers of the invoices on the invoice summary.
+<br />+ Returns TRUE if all the invoice reimbursers equal the invoice summary payer.
+<br />+ Returns FALSE if none of the invoice reimbursers equals the invoice summary payer.
+<br />+ Returns unknown (?) in all other cases (some of the invoice reimbursers equal invoice summary payer).</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>CompareInvoiceReimburser</b> ()</p>
+        </div><a name="M_Data"></a>
+        <h3>
+Data&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+General purpose site function that returns a string with information regarding this invoice summary. Which data is returned is determined by the 'AttributeList' parameter. The return value is always a string.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Data</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span></dt>
+                <dd>
+The name of the attribute requested. The following values are supported:<br /><br />- "OrderList": returns a comma-separated list of internal id's of orders that occur on this invoice summary (via the invoices). <br /><br />- "CostLocationList": returns a tagged list with tags named &lt;Department.CostLocationPrefix&gt;+&lt;Costlocation.Code&gt; and with as value the total amount for all invoice items for the combination department prefix and cost location. The department prefix can be specified in the Department's site attribute '_CostLocationPrefix': a value '' means no subtotaling per department, a value ? means prefix=department.Mnemonic.   <br />Example:"\Dept1CostLocation1=120.23\Dept1CostLocation2=500.1\Dept2CostLocation1=20.5"<br /><br />- "UnBalancedAmount:&lt;Date&gt;" returns the unbalanced invoice summary amount at a specific date. Where &lt;Data&gt; has format dd/mm/yyyy or the used date format (defined in session.pf)<br /><br />- "BalancedAmount:&lt;Date&gt;" returns the balanced amount at a specific date.<br /><br />- "PaidAmount:&lt;Date&gt;" returns the paid amount at a specific date(=balanced amount without counting the Gains).<br /><br />- "NetCreditedAmount" : starting from the invoice summary's invoices, all amounts of the related creditnotes are totalized, and eventually decreased with the amount(s) of the new invoices related to these creditnotes AND (important) belonging to the same payer. <br />When the calculated result is negative, this result will be returned as the "NetCreditedAmount" (otherwise 0 is returned).<br />Ex. for an invoice summary with all invoices fully credited, and without generation of new invoices (for that same payer), the net credited amount will comply with the invoice summary amount.<br />Remark : when one or more ordersets related to the invoice summary are not (completely) retariffed (after crediting), an empty string will be returned (reason : new invoices are not yet created).<br /><br />- "NetDebitedAmount" : calculation : logic cfr. "NetCreditedAmount"<br />When the calculated result is positive, this result will be returned as the "NetDebitedAmount" (otherwise 0 is returned). |<br />Ex. the returned amount &gt; 0 indicates that the payer has to pay an additional amount (for all kind of reason).<br />Remark : cfr "NetCreditedAmount".<br /><br />- "ContainsBloodRequest" : returns "0" where there are no bloodrequests with blood bags with status "Administered". Returns "1" when at least one blood request has been found with blood bags with status "Administered"<br /></dd>
+            </dl>
+        </div><a name="M_FirstInvoice"></a>
+        <h3>
+FirstInvoice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the first invoice (by docno) of an invoice summary.</p>
+            <p class="Synopsis"><span class="Type"><a href="inv.htm">Invoice</a></span>&#160;<b>FirstInvoice</b> ()</p>
+        </div><a name="M_GetReminder"></a>
+        <h3>
+GetReminder&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the InvoiceSummaryReminder record associated with this invoice summary, based on the parameters specified. 
+<br />Example of dynamic text on InvoiceSummary: "We added a penalty of {= FractionalToString(.GetReminder(?,?).SupplementAmount, "%f")} BEF"</p>
+            <p class="Synopsis"><span class="Type"><a href="isr.htm">InvoiceSummaryReminder</a></span>&#160;<b>GetReminder</b> (<span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">Level</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>)</p>
+            <dl>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">Level</span></dt>
+                <dd>
+If 'Level' is specified, then the InvoiceSummaryReminder with the corresponding ReminderLevel is returned. If neither 'Level' or 'ExternalDate' is specified, then the invoice summary reminder with the same level as the invoice summary is returned.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+This parameter is only used if the 'level' parameter is unknown (?). In that case the InvoiceSummaryReminder that was valid at the specified date is returned.
+<br /></dd>
+            </dl>
+        </div><a name="M_MaximumNumberOfItems"></a>
+        <h3>
+MaximumNumberOfItems&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This site function finds the invoice on this invoice summary with the most invoice items and returns that number of invoice items.</p>
+            <p class="Synopsis"><span class="Type">Integer</span>&#160;<b>MaximumNumberOfItems</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Invoices of invoice summary</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Supportive Nullify </span><a href="inv.htm">Invoice</a>.<a href="inv.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div>
+        <h3>
+Credit and debet notes of invoice summary</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="#" class="selected">InvoiceSummary</a>.<a href="#F_Original">Original</a></p>
+        </div>
+        <h3>
+Printouts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bdop.htm">BillingDocumentOutPrint</a>.<a href="bdop.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div>
+        <h3>
+Reminders of Invoice Summary</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="isr.htm">InvoiceSummaryReminder</a>.<a href="isr.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div>
+        <h3>
+Discounts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="disc.htm">Discount</a>.<a href="disc.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div>
+        <h3>
+Billing document discount lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bddl.htm">w_BillingDocumentDiscountLine</a>.<a href="bddl.htm#F_InvoiceSummary">InvoiceSummary</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_FinancialShipment"></a>
+        <h3>
+Financial shipment</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>FinancialShipment</b> (<span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">FinancialShipment</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">FinancialShipment</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="Q_Standard"></a>
+        <h3>
+Standard invoice summary query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromGroupingDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToGroupingDate</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinPrintoutCount</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span>, <span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span>, <span class="Type"><a href="extendedfinancetype.htm">ExtendedFinanceType</a></span>&#160;<span class="Parameter">InvoiceTypes</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Payer</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumTotalAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumTotalAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumUnbalancedAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumUnbalancedAmount</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimumReminderLevel</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MaximumReminderLevel</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">InPayerGroup</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">ShipmentDestinationFunction</span>, <span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDueDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDueDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span>, <span class="Type">String</span>&#160;<span class="Parameter">Series</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnSeries</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromGroupingDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToGroupingDate</span></dt>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinPrintoutCount</span></dt>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dd>
+Begin of date/time range in which the invoice summary was printed previously.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dd>
+End of date/time ramge in which the invoice summary was printed previously. </dd>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dd>
+Billing document template that was used previously to print the invoice summary.</dd>
+                <dt><span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed, Balanced, Purged</span><br /></dd>
+                <dt><span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed, Balanced, Purged</span><br /></dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br /></dd>
+                <dt><span class="Type"><a href="extendedfinancetype.htm">ExtendedFinanceType</a></span>&#160;<span class="Parameter">InvoiceTypes</span></dt>
+                <dd>
+One of: <span class="Parameter">Debit, Credit, Mixed</span><br /></dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Payer</span></dt>
+                <dd>
+Select records with this specific payer.
+<br /></dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumTotalAmount</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumTotalAmount</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumUnbalancedAmount</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumUnbalancedAmount</span></dt>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimumReminderLevel</span></dt>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MaximumReminderLevel</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">InPayerGroup</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">ShipmentDestinationFunction</span></dt>
+                <dt><span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDueDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDueDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Series</span></dt>
+                <dd>
+Selection on series. No ranges or wildcards allowed</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnSeries</span></dt>
+                <dd>
+Indicate if selection on series is required. This parameter is required to distinct selection of series = ? and selection of all series</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Firm - DocNo </b>
+            </li>
+            <li value="3"><b>- DocNo </b>
+            </li>
+            <li value="4"><b>+ DueDate </b>
+            </li>
+            <li value="5"><b>+ ExternalDate </b>
+            </li>
+            <li value="6"><span class="Properties">Unique </span><b>+ FinancialTransaction </b>
+            </li>
+            <li value="7"><b>+ GroupingDate </b>
+            </li>
+            <li value="8"><b>+ InvoiceGroupingType </b>
+            </li>
+            <li value="9"><b>+ Original </b>
+            </li>
+            <li value="10"><b>+ Payer - ExternalDate </b>
+            </li>
+            <li value="11"><b>+ Payer + GroupingDate </b>
+            </li>
+            <li value="12"><b>+ Payer + Status </b>
+            </li>
+            <li value="13"><b>+ PaymentReference </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+Original.Firm = Firm</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

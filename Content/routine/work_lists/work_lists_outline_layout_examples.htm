@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Work lists" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\work lists\worklist11.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Outline layout examples</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor19"></a><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_work_lists.htm" name="kanchor20">Work lists</a> -&gt; Work list outline layout examples</h1>
+        <h3>Example 1</h3>
+        <table cellspacing="0" width="100%">
+            <tr>
+                <td style="width: 100%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;"><pre><b style="font-weight: bold;">OutlinePageHeader</b>
+Werklijst = {=.Name} aangemaakt op {=DateTimeToString(.CreationTime,"%d-%m-%Y om %H:%M")} 
+door {=.CreationUser.LoginName}  Pagina &amp;PageNo van &amp;Totalpages
+</pre><pre><b style="font-weight: bold;">Actionlabel</b>
+PERSON Persoon;
+STRING PrintString;
+</pre><pre>
+Persoon:=.Object.Person();
+</pre><pre xml:space="preserve">
+PrintString:=IfKnownString("Ord: " +.Order().InternalId);
+PrintString:=PrintString + IfKnownString(" MIN: " + .Attribute("InputSpecimen"));
+PrintString:=PrintString + "~n";
+IF IfKnownString(Persoon.SpouseLastName)&lt;&gt;""
+THEN
+   PrintString:=PrintString + Lpad(Persoon.SpouseLastName,21," ");
+ELSE
+   PrintString:=PrintString + Lpad(Persoon.LastName,21," ");
+ENDIF;
+PrintString:=PrintString + IfKnownString(DateToString(Persoon.Birthdate,"%d-%m-%Y"));
+PrintString:=PrintString + Entry(Lookup(EnumeratedToString("Sex",Persoon.Sex),"Male,Female,Other,Unknow,Ambiguous,Not applicable",?),"(M),(F),(O),(U),(A),(N)",?);
+PrintString:=PrintString + "~n";
+IF IfKnownString(Persoon.SpouseLastName)&lt;&gt;"" THEN
+  PrintString:=PrintString + "   -" + Lpad(Persoon.LastName,24," ");
+ELSE
+  PrintString:=PrintString + Fill(" ",28);
+ENDIF;
+PrintString:=PrintString + DateTimeToString(.ObjectTime,"%H:%M");
+PrintString:=PrintString + IfKnownString(" (" + Persoon.Stay().Ward.Name + ")"); 
+PrintString:=PrintString + "~n";
+PrintString:=PrintString + "Bloedzak nr: " +
+             .OutputResult("KrProef_BTM").GetBloodSelection().BloodBag.ExternalId;
+</pre><pre>
+RETURN PrintString ;
+</pre><pre><b style="font-weight: bold;">GroupCriterium</b>
+RETURN .Object.Person().LastName ;
+</pre><pre><b style="font-weight: bold;">GroupHeader</b>
+{=IfKnownString("Pos :" + .Attribute("Position"))} {=IfKnownString("Ord: " + .Order().InternalId)} {=IfKnownString("Min: " 
++ .Attribute("InputSpecimen"))}{=Substr(IfKnownString(.Attribute("SamplingTime")),7,5)}  {=Lpad(IfKnownString("Arts: " + 
+.Order().Issuer.Name),40," ")}
+Datum opname: {=IF .Order().Encounter.Type.Code= "I" THEN DateTimeToString(.Order().Encounter.StartTime,"%x") ELSE "PK"}
+</pre><pre><b style="font-weight: bold;">ObjectSection</b>
+{: PERSON Pers;
+Pers:=.Person();
+</pre><pre xml:space="preserve">
+RETURN Lpad((IF IfKnownString(Pers.MiddleName) &lt;&gt; "" THEN IfKnownString(Pers.MiddleName + " ") 
+ELSE IfKnownString(Substr(Pers.FirstName,1,1) + " ")) + IfKnownString(Rtrim(Pers.SpouseLastName," ")) + 
+(IF IfKnownString(Rtrim(Pers.SpouseLastName," "))&lt;&gt;"" THEN "-" ELSE "") + IfKnownString(Pers.LastName),24," " ) 
++ Entry(Lookup(EnumeratedToString("Sex",Pers.Sex),"Male,Female,Other,Unknown,Ambiguous,Not applicable",?),"(M),(F),(O),(U),(A),(N)",?) + IfKnownString(" Geb.Dat. " 
++ DateToString(Pers.Birthdate,"%d-%m-%Y")) + Fill(" ",30) + IfKnownString("Afd: " + Pers.Stay().Ward.Name) + 
+IfKnownString("-" + Pers.Stay().Room);}
+{:
+CORRESPONDENT Corr;
+Corr:=.Person().Correspondent;
+RETURN 
+"Ziekenfonds       : " + Corr.PaymentAgreement(?, Today()).Fund.Name + "~n" +
+"Ziekenfondsnummer : " + Corr.PaymentAgreement(?, Today()).Matriculation;} 
+***********************************************************************************
+Bloedgroep        = {=EnumeratedToString("Bloodgroup",.Person().GetMedicalRecord().BloodGroup)} 
+{=EnumeratedToString("BloodRhesus",.Person().GetMedicalRecord().Rhesus)}
+Info              = {=FitText(IfKnownString(.Comment),85,"","                    ","")}
+Transfusie advies = {=FitText(.Person().GetMedicalRecord().TransfusionAdvice,85,"","                    ","")}
+***********************************************************************************
+</pre><pre>
+------------------------------------
+| Gecontroleerd door:              |
+------------------------------------
+</pre><pre>
+Bepaling             DonorNr          Zout       PEG IgG       CC        "ACC"
+----------------------------------------------------------------------------------
+</pre><pre>
+ResultSection
+{=Substr(.Property.Mnemonic+Fill(" ",15),1,16)}| {=.GetBloodSelection().BloodBag.ExternalId} 
+({=EnumeratedToString("Bloodgroup",.GetBloodSelection().BloodBag.Typing.BloodGroup)} 
+{=EnumeratedToString("BloodRhesus",.GetBloodSelection().BloodBag.Typing.Rhesus)}) 
+|           |           |           | {=Substr(IfKnownString(.RawValue)+Fill(" ",8),1,9)} |
+----------------------------------------------------------------------------------
+</pre><pre><b style="font-weight: bold;">Output example</b><span style="color: #0000FF;">
+Werklijst = 9Transfusie_BTM aangemaakt op 07-12-2001 om 16:27 door Fmonne  Pagina 1 van 1</span></pre><pre><span style="color: #0000FF;">Pos :1 Ord: 20010910N0001  Min: 01091030001 10:39  Arts: Peters  (longarts) A.             </span></pre><pre><span style="color: #0000FF;">Datum opname: 01/06/2001</span></pre><pre><span style="color: #0000FF;">F Blauw               (M) Geb.Dat. 01-04-1965                              Afd: B26-B26
+Ziekenfonds       : Zilveren Kruis Achmea
+Ziekenfondsnummer : 12345678
+***********************************************************************************
+Bloedgroep        = A neg
+Info              = 
+Transfusie advies = 22/06/2001 11:14:42 Dit is een transfusie advies
+***********************************************************************************</span></pre><pre><span style="color: #0000FF;">------------------------------------
+| Gecontroleerd door:              |
+------------------------------------</span></pre><pre><span style="color: #0000FF;">Bepaling             DonorNr          Zout       PEG IgG       CC        "ACC"
+----------------------------------------------------------------------------------</span></pre><pre><span style="color: #0000FF;">KrProef_BTM     | 01776655 (A neg) |           |           |           |          |
+----------------------------------------------------------------------------------</span></pre><pre><span style="color: #0000FF;">KrProef_BTM     | 01225588 (A neg) |           |           |           | acc      |
+----------------------------------------------------------------------------------</span></pre>
+                </td>
+            </tr>
+        </table>
+        <h3>Example 2</h3>
+        <table cellspacing="0" width="100%">
+            <tr>
+                <td style="width: 100%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;"><pre><b style="font-weight: bold;">OutlinePageHeader</b>
+Werklijst = {=.Name} aangemaakt op {=DateTimeToString(.CreationTime,"%d-%m-%Y om %H:%M")} door {=.CreationUser.LoginName}  
+Pagina &amp;PageNo van &amp;Totalpages
+{=Fill("-",80)}
+</pre><pre>
+Lotnummer         :
+</pre><pre>
+Pfeiffer Controle :
+</pre><pre><b style="font-weight: bold;">ObjectSection</b>
+{: PERSON Pers;
+Pers:=.Person();
+</pre><pre>
+RETURN Lpad((IF IfKnownString(Pers.MiddleName) &lt;&gt; "" THEN IfKnownString(Pers.MiddleName + " ") 
+ELSE IfKnownString(Substr(Pers.FirstName,1,1) + " ")) + IfKnownString(Rtrim(Pers.SpouseLastName," ")) + 
+(IF IfKnownString(Rtrim(Pers.SpouseLastName," "))&lt;&gt;"" THEN "-" ELSE "") + IfKnownString(Pers.LastName),24," " ) 
++ Entry(Lookup(EnumeratedToString("Sex",Pers.Sex),"Male,Female,Other,Unknown,Ambiguous,Not applicable",?),"(M),(F),(O),(U),(A),(N)",?) + 
+IfKnownString(" Geb.Dat. " + DateToString(Pers.Birthdate,"%d-%m-%Y")) + Fill(" ",30) + 
+IfKnownString("Afd: " + Pers.Stay().Ward.Name) + IfKnownString("-" + Pers.Stay().Room);}
+{:
+CORRESPONDENT Corr;
+Corr:=.Person().Correspondent;
+RETURN 
+"Ziekenfonds       : " + Corr.PaymentAgreement(?, Today()).Fund.Name + "~n" +
+"Ziekenfondsnummer : " + Corr.PaymentAgreement(?, Today()).Matriculation;}
+</pre><pre><b style="font-weight: bold;">ActionSection</b>
+{=IfKnownString("Controle " + .Object.ObjectTemplate.Name + " :")} {=IfKnownString("Min: " + 
+Substr(.Attribute("InputSpecimen"),1,7) + " - " + Substr(.Attribute("InputSpecimen"),8,4))}
+</pre><pre><b style="font-weight: bold;">ResultSection</b>
+{=Fill("-",71)}
+|                  | Uitslag  | Paraaf uitgevoerd | Paraaf controle   |
+{=Fill("-",71)}
+| {=Lpad(.Property.Mnemonic,16," ")}{=IF Index(.Action().Order().Attribute("RequestList"),
+"MiScreen++")&gt;0 THEN "*" ELSE " "}| {=Lpad(IfKnownString(.Attribute("VALUE")),9," ")}|                   |                   |
+{=Fill("-",71)}
+</pre><pre><b style="font-weight: bold;">Output example</b><span style="color: #0000FF;">
+Werklijst = 3Pfeiffer aangemaakt op 28-01-2002 om 09:46 door Fmonne   Pagina 1 van 1
+--------------------------------------------------------------------------------</span></pre><pre><span style="color: #0000FF;">Lotnummer         :</span></pre><pre><span style="color: #0000FF;">Pfeiffer Controle :</span></pre><pre><span style="color: #0000FF;">B Berend-Bruin de       (V) Geb.Dat. 30-06-1965                              
+Ziekenfonds       : Amicon
+Ziekenfondsnummer : 123456
+Min: 0110307 - 1001
+-----------------------------------------------------------------------
+|                  | Uitslag  | Paraaf uitgevoerd | Paraaf controle   |
+-----------------------------------------------------------------------
+| Pfeiffer         |          |                   |                   |
+-----------------------------------------------------------------------</span></pre><pre><span style="color: #0000FF;">L Lila                  (V) Geb.Dat. 18-09-1961                              
+?
+Min: 0111137 - 1001
+-----------------------------------------------------------------------
+|                  | Uitslag  | Paraaf uitgevoerd | Paraaf controle   |
+-----------------------------------------------------------------------
+| Pfeiffer         |          |                   |                   |        
+-----------------------------------------------------------------------</span></pre><pre><span style="color: #0000FF;">G Zwart de-Groen van    (M) Geb.Dat. 31-12-1950                              
+Ziekenfonds       : Amicon
+Ziekenfondsnummer : 123456
+Min: 0201117 - 1002
+-----------------------------------------------------------------------
+|                  | Uitslag  | Paraaf uitgevoerd | Paraaf controle   |
+-----------------------------------------------------------------------
+| Pfeiffer         |          |                   |                   |
+-----------------------------------------------------------------------</span></pre>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

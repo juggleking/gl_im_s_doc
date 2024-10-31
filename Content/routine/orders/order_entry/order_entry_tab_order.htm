@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry\orderentry06.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order entry: Order tab</h1>
+        <p class="fieldlabel">Report copy</p>
+        <div class="indented">
+            <p>When an identification provider is known, it is possible to search 
+	 the copy receiver via his identification.  This field can be used to select a correspondent who should receive 
+	 a report copy. In this case, after scheduling of the original reports, 
+	 the order is rescheduled as if the copy receiver was the issuer. In 
+	 this case, the default reports marked as <span class="ui_element">Manual Copy</span> will also be 
+	 eligible for scheduling. Moreover, all reports scheduled during such 
+	 an operation will be marked with <span class="ui_element">Usage = Manual Copy</span>, regardless 
+	 of the original default report's <span class="ui_element">Usage</span> setting.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>In the order entry screen 
+ it is not allowed to select an issuer, agent, sampling location or copy 
+ receiver when the order object time lies outside his 'Active' period (as 
+ defined in the <span class="ui_element">Correspondent</span> record). This check occurs at the moment 
+ of selecting the record, as well as while committing the order.&#160;Moreover, 
+ the selected Issuer, Agent or Copy Receiver identification record is checked 
+ for its validity on the object time of the order.&#160;The chosen 
+ sub type for the issuer, agent or copy receiver (hcpr, ward, prsn, ...) 
+ is checked while choosing an identification record.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Issuer info</p>
+        <p class="fieldlabel"><a name="Expected"></a>Desired date</p>
+        <div class="indented">Date on which all the results of the order should be available.</div>
+        <p class="fieldlabel">Description</p>
+        <p class="fieldlabel"><a name="Report"></a>Report language</p>
+        <div class="indented">
+            <p>When a language is specified in this field, it takes precedence over 
+ the report target's language.&#160;This is how the report language is 
+ determined:</p>
+            <ul>
+                <li class="kadov-p" value="1">Language specified in the <span class="ui_element">Default report</span>.</li>
+                <li class="kadov-p" value="2">Language specified in the <span class="ui_element">Report language</span> field 
+	 in order entry.</li>
+                <li class="kadov-p" value="3">Language of the report target (specified in the 
+	 <span class="ui_element">Correspondent</span> record).</li>
+                <li class="kadov-p" value="4">Language of the site (<span class="ui_element">System management &gt; Customize  &gt; Mate</span>).</li>
+            </ul>
+            <p>The <span class="ui_element">Report language</span> field is also taken into account when using the 
+ <a href="../../results/results_modify.htm">Result.Modify()</a> function 
+ in which the result code is immediately expanded.</p>
+        </div>
+        <p class="fieldlabel">Short id</p>
+        <dl>
+            <dd>The order short id can be defined by the 'Order short id' MISPL 
+	 function in Specific site.</dd>
+            <dd>
+                <br />By activating the environment symbol OrderShortIdOnMainPage=yes 
+	 (in the .glimsrc file on Unix or the progress.ini on MS Windows), 
+	 the user will be forced to manually enter the order short id before 
+	 he can create a new order.</dd>
+            <dd>
+                <p>When a string is entered (or scanned) in the order short id 
+	 field of the order entry screen, it is now first interpreted by the 
+	 SpecificSite.BarCodeParser MISPL program.&#160;&#160;If the return 
+	 value of this call contains an order specification with a value for 
+	 "ShortId", "Issuer" or "IssuerIdentification", 
+	 then these values are automatically copied to the corresponding fields.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Example of BarCodeParser MISPL program:</p><pre>
+	STRING OrderInfo;
+	STRING ReturnValue;
+	</pre><pre>
+	OrderInfo := ?;
+	ReturnValue := ?;
+	</pre><pre>
+	/* format: 17SSSSXXXXYY where SSSS=issuer internal id, XXXX=seq nr for this issuer, YY = 01-99 for specimen. 
+	The real short id should be SSSSXXXX */
+	IF LEN(.BarCode) = 12 AND SUBSTR(.BarCode, 1, 2) = "17"
+	THEN
+	 &#160;OrderInfo := PutTag("ShortId", SUBSTR(.BarCode, 3, 8), OrderInfo, "\");
+	 &#160;OrderInfo := PutTag("Issuer", SUBSTR(.BarCode, 3, 4), OrderInfo, "\");
+	ENDIF;
+	</pre><pre>
+	IF OrderInfo &lt;&gt; ?
+	THEN 
+	 &#160;ReturnValue := PutTag("Order", OrderInfo, ReturnValue, "\");
+	ENDIF;
+	</pre><pre>
+	RETURN ReturnValue;
+	</pre>
+                </div>
+            </dd>
+        </dl>
+        <p class="fieldlabel"><a name="Internal"></a>Internal id</p>
+        <div class="indented">
+            <p>The order internal id can be defined by the 'Order internal id' MISPL function 
+ in Specific site.&#160; 
+</p>
+            <p>By activating the environment symbol OrderInternalIdOnMainPage=yes 
+ (in the .glimsrc file on Unix or the progress.ini on MS Windows), the 
+ user will be forced to manually enter the order internal id before he 
+ can create a new order. </p>
+        </div>
+        <p class="fieldlabel"><a name="Sampler"></a>Sampler</p>
+        <div class="indented">
+            <p>When specifying a sampler, GLIMS can automatically add the <span class="ui_element">Sampling 
+	 location</span> and <span class="ui_element">Distance</span>.&#160;To allow this, the sampling location 
+	 and distance must be configured for the selected sampler (<a href="../../../configuration/correspondents/hc_providers.htm">HC provider</a>).</p>
+            <p>If the order was created via an electronic order message, this field contains the order sampler provided in the message. If no order sampler is indicated in the message,</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">GLIMS looks in the SpecimenList of the message for specimens whose sampler is indicated,  and known as HC&#160;provider in GLIMS, </li>
+                <li value="2">among these specimens, GLIMS takes the one that was sampled first, i.e. that has the oldest sampling time.&#160;In case two specimens have this sampling time,&#160;GLIMS takes the one of the two that appears first in the SpecimenList.</li>
+                <li value="3">GLIMS then sets the sampler of this specimen as the sampler for the order.</li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">Once the order sampler is set, it is not updated if the specimen sampler changes.&#160;This is to avoid the creation of unnecessary reports.</p>
+        </div>
+        <p class="fieldlabel">Sampling address</p>
+        <blockquote>
+            <p>Must be specified when the <span class="ui_element">Sampling location</span> is set to <span class="ui_element">Specific</span> 
+ or <span class="ui_element">Series</span>. &#160;A default value can be set in the order entry 
+ options.</p>
+        </blockquote>
+        <p class="fieldlabel">Distance</p>
+        <div class="indented">
+            <p><a name="The"></a>The distance to the sampling location. Used in some countries to perform 
+ additional billing. See also: <a href="../../../configuration/correspondents/hc_providers.htm#Distance">HC provider</a>.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>For billing purposes, if a <a href="../../../modules/billing/tariffication/configuration/price_formulas.htm">price formula</a> is defined with <span class="ui_element">Context multiplier</span> set to <span class="ui_element">Order's distance</span>, then GLIMS will by default multiply the <span class="ui_element">Distance</span> by two when calculating the price, i.e. the journey there and the journey back.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>A <span class="ui_element">Price formula</span> exists with <span class="ui_element">Multiplier</span> = 0.19 and <span class="ui_element">Context multiplier</span> = <span class="ui_element">Order's distance</span>.</p>
+                    <p>If the <span class="ui_element">Distance</span> of the <span class="ui_element">Order</span> is 100, then GLIMS will calculate the price of the distance traveled as 100 x 0.19 x 2.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Work"></a>Work id</p>
+        <div class="indented">A work id is an additional <a href="order_entry_order_identifier_types.htm">order identifier</a> used in certain labs which process specimens though no corresponding order has been created yet.</div>
+        <div class="indented">
+When a work id is entered in this field, an order identifier record of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Work id</span> is saved in the database.        <p xmlns="http://www.w3.org/1999/xhtml">The work id can be modified. If it is replaced by an empty string or "?", the work id record is deleted from the database. Modifications and deletions of work ids via the Order entry screen are logged in the Order log.</p></div>
+        <p class="fieldlabel">Work id creation date</p>
+        <div class="indented">This field is automatically filled in when a work id is entered for the order.</div>
+        <p class="fieldlabel">Study / Study episode</p>
+        <div class="indented">
+            <p>Please check the <a href="../../../configuration/studies/studies.htm">chapter 
+	 on studies</a>.</p>
+        </div>
+        <p>For more detailed information on the other fields, see the documentation 
+ on the <span class="ui_element">Order</span> table in the reference guide.</p>
+    </body>
+</html>

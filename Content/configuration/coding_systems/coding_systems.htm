@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Communication|Coding systems" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\coding system.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>coding system</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor164"></a>Coding systems</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Coding%20system">Coding 
+ system</a> - <a href="#Code%20set" name="kanchor165">Code set</a> - <a href="#Code">Code</a> 
+ - <a href="#Direct_access_to_all_codes">Direct access to all codes</a> 
+ - <a href="#Copying%20a%20code%20set">Copying a code set</a> - <a href="#Filling%20a%20code%20set">Filling 
+ a code set</a> - <a href="#MISPL_access">MISPL access</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>GLIMS features a general coding system functionality which allows assigning 
+ external codes to virtually any configuration table record in your database.&#160;&#160;These 
+ coding systems are used to map GLIMS configuration data with data in an 
+ external system in order to ensure correct communication between the 
+ two.&#160;</p>
+        <h2><a name="Coding system"></a>Coding system</h2>
+        <p>Coding systems are available from the main menu via <span class="ui_element">Start -&gt; Configuration 
+ -&gt; Coding systems</span>. </p>
+        <h3>Fields</h3>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+            <p>The mnemonic will also be exported for reports that require 
+ adding the coding system along with the external code (e.g. HL-7).</p>
+        </div>
+        <p class="fieldlabel">Name</p>
+        <div class="indented">
+            <p>Free-to-choose name</p>
+        </div>
+        <p class="fieldlabel">Usage</p>
+        <div class="indented">
+            <p>Allows to find specific coding systems for 
+ specific programs (e.g. the Valab program needs a coding system with <span class="ui_element">Usage</span> set to <span class="ui_element">Valab</span>), or allows the program to check for the correctness 
+ of codes (e.g. 'Codes must be numeric'). </p>
+            <p>The currently allowed values 
+ are <span class="ui_element">Biorad</span>, <span class="ui_element">Valab</span>, 
+ <span class="ui_element">QCToday</span>, <span class="ui_element">Iris</span></p>
+        </div>
+        <p class="fieldlabel">Oid</p>
+        <div class="indented">
+            <p>Object id: unique coding system identifier 
+ used in communication with external applications.</p>
+        </div>
+        <h3>Code sets</h3>
+        <p>Embedded browser showing the <a href="#Code%20set">code sets</a> defined 
+ for this coding system.</p>
+        <h2><a name="Code set"></a>Code set</h2>
+        <p>A code set groups the codes assigned to records of a single table, within 
+ the context of a coding system. Only template tables with a <span class="ui_element">Mnemonic</span> or 
+ <span class="ui_element">Name</span> field in their primary index can have a code set.</p>
+        <p>Code sets can be defined for each coding system by selecting the contextual menu / ribbon item <span class="ui_element">Code sets</span>.</p>
+        <h3>Fields</h3>
+        <p class="fieldlabel">Coding system </p>
+        <div class="indented">
+            <p>Coding system to which the code set belongs</p>
+        </div>
+        <p class="fieldlabel">Table</p>
+        <div class="indented">
+            <p>The table being coded.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li class="mips_list_bulleted" value="1">Code records can refer to theoretically 
+			 any record in any table. The configuration 
+			 allows to choose any table (with the exception that code sets 
+			 are only allowed for template tables).&#160;&#160;This may 
+			 lead to a situation where the record can not be properly externalized 
+			 in the <span class="ui_element">Code</span> editor.&#160;&#160;In such cases, the record will 
+			 either be externalized via its internal identifier (e.g. StationFlag.Id) 
+			 or via a special format (e.g. &lt;Station Mnemonic&gt;/&lt;Property 
+			 mnemonic&gt; for assessment methods). The special format used 
+			 for e.g. AssessmentMethod even allows to manually create code 
+			 records by actually typing in something like 'H717/Na' in 
+			 the externalization field of the code editor.</li>
+                    <li class="mips_list_bulleted" value="2">Although the externalization 
+			 may be limited, this allows creating Code records for any 
+			 template table via the option <span class="ui_element">View -&gt; Codes</span> in the contextual ribbon.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Code function</p>
+        <div class="indented">
+            <p>A &lt;table&gt;-based site function for automatic 
+ creation of codes for the records of &lt;table&gt;.&#160;&#160;Check the 
+ chapter <a href="#Filling%20a%20code%20set">Filling a code set</a> 
+ for more information.</p>
+        </div>
+        <p class="fieldlabel">Code check</p>
+        <div class="indented">
+            <p>A &lt;table&gt;-based site function that is 
+ executed to check the validity of a newly defined code value</p>
+        </div>
+        <p class="fieldlabel">Original coding system</p>
+        <div class="indented">
+            <p>If defined, this field refers to the coding 
+ system in which the actual code set is defined. This allows to create 
+ coding systems which make use of code sets actually residing in another 
+ coding system without having to copy the code sets (and update several 
+ code sets afterward).&#160;&#160;&#160;It allows to define a "common" 
+ code set used by several coding systems.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>A Medar coding system which makes 
+ use of the Property code set of the Medidoc coding system.&#160;</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Unique value</p>
+        <div class="indented">
+            <p>Indicates that a code's value should be unique 
+ within this code set. If disabled, a discriminator can be specified in the <span class="ui_element">Code</span> configuration.</p>
+        </div>
+        <p class="fieldlabel">Unique record</p>
+        <div class="indented">
+            <p>Indicates that a code's record should be unique 
+ within this code set</p>
+        </div>
+        <p class="fieldlabel">Genetics</p>
+        <div class="indented">The fields are described in the documentation of the <a href="../../modules/genetics/config/genome/codes.htm">Genetics module</a>.</div>
+        <h2><a name="Code"></a>Code</h2>
+        <p>The code is the actual external code for a specific record of &lt;table&gt; 
+ within the coding system. Codes can be defined by selecting 
+ contextual menu / ribbon item <span class="ui_element">Codes</span> on a given code set.</p>
+        <h3>Fields</h3>
+        <p class="fieldlabel">Record</p>
+        <div class="indented">
+            <p>Refers to the original record in &lt;table&gt;</p>
+        </div>
+        <p class="fieldlabel">Value</p>
+        <div class="indented">
+            <p>The external code value for this record</p>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Free text description</p>
+        </div>
+        <p class="fieldlabel">Sequence</p>
+        <div class="indented">
+            <p>Used:</p>
+            <ul>
+                <li value="1">to evaluate the eligible codes (see also: <a href="coding_systems_LOINC.htm">Coding systems: LOINC</a>)</li>
+                <li value="2">as sorting order when displaying multiple codes for 1 record (e.g. in <a href="../../user_interface/user_interface_browsers.htm">browsers</a>)</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Eligible</p>
+        <div class="indented">
+            <p>MISPL function that allows to define additional criteria that should be met before the code is valid. Can e.g. be used to specify a Result-based MISPL function for properties.</p>
+        </div>
+        <p class="fieldlabel">Discriminator</p>
+        <div class="indented">
+            <p>Only shown when the code set option <span class="ui_element">Unique value</span> is disabled. Multiple codes (with a different value) for the same record can then be distinguished using a discriminator.</p>
+        </div>
+        <h2><a name="Direct_access_to_all_codes"></a>Direct access to all codes</h2>
+        <p>To provide a full overview of all codes of a specific configuration 
+ record, you can use the contextual ribbon item <span class="ui_element">View -&gt; Codes</span>.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <ol>
+                <li class="mips_list_numbered" value="1">Open a Property browser</li>
+                <li class="mips_list_numbered" value="2">Select a property</li>
+                <li class="mips_list_numbered" value="3">In the contextual ribbon, click <span class="ui_element">View 
+	 -&gt; Codes</span></li>
+                <li class="mips_list_numbered" value="4">All codes (possibly from different coding 
+	 systems) are displayed.</li>
+            </ol>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="coding_systems_codes.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="900" data-mc-height="542" src="coding_systems_codes_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p>This browser also allows inserting new codes for a specified coding 
+ system.</p>
+        <h2><a name="Copying a code set"></a>Copying a code set</h2>
+        <p>Using the contextual menu / ribbon item <span class="ui_element">Copy</span> on a <span class="ui_element">Code set</span>, you can 
+ copy an entire code set to another (new or existing) coding system.</p>
+        <h2><a name="Filling a code set"></a>Filling a code set</h2>
+        <p>The contextual menu /ribbon item <span class="ui_element">Fill</span> on a <span class="ui_element">Code set</span> allows to 
+ automatically fill a code set by creating <span class="ui_element">Code</span> records for all records 
+ of the code set's source table. </p>
+        <p>The <span class="ui_element">Code values</span> are generated by the function 
+ (based on the source table and returning a string) specified in the <span class="ui_element">Code 
+ function</span> field of the <span class="ui_element">Code set</span>.&#160;&#160;</p>
+        <p>When selecting this function, 
+ you will be offered the choice to overwrite already existing code records 
+ or not.</p>
+        <h2><a name="MISPL_access"></a>MISPL access</h2>
+        <p>GLIMS offers a Result-based MISPL function <span class="ui_element">GetCode</span> which allows to lookup a code in a specific coding system.
+ The lookup logic is identical to the one described in the chapter <a href="coding_systems_LOINC.htm">Coding systems: LOINC</a>.</p>
+        <p>Synopsis:</p>
+        <div class="MemberHelp">
+            <p class="Synopsis" style="margin-left: 40px;"><span class="Type" style="font-style: italic;">String</span><b>GetCode</b> (<span class="Type" style="font-style: italic;">Mnemonic</span><span class="Parameter" style="color: #008000;">CodingSystemMnemonic</span>)</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>A general <a href="../mispl_texts/mispl_table_independent/function_miscellaneous.htm#GetCode">GetCode</a> function is available as well.</p>
+        </div>
+    </body>
+</html>

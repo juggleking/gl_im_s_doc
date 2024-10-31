@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Lab procedures|Assessment methods" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\assessment_methods.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Assessment 
+ methods</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Assessment 
+ methods</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#General">General</a> 
+ - <a href="#Setup_page">Setup</a> - <a href="#Status_page">Status</a> 
+ - <a href="#Limits_page">Limits</a> - <a href="#QC_page">QC</a> - <a href="#Counter_page">Counter</a> 
+ - <a href="#More_page">More</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Assessment methods create a link between <span class="ui_element">Stations</span> and <span class="ui_element">Properties</span>. You can 
+ open the <span class="ui_element">Assessment method</span> browser using the context menu/ribbon of properties or stations.</p> <h2><a name="General"></a>General</h2><p class="fieldlabel">Station</p><div class="indented"><p>Station linked to the assessment method.</p></div><p class="fieldlabel">Property</p><div class="indented"><p>Property linked to the assessment method.</p></div><h2><a name="Setup_page" id="Setup_page"></a>Setup page</h2><p class="fieldlabel">Inbound id and Outbound id</p><div class="indented"><p>These are identifications which indicate a 
+ channel number for communication between GLIMS and the analyzer.</p></div><div class="indented"><p class="fieldlabel">Inbound id</p><div class="indented"><p>A remote property identification 
+		 used on the result uploading from the instrument.</p></div><p class="fieldlabel">Outbound id</p><div class="indented"><p>A remote property identification 
+		 used on request downloading to the instrument.</p></div><p>During result upload, GLIMS will look for a 
+ case-sensitive match between the instrument test id and the assessment 
+ method inbound id.&#160;&#160;GLIMS will ignore the case-sensitivity check 
+ when a case-insensitive unique match is found.</p><div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Example</span></p><p>Assessment method inbound id's are a, A and 
+ b.</p><ul><li value="1">GLIMS will upload a result with 
+		 instrument test id 'a' for inbound id 'a'</li><li value="2">GLIMS will upload a result with 
+		 instrument test id 'A' for inbound id 'A'</li><li value="3">GLIMS will upload a result with 
+		 instrument test id 'b' or 'B' for inbound id 'b'</li></ul></div></div><p class="fieldlabel">Store unsolicited</p><div class="indented"><p>Determines whether unsolicited results (i.e. 
+ results sent by the station but which were not requested) are stored. 
+ If this option is checked, a result is created without a request. This 
+ implies that it will not be reported nor charged.</p></div><p class="fieldlabel">Unit</p><div class="indented"><p>This field contains the default unit for result upload in case of numerical 
+ results.&#160;&#160;<a href="../units/units_dimensions.htm#Unit%20conversions">For 
+ more information, please check the chapter "Units and dimensions"</a>.</p></div><p class="fieldlabel">Convert if manual</p><div class="indented"><ul><li style="text-align: left;" value="1">If enabled, then also manually typed in results will be assumed to be in 
+ the assessment method unit and therefore be converted if needed.</li><li style="text-align: left;" value="2">If disabled, the default unit for a manually entered result will be the 
+ property's unit, not the assessment method's unit.<br /></li></ul><p>This allows to connect an analyzer which sends its result in another unit, 
+ while still being able to review and enter results in the property units 
+ (e.g. via the work list). <a href="../units/units_dimensions.htm#Unit%20conversions">For more information, 
+ please check the chapter "Units and dimensions"</a>.</p></div><p class="fieldlabel">Remote material id</p><div class="indented"><p>A minority of analyzers also request a description of the material (as 
+ known by the analyzer) on which a test has to be executed.&#160;&#160;If 
+ specified, this info will also be downloaded from GLIMS to the analyzer 
+ when sending tests.</p></div><p class="fieldlabel">Send previous result</p><div class="indented"><p style="text-align: left;">If checked, the most recent result is sent to the instrument upon order 
+ downloading.<br /><br />It may happen that, along with the order, GLIMS sends results to an analyzer 
+ (e.g. previous result for delta checking). If so, the start date of this 
+ result will be the Result.AvailabilityTime and the end time will be the 
+ Result.ConfirmationTime.</p></div><p class="fieldlabel">Conversion</p><div class="indented"><p>This is a result based MISPL expression that allows converting incoming 
+ results.&#160;&#160;Note that this field has been developed only for conversion 
+ of raw data and not to perform e.g. unit conversions (for which explicit 
+ support is available in GLIMS).</p><div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Examples</span></p><p style="text-align: left;"><span lang="nl-be">"</span><span lang="NL-BE">+++" 
+ to "&gt; 100"<br />"red" to "positive"</span></p></div></div><div class="indented" style="font-weight: normal;">	The actual conversion is performed BEFORE the result is stored in the 
+	 database, which implies that when using Result table functions, you 
+	 will be using OLD data !&#160;&#160;The only fields that can be used 
+	 in this MISPL expression are: &#160;
+<br /><ul><li value="1">RawValue</li><li value="2">AvailabilityUser</li><li value="3">StationSeverity</li><li value="4">ManualSeverity</li><li value="5">InternalComment</li><li value="6">ExternalComment</li></ul></div><p class="fieldlabel"><a name="Precisio"></a>Precision</p><div class="indented"><p>This field specifies the number of significant digits stored in a numerical 
+ result.</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>This field also determines the number of significant digits stored in the QC population's <span class="ui_element">Mean</span> value if the <span class="ui_element">QC precision</span> is not specified. <a href="../../modules/qc/internal/configuration/qc_populations.htm#Mean">Click here for more information.</a></p></div></div><p class="fieldlabel">QC precision</p><div class="indented"><p style="text-align: left;">This field specifies the number of significant digits stored in a numerical 
+ QC result.&#160;If unknown, the <span class="ui_element">Precision</span> field will 
+ be used for QC results as well.</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>This field also determines the number of significant digits stored in the QC population's <span class="ui_element">Mean</span> value. If unknown, the <span class="ui_element">Precision</span> field will be used. <a href="../../modules/qc/internal/configuration/qc_populations.htm#Mean">Click here for more information.</a></p></div></div><p class="fieldlabel">Mark results as strictly escalated</p><div class="indented"><p>For more information, see <a href="../../routine/confirmation_validation/confirmation_validation_result_escalation.htm">Validation in phases: result escalation</a>.</p></div><h2><a name="Status_page" id="Status_page"></a>Status page</h2><p class="fieldlabel">Status</p><div class="indented"><p>This field can only be set manually to one of the following values:</p><p class="fieldlabel">Disabled</p><div class="indented"><p>Indicates that this channel should no longer be used.</p></div><p class="fieldlabel">Enabled</p><div class="indented"><p>If you want to make full use of an assessment method, its status 
+		 should be set to <span class="ui_element">Enabled</span>.</p></div><p class="fieldlabel">Closing</p><div class="indented"><p>
+		 Indicates that this channel will no longer be used for scheduling, 
+		 but result upload from the analyzer to GLIMS is still possible.</p></div><p class="fieldlabel">Locked</p><div class="indented"><p>Indicates that this channel is still used for scheduling, but GLIMS&#160;will not download orders via this channel.&#160;&#160;This 
+		 can for instance be used to buffer all tests requiring an expensive 
+		 reagent.&#160;&#160;When all tests requiring this reagent are 
+		 scheduled, you can reset the status to <span class="ui_element">Enabled</span> and 
+		 all tests will be downloaded to the analyzer.</p></div></div><p class="fieldlabel">Status comment</p><div class="indented"><p>Allows to enter comments on the status of the assessment method (e.g. 
+ reason why it has been locked).</p></div><p class="fieldlabel">Quality</p><div class="indented"><p>The quality status of an assessment method can automatically be set 
+ to <span class="ui_element">Unreliable</span> when the <span class="ui_element">QC alarm severity</span> is exceeded.&#160;&#160;<a href="../../modules/qc/internal/management/qc_deviation_actions.htm">For 
+ more information, please check the chapter "Deviation actions" 
+ in the QC tutorials.</a></p></div><p class="fieldlabel">Quality comment</p><div class="indented"><p>Comments on the quality status of the assessment method. <a href="../../modules/qc/internal/management/qc_deviation_actions.htm">For 
+ more information, please check the chapter "Deviation actions" 
+ in the QC tutorials.</a></p></div><h2><a name="Limits_page" id="Limits_page"></a>Limits page</h2><p class="fieldlabel">Low reject</p><div class="indented"><p>Numerical values below this limit are rejected. This value is expressed 
+ in the unit of the property.</p></div><p class="fieldlabel">High reject</p><div class="indented"><p>Numerical values above this limit are rejected. This value is expressed 
+ in the unit of the property.</p></div><p class="fieldlabel">Low truncate</p><div class="indented"><p>Numerical values below this limit are truncated to " &lt;x "</p></div><p class="fieldlabel">High truncate</p><div class="indented"><p>Numerical values above this limit are truncated to " &gt;x "</p></div><p class="fieldlabel">Auto-confirm severity</p><div class="indented"><p>The results with a <a href="../severities/severities.htm">severity</a> up to this level will be auto-confirmed. </p><p>If the <span class="ui_element">Result.Severity</span> (calculated as the maximum of <span class="ui_element">Result.NormSeverity</span>, <span class="ui_element">Result.TechnicalSeverity</span>, <span class="ui_element">Result.DeltaNormSeverity</span>, <span class="ui_element">Result.StationSeverity</span>, <span class="ui_element">Result.QCSeverity</span> and <span class="ui_element">Result.ManualSeverity</span>) exceeds this limit, the result will not be auto-confirmed.</p></div><p class="fieldlabel">Auto-validate severity</p><div class="indented"><p>The results with a <a href="../severities/severities.htm">severity</a> up to this level will be auto-validated.</p><p>If the <span class="ui_element">Result.Severity</span> (calculated as the maximum of <span class="ui_element">Result.NormSeverity</span>, <span class="ui_element">Result.TechnicalSeverity</span>, <span class="ui_element">Result.DeltaNormSeverity</span>, <span class="ui_element">Result.StationSeverity</span>, <span class="ui_element">Result.QCSeverity</span> and <span class="ui_element">Result.ManualSeverity</span>) exceeds this limit, the result will not be auto-validated.</p></div><p class="fieldlabel">Auto-confirm if manual</p><div class="indented"><p>If this option is NOT checked, manually entered results will NOT be 
+ subjected to the automatic confirmation rules (i.e. they are immediately 
+ marked as <span class="ui_element">Result.NeedsManualConfirm</span> = YES).</p></div><p class="fieldlabel">Delta norm has precedence</p><div class="indented"><p>If set, and a delta check is performed, then the delta norm severity overrules 
+ the norm severity for the auto-confirm/validate decisions (see below).&#160;&#160;So, 
+ a result that is pathological (norm severity &gt; 0), and that normally 
+ wouldn't be auto-validated, might still be auto-validated because it's 
+ similar to the previous result of the same patient.</p><p>The actual severity that is compared against the auto-confirm and auto-validate 
+ levels, will then be the final result severity (Result.Severity) without 
+ the norm severity component (Result.NormSeverity). So, it is calculated 
+ as the maximum of the absolute values of all severities, EXCEPT the norm 
+ severity.</p></div><p class="fieldlabel">QC auto-confirm severity</p><div class="indented"><p>QC results with a <a href="../severities/severities.htm#QC_results">severity</a> up to this level will be auto-confirmed.</p></div><p class="fieldlabel">Warning severity</p><div class="indented"><p>This field indicates the <a href="../severities/severities.htm">severity</a> starting from which a warning is issued 
+ for a result.</p></div><p class="fieldlabel">QC alarm severity</p><div class="indented"><p>This field indicates the minimum <span class="ui_element">QC severity</span> which will mark this method 
+ as unreliable.&#160;<a href="../severities/severities.htm#QC_results">For 
+ more information, please check the chapter "Severities".</a></p></div><p class="fieldlabel">QC warning severity</p><div class="indented"><p>This field indicates the <a href="../severities/severities.htm#QC_results">QC severity</a> starting from which a warning is issued 
+ for a QC result.</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>The <span class="ui_element">QC warning severity</span> is also taken into account when manually confirming QC results in order to determine whether or not an <a href="../../modules/qc/internal/routine/qc_faq.htm">external comment has to be specified by the user for failed QC results</a>.</p></div></div><p class="fieldlabel">Phone severity</p><div class="indented"><p>Results with a <a href="../severities/severities.htm">severity</a> equal to or higher than this threshold will 
+ automatically be <a href="../../routine/phone_list/phone_list_mark_results.htm">marked 
+ as to be phoned</a>.</p><p>The <span class="ui_element">Phone severity</span>  defined in the <span class="ui_element">Assessment method</span> is compared with the maximum of the result's phone list severity, delta norm severity and manual severity to decide whether the result should be marked as <span class="ui_element">To be phoned</span>.</p></div><p class="fieldlabel">Maximum delay / Max. Delay severity</p><div class="indented"><p>It is possible to specify the maximum delay 
+ time between a result's object time and its availability time. &#160;If 
+ this delay is exceeded, a configurable severity will be set. &#160;This 
+ severity can then be used for instance to prevent automatic validation.</p><p class="fieldlabel">Maximum delay</p><div class="indented"><p>A decimal indicating how many hours are allowed 
+ between the result's object time and availability time.</p></div><p class="fieldlabel">Max. Delay severity</p><div class="indented"><p>An integer indicating what severity must 
+ be set for the result when the delay is exceeded. This is optional.</p></div><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><ol><li value="1"><p>When the specified delay is exceeded, this will 
+		 also be logged in the result log.</p></li><li value="2"><p>The result's manual severity is used to store 
+		 the max. delay severity.</p></li></ol></div></div><p class="fieldlabel">LAS (dis)connect severity limit</p><div class="indented"><p>Please check the chapter <a href="../../communication/las/las_glp_messages_analyzer_test_availability.htm">Connection with GLP-Systems - Analyzer and test availability messages</a>.</p></div><h2><a name="QC_page" id="QC_page"></a>QC page</h2><p>All these options are related to the QC module in GLIMS.&#160;&#160;<a href="../../modules/qc/internal/configuration/qc_assessment_methods.htm">Please 
+ check the QC chapter for more information</a>.</p><h2><a name="Counter_page" id="Counter_page"></a>Counter page</h2><p>All these options are related to the cell counter module in GLIMS.&#160;&#160;<a href="../../routine/cell_counter/cell_counter_assessment_method.htm">Please 
+ check the Cell counter chapter for more information</a>.</p><h2><a name="More_page" id="More_page"></a>More page</h2><p class="fieldlabel">Method</p><div class="indented"><p>A description that can be printed on <a href="../report_templates/report_templates.htm">patient 
+ reports</a> and QC reports.&#160;&#160;It can also be used for sending 
+ a station code during export of QC results to the external system <a href="../../modules/qc/external/biorad/biorad.htm">Biorad</a>.</p><p>The Result.Method field stores the value of AssessmentMethod.Method 
+ at the time of result entry.&#160;&#160;The report program which can put 
+ the method field on the report (by specifying a row label for <span class="ui_element">Method</span> 
+ in the report template) uses Result.Method as soon as the result is available 
+ and Result.Method is known.&#160;&#160;If not, AssessmentMethod.Method 
+ is used.</p><p>This allows storing the history of the method field in the result table 
+ itself, thus making this field reproducible on the report, even when the 
+ assessment method has been changed.</p><p>The function <span class="ui_element">AssessmentMethod.SetResultMethod</span> allows to explicitly 
+ fill this Result.Method field with either the value from the assessment 
+ method record, or a specific value. This may be useful for storing the 
+ method name in old result records.</p></div><p class="fieldlabel">Transmit archive information</p><div class="indented"><p>Is used for <a href="../../communication/analyzers/analyzers_aliquotter.htm">aliquotter 
+ station</a> communication.</p></div></body>
+</html>

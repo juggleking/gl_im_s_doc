@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="TACAMED_reports">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>TACAMED reports</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../../index_routine.htm">Basic routine</a> -&gt; <a href="../index_reports.htm">Reports</a><a name="kanchor281"></a> -&gt; Tacamed reports</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#TACAMED%20%20format">Tacamed 
+ format</a> - <a href="#GLIMS%20configuration">GLIMS configuration</a> - 
+ <a href="#Example%20files">Example output files</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes how you can generate reports that meet the Tacamed 
+ format requirements.&#160; For each report 3 files have to be generated.&#160; 
+ In order to do so, you must use variable text reports combined with the 
+ nested '<a href="../reports_attachment.htm">attachment report</a>' 
+ functionality in GLIMS.&#160; For more information, please check the chapter 
+ '<a href="#GLIMS%20configuration">GLIMS configuration</a>'.</p>
+        <h2><a name="TACAMED  format"></a>Tacamed format</h2>
+        <p class="MsoNormal">As said above, 3 files have to be generated: </p>
+        <h3>1. &#160;Demographic patient data (Signalétique) </h3>
+        <p class="fieldlabel">File name</p>
+        <div class="indented">
+            <p class="MsoNormal"> SIGN + 
+ Doctor code .LDI</p>
+            <p class="MsoNormal">The doctor code is composed of 4 characters, letters 
+ or numbers. </p>
+        </div>
+        <p class="fieldlabel">File contents</p>
+        <div class="indented">
+            <p class="MsoNormal">LAB&#160;&#160;&#160;&#160; Patient id&#160;&#160;&#160;&#160; 
+ Order id&#160;&#160;&#160;&#160; Sampling date&#160;&#160;&#160;&#160; 
+ Birth date&#160;&#160;&#160;&#160; Patient Last name, First name&#160;&#160;&#160;&#160;&#160;&#160; 
+ </p>
+        </div>
+        <p class="fieldlabel">Details</p>
+        <ul>
+            <li class="MsoNormal" value="1"><b>LAB:</b> identification 
+ of the laboratory (2 characters) = '01'&#160; </li>
+            <li class="MsoNormal" value="2"><b>Patient id:</b> patient 
+ id assigned by HC Provider (5 characters)</li>
+            <li class="MsoNormal" value="3"><b>Order id :</b> order id 
+ assigned by the laboratory (7 characters)</li>
+            <li class="MsoNormal" value="4"><b>Sampling date :</b>&#160; 
+ DD/MM/YY (8 characters) </li>
+            <li class="MsoNormal" value="5"><b>Patient birth date:</b> 
+ DD/MM/YY (8 characters) </li>
+            <li class="MsoNormal" value="6"><b>Patient last name :</b> 
+ length not fixed </li>
+            <li class="MsoNormal" value="7"><b>Patient first name 
+ :</b> length not fixed. The first name is separated from the last name 
+ with a comma and a blank</li>
+        </ul>
+        <h3>2. Result file</h3>
+        <p class="fieldlabel">File name</p>
+        <div class="indented">
+            <p> RESU + Doctor code .LDI</p>
+        </div>
+        <p class="fieldlabel">File content</p>
+        <div class="indented">
+            <p class="MsoNormal">E&#160;&#160;&#160;&#160; Order id&#160;&#160;&#160;&#160; 
+ Property code&#160;&#160;&#160;&#160; C&#160;&#160;&#160;&#160; Result 
+ </p>
+        </div>
+        <p class="fieldlabel">Details</p>
+        <ul>
+            <li class="MsoNormal" value="1"><b>E:</b> 1 blank character 
+ </li>
+            <li class="MsoNormal" value="2"><b>Order id:</b> order id 
+ assigned by the laboratory (7 characters) </li>
+            <li class="MsoNormal" value="3"><b>Property code:</b> code 
+ of the property as used in the laboratory (4 characters) </li>
+            <li class="MsoNormal" value="4"><b>C :</b> (1 character) <ul><li class="MsoNormal" value="1">' # ' : there is 
+ a comment for this property</li><li class="MsoNormal" value="2">'&#160; '&#160; 
+ : if there is no comment for this property</li></ul></li>
+            <li class="MsoNormal" value="5">&#160;<b>Result:</b> in numeric 
+ format or as code linked to the comment (max. 6 characters) </li>
+        </ul>
+        <h3>3.&#160; Comment file</h3>
+        <p class="fieldlabel">File name</p>
+        <div class="indented">
+            <p class="MsoNormal"> COMM + 
+ Doctor code .LDI </p>
+        </div>
+        <p class="fieldlabel">File content</p>
+        <div class="indented">
+            <p class="MsoNormal">E&#160;&#160;&#160;&#160; Order id&#160;&#160;&#160;&#160; 
+ Property code&#160;&#160;&#160;&#160; Comment</p>
+        </div>
+        <p class="fieldlabel">Details</p>
+        <ul>
+            <li class="MsoNormal" value="1"><b>E:</b> 1 blank character 
+ </li>
+            <li class="MsoNormal" value="2"><b>Order id:</b> order id 
+ assigned by the laboratory (7 characters) </li>
+            <li class="MsoNormal" value="3"><b>Property code:</b> code 
+ of the property as used in the laboratory (4 characters) </li>
+            <li class="MsoNormal" value="4"><b>Comment:</b> free text 
+ comment of maximum 76 characters.&#160; Multiple lines of the same comment 
+ texts are collated.</li>
+        </ul>
+        <h2><a name="GLIMS configuration"></a>GLIMS configuration</h2>
+        <p>In order to generated the 3 above-mentioned files for each report target, 
+ you must use the '<a href="../reports_attachment.htm">attachment 
+ report</a>' functionality in GLIMS.&#160; You will have to create 3 <a href="../../../configuration/report_templates/report_templates.htm">report templates</a>, one for 
+ each file.&#160; The first report template has an attachment report which 
+ is the report template for the second file.&#160; The second report template 
+ also has an attachment report which is the report template for the third 
+ file.&#160; So when generating reports with the first template, 3 files 
+ will be generated.&#160; The contents of each file is determined by a 
+ text module which must be defined in each report template.</p>
+        <h3>Report template for demographic patient data file</h3>
+        <p>The contents of the file is determined by a text module specified in 
+ the 'Page header' field.&#160; It must comply with the format as 
+ documented above.&#160; Example:&#160;<br /></p>
+        <div style="text-align: center;" align="center">
+            <table style="background-color: #F2F2F2;width: 90%;x-border-left: 1px #000000 table-solid;x-border-top: 1px #000000 table-solid;x-border-right: 1px #000000 table-solid;x-border-bottom: 1px #000000 table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px #000000 table-solid;x-border-top: 1px #000000 table-solid;x-border-right: 1px #000000 table-solid;x-border-bottom: 1px #000000 table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="90%" bgcolor="#F2F2F2" border="1" bordercolor="#000000">
+                <tr>
+                    <td style="width: 100%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" width="100%"><pre>
+{=
+"01" + 
+Fill(" ",5) + 
+IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+IfKnownString(DateTimeToString(.Order.CreationTime,"%d/%m/%y")) + 
+IfKnownString(DateTostring(.Object.Person().BirthDate,"%d/%m/%y")) + 
+IfKnownString(.Object.Person().LastName) + 
+", " + 
+IfKnownString(.Object.Person().FirstName) 
+}
+</pre>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>As attachment report, specify the report template for the result file.&#160; 
+ The generator must be set to 'VariableText'.</p>
+        <h3>Report template for result file</h3>
+        <p>The contents of the file is determined by a text module specified in 
+ the 'Body' field.&#160; It must comply with the format as documented above.&#160; 
+ </p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+            </p><pre xmlns="">
+{: 
+string begin, res, p1, p2 ;
+integer icr, ica ;
+</pre><pre xmlns="">
+begin &#160;:= " ";
+res := "" ;
+</pre><pre xmlns="">
+if .Type = StringToEnumerated("ObservationalResultType", "Result")
+then
+ &#160;&#160;&#160;&#160;if Len(.value) &lt; 7
+ &#160;&#160;&#160;&#160;then
+ &#160;&#160;&#160;&#160;&#160;&#160;res:= begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;Rpad(.Mnemonic,4,"0") &#160;+ 
+ &#160;&#160;&#160;&#160;&#160;&#160;(if .comment &lt;&gt; ? then "#" else " ") + 
+ &#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(RPad(.value,6," "));
+ &#160;&#160;&#160;&#160;else
+ &#160;&#160;&#160;&#160;&#160;&#160;icr := 0 ;
+ &#160;&#160;&#160;&#160;&#160;&#160;icr := NumEntries (IfKnownString(.value), chr(10)) ; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* aantal CR */
+ &#160;&#160;&#160;&#160;&#160;&#160;ica := 0 ;
+ &#160;&#160;&#160;&#160;&#160;&#160;p1 := IfKnownString(.value) + chr(10);
+ &#160;&#160;&#160;&#160;&#160;&#160;REPEAT 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;p2 := substr(p1,1,index(p1,chr(10))-1) &#160;&#160;&#160;&#160;; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* extract first part */
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;p1 := substr(p1,index(p1,chr(10))+1,-1) &#160;; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* keep last part */
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := res + &#160;(if ica &gt; 0 then "&lt;BR&gt;" &#160;else "" &#160;) &#160;+ begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Rpad(.Mnemonic,4,"0") &#160;+ 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(if .comment &lt;&gt; ? then "#" else " ") + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;p2 ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ica := ica &#160;+ 1 ;
+ &#160;&#160;&#160;&#160;&#160;&#160;UNTIL ica &gt;= &#160;icr ;
+ &#160;&#160;&#160;&#160;endif;
+endif ;
+</pre><pre xmlns="">
+if .Type = StringToEnumerated("ObservationalResultType", "Isolation")
+then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;if .SubId = ? 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Cult" &#160;+ 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(if .comment &lt;&gt; ? then "#" else " ") +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Replace(IfKnownString(.Value),chr(10)," ") ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;else 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := begin +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Cult" +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(if .comment &lt;&gt; ? then "#" else " ") + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(.Isolation.MicroOrganism.Mnemonic) + &#160;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(.Value) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" (" + IntegerToString(.SubId, "%d") + ")" ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;endif;
+endif ;
+</pre><pre xmlns="">
+if .Type = StringToEnumerated("ObservationalResultType", "Antibiotic")
+then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;if .SubId = ? 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := begin +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Bact" + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString("Antibiogram") + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(.Value) ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;else 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if .SubId = 1
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Bact" + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString("Antibiogram") + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;(1) (2) (3) (4) (5)" + "&lt;BR&gt;" + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;begin + &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Bact" + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString("Antibiogram") +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Lpad(.Mnemonic, 16, " ") + " : " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(1, ExtractTag("RIS", .Value, "\"), ",")) + " " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(2, ExtractTag("RIS", .Value,"\"), ",")) + " " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(3, ExtractTag("RIS", .Value, "\"), ",")) ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;endif ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if .SubId &gt; 1
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Bact" + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString("Antibiogram") +
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Lpad(.Mnemonic, 16, " ") + " : " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(1, ExtractTag("RIS", .Value, "\"), ",")) + " " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(2, ExtractTag("RIS", .Value,"\"), ",")) + " " + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Entry(3, ExtractTag("RIS", .Value, "\"), ",")) ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;endif;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;endif; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+endif ;
+</pre><pre xmlns="">
+RETURN res ;
+}
+</pre>
+        </div>
+        <p>As attachment report, specify the report template for the comment file.&#160; 
+ The generator must be set to 'VariableText'.</p>
+        <p>In order to limit the property codes to 4 characters, you can create 
+ a Tacamed-specific property <a href="../../../configuration/coding_systems/coding_systems.htm">coding 
+ system</a> and specify it in this report template.&#160;</p>
+        <h3>Report template for comment file</h3>
+        <p>The contents of the file is determined by a text module specified in 
+ the 'Body' field.&#160; It must comply with the format as documented above.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+            </p><pre xmlns="">
+{: 
+string begin, pref, res, p1, p2, resc ;
+integer icr, ica ;
+</pre><pre xmlns="">
+begin &#160;:= " ";
+pref := begin + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;IfKnownString(Substr(.Order.InternalId, Len(.Order.InternalId)-6, -1)) + 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;Rpad(.Mnemonic,4,"0") ;
+icr &#160;&#160;&#160;:= 0 ;
+ica &#160;&#160;&#160;:= 0 ;
+res &#160;&#160;&#160;:= "" ;
+resc &#160;&#160;:= "" ;
+</pre><pre xmlns="">
+if .Type = StringToEnumerated("ObservationalResultType", "Result")
+then &#160;
+ &#160;&#160;&#160;&#160;if .comment &lt;&gt; ? then 
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := "" ;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;resc := Replace(IfKnownString(.Comment),chr(10)," ") &#160;;
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;res := FitText((if resc &lt;&gt; "" then resc else ""),76,pref,pref,"") ;
+ &#160;&#160;&#160;&#160;endif ;
+</pre><pre xmlns="">
+endif ;
+RETURN res ;
+}
+</pre>
+            <p xmlns="http://www.w3.org/1999/xhtml">&#160;</p>
+        </div> 
+ Example:<p>The generator must be set to 'VariableText'.</p><p>In order to limit the property codes to 4 characters, you can create 
+ a Tacamed-specific property <a href="../../../configuration/coding_systems/coding_systems.htm">coding 
+ system</a> and specify it in this report template.</p><h3>Report generation</h3><p>Create a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command</a> 
+ to generate the Tacamed report files:</p><p class="fieldlabel">Report query settings</p><ul><li class="kadov-p" value="1"><b>Generator:</b> VariableText</li><li class="kadov-p" value="2"><b>Scope:</b> Order</li><li class="kadov-p" value="3"><b>Template:</b> report template used for demographic patient 
+ data</li></ul><p class="fieldlabel">Report generation settings</p><ul><li class="kadov-p" value="1"><b>New results:</b> ignore</li><li class="kadov-p" value="2"><b>Output buffering:</b> by target</li><li class="kadov-p" value="3"><![CDATA[
+	]]><b>Electronic page:</b><![CDATA[ 
+	
+	]]><ul><li class="kadov-p" value="1"><b>Destination:</b> directory</li><li class="kadov-p" value="2"><b>Paths:</b> directory in which files should be generated</li><li class="kadov-p" value="3"><b>Names:</b> sign{ReportTargetHCPIdentificationCode},resu{ReportTargetHCPIdentificationCode},comm{ReportTargetHCPIdentificationCode}</li><li class="kadov-p" value="4"><b>Extensions:</b> ldi,ldi,ldi</li></ul></li></ul><div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p xmlns="">Tthe {ReportTargetHCPIdentificationCode} 
+ variable used in the file names will be replaced by the HCProvider identification 
+ code assigned by the HC PIN provider specified in the report generation 
+ screen.</p></div><h2><a name="Example files"></a>Example output files</h2><h3>sign.ldi</h3><pre>
+01 &#160;&#160;&#160;&#160;3259115 8/10/0213/11/PAALTJES, PIET
+01 &#160;&#160;&#160;&#160;3259553 8/10/0220/03/JANSENS, JAN
+01 &#160;&#160;&#160;&#160;3260012 9/10/02 8/08/LUCKY, LUKE
+01 &#160;&#160;&#160;&#160;3260013 9/10/02 5/01/SIMPSON, BART
+</pre><h3>resu.ldi</h3><pre>
+32595535710 &#160;&#160;# &#160;2,03
+ 32600120051 &#160;&#160;&#160;&#160;&#160;0,4
+ 32600125710 &#160;&#160;&#160;&#160;&#160;0,59
+ 32600130001 &#160;&#160;# 14,60
+ 32600130900 &#160;&#160;&#160;&#160;&#160;4,28
+ 32600130901 &#160;&#160;&#160;&#160;44
+ 32600138012 &#160;&#160;&#160;102
+ 32600138013 &#160;&#160;&#160;&#160;34,1
+ 32600138014 &#160;&#160;&#160;&#160;34
+ 32600130003 &#160;&#160;&#160;&#160;&#160;6,9
+</pre><h3>comm.ldi</h3><pre>
+32595535710Variable norm values
+ 32600130001Comment for property NA
+</pre></body>
+</html>

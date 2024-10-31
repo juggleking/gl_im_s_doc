@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.1 - Allow adding requests before the order lowest object time (GLIMS-12266)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2719"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.1 - </MadCap:conditionalText>Allow adding requests before the order lowest object time (GLIMS-12266)</h1>
+        <p>The following issue has been corrected:</p>
+        <div class="indented" xmlns="">
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Configuration</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">A procedure Proc1 exists with material M1 as input and property P1 as output.<ul><li value="1">For the procedure output of material M1, the option <span class="ui_element">Auto login</span> is active.</li><li value="2">For the procedure output of property P1, a default value is configured.</li><li value="3">For property P1, the following <span class="ui_element">On result entry</span> trigger is defined: RETURN .CascadeRequest("P2");</li></ul></li>
+                <li value="2">A procedure Proc2 exists with material M2 as input and property P2 as output.</li>
+                <li value="3">A procedure Proc3 exists with material M3 as input and property P3 as output.</li>
+            </ul>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Routine</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">Request property P3 during order entry and save the order.</li>
+                <li value="2">Reopen the order and request property P1 but at a time in the past (for instance: current time minus 2 hours).</li>
+                <li value="3">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Check the sampling time of the materials:</p>
+                    <ol>
+                        <li value="1">
+                            <p xmlns="http://www.w3.org/1999/xhtml">Actual result:</p>
+                            <ul>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="1">The sampling time of material M1 is the current time - 2 hours</li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" style="font-weight: normal;" value="2"><span style="color: #ff0000;">The sampling time of material M2 is the current time</span>
+                                </li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="3">The sampling time of material M3 is the current time</li>
+                            </ul>
+                        </li>
+                        <li value="2">
+                            <p xmlns="http://www.w3.org/1999/xhtml">Expected result:</p>
+                            <ul>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="1">The sampling time of material M1 is the current time - 2 hours</li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="2"><span style="color: #32cd32;">The sampling time of material M2 is the current time - 2 hours</span>
+                                </li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="3">The sampling time of material M3 is the current time</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Customer care|Complaints|Functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Complaints:_Process">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Complaints: Process</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor419"></a>
+            <MadCap:concept term="Customer care" />Complaints: Process</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Parameters">Parameters</a> - <a href="#Complaint_mails">Complaint mails</a> - <a href="#Complaint%20log">Complaint log</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Processing complaints means adding to the complaint log, possibly modifying the complaint correction and/or prevention status or user assignment.&#160;</p>
+The Correction status is either Initial, Active, Customer, Closed or Discontinued. The Prevention status is either Initial, Active, Closed or Discontinued. Both are individual, independent statuses. Their processing pattern does not have to be parallel but can evolve differently.
+<h2><a name="Parameters" id="Parameters"></a>Parameters</h2><p class="fieldlabel">Notes </p><div class="indented"><p class="kadov-p">Is the explanatory text for the processing action, which is stored in the&#160;complaint log. It must always be specified.</p></div><p class="fieldlabel">Correction status</p><div class="indented"><p class="kadov-p">If <span class="ui_element">Correction status</span> is specified, the complaint will be processed to this status. Otherwise the status remains unchanged.</p></div><p class="fieldlabel">Prevention status </p><div class="indented"><p class="kadov-p">If <span class="ui_element">Prevention status</span> is specified, the complaint will be processed to this status. Otherwise the status remains unchanged.</p></div><p class="fieldlabel">Correction assignment</p><div class="indented"><p class="kadov-p">If <span class="ui_element">Correction assignment</span> is specified, the complaint will be assigned to the specified user. If not, it will remain unchanged.</p></div><p class="fieldlabel">Prevention assignment</p><div class="indented"><p class="kadov-p">If <span class="ui_element">Prevention assignment</span> is specified, the complaint will be assigned to the specified user. If not, it will remain unchanged.</p></div><p class="fieldlabel">Send mail to issuer</p><div class="indented"><p class="kadov-p">See below: <span class="ui_element">Complaint mails</span></p></div><h2><a name="Complaint_mails" id="Complaint_mails"></a>Complaint mails</h2><p class="fieldlabel">Complaint mails are sent</p><ol style="list-style-type: decimal;"><li class="p" value="1"><p>To the new correction or prevention assignment, except when the new correction or prevention assignment is the user that performs the processing action.</p></li><li class="p" value="2"><p>To the current correction or prevention assignment, when another user changes the complaint correction or prevention status.</p></li><li class="p" value="3"><p>To the complaint correspondent coordinator when a new complaint is created or when the complaint correspondent is modified.</p></li><li class="p" value="4"><p>To the complaint order issuer when a complaint is processed (changing correction/prevention status or assignment). This is optional, see above.</p></li></ol><p>In the first 3 cases the mail is sent internally, externally or both, depending on the target user's settings. In the 4th case, the mail is always sent externally (correspondent e-mail address), assuming that the order's issuer doesn't always have a user record in GLIMS.</p><h4>Complaint report as attachment</h4><div class="indented"><p>For external complaint mails, the complaint report is added as attachment. The complaint report is to be generated using <a href="../report_builder/report_types/complaint_reports/report_builder_complaint_reports_generate.htm">Report Builder</a>.</p></div><h2><a name="Complaint log"></a>Complaint log</h2><p>Each time a complaint is processed, this is stored in the complaint log.</p><p>The complaint log can be accessed through the complaint contextual menu function 'Logs' or by using the MISPL function Complaint.GetLog().</p><h3>Description of Complaint.GetLog() MISPL function</h3><p><b style="font-weight: bold;">Synopsis</b>: ComplaintLog GetLog(ComplaintLog <span style="color: #008000;">Previous</span>);</p><blockquote><p><span style="color: #008000;">Previous</span>:&#160;previous complaint log that was fetched. When unknown, the most recent one will be returned. Use this parameter to loop through all log<br />entries:</p></blockquote><pre>
+ComplaintLog CurrentLog;
+            String AllNotes;
+</pre><pre>
+CurrentLog := .GetLog(?);
+            WHILE CurrentLog &lt;&gt; ?
+            DO
+               /* Processing code */
+                message(CurrentLog.Notes); 
+                AllNotes := AllNotes + "~n" + CurrentLog.Notes;
+</pre><pre>
+                CurrentLog := .GetLog(CurrentLog);
+            DONE;
+</pre><pre>
+RETURN AllNotes;
+</pre><p>To get the last log, pass "?" as argument.&#160;&#160;Subsequent calls will return the previous log. After returning the first log, the next call will return "?".&#160;&#160;Example of how to get the last log:</p><blockquote><pre>
+Latest log  : {: String Logging; ComplaintLog LastLogId; 
+                LastLogid :=.GetLog(?);
+                if LastLogId &lt;&gt; ?
+                then
+                   Logging := LastLogId.Notes;
+                endif;
+                return FitText(Logging, 65, "", "               ", "");}
+</pre></blockquote></body>
+</html>

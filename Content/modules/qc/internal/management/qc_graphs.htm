@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Management" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\management\graph.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Levey-Jennings graph</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3460"></a>
+            <MadCap:concept term="Quality control" />Quality control - Levey-Jennings graph</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS can also display the results of a QC population in a graph.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../qcgraph_levey_jennings.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="729" data-mc-height="573" src="../../qcgraph_levey_jennings_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>There are several ways to open a QC graph:</p>
+        <ol>
+            <li class="kadov-p" value="1">Choose the context function <span class="ui_element">Levey-Jennings graph</span> on a QC population.</li>
+            <li class="kadov-p" value="2">Choose the context function <span class="ui_element">Show QC graph</span> on an assessment method or result.</li>
+        </ol>
+        <h2>General functionality</h2>
+        <ul>
+            <li value="1">All QC results are represented by <b>dots</b>, the <b>tooltip</b> shows more detailed information.</li>
+            <li value="2">
+                <p>For precision graphs, the <b>Y-axis shows the reference mean and the 2/3 sigma lines</b>, together with their absolute values. When the graph contains more than one population, the specific absolute values are only shown when selecting one of the populations by clicking on its label in the graph legend.</p>
+                <p>When the QC population fields <span class="ui_element">Limit 1</span> and <span class="ui_element">Limit 2</span> are specified, these <span style="font-weight: bold;">custom limits will be used to set the zones and labels</span> (instead of the fixed 2/3 SD limits).</p>
+            </li>
+            <li value="3">When <b>multiple datasets</b> are shown in the same graph, they also have common minimal and maximal limits for their Y-axis, so the scale of the Y-Axis does not change when selecting the individual datasets by clicking on their legend entry.&#160;QC populations which are explicitly selected in the parent browser (using the space bar, visible by the "&gt;" indicator in the browser) are always shown in the graphs. When clicking on another QC population while the graph is being shown will show this QC population in combination with the populations which are explicitly selected.</li>
+            <li value="4">The graph will also show important <a href="../../../../configuration/station_logs/station_logs.htm">StationLog events</a> (where <b>StationLog</b>.ShowOnQCGraph=YES) and the <b>ReagentUsage</b> records on the qc graph.&#160;These events are indicated by a vertical line in the graph. Holding the mouse pointer over such a line shows a tooltip describing the event.</li>
+            <li value="5"><b style="font-weight: bold;">Results having a comment</b> will be marked by drawing <b>a circle</b> around the data point in the qc graphs.</li>
+            <li value="6">
+                <p><b style="font-weight: bold;">Discontinued results</b> are also shown in the QC graphs, but have a <b>cross</b> as graphical mark and are not connected to the other points of the graph. The tooltip of a discontinued result will show its comment and its rejection reason.</p>
+                <p>When selecting multiple QC populations to be shown in the graph and these populations have different limits, GLIMS will not be able to show these areas separately for each QC population.</p>
+            </li>
+        </ul>
+        <h2>Buttons</h2>
+        <p class="fieldlabel">Populations</p>
+        <blockquote>
+            <p>Allows calling the browser of active QC populations for the current assessment method.</p>
+        </blockquote>
+        <p class="fieldlabel">Back / Forward</p>
+        <blockquote>
+            <p>Allows moving the graph back or forward in time. See also <span class="ui_element">Date range</span> (below).</p>
+        </blockquote>
+        <h2>Date range</h2>
+        <p class="fieldlabel">Range</p>
+        <div class="indented">
+            <p>Offers a number of predefined ranges. The default is 2 weeks. The end date will automatically be set to <span class="ui_element">Today</span>. </p>
+            <ul>
+                <li value="1">When selecting the option <span class="ui_element">Explicit</span>, you can specify a specific start and end date. </li>
+                <li value="2">The option <span class="ui_element">All</span> will disable the <span class="ui_element">Start date</span> and <span class="ui_element">End date</span> fields and show all QC results.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Start and end date</p>
+        <div class="indented">
+            <p>Allows to enter a specific start and end date when the <span class="ui_element">Range</span> option is set to <span class="ui_element">Explicit</span>.</p>
+        </div>
+        <p class="fieldlabel">Other features</p>
+        <div class="indented">
+            <ol style="list-style-type: decimal;">
+                <li class="p" value="1">
+                    <p>When changing the <span class="ui_element">Range</span> or <span class="ui_element">Start/end date</span>, the graph will automatically be refreshed.</p>
+                </li>
+                <li class="p" value="2">
+                    <p>The <span class="ui_element">Back</span> and <span class="ui_element">Forward</span> buttons will use a date shift that corresponds to the specified range (or the number of days between start and end date).</p>
+                </li>
+                <li class="p" value="3">
+                    <p>The <span class="ui_element">Range</span> and <span class="ui_element">Start/end date</span> will be remembered when navigating to e.g. another QC population. These settings are also remembered per user.</p>
+                </li>
+                <li class="p" value="4">
+                    <p>The graph screen can be pre-configured as a menu or ribbon item. However, when setting up the function from a Result context, all parameters will have a fixed value.</p>
+                </li>
+                <li class="p" value="5">
+                    <p>When starting the graph from a QC population, Assessment method, Microbiology QC test or Microbiology QC result, the graph end date is by default set to <span class="ui_element">Today</span>. The graph start date is determined by the <span class="ui_element">Range</span>. In case <span class="ui_element">Range</span> is set to <span class="ui_element">Explicit</span>, then the Start and End date values are used.</p>
+                </li>
+                <li class="p" value="6">
+                    <p>When starting the graph from a QC result, the graph end is set to the availability time of the last result (+1 day). The <span class="ui_element">Range</span> value is set to <span class="ui_element">Explicit</span> (cannot be changed in this case) and the start date is set to 2 weeks earlier than the end date.</p>
+                </li>
+            </ol>
+        </div>
+        <h2><a name="Show"></a>Show moving average</h2>
+        <p>By default, when displaying a QC&#160;graph for more than one QC population (including a QC&#160;population of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Moving average</span>), the QC&#160;population of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Moving average</span> will be skipped. </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">In order to display the  QC&#160;population of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Moving average</span> on the QC&#160;graph, use the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show moving average</span> in the  <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Accuracy</span> tab page.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ol>
+                <li xmlns="" value="1">The QC population of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Moving average</span> will  be displayed immediately on the QC&#160;graph (<span class="ui_element">Precision</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Accuracy</span> tab) if it is the only QC population selected for display.</li>
+                <li value="2">The <span class="ui_element" xmlns="">Show moving average</span> setting is not stored as a user preference.</li>
+            </ol>
+        </div>
+        <h2>MIPS graph tool</h2>
+        <p>For a detailed description of the graph options, please check the chapter on the <a href="../../../../general/graphs_images_mips_graph.htm">MIPS Graph tool</a>.</p>
+    </body>
+</html>

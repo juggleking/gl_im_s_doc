@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Electronic Order Scheduler">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" /><title>Electronic order scheduler - Creation of pending orders</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1035"></a>
+            <MadCap:concept term="EOS" />Electronic order scheduler - Creation of pending orders</h1>
+        <h2><a name="top"></a>Automatically</h2>
+        <p style="text-align: left;">In the <a href="eos_general_options.htm">general settings</a> of the electronic order scheduler module, two options are available to determine whether an order 
+ should be put in status <span class="ui_element">Pending</span> when it is created.</p>
+        <p class="fieldlabel">On electronic order entry</p>
+        <div class="indented">
+            <p style="text-align: left;">	This MISPL function (Logical) will be evaluated for each electronically 
+	 received order. If the requirements defined in the MISPL 
+	 function are met, the order will be put in status <span class="ui_element">Pending</span>.</p>
+        </div>
+        <p class="fieldlabel"><a name="On"></a>On manual order entry</p>
+        <div class="indented">
+            <p style="text-align: left;">This MISPL function (Logical) will be evaluated for each manually entered 
+	 order. If the requirements defined in the MISPL function 
+	 are met, the order will be put in status <span class="ui_element">Pending</span>.</p>
+        </div>
+        <h2>Manually</h2>
+        <p>Any order in status <span class="ui_element">Initial</span> can be moved to status <span class="ui_element">Pending</span> 
+ using the contextual function <span class="ui_element">Re-enter as Pending.</span></p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>When moving an order to status <span class="ui_element">Pending</span>, GLIMS will actually 
+ <b>discontinue</b> the selected order and create a new, identical order 
+ in status <span class="ui_element">Pending</span> ! The link between the requests and 
+ the specimens will be lost as specimens are not scheduled for pending 
+ orders (see below).</p>
+            <p>The new pending order will get the internal id and short id of the original order. The short id of the original order is cleared, and its internal id is suffixed with "#sequencenumber".</p>
+        </div>
+        <h2>About order expansion and order activation</h2>
+        <p>The diagram below shows the different phases during which GLIMS creates Requested codes, Requests, Results, Specimens, etc.</p>
+        <ol>
+            <li value="1">Requests are entered (manually or electronically).</li>
+            <li value="2">Expansion: GLIMS uses the entered codes to find a matching request definition and creates requests.</li>
+            <li value="3">Activation: the required Result, Specimen, ... records are created.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Diagrams/order_expansion_activation.png" />
+        </p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>For pending orders, the <i>Expansion</i> phase is delayed until the order is activated.</p>
+        </div>
+        <h4>Schema</h4>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Standard-Head-Header1">
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-Standard-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-Standard-HeadD-Column1-Header1">Delayed expansion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        <p>Creation of Order record</p>
+                        <p>Creation of RequestCode records where RequestedCode.Requestable = ?</p>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order entry</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">2</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        <p>Expansion of RequestedCode into Requestable</p>
+                        <p>RequestedCode.Requestable &lt;&gt; ?</p>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order activation</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">3</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        <p>Expansion of panel request definitions</p>
+                        <p>Creation of Request records where Request.Requestable &lt;&gt; ?</p>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order activation</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">4</td>
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">
+                        <p>Activation of the Requests:</p>
+                        <p>Creation of Result / MicrobiologyAction / Blood selection for all Request records</p>
+                    </td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order activation</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">5</td>
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Post-processing of the order (action scheduling, label printing)</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Order activation</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

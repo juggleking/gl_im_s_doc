@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\spmn_size.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Specimen size calculation</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor310"></a>Specimen size calculation</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Practical%20configuration">Practical configuration and examples</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Theoretical%20introduction">Theoretical description</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Dead_volume_and_parallel_versus_sequential_instrument_processing">Dead volume and parallel versus sequential instrument processing</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Remarks">Remarks</a>
+            </li>
+        </ul>
+        <h2><a name="Practical configuration"></a>Practical configuration and examples</h2>
+        <p>An example of two chained procedures:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_size_chained_proc.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="517" data-mc-height="123" src="specimens_size_chained_proc_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">In order to calculate the required specimen sizes, you should read the diagram backwards:</p>
+        <p class="fieldlabel">1. Specimen size calculation of the second 'Blood' material:</p>
+        <div class="indented">
+            <p style="text-align: left;">The <span class="ui_element">Property output</span>'s <span class="ui_element">Consumption</span> values (of RBC and WBC) + the <span class="ui_element">Material input</span>'s <span class="ui_element">Minimal size</span> of the second 'Blood' material, which is considered as dead volume.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the value specified in <span class="ui_element">Material.MinimumSize</span> exceeds this calculated value, then the <span class="ui_element">Material.MinimumSize</span> will be considered as the required specimen size.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">2. Specimen size calculation of the first 'Blood' material:</p>
+        <div class="indented">
+            <p style="text-align: left;">The ratio between the <span class="ui_element">Material output</span>'s <span class="ui_element">Production</span> and the <span class="ui_element">Material input</span>'s <span class="ui_element">Minimal size</span> (of the first procedure) is applied on the specimen size of the second 'Blood' material (as calculated above) in order to obtain the required specimen size of the first material.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the value specified in <span class="ui_element">Material.MinimumSize</span> exceeds this calculated value, then the <span class="ui_element">Material.MinimumSize</span> will be considered as the required specimen size.</p>
+            </div>
+            <p style="text-align: left;">&#160;</p>
+        </div>
+        <h2>Procedure with material output versus Procedure with property output</h2>
+        <p>A clear distinction must be made between the two following cases:</p>
+        <p class="fieldlabel">A procedure with a material as input and a material as output</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Given a 0.5 ml minimum size for the material input and 0.25ml as MaterialOutput.Production, you will need a 3 ml tube (as input) in order to produce a 1.5 ml tube (as output)&#160;&#160;</p>
+                <p>In other words, the ratio between the MaterialOutput.Production and the&#160;&#160;MaterialInput.MinimalSize (in this example: 0.25 and 0.5 =&gt; 2) is used to calculate the Specimen.Size (in this example: 1,5 * 2 = 3)</p>
+            </div>
+        </div>
+        <p class="fieldlabel">A procedure with a material as input and a property as output</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>In this case the material input minimal size is considered as a dead volume. The procedure's required volume is that dead volume + the property output consumption values.</p>
+            </div>
+        </div>
+        <h2><a name="Theoretical introduction"></a>Theoretical description</h2>
+        <p>The required amount of specimen to be sampled is stored in the Specimen's <span class="ui_element">Size</span> field. The size calculation algorithm supports multiple material inputs per procedure, and takes the following information into account:</p>
+        <ul>
+            <li class="kadov-p" value="1">Material.MinimalSize</li>
+            <li class="kadov-p" value="2">MaterialInput.MinimalSize</li>
+            <li class="kadov-p" value="3">MaterialOutput.Production</li>
+            <li class="kadov-p" value="4">PropertyOutput.Consumption</li>
+        </ul>
+        <p>A specimen's <span class="ui_element">Size</span> is the sum of the required sizes of all depending specimen inputs. This sum cannot be less than the material's <span class="ui_element">Minimal size</span> (if specified). </p>
+        <p>The required size of a specimen input is derived from the action it is input of, in the following manner:</p>
+        <p class="fieldlabel">Action has specimen outputs</p>
+        <div class="indented">
+            <p>If the action has any specimen outputs, then first the specimen sizes of these outputs are calculated. </p>
+            <p>An action's specimen input size is initialized with the material input minimal sizes (no specification is considered as zero). If all material outputs specify a production, then the specimen input sizes are proportionally adapted according to the ratios between the size of a material input and its material output production (this is the proper way to implement material loss or gain). </p>
+            <p>If any material output production is not specified, then the specimen input sizes are increased proportionally until their sum equals the sum of the sizes of specimen outputs (conservation of material). </p>
+            <p>This is only possible if all the material inputs are expressed in the same unit.</p>
+        </div>
+        <p class="fieldlabel">Action has no specimen outputs</p>
+        <div class="indented">
+            <p>If the action has no specimen outputs, then the specimen input sizes are increased proportionally until their sum equals the sum of the sizes consumed by the result outputs (property output consumption, '?' is considered as 0) and the material inputs' minimal sizes (considered as dead volume). </p>
+            <p>This is only possible if all the material inputs are expressed in the same unit. If the minimal size of all the procedure's material inputs  are set to zero or ?, then the sum of the sizes required on the output side is divided equally on the input side (conservation of material).</p>
+            <p>If the actual specimen size becomes unknown because the procedure chain is not completely configured with respect to specimen sizes, the minimal size will be assumed.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1"> Unknown specimen sizes are interpreted as 0.</li>
+                <li value="2">Specimen size re-calculation when adding requests: when a new action re-uses an existing specimen, its SpecimenInput size will be calculated, and the corresponding specimen size will be adjusted if necessary.</li>
+            </ul>
+        </div>
+        <h3>Creation of overflow specimens during scheduling</h3>
+        <p>By default, when more volume in an input specimen is required than is allowed by Material.MaximalSize, only one specimen is created. When during printing of the labels Specimen.Size &gt; Material.MaximalSize, the program simply generates additional labels for the same specimen bar code.</p>
+        <p>This mechanism is not suited when working with an automatic sample distribution system (e.g. PVT), since this system has to be told exactly which test to perform on which specimen.&#160;</p>
+        <p>To cope with this, the general option <span class="ui_element">Use overflow specimens</span> can be used.&#160;&#160;Click <span class="ui_element">Start</span> -&gt; <span class="ui_element">System 
+ management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS general</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_size_use_overflow.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="757" data-mc-height="675" src="specimens_size_use_overflow_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>If this option is enabled, the scheduler keeps track of the size requirements and limitations and will automatically schedule additional specimens when the maximal size of an input specimen has been reached.&#160;&#160;This mechanism uses a heuristic approach which works best when procedures do not have multiple input materials.</p>
+        <h2><a name="Dead_volume_and_parallel_versus_sequential_instrument_processing" id="Dead_volume_and_parallel_versus_sequential_instrument_processing"></a>Dead volume and parallel versus sequential instrument processing</h2>
+        <p class="fieldlabel">Parallel processing</p>
+        <div class="indented">
+            <p>When defining dead volumes&#160;&#160;(MaterialInput.MinimalSize) for multiple procedure inputs of the same material, GLIMS will by default add up all dead volumes in the calculation of the specimen size. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Assume the following configuration in GLIMS: A material being input of 2 procedures: One on station X, another on station Y.</p>
+                <ul>
+                    <li value="1">X procedure has K and N as output with a consumption of 10 and 20 respectively. The specimen input on the X has a minimal size of 1000 (the dead volume).</li>
+                    <li value="2">Y procedure has TSH as output with a consumption of 50, and a dead volume of 800 .</li>
+                </ul>
+                <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_size_default_size_calc_example.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="426" data-mc-height="222" src="specimens_size_default_size_calc_example_thumb_0_120.png" alt="" tabindex="" /></a>
+                </p>
+                <p class="MsoNormal">When specimen size is calculated, GLIMS makes the sum of all consumptions and dead volumes: 10 + 20 + 1000 + 50 + 800 = <b>1880</b>.</p>
+            </div>
+            <p>In this type of configuration, it is assumed that the specimen is being processed in a <span class="ui_element">parallel</span> manner. The means that the tube is divided in 2 parts having enough dead volume for processing it simultaneously on both instruments. That's why the size of the specimen in GLIMS contains the sum of the dead volumes.</p>
+        </div>
+        <p class="fieldlabel">The sequential processing</p>
+        <div class="indented">
+            <p>Suppose we have a tube that will be processed on instrument X first, and when finished, on instrument Y.</p>
+            <p>When the dead amount volumes are substantially high, it would make sense <i>not</i> to add both dead volumes in the calculation of the specimen size. We could be more efficient by taking the highest required dead volumes, since the dead volume remains when passing the tube from instrument X to Y. </p>
+            <p>This type of processing is important when dealing with specimen sorting systems that are to be instructed with an accurate specimen size.</p>
+            <p>How does GLLIMS know that dead volumes are to be interpreted differently ? The solution is to configure the field <span class="ui_element">MaterialInput.ProcessingChain</span>. Material inputs with the same string value are considered to be in the same chain configuration.</p>
+            <p>Suppose we have configured the two material inputs of our example in the parallel processing with the same processing chain:</p>
+            <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_size_chain_size_calc_example.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="427" data-mc-height="282" src="specimens_size_chain_size_calc_example_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+            <p>The specimen size would then be: 10 + 20 + 50 + 1000 = <b>1080</b>, in which 1000 is the maximal dead volume of 800 and 1000.</p>
+        </div>
+        <div class="indented">
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When a specimen input of an action has specimen outputs, then the Material.MinimalSize of the specimen input is not considered as a dead volume and will not be a candidate for the maximal dead volume. A processing chain configured on that material input will thus be ignored.</p>
+            </div>
+        </div>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <ol>
+            <li value="1">The 'dead' volume specified in MaterialInput.MinimalSize is only counted once per procedure. When a specimen is input to multiple actions for the same procedure, only one of the SpecimenInput records will take this minimal size into account in its SpecimenInput.Size calculation. This is linked to the idea that when we e.g. have to repeat a test, the dead volume of the specimen used for the original action is still available.&#160;</li>
+            <li value="2">The size calculations do not add PropertyOutput.Consumption for results which have been discontinued. In other words, discontinued results are ignored during the specimen size calculation. If all output results of an action have been discontinued, the dead volume of the procedure is not counted either.&#160;</li>
+            <li value="3">
+                <p>Each time a result is discontinued, the size of its root specimen (and the child specimens of this root specimen) is recalculated, thus possibly yielding a smaller size.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The specimen size is only recalculated if the result does not have an availability time yet. The idea behind it is that the volume is already consumed once the result is available.</p>
+                </div>
+            </li>
+        </ol>
+    </body>
+</html>

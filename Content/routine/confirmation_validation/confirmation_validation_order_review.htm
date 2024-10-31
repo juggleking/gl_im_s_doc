@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Confirmation and validation" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\confirm_validate\confirm_validate3.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Order review</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order review</h1>
+        <p>Contents: <a href="#Order%20query%20options">Order query options</a> - <a href="#Order%20review%20screen">Order review screen</a> - <a href="#Result%20query%20options">Result 
+ query options</a> - <a href="#Order%20locking%20during%20validation">Order locking 
+ during validation</a></p>
+        <h2><a name="Order query options"></a>Order query options</h2>
+        <p>The <span class="ui_element">Order review</span> (gp_Site.OrderReview()) function  can be activated from the main menu via <span class="ui_element">Start 
+ -&gt; Routine -&gt; Order review</span> and first produces an 
+ order query:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/orderreview_mainquery.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="723" data-mc-height="465" src="images/orderreview_mainquery_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Objective</p>
+        <div class="indented">
+            <p style="text-align: left;"> 
+	 Three options are available:</p>
+            <p class="fieldlabel">Confirm</p>
+            <div class="indented">
+                <p style="text-align: left;">
+		 Orders with 'Available' results will be selected and the eligible 
+		 results will be pre-selected for confirmation.</p>
+            </div>
+            <p class="fieldlabel">Validate</p>
+            <div class="indented">
+                <p style="text-align: left;"> 
+		 Orders with 'Confirmed' results will be selected and the eligible 
+		 results will be pre-selected for validation.</p>
+            </div>
+            <p class="fieldlabel">Confirm 
+		 + validate</p>
+            <div class="indented">
+                <p style="text-align: left;"> Orders with 'Available' and/or 'Confirmed' results 
+		 will be selected and the eligible results will be pre-selected 
+		 for confirmation and validation.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Created 
+	 / Received / Sampled from - until</p>
+        <div class="indented">
+            <p style="text-align: left;"> You can specify fixed dates 
+	 or use relative dates. It is possible to specify e.g. "Created 
+	 since: Today" instead of having to enter an absolute date value.</p>
+        </div>
+        <p class="fieldlabel">Internal 
+	 id from - to</p>
+        <div class="indented">
+            <p style="text-align: left;"> Order internal id range</p>
+        </div>
+        <p class="fieldlabel">Minimal 
+	 urgency</p>
+        <div class="indented">
+            <p style="text-align: left;"> Only orders with urgency at least as specified.</p>
+        </div>
+        <p class="fieldlabel">Issuer</p>
+        <div class="indented">
+            <p style="text-align: left;"> 
+	 Orders only issued by the specified correspondent.&#160;&#160;If a 
+	 specific issuer is specified, the 'Correspondent group' and 'Tour 
+	 prefix' options are ignored.&#160;</p>
+        </div>
+        <p class="fieldlabel">Correspondent 
+	 group</p>
+        <div class="indented">
+            <p style="text-align: left;"> Orders only issued by members of this correspondent group.</p>
+        </div>
+        <p class="fieldlabel">Tour 
+	 prefix</p>
+        <div class="indented">
+            <p style="text-align: left;"> When a <a href="../../modules/customer_care/tours.htm">tour</a> 
+	 prefix is specified, only orders for issuers belonging to at least 
+	 one of the matching tours will be selected. It is the Tour.Mnemonic 
+	 field that is compared against the entered prefix.</p>
+        </div>
+        <p class="fieldlabel">Agent</p>
+        <div class="indented">
+            <p style="text-align: left;"> 
+	 Only orders having the specified correspondent as agent.</p>
+        </div>
+        <p class="fieldlabel">Department</p>
+        <div class="indented">
+            <p>Allows 
+	 for searching in to the Order.Department field.</p>
+            <p>	The order's department is set as follows:</p>
+            <p class="fieldlabel">	Manual order entry</p>
+            <div class="indented">
+                <p> Department of the logged in user that created the 
+	 order.</p>
+            </div>
+            <p class="fieldlabel">Electronic order entry</p>
+            <div class="indented">
+                <p> Department of the batch user linked to the 
+	 service that processes the order messages. &#160;This department can 
+	 be overruled if a department is specified in the order message.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Executing department 
+	 (group)</p>
+        <div class="indented">
+            <p class="kadov-p"> &#160;Allows to 
+	 search for orders that have at least one action that is executed in 
+	 the specified executing department (group). &#160;This is determined 
+	 by the procedure's department.</p>
+        </div>
+        <p class="fieldlabel">Escalated</p>
+        <div class="indented">
+            <p style="text-align: left;"> For more information, see <a href="confirmation_validation_result_escalation.htm">Validation in phases: result escalation</a>.</p>
+        </div>
+        <p class="fieldlabel">Classification</p>
+        <div class="indented">
+            <p class="p"> 
+	 Only orders with results for properties from this property classification.</p>
+        </div>
+        <p class="fieldlabel">Domains</p>
+        <div class="indented">
+            <p class="p"> Please see the chapter <a href="confirmation_validation_property_domains.htm">Validation by property domain</a>.</p>
+        </div>
+        <p class="fieldlabel">Valab 
+	 (expert system) status</p>
+        <div class="indented">
+            <p style="text-align: left;">This field will only be available 
+	 if the specific site field 'Expert system' is not set to '?'.&#160;&#160;Possible 
+	 values:</p>
+            <p class="fieldlabel">Evaluated</p>
+            <div class="indented">
+                <p class="MsoNormal"> Only select 
+		 orders which have been evaluated by the expert system, regardless 
+		 of the appraisal.</p>
+            </div>
+            <p class="fieldlabel">Not evaluated</p>
+            <div class="indented">
+                <p class="MsoNormal">Only 
+		 select orders which have not yet been evaluated by the expert 
+		 system.</p>
+            </div>
+            <p class="fieldlabel">Approved</p>
+            <div class="indented">
+                <p class="MsoNormal">Only select 
+		 orders which have been evaluated and approved by the expert system.</p>
+            </div>
+            <p class="fieldlabel">Rejected</p>
+            <div class="indented">
+                <p class="MsoNormal"> Only select 
+		 orders which have been evaluated and rejected by the expert system.</p>
+            </div>
+            <p class="fieldlabel">To be evaluated</p>
+            <div class="indented">
+                <p class="MsoNormal">Select orders 
+		 that are not evaluated by Valab yet or orders that are rejected 
+		 or approved by valab but should be evaluated again.<br />	&#160;</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Filter</p>
+        <div class="indented">
+            <p style="text-align: left;">Allows for the specification of a MISPL expression to filter the orders.</p>
+        </div>
+        <p class="fieldlabel">Sort 
+	 function</p>
+        <div class="indented">
+            <p style="text-align: left;"> Orders will be sorted according to the value of this 
+	 MISPL expression.&#160;&#160;By default the orders are sorted by creation 
+	 time.&#160;</p>
+        </div>
+        <p class="fieldlabel">Only complete</p>
+        <div class="indented">
+            <p style="text-align: left;">Only 'complete' orders, i.e. where all results from the 
+	 current classification are confirmed.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p style="text-align: left;">During the order query, a progress indication 
+ appears. It shows the amount of candidate orders for confirmation or validation, 
+ versus the amount of actually selected ones.&#160;&#160;This should give 
+ some indication about the progress, and signal the user about configuration 
+ problems if the candidate order count is too large and grows day by day. 
+ Note that this progress indicator cannot be shown when making use of the 
+ remote query mechanism.</p>
+        </div>
+        <h2><a name="Order review screen"></a>Order review screen</h2>
+        <p>After having selected the order query options, the order review screen 
+ will be displayed:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/orderreview.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="821" data-mc-height="250" src="images/orderreview_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3>General features</h3>
+        <p>This is a screen with dual navigation possibilities: orders at the master 
+ level (navigation via the Page Up / Page Down shortcut keys), and results at the detail level (navigation via the CTRL+Page Up / CTRL + Page Down shortcut keys).&#160;Initially, the property 
+ column is focused. Entering the value cell is assumed to be an update 
+ signal. When the validation browser is in update mode, a lookup (CTRL-F) 
+ from the result value cell activates a result code &amp; enumeration choice 
+ selection list. <a href="../results/results_modify.htm">Click here 
+ for more information on result updates and comments</a>.</p>
+        <p>Hit the <span class="ui_element">confirmation/validation</span> button to confirm and/or validate 
+ the selected results.&#160;&#160;The label of this button varies between 
+ <span class="ui_element">Confirm</span> and <span class="ui_element">Validate</span> depending of the 'Objective' 
+ field of the order review query.&#160;&#160;If a user is not registered 
+ as an employee (no employee assignments) or does not have confirmation/validation 
+ privileges, the confirmation/validation buttons will be disabled.&#160;&#160;The 
+ tool tip of these buttons will explain why they are disabled.</p>
+        <p>If at least one of the results has a severity higher than or equal to 
+ the <span class="ui_element">warning severity level</span> (see result query options below), an 
+ image will be displayed and a sound will be played. This also applies 
+ to procedure data records in the confirmation program, provided their 
+ history index is 0 (= of the same object time). The warning image that 
+ is searched for should be named "warning.bmp" and located somewhere 
+ in the PROPATH. Its expected dimensions are 32 x 32. If you have a sound 
+ card, and "warning.wav" is found, the sound is played simultaneously. 
+ Simply remove the wave file if you want to get rid of the noise.</p>
+        <p style="text-align: left;">The validation program keeps track of which 
+ results are already shown to the user. Only if all the results to be validated 
+ (i.e. the ones that are pre-selected) have been viewed at, the corresponding 
+ button is enabled. So, if not all results fit into the browser, you will 
+ have to scroll down before you are able to confirm/validate. This should 
+ avoid inattentive processing of hidden results.</p>
+        <h3>Other columns</h3>
+        <p>For more information on specials marks, please see the chapter <a href="../results/results_browsers.htm">Result browsers</a>.</p>
+        <h3>Previous run / material</h3>
+        <p>The <span class="ui_element">Previous run</span> column offers a <span class="ui_element">cycle</span> button 
+ in its header which allows to show the material instead of the previous 
+ run.</p>
+        <p class="fieldlabel">Previous run</p>
+        <div class="indented">
+            <p>Shows the most recent predecessor value of the result (if any). A predecessor 
+ value is the previous result of the same test that has been discontinued 
+ and repeated.&#160;&#160;So the status of a predecessor value is always 
+ discontinued.&#160;&#160;As a consequence, this value is always shown 
+ even if the result status range in the options does not include discontinued 
+ results.&#160;&#160;If you want to see all discontinued results in the 
+ browser, you must include the <span class="ui_element">Discontinued</span> status in the result 
+ status range of the options screen.</p>
+            <p>All predecessor values are also shown in the comment box at the bottom 
+ left-hand side of the screen. They are displayed as a comma separated 
+ list, in descending order of assessment (i.e. the most recent first), 
+ and without their unit.</p>
+        </div>
+        <p class="fieldlabel">Material</p>
+        <div class="indented">
+            <p>Shows the material and, if available, the primary material variable.</p>
+        </div>
+        <p>You can hide this <span class="ui_element">Previous run / material</span> column by disabling 
+ the option <span class="ui_element">Show previous run/material</span> in the options screen.</p>
+        <h3>Previous values</h3>
+        <p>In the Options screen you can indicate if (and how many) previous results 
+ are to be shown.&#160;&#160;Contrary to <span class="ui_element">Predecessor values</span>, 
+ previous results are results for the same test, the same patient but a 
+ different sample.</p>
+        <h3><a name="Image_results" id="Image_results"></a>Image results</h3>
+        <p>If the option <span class="ui_element">Show image results</span> (see below) is enabled, 
+ available results of data type 'Image' automatically pop-up in one single 
+ frame. The frame automatically appears as images are available, and disappears 
+ if there are none.&#160;</p>
+        <p>This is accomplished by means of an embedded Internet Explorer window. 
+ It can be resized as desired, in which case the images will automatically 
+ re-arrange. Images can be viewed full-size by clicking on the initial 
+ image. The latter may require the following Internet Explorer option to 
+ be set: Tools &gt; Internet Options... Advanced &gt; Security &gt; Allow 
+ active content to run in files on My Computer.&#160;&#160;The HTML content 
+ is hard-coded and cannot be configured.</p>
+        <p>The images are collected and sorted as follows:</p>
+        <div class="indented">
+            <p class="fieldlabel">QUERY</p>
+            <ul>
+                <li value="1">Results of order.</li>
+            </ul>
+            <p class="fieldlabel">SORTING</p>
+            <ul>
+                <li value="1">PropertyClassification sequence.</li>
+            </ul>
+        </div>
+        <h3 style="text-align: left;">Embedded toolbar</h3>
+        <p style="text-align: left;">The order review program also features an 
+ <span class="ui_element">embedded toolbar</span>.&#160;&#160;The toolbar is hard-coded and hence 
+ cannot be customized. Due to space limitations, it only appears if the 
+ screen resolution is larger than 800 x 600. It provides fast access to 
+ some commonly used functions:</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/orderreview_quickreporrt.gif" alt="" style="border: none;" width="22" height="22" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Result.Order.QuickReport()</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/orderreview_viewimage.gif" alt="" style="border: none;" width="22" height="22" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Result.Order.ViewImage()</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/orderreview_order.gif" alt="" style="border: none;" width="22" height="22" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Result.Order()</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/orderreview_objectoverview.gif" alt="" style="border: none;" width="22" height="22" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Result.Object.ResultOverview()</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/validate_by_domain_order_review_icon_00.png" xmlns="http://www.w3.org/1999/xhtml" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Please check the chapter <a href="confirmation_validation_property_domains.htm">Validation by property domain</a></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="22">
+                    <img src="images/validate_by_domain_order_review_icon_01.png" xmlns="http://www.w3.org/1999/xhtml" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Please check the chapter <a href="confirmation_validation_property_domains.htm">Validation by property domain</a></td>
+            </tr>
+        </table>
+        <p>The buttons will only be shown if the user has the necessary privileges 
+ to access the related functions.</p>
+        <h2><a name="Result query options"></a>Result query options</h2>
+        <p>The <span class="ui_element">Options</span> button in the order review screen allows 
+ specification of result selection criteria.&#160;&#160;</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/orderreview_resultoptions.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="382" data-mc-height="397" src="images/orderreview_resultoptions_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">General 
+ options</p>
+        <div class="indented">
+            <p class="fieldlabel">Results status from-to</p>
+            <div class="indented">
+                <p class="kadov-p">These fields allow the user to specify
+	 a result status range.</p>
+            </div>
+            <p class="fieldlabel">Severity from-to</p>
+            <div class="indented">
+                <p class="kadov-p">These fields allows the user to specify 
+	 a result severity range.</p>
+            </div>
+            <p class="fieldlabel">Warning severity</p>
+            <div class="indented">
+                <p class="kadov-p">When 
+	 one of the results shown during confirmation/validation reaches a 
+	 given severity level, it is possible to produce an extra visible/audible 
+	 alert. To activate this feature, supply a severity level in the "Warning 
+	 severity" field of the options dialog. On return of the dialog, 
+	 the header will make room for an image at the top right-hand side 
+	 of the window.&#160;&#160;The warning image that is searched for should 
+	 be named "warning.bmp" and located somewhere in the PROPATH. 
+	 Its expected dimensions are 32 x 32. If you have a sound card, and 
+	 "warning.wav" is found, the sound is played simultaneously. 
+	 Simply remove the wave file if you want to get rid of the noise.</p>
+            </div>
+            <p class="fieldlabel">Conclusion property</p>
+            <div class="indented">
+                <p class="kadov-p">If a <span class="ui_element">conclusion property</span> is specified, an 
+	 extra window will be integrated in the validation screen which allows the user
+	 to enter a conclusion text.&#160;&#160;A conclusion result will automatically 
+	 be created for the order.&#160;&#160;Shielded conclusions will be 
+	 displayed as "XXX". When update of the conclusion property 
+	 is denied, the widget will be displayed with a gray background.</p>
+            </div>
+            <p class="fieldlabel">Alternate classification</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 Allows the user to specify any 'display' classification, i.e. a property classification 
+	 which will be used to display the results.&#160;&#160;&#160;Eligible 
+	 records are only pre-selected when belonging to the initial 'selection' 
+	 classification (as specified in the query).</p>
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p>Make sure that the 'selection' classification is always a subset of 
+ the display classification. If not, you risk that results are hidden unnoticed. 
+ This may cause the amount of unconfirmed/unvalidated results and incomplete 
+ orders to accumulate.</p>
+                    <p>Therefore:</p>
+                    <ul>
+                        <li value="1">The title bar contains extra information about the applied classifications 
+	 in the format "(SelectionClassification[/DisplayClassification])".</li>
+                        <li value="2">Watch the selected order count that is displayed during the initial 
+	 query. A continuously growing amount of eligible orders (right hand 
+	 side of the count) may be an indication of a structural configuration 
+	 problem. Classifications that do not completely overlap will probably 
+	 be the reason.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="fieldlabel">Show previous run/material</p>
+            <div class="indented">
+                <p>If 
+	 set, a "Previous run / material" column will be shown.&#160;&#160;Using 
+	 the cycle button in the column header, you can choose which column 
+	 should be shown.</p>
+            </div>
+            <p class="fieldlabel">Show image results</p>
+            <div class="indented">
+                <p> See <a href="#Image_results">Image results.</a></p>
+            </div>
+            <p class="fieldlabel"><a name="Preview"></a>Preview calculations</p>
+            <ul>
+                <li value="1">If disabled, calculated results are only shown if their input results are confirmed/validated.</li>
+                <li value="2">If enabled, calculated results will be shown between parentheses if their input results are not yet confirmed/validated.</li>
+            </ul>
+            <div class="indented">
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p>The site function specified in the <a href="../../configuration/procedure_outputs/procedure_outputs.htm#Value">PropertyOutput field Value</a> (PropertyOutput.Value) is evaluated when previewing calculated values during order review or specimen review.</p>
+                    <p>Therefore, the site function should never ever contain 'active' MISPL functions such as .AddRequest(), .CascadeRequest(), .Cancel(), .Discontinue(), .SetSiteAttribute(), etc. During the preview, the site function might be executed on premature, unavailable or unreliable inputs, thus triggering incorrect decisions based on unexpected results!</p>
+                    <p>Only use PropertyOutput.Value for its intended purpose.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Hide unsolicited</p>
+            <div class="indented">
+                <p>If set, unsolicited 
+	 results (i.e. results that were originally not requested) will not 
+	 be shown.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Previous 
+ results options</p>
+        <div class="indented">
+            <p class="fieldlabel">Count</p>
+            <div class="indented">
+                <p class="kadov-p">This option indicates the number of 
+	 previous results to be displayed.&#160;&#160;The dynamic time discriminator 
+	 (dynamic panels) of a result is also taken into account when searching 
+	 for a previous value for this result.</p>
+            </div>
+            <p class="fieldlabel">Minimal status</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 Minimal status for previous values to be displayed.</p>
+            </div>
+            <p class="fieldlabel">Hide unsolicited</p>
+            <div class="indented">
+                <p class="kadov-p">The <span class="ui_element">Hide unsolicited</span> toggle-box allows determining 
+	 whether unsolicited previous results should be displayed or not.</p>
+            </div>
+            <p class="fieldlabel">Restricted to the 
+	 same material</p>
+            <div class="indented">
+                <p class="kadov-p"> Allows the restricting of the previous value columns to 
+	 results assessed on the same material as the result being confirmed/validated. 
+	 When the primary material variable is mandatory, the previous result 
+	 will be checked to verify if it has the same specimen variable as 
+	 the original result.</p>
+            </div>
+            <p class="fieldlabel">Relative time indication</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 This option determines the delta time indication that will be used for previous 
+	 results. When checked, times will be shown as a lapse, with a unit 
+	 depending on the time difference. When unchecked, an absolute date 
+	 will be displayed; or when both results are of the same day, the time 
+	 is shown instead.</p>
+                <p>The value of these options is saved in the user's personal settings.</p>
+            </div>
+        </div>
+        <h2><a name="Order locking during validation"></a>Order locking during validation</h2>
+        <p>When an order is shown in the <span class="ui_element">Order review</span> browser, it is marked (or 
+ locked) as being under validation for the current property classification. 
+ This lock is only removed when the user leaves the validation browser 
+ completely or re-executes the query.</p>
+        <p>When moving through the query, the next order is checked whether it 
+ has already been marked for the same property classification by another 
+ user. If so, the order will be skipped.&#160;&#160;This process should 
+ minimize the risk of having two biologists validating the same order simultaneously, 
+ or even validating an order which was already reviewed by another biologist 
+ in his current validation session.</p>
+        <p>To avoid locking orders too long, upon leaving the validation program, 
+ all locks created by any user more than 30 minutes ago are automatically 
+ removed.</p>
+    </body>
+</html>

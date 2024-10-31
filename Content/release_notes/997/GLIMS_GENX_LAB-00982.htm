@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Sequence variants update via REST service must not change the locus (GLIMS_GENX_LAB-00982)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1880"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Sequence variants update via REST service must not change the locus (GLIMS_GENX_LAB-00982)</h1>
+        <h2>Problem</h2>
+        <p>This modification fixes the following problem which occurred since GLIMS&#160;9.9.0:</p>
+        <ol>
+            <li value="1">A variant for locus "BRCA1" with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">cDNA change</span> "C" and <span class="ui_element">Amino acid change</span> "P" is created via the REST service.</li>
+            <li value="2">GLIMS receives a new message for a different locus "FBN1" but with the same <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">cDNA change</span> "C" and <span class="ui_element">Amino acid change</span> "P".</li>
+        </ol>
+        <p>In this scenario, the locus of the first created variant is updated. This behaviour is incorrect as variant results may already exist for that variant.</p>
+        <h2>Solution</h2>
+        <p style="font-weight: bold;"><span style="color: #ff0000;">This solution is not backward compatible!</span>
+        </p>
+        <p>Since the locus name is different, the existing variant is now no longer updated but a new variant is created. Moreover, the <span class="ui_element">cDNA change</span> value in the database must be made unique: <span style="color: #ff0000;">the character "_" is now added to the value received from the REST service</span>.</p>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">cDNA change</span> field of the <a href="../../modules/genetics/routine/genetic_exam/g_e_screen_search_variant.htm" xmlns="http://www.w3.org/1999/xhtml">Variant search screen</a> is now interpreted as "starts with". Previously, only variants were found where the <span class="ui_element">cDNA change</span> was an exact match with the value entered in the search screen. Currently, the new interpretation of this field is to show all sequence variants where the <span class="ui_element">cDNA change</span> starts with the entered string. This is necessary for the Variant search screen to be able to show variants that were stored with the <span class="ui_element">cDNA change</span> value that was appended with the "_" character.  Moreover, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">cDna change</span> field is now visible in the <span class="ui_element">Variants</span> grid of the Variant search screen so that the difference between the variants is clearly visible.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00982.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="567" data-mc-height="347" src="GLIMS_GENX_LAB-00982_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>The user must remove all trailing "_" characters from the <span class="ui_element">cDNA change</span> field via MISPL prior to reporting.</p>
+            <p>In the next structural GLIMS release, this workaround will be replaced with a solution that does not require the trailing "_".</p>
+        </div>
+    </body>
+</html>

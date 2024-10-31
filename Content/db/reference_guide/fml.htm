@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Family</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2844"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Family&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Family</td>
+                <td>
+fml</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Collection of (usually related) persons (family members) where it is suspected that some of them have a certain genetic disorder.<br />A family can also be used to investigate more than one disorder.<br />A family is owned by a certain department and can be visualised graphically in a pedigree.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Department"></a>
+        <h3>
+Department</h3>
+        <div class="MemberHelp">
+            <p>
+Which department was the user logged on when he created the family?</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="dept.htm">Department</a></span>&#160;<b>Department</b></p>
+        </div><a name="F_History"></a>
+        <h3>
+History</h3>
+        <div class="MemberHelp">
+            <p>
+Contextual info around the family and its history</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>History</b></p>
+        </div><a name="F_HistoryClob"></a>
+        <h3>
+History clob</h3>
+        <div class="MemberHelp">
+            <p>
+Family history (clob field = large text field allowing layout, images, ...)</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">CLOB</span>&#160;<b>HistoryClob</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Family</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalId"></a>
+        <h3>
+Number</h3>
+        <div class="MemberHelp">
+            <p>
+Similar to e.g. Person Internal Id, this field will be filled automatically on creation, by use of an (optional) mispl function that can be defined in the GLIMS general settings. <br />If the mispl is not defined, GLIMS will build the internal id as if the mispl contained<br />Identifier( “Family”, DateToString(Today(), "%y") + "-", 4 )<br />(which means it will be a 4-digit sequential number within each year, prefixed by the year).<br />Afterwards the internalid of a family can be changed manually. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">String</span>&#160;<b>InternalId</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MainSuspectedDisorder"></a>
+        <h3>
+Main susp. disorder</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates which disorder is the main disorder that is under investigation in this family.</p>
+            <p class="Synopsis"><span class="Type"><a href="dsrd.htm">Disorder</a></span>&#160;<b>MainSuspectedDisorder</b></p>
+        </div><a name="F_Name"></a>
+        <h3>
+Name</h3>
+        <div class="MemberHelp">
+            <p>
+This is a longer string that contains more info on the family, like name and purpose.<br />On creation of the Family, we will handle the same system as for the internal id:<br />•	It will be filled automatically on creation, by use of an (optional) mispl function that can be defined in the GLIMS general settings. <br />•	If the mispl is not defined, GLIMS will simply copy the patient’s LastName to the family Name field.<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">String</span>&#160;<b>Name</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_GeneticexamsOfFamilyByStatus"></a>
+        <h3>
+By Status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticexamsOfFamilyByStatus</b> ()</p>
+        </div><a name="M_FamilyConditions"></a>
+        <h3>
+Family conditions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FamilyConditions</b> ()</p>
+        </div><a name="M_FamilyMembers"></a>
+        <h3>
+Family members&#160;
+</h3>
+        <p class="Warning">
+This function requires minimal user type 'Developer' and should therefore not be executed without the assistance of a MIPS employee.</p>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FamilyMembers</b> ()</p>
+        </div><a name="M_GeneticExams"></a>
+        <h3>
+Genetic exams&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticExams</b> ()</p>
+        </div><a name="M_MainSuspectedDisorder"></a>
+        <h3>
+Main susp. disorder&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MainSuspectedDisorder</b> ()</p>
+        </div><a name="M_FamilyPedigree"></a>
+        <h3>
+Pedigree&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FamilyPedigree</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer. This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Family members</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fmlm.htm">FamilyMember</a>.<a href="fmlm.htm#F_Family">Family</a></p>
+        </div>
+        <h3>
+Genetic exams</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="gnte.htm">GeneticExam</a>.<a href="gnte.htm#F_Family">Family</a></p>
+        </div>
+        <h3>
+Family pairs</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fmlp.htm">FamilyPair</a>.<a href="fmlp.htm#F_Family">Family</a></p>
+        </div>
+        <h3>
+Family conditions</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fmlc.htm">FamilyCondition</a>.<a href="fmlc.htm#F_Family">Family</a></p>
+        </div>
+        <h3>
+Families</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wfml.htm">w_Family</a>.<a href="wfml.htm#F_Family">Family</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ InternalId </b>
+            </li>
+            <li value="3"><b>+ CreationTime </b>
+            </li>
+            <li value="4"><b>+ Department </b>
+            </li>
+            <li value="5"><b>+ MainSuspectedDisorder </b>
+            </li>
+            <li value="6"><b>+ Name </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

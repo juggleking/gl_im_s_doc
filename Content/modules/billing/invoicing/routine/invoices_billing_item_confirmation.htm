@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Invoices|Functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Invoicing_-_Invoice.BillingItemConfirmation">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Invoicing - Invoice.BillingItemConfirmation</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2613"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor241"></a>Invoice.BillingItemConfirmation</h1>
+        <p><a name="kanchor242"></a>This function sets the 'Confirmation status' field of the billing items 
+ on the selected invoices. This method actually has 2 phases:</p>
+        <ol>
+            <li class="kadov-p" value="1"><b style="font-weight: bold;">In the first phase</b>, the function 
+ verifies which billing items need confirmation. Those that don't need 
+ confirmation receive a confirmation status 'NotRequired'. The others receive 
+ a status 'NotAcknowledged'.&#160; The most important criteria for this 
+ function to decide that a billing item doesn't require a manual confirmation: 
+ the first billing item for requests that 
+	
+	<ul><li class="kadov-p" value="1">are explicitly requested and have a result or 
+ are explicitly validated.</li><li class="kadov-p" value="2">are explicitly marked as to be charged</li></ul><p>Other billing items must be confirmed manually.<br />
+	&#160; </p></li>
+            <li class="kadov-p" value="2"><b style="font-weight: bold;">In a second phase</b> 
+ all billing items that are left in the status 'NotAcknowledged' are presented 
+ to the user, grouped per order. The user can then manually confirm these 
+ billing items, giving them the status 'Acknowledged'.&#160; This function 
+ should be used in Germany for all invoices send to the KV using a KVDT 
+ file; the KVDT creation method will refuse any billing item that is not 
+ yet confirmed.</li>
+        </ol>
+        <p style="text-align: center;" align="center">
+            <img src="invoice_billingitemconfirmation.gif" style="border: none;width: 335px;height: 104px;float: none;" width="335" height="104" border="0" />
+        </p>
+        <ul>
+            <li class="kadov-p" value="1"><span class="Parameter"><b style="font-weight: bold;">Log 
+ process name</b>: </span>if specified, this is the process name of the log 
+ that is created by this run.</li>
+        </ul>
+        <p>&#160;</p>
+    </body>
+</html>

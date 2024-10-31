@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\gen_sched\rprt_schedule.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>report scheduling</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Automated creation of reports: report scheduling</h1>
+        <h2>Report scheduling</h2>
+        <p>When an order is written to the database, the issuer's report records are created automatically as well. These report records are configured following the models of the issuer's associated default reports. If the issuer has no associated default reports, then those of the default organization, as indicated in the GLIMS configuration screen, will be used.</p>
+        <p>Each default report's eligibility will then be evaluated to see whether it should be used to generate a new report record. Examination always starts with default reports of type <span class="ui_element">Exclusive</span>. If any of those is actually used, then no other reports will be further generated. This feature avoids having to negate in the subsequent defaults any special eligibility condition of the exclusive default. <a href="../../configuration/default_reports/default_reports.htm">Check here for more information on default reports.</a></p>
+        <p>The automatic report scheduling which takes place after an order has been created or modified via the order entry screen is no longer executed for orders which are more than 1 month old. This avoids unwanted reprinting of reports when changing something small to an old order for which the reports were already sent and deleted.</p>
+        <h2><a name="No"></a>No report scheduling for auto-added / unsolicited results</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">GLIMS will NOT automatically schedule new reports when:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">A property is automatically added to an order via the MISPL function Order.AddRequest.</li>
+            <li value="2">A property is automatically added to an order via the MISPL function ResultOutput.CascadeRequest.</li>
+            <li value="3">A station uploads an unsolicited result.</li>
+        </ol>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Should automatic report scheduling still be required, you can use the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order.ScheduleReports()</span> function in a MISPL expression.</p>
+        </div>
+        <h2>Sending new reports for old orders</h2>
+        <p>The contextual menu function Order.ScheduleReports() allows to force the rescheduling of the order's default reports. This method allows the re-scheduling of the reports for one or more orders.&#160;Scheduling reports by using the Order.ScheduleReports() function in a <a href="../../configuration/generic/commands_tasks/commands_tasks.htm">command</a> is possible. This allows scheduling reports for orders some time after the order was created.</p>
+        <p>This can be helpful when the default report setting has been changed so that a given issuer now receives a new type of report. By selecting this issuer's order (via the standard Order Query browser), selecting the appropriate order from the list, and calling the Order.ScheduleReports() method, the new report type is added for the selected orders.</p>
+        <p>Please check the chapter <a href="reports_add.htm">Adding reports manually or by MISPL</a> for more information on alternative methods.</p>
+    </body>
+</html>

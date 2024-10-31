@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Archiving" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\archives\archives.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta content="FrontPage.Editor.Document" name="ProgId" />
+        <meta name="Microsoft Border" content="none, default" /><title>Archive configuration</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="font-weight: bold;"> Archives configuration</h1>
+        <ul>
+            <li value="1"><a href="#Introduc">Introduction</a>
+            </li>
+            <li value="2"><a href="#The">The archiving 
+	 process</a>
+            </li>
+            <li value="3"><a href="#Configuration">Configuration</a>
+            </li>
+            <li value="4"><a href="#Routine">Routine</a>
+            </li>
+        </ul>
+        <h2><a name="Introduc"></a>Introduction</h2>
+        <p>Before deciding to take an archive program into production, one should 
+ ask oneself a few simple questions:</p>
+        <div class="indented">
+            <p class="fieldlabel">Why do I want to 
+	 archive ?</p>
+            <div class="indented">
+                <p>The reasons for archiving have surely changed the last few years. Hard 
+ disk capacity is continuously growing and their cost has become a minor 
+ issue. Some of the reasons however will always remain:</p>
+                <ul>
+                    <li value="1">To relieve the user from outdated or redundant 
+	 information when searching through the database.</li>
+                    <li value="2">To prevent the active database from growing out 
+	 of bounds, making database administration cumbersome (disks are getting 
+	 full, backup and upgrades take too long,...).</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">What do I expect 
+	 from an archive ?</p>
+            <div class="indented">
+                <p>It's a combination of tools to move the most relevant data of an active 
+ database to a data warehouse, where it is stored in a compact form with 
+ limited normalization, and preferably using standard nomenclature in order 
+ to stand the test of time. By definition, there is loss of information.<br />Simple consultation and data retrieval functions should be provided, and 
+ they should execute at a 'reasonable' speed.</p>
+                <p>If you agree with the above statements, you should hurry to take the 
+ GLIMS archive module into production! If not, we won't be able to satisfy 
+ your needs, and your only resort will be to extend disk space capacity...</p>
+            </div>
+        </div>
+        <h2><a name="The"></a>The archiving process</h2>
+        <p>It is clear that an archive program makes no sense without an additional 
+ tool to erase the archived data. It was a conscious 
+ decision to divide the archiving process into two distinct phases:</p>
+        <ol>
+            <li value="1">Selection of orders eligible 
+	 for archiving (query), and exporting them in a format appropriate 
+	 for the archive.</li>
+            <li value="2">Clean up of the active database. Removal of successfully 
+	 archived orders and/or other redundant data.</li>
+        </ol>
+        <p>Archiving and purging was not implemented as an atomic operation to 
+ allow executing the tasks independently. After archiving, one should have 
+ some time to backup the recently archived data before permanently erasing 
+ it. On the other hand, it should be possible to purge volatile data like 
+ actions, worklists, reports,... without the need to remove the essential 
+ data for the same time period as well.</p>
+        <h2><a name="Configuration" id="Configuration"></a>Configuration</h2>
+        <p>HL7 was an obvious choice for data exchange with an external application 
+ like GLIMS Archive. It is a generally accepted communication standard, and is 
+ implemented by almost every vendor in the health care industry. By choosing 
+ HL7, data is exported in a complete and structured way, and it allows 
+ interfacing with other applications like CyberLab or even non-MIPS applications.</p>
+        <p>MIPS' archive program "GLIMS Archive" expects XML documents. Although 
+ there is no HL7 XML standard yet, there is a recommendation on XML encoding 
+ rules for HL7 Version 2.3.1. The default (pre-configured) archive message, 
+ as described in the <a href="archiving_message_structure.htm">Archive 
+ message structure</a> document, tries to adhere the HL7 v2.3.1. standard 
+ as close as possible. Its structure and contents is data driven however, 
+ and can completely be adapted to meet one's specific needs. Any change 
+ to the default layout is the customer's responsibility.</p>
+        <p>Just like a traditional HL7 segmented message, an XML document is hierarchically 
+ organized, and hence suitable to be edited by means of the GLIMS outliner 
+ (or tree-editor). An archive message layout is stored in the <i>io_Message</i> 
+ table (<span class="ui_element">System management</span> -&gt; <span class="ui_element">External messages</span>). The nodes 
+ within the message (<i>io_MessageNode</i> table) determine the structure 
+ of the message, their values determine the contents.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="ArchiveMessage.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="856" data-mc-height="749" src="ArchiveMessage_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>Each node has a label and can have one out of four types: <span class="ui_element">Branch</span>, 
+ <span class="ui_element">Constant</span>, <span class="ui_element">Member</span> or <span class="ui_element">Function</span>. The label will appear 
+ literally in the output message, as the start and end tag of the XML element 
+ it corresponds to (surrounded by "&lt;" and "&gt;"). 
+ According to the node type, its element content will be determined.</p>
+        <p>Two additional attributes can be assigned to each node: <span class="ui_element">Repeatable</span> 
+ and <span class="ui_element">Mandatory</span>. As their names suggest, <span class="ui_element">Repeatable</span> indicates 
+ that the same node can be repeated several times (e.g. contrary to a patient 
+ identification or PID segment that should occur only once, an observation 
+ request or OBR segment is repeated for each request contained in an order). 
+ A <span class="ui_element">Mandatory</span> node will always be emitted. When empty, an empty-element 
+ tag will be generated of the form "&lt;Label /&gt;". Non-mandatory 
+ nodes without data will simply be omitted from the output.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="ArchiveMessageNode.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="303" data-mc-height="299" src="ArchiveMessageNode_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Branch</p>
+        <div class="indented">
+            <p>This is a node containing only child nodes, no data. Only 
+ its label is relevant. It will appear in the output message as "<span style="font-family: 'Courier New';">&lt;Label&gt;... 
+ &lt;/Label&gt;"</span> or "<span style="font-family: 'Courier New';">&lt;Label/&gt;"</span> 
+ (the latter only if the node contains no children and is mandatory).</p>
+        </div>
+        <p class="fieldlabel">Constant</p>
+        <div class="indented">
+            <p>A <span class="ui_element">Constant</span> is copied literally to the corresponding element content. 
+ An example of a constant is the sending application ("GLIMS"). 
+ The HL7 element is located in the message tree at ORU_R01/MSH/MSH.3/HD.1. 
+ Its XML element will look like "<span style="font-family: 'Courier New';">&lt;HD.1&gt;GLIMS&lt;/HD.1&gt;</span>".</p>
+        </div>
+        <p class="fieldlabel">Member</p>
+        <div class="indented">
+            <p>This is a field that is fetched from the database. Because 
+ of the numerous amount of tables involved with an order, each order that 
+ is to be archived is de-normalized into a few temp-tables from which the 
+ data can be accessed immediately. The tables are: w_Order, w_Patient, 
+ w_Visit, w_Phone, w_Identification, w_Request and w_Result. For each order, 
+ there will be 1 w_Order, 1 w_Patient, 0 or 1 w_Visits, 0 or more w_Phones, 
+ 2 or more w_Identifications, 0 or more w_Requests and 0 or more w_Results. 
+ The exact content of each temp-table is described in the <a href="archiving_temp_table_field_mapping.htm">Temp-table 
+ field mapping</a> document.</p>
+        </div>
+        <p class="fieldlabel">Function</p>
+        <div class="indented">
+            <p>A <span class="ui_element">Function</span> can be used to return variable information, like e.g. 
+ the current date and time, or to fetch information from the database that 
+ is not provided in one of the temp-tables. For that purpose, each temp-table 
+ contains actual database references.</p>
+            <p>From each external message, you can call the contextual menu function <span class="ui_element">Copy</span>. It 
+ copies an external message with all its subnodes in one operation, preserving 
+ the message structure. The new message gets the same name as the original 
+ one, with " (copy)" appended.</p>
+        </div>
+        <h3><a name="Archiving of discontinued orders"></a>Archiving of discontinued 
+ orders</h3>
+        <p>If needed, it is also possible to archive discontinued orders. Any 
+ selected order will be archived, regardless of its status. If 
+ you want to implement this, you need to extend the default archive message 
+ as follows:</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>It is essential to add the order status to the 
+ archive message. Otherwise, the archive program will not be able to distinguish 
+ a discontinued order from a completed one. Therefore, the ORC.5 
+ (order status) segment is to be added to the external message structure 
+ used for archiving. Its value can be fetched from the w_Order 
+ temp-table. Add a node with label "ORC.5" of type "Member" 
+ and assign the w_Order.ordr_Status member to it. The w_Order.ordr_Status 
+ member may assume values conform the HL7 v2.3.1 standard:</p>
+        </div>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="50%" border="1">
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Value</b>
+                </td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Description</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">HD</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Order is on hold</td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">SC</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">In process, scheduled</td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">A</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Some, but not all, results available</td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">CM</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Order is completed</td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">DC</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Order was discontinued</td>
+            </tr>
+            <tr>
+                <td style="width: 16%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">IP</td>
+                <td style="width: 84%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">In process, unspecified</td>
+            </tr>
+        </table>
+        <p>The <a href="orders_archive.htm">Order.Archive() 
+ query</a> has an <span class="ui_element">Include discontinued orders</span> option which 
+ allows indicating whether or not discontinued orders should be archived.</p>
+        <h3>Protection against illegal XML characters in archive message</h3>
+        <p>Legal XML characters include three ASCII control characters, all normal 
+ ASCII display characters, and almost all other Unicode character values:</p>
+        <div class="indented"><pre>
+Character values (hexadecimal) Description
+09 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Horizonal tab (HT)
+0A &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Line feed (LF)
+0D &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Carriage return (CR)
+20..7E &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ASCII display characters
+80..D7FF &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Unicode characters
+...</pre>
+        </div>
+        <p>This means that the leading escape (0x1B) of a PCL5 escape sequence 
+ (e.g. used in a result external comment) cannot be represented in an XML 
+ document. Therefore, any escape is now translated to the string "&lt;ESC&gt;" 
+ in order to produce valid XML.</p>
+        <h2><a name="Routine" id="Routine"></a>Routine</h2>
+        <p>Orders can be archived using the <a href="orders_archive.htm">Order.Archive 
+ function</a>.</p>
+    </body>
+</html>

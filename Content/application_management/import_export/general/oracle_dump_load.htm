@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Oracle dump and load</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3903"></a>
+            <MadCap:concept term="System management;Application management" />Oracle dump and load</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> -
+ <a href="#Clean-up_after_import">Clean-up after import</a> - <a href="#Usage">
+ Usage</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes a tool that allows generating Oracle dump and load 
+ scripts. </p>
+        <p>The program is_gocdl.p generates 5 scripts: 2 dump scripts (Unix and 
+ Windows), 2 load scripts (Unix and Windows) and an sql file to truncate the 
+ configuration tables of any application. Unlike the Progress equivalent, 
+ the generated scripts are not executed.</p>
+        <p>The existing routine is_gcfgt.p has been adapted to be suitable for both 
+ Progress and Oracle applications. In the Oracle case the virtual system tables 
+ are queried to find the table names as defined in Oracle. (Foreign name, but 
+ without view table suffix _V##).</p>
+        <p>All scripts are first generated for real configuration tables and then for 
+ instance tables, referenced by configuration tables. (cfr. Progress 
+ equivalent). Only instance table records that are referenced by template space 
+ records are exported. The site attribute values of site attributes 
+ belonging to template space tables are exported/imported as well.</p>
+        <p>- ignore=Y is set to allow importing data, while the tables are already 
+ available. Before each import, the truncate script should be run to avoid 
+ integrity violations.</p>
+        <h2><a name="Clean-up_after_import"></a>Clean-up after import</h2>
+        <p>The generator is_gaicl.p generates a program ap_clisd.p to cleanup (= 
+ restore the integrity of) a database that has been created by importing 
+ configuration data and data of instance space tables, which are referenced by 
+ configuration tables. </p>
+        <p>The generated program ap_clisd.p should only be run on a database with only 
+ data that has been imported with the load configuration tool (Progress or 
+ Oracle) (In fact a database that only contains configuration data + instance 
+ space data that should not have been imported). The effect is removal of 
+ some instance space data, but not all.</p>
+        <h2><a name="Usage"></a>Usage</h2>
+        <ol>
+            <li value="1">On the source machine run dumpglimscfg (Unix) or dumpglimscfg.bat 
+ (Windows) to dump the configuration data.</li>
+            <li value="2">On the target machine, do the following to remove the configuration data:</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li value="1">Start an sqlplus session: sqlplus /nolog</li>
+                <li value="2">In sqlplus load the file truncateglimscfg.sql: SQL&gt;@truncateglimscfg.sql</li>
+            </ul>
+        </blockquote>
+        <ol>
+            <li value="3">On the target machine run loadglimscfg (Unix) or 
+ loadglimscfg.bat (Windows) to load the configuration data.</li>
+            <li value="4">On the target machine run ap_clisd to cleanup unrequired instance space 
+ data that has been imported during the previous step. (Do not run this if you 
+ want to keep instance space data!)</li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|Other" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\microbiology\microbiology_06.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Microbiology - How to questions</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor104"></a>
+            <MadCap:concept term="Microbiology" />
+            Microbiology - Frequently Asked Questions</h1>
+        <ul>
+            <li value="1"><a href="#Layout%20of%20tool%20tips%20in%20microbiology%20screen">Layout of tool tips in microbiology screen</a>
+            </li>
+            <li value="2"><a href="#How%20to%20interprete%20the%20microbiology%20action%20severity">How to interpret the microbiology action severity ?</a>
+            </li>
+            <li value="3"><a href="#Microbiology%20reporting">Microbiology reporting: how to indicate that an antibiogram is not yet available but will follow</a>
+            </li>
+        </ul>
+        <h2><a name="Layout of tool tips in microbiology screen"></a>Layout of tool tips in microbiology screen</h2>
+        <p>When hovering over the object and specimen information fields of the <a href="microbiology_work_screen.htm">microbiology screen</a>, the content of these fields will be displayed in the tool tip. In order to obtain a clean layout, you should use a non-proportional font for the tool tips:</p>
+        <ol>
+            <li value="1">Go to your PC desktop</li>
+            <li value="2">Select the contextual menu function <span class="ui_element">Properties</span></li>
+            <li value="3">Select the tab page <span class="ui_element">Appearance</span></li>
+            <li value="4">In the <span class="ui_element">Item</span> field, select <span class="ui_element">Tooltip</span></li>
+            <li value="5">Choose a non-proportional font for your tool tips (e.g. Courier New)</li>
+        </ol>
+        <h2><a name="How to interprete the microbiology action severity"></a>How to interpret the microbiology action severity ?</h2>
+        <p>The handling of "positivity" and "severity" in the microbiology context:</p>
+        <ul>
+            <li value="1">The isolation severity is 0 if there is no appraisal or if the appraisal is negative. In the case of positive isolations, the severity formula should return at least 1  (to distinguish from negative isolations).</li>
+            <li value="2">The microbiology action is positive if it has an isolation with a positive appraisal.</li>
+            <li value="3">The microbiology action severity is the maximum of its isolation severities.</li>
+            <li value="4">The microbiology action browser also shows the severity (beside positivity); in red if &gt;0.</li>
+        </ul>
+        <h2><a name="Microbiology reporting"></a>Microbiology reporting: how to indicate that an antibiogram is not yet available but will follow</h2>
+        <p>In the report template, you can specify a text module in the <span class="ui_element">Isolation comments</span> field.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p><pre>
+{= IF .AntibiogramResult = ? AND .AntibioticResultIndexed(1) &lt;&gt; ? 
+    THEN (chr(10) + "Antibiogram follows") ELSE ""
+}
+</pre>
+        </div>
+        <p>As a result, the preliminary report can already display the detected isolation(s) and if an antibiogram has been requested in the microbiology screen, but no value has been specified yet, the text <span class="ui_element">Antibiogram follows</span> will be printed on the report.</p>
+    </body>
+</html>

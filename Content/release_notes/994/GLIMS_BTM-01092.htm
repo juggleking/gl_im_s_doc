@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - New MISPL function BloodBag.GenerateDocument (GLIMS_BTM-01092)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2124"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>New MISPL function BloodBag.GenerateDocument (GLIMS_BTM-01092)</h1>
+        <h2>Introduction</h2>
+        <p>In addition to the contextual function <a href="../993/GLIMS_BTM-01064.htm" xmlns="http://www.w3.org/1999/xhtml">Print transfusion form</a> on blood bag, the BloodBag-based MISPL&#160;function GenerateDocument is now available as well.</p>
+        <h2>Function parameters</h2>
+        <p class="fieldlabel">FormMnemonic</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">For FormType <span class="ui_element">PDF</span>&#160;and <span class="ui_element">XML</span>: reference to a dynamic text that starts with "&lt;?GRB path=".</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">For FormType <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Text</span>: reference to a dynamic text that expands to the text to be printed or saved to file.</p>
+        </div>
+        <p class="fieldlabel">FormType</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">PDF, XML or TEXT.</p>
+        </div>
+        <p class="fieldlabel">DoPrint</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Does the document need to be printed? Possible values: YES/NO.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">
+                        <p xmlns="http://www.w3.org/1999/xhtml">If only printing is needed:</p>
+                        <ul xmlns="http://www.w3.org/1999/xhtml">
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="1">DoPrint = YES</li>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Directory and FileName should not be specified</li>
+                        </ul>
+                    </li>
+                    <li value="2">
+                        <p xmlns="http://www.w3.org/1999/xhtml">If only saving to file is needed:</p>
+                        <ul xmlns="http://www.w3.org/1999/xhtml">
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="1">DoPrint = NO</li>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Directory and FileName should be specified</li>
+                        </ul>
+                    </li>
+                    <li value="3">Both printing and saving to file can be accomplished by calling this function only once.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">PrinterName</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Name of the printer. If not specified, the <a href="../../configuration/printers/set_devices.htm" xmlns="http://www.w3.org/1999/xhtml">transfusion form printer</a> is taken into account. </p>
+        </div>
+        <p class="fieldlabel">CopyCount</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Number of copies to print.</p>
+        </div>
+        <p class="fieldlabel">Directory</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Should be specified if the document needs to be saved to file. Expansion of the symbols "{TempDir}" and "." is supported.</p>
+        </div>
+        <p class="fieldlabel">FileName</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Should be specified if the document needs to be saved to file. Expansion of the symbols "{Date}" and "{Sequence}"  and of references to blood bag related fields is supported.</p>
+        </div>
+        <h2>Example</h2>
+        <p class="fieldlabel">Site function</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BTM-01092_site_function.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="595" data-mc-height="412" src="GLIMS_BTM-01092_site_function_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Referenced text</p>
+        <div class="indented" xmlns="">
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BTM-01092_text.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1242" data-mc-height="405" src="GLIMS_BTM-01092_text_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+    </body>
+</html>

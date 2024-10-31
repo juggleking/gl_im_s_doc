@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\omr\omr_parameters.html">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>OMR parameters</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor6"></a><a name="kanchor7"></a>OMR specific parameters</h1>
+        <ul>
+            <li class="kadov-p" value="1"><b style="font-weight: bold;">-g &lt;used OMR category name list&gt;</b>
+                <br />Specify the name of the OM categories used for import.<br />Remark: Multiple categories can be specified here (comma separated). be sure not to use blanks in the Categroy names. If a form being imported checks out for more then one Category, an error will be reported. In this case, the parametrization is ambiguous and should be checked.</li>
+            <li class="kadov-p" value="2"><b style="font-weight: bold;">[-m &lt;mark-map file - supported marks, format: \"'Side' 'Clock' 'Track'&lt;NL&gt;\"]</b>
+                <br />When using a markmap, specify its full path here.<br />File format:<br />SS CC TT&lt;NL&gt;<br />SS CC TT&lt;NL&gt;<br />...<br />When specified, only marks set in this file will be taken into account for further processing.</li>
+            <li class="kadov-p" value="3"><b style="font-weight: bold;">[-o &lt;auto feed mode (0: no, 1: yes; default no)&gt;</b>
+                <br />When set to 1, the translator will auto-feed the connected OMR reader.</li>
+            <li class="kadov-p" value="4"><b style="font-weight: bold;">&#160;&#160;&#160;&#160;[-i &lt;when auto feed: error sleep timers \"'time','increment','maximum'\"&gt;]]</b>
+                <br />Sleep timers when in auto-feed mode.<br />e.g.&#160;&#160;3,1.60 - which are the standard values 3,1,60<br />If the OMR does not respond to a 'feed', the next feed will be sent after a 3 s sleep time. If the OMR still fails to respond, the sleep time till the next feed is incremented by 1 s each time until a maximum value of 60 s is reached. Thus, the sleep time does not exceed 60 s. On successful processing of a feed by the OMR, the sleep time is reset to the initial value (3 s).</li>
+            <li class="kadov-p" value="5"><b style="font-weight: bold;">[-x &lt;STX character (as decimal code), standard CTRL-B&gt;]</b>
+                <br />Start of Text character.</li>
+            <li class="kadov-p" value="6"><b style="font-weight: bold;">[-b &lt;EOB character (as decimal code), standard CTRL-M (carriage return)&gt;]</b>
+                <br />End of Text character - e.g. 13 for carriage-return.</li>
+            <li class="kadov-p" value="7"><b style="font-weight: bold;">[-e &lt;ETX character (as decimal code), standard CTRL-C&gt;]</b>
+                <br />End of Text character - e.g. 13 for carriage-return.</li>
+            <li class="kadov-p" value="8"><b style="font-weight: bold;">[-n &lt;do not use STX synchronization&gt;]</b>
+                <br />When set, the translator does not expect a STX character in front of the sheet data stream.</li>
+            <li class="kadov-p" value="9"><b style="font-weight: bold;">[-p &lt;specific database log process type name&gt;</b>
+                <br />Log type name of log type to be created in the database. This logging will contain all OM sheet parsing errors and communication errors as well as the errors reported at the database data import phase.</li>
+            <li class="kadov-p" value="10"><b style="font-weight: bold;">&#160;&#160;&#160;&#160;[-l &lt;when enabled: minimal logging level 'Info,Warning,Error'&gt;]]</b>
+                <br />Database log minimal log level.</li>
+            <li class="kadov-p" value="11"><b style="font-weight: bold;">[-v verbosity enabled - extra logging e.g. mark coordinate translation -]</b>
+                <br />More logging. The Hex to Coordinate translatotion will be logged.</li>
+        </ul>
+        <p>[]: Non-mandatory</p>
+    </body>
+</html>

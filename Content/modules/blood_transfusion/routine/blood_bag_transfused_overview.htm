@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Tools &amp; Case studies">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Overview of transfused bags</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1751"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Overview of transfused bags with an Hb before and after transfusion</h1>
+        <p>This document describes how you can generate an overview of transfused bags with an Hb before and after transfusion, using the <a href="../../../routine/orders/orders_generate_document.htm">Order.GenerateDocument</a> function.</p>
+        <h2>Creating a command</h2>
+        <p>Create a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command</a> with following settings:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="btm_overview_command.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="651" data-mc-height="858" src="btm_overview_command_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <ul>
+            <li value="1"><span class="ui_element">Description</span>: free to choose</li>
+            <li value="2"><span class="ui_element">Table</span>: Order</li>
+            <li value="3"><span class="ui_element">Query</span>: standard</li>
+            <li value="4"><span class="ui_element">Query parameter set</span>: see below</li>
+            <li value="5"><span class="ui_element">Function</span>: GenerateDocument</li>
+            <li value="6"><span class="ui_element">Function parameter set</span>: see below</li>
+        </ul>
+        <h2>Query parameter set</h2>
+        <p>Specify the desired query options and an additional filter:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="btm_overview_query.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="567" data-mc-height="502" src="btm_overview_query_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The filter is of type Logical and should be defined as follows:</p>
+        <div class="indented">RETURN EnumeratedToString("BloodbagStatus",.Object.GetBloodBag("Erytrocytes",1,.CompletionTime,.LowestObjectTime).Status)= "Administered";</div>
+        <h2>Function parameter set</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="btm_overview_generatedoc.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="326" data-mc-height="334" src="btm_overview_generatedoc_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Header</p>
+        <p>As header, define a text module Header_BTM with the following content:</p>
+        <div class="indented"><b>* Overview generated on {&lt;<span style="color: #008000;">Date</span>} *<br />*************************************************<br />Last name| Spouse name|</b><b>Birth date|M/F|Pin|Dept|Age|</b><b>Transfused units|Hb before | Hb after</b>
+        </div>
+        <p>This text module refers a second text module called '<b><span style="color: #008000;">Date</span></b>' which itself contains the following text:</p>
+        <div class="indented"><b>{= DateTostring(Today(),"%d-%m-%Y")}</b>
+        </div>
+        <p class="fieldlabel">Body</p>
+        <p>As body, define a text module Body_BTM with the following content:</p>
+        <div class="indented"><b>{&lt;<span style="color: #008000;">ThePerson</span>}{&lt;<span style="color: #008000;">Age</span>}{&lt;<span style="color: #008000;">Bag</span>}{&lt;<span style="color: #008000;">hb_before_transfusion</span>}{&lt;<span style="color: #008000;">hb_after_transfusion</span>}</b>
+        </div>
+        <p>This text module refers a number of other text modules:</p>
+        <div class="indented">
+            <p><b><span style="color: #008000;">ThePerson</span></b>
+            </p>
+            <div class="indented">{:<br />Person ThePerson;<br />ThePerson := .Object.Person();<br />Return IfknownString(ThePerson.Lastname)+ "|" + IfKnownString(ThePerson.Spouselastname) + "|" + Datetostring(ThePerson.Birthdate,"%d/%m/%Y") +"|" + .Object.PersonData("Sex") +"|" +IfknownString(.Object.PIN("CH")) +"|" + IfknownString(.Agent.Ward().Mnemonic)+ "|";<br />}</div>
+            <p><b><span style="color: #008000;">Age</span></b>
+            </p>
+            <div class="indented">{= FractionalToString( DateDiffInYears (Today(), .Object.Person().Birthdate), "%3.0f")+ " |"}</div>
+            <p><b><span style="color: #008000;">Bag</span></b>
+            </p>
+            <div class="indented">{:<br />string list;<br />BloodBag BagId;<br />Integer i;<br />list := "";<br />i := 1;<br />REPEAT<br />BagId := .object.GetBloodBag("Erytrocytes",i,.CompletionTime,.LowestObjectTime);<br />if BagId &lt;&gt; ?<br />then<br />i := i + 1;<br />list := list + " " + datetimetostring(BagId.TransfusionEndTime, "%d/%m/%Y") +" , "<br />+ BagId.ExternalId ;<br />endif;<br />UNTIL BagId = ?;<br />return list;<br />}</div>
+            <p><b><span style="color: #008000;">hb_before_transfusion</span></b>
+            </p>
+            <div class="indented">{= " |" + if .Object.GetResult("HB",?, 0, .LowestObjectTime).RawValue &lt;&gt; ? then<br />.Object.GetResult("HB",?, 0, .LowestObjectTime).RawValue +" |" else if<br />.Object.GetResult("HB",?, 1, .LowestObjectTime).RawValue &lt;&gt; ? then<br />.Object.GetResult("HB",?, 1, .LowestObjectTime).RawValue + " |" else "Geen Hb uitslag voor transfusie aanwezig" + " |"}</div>
+            <p><b><span style="color: #008000;">hb_after_transfusion</span></b>
+            </p>
+            <div class="indented">{:<br />STRING List;<br />OBJECT Obj;<br />RESULT Res;<br />DATETIME LowObjTime;<br />INTEGER Teller;<br />List:="";<br />Obj:=.Object;<br />Teller:=0;<br />LowObjTime:=.Result("Hb", ?, ?).ObjectTime;<br />REPEAT<br />Res:=Obj.GetResult("Hb",?, Teller, DateAndTimeToDateTime(Today(),Now()));<br />IF Res &lt;&gt; ?<br />THEN<br />List:=List + "," + Res.Attribute("VALUE") + " (" + DateTimeToString(Res.ObjectTime,"%d-%m-%Y") +")";<br />ENDIF;<br />Teller:=Teller+1;<br />UNTIL (Res.ObjectTime=LowObjTime);<br />List:=Entry(NumEntries(List,?)-1,List,?);<br />RETURN List;<br />}</div>
+        </div>
+        <h2>Generated file</h2>
+        <p>When executing the command, a | separated file is generated. As illustrated below, it can be imported into MS Excel.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="overview_example.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="790" data-mc-height="339" src="overview_example_thumb_0_120.png" tabindex="" /></a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en" xml:lang="en" data-mc-search-type="Stem" data-mc-help-system-file-name="billing_index.xml" data-mc-path-to-help-system="../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Most common error logs">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>No Billing code found for Request</title>
+        <link href="Resources/Stylesheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>No Billing code found for Request</h1>
+        <h2>Verifying the  log</h2>
+        <p>Information found in the error:</p>
+        <ul>
+            <li value="1">Order set label (1)</li>
+            <li value="2">Object external ID (2)</li>
+            <li value="3">Order internal ID (3)</li>
+            <li value="4">Request definition of Property, Panel, Material, Microbiology procedure,... for which the billing code is missing (4)</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_0.png" />
+        </p>
+        <p>This kind of error can have different causes. Here, we list the most common causes that you can check.</p>
+        <h2>Checking the configuration of a Property</h2>
+        <p>Navigate to the <span class="ui_element">Request definition</span> of the <span class="ui_element">Property</span> and open its configuration editor.</p>
+        <p>Here you should find that <span class="ui_element">To charge</span> is checked. </p>
+        <p>If so, there should be at least one billing code  present in the <span class="ui_element">Assigned billing codes</span>.</p>
+        <p>If this is not the case, a <span class="ui_element">Billing code</span> needs to be assigned. </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_1.png" />
+        </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of  the <span class="ui_element">Assigned billing codes</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_2.png" />
+        </p>
+        <p>The <span class="ui_element">Executing class</span> can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_3.png" />
+        </p>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <h2>Checking the configuration of a Panel</h2>
+        <p>Navigate to the <span class="ui_element">Request&#160;definition</span> of the <span class="ui_element">Panel</span> and open its configuration editor.</p>
+        <p>Here, you should find that <span class="ui_element">To charge</span> is checked. </p>
+        <p>If <span class="ui_element">To charge</span> is checked, the billing configuration can be done on different levels, depending on the configuration of the field <span class="ui_element">Charge</span> (1).</p>
+        <p>This field can have different values: <span class="ui_element">Members only</span> (a), <span class="ui_element">Panel only</span> (b), <span class="ui_element">Panel and members</span> (c), <span class="ui_element">Members or Panel</span> (d). Depending on this choice, the assignment of the Billing codes needs to be done on panel-level (b), member-level (a) or both (c) (d).</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_4.png" /> <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_5.png" /></p>
+        <p><u style="font-weight: bold; text-decoration: none;">a) Charge: Members only</u>
+        </p>
+        <p>Right click on the panel and choose <span class="ui_element">As Panel requestable</span> - <span class="ui_element">Show all...</span> - <span class="ui_element">Panel members</span> to view all the linked Properties on the Panel.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_6.png" />
+        </p>
+        <p>Check the configuration of each Panel member's Request definition.</p>
+        <p>If <span class="ui_element">To charge</span> is set on the Request definition of the panel member, there should be at least one Billing code that is assigned.</p>
+        <p>If <span class="ui_element">To charge</span> is not set on the Request definition of the panel member, then this test isn't charged and no Billing codes need to be present.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_8.png" />
+        </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Assigned billing codes</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_10.png" />
+        </p>
+        <p style="text-decoration: underline;font-weight: bold;"><span style="text-decoration: none;">b) Charge: Panel only</span>
+        </p>
+        <p>Check the configuration of the Request definition of the Panel.</p>
+        <p>If <span class="ui_element">To charge</span> is set on the Request definition of the Panel, there should be at least one Billing code that is assigned.</p>
+        <p>If <span class="ui_element">To charge</span> is not set on the Request definition of the panel member, then this test isn't charged and no Billing codes need to be present.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_9.png" />
+        </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Assigned billing codes</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_11.png" />
+        </p>
+        <p><b>c) Charge: Panel and members</b>
+        </p>
+        <p>Here, there need to be Billing codes assigned on a panel level and on a member level (combo (a) + (b)</p>
+        <p><b>d) Charge: Panel or members</b>
+        </p>
+        <p>Here, there need to be Billing codes assigned on a panel level and on a member level (combo (a) + (b)</p>
+        <h2>Checking the configuration of a Material</h2>
+        <p>Navigate to the <span class="ui_element">Default request definition</span> of the <span class="ui_element">Material</span> and open its configuration editor.</p>
+        <p>Here you should find that <span class="ui_element">To charge</span> is checked. </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_12.png" />
+        </p>
+        <p>If so, there should be at least one Billing code present in the list of <span class="ui_element">Billing code assignments</span> of the Material.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_13.png" />
+        </p>
+        <p>If this is not the case, a <span class="ui_element">Billing code</span> needs to be assigned. </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_14.png" />
+        </p>
+        <h2>Checking the configuration of a Microbiology procedure</h2>
+        <p>Navigate to the <span class="ui_element">Default request definition</span> of the <span class="ui_element">Microbiology procedure</span> and open its configuration editor.</p>
+        <p>Here you should find that <span class="ui_element">To charge</span> is checked. </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_15.png" />
+        </p>
+        <p>If so, there should be at least one Billing code present in the list of <span class="ui_element">Billing code assignments</span> of the Microbiology procedure.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_16.png" />
+        </p>
+        <p>If this is not the case, a <span class="ui_element">Billing code</span> needs to be assigned. </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_17.png" />
+        </p>
+        <h2>Checking the configuration of an Antibiotic</h2>
+        <p>Navigate to the <span class="ui_element">Antibiotic</span> and open the list of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Here, there is no possibility to mark the antibiotic as <span class="ui_element">To charge</span>. Once a billing code is assigned, the application will charge the Antibiotic.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_18.png" />
+        </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_19.png" />
+        </p>
+        <h2>Checking the configuration of a Microorganism</h2>
+        <p>Navigate to the <span class="ui_element">Microorganism</span> and open the tab of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Here, there is no possibility to mark the <span class="ui_element">Microorganism</span> as <span class="ui_element">To charge</span>. Once a billing code is assigned, the application will charge the Microorganism.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_20.png" />
+        </p>
+        <p>To assign a Billing code, use the 'INSERT' key in the table of <span class="ui_element">Billing code assignments</span>.</p>
+        <p>Information to be filled in whilst assigning a Billing code :</p>
+        <ul>
+            <li value="1">The Billing code (1) that needs to be linked to the Request definition.</li>
+            <li value="2">'Valid from...' (2) to set the start date for the assignment of the Billing code. The code may be picked up for this Request definition as of this date.</li>
+            <li value="3">'Valid until...' (2) to set the end date for the assignment of the Billing code. The code may be picked up for this Request definition until this date.</li>
+            <li value="4">The <span class="ui_element">Executing class</span> (3) which can be found on the <span class="ui_element">Tariff</span> of the <span class="ui_element">Billing code</span> that is chosen.</li>
+        </ul>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>1) One should always check if <span class="ui_element">Condition(s)</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "NO" at one point. As a result, the Billing Code won't be picked up and can't be charged. In order to charge a billing code when using the <span class="ui_element">Condition(s)</span>, the MISPL should return "TRUE".</p>
+        <p>2) One should always check if <span class="ui_element">Eligible count</span> is filled in on the <span class="ui_element">Billing code assignment</span>. If so, it is always worth checking out the MISPL that is used. It can be possible that this MISPL returns a "0" at one point. As a result, the Billing Code won't be charged. In order to charge a billing code when using the <span class="ui_element">Eligible count</span>, the MISPL should return at least a "1".</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoBillingCodeFoundForRequest_21.png" />
+        </p>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Analyzer communication: all moved actions should be downloaded as cancelled tests when 'Send a moved test as cancelled test' is enabled (GLIMS_ANLZ-01474)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2048"></a>
+            <MadCap:concept term="Release notes" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+            <MadCap:conditionalText xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Analyzer communication: all moved actions should be downloaded as cancelled tests when 'Send a moved test as cancelled test' is enabled (GLIMS_ANLZ-01474)</h1>
+        <h2>Issue</h2>
+        <p>Not all moved actions were downloaded as cancelled tests when <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Send a moved test as cancelled test</span> is enabled.</p>
+        <h2>Configuration</h2>
+        <ul>
+            <li value="1">GLIMS General:<ul><li value="1">Enable <span class="ui_element">Send a moved test as cancelled test</span>.</li></ul></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Station:<ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">Enable <span class="ui_element">Move work of scanned specimen</span>.</li><li xmlns="http://www.w3.org/1999/xhtml" value="2">Enable <span class="ui_element">Download finished tests</span>.</li></ul></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Procedure:<ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">Enable <span class="ui_element">Allow replacement</span>.</li></ul></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">A station connected to a concentrator and:<ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">A_proc: A1, A2</li><li xmlns="http://www.w3.org/1999/xhtml" value="2">A_2_proc: A13</li></ul></li>
+        </ul>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Scenario</h2>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Request A1, A2 and A13 on Specimen A.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Request an extra identical Specimen A.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">
+                <p xmlns="http://www.w3.org/1999/xhtml">Send an ALL query on the concentrator.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">-&gt; All actions are downloaded on the first specimen.</p>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">
+                <p xmlns="http://www.w3.org/1999/xhtml">Send a query on the second specimen on the analyzer.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">-&gt; All actions are moved to the second specimen.</p>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="5">
+                <p xmlns="http://www.w3.org/1999/xhtml">Send an ALL query on the concentrator (with cancelled tests).</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">=&gt; All new actions are downloaded on the new specimen. However, not all cancelled actions are downloaded as cancelled tests.</p>
+            </li>
+        </ol>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p>This issue, which occurred since GLIMS 9.5.3, has been corrected: all moved actions are now downloaded as cancelled tests.</p>
+    </body>
+</html>

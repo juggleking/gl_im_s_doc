@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Genetics|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title>Shielding (genetics)</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4097"></a>
+            <MadCap:concept term="Genetics" />Shielding (genetics)</h1>
+        <p>Genetic exam, Approach, Locus/variant result, Family and Attachment records can be <a href="../../../security/shielding/shielding.htm">shielded</a>.  This chapter presents how to use shielding in some typical use case scenarios.</p>
+        <h2>Requesting a genetic procedure</h2>
+        <p>Genetic procedures can be requested by all users and genetic exams are automatically created when the order is saved: the shielding configuration plays no role at this step. However, the created genetic exams are only visible to users who have at least the Read access right for the department defined as <span class="ui_element">Responsible department</span> of the <a href="genetic_procedures.htm">genetic procedure</a> (see the following section).</p>
+        <h2><a name="Shieldin"></a>Shielding genetic exams and approaches</h2>
+        <h3>Configuration</h3>
+        <p>To shield genetic exams, configure the different access rights (Read, View, Create, etc) on the <a href="../../../security/shielding/shielding_access_profiles.htm#ShieldClass">shielding class</a> Results.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The configured shielding also applies to approach records.</p>
+        </div>
+        <h3>Department</h3>
+        <p>The department taken in consideration for the shielding of genetic exams and related records is the <span class="ui_element">Responsible department</span> of the <a href="genetic_procedures.htm">genetic procedure</a> that is to be executed in the context of the genetic exam.</p>
+        <h3><a name="Use"></a>Use case 1: allow users to modify genetic exams</h3>
+        <p>Say users with Access profile "Geneticists" should be able to  modify genetic exams for the genetic procedures whose responsible department is DEPN. In the <a href="../../../security/shielding/shielding_access_profiles.htm#Access">editor</a> of the Access profile "Geneticists",</p>
+        <ul>
+            <li value="1">type "DEPN" in the <span class="ui_element">Department</span> column,</li>
+            <li value="2">type "Results" in the <span class="ui_element">Class</span> column,</li>
+            <li value="3">activate the <span class="ui_element">Modify</span> check box.</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">Given that the shielding configuration for genetic exams also applies to approaches, users will also be able to create and modify approaches  linked to department DEPN.</li>
+                <li value="2">If users have the View but not the Modify access right, the <span class="ui_element">Genetic exam</span> screen opens in read-only mode.</li>
+            </ul>
+        </div>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>As for <a href="../../../security/shielding/shielding_access_profiles.htm#AccessRights">generated browsers and editors</a>, the access right View is not taken in consideration for the <a href="../routine/genetic_exam/g_e_screen.htm">Genetic exam screen</a>. This means that it is not necessary to have access right View to be able to open the <span class="ui_element">Genetic exam</span> screen, the Read right suffices. The screen however only opens in read-only mode, unless the user also has the Modify access right.</p>
+        </div>
+        <h3>Use case 2: prevent users from seeing genetic exams</h3>
+        <p>Say users with Access profile "Internal_DEPN" should only be able to see the genetic exams created for genetic procedures with department DEPN. In the editor of the access profile "Internal_DEPN",</p>
+        <ul>
+            <li value="1">type "DEPN" in the <span class="ui_element">Department</span> column,</li>
+            <li value="2">type "Results" in the <span class="ui_element">Class</span> column,</li>
+            <li value="3">activate the <span class="ui_element">Read</span> check box,</li>
+            <li value="4">do not activate access rights with shielding class Results for any other department (by default, as long as no access right is activated, nothing is allowed)</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Given that the shielding configuration for genetic exams also applies to approaches and results, users will only be able to see approaches and results linked to genetic procedures of department DEPN.</p>
+        </div>
+        <h2>Locus and variant results</h2>
+        <h3>Configuration</h3>
+        <p>To shield locus and variant results, configure the different access rights (Read, View, Create, etc) on the <a href="../../../security/shielding/shielding_access_profiles.htm#ShieldClass">shielding class</a> Results.</p>
+        <h3>Department</h3>
+        <p>The department taken in consideration for the shielding of <a href="../routine/results/locus_results.htm">locus</a> and <a href="../routine/results/variant_results.htm">variant results</a> is the <span class="ui_element">Department</span> of these records.</p>
+        <h2>Families</h2>
+        <h3>Configuration</h3>
+        <p>To shield families,</p>
+        <ul>
+            <li value="1">activate the option <a href="../../../security/shielding/shielding_access_profiles.htm#Activation">Person shielding</a>,</li>
+            <li value="2">configure the different access rights (Read, View, Create, etc) on the <a href="../../../security/shielding/shielding_access_profiles.htm#ShieldClass">shielding class</a> Person.</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Given that main suspected disorders, family members and family conditions can only be accessed from families, the access rights that apply to families also apply to these records.</p>
+        </div>
+        <h3>Department</h3>
+        <p>The department taken in consideration for the shielding of families is the department in which the user who <a href="../routine/genetic_exam/g_e_screen.htm#Family2">created</a> the family was logged in.</p>
+        <h3>Use case 1: allow users to see families</h3>
+        <p>Say users with access profile "Geneticists" should be allowed to see families created in all the departments of your site. In the editor of the access profile "Geneticists",</p>
+        <ul>
+            <li value="1">add all the departments of your site to the <span class="ui_element">Department</span> column,</li>
+            <li value="2">type Person in the <span class="ui_element">Class</span> column of each row,</li>
+            <li value="3">activate the <span class="ui_element">Read</span> check box on each row.</li>
+        </ul>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>As for <a href="../../../security/shielding/shielding_access_profiles.htm#AccessRights">generated browsers and editors</a>, the access right View is not taken in consideration for the <a href="../routine/family/family_screen.htm">Family screen</a>. This means that it is not necessary to have access right View to be able to open the <span class="ui_element">Family</span> screen, the Read right suffices. The screen however only opens in read-only mode, unless the user also has the Modify access right.</p>
+        </div>
+        <h3>Use case 2: allow users to create and modify families</h3>
+        <p>Say users with access profile "Geneticists_DEPN" should be allowed to <a href="../routine/genetic_exam/g_e_screen.htm#Family2">create</a> families in department DEPN and to <a href="../routine/family/family_screen.htm">modify</a> families created in this department. In the editor of the Access profile "Geneticists",</p>
+        <ul>
+            <li value="1">type "DEPN" in the <span class="ui_element">Department</span> column,</li>
+            <li value="2">type "Person" in the <span class="ui_element">Class</span> column,</li>
+            <li value="3">activate the <span class="ui_element">Create</span> and <span class="ui_element">Modify</span> check boxes.</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">Users who should be able to create families in a given department should also have the Modify access right for genetic exams linked to this department (see <a href="#Use">above</a>). This is because families can only be added through the <span class="ui_element">Genetic exam</span> screen.</li>
+                <li value="2">Users who have access right Read but not Modify are able to open the <span class="ui_element">Family</span> screen in read-only mode.</li>
+            </ul>
+        </div>
+        <h3>Use case 3: prevent users from selecting families</h3>
+        <p>Say users with access profile "Geneticists_DEPN" should not be allowed to <a href="../routine/genetic_exam/g_e_screen.htm#Family">select</a> families of department DEPZ for their genetic exams. In the editor of the access profile "Geneticists_DEPN", do not add "DEPZ" in the department column for shielding class Person. That way, families created in department DEPZ will not be displayed in the <a href="../routine/genetic_exam/g_e_screen.htm#Family">Family</a> choice list of the <span class="ui_element">Genetic exam</span> screen.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>An exception is made for families that are already linked to a Genetic exam. Even if a user does not have access right for families of department DEPZ, if such a family is linked to a genetic exam that the user is allowed to modify, then the family is displayed in the choice list and can be selected. However, the <a href="../routine/genetic_exam/g_e_screen.htm#Family3">Family</a> pane is not be displayed, which prevents the user from seeing information on this family.</p>
+        </div>
+        <h2><a name="Attachme"></a>Attachments</h2>
+        <p>Attachments are shielded if the records (families, genetic exams, orders) they are attached to are <a href="#" class="selected">shielded</a>:</p>
+        <table style="vertical-align: top;width: 100%;mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" cellspacing="0" class="TableStyle-Alternating">
+            <col style="width: 10%;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <col style="width: 30%;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <col style="width: 30%;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <col style="width: 30%;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1" colspan="3" style="text-align: center;">Shielding class</th>
+                </tr>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Access right</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Result</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Order</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Person</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Read</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">The user can see  files attached to genetic exams in the <a href="../routine/genetic_exam/g_e_screen.htm#Attachme">Attachments</a> pane of the <span class="ui_element">Genetic exam</span> screen.</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">The user can see   files attached to orders in the <a href="../routine/genetic_exam/g_e_screen.htm#Attachme">Attachments</a> pane of the <span class="ui_element">Genetic exam</span> screen.</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">The user can see  files attached to families  in the <a href="../routine/family/family_screen.htm#Attachme">Attachments</a> pane of the <span class="ui_element">Family</span> screen.</td>
+                </tr>
+                <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">View</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p>The user can open  files attached to genetic exams, <a href="../routine/genetic_exam/g_e_screen.htm#Attachme2">copy</a> them to another genetic exam for which s/he has the Modify access right.</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p>The user can open the files attached to orders, <a href="../routine/genetic_exam/g_e_screen.htm#Attachme2">move</a> them to a genetic exam within the order</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">The user can open  files attached to families.</td>
+                </tr>
+                <tr style="vertical-align: top;" class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">Modify</td>
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">
+                        <p>The user can</p>
+                        <p>attach files to genetic exams, </p>
+                        <p>modify or delete files attached to genetic exams.</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">
+                        <p>The user can</p>
+                        <p>attach files to orders,</p>
+                        <p>modify or delete files attached to orders,</p>
+                        <p>take over files attached to orders to attach them to genetic exams for which s/he has the Modify access right.</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">
+                        <p>The user can</p>
+                        <p>attach files to families, </p>
+                        <p>modify or delete files attached to families.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p class="fieldlabel">Example 1</p>
+                    <p>Should users be able to consult, but not to update documents attached to Family records, activate the access right View, but not the access right Modify in the shielding class Person.</p>
+                    <p class="fieldlabel">Example 2</p>
+                    <p>To copy an attachment from a genetic exam A to a genetic exam B, users need </p>
+                    <p>the Modify access right (class Result) for genetic exam B, and</p>
+                    <p> the View access right (class Result) for genetic exam A.</p>
+                    <p class="fieldlabel">Example 3</p>
+                    <p>To take over an attachment from an order to a genetic exam, users need the Modify access right for both</p>
+                    <ul>
+                        <li value="1">the order (class Order), and</li>
+                        <li value="2">the genetic exam (class Result).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

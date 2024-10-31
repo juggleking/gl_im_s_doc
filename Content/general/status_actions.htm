@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\status3.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Action states</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Introduction to actions and action states</h1>
+        <p>Actions are the actual realizations of procedures. At order entry the 
+ scheduling takes place, which means that GLIMS is looking for an appropriate 
+ procedure to meet the requests. At that time, actions are created.</p>
+        <h3>An action can have several states:</h3>
+        <h4>Connecting</h4>
+        <p><a name="kanchor275"></a>This status implies that the action has just been created. Inputs and 
+ outputs are not yet available. This status will normally not be visible 
+ in the user interface.</p>
+        <h4>Inputting</h4>
+        <p>This status implies that the action is waiting for the inputs: some specimen inputs are not available yet or some result inputs have not been confirmed yet.</p>
+        <p>It may 
+ be possible that an action does not have any inputs. In the case of sampling 
+ for example, there are only outputs. In the latter case, the status of 
+ such an action will automatically be passed to the next stage (Pending).</p>
+        <h4>Pending</h4>
+        <p><a name="kanchor276"></a>An action is pending when the result input(s) or specimen input(s) are 
+ available. E.g. an analyzer knows that the material is available but is 
+ waiting for a signal to start the action. When the Autostart field of 
+ the corresponding procedure is activated, no start signal is required, 
+ and the action status will automatically be set to Outputting.</p>
+        <p><u style="text-decoration: underline;"><i>Aim of this status:</i></u>
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">It allows to indicate an actual start date for this 
+ action. </li>
+            <li class="kadov-p" value="2">As long as an action is in status Pending, new outputs 
+ can be added. The action will be set to Outputting, if it is added to 
+ work list (sent to an analyzer).</li>
+        </ul>
+        <p><u style="text-decoration: underline;"><i>Practical example:</i></u>
+        </p>
+        <p>A Diff panel is requested at order entry:</p>
+        <p>The Diff procedure will have EDTA as input and Eosinophiles (EO), Basophiles,... 
+ as outputs. Due to the activated Autostart field, the Diff procedure will 
+ automatically be set to Outputting. It is possible that e.g. EO cannot 
+ be measured on an analyzer. A MISPL function or trigger will activate 
+ a cascade request for this output. As the procedure had already obtained 
+ the status Outputting, no new outputs can be added. Therefore a new action 
+ (Manual Diff) will be created. In order to avoid several new actions for 
+ each property that could not be assessed, the status of the new action 
+ will be set to Pending, which allows to add new outputs. When generating 
+ a worklist for this manual Diff action, the status will be changed to 
+ Outputting.</p>
+        <h4>Outputting</h4>
+        <p>When an action is set to Outputting, it is actually being processed.</p>
+        <p>An action obtains the status Outputting if </p>
+        <ul>
+            <li class="kadov-p" value="1">The AutoStart field of the procedure is enabled. 
+ In that case the 'Pending' status is simply skipped; </li>
+            <li class="kadov-p" value="2">The first result is entered, either manually or via 
+ analyzer;</li>
+            <li class="kadov-p" value="3">The action is put on a work list;</li>
+            <li class="kadov-p" value="4">Manually, via 'Start' method on Action.</li>
+        </ul>
+        <p>Consequences: </p>
+        <ul>
+            <li class="kadov-p" value="1">Result and specimen outputs automatically receive 
+ status 'Expected'; </li>
+            <li class="kadov-p" value="2">No additional outputs can be assigned or added to 
+ the Action (train has left). This implies that an ancillary examination 
+ will generate a new Action, and cause an extra line on the worklist; </li>
+            <li class="kadov-p" value="3">Standard results are entered and formulas calculated.</li>
+        </ul>
+        <h4>Partial</h4>
+        <p>An action becomes Partial, if at least one result output or specimen 
+ output&#160; is available.</p>
+        <h4>Realized</h4>
+        <p>All result and specimen outputs are available, but they have not yet 
+ been confirmed.</p>
+        <h4><a name="Ready"></a>Ready</h4>
+        <p>All results are confirmed, validated or discontinued and all materials 
+ are available or discontinued; or there are no outputs.</p>
+        <h3>Fields which have an influence on the normal status sequence:</h3>
+        <p>The <i><b>Autostart field</b></i> of the procedure: If set, 
+ the <i>Pending</i> status will be skipped.</p>
+        <p>The <i><b>Autologin field</b></i> of the material output: 
+ When an action becomes <i>Outputting</i>, the Specimen becomes <i>Expected</i>. 
+ When the specimen is <i>Available</i>, the specimen input will automatically 
+ become <i>Available</i> and therefore the action becomes <i>Pending</i>. 
+ If the Autostart field is active, the action will be set to <i>Outputting</i>. 
+ As a consequence the Specimen output becomes <i>Expected</i>. In order 
+ to avoid that one has to indicate manually that the specimen output will 
+ also become <i>Available</i> (which naturally is the case), the Autologin 
+ field should be enabled.</p>
+        <p>If a material output has automatically been set to <i>Available</i> 
+ by means of the Autologin function, the contextual menu function Unconfirm 
+ (on the material table) can no longer be activated.</p>
+    </body>
+</html>

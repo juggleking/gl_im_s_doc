@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling,Primary.50_translation_exclude_for_GER">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Supplements for HC providers without a standardized pricing structure in Belgian private laboratories (GLIMS_BILL-03578)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3861"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Supplements for HC providers without a standardized pricing structure in Belgian private laboratories (GLIMS_BILL-03578)</h1>
+        <h2>Context</h2>
+        <p>GLIMS has been adapted in order to comply with the Belgian regulations on the invoicing of supplements. These regulations stipulate that supplements can only be invoiced by the laboratory if the clinical biologist does not apply standardized prices (is "niet-geconventioneerd"). Moreover, the patient should be aware of the fact that the clinical biologist does not apply standardized prices.</p>
+        <h2>Indicate whether or not a HC provider applies standardized prices (is "geconventioneerd" / "niet-geconventioneerd")</h2>
+        <h4><a name="In" xmlns="http://www.w3.org/1999/xhtml"></a>In the HC provider configuration screen</h4>
+        <p>A site attribute needs to be added to the <span class="ui_element">HCProvider</span> table.</p>
+        <ul>
+            <li value="1"><span class="ui_element">Name</span>: _CostStandardized (which means "geconventioneerd")</li>
+            <li value="2"><span class="ui_element">Data type</span>: <span class="ui_element">Logical</span></li>
+            <li value="3"><span class="ui_element">Widget</span>: <span class="ui_element">Fill-in</span></li>
+        </ul>
+        <h4>Purpose</h4>
+        <p>The value of this site attribute:</p>
+        <ul>
+            <li value="1">is taken into account when searching for the <a href="#Export" xmlns="http://www.w3.org/1999/xhtml">billing item's executor</a>.</li>
+            <li value="2">can be used in the <a href="#Deciding" xmlns="http://www.w3.org/1999/xhtml">MISPL expression for supplement calculation</a> to decide whether or not a supplement should be charged.</li>
+            <li value="3">is exported during the monthly <a href="#Export" xmlns="http://www.w3.org/1999/xhtml">export of the RIZIV file</a>.</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>In case "deels geconventioneerd" is required in addition to "geconventioneerd" and "niet-geconventioneerd", the site attribute can be configured with "Data type" = "Enumerated" and "Value list" = "Geconventioneerd,Niet geconventioneerd,Deels geconventioneerd". The third entry will then be handled in the same way as "Niet geconventioneerd" (except when <a href="#Export" xmlns="http://www.w3.org/1999/xhtml">exported to the RIZIV</a>).</p>
+        </div>
+        <h2>Indicate the patient's preference for a HC provider applying standardized prices ("geconventioneerd")</h2>
+        <h4>Scope</h4>
+        <p>This information only applies if several executors, both with and without a standardized pricing structure ("geconventioneerd" / "niet-geconventioneerd") are present in the laboratory (and are available per executing class in GLIMS).</p>
+        <h4><a name="In2" xmlns="http://www.w3.org/1999/xhtml"></a>In the order entry screen</h4>
+        <p>By adding a site attribute on the <span class="ui_element">Order</span> table, it is possible to indicate for the order whether or not a HC provider applying standardized prices should be chosen as responsible HC provider for the tariffication (i.e. executor):</p>
+        <ul>
+            <li value="1"><span class="ui_element">Name</span>: _TakeCostStandardizedExec</li>
+            <li value="2"><span class="ui_element">Data type</span>: <span class="ui_element">Enumerated</span></li>
+            <li value="3"><span class="ui_element">Widget</span>: <span class="ui_element">Combo-box</span></li>
+            <li value="4"><span class="ui_element">Value list</span>: "take a cost standardized executor,take/prefer a not cost standardized executor,Both" (the values can be translated into the site's language; "cost standardized" means "geconventioneerd")</li>
+        </ul>
+        <p>This setting has precedence over the setting in the general options (see below). If set to "?", the setting in the general options applies.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">It is possible to set the value of the site attribute on Order via MISPL instead of manually, e.g. if it is based on the patient or issuer being member of a correspondent group. This can be done e.g. during the "Completeness check" defined for the Policy (which has the advantage of being executed only once).</p>
+        </div>
+        <h4>In the general options</h4>
+        <p>The following site attribute can be added to the <span class="ui_element">SpecificSite</span> table:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Name</span>: _DefaultTakeCostStdExec</li>
+            <li value="2"><span class="ui_element">Data type</span>: <span class="ui_element">Enumerated</span></li>
+            <li value="3"><span class="ui_element">Widget</span>: <span class="ui_element">Combo-box</span></li>
+            <li value="4"><span class="ui_element">Value list</span>: "take a cost standardized executor,take/prefer a not cost standardized executor" (the values can be translated into the site's language; "cost standardized" means "geconventioneerd")</li>
+        </ul>
+        <p>This site attribute allows to determine on site level how GLIMS should prioritize the search for an executor. If, for the preferred type of executor ("geconventioneerd" / "niet-geconventioneerd), no matching executor is found in the Provisions table, an alternative executor can be chosen by GLIMS (with another pricing structure than the preferred one). However, this behaviour can be overruled by using the site attributes below.</p>
+        <h4>In the executing class configuration screen</h4>
+        <p>These site attributes, which can be added to the <span class="ui_element">ExecutingClass</span> table, allow to indicate whether or not an error should occur if the preferred type of executor is not available. An example of an executing class is "NIET_RIA".</p>
+        <p class="fieldlabel">_StrictTakeNotCostStdExec</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">If enabled, an error will occur during tariffication if an executor without a standardized pricing structure ("niet-geconventioneerd") was preferred but not found (i.e. only an executor with a standardized pricing structure ("geconventioneerd") is found).</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Data type</span>: <span class="ui_element">Logical</span></li>
+                <li value="2"><span class="ui_element">Widget</span>: <span class="ui_element">Toggle-box</span></li>
+            </ul>
+        </div>
+        <p class="fieldlabel">_StrictTakeCostStdExec</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">If disabled, no error will occur during tariffication if an executor with a standardized pricing structure ("geconventioneerd") is preferred but not found (i.e. only an executor without a standardized pricing structure ("niet-geconventioneerd") is found). However, if the alternative executor is an executor without a standardized pricing structure, this does not necessarily imply that a supplement has to be charged. This decision can be made by the MISPL expression for supplement calculation  (e.g. based on the patient or issuer being member of a correspondent group).</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Data type</span>: <span class="ui_element">Logical</span></li>
+                <li value="2"><span class="ui_element">Widget</span>: <span class="ui_element">Toggle-box</span></li>
+            </ul>
+        </div>
+        <h2>Determining the billing item's executor</h2>
+        <h4>Background</h4>
+        <p>During tariffication in GLIMS, a responsible for the tariffication needs to be indicated. This is implemented via executing classes and provisions. The provision's executor is the responsible HC provider and is used to determine the billing item's executor.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This only applies if the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validator is executor</span> is disabled in the <a href="../../configuration/correspondents/labs.htm" xmlns="http://www.w3.org/1999/xhtml">Lab</a> configuration screen. If <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validator is executor</span> is enabled, the <a href="../../routine/results/results_responsible.htm" xmlns="http://www.w3.org/1999/xhtml">result responsible</a> will be used as executor of the billing item (instead of using the provisions).</p>
+        </div>
+        <h4>Executor with or without standardized pricing structure</h4>
+        <p>When determining the billing item's executor, the new site attributes on <a href="#In" xmlns="http://www.w3.org/1999/xhtml">HC provider</a> and on <a href="#In2" xmlns="http://www.w3.org/1999/xhtml">Order</a> are taken into account.</p>
+        <h2><a name="Deciding" xmlns="http://www.w3.org/1999/xhtml"></a>Deciding whether or not supplements should be added and exported</h2>
+        <p>Supplement calculation is done via the MISPL expression specified on Policy. In order to take into account whether or not the executor applies standardized prices in the decision to add a supplement or not, the following has been made available:</p>
+        <h4>New OrderSet-based MISPL function BCIData2</h4>
+        <p>The OrderSet.BCIData2() MISPL function is now available. It is similar to the existing OrderSet.BCIData() MISPL function, but has one extra parameter to filter on the billing code instances (i.e. temporary records during a tariffication session that correspond with future billing items) with or without an executor with a standardized pricing structure.</p>
+        <p><b>BCIData2</b>(&lt;ReimbClassList&gt;, &lt;ReimbTypeList&gt;, &lt;BCGroupMnemonic&gt;, &lt;UrgencyCodeList&gt;, &lt;ExecutingLabList&gt;, &lt;Accredited&gt;, <b>&lt;Conventioned&gt;(logical YES/NO,?)</b>, &lt;ToCharge&gt;, &lt;WhatToDo&gt;)</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">When using the MISPL expression builder, this extra parameter needs to be added manually as the BCIData2 MISPL function is not available in the MISPL expression builder.</p>
+        </div>
+        <div class="text_box_tips" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>As supplements are only allowed for the examinations mentioned in article 24 of the nomenclature, a billing code group named "Artikel24" can be configured.</p>
+        </div>
+        <h4>New tags</h4>
+        <p>Two new tags are available which can be used in the syntax of the site function for supplement calculation.</p>
+        <p class="fieldlabel">\Supplement=nn% or \Supplement=nn.nn</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Allows to add a supplement amount or percentage. Note that in the second tag, the decimal separator can depend on the session's setting.</p>
+        </div>
+        <p class="fieldlabel"><a name="\Related" xmlns="http://www.w3.org/1999/xhtml"></a>\RelatedItems=&lt;xxx&gt; (where &lt;xxx&gt; is a ";"-separated list of nomenclature codes)</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Allows to spread the supplement amount or percentage among a set of billing items (typically of the examinations with an executor without a standardized pricing structure). An invoice item with the supplement's amount will be created for the patient.</p>
+            <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Using this tag implies that the patient's invoice items are linked to the actual nomenclature codes and triggers the export of the supplement's amount in the monthly export of the RIZIV file.</p>
+            </div>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">The specified related items are restricted to the billing items of the same executor and executing lab (which are typically also specified in the MISPL expression for supplement calculation via the \Executor and \ExecutingLab tags).</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">The existing optional \Comment tag allows to fill the billing item's comment. This comment will be spread among all billing items matching the \RelatedItems tag.</li>
+                </ul>
+            </div>
+        </div>
+        <h2><a name="Export" xmlns="http://www.w3.org/1999/xhtml"></a>Export to RIZIV</h2>
+        <p>Based on the value of the site attribute on <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC provider</span>, value 1 ("geconventioneerd") or 9 ("niet-geconventioneerd") (or 2 "deeltijds geconventioneerd" if the <a href="#In" xmlns="http://www.w3.org/1999/xhtml">site attribute</a> is configured to support this value) is exported in record type 50, zone 35 for the billing item's executor. Supplements are exported in record type 50, zone 30. Since the detail record per billing item distinguishes the supplement from the amount paid by the insurance and the amount paid by the patient, the supplement is exported in the Supplement field. This requires the invoice items to be linked to the actual nomenclature codes of the examinations (<a href="#%5CRelated" xmlns="http://www.w3.org/1999/xhtml">see above</a>).</p>
+    </body>
+</html>

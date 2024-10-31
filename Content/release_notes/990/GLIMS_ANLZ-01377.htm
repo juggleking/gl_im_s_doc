@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Different processing of microbiology ASTM result message to ensure execution of AddSubCarrier MISPL (GLIMS_ANLZ-01377)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor225"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Different processing of microbiology ASTM result message to ensure execution of AddSubCarrier MISPL (GLIMS_ANLZ-01377)</h1>
+        <p>A microbiology-related ASTM  result message informing GLIMS about a (newly) detected <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Micro-organism</span> (isolation) on a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Carrier</span> that needs to be created,  is now processed differently to ensure that the AddSubCarrier MISPL function  can be used in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">When isolation entered</span> trigger of the <a href="../../modules/microbiology/configuration/micro_organisms.htm" xmlns="http://www.w3.org/1999/xhtml">micro-organism</a>.</p>
+        <p>Because of the way such a message was previously processed, the execution of the MISPL function failed: upon execution of the trigger during the creation / update of the isolation according to the detected micro-organism, the link with the carrier had not yet been set. And for AddSubCarrier to be executed correctly, the carrier of the isolation should be known.</p>
+        <p>The way such a message is currently processed reduces the risk of the MISPL function failing because of a missing <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Carrier</span> record. However, when defining the site function, it is recommended to at least check if a parent carrier exists before trying to call the AddSubCarrier function.</p>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - LOINC code for property classification nodes in variable text reports (GLIMS_RX-00712)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2373"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>LOINC code for property classification nodes in variable text reports (GLIMS_RX-00712)</h1>
+        <h2>Context</h2>
+        <p class="fieldlabel">LOINC</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The <a href="../../configuration/coding_systems/coding_systems.htm" xmlns="http://www.w3.org/1999/xhtml">coding system</a> concept in GLIMS offers specific support for <a href="../../configuration/coding_systems/coding_systems_LOINC.htm" xmlns="http://www.w3.org/1999/xhtml">LOINC</a> codes. LOINC is a universal code system used to identify laboratory and clinical observations.</p>
+        </div>
+        <p class="fieldlabel" xmlns="">Variable text reports</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">For variable text reports (configured with dynamic text modules), the content can be based on the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">w_Result</span> table. If a coding system is defined in the <a href="../../configuration/report_templates/report_templates.htm" xmlns="http://www.w3.org/1999/xhtml">report template</a>, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">w_Result</span> field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Mnemonic</span> will contain the code of the corresponding record in the specified coding system. This is also supported for the LOINC coding system. The code set defined for the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Property</span> table is used in case of results (the "ObservationalResultType" of the item to report is "Result") whereas the code set defined for the <span class="ui_element">PropertyClassificationNode</span> table should be used in case of titles ("ObservationalResultType" = "Label").</p>
+        </div>
+        <h2>Issue</h2>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Mnemonic</span> field of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">w_Result</span> table did not contain the LOINC code in case of titles / property classification nodes. Instead, it contained the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Label</span> of the <a href="../../configuration/property_classifications/property_classifications.htm#Property" xmlns="http://www.w3.org/1999/xhtml">property classification node</a> while the <span class="ui_element">Value</span> field of the <span class="ui_element">w_Result</span> table already contains the <span class="ui_element">Label</span>.</p>
+        <h2>Solution</h2>
+        <p>This has been corrected: w_Result.Mnemonic will now also contain the LOINC code in case of property classification nodes.</p>
+    </body>
+</html>

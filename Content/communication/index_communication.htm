@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication" data-mc-priority="0" data-mc-time-estimate="0">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Communication design</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor266"></a>Communication between Glims and external systems</h1>
+        <p>Contents: <a href="#Communication_design">Communication design</a> - 
+ <a href="#Drivers">Drivers</a> - <a href="#Services" name="kanchor267">Services</a> - <a href="#MIPS_internal_protocol">MIPS internal protocol</a> - <a href="#Direct_communication">Direct 
+ communication</a></p>
+        <h2><a name="Communication_design" id="Communication_design"></a>Communication 
+ design</h2>
+        <p>GLIMS communicates with external applications, such as a HIS (Hospital 
+ Information System), result servers, OMR scanners or analyzers, through 
+ an intermediate process called a driver.</p>
+        <ol>
+            <li value="1">Drivers translate messages from the external 
+	 application's language into a MIPS internal protocol, and vice versa.</li>
+            <li value="2">
+                <p><a name="kanchor268"></a>GLIMS services exchange information between 
+	 the translators and the database.</p>
+                <p>
+                    <img src="design.gif" alt="" width="656" height="175" border="0" />
+                </p>
+            </li>
+        </ol>
+        <h2><a name="Drivers" id="Drivers"></a>Drivers</h2>
+        <p>Drivers are stand-alone applications that translate messages from the 
+ external application's language into a MIPS internal protocol, and vice 
+ versa. They are considered as separate products, each 
+ with their own release cycle. This implies that drivers are 
+ not documented in the GLIMS manual but come with a dedicated driver manual 
+ which is available on our Customer Service Center website. Among other, 
+ the driver documentation will contain specific options and the communication 
+ mapping between the external software and the MIPS internal protocol.</p>
+        <p>In GLIMS, drivers are defined as "translators". <a href="../configuration/generic/translators/Translators.htm">Click 
+ here a full description on translator configuration</a>.</p>
+        <h2><a name="Services" id="Services"></a>Services</h2>
+        <p>GLIMS services exchange information between the translators and the 
+ database. Each service can handle several translators simultaneously. For 
+ optimal performance, the amount of translators per service should be limited.</p>
+        <p>In GLIMS, these services are defined as "services (of type Translator 
+ Server)". <a href="../configuration/generic/services/Services.htm">Click 
+ here a full description on service configuration.</a></p>
+        <h2><a name="MIPS_internal_protocol" id="MIPS_internal_protocol"></a>MIPS internal 
+ protocol</h2>
+        <p>MIPS uses an internal protocol as an intermediate step for</p>
+        <ol>
+            <li value="1">processing external protocol messages in the GLIMS 
+	 database</li>
+            <li value="2">sending messages in an external protocol</li>
+        </ol>
+        <p>In both cases, it is the driver that makes the translation between the 
+ internal protocol and the external protocol. The services are 
+ responsible for handling incoming messages formatted in the internal protocol 
+ or sending messages in the internal protocol format.</p>
+        <p>MIPS uses two different types of internal protocols:</p>
+        <ol>
+            <li value="1">A MIPS-specific ASTM protocol that is used for 
+	 analyzer communication</li>
+            <li value="2">A "URL-formatted" internal protocol 
+	 that is used for any other type of communication.</li>
+        </ol>
+        <h2><a name="Direct_communication" id="Direct_communication"></a>Direct communication</h2>
+        <p>There are some exceptions to this communication design. In 
+ some cases, GLIMS allows to generate messages/files that are directly 
+ formatted into an external protocol. In these cases, there 
+ is no driver involved that makes the translation between the GLIMS internal 
+ protocol and the external protocol.</p>
+        <p><a href="direct/index_direct_communication.htm">Click here for a list 
+ of programs that allow generating messages/files that are directly formatted 
+ into an external protocol</a>.</p>
+    </body>
+</html>

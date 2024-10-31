@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - FinancialShipment</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4125"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+FinancialShipment&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Financial shipment</td>
+                <td>
+fshp</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+None</td>
+            </tr>
+        </table>
+        <p>
+Financial shipments are collections of financial transactions: invoice summaries, payments and/or gains. They are used for transfer of financial data between Glims and other applications, represented as the shipment's 'destination'. A financial shipment can contain any number of financial transactions. A financial transaction can be shipped to several correspondents. Examples of such shipments are:
+<br />+ transfers to accounting systems typically inlcude invoice summaries, payments as well as gains.
+<br />+ billing transfers to official gouvernment organisations (KV, RIZIV/INAMI) typically only contain invoice summaries.
+<br />+ a shipment with payments received from a bank.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Addendum"></a>
+        <h3>
+Addendum</h3>
+        <div class="MemberHelp">
+            <p>
+The shipment's addendum: this is always empty for new shipments. This field is only important if you create additions of existing shipments, using the 'MakeNewShipmentVersion' method with option 'collect changes'. In that case a new shipment with the same version number but the next higher addendum is created. An addendum is always a letter: 'A', 'B', ... The 'MakeNewShipmentVersion' method also creates addenda when 'full crediting' if a seperate shipment for credit notes is requested.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">String</span>&#160;<b>Addendum</b></p>
+        </div><a name="F_Comment"></a>
+        <h3>
+Main &gt; Comment</h3>
+        <div class="MemberHelp">
+            <p>
+A free text field to store any comments on this shipment. Several protocols of the 'send' method fill this field with extra information regarding the send operation. In case of imported payment files, additional data concerning the imported file is stored here as a tagged list.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Comment</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Audit &gt; Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Audit &gt; Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Destination"></a>
+        <h3>
+Destination</h3>
+        <div class="MemberHelp">
+            <p>
+The correspondent to whom the shipment is sent or from whom the shipment is received. For shipments that are sent to another system, like 'the accounting system', create a dummy correspondent of type 'organization' that can be used for this purpose. The destination can be any correspondent; there is no relation with the firm or with the payers from the financial transactions contained in the shipment.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Destination</b></p>
+        </div><a name="F_ExternalDate"></a>
+        <h3>
+External date</h3>
+        <div class="MemberHelp">
+            <p>
+The external date of the shipment. For shipments that are sent, this date is assigned the normal way when numbering the shipment. For shipments that are received, the date specified in the imported file is used, if available.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type">Date</span>&#160;<b>ExternalDate</b></p>
+        </div><a name="F_ExternalId"></a>
+        <h3>
+External id</h3>
+        <div class="MemberHelp">
+            <p>
+The shipment identification reported to the destination. It is manually assigned when creating a new shipment. If not specified it is assigned using a dedicated site function. </p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ExternalId</b></p>
+        </div><a name="F_Firm"></a>
+        <h3>
+Firm</h3>
+        <div class="MemberHelp">
+            <p>
+The firm that sends (or receives) the shipment to (or from) the destination. A financial shipment can only contain financial transactions of this firm.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<b>Firm</b></p>
+        </div><a name="F_GainAmount"></a>
+        <h3>
+Amounts &gt; Gain amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the total amount of all transactions with subtype Gain which are included in the shipment.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>GainAmount</b></p>
+        </div><a name="F_GUID"></a>
+        <h3>
+Audit &gt; Guid</h3>
+        <div class="MemberHelp">
+            <p>
+Global unique Id, currently only used and filled by KV Connect functions functions.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>GUID</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">FinancialShipment</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalId"></a>
+        <h3>
+Internal id</h3>
+        <div class="MemberHelp">
+            <p>
+The internal id is an identification for the shipment. It is automatically assigned by GLIMS using a site function according to the configuration in the GLIMS customization screen.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">String</span>&#160;<b>InternalId</b></p>
+        </div><a name="F_InvoiceSummaryAmount"></a>
+        <h3>
+Amounts &gt; Invoice summary amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the total amount of all transactions with subtype 'InvoiceSummary' which are included in the shipment: amount is inclusive VAT and discounts (amount to be paid).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>InvoiceSummaryAmount</b></p>
+        </div><a name="F_LastSentInvoice"></a>
+        <h3>
+Audit &gt; Last successfully sent invoice</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates the last successfully sent invoice. This allows resending the remaining invoices of the financial shipment after a sudden interuption or communication failure. 
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="inv.htm">Invoice</a></span>&#160;<b>LastSentInvoice</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Audit &gt; Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Audit &gt; Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MessageId"></a>
+        <h3>
+Audit &gt; Message id</h3>
+        <div class="MemberHelp">
+            <p>
+Message Id; currently only used and filled by KV Connect function (send/check reply).</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>MessageId</b></p>
+        </div><a name="F_PaymentAmount"></a>
+        <h3>
+Amounts &gt; Payment amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the total amount of all transactions with subtype Payment which are included in the shipment.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>PaymentAmount</b></p>
+        </div><a name="F_PrintOutCount"></a>
+        <h3>
+Audit &gt; Print out count</h3>
+        <div class="MemberHelp">
+            <p>
+The print out count indicates the number of times this financial shipment was printed with the 'mark' option set in the print method.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>PrintOutCount</b></p>
+        </div><a name="F_Received"></a>
+        <h3>
+Main &gt; Received</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates if this financial shipment is sent or received by the Firm. A transfer to the accounting system is a typical example of a financial shipment sent by the Firm to the Destination. A tape with payments received from a bank is a typical example of a financial shipment that is received by the Firm from the 'Destination' bank.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>Received</b></p>
+        </div><a name="F_SendStatus"></a>
+        <h3>
+Send status</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="sendstatus.htm">SendStatus</a></span>&#160;<b>SendStatus</b></p>
+            <p>
+One of: <span class="Parameter">Sending, Transfer Failed, Sent, Rejected, Accepted, Processed</span></p>
+        </div><a name="F_ShipmentDate"></a>
+        <h3>
+Main &gt; Shipment date</h3>
+        <div class="MemberHelp">
+            <p>
+This is the actual shipment date. It is set by the 'send' method and marks the day that a shipment was sent. For shipments that are 'received', this is the date the input file was read.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Date</span>&#160;<b>ShipmentDate</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+Shipment status</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span></p>
+        </div><a name="F_TotalAmount"></a>
+        <h3>
+Amounts &gt; Total amount</h3>
+        <div class="MemberHelp">
+            <p>
+This calculated field references the shipment total amount: formula = fshp_InvoiceSummaryAmount - fshp_PaymentAmount + fshp_GainAmount</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">Fractional</span>&#160;<b>TotalAmount</b></p>
+        </div><a name="F_TransactionTypes"></a>
+        <h3>
+Main &gt; Transaction Types</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates what types of financial transactions (invoice summary, gain and/or payment) this financial shipment contains. This field is automatically set by GLIMS to 'invs', 'gn' or 'pmnt' if the shipment contains solely financial transactions of that type. If the financial shipment contains more then 1 type, this field displays "?".</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="transactiontype.htm">TransactionType</a></span>&#160;<b>TransactionTypes</b></p>
+            <p>
+One of: <span class="Parameter">Gain, Payment, Invoice summary</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_VersionNumber"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+The shipment's version number: always 1 for new shipments. This field is only important if you create new versions of existing shipments, using the 'MakeNewShipmentVersion' method. If you choose to create a complete 'new version' (instead of 'collect changes'), then a new shipment with the next higher version number is created.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>VersionNumber</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_AssignExternalId"></a>
+        <h3>
+Assign external id&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function calculates the financial shipment external id using the specific site 'Shipment external id' expression.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>AssignExternalId</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+If not specified one keeps the original external date.
+<br />If not specified and when the original external date was unknown then today is used.
+<br /></dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span></dt>
+            </dl>
+        </div><a name="M_ChangeShipmentStatus"></a>
+        <h3>
+Change status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Upgrades or downgrades the status of the financial shipment.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ChangeShipmentStatus</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span></dt>
+                <dd>
+If TRUE, the status is upgraded. Otherwise it is downgraded. Financial shipments that already have the lowest (downgrading) or highest (upgrading) status are ignored. Any non-allowed status change (like upgrading a financial shipment without a external id assiged) will cause an error.
+<br /></dd>
+            </dl>
+        </div><a name="M_CreationUser"></a>
+        <h3>
+Creation user&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CreationUser</b> ()</p>
+        </div><a name="M_Destination"></a>
+        <h3>
+Destination&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Destination</b> ()</p>
+        </div><a name="M_FinancialShipmentEntries"></a>
+        <h3>
+Financial shipment entries&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FinancialShipmentEntries</b> ()</p>
+        </div><a name="M_FinancialTransactions"></a>
+        <h3>
+Financial transactions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function shows a browser of all financial transactions that occur on this shipment. This is sometimes more useful then the "Financial shipment entries" browser.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FinancialTransactions</b> ()</p>
+        </div><a name="M_Firm"></a>
+        <h3>
+Firm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Firm</b> ()</p>
+        </div><a name="M_Invoices"></a>
+        <h3>
+Invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function shows a browser of all invoices that are part of the shipment. This allows a.o. quick browsing of all 'certificates' that occur on a tape to the Belgian insurance companies.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Invoices</b> ()</p>
+        </div><a name="M_LastSentInvoice"></a>
+        <h3>
+Last successfully sent invoice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LastSentInvoice</b> ()</p>
+        </div><a name="M_LastUpdateUser"></a>
+        <h3>
+Last update user&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LastUpdateUser</b> ()</p>
+        </div><a name="M_MakeNewShipmentVersion"></a>
+        <h3>
+Make new shipment version or addendum&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method creates a new version of an existing financial shipment by calling the 'Collect Changes' method for all invoice summaries on the shipment. All changes found are then collected on a new financial shipment.
+<br />If a new version is asked of all invoices, then a complete new shipment with the next higher version number is made. If only changed invoices are collected then an addendum to the shipment is made.
+<br />If a shipment already has more than one version, this method can only be run again on the highest version.
+<br />A typical use would be when an official organization refuses a shipment that was sent. In that case corrections to some of the orders/invoices must be performed, after which one wants to 'send' the corrected shipment. This corrected shipment is actually a new version.
+<br />See also the 'Collect Changes' method on the invoice summary tabel.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>MakeNewShipmentVersion</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvsDocNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">KeepInvoiceDocNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ReuseInvoiceSummaries</span>, <span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MixedInvoiceSummary</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CreditsOnSameShipment</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticBalance</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CollectCreditNotes</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CollectNewInvoices</span>, <span class="Type">String</span>&#160;<span class="Parameter">InvoicesOfArguedCNOnly</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Crediting</span></dt>
+                <dd>
+If TRUE then a complete new version of each invoice summary on the shipment is made. If FALSE, only the changes already made to the existing invoice summaries are collected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvsDocNo</span></dt>
+                <dd>
+If TRUE, any unnumbered invoice summary that is collected on the new shipment is first numbered.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">KeepInvoiceDocNo</span></dt>
+                <dd>
+If TRUE, new invoices that are created during the 'collect changes' on an invoice summary will have the same document number as the original invoice, but with a higher version number.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ReuseInvoiceSummaries</span></dt>
+                <dd>
+If TRUE, the 'collect changes' on an invoice summary will try to reuse open (non-fixed) invoice summaries. Only invoice summaries that already refer to the current invoice summary as the 'original' are candidates. If none are found, new ones are created anyhow.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">InvoiceSummaryExternalDate</span></dt>
+                <dd>
+The external date to be used for the invoice summaries that will be created. If left unknown "?", then the default date is used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MixedInvoiceSummary</span></dt>
+                <dd>
+Indicates if invoice summaries with 'InvoiceType' = 'Mixed' should be made. If false, credit and debit invoices will be collected on seperate invoice summaries.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CreditsOnSameShipment</span></dt>
+                <dd>
+Indicates if the invoice summaries with the credit invoices should be placed on the same shipment as the invoice summaries with the debit invoices. If YES and 'Full crediting' was selected, then the debit invoice summaries are placed on a new version of the original shipment. The financial shipment with the credit invoice summaries is always treated as an addendum on the original shipment.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The external date for the new shipments ('?' = today).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticBalance</span></dt>
+                <dd>
+Try to balance the invoice summary(ies).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CollectCreditNotes</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CollectNewInvoices</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">InvoicesOfArguedCNOnly</span></dt>
+                <dd>
+See collect invoice summary changes function.</dd>
+            </dl>
+        </div><a name="M_PrepareFsePrescriptionsCD"></a>
+        <h3>
+Prepare FSE prescriptions CD&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+For france FSE orders, it is legaly required to put the original pescriptions (currently stored in the order image field) on a CD (with a weekly/monthly frequency).
+<br />This function 
+<br />-copied the order images into subdirectories destination/year/month/date
+<br />-generates an overview in index.html with links to the images
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PrepareFsePrescriptionsCD</b> (<span class="Type">String</span>&#160;<span class="Parameter">TargetDirectory</span>, <span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">InvoiceText</span>, <span class="Type"><a href="atc.htm">gp_AttachmentCategory</a></span>&#160;<span class="Parameter">AttachmentCategory</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TargetDirectory</span></dt>
+                <dt><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">InvoiceText</span></dt>
+                <dd>
+Optional text expression (start table Invoice) that calculates the order details in the produced index.html file.</dd>
+                <dt><span class="Type"><a href="atc.htm">gp_AttachmentCategory</a></span>&#160;<span class="Parameter">AttachmentCategory</span></dt>
+            </dl>
+        </div><a name="M_Print"></a>
+        <h3>
+Print&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Prints the selected financial shipment(s) according to the specifications. Note that only invoice summaries on this shipment will be printed. GLIMS does not yet support the printing of payments and gains.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Print</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+The layout (billing document template) with which the financial shipment will be printed. Note that this can be overriden by the 'JobExpressionId' parameter.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+If TRUE, the fact that this financial shipment is printed will be logged in the BillingDocumentOutPrint table. In that case also the printoutcount field of the shipment will be incremented.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+If TRUE, the financial shipment will be fixed after printing.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dd>
+If output to file is selected, this parameter must contain the filename.</dd>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dd>
+The number of copies to print.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dd>
+If TRUE, an on-screen preview of the printout is shown before printing.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span></dt>
+                <dd>
+Financial shipment based, string valued site function. If present, this site function returns a "\" separated list of tags that override the other parameter specifications. The following tags are supported:
+<br />  \Layout=&lt;layoutname&gt;
+<br />  \Printer=&lt;printername&gt;
+<br />  \Copies=&lt;number&gt; 
+<br />  \Language=&lt;languangecode&gt;
+<br />  \Columns=&lt;n&gt;
+<br />  \Orientation=&lt;[v]&gt;
+<br />Each tag is optional, but if specified it overrides the value specified in the dialog box.
+<br />It is posisble to return multiple list, each separated by a ",". Each tagged list starts its own print job.
+<br />As an example:
+<br />"\Layout=FSHPSimpel\Printer=cat &gt; PrintFile1,\Layout=Test\Printer=_Wordpad"
+<br />This starts 2 print jobs.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span></dt>
+                <dd>
+If output to file is selected, this indicates that the default filename should be used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dd>
+In case of output to file indicates that the new printout must be appended to the output file.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span></dt>
+                <dd>
+Indicates that output must be written to file.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span></dt>
+                <dd>
+Indicate if the selected records must be printed as one document or separately. Seperatly means that each selected financial shipment is printed individually using the specified settings. Otherwise, the selected financial shipments are treated as a single unit and can be printed with a billing document template of type 'FinancialShipmentList'.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span></dt>
+                <dd>
+This option allows printing of initialy unnumbered billing documents with their document number. If selected, the financial shipment will be numbered before printing starts.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span></dt>
+                <dd>
+If TRUE, for each selected financial shipment a unique output file will be created; otherwise all selected financial shipments (in case multiple shipments) will be 'dumped' into one global output file.</dd>
+            </dl>
+        </div><a name="M_Printouts"></a>
+        <h3>
+Printouts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Printouts</b> ()</p>
+        </div><a name="M_ResendFSE"></a>
+        <h3>
+Resend FSE invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ResendFSE</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_Send"></a>
+        <h3>
+Send&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+The send function 'sends' the financial data contained in a financial shipment to the destination. It does so, by creating a file according to the specified ShipmentProtocol. The output file is created according to the settings of the parameters. </p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Send</b> (<span class="Type"><a href="shipmentprotocol.htm">ShipmentProtocol</a></span>&#160;<span class="Parameter">Protocol</span>, <span class="Type"><a href="shipmentoutputtype.htm">ShipmentOutputType</a></span>&#160;<span class="Parameter">OutputType</span>, <span class="Type"><a href="xdtcharacterset.htm">XDTCharacterSet</a></span>&#160;<span class="Parameter">CharacterSet</span>, <span class="Type"><a href="trl.htm">gp_Translator</a></span>&#160;<span class="Parameter">Translator</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileDirectory</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OnlySendRemainingPart</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PerformChecks</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FullLogging</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AllowCreditNotes</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxNumberOfFailures</span>, <span class="Type">String</span>&#160;<span class="Parameter">OptionalSegments</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">IncludePrices</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">PropertyIdProvider</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FilePerEncounter</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ForceExecutingLab</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">EXACTPatientDebtor</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">IsTestTape</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">InEuro</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">PageHeight</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelHeaderTextId</span>, <span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelFooterTextId</span>, <span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelDetailTextId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxFileSize</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReplaceCharacter</span>, <span class="Type">String</span>&#160;<span class="Parameter">FiscalYearCode</span>, <span class="Type"><a href="typeoffilecontents.htm">TypeOfFileContents</a></span>&#160;<span class="Parameter">FileContentsType</span>, <span class="Type"><a href="executiontimetype.htm">ExecutionTimeType</a></span>&#160;<span class="Parameter">ExecutionTimeType</span>, <span class="Type"><a href="orderidentificationtype.htm">OrderIdentificationType</a></span>&#160;<span class="Parameter">OrderIdentificationType</span>, <span class="Type"><a href="externalreferencetype.htm">ExternalReferenceType</a></span>&#160;<span class="Parameter">ExternalReferenceType</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendFees</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HL7TransactionIdIsOrdExtId</span>, <span class="Type"><a href="hl7batchlevel.htm">HL7BatchLevel</a></span>&#160;<span class="Parameter">HL7BatchLevel</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerAccount</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">UZGPinProvider</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OKFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendActivity</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ForcePeriod</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendEMail</span>, <span class="Type">String</span>&#160;<span class="Parameter">EMailFrom</span>, <span class="Type">String</span>&#160;<span class="Parameter">EMailTo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">EMailOldFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ExtendedIssuerIdentification</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">IsAdditionalTape</span>, <span class="Type"><a href="vektisfiletype.htm">VektisFileType</a></span>&#160;<span class="Parameter">TypeOfVektisFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendSpeosDetails</span>, <span class="Type"><a href="rizivfiletype.htm">RizivFileType</a></span>&#160;<span class="Parameter">TypeOfRizivFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendSpeosInEuropeanFormat</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">EliminateSuperfluesKBVShippingCosts</span>, <span class="Type"><a href="cpowishihprestversiontype.htm">CpoWishIhPrestVersionType</a></span>&#160;<span class="Parameter">VersionCpoWishIhPrest</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CheckOpenKBVOrdersOfPatient</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CleanUpTemporaryFiles</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">KBVBD</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SendSupplements</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="shipmentprotocol.htm">ShipmentProtocol</a></span>&#160;<span class="Parameter">Protocol</span></dt>
+                <dd>
+One of: <span class="Parameter">HL7 DFT, RIZIV, INFOHOS-1, German KV DT, German DTAUS 0, German DTAUS 1, Hauptverband Ostereich. Sozialvers.traege, HPRIM Facturation, SMS Cotation des actes, C Page, ASCI, VDS, Umsatzdatenbank, Vektis, Exact, TripleP, IRIS LB2, Acc TF, Symphonie, Belgian Red Cross Gent, Disketten zwischen Arzt und PVS, Sibelmed Iris Version, Clinique Europe, HPRIM Facturation 2.0, XTenso-L, Reference, Production export M.A.I.S, Citadelle, OLV-Aalst, Activite Gilda, Belgian Red Cross Leuven, HPRIM XML GMSIH, Exact Globe 2003, GGD, HL7 DFT 2.4, Medsoc, Speos, Generix, C Page MCA, UCM, Sibelmed Default Version, GEMA Actes NGAP-NABM, Belgian Red Cross Antwerpen, ChipSoft CS-Faktuur, CPO-Plus, INFOHOS-2, Somedi, SEPA, CpoWish IHPREST, CpoWish ITP400, Pegase actes, Hprim XML 1.07, UCM Xml, Belgian Red Cross Ubis, Hprim XML 2.00, Hprim XML 1.04</span><br />
+This parameter defines the output protocol. The following protocols are available:<br />- 'HL7' creates HL7 DFT P03 messages (HL7= Health level 7; event type P03= Post detail financial transactions).<br />- 'BelgianFiles': creates a file with billing information conform the Belgian RIZIV/INAMI instructions. It must be sent monthly (in CD format) to each Belgian main fund ('landsbonden').<br />- 'Infohos': format used by the 'INFOHOS' hospital information system (Belgium).<br />- 'KVDT': creates a KV-DT file containing the ADT billing information for all the invoices on this shipment. Used in Germany to send billing information to the KV.<br />- 'DTAUS0' and 'DTAUS1' are used in Germany and contain the payment instructions for the bank for customers that have a bank domicile.<br />- 'AustrianFiles': format used in Austria to send the billing to the official funds.<br />- 'HPRIM FAC': creates HPRIM 'Facturation' messages (France).<br />- 'SMS Fac': creates SMS 'Cotation des actes' messages (France).<br />- 'C Page': creates C-Page 'Facturation des actes' messages (Version V01.M) (France).<br />-' Ascii': format used by the 'ASCII' accounting program.<br />- 'Vds': format used by the 'VDS' accounting program.<br />- 'UDB': dedicated interface in MIPS propriatary format ('UmsatzDatenBank')<br />- 'Vektis 5': creates a file conform the Dutch Vektis 5 standard, supporting message ZH38.</dd>
+                <dt><span class="Type"><a href="shipmentoutputtype.htm">ShipmentOutputType</a></span>&#160;<span class="Parameter">OutputType</span></dt>
+                <dd>
+One of: <span class="Parameter">File, Screen, On-line, Stored procedure</span><br />
+Where should the output go: file, screen.
+<br /></dd>
+                <dt><span class="Type"><a href="xdtcharacterset.htm">XDTCharacterSet</a></span>&#160;<span class="Parameter">CharacterSet</span></dt>
+                <dd>
+One of: <span class="Parameter">German 7 bit, IBM-437, ISO 8859-1</span><br />
+The character set in which the output file must be generated. Only active for KVDT generation.</dd>
+                <dt><span class="Type"><a href="trl.htm">gp_Translator</a></span>&#160;<span class="Parameter">Translator</span></dt>
+                <dd>
+Send output to a translator which offers special communication channels.
+<br />For instance: send HL7 messages via TCP/IP (sockets).</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileDirectory</span></dt>
+                <dd>
+The directory where the file(s) will be stored. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dd>
+The name of the output file that will be created. Not all protocols allow the file name specification because they generate predefined file names.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OnlySendRemainingPart</span></dt>
+                <dd>
+Send only the remaining part. The remaining is known via the financial shipment's last sent invoice reference.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+Should the financial shipment be fixed after successful processing of the send method? Note that fixing will fail if the financial shipment is not yet numbered or if any of the financial transactions on the shipment was not yet fixed. 
+<br />For some protocols (like KVDT) when the 'Mark' option is set, no output is generated if errors are detected. Deselecting the 'Mark' option generates the (erroneous) output.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PerformChecks</span></dt>
+                <dd>
+If selected, the send method performs all known validation on the output (like the KBV 'rules' for KVDT) and reports any errors.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FullLogging</span></dt>
+                <dd>
+Log all actions; usefull for debugging purposes.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AllowCreditNotes</span></dt>
+                <dd>
+If FALSE, then the financial shipment cannot be 'sent' if it contains any credit invoices.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxNumberOfFailures</span></dt>
+                <dd>
+This is the maximum number of failures (expressed in number of orders) for which the program marks the shipment as completely sent.
+<br />If this number is exceeded, then the program stops and stores the last successfully sent invoice in the financial shipment (the last action is only done for output type on-line). The remaining part can be sent later with the option 'OnlySendRemainingPart'. A value '?' means that the number of errors is unlimited. This parameter is useful for sending HL7 financial on-line.
+<br /></dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">OptionalSegments</span></dt>
+                <dd>
+List of extra (optional) HL7 segments that should be used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">IncludePrices</span></dt>
+                <dd>
+Indicates if prices must also be sent (in HL7 DFT message, FT1 segment)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">PropertyIdProvider</span></dt>
+                <dd>
+The correspondent that is the provider for property identifications. The value '?' means that the shipment destination is the provider. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FilePerEncounter</span></dt>
+                <dd>
+If TRUE then one output file is created per encounter: note that this creates many files. If FALSE a single output file is created.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ForceExecutingLab</span></dt>
+                <dd>
+To avoid the maximum 40% external prestations, sometimes one sends all prestations as executed by the main lab (receiving lab). If this is wanted set this parameter = yes.
+<br /></dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">EXACTPatientDebtor</span></dt>
+                <dd>
+Used for send to EXACT: this parameter specifies the debtor that is used for patient invoice summaries (where payer type is object person).
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">IsTestTape</span></dt>
+                <dd>
+If TRUE creates a special file for acceptation tests (BelgianFiles).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">InEuro</span></dt>
+                <dd>
+If selected, amounts are outputted in Euro. Otherwise local currency is used.</dd>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dd>
+The printer for printing any associated documents like an accompanying letter.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dd>
+Should the accompanying letter ('borderel') be previewed before printing?</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">PageHeight</span></dt>
+                <dd>
+The page height for the accompanying letter ('borderel')</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dd>
+Number of copies of the accompanying letter that should be printed.</dd>
+                <dt><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelHeaderTextId</span></dt>
+                <dd>
+Layout for the header of the accompanying letter ('borderel')</dd>
+                <dt><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelFooterTextId</span></dt>
+                <dd>
+Layout for the footer of the accompanying letter ('borderel')</dd>
+                <dt><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">BorderelDetailTextId</span></dt>
+                <dd>
+Layout used for printing the details per fund on the accompanying letter ('borderel')</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxFileSize</span></dt>
+                <dd>
+Maximum file size for the output file. If the actual file size exceeds the specified size, then several files are made. Value "?" means no size limit.  </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReplaceCharacter</span></dt>
+                <dd>
+On German KV-DT files, some characters are not allowed and will cause errors in the prüfmodule. If this parameter has a value (a single character like " ") the illegal characters are silently translated into the specified character.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FiscalYearCode</span></dt>
+                <dd>
+Fiscal year code : this an optional year code (YYYY) is used for sending to EXACT.
+<br /></dd>
+                <dt><span class="Type"><a href="typeoffilecontents.htm">TypeOfFileContents</a></span>&#160;<span class="Parameter">FileContentsType</span></dt>
+                <dd>
+One of: <span class="Parameter">Default lab, AnatomoPath</span><br /></dd>
+                <dt><span class="Type"><a href="executiontimetype.htm">ExecutionTimeType</a></span>&#160;<span class="Parameter">ExecutionTimeType</span></dt>
+                <dd>
+One of: <span class="Parameter">Result availability time, Lowest object time, Tariff time, Specimen sampling time</span><br /></dd>
+                <dt><span class="Type"><a href="orderidentificationtype.htm">OrderIdentificationType</a></span>&#160;<span class="Parameter">OrderIdentificationType</span></dt>
+                <dd>
+One of: <span class="Parameter">Short id, Internal id</span><br /></dd>
+                <dt><span class="Type"><a href="externalreferencetype.htm">ExternalReferenceType</a></span>&#160;<span class="Parameter">ExternalReferenceType</span></dt>
+                <dd>
+One of: <span class="Parameter">Order External Id, Encounter External Info</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendFees</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HL7TransactionIdIsOrdExtId</span></dt>
+                <dd>
+Indicates that the FT1 transactions Id must be filled with the Order External Id (instead of a number per transaction).
+<br /></dd>
+                <dt><span class="Type"><a href="hl7batchlevel.htm">HL7BatchLevel</a></span>&#160;<span class="Parameter">HL7BatchLevel</span></dt>
+                <dd>
+One of: <span class="Parameter">Order, Shipment</span><br />
+Used for HL7 and HPRIM. 
+<br />If batchlevel= Shipment then all data is put in large message (between 1 header and 1 trailer).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerAccount</span></dt>
+                <dd>
+Use Payer.[Fee]Account (instead of Tariff.Account) for accounting export (such as EXACT).</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">UZGPinProvider</span></dt>
+                <dd>
+The correspondent that is the provider for the patient's PIN. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OKFile</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendActivity</span></dt>
+                <dd>
+For hprim facturation also create a C(omment) segment containing the 'activite' (C.4 Comment text contains per property: CodeUF, CodeEuclides/Demande,CodeNGAP,Coefficient).
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ForcePeriod</span></dt>
+                <dd>
+For KV-DT this means:
+<br />Force the quarter field (FK 4101) with the current (shipment's) quarter.
+<br />If disabled the usual 'Behandelungs'quarter, this is the Invoice external date which is typical the receipt date, is token.
+<br />Notes: 
+<br />-this option makes only difference for the 'Pre-quarter' Orders.
+<br />-this option also changes the 'LeistungsTag' (FK 5000) which is then filled with the Invoice creation date.
+<br />-the overruling takes only place if the VKNR (FK 4104) is valid in the current quarter too.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendEMail</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">EMailFrom</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">EMailTo</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EMailOldFile</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ExtendedIssuerIdentification</span></dt>
+                <dd>
+Use of extended issuer identification (ACC TF protocol).
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">IsAdditionalTape</span></dt>
+                <dd>
+If TRUE creates additional files within same facturation month.</dd>
+                <dt><span class="Type"><a href="vektisfiletype.htm">VektisFileType</a></span>&#160;<span class="Parameter">TypeOfVektisFile</span></dt>
+                <dd>
+One of: <span class="Parameter">ZH308, HA304, OS301</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendSpeosDetails</span></dt>
+                <dd>
+If TRUE additional lines with amount details are printed on the Speos patient invoice (otherwise only fund/patient amount summary)</dd>
+                <dt><span class="Type"><a href="rizivfiletype.htm">RizivFileType</a></span>&#160;<span class="Parameter">TypeOfRizivFile</span></dt>
+                <dd>
+One of: <span class="Parameter">TAPE-CD, CARENET</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendSpeosInEuropeanFormat</span></dt>
+                <dd>
+If TRUE then the Speos patient invoice will be printed/dumped in european format (with IBAN and BIC)fund/patient amount summary)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EliminateSuperfluesKBVShippingCosts</span></dt>
+                <dt><span class="Type"><a href="cpowishihprestversiontype.htm">CpoWishIhPrestVersionType</a></span>&#160;<span class="Parameter">VersionCpoWishIhPrest</span></dt>
+                <dd>
+One of: <span class="Parameter">1403, 1303, 1702</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CheckOpenKBVOrdersOfPatient</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CleanUpTemporaryFiles</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">KBVBD</span></dt>
+                <dd>
+If this option is enable, (like for KV Sachsen), an extra record will be added the KVDT file for 'Bereitschafsdienst' ('Structurpauschale')<br /> after the last 010X Satz.<br />Therefore a Text expression KVBDYYYYQq (example KVBV2018Q3) is expected and should contain all field to be exported additonal (as Satz 0104: Notfall)<br /><br />An Example:<br />; header sections defines the required dummy values for Sachsen<br />FK3101KV<br />FK3102BV<br />FK3102BD<br />FK310319500101<br />FK3107116<br />FK3109117<br />FK311201099<br />FK3113Dresden<br />FK31081<br />FK3110M<br />FK410132018<br />FK410498999<br />...<br />FK4243unbekannt <br />; Leistungs declaration of FeldKennungs<br />FK5000,FK5001,FK5005,FK5009,FK5098,FK5099<br />20181013,99992,010,222,019828900,123456699<br />20181013,99992,008,117,019828800,123456699<br />FK6001UUU<br /><br />Note that the Leistungs FK declaration line 'FK5000,FK5001...' is required but that Field kennungs after FK5000 can be changed/added later<br />The lines after the declaration line like 20181013,99992,010,222,019828900,123456699 represent the values of those Fields (for instance FK5000=20181013)<br />Note that FK5000(Lesitungs'Tag') must be entered as YYYYMMDD (YYYY Year, MM Month DD Date)<br /><br /><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SendSupplements</span></dt>
+                <dd>
+Enable/diable eport of supplements, billing items without linked requests (currently only used for CPOWISH IHHPrest protocol)</dd>
+            </dl>
+        </div><a name="M_SendMail"></a>
+        <h3>
+Send mail</h3>
+        <div class="MemberHelp">
+            <p>
+Mail financial shipment</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SendMail</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEMailing</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+Billing document template</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span></dt>
+                <dd>
+Use billing document template of payer (invoice summary)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+Mark the document</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEMailing</span></dt>
+                <dd>
+Number document before mailing</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+Number child invoices</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+External date of invoice summary (? = today)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+Fix the document</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+Fix also the child invoices</dd>
+                <dt><span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span></dt>
+                <dd>
+One of: <span class="Parameter">Invoice, Invoice summary, Financial transaction, Financial shipment, Billing document printout</span><br />
+Recordtype</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_FinancialTransaction"></a>
+        <h3>
+FinancialTransaction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function provides access to an Invoice summary or Payment during printing or querying of financial shipments. An example:
+<br /><br />RETURN 
+<br /> .FinancialTransaction(1, TransactionType["Invoice summary"]).InvoiceSummary().DocNo; 
+<br /><br />This expression will return the document number of an invoice summary.</p>
+            <p class="Synopsis"><span class="Type"><a href="ftr.htm">FinancialTransaction</a></span>&#160;<b>FinancialTransaction</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type"><a href="transactiontype.htm">TransactionType</a></span>&#160;<span class="Parameter">TransactionType</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+Returns the N-th financial transaction.</dd>
+                <dt><span class="Type"><a href="transactiontype.htm">TransactionType</a></span>&#160;<span class="Parameter">TransactionType</span></dt>
+                <dd>
+One of: <span class="Parameter">Gain, Payment, Invoice summary</span><br />
+Indicates which financial transaction type (Invoice summary, payment or gain) must be searched. The value '?' means that all types must be searched.</dd>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Printouts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bdop.htm">BillingDocumentOutPrint</a>.<a href="bdop.htm#F_FinancialShipment">FinancialShipment</a></p>
+        </div>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_FinancialShipment">FinancialShipment</a></p>
+        </div>
+        <h3>
+Financial shipment entries</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fshe.htm">FinancialShipmentEntry</a>.<a href="fshe.htm#F_FinancialShipment">FinancialShipment</a></p>
+        </div>
+        <h3>
+Tape borderels</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="tpbr.htm">w_TapeBorderel</a>.<a href="tpbr.htm#F_FinancialShipment">FinancialShipment</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Generated"></a>
+        <h3>
+Generated Financial Shipment query</h3>
+        <div class="MemberHelp">
+            <p>
+The generated financial shipment query.</p>
+            <p class="Synopsis"><b>Generated</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type"><a href="shipmentdirection.htm">ShipmentDirection</a></span>&#160;<span class="Parameter">Direction</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToInternalId</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDateSince</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDateUntil</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dt><span class="Type"><a href="shipmentdirection.htm">ShipmentDirection</a></span>&#160;<span class="Parameter">Direction</span></dt>
+                <dd>
+One of: <span class="Parameter">Inbound, Outbound, Any</span><br /></dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromInternalId</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToInternalId</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDateSince</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDateUntil</span></dt>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br /></dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="Q_Standard"></a>
+        <h3>
+standard financial shipment query</h3>
+        <div class="MemberHelp">
+            <p>
+The standard financial shipment query.</p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type"><a href="shipmentdirection.htm">ShipmentDirection</a></span>&#160;<span class="Parameter">Direction</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ExternalDateSince</span>, <span class="Type">String</span>&#160;<span class="Parameter">ExternalDateUntil</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type"><a href="sendstatus.htm">SendStatus</a></span>&#160;<span class="Parameter">MinimalSendStatus</span>, <span class="Type"><a href="sendstatus.htm">SendStatus</a></span>&#160;<span class="Parameter">MaximalSendStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dd>
+If present, selects only financial shipments of this firm.</dd>
+                <dt><span class="Type"><a href="shipmentdirection.htm">ShipmentDirection</a></span>&#160;<span class="Parameter">Direction</span></dt>
+                <dd>
+One of: <span class="Parameter">Inbound, Outbound, Any</span><br /></dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span></dt>
+                <dd>
+If present, only selects financial shipments with this destination.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromInternalId</span></dt>
+                <dd>
+If specified, selects only financial shipments with an internal id higher or equal to the specified one.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToInternalId</span></dt>
+                <dd>
+If specified, selects only financial shipments with an internal id lower or equal to the specified one.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExternalDateSince</span></dt>
+                <dd>
+If present only selects financial shipments with an external date later or equal to this date.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExternalDateUntil</span></dt>
+                <dd>
+If present only selects financial shipments with an external date before or equal to this date.</dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Selects only financial shipments with a status higher or equal to this one.</dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Selects only financial shipments with a status lower or equal to this one.</dd>
+                <dt><span class="Type"><a href="sendstatus.htm">SendStatus</a></span>&#160;<span class="Parameter">MinimalSendStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Sending, Transfer Failed, Sent, Rejected, Accepted, Processed</span><br /></dd>
+                <dt><span class="Type"><a href="sendstatus.htm">SendStatus</a></span>&#160;<span class="Parameter">MaximalSendStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Sending, Transfer Failed, Sent, Rejected, Accepted, Processed</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span></dt>
+                <dd>
+If specified, selects only financial shipments with a printout count above or equal to the specified value.
+<br /><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dd>
+If specified, selects only financial shipments with a printout count below or equal to the specified value.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dd>
+If specified, selects only financial shipments that have been printed (with the 'mark' setting on) after this time. The BillingDocumentOutPrint table is consulted to fulfill this criterium.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dd>
+If specified, selects only financial shipments that have been printed (with the 'mark' setting on) before this time. The BillingDocumentOutPrint table is consulted to fulfill this criterium.</dd>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dd>
+If specified, selects only financial shipments that have been printed (with the 'mark' setting on) once with this billing document template. The BillingDocumentOutPrint table is consulted to fulfill this criterium.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dd>
+When present, this financial shipment based, logical valued site function must return TRUE for a financial shipment to be selected. </dd>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ ExternalId + Firm + Destination + VersionNumber + Addendum </b>
+            </li>
+            <li value="3"><span class="Properties">Unique </span><b>+ Destination + Firm + ExternalId + VersionNumber + Addendum </b>
+            </li>
+            <li value="4"><b>+ ExternalDate + Status </b>
+            </li>
+            <li value="5"><span class="Properties">Unique </span><b>+ Firm + Destination + ExternalId + VersionNumber + Addendum </b>
+            </li>
+            <li value="6"><span class="Properties">Unique </span><b>+ Firm + InternalId </b>
+            </li>
+            <li value="7"><span class="Properties">Unique </span><b>+ InternalId + Firm </b>
+            </li>
+            <li value="8"><b>+ LastSentInvoice </b>
+            </li>
+            <li value="9"><b>+ Status </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

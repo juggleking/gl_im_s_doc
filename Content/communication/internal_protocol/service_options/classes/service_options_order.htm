@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Service options">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="keywords" content="Order Server Options" /><title>Order Server Options</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order Server Options - to be set as driver options -</h1>
+        <h2>Order based Options</h2>
+        <h3><a name="InputDataSource" id="InputDataSource"></a>InputDataSource</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>InputDataSource = &lt;<i>enumerated</i> Reliability<i>&gt;</i>[,&lt;<i>enumerated</i> TraceValue&gt;]</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Reliable,TraceDefault</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated Reliability</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Reliable</kbd>: Accept all patients (person, correspondent, identifications, payment agreement).</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">UnreliableAlways</kbd>: Never accept patient related info updates.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">UnreliableWhenUnknown</kbd>: Never accept patient related info updates when the patient is NOT known (*) in GLIMS.</li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">UnreliableWhenKnown</kbd>: Never accept patient related info updates when the patient is already known (*) in GLIMS.</li>
+        </ul>
+        <blockquote>
+            <p>(*) known means, identified using a message specified identification code.</p>
+        </blockquote>
+        <h5>Enumerated TraceValue</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">TraceDefault</kbd>:</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">TraceNever</kbd>:</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">TraceAlways</kbd>: Stores all person related data differences. The data can be viewed by using the log verify().</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:InputDataSource=UnreliableWhenKnown,TraceNever</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="DebugMode" id="DebugMode"></a>DebugMode</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>DebugMode = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:DebugMode=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="IssuerRequired" id="IssuerRequired"></a>IssuerRequired</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>IssuerRequired = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: The issuer is required when creating an order. The service will report an error when the issuer is not available.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: The issuer is not required when creating an order.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:IssuerRequired=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="ObjectRequired" id="ObjectRequired"></a>ObjectRequired</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>ObjectRequired = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: The object is required when creating an order. The service will report an error when, the object is not available.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: The object is not required when creating an order.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:ObjectRequired=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderCancelSpecimenThreshold" id="OrderCancelSpecimenThreshold"></a>OrderCancelSpecimenThreshold</h3>
+        <p>Represents the specimen status for which it is still allowed to discontinue the order.<br />If some specimen for the order exceeds the specified specimen status, the order discontinuation will not be processed.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderCancelSpecimenThreshold = &lt;SpecimenStatus&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>By default ?. This means that it is allowed to always discontinue an existing order.</p>
+        </blockquote>
+        <h5>Enumerated Values SpecimenStatus</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Initial</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Expected</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Available</kbd>
+            </li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">Discontinued</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:OrderCancelSpecimenThreshold=Expected</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderLookUpCriteria" id="OrderLookUpCriteria"></a>OrderLookUpCriteria</h3>
+        <p>Allows specifying the criteria that must be fulfilled to reuse an order.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderLookUpCriteria = &lt;<i>enumerated</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>By default, the service will look up an order via internal id, short id, external id. If multiple lookup fields are specified, then all those fields should match, otherwise the service will generate an error message.</blockquote>
+        <h5>Enumerated Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Object_ObjectTime_Issuer</kbd>: the service will look for an order matching the object, the object time and the issuer. If other lookup fields are specified, then they must match as well (e.g. ShortId, ...).</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:OrderLookUpCriteria=Object_ObjectTime_Issuer</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderRejectCriteria" id="OrderRejectCriteria"></a>OrderRejectCriteria</h3>
+        <p>Allows you to add criteria which, when fulfilled, will reject the order update message.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderRejectCriteria = &lt;<i>enumerated</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>By default, no criteria are set.</p>
+        </blockquote>
+        <h5>Enumerated Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">IssuerChange</kbd>: when the inbound message refers an existing order, but the message issuer differs from the found order issuer, the message is rejected.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:OrderRejectCriteria=IssuerChange</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderSetDetermination" id="OrderSetDetermination"></a>OrderSetDetermination</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderSetDetermination = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Yes</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: Create the order sets as a result of the execution of the configured Order Set Determination MISPL.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: Do not execute the Order Set Determination MISPL. This implies that no order sets are created.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:OrderSetDetermination=No</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderShortIdValidity" id="OrderShortIdValidity"></a>OrderShortIdValidity</h3>
+        <p>Represents the validity of an order short id in number of days.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderShortIdValidity = &lt;<i>PositiveDecimal</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is <kbd>1000000.0</kbd>.</p>
+        </blockquote>
+        <h5>PositiveDecimal Value</h5>
+        <ul>
+            <li value="1">Value &amp;ge; 0: Represents the validity in numbers of days of the order short id.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver, but it is also possible to set this option in the progress.ini or .glimsrc file. (e.g. <kbd>OrderShortIdValidity=100.5</kbd>)</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:OrderShortIdValidity=100.5</kbd>
+            </p>
+            <p>This value indicates that the validity of the order short id is 100.5 days.</p>
+        </blockquote>
+        <h3><a name="PrintCarrierLabels" id="PrintCarrierLabels"></a>PrintCarrierLabels</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>PrintCarrierLabels = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:PrintCarrierLabels=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="PrintOrderLabel1" id="PrintOrderLabel1"></a>PrintOrderLabel1</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>PrintOrderLabel1 = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:PrintOrderLabel1=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="PrintOrderLabel2" id="PrintOrderLabel2"></a>PrintOrderLabel2</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>PrintOrderLabel2 = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:PrintOrderLabel2=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="PrintRootSpecimenLabels" id="PrintRootSpecimenLabels"></a>PrintRootSpecimenLabels</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>PrintRootSpecimenLabels = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:PrintRootSpecimenLabels=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="PrintSubSpecimenLabels" id="PrintSubSpecimenLabels"></a>PrintSubSpecimenLabels</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>PrintSubSpecimenLabels = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:PrintSubSpecimenLabels=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="ReportScheduling" id="ReportScheduling"></a>ReportScheduling</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>ReportScheduling = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Yes</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: Schedule reports for orders with receipt time and order lowest object time more recent than 60 days.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: Do not schedule reports.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:ReportScheduling=No</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="ReportTriggering" id="ReportTriggering"></a>ReportTriggering</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>ReportTriggering = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Yes</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: Trigger reports for the specified order. (Updates the report "Needs checking" field if appropriate)</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: Do not trigger reports for the specified order.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:ReportTriggering=No</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="SynchronizeLowestObjectTime" id="SynchronizeLowestObjectTime"></a>SynchronizeLowestObjectTime</h3>
+        <p>Allow the order lowest object time to be recalculated or updated from message value on each order update.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>SynchronizeLowestObjectTime = &lt;SynchronizeLowestObjectTimevalue&gt;[,&lt;CascadeValue&gt;]</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>By default '<kbd>Never</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated SynchronizeLowestObjectTimeValue</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Never</kbd>: Never recalculate the Order.LowestObjectTime.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">OnPreCommit</kbd>: Set the Order.LowestObjectTime to the message specified value prior processing the order.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">OnPostCommit</kbd>: Recalculate the Order.LowestObjectTime after the order was updated, scan all specimens and use the lowest specimen sampling time.</li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: Only retained for backwards compatibility = <kbd>Never</kbd>.</li>
+            <li value="5"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Only retained for backwards compatibility = <kbd>OnPostCommit</kbd>.</li>
+        </ul>
+        <h5>Enumerated CascadeValue</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Cascade</kbd>: Change the sampling time for all order specimens to the date-time required - cascade -.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:SynchronizeLowestObjectTime = OnPostCommit,Cascade</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="UpdateOrderThreshold" id="UpdateOrderThreshold"></a>UpdateOrderThreshold</h3>
+        <p>Represents the order status for which it is still allowed to update the order.</p>
+        <p>If the order in GLIMS exceeds the specified order status, the order method specified via the option UpdateOrderThresholdMethod applies.<br />If the latter is not set the order update is rejected.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>UpdateOrderThreshold = &lt;OrderStatus&gt;[,&lt;OrderMethod&gt;]</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>By default ?. This means that it is allowed to always update an existing order.</p>
+        </blockquote>
+        <h5>Enumerated OrderStatus</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Pending</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Initial</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Partial</kbd>
+            </li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">Complete</kbd>
+            </li>
+            <li value="5"><kbd style="font-family: monospace;font-weight: bold;">Closed</kbd>
+            </li>
+            <li value="6"><kbd style="font-family: monospace;font-weight: bold;">Discontinued</kbd>
+            </li>
+        </ul>
+        <h5>Enumerated OrderMethod</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">UpdateReject</kbd> (default)</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">CreateNew</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:UpdateOrderThreshold=Partial,CreateNew</kbd>
+            </p>
+        </blockquote>
+        <p>The following situation could occur in case of order import communication:</p>
+        <ul>
+            <li value="1">Orders are identified by their short id</li>
+            <li value="2">External system creates a new order with short id "x"</li>
+            <li value="3">External system discontinues order with short id "x"</li>
+            <li value="4">External system wants to create a new order with short id "x"</li>
+        </ul>
+        <p>In that case, GLIMS would not create the new order, as an order with short id "x" already existed in the database.<br />To solve this situation, the following option can be set: Order:UpdateOrderThreshold=&lt;OrderStatus&gt;[,&lt;OrderMethod&gt;]</p>
+        <h3><a name="RequestAccumulateDiscriminator" id="RequestAccumulateDiscriminator"></a>RequestAccumulateDiscriminator</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestAccumulateDiscriminator = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Yes</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ol style="list-style-type: decimal;">
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd> (default value):<br />The GLIMS database field Specimen.SamplingTime will be calculated using the Specimen.SamplingTime and Specimen.Discriminator specified in the message.<br />&#160;<br />Example:<br /><br /><kbd>Order:RequestAccumulateDiscriminator=YES</kbd><br /><br />Message SamplingTime = 01/11/2011 09:00<br />Message Discriminator = +03:00<br /><br />&amp;rarr; Database Specimen SamplingTime = 01/11/2011 12:00<br />&amp;rarr; Database Specimen Discriminator = +03:00<br /><br /></li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>:<br />The Specimen.SamplingTime/Request.ObjectTime specified in the message will not be recalculated using the Discriminator specified in the message. The Specimen.SamplingTime from the message will be copied unchanged to the GLIMS database field Specimen.SamplingTime.<br />&#160;<br />Example:<br /><br /><kbd>Order:RequestAccumulateDiscriminator=NO</kbd><br /><br />Message SamplingTime = 01/11/2011 09:00<br />Message Discriminator = +03:00<br /><br />&amp;rarr; Database Specimen SamplingTime = 01/11/2011 09:00<br />&amp;rarr; Database Specimen Discriminator = +03:00</li>
+        </ol>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestAccumulateDiscriminator=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="TrimDiscriminator" id="TrimDiscriminator"></a>TrimDiscriminator</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>TrimDiscriminator = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: the import service will left-trim the message specified Specimen.Discriminator (the leading 0 digits are removed).</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:TrimDiscriminator=YES</kbd>
+            </p>
+        </blockquote>
+        <h2>Request based options</h2>
+        <h3><a name="AllowResultReuse" id="AllowResultReuse"></a>AllowResultReuse</h3>
+        <p>Defines whether the imported results are reused.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestAllowResultReuse = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Allow result reuse.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: Do not allow result reuse.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestAllowResultReuse=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="AllowSpecimenReuse" id="AllowSpecimenReuse"></a>AllowSpecimenReuse</h3>
+        <p>Defines whether the imported specimens are reused.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestAllowSpecimenReuse = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Allow specimen reuse.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: Do not allow specimen reuse.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestAllowSpecimenReuse=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="AllowUnsolicitedRequestCreation" id="AllowUnsolicitedRequestCreation"></a>AllowUnsolicitedRequestCreation</h3>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>This option is deprecated from GLIMS 9 onwards.</p>
+        </div>
+        <p>Defines whether requests should be created for the imported unsolicited results.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestAllowUnsolicitedRequestCreation= &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Allow request creation.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: Do not allow request creation.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestAllowUnsolicitedRequestCreation=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="AutoSampleLogin" id="AutoSampleLogin"></a>AutoSampleLogin</h3>
+        <p>Defines whether the imported specimens are logged in automatically.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestAutoSampleLogin = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Auto login specimen.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: Do not auto login specimen.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestAutoSampleLogin=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="CheckDuplicates" id="CheckDuplicates"></a>CheckDuplicates</h3>
+        <p>Checks if a certain Request was not yet already done for the same Object/Property/ObjectTime/Specimen.<br />If such is the case, an error will be raised.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestCheckDuplicates = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: Raise error on duplicate request detection.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: No check on duplicate request entry.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestCheckDuplicates=YES</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestLookUpCriteria" id="RequestLookUpCriteria"></a>RequestLookUpCriteria</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestLookUpCriteria = &lt;<i>enumerated</i> Criteria<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Default</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated Criteria</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Specimen_TemplateMnemonic</kbd>: Only take the request Specimen/Property-MicrobiologyProcedure into account when checking if a request already exists.<br /><br />The ObjectTime is not taken into account.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">RemoteId_TemplateMnemonic</kbd>: Only take the request RemoteId/Property-MicrobiologyProcedure into account when checking if a request already exists.<br /><br />The ObjectTime is not taken into account.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Default</kbd>: Take the request Specimen/Property-MicrobiologyProcedure/ObjectTime into account when checking if a request already exists.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestLookUpCriteria=Specimen_TemplateMnemonic</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestOptionalPanelMemberRequestMethod" id="RequestOptionalPanelMemberRequestMethod"></a>RequestOptionalPanelMemberRequestMethod</h3>
+        <p>Indicates whether configured optional panel members should or should not be added when the panel is requested.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestOptionalPanelMemberRequestMethod = &lt;Method&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <h5>Enumerated Values Method</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Default</kbd> (corresponds with <kbd>Always</kbd>)</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Always</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Never</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestOptionalPanelMemberRequestMethod=Never</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestOrderRootMaterialRequestsOnly" id="RequestOrderRootMaterialRequestsOnly"></a>RequestOrderRootMaterialRequestsOnly</h3>
+        <p>When activated, the service will only import the explicitly specified root specimens, not the aliquots.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestOrderRootMaterialRequestsOnly = &lt;<i>Logical</i> Value&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <h5><b style="font-weight: bold;">Logical Value</b>
+        </h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>: Only the root specimens are imported.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>: The root and aliquots are imported.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h3><a name="RequestSchedulerVerbosity" id="RequestSchedulerVerbosity"></a>RequestSchedulerVerbosity</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestSchedulerVerbosity = &lt;<i>Integer</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '?'. Possible values are 1-9, 9 is the highest verbosity.</p>
+        </blockquote>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestSchedulerVerbosity=9</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestTrimDiscriminator" id="RequestTrimDiscriminator"></a>RequestTrimDiscriminator</h3>
+        <h4>Syntax</h4>
+        <blockquote>RequestTrimDiscriminator = &lt;<i>Logical</i> Value<i>&gt;</i></blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>YES</kbd>'.<br />If set, the specified Discriminator is trimmed (from leading and trailing white characters).</p>
+        </blockquote>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestTrimDiscriminator=NO</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestUpdateResultThreshold" id="RequestUpdateResultThreshold"></a>RequestUpdateResultThreshold</h3>
+        <p>Represents the result status for which it is still allowed to update a result.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestUpdateResultThreshold = &lt;ResultStatus&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <h5><b style="font-weight: bold;">Enumerated Values ResultStatus</b>
+        </h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Initial</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Expected</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Available</kbd>
+            </li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">Confirmed</kbd>
+            </li>
+            <li value="5"><kbd style="font-family: monospace;font-weight: bold;">Validated</kbd>
+            </li>
+            <li value="6"><kbd style="font-family: monospace;font-weight: bold;">Discontinued</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestUpdateResultThreshold=Available</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="RequestUpdateSpecimenThreshold" id="RequestUpdateSpecimenThreshold"></a>RequestUpdateSpecimenThreshold</h3>
+        <p>Represents the specimen status for which it is still allowed to update a specimen.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>RequestUpdateSpecimenThreshold = &lt;SpecimenStatus&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <h5><b style="font-weight: bold;">Enumerated Values SpecimenStatus</b>
+        </h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Initial</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Expected</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Available</kbd>
+            </li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">Discontinued</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestUpdateSpecimenThreshold=Available</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="UpgradeMode" id="UpgradeMode"></a>UpgradeMode</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>UpgradeMode = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:RequestUpgradeMode=Yes</kbd>
+            </p>
+        </blockquote>
+        <h2>Request Error handlers</h2>
+        <h3><a name="CreateRequestErrorHandler" id="CreateRequestErrorHandler"></a>CreateRequestErrorHandler</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>CreateRequestErrorHandler = &lt;<i>enumerated ErrorHandler&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Halt</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated ErrorHandler</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">ContinueAndAccept</kbd>: Continue with order creation and accept the inbound message.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">ContinueAndReject</kbd>: Continue with order creation and reject the inbound message.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Halt</kbd>: Halt the order import, do not create the order and reject the inbound message.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+            <p>The CreateRequestErrorHandler option extends the <a href="#ScheduleRequestErrorHandler">ScheduleRequestErrorHandler</a> option. In other words when specifying <kbd>CreateRequestErrorHandler=ContinueAndReject</kbd>, you also implicitly set the <kbd>ScheduleRequestErrorHandler=ContinueAndReject</kbd>.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:CreateRequestErrorHandler=ContinueAndReject</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="ScheduleRequestErrorHandler" id="ScheduleRequestErrorHandler"></a>ScheduleRequestErrorHandler</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>ScheduleRequestErrorHandler = &lt;<i>enumerated ErrorHandler&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Halt</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated ErrorHandler</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">ContinueAndAccept</kbd>: Continue with order creation and accept the inbound message.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">ContinueAndReject</kbd>: Continue with order creation and reject the inbound message.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Halt</kbd>: Halt the order import, do not create the order and reject the inbound message.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+            <p>The ScheduleRequestErrorHandler fine-tunes the <a href="#CreateRequestErrorHandler">CreateRequestErrorHandler</a>. It only takes into account the request errors during the schedule process.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">Order:ScheduleRequestErrorHandler=ContinueAndReject</kbd>
+            </p>
+        </blockquote>
+        <h2>PaymentAgreement based options</h2>
+        <h3><a name="CanUseDefaultPolicyName" id="CanUseDefaultPolicyName"></a>CanUseDefaultPolicyName</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>CanUseDefaultPolicyName = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ol style="list-style-type: decimal;">
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">YES</kbd>: When GLIMS receives an order import message that does not explicitly mention a policy name, GLIMS will use the default policy name defined in GLIMS for the payment agreement (specified in the order import message).<br /></li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">NO</kbd>: when GLIMS receives an order import message that does not explicitly mention a policy name, the GLIMS configuration will NOT be taken into account.</li>
+        </ol>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set by the driver.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">PaymentAgreement:CanUseDefaultPolicyName=YES</kbd>
+            </p>
+        </blockquote>
+        <h1>Order Server Options - <u>not</u> to be set as driver options -</h1>
+        <h2>Order based options, set as user-based order entry options</h2>
+        <p>Some options are retrieved from the user's order entry options. In almost all cases, this is the batch user that started the service. Some drivers (homl, houi) can send a user in the communication message indicating that the order entry options from that specific message should be used.</p>
+        <p>The following <a href="../../../../routine/orders/order_entry/options/index_order_entry_options.htm">order entry options</a> are taken into account:</p>
+        <ul type="disc">
+            <li class="p" value="1">
+                <p style="font-weight: bold;">DefaultIdentificationSource</p>
+            </li>
+            <li class="p" value="2">
+                <p style="font-weight: bold;">DefaultInstitution</p>
+            </li>
+            <li class="p" value="3">
+                <p style="font-weight: bold;">DefaultIssuer</p>
+            </li>
+            <li class="p" value="4">
+                <p style="font-weight: bold;">DefaultAgent</p>
+            </li>
+            <li class="p" value="5">
+                <p style="font-weight: bold;">DefaultIssuerType</p>
+            </li>
+            <li class="p" value="6">
+                <p style="font-weight: bold;">DefaultAgentType</p>
+            </li>
+            <li class="p" value="7">
+                <p style="font-weight: bold;">DefaultSamplingLocation</p>
+            </li>
+            <li class="p" value="8">
+                <p style="font-weight: bold;">EncounterSelection</p>
+            </li>
+            <li class="p" value="9">
+                <p style="font-weight: bold;">EvaluateForStatusPending</p>
+            </li>
+            <li class="p" value="10">
+                <p style="font-weight: bold;">PreCommitEvaluation</p>
+            </li>
+            <li class="p" value="11">
+                <p style="font-weight: bold;">PostCommitEvaluation</p>
+            </li>
+            <li class="p" value="12">
+                <p style="font-weight: bold;">PostSchedulingEvaluation</p>
+            </li>
+        </ul>
+        <h2>Order/Request based options, set as gp_Service OverLoad options</h2>
+        <h3><a name="OrderProcessMode" id="OrderProcessMode"></a>OrderProcessMode</h3>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderProcessMode = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+            <p>When set, the service will process messages in 'upgrade mode'. Check the GLIMS documentation for details.</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>No</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can only be set as Service OverLoad command-line option.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">-O Order:OrderProcessMode=Yes</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="IdentifyableLookUpMethod" id="IdentifyableLookUpMethod"></a>IdentifyableLookUpMethod</h3>
+        <p>Represents the order in which the service will lookup a request code.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>IdentifyableLookUpMethod = &lt;LookUpMethod&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <h5>Enumerated Values LookUpMethod</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Local</kbd>: Only the local code = requestcode/Mnemonic will be used to lookup a request code.</li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Alternate</kbd>: Only the coding system codes of the specified coding system will be used to lookup a request code.</li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">PriorityLocal</kbd>: The service will first try to lookup the request code via the mnemonic and if no match was found it will try via the specified coding system code.</li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">PriorityAlternate</kbd>: The service will first try to lookup the request code via the specified coding system code and if no match was found it will try via the mnemonic.</li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set as a Service overload option (= in the command-line option-list of the used gp_Service record).</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">-O IdentifyableLookupMethod=Alternate</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="ResultLinkToSpecimen" id="ResultLinkToSpecimen"></a>ResultLinkToSpecimen</h3>
+        <p>When set, unsolicited/informational results can be linked to the specified specimen.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>ResultLinkToSpecimen = &lt;DefMinResultStatus&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Unsolicited</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated Values DefMinResultStatus</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">None</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Informational</kbd>
+            </li>
+            <li value="3"><kbd style="font-family: monospace;font-weight: bold;">Unsolicited</kbd>
+            </li>
+            <li value="4"><kbd style="font-family: monospace;font-weight: bold;">All</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set as a Service overload option (= in the command-line option list of the used gp_Service record).</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">-O ResultLinkToSpecimen=All</kbd>
+            </p>
+        </blockquote>
+        <h3><a name="OrderDefaultMinimalResultStatus" id="OrderDefaultMinimalResultStatus"></a>OrderDefaultMinimalResultStatus</h3>
+        <p>All created results will be, when valued and for which no explicit status is specified, updated to this status.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderDefaultMinimalResultStatus = &lt;DefMinResultStatus&gt;</p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>Confirmed</kbd>'.</p>
+        </blockquote>
+        <h5>Enumerated Values DefMinResultStatus</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Confirmed</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">Validated</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can be set as a Service overload option (= in the command-line option-list of the used gp_Service record).</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p><kbd style="font-family: monospace;font-weight: bold;">-O OrderDefaultMinimalResultStatus=Validated</kbd>
+            </p>
+        </blockquote>
+        <h2>Request based options, set as environment variable options</h2>
+        <h3><a name="OrderImportResultNorms" id="OrderImportResultNorms"></a>OrderImportResultNorms</h3>
+        <p>When set, the service will not import the result norm data.</p>
+        <h4>Syntax</h4>
+        <blockquote>
+            <p>OrderImportResultNorms = &lt;<i>Logical</i> Value<i>&gt;</i></p>
+        </blockquote>
+        <h4>Values</h4>
+        <blockquote>
+            <p>Default is '<kbd>yes</kbd>'.</p>
+        </blockquote>
+        <h5>Logical Value</h5>
+        <ul>
+            <li value="1"><kbd style="font-family: monospace;font-weight: bold;">Yes</kbd>
+            </li>
+            <li value="2"><kbd style="font-family: monospace;font-weight: bold;">No</kbd>
+            </li>
+        </ul>
+        <h4>Note</h4>
+        <blockquote>
+            <p>This option can only be set as .glimsrc/progress.ini option.</p>
+        </blockquote>
+        <h4>Example</h4>
+        <blockquote>
+            <p>In progress.ini file, under MA_SECTION: <kbd>OrderImportResultNorms=No</kbd></p>
+        </blockquote>
+    </body>
+</html>

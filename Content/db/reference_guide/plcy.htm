@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Policy</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1696"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Policy&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Policy</td>
+                <td>
+plcy</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+A policy defines a reimbursement mechanism or contract by means of a series of policy clauses.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AddToReport"></a>
+        <h3>
+Add to report</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AddToReport</b></p>
+        </div><a name="F_CheckBillingRules"></a>
+        <h3>
+Check billing rules</h3>
+        <div class="MemberHelp">
+            <p>
+This field enables/disables the checking of the billing rules when the related policy is being applied.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>CheckBillingRules</b></p>
+        </div><a name="F_CompletenessCheck"></a>
+        <h3>
+Completeness check</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the policy's completeness check site function (order based, string valued). This function is evaluated before an order is tariffed: If it returns a non-empty string, then this string is considered as a tariffication error. Returning the unknown value also causes a tariffication error.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>CompletenessCheck</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Description"></a>
+        <h3>
+Description</h3>
+        <div class="MemberHelp">
+            <p>
+Optional description of the policy.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Description</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Policy</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_IsThirdPayerPolicy"></a>
+        <h3>
+3rd payer</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates that the policy was used for the definition of a third payer system where a complementary fund pays part of the patient.
+<br />This kind of policies can only be used by '3th payer' agreements.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type">Logical</span>&#160;<b>IsThirdPayerPolicy</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MakeInvoicePerExLab"></a>
+        <h3>
+sub invoice per exec.lab</h3>
+        <div class="MemberHelp">
+            <p>
+Invoices are normally made per receiving lab (firm). With this option one sub invoice will be created per executing lab(firm). This option should only be used in exceptional cases and has certain side effects (sub contracting, different supplement behaviour, ...).
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MakeInvoicePerExLab</b></p>
+        </div><a name="F_MinimalOrderStatus"></a>
+        <h3>
+Minimal order status</h3>
+        <div class="MemberHelp">
+            <p>
+This is the minimal status of an order which can be tariffed using this policy. If an order has not reached the specified status, the tariffication program will produce an error.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="orderstatus.htm">OrderStatus</a></span>&#160;<b>MinimalOrderStatus</b></p>
+            <p>
+One of: <span class="Parameter">Pending, Initial, Partial, Complete, Closed, Discontinued</span></p>
+        </div><a name="F_Mnemonic"></a>
+        <h3>
+Mnemonic</h3>
+        <div class="MemberHelp">
+            <p>
+Policy's mnemonic</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">Mnemonic</span>&#160;<b>Mnemonic</b></p>
+        </div><a name="F_PaymentAgreementCheck"></a>
+        <h3>
+Payment agreement check</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the payment agreement check site function (payment agreement based, string valued). Each time a payment agreement with the checked-box on is updated, this site function is evaluated. If the return value is a non empty string, then that string is considered as an error message and the update fails. Returning '?' also causes an update failure.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>PaymentAgreementCheck</b></p>
+        </div><a name="F_PaymentAgreementUpd"></a>
+        <h3>
+Payment agreement update</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the payment agreement update site function (payment agreement based, string valued). Each time a payment agreement with the checked flag set is updated, this site function is evaluated. The return value should be a backslash seperated tagged list. The following tags are supported: 'Matriculation' and 'Relation'. Both tags correspond with a payment agreement field. The specified tag values will overwrite the correspondig record fields. 
+<br />Example: Matriculation=123-456678-12\Relation=Holder
+<br />This functionality can be used to (re)format the matriculation number or to set or correct the relation type. e.g. In Germany the relation ('VersichertenArt') is determined by the insurant status ('VersichertenStatus').</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>PaymentAgreementUpd</b></p>
+        </div><a name="F_ProForma"></a>
+        <h3>
+Pro Forma</h3>
+        <div class="MemberHelp">
+            <p>
+'Pro form' invoices can be made and printed during reporting but are not permanently stored in Glims.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type">Logical</span>&#160;<b>ProForma</b></p>
+        </div><a name="F_Regular"></a>
+        <h3>
+Regular</h3>
+        <div class="MemberHelp">
+            <p>
+This toggle box indicates wether the policy is regular (no = exceptional).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Regular</b></p>
+        </div><a name="F_RejectPostDating"></a>
+        <h3>
+Reject post dating</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates whether a tariffication time in the future should be rejected.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>RejectPostDating</b></p>
+        </div><a name="F_SupplementList"></a>
+        <h3>
+Supplement list</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the policy's supplement list site function (order set based, string valued). This function is evaluated during the tariffication after the billing rule conversions. It supports the addition of supplement billing codes. Returning '?' causes a tariffication error. Returning the empty string ('') or not specifying a supplement list function causes no supplement addition.<br />The return value consists of a comma seperated list of billing code specifications. A billing code specification must match the following template:<br />&lt;BC&gt;[\Comment=&lt;Comment&gt;][\Executor=&lt;Executor&gt;]{\&lt;TagName&gt;=&lt;TagValue&gt;}<br />&lt;BC&gt; = Billing code code<br />&lt;Comment&gt; = Comment string<br />&lt;Executor&gt; = HC-provider mnemonic<br />&lt;ExecutingLab&gt; mnemonic of the executing lab<br />&lt;ExecutingDepartment&gt; mnemonic of the executing department<br />&lt;TagName&gt; = A billing item's site attribute name<br />Each such specification causes the addition of the corresponding billing code as a supplement. The comment value will be copied to the billing item's comment field. If an executor is specified, that executor will overrule the regular executor determination. The other tag values are saved as a site attribute values. Example:<br />591673\Executor=GORBY\BV=433016,599955\BV=128030</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>SupplementList</b></p>
+        </div><a name="F_TariffPanelMembers"></a>
+        <h3>
+Tariff members</h3>
+        <div class="MemberHelp">
+            <p>
+Optional overruling of the panel tariff member and TariffMemberMarkList setting.
+<br />Supported values are:
+<br />Value ? means usage of panel settings.
+<br />Value YES means that panel members must be charged always.
+<br /></p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>TariffPanelMembers</b></p>
+        </div><a name="F_TariffTimeType"></a>
+        <h3>
+Tariff time type</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies which date/time to use to retrieve time depending configuration data (price formula, tariff, ...) during the tariffication. If the order set consists of several orders, the earliest date/time is taken into account for 'object time' and 'receipt time', the most recent one for 'completion time'. The object time of an order is the order lowest object time.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="tarifftimetype.htm">TariffTimeType</a></span>&#160;<b>TariffTimeType</b></p>
+            <p>
+One of: <span class="Parameter">Object, Completion, Receipt, Actual</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_BudgetdefinitionsOfPolicyPolicy"></a>
+        <h3>
+Budget definitions (Policy)&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BudgetdefinitionsOfPolicyPolicy</b> ()</p>
+        </div><a name="M_PolicynamesOfPolicyByCode"></a>
+        <h3>
+By Code&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PolicynamesOfPolicyByCode</b> ()</p>
+        </div><a name="M_BudgetdefinitionsOfPolicyByMnemonicStartDate"></a>
+        <h3>
+By Mnemonic, Valid from&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BudgetdefinitionsOfPolicyByMnemonicStartDate</b> ()</p>
+        </div><a name="M_Clauses"></a>
+        <h3>
+Clauses&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Clauses</b> ()</p>
+        </div><a name="M_CompletenessCheck"></a>
+        <h3>
+Completeness check&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CompletenessCheck</b> ()</p>
+        </div><a name="M_Copy"></a>
+        <h3>
+Copy&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function makes a copy of an existing policy and all its clauses.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Copy</b> ()</p>
+        </div><a name="M_PaymentAgreementCheck"></a>
+        <h3>
+Payment agreement check&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PaymentAgreementCheck</b> ()</p>
+        </div><a name="M_PaymentAgreementUpd"></a>
+        <h3>
+Payment agreement update&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PaymentAgreementUpd</b> ()</p>
+        </div><a name="M_PolicynamesOfPolicy"></a>
+        <h3>
+Policy names of Policy&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PolicynamesOfPolicy</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SupplementList"></a>
+        <h3>
+Supplement list&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SupplementList</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Names of policy</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="plcn.htm">PolicyName</a>.<a href="plcn.htm#F_Policy">Policy</a></p>
+        </div>
+        <h3>
+Policy's clauses</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="plcc.htm">PolicyClause</a>.<a href="plcc.htm#F_Policy">Policy</a></p>
+        </div>
+        <h3>
+Reimbursement clauses</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rmbc.htm">w_ReimbursementClause</a>.<a href="rmbc.htm#F_Policy">Policy</a></p>
+        </div>
+        <h3>
+Budgets activated by policy</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="budf.htm">BudgetDefinition</a>.<a href="budf.htm#F_Policy">Policy</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Mnemonic </b>
+            </li>
+            <li value="3"><b>+ CompletenessCheck </b>
+            </li>
+            <li value="4"><b>+ PaymentAgreementCheck </b>
+            </li>
+            <li value="5"><b>+ PaymentAgreementUpd </b>
+            </li>
+            <li value="6"><b>+ SupplementList </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

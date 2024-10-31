@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Orders|MISPL functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\methods\order.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>order_attribute</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor100"></a>Order.Attribute(<span class="Parameter">AttributeName</span>)</h1>
+        <h2>Introduction</h2>
+        <p>This function returns order attributes that are impossible or very cumbersome to obtain by means of standard MISPL constructs.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Practical example</span>
+            </p>
+            <p>FitText(Replace(.Attribute("RequestPropertyList"), ",", ", "), 80, " =&gt; ", " ", "")</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Most lists which can be obtained via the Order.Attribute MISPL function will ignore discontinued results, specimens, microbiology actions,...</p>
+            <p class="fieldlabel">Examples</p>
+            <div class="indented">
+                <p>SpecimenList, MaterialList, RootMaterialShortNameList, PropertyList, PropertyClassList,...</p>
+            </div>
+            <p class="fieldlabel">Exceptions</p>
+            <div class="indented">
+                <p>The RequestList, RequestListName, RequestListDescription, DepartmentList and LabList attributes can still contain discontinued items. However, for the first three ones, using the modifier ExcludeDiscontinued allows filtering out the discontinued elements (see <a href="#%22Request">below</a>).</p>
+            </div>
+        </div>
+        <h2>Supported values for <span style="color: #008000;">AttributeName</span><br /></h2>
+        <div class="box_grey">
+            <p><i style="font-style: italic;">String</i>&#160;<b>&#160;Attribute</b> (<i>String</i>&#160;<span style="color: #008000;">AttributeName</span>)</p>
+        </div>
+        <p class="fieldlabel">"BilledNomenclatureCodesList"</p>
+        <div class="indented">
+            <p>Returns a "|"-separated tagged list with several values. Use ExtractTag() to extract the tags from the string. This function finds all existing billing items for this order and groups them by price code (Tariff.PriceCode.Mnemonic). The following tags are returned:</p>
+            <ul>
+                <li class="kadov-p" value="1"><b style="font-weight: bold;">PriceCodeList</b>: A comma-separated list of mnemonics of price codes used in this order. Empty if no billing items were found.</li>
+                <li class="kadov-p" value="2"><b style="font-weight: bold;">NomenclatureCodesOf_&lt;pricecode&gt;</b>: For each &lt;pricecode&gt; found in the tag 'PriceCodeList', the alphabetically sorted comma-separated list of nomenclature codes in this order.</li>
+                <li class="kadov-p" value="3"><b style="font-weight: bold;">PriceOf_&lt;pricecode&gt;</b>: For each &lt;pricecode&gt; found in the tag 'PriceCodeList' the total net price (excl. VAT) of the billing items.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">"BillingMarkList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the different billing marks used in the current order.&#160;It will not include billing marks of specimen requests nor billing marks of discontinued requests.&#160;Note that this option is not yet available in the <span class="ui_element">Evaluation before commit</span> function of the order entry program: it only fetches billing marks of already stored requests.</p>
+        </div>
+        <p class="fieldlabel">"DepartmentList" or "DepartmentMnemonicList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of the departments for which the actions of this order are scheduled.</p>
+        </div>
+        <p class="fieldlabel">"DoublePropertyCodeList"</p>
+        <div class="indented">
+            <p style="text-align: left;">Returns a list of property codes and mnemonics indicating which properties are present in the current order with a different property mnemonic but the same property code.<br />The syntax of the returned list is&#160;&#160;"Code(Mnem,Mnem,...),Code(Mnem,Mnem,...)<br /></p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Na(Na-Fa,Na-LG),K(K-Fa,K-LG)</p>
+            </div>
+            <p>Property codes that are only represented by a single property mnemonic are not present in the list.</p>
+        </div>
+        <p class="fieldlabel">"ExtendedMaterialList"</p>
+        <div class="indented">
+            <p>Returns a list of all materials in the order with their material variable choices (if any). All material mnemonics are shown separated by commas. If there are any material choices, these will be added after the material mnemonic but before the comma of the next material mnemonic. The material choices will be separated from the material with a space. If there is a specimen discriminator, it will be added after the material variable choices and it will also be separated by a space.</p>
+            <p>Discontinued requests are not included.</p>
+        </div>
+        <p class="fieldlabel">"ExtendedMaterialListWithSpecimen"</p>
+        <div class="indented">
+            <p>Same as "ExtendedMaterialList" except that there will be an extra entry before each material mnemonic. The material mnemonic will be prefixed by the internal id of the specimen which will be separated by a space.</p>
+            <p>Discontinued requests are not included.</p>
+        </div>
+        <p class="fieldlabel">"ExtendedRootMaterialList"</p>
+        <div class="indented">
+            <p>Same as "ExtendedMaterialList" except that ONLY the root specimens will be shown in the list.</p>
+            <p>Discontinued requests are not included.</p>
+        </div>
+        <p class="fieldlabel">"ExtendedRootMaterialListWithSpecimen"</p>
+        <div class="indented">
+            <p>Same as "ExtendedMaterialListWithSpecimen" except that ONLY the root specimens will be shown in the list.</p>
+            <p>Discontinued requests are not included.</p>
+        </div>
+        <p class="fieldlabel">"LabList" or "LabMnemonicList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of lab mnemonics present in the order (via Procedure-&gt;Department).</p>
+        </div>
+        <p class="fieldlabel">"MaterialList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of the materials of the specimens contained in the order.&#160;This function behaves analogously to the "RootMaterialList" variant but returns information about ALL materials contained in the order.&#160;If a material occurs more than once, it is followed by a count. This count indicates the number of specimens that the order contains for this material.</p>
+        </div>
+        <p class="fieldlabel">"MaterialShortNameList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of material short names.&#160;This function behaves analogously to the "RootMaterialShortNameList" variant but returns information about ALL materials contained in the order.&#160;If a material occurs more than once, it is followed by a count. This count indicates the number of specimens that the order contains for this material.</p>
+        </div>
+        <p class="fieldlabel">"MicrobiologyProcedureNameList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list with the descriptions of all microbiology procedures that have been requested in the order.&#160;The microbiology procedures will be listed in the same sequence as in the microbiology screen, being the sequence of creation (requesting).&#160;&#160;</p>
+            <p>For microbiology actions that have been discontinued, the corresponding microbiology procedures will not be included.</p>
+        </div>
+        <p class="fieldlabel">"MicrobiologyProcedureCodeList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list with the mnemonics of all microbiology procedures that have been requested in the order.&#160;The microbiology procedures will be listed in the same sequence as in the microbiology screen, being the sequence of creation (requesting).&#160;&#160;</p>
+            <p>For microbiology actions that have been discontinued, the corresponding microbiology procedures will not be included.</p>
+        </div>
+        <p class="fieldlabel">"ObjectAttributeList[:Delimiter]"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of the object attributes which are active on &lt;Order.LowestObjectTime&gt;, together with an indication of the length of the active period. If the optional [:Delimiter] modifier is specified, it will be used instead of the standard comma.</p>
+        </div>
+        <p class="fieldlabel">"ObjectAttributeNameList[:Delimiter]"</p>
+        <div class="indented">
+            <p>Same as "ObjectAttributeList", but the descriptions of the object attributes are returned instead of the mnemonics.</p>
+        </div>
+        <p class="fieldlabel">"ObjectAttributeFlags"</p>
+        <div class="indented">
+            <p>A list of object attribute flags is returned without time indication. No modifier is taken into account.&#160;This is not a comma-separated list!</p>
+        </div>
+        <p class="fieldlabel"><a name="&quot;OrderEn"></a>"OrderEntryRequests[:Type]" and "NewOrderEntryRequests[:Type]"</p>
+        <div class="indented">
+            <p>In order to have access to the requests entered during the order entry phase before they are stored, the Order.Attribute() MISPL function allows retrieving the mnemonics of the explicitly requested tests, materials, microbiology actions,... during this pre-commit phase.</p>
+            <blockquote>
+                <p>Syntax: Order.Attribute("OrderEntryRequests[:Type]") or Order.Attribute("NewOrderEntryRequests[:Type]")</p>
+            </blockquote>
+            <p>A comma-separated list of test, material, microbiology, pathology mnemonics for the requests in this order is returned. If the "new"-variant is used, the list only contains unstored requests. If the optional [:Type] modifier is used, only requests of this specific type are returned (type keywords are: Result, Specimen, Microbiology, Pathology, Blood).&#160;If a property is requested twice, it will appear twice in the list.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Order.Attribute("OrderEntryRequests"), Order.Attribute("OrderEntryRequests:Result")</p>
+            </div>
+            <p>These functions can only be used:</p>
+            <ul>
+                <li value="1">before the creation or update of an order (<span class="ui_element">Order entry options</span> &gt; <a href="order_entry/options/order_entry_options_tab_main.htm#Before">Before creation or update</a>).</li>
+                <li value="2">after the creation or update of an order (<span class="ui_element">Order entry options</span> &gt; <a href="order_entry/options/order_entry_options_tab_main.htm#After">After creation or update</a>).</li>
+                <li value="3">to decide whether a manually created order should be <span class="ui_element">Pending</span> (<span class="ui_element">Start</span> &gt; <span class="ui_element">System management</span> &gt; <span class="ui_element">Customize</span> &gt; <span class="ui_element">GLIMS electronic order scheduler</span> &gt; <a href="../../modules/eos/eos_creation.htm#On">On manual order entry</a>).</li>
+                <li value="4">when called in the order internal id assignment site function (<span class="ui_element">Start &gt; System management &gt; Customize &gt; GLIMS General &gt; General &gt; Id's &gt; Order internal id</span>).</li>
+            </ul>
+            <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>These MISPL functions are not supported during electronic order entry.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"ProcedureCodeList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the codes of the (microbiology) procedures of all scheduled (microbiology) actions in this order.</p>
+        </div>
+        <p class="fieldlabel">"ProcedureNameList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the names (descriptions) of the (microbiology) procedures of all scheduled (microbiology) actions in this order.</p>
+        </div>
+        <p class="fieldlabel">"PropertyClassList" or "PropertyClassMnemonicList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of property classes present in the order.</p>
+        </div>
+        <p class="fieldlabel">"PropertyList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of all properties contained in the order.</p>
+        </div>
+        <p class="fieldlabel">"PropertyShortNameList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the short names of all properties contained in the order.</p>
+        </div>
+        <p class="fieldlabel">"ReportCopyList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the names of all correspondents who receive a copy report of the order.</p>
+        </div>
+        <p class="fieldlabel"><a name="&quot;Request"></a>"RequestList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of the request definitions of all requested codes in the order. For pending orders created via manual and electronic order entry, all requested codes (RequestedCode.Code) in the order are returned (since, in this case, the requested code does not have a reference to the request definition).</p>
+            <p>To exclude the discontinued elements from this list, add the modifier "ExcludeDiscontinued": Order.Attribute("RequestList:ExcludeDiscontinued").</p>
+            <p>Order.Attribute("RequestList") can be used:</p>
+            <ul>
+                <li value="1">before the creation or update of an order (<span class="ui_element">Order entry options</span> &gt; <a href="order_entry/options/order_entry_options_tab_main.htm#Before">Before creation or update</a>).</li>
+                <li value="2">after the creation or update of an order (<span class="ui_element">Order entry options</span> &gt; <a href="order_entry/options/order_entry_options_tab_main.htm#After">After creation or update</a>).</li>
+                <li value="3">to decide whether an electronically received or manually created order should be <span class="ui_element">Pending</span> (<span class="ui_element">Start</span> &gt; <span class="ui_element">System management</span> &gt; <span class="ui_element">Customize</span> &gt; <span class="ui_element">GLIMS electronic order scheduler</span> &gt; <a href="../../modules/eos/eos_creation.htm#On">On manual order entry</a>).</li>
+                <li value="4">when called in the order internal id assignment site function (<span class="ui_element">Start &gt; System management &gt; Customize &gt; GLIMS General &gt; General &gt; Id's &gt; Order internal id</span>).</li>
+                <li value="5">when called in the post-processing site function for the <a href="../../general/series_orders_persons.htm">creation of order series</a>.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">"RequestListExtensive"</p>
+        <div class="indented">
+            <p>Returns the list of request definitions with their respective properties, materials, blood products and microbiology procedures.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example output</span>
+                </p>
+                <p>NFS:RBC,WBC,HCT; Ur-GME:GME</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"RequestListName"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the names of all request codes contained in the order. If the name is not available, the request code's mnemonic will be returned.</p>
+            <p>To exclude the discontinued elements from this list, add the modifier "ExcludeDiscontinued": Order.Attribute("RequestListName:ExcludeDiscontinued").</p>
+        </div>
+        <p style="font-weight: bold;">"RequestListDescription"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the property description (multilingual) for all request definitions contained in the order. In case of a panel, the panel request definition description is returned. If property description is not available, the request definition's mnemonic will be returned.</p>
+            <p>To exclude the discontinued elements from this list, add the modifier "ExcludeDiscontinued": Order.Attribute("RequestListDescription:ExcludeDiscontinued").</p>
+        </div>
+        <p class="fieldlabel">"RequestPropertyList"</p>
+        <div class="indented">
+            <p style="text-align: left;">Returns a list of all request definition mnemonics and properties contained in the order.<br />Format: [Request definition:[Property][,Property]...][,Request definition:[Property][,Property]...]...</p>
+        </div>
+        <p class="fieldlabel">"RootMaterialList[:Confirmed]"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the mnemonics of all root materials contained in the order.&#160;Only the actually confirmed (Status=Available) root specimens are returned when the [:Confirmed] modifier is used. If a material occurs more than once, it is followed by a count. This count indicates the number of specimens that the order contains for this material.</p>
+        </div>
+        <p class="fieldlabel">"RootMaterialShortNameList[:Confirmed]"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the short names of all root materials contained in the order.&#160;Only the actually confirmed (Status=Available) root specimens are returned when the [:Confirmed] modifier is used. If a material occurs more than once, it is followed by a count. This count indicates the number of specimens that the order contains for this material.</p>
+        </div>
+        <p class="fieldlabel">"SamplingCodeList[:Max]"</p>
+        <div class="indented">
+            <p>The goal of this parameter is to create a list of billable codes for the sampling process.</p>
+            <p style="text-align: left;">The return value is a comma-separated list of Specimen.Material.SamplingCode values, taken from the root specimens, and in which each sampling code appears once per sampling time.&#160;The optional [:Max] modifier indicates that the appearance count of each code should be limited to this maximum.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p style="text-align: left;"> Given an order with root specimen</p>
+                <p style="text-align: left;">- Blood (code BL), Blood (code BL), EDTA (code BL), Urine (code UR) at 10h00<br></br>- Blood, EDTA at 11:00<br></br>- Blood, Urine at 12:00</p>
+                <p style="text-align: left;">The call Order.Attribute("SamplingCodeList:2") will yield "BL,BL,UR,UR".</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"SpecimenList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the internal id's of all specimens contained in the order.</p>
+        </div>
+        <p class="fieldlabel">"ItemStorageList"</p>
+        <div class="indented">
+            <p style="text-align: left;">Format: &lt;SpecimenInternalId&gt;/&lt;MaterialMnemonic&gt;/&lt;Discriminator&gt;/&lt;StorageList&gt;,...<br /><br />where the format of &lt;StorageList&gt; is<br /><br />&lt;ArchiveMnemonic&gt;-&lt;ArchivePart&gt;-&lt;RackCode&gt;-&lt;Position&gt;+...</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>05-00001/Serum/09:00/Rout-Mon-1-2+Arch-Jan-1-5,05-00002/EDTA/?/Rout-Mon-1-3</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"Summary"</p>
+        <div class="indented">
+            <p>Returns a compact summary of the order contents. The format is always:&#160;</p>
+            <blockquote>
+                <p style="text-align: left;">&lt;Specimen&gt; &lt;Sampling time&gt; &lt;Material&gt;<br />&lt;Property&gt;: &lt;Value&gt; &lt;Unit&gt;\&lt;Property&gt;: &lt;Value&gt; &lt;Unit&gt;\...</p>
+            </blockquote>
+            <p>and is repeated for each specimen in the order.&#160;So, the specimens are on the odd line numbers and their corresponding results on the even numbered lines. Specimens are sorted by object time and internal id. If the order contains results that are not linked to a specimen (e.g. informational or erroneously unscheduled results), the specimen line contains a single "?".</p>
+            <p>All results contained in the order are returned (from status <span class="ui_element">Initial</span> till <span class="ui_element">Validated</span>), sorted&#160;alphabetically by property mnemonic. Result values larger than 16 characters are truncated (and terminated by "...") and results without a value are reported as "&lt;Property&gt;: ?".</p>
+        </div>
+        <p class="fieldlabel"><a name="&quot;Station"></a>"StationCodeList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the codes of all stations for which actions have been scheduled.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>Actions with discontinued outputs are not taken into account.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"UnadministeredBloodBagList"</p>
+        <div class="indented">
+            <p style="text-align: left;">As a BTM order attains status <span class="ui_element">Complete</span> as soon as the blood bag(s) have status <span class="ui_element">Checked out</span>, this implies that the order is already tariffed before the blood bag has actually been transfused.&#160;&#160;</p>
+            <p style="text-align: left;">In order to avoid this situation, the MISPL function <span class="ui_element">Order.Attribute()</span> has an attribute name option <span class="ui_element">"UnadministeredBloodBagList"</span>.&#160;This parameter option<br />returns the list of bag numbers which are checked out but not yet administered.&#160;It can be used during the completeness check (defined in the policy) to prevent tariffing<br />of not yet administered blood bags.</p>
+        </div>
+        <p class="fieldlabel"><a name="&quot;Validat"></a>"ValidatorInitialsList" / "ValidatorSignatureList" / "ValidatorInitialsSignatureList"</p>
+        <p class="fieldlabel">"ManualValidatorInitialsList" / "ManualValidatorSignatureList" / "ManualValidatorInitialsSignatureList"</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../reports/reports_print_responsibles.htm">How to print the result responsibles on a report</a>. </p>
+        </div>
+        <p class="fieldlabel">"WorkPlaceCodeList"</p>
+        <div class="indented">
+            <p>Returns a comma-separated list of the codes of all work places for which actions have been scheduled.</p>
+        </div>
+        <p class="fieldlabel">"ConsultResults"</p>
+        <div class="indented">
+            <p>Returns a list of the properties and their result value registered during <a href="../../modules/consult_registration/consult_registration.htm">consult registration</a> in the following format:</p>
+            <p>&lt;property1 description&gt; : &lt;result1 value&gt;<br />&lt;property2 description&gt; : &lt;result2 value&gt;</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Export transfusion data to "Rode Kruis" (BILX_UBIS-00002)</title>
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor778"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Export transfusion data to "Rode Kruis" (BILX_UBIS-00002)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS now allows to export data about transfused blood bags directly in the format of "Rode Kruis Vlaanderen".</p>
+        <p>This export program is subject to a separate license.</p>
+        <h2>Export program</h2>
+        <p>The export has been implemented as a <span class="ui_element">Financial shipment</span> export with protocol <span class="ui_element">Ubis</span> (<span class="ui_element">Belgian Red Cross Ubis</span>).</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_UBIS-00002_send.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="557" data-mc-height="474" src="BILX_UBIS-00002_send_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Configuration</h3>
+        <p class="fieldlabel">Financial shipment</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Destination</span> of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Financial shipment</span> must be the "Rode Kruis Vlaanderen" organization.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">In the <a href="#Content" xmlns="http://www.w3.org/1999/xhtml">content of the exported file</a>, the hospital identification will be the identification of the institution assigned by this "Rode Kruis Vlaanderen" organization.</p>
+        </div>
+        <h3>Export options</h3>
+        <p class="fieldlabel">Protocol</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ubis</span> (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Belgian Red Cross Ubis</span>)</p>
+        </div>
+        <h2><a name="Content" xmlns="http://www.w3.org/1999/xhtml"></a>Content of exported files</h2>
+        <p>The export program will produce two types of files:</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">A flat text file that is sent electronically to the "Rode Kruis Vlaanderen" organization.</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>A separate file will be generated for each institution and blood bag supplier.</p>
+                </div>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">An XML file that is used to generate a PDF report that can be signed for approval.</p>
+            </li>
+        </ol>
+        <h3>Flat text file</h3>
+        <h4>Header record</h4>
+        <p>Contains data about the blood transfusion center (blood bag supplier) -  file name - start and end date - hospital data.</p>
+        <table style="width: 100.15%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 85px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Fixed value "0"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">2-3</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Identification and name of the correspondent's blood transfusion center.  This is derived from the supplier of the blood bag.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">4</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">System date (today)</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">5</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Unique sequence number (length=8).  This number is also saved in the comment field of the shipment.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">6-7</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Start and end date of the period: this is the minimum transfusion time (end date if known, otherwise start date) and max transfusion time (end date if known, otherwise start date) of all the blood bags in the file.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">8-9</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Identification and name of the hospital. This is derived from the patient encounter's institution (correspondent data). GLIMS will look up a patient encounter that is valid at the time of blood bag administration.</p>
+                        <p>The identification is the one assigned by the <span class="ui_element">HC code provider</span> specified in the general settings (<span class="ui_element">Start &gt; System management &gt; Customize &gt; GLIMS general</span>).</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Patient data (record "1")</h4>
+        <table style="width: 100.15%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 85px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Fixed value "1"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">2</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Not supported</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">3</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">External id of patient encounter (matching the first blood transfusion for the patient)</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">4-5-6</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Patient's name, address and municipality</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">7-8-9-10-11</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Not supported</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">12</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Responsible of the transfusion as stored in the blood bag. If not available, the order's issuer is exported.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">13</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Identification of the order's issuer</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">14</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Start date of the patient encounter</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">15</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">Not supported</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Blood bag data (record "2")</h4>
+        <table style="width: 100.15%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 85px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Fixed value "2"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">2</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Encounter external id</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">3</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">External id of the blood bag</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">4</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Product code of the blood bag</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">5</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Barcode as external Id of the blood bag</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">6</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Barcode of blood product specification</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">7</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Transfusion end date. If unknown, the transfusion start date is used.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">8</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Nomenclature code: retrieved from the billing item linked to the tariff</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">9</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Volume/units. Number of invoice items for the blood bag.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">10</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Not supported</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">11</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">Invoice item's net amount</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Attest data (record "3")</h4>
+        <table style="width: 100.15%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 85px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Fixed value "3"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">2</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Not supported</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">3</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Encounter external id</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">4</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">Total amount</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Summary data (record "9")</h4>
+        <table style="width: 100.15%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 85px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Fixed value "9"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">2</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Date on which the shipment was sent</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">3</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">File name</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">4</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Number of records of type "1"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">5</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Number of records of type "2"</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">6</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">Total amount of blood bags</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="XML" xmlns="http://www.w3.org/1999/xhtml"></a>XML files for report builder</h3>
+        <p>GLIMS also exports XML files that can be used to generate a PDF report that can be signed for approval.</p>
+        <p>The Jasper templates that are used to convert the exported XML files to a PDF report can be specified on <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Department</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specific site</span> level via automatically created site attributes. The templates specified on <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Department</span> level have priority.</p>
+        <p class="fieldlabel">Specific site</p>
+        <p class="fieldlabel"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_UBIS-00002_specific_site.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="763" data-mc-height="626" src="BILX_UBIS-00002_specific_site_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Department</p>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_UBIS-00002_department.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="699" data-mc-height="935" src="BILX_UBIS-00002_department_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Logging</h2>
+        <p>If errors occurred, a file with extension .ERR will be created. The export logging will also contain details about the errors.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If no errors occur during the export of the financial shipment, a comment will be added to that shipment containing all different occurrences of the field 'verzamelstaat'. This only applies to shipments in status <span class="ui_element">Initial</span> or <span class="ui_element">Numbered</span>.</p>
+        </div>
+    </body>
+</html>

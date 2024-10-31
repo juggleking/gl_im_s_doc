@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Financial export in "UCM XML"&#160;format</title>
+        <link href="../../../../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../../../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1108"></a>
+            <MadCap:concept term="Billing" />Financial export in "UCM XML"&#160;format</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS allows <a href="../financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">exporting financial data</a> in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">UCM XML</span> format to CNS Luxembourg.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="ucm_xml.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="545" data-mc-height="460" src="ucm_xml_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">File check</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">If this option is disabled, then all data validity checks are disabled. The number of unreported errors is mentioned in the logging. The file is created irrespective of these errors.</p>
+        </div>
+        <p class="fieldlabel">Delete temp file</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Allows to delete the temporary .json files containing the data to be exported (BilxXport.json) and the feedback regarding the conversion of the exported data into the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">UCM XML</span> format (BilxFeedback.json).</p>
+        </div>
+        <h2>License</h2>
+        <p>The export of financial data in the <span class="ui_element">UCM XML</span> format is protected by a separate license named "UCMXML Financial Export".</p>
+        <h2>UCM XML&#160;format</h2>
+        <p class="fieldlabel">Mandatory tags</p>
+        <table style="mc-table-style: url('../../../../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Tag</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">Description</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">decompteFacturation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Root node of the XML</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">referencesDecompte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node financial transactions</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">referenceDecompte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Reference of the financial transaction, FinancialShipment.InternalId</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">typeDecompte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node, type of financial transaction</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">cadreLegal</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Fixed value: "LAB"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">layout</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Fixed value: "2"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">type</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Fixed value: "FAC"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">entete</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node invoice summary data</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">organisme</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Fixed value: "18"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">prestataireFacturier</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Executor of the requests, FinancialShipment.Firm.Identification</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">periodeDecompte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of the shipment date</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">exercice</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Year of shipment external date, FinancialShipment.ExternalDate</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">mois</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Month of shipment external date, FinancialShipment.ExternalDate</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">dateEnvoi</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Shipment date, FinancialShipment.ShipmentDate</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">demandeDecompte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of the amount information</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">nombre</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Number of units, FinancialShipment.Invoice.Count</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">brut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Shipment total amount, FinancialShipment.InvoiceSummaryAmount + FinancialShipment.GainAmount - FinancialShipment.PaymentAmount</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">net</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Shipment total amount</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">participation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Amount paid by the patient, fixed value: "0.00"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">devise</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Currency, fixed value: "EUR"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">facture</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node with invoice data</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">referenceFacture</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Document number, Invoice.DocNo</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">dateEtablissementFacture</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Invoice date, Invoice.ExternalDate</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">ordonnance</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of the order</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">cadreLegal</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Fixed value: "LAB"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">prestatairePrescripteur</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order issuer, Order.Issuer.Identification</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">personneProtegee</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order object, Order.Object.Person.Identification</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">dateEtablissement</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order date, Order.Receiptdate.Date</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">heureEtablissement</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Order time, Order.Receiptdate.Time, default value: "00 :00 :00"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">prestation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of the requests</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">referencePrestation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Reference to the request, Invoice.DocNo + InvoiceItem.Id</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">acte</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of nomenclature</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">codeTarif</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Nomenclature code, InvoiceItem.BillingItem.Tariff.Nomenclature</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">demandePrestation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node of billed amounts for the request</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">nombre</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Number of units, InvoiceItem.Count, default value: "1"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Brut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Charged amount, InvoiceItem.NetAmount x number of units specified in the preceding &lt;nombre&gt; tag</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">net</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Charged amount, InvoiceItem.NetAmount x number of units specified in the preceding &lt;nombre&gt; tag</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">participation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Amount paid by patient, not implemented yet. Default value: "0.00"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">devise</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Currency, fixed value: "EUR"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">periodePrestation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node Start date of the request</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">dateDebut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Request start date, InvoiceItem.BillingItem.Request.Result.LowestObjectDate.Date</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">heureDebut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Request start time, InvoiceItem.BillingItem.Request. Result.LowestObjectDate.Time</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">lieuPrelevement</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Place of sampling</p>
+                        <p xmlns="http://www.w3.org/1999/xhtml"> If Order.SamplingAddress is empty then default value for labs "001"</p>
+                        <p>If Order.SamplingAddress &lt;&gt; empty then Order.SamplingAddress.Correspondent.Class</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">prestataireExecutant</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Executing lab, InvoiceItem.BillingItem.ExecutingLab.Identification</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">demandeFacture</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Group node for the amounts of the invoice</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">nombre</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Number of units, Invoice.InvoiceItems.Count</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">brut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Invoiced amount, Invoice.Amount</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">net</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Invoiced amount, Invoice.Amount</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">participation</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Amount paid by the patient, fixed value: "0.00"</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Devise</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Currency, fixed value: "EUR"</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="fieldlabel" xmlns="">Optional tags</p>
+        <table style="mc-table-style: url('../../../../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Tag</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">Description</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">dateDebut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Request end date, InvoiceItem.BillingItem.Request.Result.HighestObjectDate.Date</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">heureDebut</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Request end time, InvoiceItem.BillingItem.Request.Result.HighestObjectDate.Time</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">montantUnitaire</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Official amount for a request</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">titrePriseEnCharge</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Code for the type of care</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Customize with MISPL</h2>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</span> function generates an intermediate .json file - containing the data from the financial shipment - which will be converted into the <span class="ui_element">UCM XML</span>&#160;format. This intermediate file can be found in the working directory and has the default file name "BilxXport.json". </p>
+        <p class="fieldlabel">Customizable fields</p>
+        <p>The values of the fields in the intermediate file can be customized by means of site functions:</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">  The name of the site function should match the pattern "Send_GE_xxx_Values", where xxx is the table short name. </p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The supported table short names are:</p>
+                    <ul xmlns="http://www.w3.org/1999/xhtml">
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1">Fshp (Financial shipment)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2">Invs (Invoice summary)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="3">Inv (Invoice)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="4">Iit (Invoice item)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="5">Obj (Object)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="6">Ord (Order)</li>
+                    </ul>
+                </div>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">The site function should return a tagged list of the table's fields that need to be customized with their new value.</p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="ucm_xml_mispl.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="715" data-mc-height="666" src="ucm_xml_mispl_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example of the intermediate file's content (and the customizable fields)</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <p xmlns="http://www.w3.org/1999/xhtml">{"FinancialShipment": {</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Shipment": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_Id": 999,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_InternalId": "201510\/003",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ExternalId": "20151027-0002",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_VersionNumber": 1,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_Addendum": "",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_Firm": 100861,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_Destination": 3,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ShipmentStatus": "Fixed",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_CreationDateIso": "2015-10-27T10:58:48.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ExternalDateIso": "2015-10-27T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ShipmentDateIso": "2016-02-08T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ShipmentTransactions": "Invoice summary",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_Comment": "Send to CNS ",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_TotalAmount": 0.28,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_InvoiceSummaryAmount": 0.28,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_PaymentAmount": 0.0,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_GainAmount": 0.0,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_IsTestFile": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_MarkShipment": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_AdditionalShipment": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_NumberOfInvoices": 2,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_IsNumbered": true,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ContainGain": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ContainPayment": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ContainSummary": true,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_ContainCredit": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshp_CreditNotes": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">}</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ShipmentEntry": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshe_FinancialShipment": 999,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshe_Id": 49488,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"fshe_FinancialTransaction": 50160</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"InvoiceSummary": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Id": 3414,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_FinancialTransaction": 50160,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_DocNo": "201500000030",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_DueDateIso": "2015-11-06T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_ExternalDateIso": "2015-10-27T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Payer": 41241,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_SummaryPayerType": "Fund",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Amount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_TotalAmount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_UnbalancedAmount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Phrase": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_PaymentReference": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Firm": 100861,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_GrossVat": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"invs_Fund": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Invoice": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Id": 9629,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_InvoiceSummary": 3414,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_DocNo": "1151000003",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_ExternalDateIso": "2015-10-27T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_InvoiceFinanceType": "Debit",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Payer": 41241,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_InvoicePayerType": "Fund",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Order": 80056,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Reimburser": 41241,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Amount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_PaymentAgreement": 2382,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_Phrase": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_IsAdditional": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_OriginalDocNo": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_StayRoom": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_StayStartDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_StayEndDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterInfo": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterStartDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterEndDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterResidenceType": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterTypeCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncounterHcProvider": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardMnemonic": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardServiceCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardIsICU": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardMainIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardAltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_WardLocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncIsInternalInstitution": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncInstitutionMainIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncInstitutionAltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncInstitutionExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_EncInstitutionLocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"inv_NumberOfInvoiceItems": 1</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Order": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Id": 80056,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_InternalId": "20151027-00004",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ShortId": "20151027-00004",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ExternalId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Object": 51158,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ObjectType": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Issuer": 37954,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_IssuerInfo": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Sampler": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_LowestObjectDateIso": "2015-10-27T10:47:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ReceiptDateIso": "2015-10-27T10:47:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_PrescriptionDateIso": "2015-10-27T10:47:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ContextDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_CreationDateIso": "2015-10-27T10:47:19.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_TariffDateIso": "2015-10-27T10:47:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_HighestCompletionDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Study": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DepartmentMnemonic": "DEP_NORD\/A",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DepartmentMainIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DepartmentAltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DepartmentExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DepartmentLocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_AgentMainIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_AgentAltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_AgentExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_AgentLocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Context": 1,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ContextInfo": "",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ReferralType": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ReferralTo": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_OrderReferral": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ExonerationCode": "0",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ReportInformation": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DispatchingLab": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_ReceivingLab": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_Distance": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"ord_DiagnosisList": ""</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Object": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Id": 51158,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_ObjectType": "Person",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_ExternalId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Externalization": "Doe, John, 04\/05\/1971",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_InternalId": "040571DOEJOHN04",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_FirstName": "John",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_LastName": "Doe",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_MiddleName": “Jane”,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Title": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Sex": "Ambiguous",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_AddressLine1": "Outdoors 4",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_AddressLine2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_CityName": "SomePlace",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_PostalCode": "01001",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_CountryCode": "Anywhere",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_BicCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_IbanCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Phone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Phone2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Fax": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Fax2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_EMail": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_BirthDateIso": "1971-06-02T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_DeceaseDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_SpouseLastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Employer": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_Owner": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_MainIdCode": "123",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_AltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_ExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_PinIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_LocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"obj_SecondPinIdCode": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"PaymentAgreement": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_Id": 2382,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_Party": 171180,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_Fund": 143506,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_PolicyNameCode": "PLCY_00",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_Matriculation": "12345678",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_StartDateIso": "2011-06-17T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_EndDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_AgreementRelation": "Holder",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_Container": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_ContainerMatriculation": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_LastScanDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_EmployerIdntCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_EmployerAddressLine": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_EmployerPostalCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"paya_EmployerMunicipality": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"InvoiceItem": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_Id": 41827,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_Invoice": 9629,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_CreditNote": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_NetAmount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_GrossAmount": 0.075,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_Rate": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_DiscountRate": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_Comment": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_BillingComment": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_BaseValue": 2.5,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_NomemclatureCode": "123MIPS456",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_NABMVersion": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PriceListMnemonic": "Standard",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PriceListExternalId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PriceCodeDescription": "MIPS some standard tests",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PriceCodeMnemonic": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_BaseValueCode": "O1",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_NetAmount3thParty": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_FundAmount": 0.08,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PatientAmount": 0.0,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_PriceFormulaMultiplier": 0.03,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_ReimbursementClassType": "Normal",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_ReimbursementClassMnemonic": "EBM",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_IsOutsideNomenclature": false,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_ExecutingClassMnemonic": "EBM",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_UrgencyCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_CostLocationCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_CostLocationMnemonic": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_ExecutingLab": 58381,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_ExecutingHcProvider": 269247,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestMnemonic": "MIPS3500",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestDescription": "Some Mips test",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestFlags": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestIdList": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestStartDateIso": "2015-10-27T10:47:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"iit_RequestEndDateIso": "2015-10-27T10:47:00.000"</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Payer": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Id": 41241,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Name": "Someone who pays",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_FirstName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_MiddleName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_LastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Type": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_AddressLine1": "Outback 6\/7",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_AddressLine2": "",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_CityName": "SomeCity ",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_PostalCode": "31134",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_CountryCode": "AnyWhere",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_BicCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_IbanCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Phone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Phone2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Fax": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_Fax2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_EMail": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_MainIdCode": "10805",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_AltIdCode": "0010805",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_ExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_LocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"payr_MisplIdCode": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">}</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">],</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"Correspondent": [</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Id": 19287,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Mnemonic": "MicroTestLabMips",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FullName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FirstName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_MiddleName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AddressLine1": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"csrp_AddressLine2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_CityName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_PostalCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_CountryCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_BicCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_IbanCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Phone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Phone2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fax": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fax2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Email": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Title": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Sex": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FromDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_UntilDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ExternalId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_MainIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AltIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Specialism": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AssociateName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactLastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactFirstName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactPhone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Firm": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fund": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_HcProvider": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Organization": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Lab": 58381,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LabHead": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">{</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Id": 41241,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Mnemonic": "10805",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FullName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FirstName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_MiddleName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AddressLine1": "Str. 6\/7",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"csrp_AddressLine2": "",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_CityName": "Outside ",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_PostalCode": "31134",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_CountryCode": "AnyWhere",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_BicCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_IbanCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Phone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Phone2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fax": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fax2": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Email": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Title": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Sex": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_FromDateIso": "1975-11-27T00:00:00.000",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_UntilDateIso": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ExternalId": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_MainIdCode": "10805",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AltIdCode": "0010805",</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ExplIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LocalIdCode": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Specialism": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_AssociateName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactLastName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactFirstName": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_ContactPhone": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Firm": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Fund": 143506,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_HcProvider": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Organization": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_Lab": null,</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">"crsp_LabHead": null</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">},</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">]</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">}}</p>
+            </div>
+        </div>
+        <div class="box_grey" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Technical notes:</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">Fields in the intermediate file which have their default value ("null") will not be exported in the XML format.</li>
+                <li value="2">The "\" character should not be used when customizing field values via MISPL.</li>
+                <li value="3">
+                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the following fields should not be overwritten:</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">FinancialShipment</p>
+                    <ul>
+                        <li xmlns="" value="1">fshp_Id</li>
+                        <li xmlns="" value="2">fshp_Firm</li>
+                        <li xmlns="" value="3">fshp_Destination</li>
+                    </ul>
+                    <p>FinancialShipmentEntry</p>
+                    <ul>
+                        <li xmlns="" value="1">fshe_FinancialShipment</li>
+                        <li xmlns="" value="2">fshe_Id</li>
+                        <li xmlns="" value="3">fshe_FinancialTransaction</li>
+                    </ul>
+                    <p>InvoiceSummary</p>
+                    <ul>
+                        <li xmlns="" value="1">invs_Id</li>
+                        <li xmlns="" value="2">invs_FinancialTransaction</li>
+                        <li xmlns="" value="3">invs_Payer</li>
+                        <li xmlns="" value="4">invs_Firm</li>
+                        <li xmlns="" value="5">invs_Fund</li>
+                    </ul>
+                    <p>Invoice</p>
+                    <ul>
+                        <li xmlns="" value="1">inv_Id</li>
+                        <li xmlns="" value="2">inv_InvoiceSummary</li>
+                        <li xmlns="" value="3">inv_Payer</li>
+                        <li xmlns="" value="4">inv_Order</li>
+                        <li xmlns="" value="5">inv_Reimburser</li>
+                        <li xmlns="" value="6">inv_PaymentAgreement</li>
+                        <li xmlns="" value="7">inv_EncounterHcProvider</li>
+                    </ul>
+                    <p>Order</p>
+                    <ul>
+                        <li xmlns="" value="1">ord_Id</li>
+                        <li xmlns="" value="2">ord_Object</li>
+                        <li xmlns="" value="3">ord_Issuer</li>
+                        <li xmlns="" value="4">ord_Sampler</li>
+                        <li xmlns="" value="5">ord_SamplingAddress</li>
+                        <li xmlns="" value="6">ord_DispatchingLab</li>
+                        <li xmlns="" value="7">ord_ReceivingLab</li>
+                    </ul>
+                    <p>InvoiceItem</p>
+                    <ul>
+                        <li xmlns="" value="1">iit_Id</li>
+                        <li xmlns="" value="2">iit_Invoice</li>
+                        <li xmlns="" value="3">iit_CreditNote</li>
+                        <li xmlns="" value="4">iit_ExecutingLab</li>
+                        <li xmlns="" value="5">iit_ExecutingHcProvider</li>
+                    </ul>
+                    <p>Object</p>
+                    <ul>
+                        <li xmlns="" value="1">obj_Id</li>
+                    </ul>
+                </li>
+                <li xmlns="" value="4">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Overwriting the values of fshp_NumberOfInvoices and inv_NumberofInvoiceItems is pointless as they are recalculated at the end of the export.</p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

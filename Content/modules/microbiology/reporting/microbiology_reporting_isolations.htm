@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|Reporting" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\microbiology\microbiology_rprt_basic.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Microbiology reporting - Isolations</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor98"></a>
+            <MadCap:concept term="Microbiology" /><a name="kanchor9"></a>Microbiology reporting - Isolations</h1>
+        <h2>How are isolations reported</h2>
+        <p> The isolations and their appraisal are reported via the <span class="ui_element">Report property</span> of the microbiology procedure.</p>
+        <h2>Which isolations are reported</h2>
+        <p>For each microbiology action, the detected isolations with their corresponding isolation appraisal will be displayed on the report. These are the isolations specified in the microbiology work screen.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>In the microbiology work screen, it is possible to <b>mark an isolation as not-reportable</b> (by clicking in the 'Rp' column of the isolation browser). </p>
+        </div>
+        <h2>Which isolation data is reported</h2>
+        <p>The report will display:</p>
+        <ul>
+            <li value="1">The micro-organism linked to the isolation</li>
+            <li value="2">The isolation appraisal</li>
+            <li value="3">The isolation's external comment</li>
+        </ul>
+        <h3>About the isolation appraisal</h3>
+        <p>The reported isolation appraisal text can be configured in different ways (which should not be combined):</p>
+        <p class="fieldlabel">1. Specify a text in the isolation appraisal itself.</p>
+        <div class="indented">
+            <p>If specified, the <span class="ui_element">Text</span> field of the isolation appraisal will be shown on the report. You can use the variable {Name} to include the name of the micro-organism.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>{Name}\t++  would result in the name of the micro-organism, followed by '++' in the next column.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This means that this text will be used on all reports. If you want different texts for each individual report type, you should use the report template field <span class="ui_element">Isolation comment text</span> (see below).</p>
+            </div>
+            <p><a name="kanchor10"></a>
+            </p>
+        </div>
+        <p class="fieldlabel">2. Using the report template field <span class="ui_element">Isolation comment text</span></p>
+        <div class="indented">
+            <p>This field can contain a dynamic text module. If specified, the reports generated with this template will automatically add this text module after the appraisal of each isolation in the report.</p>
+            <p>See also <a href="#About">About the isolation's external comment</a></p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If an EMPTY text module is entered, no comments will automatically be added (except when specified in the isolation appraisals). </p>
+                <p>If NO text module is given, the following default is automatically added:</p>
+                <div class="indented">
+                    <p>{= IfKnownString("~n" + .ExternalComment) + IfKnownString("~n" + .Microorganism.ExternalComment) }</p>
+                </div>
+                <p>So the isolation's comment is added (if any) on a new line and then the organism's comment (if any) is added on a new line.</p>
+                <p>If no text module is specified and the appraisals also contain a comment layout, the comments will appear TWICE on the reports. So either remove them from the appraisals or specify an empty text module in the report templates.</p>
+            </div>
+        </div>
+        <h3><a name="About"></a>About the isolation's external comment</h3>
+        <p>The report will display the isolation's external comment, as specified in the microbiology work screen.</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>The <span class="ui_element">Report template</span> field <span class="ui_element">Isolation comments</span> can overrule these external comments.</p>
+            <p>If specified, reports generated with this template will automatically add this text module after the appraisal of each isolation in the report. </p>
+            <p>Example:</p>
+            <div class="indented">
+                <p>The text below will first display the isolation's comment (on the next line), then the microorganism's comment, then the medium on which it was detected (if specified). If the report layout is not 2-column, the "\t" (on the last line of the text module) should be replaced by "".</p><pre><p style="text-align: left;">{= RTrim(FitText(<br />IfKnownString(chr(10) + .ExternalComment)<br />+ IfKnownString(chr(10) + .Microorganism.ExternalComment)<br />+ IfKnownString(chr(10) + "Medium: " + .Carrier.Medium.Mnemonic)<br />, 45, "", "\t", ?), ?) }</p></pre>
+            </div>
+        </div>
+        <h2>Sequence and numbering of the isolations</h2>
+        <h3>Sequence</h3>
+        <p>For each culture, the isolations are sorted according to their internal sequence number in GLIMS.</p>
+        <h3>Numbering</h3>
+        <p class="fieldlabel">Displaying a sequence number in front of the reported isolations</p>
+        <div class="indented">
+            <p>GLIMS allows displaying a sequence number in front of the isolations on the report. This is the internal sequence number as shown in the microbiology work screen. The <span class="ui_element">Report template</span> option <span class="ui_element">Show seq nos</span> indicates when this should happen:</p>
+            <p class="fieldlabel">Never</p>
+            <div class="indented">
+                <p class="kadov-p">Never number the isolations</p>
+            </div>
+            <p class="fieldlabel">When antibiogram</p>
+            <div class="indented">
+                <p class="kadov-p">Only number the isolations when an antibiogram is available</p>
+            </div>
+            <p class="fieldlabel">Always</p>
+            <div class="indented">
+                <p>Always number the isolations.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This option does not affect the sequence numbers used in the antibiogram column headers.</p>
+                <p>If you do not want a sequence number in front of each isolation, you will probably also want to change the default column headers in the antibiogram (which use the same sequence number). To do so, you can specify a dynamic text in the <span class="ui_element">Report template</span> field <a href="microbiology_reporting_antibiogram_options.htm">Germ headers</a> which displays e.g. the name of the micro-organism.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Isolation renumbering</p>
+        <div class="indented">
+            <p>When displaying isolation sequence numbers, "gaps" may exist when one or more isolations are marked as "not reportable". To solve this, you can enable the <span class="ui_element">Report template</span> option <span class="ui_element">Renumber sequence numbers</span> on report.</p>
+            <ul>
+                <li value="1">If enabled, the isolations will be renumbered according to their sequence of appearance on the report. </li>
+                <li value="2">For each separate specimen counting will restart from 1.</li>
+                <li value="3">The isolation in the antibiogram will also be renumbered to maintain synchronization.</li>
+            </ul>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Suppose there are 2 cultures:</p>
+                <ul>
+                    <li class="kadov-p" value="1">An anaerobe culture in which 2 germs are found:</li>
+                </ul>
+                <div class="indented">
+                    <p style="text-align: left;">2. germ b<br />5. germ e</p>
+                </div>
+                <ul>
+                    <li class="kadov-p" style="text-align: left;" value="1">An aerobe culture in which 3 germs are found:</li>
+                </ul>
+                <div class="indented">
+                    <p style="text-align: left;">1. germ a&#160;<br />3. germ c (which is not reportable)<br />4. germ d</p>
+                </div>
+                <p>Assume that all germs have an antibiogram and in the property classification the anaerobe culture comes first.</p>
+                <p><b>Report with Renumbering disabled</b>
+                </p>
+                <div class="indented">
+                    <p style="text-align: left;">Anaerobe culture:</p>
+                    <blockquote>
+                        <p style="text-align: left;">2. Germ b<br />5. Germ e</p>
+                    </blockquote>
+                    <p style="text-align: left;">Aerobe culture:</p>
+                    <blockquote>
+                        <p style="text-align: left;">1. germ a<br />4. germ d</p>
+                    </blockquote>
+                    <p style="text-align: left;">Antibiogram:</p>
+                    <blockquote>
+                        <p style="text-align: left;">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;1. (a) 2. (b) 4. (d) 5. (e)<br />Amp.&#160;&#160;&#160;...<br />Oxa.&#160;&#160;&#160;&#160;...</p>
+                    </blockquote>
+                </div>
+                <p><b>Report with Renumbering enabled</b>
+                </p>
+                <div class="indented">
+                    <p style="text-align: left;">Anaerobe culture:</p>
+                    <blockquote>
+                        <p style="text-align: left;">1. Germ b<br />2. Germ e</p>
+                    </blockquote>
+                    <p style="text-align: left;">Aerobe culture:</p>
+                    <blockquote>
+                        <p style="text-align: left;">3. germ a<br />4. germ d</p>
+                    </blockquote>
+                    <p style="text-align: left;">Antibiogram:</p>
+                    <blockquote>
+                        <p style="text-align: left;">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;1. (b) 2. (e) 3. (a) 4. (d)<br />Amp.&#160;&#160;&#160;...<br />Oxa.&#160;&#160;&#160;&#160;...</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                <div class="MCDropDownBody dropDownBody">
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>If the report includes an antibiogram and</p>
+                        <ol>
+                            <li value="1">
+                                <p>the <span class="ui_element">Report template</span> option <a href="microbiology_reporting_antibiogram_options.htm">Show single antibiogram per</a> is set to <span class="ui_element">Report</span></p>
+                                <p>and</p>
+                            </li>
+                            <li value="2">the antibiogram is exported before all cultures</li>
+                        </ol>
+                        <p>then the antibiogram will only contain the isolations exported so far.</p>
+                    </div>
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>If the report includes an antibiogram and</p>
+                        <ol>
+                            <li value="1">
+                                <p>the <span class="ui_element">Report template</span> option <a href="microbiology_reporting_antibiogram_options.htm">Show single antibiogram per</a> is set to <span class="ui_element">Isolation</span> or <span class="ui_element">Specimen</span></p>
+                                <p>and</p>
+                            </li>
+                            <li value="2">the antibiogram is exported before its corresponding culture</li>
+                        </ol>
+                        <p>then the <span class="ui_element">Renumber isolations</span> option is ignored.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

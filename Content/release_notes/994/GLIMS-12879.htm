@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Correction of conversion and interpretation of RequestedCode.ExpansionStatus to avoid scheduling issues (GLIMS-12879)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3962"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Correction of conversion and interpretation of RequestedCode.ExpansionStatus to avoid scheduling issues (GLIMS-12879)</h1>
+        <h2>Problem description</h2>
+        <ol>
+            <li value="1">Adding requests to orders created in GLIMS before upgrading to version 9.9 caused previously scheduled items such as specimens and tests to be rescheduled. This resulted in an error as GLIMS tried to create a new specimen with the same internal ID as that of an existing specimen. Consequently, the completion and tariffication of the order was hindered.</li>
+            <li value="2">Activating a pending order that was created in GLIMS before upgrading to version 9.9 and that contained panel requests resulted in the panels not being expanded.</li>
+        </ol>
+        <h2>Solution</h2>
+        <p>For customers having upgraded GLIMS&#160;to version 9.9 (from a lower 9.x version) the conversion script "cv99_RequestedCodeExpansionStatus" can be re-executed.</p>
+        <ol>
+            <li value="1">Log in with a <span class="ui_element">Role</span> that has <span class="ui_element">User type</span> set to <span class="ui_element">Developer</span>.</li>
+            <li value="2">Choose <span class="ui_element">Start &gt; Development &gt; 4GL &gt; Run procedure</span>.</li>
+            <li value="3">Fill in <span class="ui_element">cv99_RequestedCodeExpansionStatus</span> as <span class="ui_element">File name</span>.</li>
+            <li value="4">Enable <span class="ui_element">Pass handle</span>.</li>
+        </ol>
+    </body>
+</html>

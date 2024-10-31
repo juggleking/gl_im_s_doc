@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.6 - Synchronize results query should take into account the procedure data scope when reporting procedure data result changes for specimens (GLIMS_ANLZ-01428)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor472"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.6 - </MadCap:conditionalText>Synchronize results query should take into account the procedure data scope when reporting procedure data result changes for specimens (GLIMS_ANLZ-01428)</h1>
+        <p>A Specimen-scoped <a href="../../configuration/procedure_data/procedure_data.htm" xmlns="http://www.w3.org/1999/xhtml">procedure data</a> result might be reported for several specimens (for the same object and object time), even though each specimen has "its own" procedure data result.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">Suppose there are five separate specimens (in five different orders) for the same object and having the same object time. Each specimen has a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Procedure data result</span> record that is linked to the same procedure (each specimen has an action for this procedure).</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Procedure data result</span> record of SpmnA changed (i.e. <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Confirmed</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Discontinued</span>), but the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Procedure data result</span> records of SpmnB, SpmnC, SpmnD and SpmnE did not change AND the procedure data is configured with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Scope</span> = <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specimen</span>, then GLIMS reported the procedure data result change of SpmnA for all five specimens.</p>
+        </div>
+        <p>However, if the procedure data was configured with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Scope</span> = <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Object</span>, the outcome was exactly the same, while in case of regular specimen (or ALL) query processing, a clear distinction is made between both scopes.</p>
+        <p>This issue, which occurred since GLIMS&#160;8.0.0, has been corrected.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>In case of a regular specimen query (or ALL query) that also requests procedure data, GLIMS will not report a Specimen-scoped procedure data result when that result is not linked to a specimen (purely informational properties that are configured as procedure data). If that property was not requested on a specimen (during order entry) - therefore no specimen was imposed on it AND the informational property is not an output of a procedure with a specimen as input - then GLIMS will not report it as procedure data when that property is configured as Specimen-scoped procedure data for a procedure that produces a certain test, which is selected to be included in the work order reply to the specimen (or ALL) query.</p>
+            <p>However, this informational property would have been  included in the reply to the synchronize results query if that procedure data result had generated an event. Because of this modification, this will not happen anymore, bringing the current behavior more in line with the behavior of the regular specimen (or ALL) query.</p>
+            <p>Having such an informational property configured as Specimen-scoped procedure data could be considered as incorrect configuration. It would make a lot more sense to configure it Object-scoped. In that case, it would still be picked up for the synchronize results query.</p>
+        </div>
+    </body>
+</html>

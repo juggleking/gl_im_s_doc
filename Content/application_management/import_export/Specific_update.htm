@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Specific update</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor995"></a>
+            <MadCap:concept term="System management;Application management" />Specific update</h1>
+        <p>A program is available to support new HLA nomenclature. <span style="color: #ff0000;font-weight: bold;">This tool should only be used after consulting a MIPS employee and should first be tested thoroughly in a test environment !!</span></p>
+        <p>The tool allows to update the main keys of the supported tables (initially only for HLAAntigen.Name, but it has been extended to other tables). The tool can be added to the main menu with function "<span style="font-weight: bold;">RunProcedure</span>" and parameter "<span style="font-weight: bold;">SpecificUpdate</span>".</p>
+        <p>The user interface will present a list of tables to choose from. The field that can be changed with this function is automatically selected and displayed.</p>
+        <p>
+            <img src="hla_nomenclature.png" style="border: none;" alt="" width="423" height="137" border="0" />
+        </p>
+        <p>The program is based on the generic import program, regarding display of progress bar, number of records processed, rejected and created. As for generic import, the output file is based on the input file with addition of an extra "csv" extension.</p>
+        <p>The input file, typically called "TableShortName".csv should have two columns, the first one containing the old values, the second column the new values. The input file may contain a header, but unlike generic import, it is completely ignored.</p>
+        <p>For each updated record the following validations are done:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>each old value should exist in the database</p>
+            </li>
+            <li class="p" value="2">
+                <p>each new value should be specified (non-null value)</p>
+            </li>
+            <li class="p" value="3">
+                <p>if the field is a mnemonic, it should not contain special characters</p>
+            </li>
+            <li class="p" value="4">
+                <p>the value length should not exceed the maximum allowed field length</p>
+            </li>
+            <li class="p" value="5">
+                <p>the new value should not already exist in the database (unique)</p>
+            </li>
+        </ol>
+        <p>The operation is done in 1 transaction only. If one record fails, the whole transaction will be reverted. The user should correct the input file, taking into account info from the output file and retry, until all records can be updated.</p>
+    </body>
+</html>

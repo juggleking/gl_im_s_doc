@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.6 - New MISPL function Approach.DiscontinueLocusResults() (GLIMS_GENX_LAB-00799)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2520"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.6 - </MadCap:conditionalText>New MISPL function Approach.DiscontinueLocusResults() (GLIMS_GENX_LAB-00799)</h1>
+        <p>A new <a href="../../modules/genetics/config/mispl/approach_m_activity.htm" xmlns="http://www.w3.org/1999/xhtml">MISPL function</a>  has been added to allow for the discontinuation of the locus results that are linked to the approach: </p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+            <p style="text-align: left;" xmlns="http://www.w3.org/1999/xhtml">Approach.DiscontinueLocusResults(<i>ValueString, QuestionString</i>);</p>
+        </div>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>This function is only designed to be used inside the On confirmation / On validation triggers of the dummy property that is configured for locus results.</p>
+        </div>
+        <p class="fieldlabel">Parameters</p>
+        <ul>
+            <li value="1">ValueString: locus results will only be selected if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Raw value</span> (contains the name of the configured choice list choice) is the same as the given value. If not provided, the locus results with status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expected</span> are discontinued.</li>
+            <li value="2">QuestionString: if defined, GLIMS will ask the user's confirmation by showing the specified question (yes/no). If the user refuses, nothing is selected.</li>
+        </ul>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p class="fieldlabel">Discontinue expected locus results, with confirmation message</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">logical Continue;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">Continue := .Approach.DiscontinueLocusResults(?, "Are you sure you want to discontinue LR ?");</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">IF Continue = false</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">THEN message("User canceled");</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+            </div>
+            <p class="fieldlabel">Discontinue locus results having "Not tested" as value,  without  confirmation message</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">.Action.ApproachActivity().Approach.DiscontinueLocusResults("Not tested", ?);</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">RETURN YES;</p>
+            </div>
+        </div>
+    </body>
+</html>

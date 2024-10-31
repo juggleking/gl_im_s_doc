@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Antigens</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1579"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Antigens</h1>
+        <h2>Introduction</h2>
+        <p>This table is used to store the different 
+ antigens. The antigen editor is available under <span class="ui_element">Start</span> -&gt;&#160;<span class="ui_element">Transfusion management</span> -&gt;&#160;<span class="ui_element">Configuration</span> -&gt;&#160;<span class="ui_element">Antigens</span>.</p>
+        <h2>Fields</h2>
+        <h3>General</h3>
+        <p class="fieldlabel">Sequence number</p>
+        <p class="fieldlabel">Mnemonic</p>
+        <p class="fieldlabel">Description</p>
+        <p class="fieldlabel">Meaning</p>
+        <div class="indented"> Used for communication with external systems</div>
+        <h3>Compatibility</h3>
+        <p>The <span class="ui_element" data-mc-edit-date="2016-10-17T15:57:18.2402588+02:00" data-mc-editor="amelier" data-mc-comment="What's a score factor?" data-mc-initials="AM" data-mc-creator="amelier" data-mc-create-date="2016-10-17T15:57:12.2107940+02:00">score </span><span class="ui_element">factors</span> will be applied to 
+ the ranking score in case of an antibody-antigen mismatch and/or antigen-antigen 
+ mismatch. These scores will only be applied if the corresponding 
+ checks are enabled in the <a href="blood_products.htm">blood product</a>.</p>
+        <p>For each antigen it is possible to influence 
+ how 'severe' the 'rejection' cases will be treated. By default a blood 
+ bag that does not fulfill the 'antibody-antigen' check or the 'antigen-antigen' 
+ check will be rejected: it will get a score of 0 (zero).</p>
+        <p>Since this is not equally bad for all antigens, 
+ you can specify for each antigen how the score should be adapted in case 
+ such a 'mismatch' occurs. The default for these fields is '?', 
+ which is the same as 0%: when the check fails for this antigen, the ranking 
+ score is multiplied with 0% and always becomes 0 (zero).</p>
+        <p>For antigens where the check should not be 
+ performed at all (this means: where a mismatch is of no importance) a 
+ factor of 100% should be specified. GLIMS will skip the check for these 
+ antigens.</p>
+        <p>For antigens where a 'mismatch' should automatically 
+ cause a warning message, a factor of 1% should be specified. In this case 
+ the ranking will immediately become 1 and the user will be warned when 
+ selecting that blood bag.</p>
+        <p>For antigens where a factor between 2% and 
+ 99% is specified, the ranking score that was found for that blood bag 
+ will be multiplied by this percentage. This mechanism works cumulative 
+ for all mismatching antigens.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>If the ranking score was 1000 and the 
+ factor is 25%, the score will become 250. If another antigen mismatches 
+ and has a factor of say 20%, the score will become 50, etc.</p>
+                </div>
+            </div>
+        </div>
+        <h2>Assigning antigens to blood bags</h2>
+        <h3>Via blood bag registration</h3>
+        <p>When <a href="../routine/blood_bag_registration.htm">registering blood 
+ bags</a> in GLIMS via scanning or import, the antigen information will 
+ also be stored in the blood bag.</p>
+        <h3>Via MISPL</h3>
+        <p>You can use the MISPL function BloodBag.SetAntigen.</p>
+        <h3>Manually</h3>
+        <p>From a Blood bag record, right click <span class="ui_element">Show all</span> -&gt; <span class="ui_element">Antigens</span> 
+ and use the Insert key to assign new antigens.</p>
+        <h3>Add a check</h3>
+        <p>The BTM general setting <a href="blood_transfusion_general_options.htm">Blood 
+ bag antigen check</a> allows to specify a site function that will 
+ be executed whenever an antigen is added to a blood bag. This can for instance
+ be used to avoid that users enter impossible combinations of blood bag 
+ antigens and person antigens/antibodies.</p>
+        <h2>Assigning antigens to persons</h2>
+        <h3>Via MISPL</h3>
+        <p>You can use the MISPL function Person.SetAntigen.</p>
+        <h3>Manually</h3>
+        <p>From a <span class="ui_element">Person</span> record, right click <span class="ui_element">Transfusion</span> -&gt; <span class="ui_element">Antigens,bodies of person</span> 
+ and use the Insert key to assign new antigens.</p>
+        <h3>Add a check</h3>
+        <p>The BTM general setting <a href="blood_transfusion_general_options.htm">Person 
+ antigen check</a> allows to specify a site function that will be 
+ executed whenever an antigen is added to a blood bag. This can for instance be 
+ used to avoid that users enter impossible combinations of blood bag antigens 
+ and person antigens/antibodies.</p>
+        <h2>MISPL access</h2>
+        <p>Two MISPL functions are available on the Person table: RhesusPhenoType 
+ &amp; OtherAntigens.</p>
+        <p>These functions will produce a string formatted in the following way: 
+ &lt;AntigenMnemonic&gt;+/-&lt;space&gt;. There will be several of these 
+ combinations depending on the way  GLIMS has been configured. The 
+ RhesusPhenoType functions will contain all antigens equal or lower than 
+ the Kell-antigen (as positioned in the fixed list of "meanings"). 
+ All other antigens will be displayed with the OtherAntigens-function.</p>
+        <p>The system administrator can override 
+ the behaviour of these MISPL functions by entering customized MISPL functions 
+in the fields <span class="ui_element">Person 
+ rhesus formula</span> &amp; <span class="ui_element">Person other antigens </span>of the <a href="blood_transfusion_general_options.htm">BTM general settings<span class="ui_element"></span></a>. If MISPL 
+ functions have been defined then they will be used instead of the default 
+ behaviour as provided by GLIMS. The system administrator must keep in 
+ mind that the MISPL functions added to override the GLIMS behaviour must 
+ have a String as return value in order for the system to work correctly.</p>
+        <p>The possibility to override the functions has been added to allow changing 
+ the standard way GLIMS generates the strings or if for any reason you 
+ do not agree with the way GLIMS has decided which antigen is in the RhesusPhenoType-function 
+ or the OtherAntigens-function.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Customized MISPL function:</p>
+                    <div class="box_grey"><pre>Logical GroteC;
+Logical KleineC;
+Logical GroteE;
+Logical KleineE;
+String List;</pre><pre>
+GroteC:= .Object.Person().GetAntigen("C");
+KleineC:= .Object.Person().GetAntigen("c");
+GroteE:= .Object.Person().Getantigen("E");
+KleineE:= .Object.Person().Getantigen("e");</pre><pre>
+IF GroteC OR KleineC OR GroteE or KleineE
+THEN
+&#160;&#160;List := IF GroteC AND NOT KleineC 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "CC" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE IF GroteC AND KleineC 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "Cc" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE IF NOT GroteC AND KleineC
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "cc" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE "??";
+&#160;&#160;List := List + 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IF GroteE and NOT KleineE 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "EE" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE IF GroteE AND KleineE 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "Ee" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE IF NOT GroteE AND KleineE
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;THEN "ee" 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE "??";
+ENDIF;</pre><pre>
+RETURN List;</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Archiving" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Order_archive">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order_archive</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1> Archiving orders from GLIMS to GLIMS&#160;Archive</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Options">Options</a> - <a href="#Automation">Automation</a> - <a href="#More_info">More info</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This Order.Archive menu function exports an order in a format appropriate for the archive program GLIMS archive, either via file or network communication. Currently XML-encoded HL7 v2.3.1 is supported.</p>
+        <p>When exporting an archive message, the Order.Archive() function expands all text modules contained in one of the following temp-table fields: w_Result.orsl_Value, w_Result.orsl_Reference and w_Result.orsl_Comment. These fields contain respectively the result value string, the reference value and external comment. If any error would occur during this expansion, it is silently suppressed, and the unexpanded text is emitted anyhow.</p>
+        <p>To find out if an order is archived, its Order.ArchiveTime is to be checked. This field contains the LAST archive time of an order. It is added to the <span class="ui_element">Extra</span> page of the order entry program.&#160;&#160;Order.ArchiveTime will be emptied when <a href="../orders_reopen.htm">reopening an order</a>. Even if nothing changes to the order, it will have to be re-archived. A trace of earlier archive operations is available in the Order.Log field.&#160;&#160;It can be viewed via the <span class="ui_element">Log -&gt; Order log</span> contextual menu function.&#160;</p>
+        <h2 style="text-align: left;"><a name="Options" id="Options"></a>Options</h2>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../order_archive.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="425" data-mc-height="207" src="../order_archive_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Property classification</p>
+        <div class="indented">
+            <p style="text-align: left;">&#160;Allows selecting which properties are to be archived and in which order.</p>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">When unknown</p>
+            <div class="indented">
+                <p class="p">Results are exported according to the default property classification. ALL results are included, even those not belonging to the classification. Properties not occurring in the classification are grouped at the end to avoid results from accidentally being lost.<br /></p>
+            </div>
+            <p class="fieldlabel">When specified</p>
+            <div class="indented">
+                <p class="p"> The specified classification is used for both filtering + sorting. Only properties from the specified classification are exported, in the order imposed by the classification. All other results are ignored. This allows to define separate archive messages, or even create separate archives per discipline.</p>
+                <p style="text-align: left;">As the GLIMS archive module tries to adhere the HL7 standard as good as possible, it is request-based. This means that the requests (OBR segments) are to be sorted instead of the results (underlying OBX segments). All results belonging to the same (panel) request are grouped, and all requests are sorted according to their first member. The Property.Visible attribute is completely ignored by the Order.Archive() function.</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p xmlns="">When you belong to a department with a fixed property classification, this option will not be enabled.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Communication via</p>
+        <div class="indented">
+            <p class="fieldlabel">Network</p>
+            <div class="indented">
+                <p class="p"> Specify a host and port.<br /></p>
+            </div>
+            <p class="fieldlabel">File</p>
+            <div class="indented">
+                <p class="p"> Specify a target directory.&#160;&#160;One XML document is created per order. Because of the large amount of files this mechanism may produce, the target directory is organized by means of a YYYY/MM/DD structure (object time based). So, each day of the year has its own sub-directory, and each order has its own .xml file, with the order internal id as file name.&#160;&#160;To allow specifying a server directory from a remote client session, target directory validity is not verified by the user interface function. This is postponed until the function actually executes.<span style="color: #FF0000;">Note that, when using this functionality in combination with GLIMS Archive, you need at least GLIMS Archive version 2.1.</span></p>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Automation" id="Automation"></a>Automation</h2>
+        <p style="text-align: left;">The archiving process can be automated by means of a command and task.&#160;&#160;The command consists of a dedicated order archiving query and the archive function described above.&#160;&#160;The order archive query has the following options:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../order_archive_query.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="470" data-mc-height="293" src="../order_archive_query_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3 style="text-align: left;">Status options</h3>
+        <p class="fieldlabel">Include complete orders</p>
+        <div class="indented">
+            <p style="text-align: left;">By default, only 'Closed' orders are assumed to be archived. For customers that are not using the <a href="../orders_close.htm">Order.Close() functionality</a>, this "Include complete orders" option is available.&#160;&#160;&#160;Archiving a 'Complete' order implies closing it. 'Complete' orders automatically get status 'Closed' after successful archiving.&#160;&#160;When the order status is higher than or equal to 'Closed', no more modifications to the order are allowed. This is visualized by a lock indicator that appears in the upper right corner of the order entry program.</p>
+            <p style="text-align: left;">Archiving orders with status lower than 'Complete' is allowed (manually or through another order query), but only for experimental purposes. Such orders are never marked (i.e. Order.ArchiveTime will not be set) and the user gets a warning.</p>
+            <p class="fieldlabel">Include discontinued orders</p>
+            <div class="indented">
+                <p class="p">Explicitly allows to select whether or not discontinued orders should be archived.&#160;&#160;Check the <a href="archiving.htm#Archiving%20of%20discontinued%20orders">archiving manual</a> for necessary configuration actions.</p>
+            </div>
+            <p class="fieldlabel">Allow tariffing delay</p>
+        </div>
+        <h3 style="text-align: left;">Range options</h3>
+        <p class="p">
+            <p class="fieldlabel">Order internal id range</p>
+        </p>
+        <p class="p">
+            <p class="fieldlabel">Order short id range</p>
+        </p>
+        <p class="fieldlabel">Order receipt date range</p>
+        <p class="p">
+            <p class="fieldlabel">Archive date range</p>
+        </p>
+        <h3 style="text-align: left;">Filter</h3>
+        <p class="fieldlabel">Filter</p>
+        <div class="indented">
+            <p style="text-align: left;">Extra selection option using a MISPL expression.</p>
+        </div>
+        <h2 style="text-align: left;"><a name="More_info" id="More_info"></a>More info</h2>
+        <p>For more information, check:</p>
+        <ul>
+            <li class="kadov-p" value="1"><a href="archiving.htm">The GLIMS archiving manual</a>
+            </li>
+            <li class="kadov-p" value="2">The online GLIMS Archive manual</li>
+        </ul>
+    </body>
+</html>

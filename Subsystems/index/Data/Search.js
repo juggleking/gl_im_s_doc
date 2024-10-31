@@ -1,0 +1,1 @@
+define({r:0.5,st:'Stem',n:1,t:[0],m:[],u:['../Content/Dashboard/Dashboard_about.htm'],s:['$watchdog','such'],p:[['$watchdog',10],['confirmation',27],['introduction',10],['regularly',48],['translator',14]]});

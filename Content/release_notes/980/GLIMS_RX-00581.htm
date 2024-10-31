@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Absolute file paths to image results during online reporting (GLIMS_RX-00581)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor578"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Absolute file paths to image results during online reporting (GLIMS_RX-00581)</h1>
+        <p class="fieldlabel">Problem description</p>
+        <div class="indented">
+            <p>In case of electronic reports, when the Result.Value of results for properties with data type <span class="ui_element">Image</span> contains an absolute file path, then the value of the <a href="../../routine/results/results_images.htm#Storing">ImageServerDir</a> environment variable (set in the application startup file: .glimsrc on UNIX or progress.ini on Windows) was added to it. As a result, an incorrect path was exported.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <ul>
+                    <li value="1">ImageServerDir = \\Imagery\GLIMSMiscImages</li>
+                    <li value="2">Result.RawValue = \\Imagery\GLIMSResultImages\test.jpg</li>
+                    <li value="3">When both are joined, an incorrect file path is composed: \\Imagery\GLIMSMiscImages\Imagery\GLIMSResultImages\test.jpg</li>
+                </ul>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This problem occurred since GLIMS 9.5.1.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Current functionality</p>
+        <div class="indented">
+            <p>GLIMS will now check if the file path in Result.Value  is absolute or not:</p>
+            <ul>
+                <li value="1"> If the file path is considered an absolute path, the Result.Value is exported directly.</li>
+                <li value="2">
+                    <p>If the file path is considered a relative path, the Result.Value is prefixed with the value of the <span class="ui_element">ImageServerDir</span> variable. If the variable is not set, the relative path stored in Result.Value is exported.</p>
+                </li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li xmlns="" value="1">GLIMS does not check whether or not the image file exists.</li>
+                    <li xmlns="" value="2">Absolute paths formatted as URI (http://, file://, ftp://,…) are not supported.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>We recommend using <b>relative paths</b> in Result.Value  in combination with the <a href="../../routine/results/results_images.htm#Storing">ImageServerDir</a> variable. This way, image files can  be moved to another location, if required. Only the directory specified in the ImageServerDir variable would then need to be updated.</p>
+            <p> This is not possible when using absolute file paths in Result.Value! If used, absolute UNC paths must be used.</p>
+            <p>Relative paths cannot start with "/" or "\".&#160;Paths starting with "/" or "\" are considered to be absolute paths.</p>
+        </div>
+    </body>
+</html>

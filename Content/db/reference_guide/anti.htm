@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Antigen</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1884"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Antigen&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Antigen</td>
+                <td>
+anti</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This table stores the antigens.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AntibodyMismatchInfo"></a>
+        <h3>
+Compatibility &gt; Influence of antibody-antigen mismatch</h3>
+        <div class="MemberHelp">
+            <p>
+What does the chosen antigen-antibody mismatch factor mean?</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">String</span>&#160;<b>AntibodyMismatchInfo</b></p>
+        </div><a name="F_AntibodyMismatchScore"></a>
+        <h3>
+Compatibility &gt; Score factor when antibody-antigen mismatch (%)</h3>
+        <div class="MemberHelp">
+            <p>
+The score factor will be applied to the ranking score in case of a antibody-antigen mismatch. This score will only be applied if the corresponding checks are enabled in the blood product.
+<br /><br />For each antigen it is possible to influence how 'severe' the 'rejection' cases will be treated. By default a blood bag that does not fulfill the 'antibody-antigen' check will be rejected: it will get a score of 0 (zero).
+<br /><br />Since this is not equally bad for all antigens, you can specify for each antigen how the score should be adapted in case such a 'mismatch' occurs. The default for these fields is '?', which is the same as 0%: when the check fails for this antigen, the ranking score is multiplied with 0% and always becomes 0 (zero). 
+<br /><br />For antigens where the check should not be performed at all (this means: where a mismatch is of no importance) a factor of 100% should be specified. GLIMS will skip the check for these antigens. 
+<br /><br />For antigens where a 'mismatch' should automatically cause a warning message, a factor of 1% should be specified. In this case the ranking will immediately become 1 and the user will be warned when selecting that blood bag. 
+<br /><br />For antigens where a factor between 2% and 99% is specified, the ranking score that was found for that blood bag will be multiplied by this percentage. This mechanism works cumulative for all mismatching antigens. 
+<br /><br />E.g. If the ranking score was 1000 and the factor is 25%, the score will become 250. If another antigen mismatches and has a factor of e.g. 20%, the score will become 5, etc. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>AntibodyMismatchScore</b></p>
+        </div><a name="F_AntigenMismatchInfo"></a>
+        <h3>
+Compatibility &gt; Influence of antigen-antigen mismatch</h3>
+        <div class="MemberHelp">
+            <p>
+What does the chosen antigen-antigen mismatch factor mean?</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">String</span>&#160;<b>AntigenMismatchInfo</b></p>
+        </div><a name="F_AntigenMismatchScore"></a>
+        <h3>
+Compatibility &gt; Score factor when antigen-antigen mismatch (%)</h3>
+        <div class="MemberHelp">
+            <p>
+The score factor will be applied to the ranking score in case of an antigen-antigen mismatch. This score will only be applied if the corresponding checks are enabled in the blood product.
+<br /><br />For each antigen it is possible to influence how 'severe' the 'rejection' cases will be treated. By default a blood bag that does not fulfill the 'antigen-antigen' check will be rejected: it will get a score of 0 (zero).
+<br /><br />Since this is not equally bad for all antigens, you can specify for each antigen how the score should be adapted in case such a 'mismatch' occurs. The default for these fields is '?', which is the same as 0%: when the check fails for this antigen, the ranking score is multiplied with 0% and always becomes 0 (zero). 
+<br /><br />For antigens where the check should not be performed at all (this means: where a mismatch is of no importance) a factor of 100% should be specified. GLIMS will skip the check for these antigens. 
+<br /><br />For antigens where a 'mismatch' should automatically cause a warning message, a factor of 1% should be specified. In this case the ranking will immediately become 1 and the user will be warned when selecting that blood bag. 
+<br /><br />For antigens where a factor between 2% and 99% is specified, the ranking score that was found for that blood bag will be multiplied by this percentage. This mechanism works cumulative for all mismatching antigens. 
+<br /><br />E.g. If the ranking score was 1000 and the factor is 25%, the score will become 250. If another antigen mismatches and has a factor of e.g. 20%, the score will become 5, etc. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>AntigenMismatchScore</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Description"></a>
+        <h3>
+Description</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains an optional description for the antigen.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Description</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Antigen</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Meaning"></a>
+        <h3>
+Meaning</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates the meaning for the antigen mnemonic the customer has defined.</p>
+            <p class="Synopsis"><span class="Properties">Unique </span><span class="Type"><a href="antigenmeaning.htm">AntigenMeaning</a></span>&#160;<b>Meaning</b></p>
+            <p>
+One of: <span class="Parameter">Large C, Small c, Large D, Small d, Large E, Small e, Kell, Cellano, Duffy-a, Duffy-b, Kidd-a, Kidd-b, M, N, Large S, Small s, Luther-a, Luther-b, Lewis-a, Lewis-b, P1, Cw, CMV, Miltenberger a, Dombrock a, Dombrock b, Indian a, Colton b, Diego a, Kell Js-a, Kell Js-b, Rhesus V, Rhesus VS, Envelope, N2, MNS Vw, MNS Murrell, MNS Hutterite, MNS Hil, P, PP1Pk, Rhesus hr-S, Rhesus hr-B, Rhesus f, Rhesus G, Rhesus Hr-0, Rhesus Cx, Rhesus Ew, Rhesus Dw, Rhesus hr-H, Rhesus Go-a, Rhesus Rh32, Rhesus Rh33, Targett, Kell Kp-a, Kell Kp-b, Kell Kp-c, Kell Ul-a, Kell 11, Kell 12, Kell 13, Kell 14, Kell 17, Kell 18, Kell 19, Kell 22, Kell 23, Kell 24, Lutheran 3, Lutheran 4, Lutheran 5, Lutheran 6, Lutheran 7, Lutheran 8, Lutheran 11, Lutheran 12, Lutheran 13, Lutheran 20, Lutheran Auberger a, Lutheran Auberger b, Duffy 4, Duffy 5, Duffy 6, Diego b, Sidd a, Wright b, Cartwright b, X-linked a, Scianna 1, Scianna 2, Scianna 3, Joseph a, Human-y, Gregory a, Colton 3, Landsteiner-Wiener a, Landsteiner-Wiener b, Kx, Gerbich 2, Gerbich 3, Webb, Lewis II, Ahonen a, Duch a, Cromer a, Cromer IFC, Knopps a, Indian b, Cost a, I, Er(a), Vel, Lan, At a, Jr a, Ok a, Wright a, Universal, Lewis-x, A1</span></p>
+        </div><a name="F_Mnemonic"></a>
+        <h3>
+Mnemonic</h3>
+        <div class="MemberHelp">
+            <p>
+Mnemonic of antigen</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">Mnemonic</span>&#160;<b>Mnemonic</b></p>
+        </div><a name="F_SeqNo"></a>
+        <h3>
+Seq. number</h3>
+        <div class="MemberHelp">
+            <p>
+Can be used to set a specific sorting sequence in various overviews. </p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>SeqNo</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_PersonsForAntigenantibody"></a>
+        <h3>
+Persons for antigen,antibody&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PersonsForAntigenantibody</b> ()</p>
+        </div><a name="M_ReferringBloodBagTypings"></a>
+        <h3>
+Referring blood bag typings&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReferringBloodBagTypings</b> ()</p>
+        </div><a name="M_ReferringBloodBags"></a>
+        <h3>
+Referring blood bags&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReferringBloodBags</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Person antigens</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="prag.htm">PersonAntigen</a>.<a href="prag.htm#F_Antigen">Antigen</a></p>
+        </div>
+        <h3>
+Blood bags referring to antigen</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="bgag.htm">BloodBagAntigen</a>.<a href="bgag.htm#F_Antigen">Antigen</a></p>
+        </div>
+        <h3>
+Typings for antigen</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="btag.htm">BloodBagTypingAntigen</a>.<a href="btag.htm#F_Antigen">Antigen</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Mnemonic </b>
+            </li>
+            <li value="3"><span class="Properties">Unique </span><b>+ Meaning </b>
+            </li>
+            <li value="4"><b>+ SeqNo + Mnemonic </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

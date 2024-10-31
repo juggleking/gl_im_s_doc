@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - FinancialTransaction</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3523"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+FinancialTransaction&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Financial transaction</td>
+                <td>
+ftr</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+None</td>
+            </tr>
+        </table>
+        <p>
+The financial transaction table forms the supertype for the three tables InvoiceSummary, Gain and Payment. 
+<br />Financial transactions can be put on financial shipments via the FinancialShipmentEntry table. 
+<br />Financial transactions also have in common that they need to be 'balanced' with 1 or more other financial transactions. As an example an invoice summary typically must be balanced with a payment. As long as the invoice summary is not balanced, one typcially wants to send reminders for the unbalanced amount. Balancing of financial transactions is registered using the Balance table.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Amount"></a>
+        <h3>
+Amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the amount of the financial transaction. It is a calculated field, filled with invs_TotalAmount, pmnt_Amount or gn_Amount
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">Fractional</span>&#160;<b>Amount</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_ExternalDate"></a>
+        <h3>
+External date</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the external date of the financial transaction. It is a calculated field, filled with invs_ExternalDate, pmnt_ExternalDate or gn_BalanceDate</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">Date</span>&#160;<b>ExternalDate</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">FinancialTransaction</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalId"></a>
+        <h3>
+Internal id</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the document number of the financial transaction. It contains the invs_Docno, pmnt_InternalId or gn_InternalId.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>InternalId</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the type of transaction. This can be an invoice summary, a payment or a gain.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="transactiontype.htm">TransactionType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Gain, Payment, Invoice summary</span></p>
+        </div><a name="F_UnbalancedAmount"></a>
+        <h3>
+Unbalanced Amount</h3>
+        <div class="MemberHelp">
+            <p>
+This field gives the unbalanced amount of this financial transaction. It is a calculated field, filled with invs_UnbalancedAmount, pmnt_UnbalancedAmount or 0 for gains.</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">Fractional</span>&#160;<b>UnbalancedAmount</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_CreditingBalanceRecords"></a>
+        <h3>
+Crediting balance records&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CreditingBalanceRecords</b> ()</p>
+        </div><a name="M_DebittingBalanceRecords"></a>
+        <h3>
+Debitting balance records&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DebittingBalanceRecords</b> ()</p>
+        </div><a name="M_AsGainTransaction"></a>
+        <h3>
+Gain Transaction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsGainTransaction</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AsInvoiceSummaryTransaction"></a>
+        <h3>
+Invoice Summary's transaction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsInvoiceSummaryTransaction</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AsPaymentTransaction"></a>
+        <h3>
+Payment Transaction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsPaymentTransaction</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_PlaceOnFinancialShipment"></a>
+        <h3>
+Place on financial shipment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method places the selected financial transactions on one or more financial shipments, according to the specifications.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PlaceOnFinancialShipment</b> (<span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignExternalId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AutoAssignment</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultExternalDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixFinancialTransactions</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">DestinationSiteFunction</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberFinancialtransactions</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExternalId</span></dt>
+                <dd>
+If manual assignment of the external id of the shipment is chosen (with the AutoAssignment parameter), then this parameter defines that external id.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">VersionNumber</span></dt>
+                <dd>
+If manual assignment of the external id of the shipment is chosen (with the AutoAssignment parameter), then this parameter defines the version number of the shipment.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignExternalId</span></dt>
+                <dd>
+Defines if an external Id must be assigned to newly created financial shipment. If YES, then the value of the AutoAssignment parameter defines how the external id is assigned.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutoAssignment</span></dt>
+                <dd>
+If the external Id must be assigned (see the AssignExternalId parameter), then this parameter defines how it is assigned. If this parameter is TRUE, then the dedicated site function defined in the GLIMS configuration is used to create the external id. If set to FALSE, the external Id and version number must be explicitely defined in the dedicated parameters.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultExternalDate</span></dt>
+                <dd>
+In case the external Id must be assigned, this parameter defines if the default date (today) must be used as external date or not. If not, the external date must be specified in the ExternalDate parameter.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The ExternalDate for the new financial shipment, in case one chooses to manually assign it (see UseDefaultExternalDate parameter).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixFinancialTransactions</span></dt>
+                <dd>
+If TRUE, this method tries to fix all financial transactions of type invoice summary as well as the invoices on it. Payments and Gains are left unchanged.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">DestinationSiteFunction</span></dt>
+                <dd>
+Financial transaction based site function that determinates the shipment's destination; the return value of this site function must be a valid correspondent id. You should either specify this site function or the Destination correspondent parameter: not both!
+<br />Using this site function, it is possible to create several financial shipments in a single run.</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span></dt>
+                <dd>
+The shipments' destination. If you use this parameter, you should not specify the 'DestinationSiteFunction' parameter.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span></dt>
+                <dd>
+If TRUE then existing financial shipments for the same destination and firm that are not yet fixed, are reused.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberFinancialtransactions</span></dt>
+                <dd>
+Optional numbering of invoice summaries (and underlying invoices). </dd>
+            </dl>
+        </div><a name="M_Print"></a>
+        <h3>
+Print&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Prints financial transactions</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Print</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PayerLayoutAsDefault</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+If TRUE, the invoice summary will be fixed after printing.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dd>
+If output to file is selected, this parameter must contain the file name</dd>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dd>
+The number of copies to print</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dd>
+If TRUE, an on-screen preview of the printout is shown before printing.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span></dt>
+                <dd>
+If output to file is selected, this indicates that the default filename should be used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span></dt>
+                <dd>
+Indicates that output must be written to file.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+If TRUE, the invoices on this invoice summary will be fixed after printing, but before fixing the invoice summary itself (if the 'fix' parameter was specified).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PayerLayoutAsDefault</span></dt>
+                <dd>
+If true, the 'invoice summary layout' specified by the payer is used in stead of the 'templateid'. Note that any layout returned by the 'job expression' site function has even higher precedence.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span></dt>
+                <dd>
+Only used for invoice summary transactions.
+<br />If TRUE, invoice summaries that are not numbered yet are first numbered before they are printed.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+If TRUE, unnumbered invoices on this invoice summary are numbered before printing takes place (and before any numbering of the invoice summary itself).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span></dt>
+                <dd>
+If TRUE, for each selected financial transaction a unique output file will be created; otherwise all selected financial transactions (in case multiple transactions) are 'dumped' into one global output file.</dd>
+            </dl>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SendMail"></a>
+        <h3>
+Send mail</h3>
+        <div class="MemberHelp">
+            <p>
+Send mail</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SendMail</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+Billing document template</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span></dt>
+                <dd>
+Use billing document template of payer (invoice summary)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+Mark document as mailed</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span></dt>
+                <dd>
+Number documents before mailing</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+Number also the child invoices</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+External date of invoice summary (? = today)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+Fix the document</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+Also fix child invoices</dd>
+                <dt><span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span></dt>
+                <dd>
+One of: <span class="Parameter">Invoice, Invoice summary, Financial transaction, Financial shipment, Billing document printout</span><br />
+RecordType</dd>
+            </dl>
+        </div><a name="M_ShipmentEntries"></a>
+        <h3>
+Shipment entries&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShipmentEntries</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_Gain"></a>
+        <h3>
+Gain&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the corresponding Gain record (financial transaction must be of type Gain!).</p>
+            <p class="Synopsis"><span class="Type"><a href="gn.htm">Gain</a></span>&#160;<b>Gain</b> ()</p>
+        </div><a name="M_GetCreditingBalanceRecord"></a>
+        <h3>
+GetCreditingBalanceRecord&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the n-th crediting balance record.</p>
+            <p class="Synopsis"><span class="Type"><a href="bal.htm">Balance</a></span>&#160;<b>GetCreditingBalanceRecord</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span></dt>
+            </dl>
+        </div><a name="M_GetDebittingBalanceRecord"></a>
+        <h3>
+GetDebittingBalanceRecord&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the n-th debitting balance record.</p>
+            <p class="Synopsis"><span class="Type"><a href="bal.htm">Balance</a></span>&#160;<b>GetDebittingBalanceRecord</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span></dt>
+            </dl>
+        </div><a name="M_InvoiceSummary"></a>
+        <h3>
+InvoiceSummary&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the corresponding InvoiceSummary record (financial transaction must be of type invoice summary!)</p>
+            <p class="Synopsis"><span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<b>InvoiceSummary</b> ()</p>
+        </div><a name="M_MostRecentShipment"></a>
+        <h3>
+MostRecentShipment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns a reference to a financial shipment of which the starting financial transaction is part of. The returned shipment reference can be restricted to shipments of a specified destination. If ambiguous, the most recent shipment id is returned (ordered by creation time).</p>
+            <p class="Synopsis"><span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<b>MostRecentShipment</b> (<span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span>, <span class="Type">String</span>&#160;<span class="Parameter">DestinationInternalId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Received</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Destination</span></dt>
+                <dd>
+Select only financial shipments with this 'Destination'. This parameter expects a CorrespondentId.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">DestinationInternalId</span></dt>
+                <dd>
+Select only financial shipments with this 'Destination'. This parameter expects a Correspondent Internal Id. This parameter is only used if the first parameter was left unknown.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Received</span></dt>
+                <dd>
+YES = select only received shipments;
+<br />NO = select only sent shipments;
+<br />? = select both.</dd>
+            </dl>
+        </div><a name="M_Payment"></a>
+        <h3>
+Payment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Get the corresponding Payment record (financial transaction must be of type Payment!)</p>
+            <p class="Synopsis"><span class="Type"><a href="pmnt.htm">Payment</a></span>&#160;<b>Payment</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Invoice Summary's transaction</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="invs.htm">InvoiceSummary</a>.<a href="invs.htm#F_FinancialTransaction">FinancialTransaction</a></p>
+        </div>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_FinancialTransaction">FinancialTransaction</a></p>
+        </div>
+        <h3>
+Shipment entries</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fshe.htm">FinancialShipmentEntry</a>.<a href="fshe.htm#F_FinancialTransaction">FinancialTransaction</a></p>
+        </div>
+        <h3>
+Debitting balance records of financial transaction</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bal.htm">Balance</a>.<a href="bal.htm#F_Credit">Credit</a></p>
+        </div>
+        <h3>
+Crediting balance records of financial transaction</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bal.htm">Balance</a>.<a href="bal.htm#F_Debit">Debit</a></p>
+        </div>
+        <h3>
+Payment Transaction</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="pmnt.htm">Payment</a>.<a href="pmnt.htm#F_FinancialTransaction">FinancialTransaction</a></p>
+        </div>
+        <h3>
+Gain Transaction</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="gn.htm">Gain</a>.<a href="gn.htm#F_FinancialTransaction">FinancialTransaction</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Standard"></a>
+        <h3>
+Standard financial transaction query</h3>
+        <div class="MemberHelp">
+            <p>
+Standard financial transaction query. This query allows to select transactions of type invoice summary, payments as well as gains. It is particularly useful for generating financial shipments with mixed transaction types, like is typically done for accounting systems.
+<br />Some of the query parameters are general for the 3 types of transactions, others are specific for 1 type.</p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">SelectInvoiceSummaries</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectPayments</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectGains</span>, <span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDate</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumTotalAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumTotalAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumUnbalancedAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumUnbalancedAmount</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">InPayerGroup</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">NotShippedToDestination</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">NotShippedToDestFunction</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnSeries</span>, <span class="Type">String</span>&#160;<span class="Parameter">Series</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvsDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromInvsDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToInvsDocNo</span>, <span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MinimumInvsStatus</span>, <span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MaximumInvsStatus</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDueDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDueDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromGroupingDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToGroupingDate</span>, <span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimumReminderLevel</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MaximumReminderLevel</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimumPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type"><a href="extendedfinancetype.htm">ExtendedFinanceType</a></span>&#160;<span class="Parameter">InvoiceTypes</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToCheck</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnPmntInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromPmntInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToPmntInternalId</span>, <span class="Type"><a href="paymentstatus.htm">PaymentStatus</a></span>&#160;<span class="Parameter">MinimumPmntStatus</span>, <span class="Type"><a href="paymentstatus.htm">PaymentStatus</a></span>&#160;<span class="Parameter">MaximumPmntStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnGnInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromGnInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToGnInternalId</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectInvoiceSummaries</span></dt>
+                <dd>
+Specifies if invoice summaries must be included in the query.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectPayments</span></dt>
+                <dd>
+Specifies if payments must be included in the query.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectGains</span></dt>
+                <dd>
+Specifies if gains must be included in the query.</dd>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dd>
+If specified, only financial transactions of this firm are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDate</span></dt>
+                <dd>
+If specified, only financial transactions with an external date later or equal to this date are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDate</span></dt>
+                <dd>
+If specified, only financial transactions with an external date before or equal to this date are selected.</dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumTotalAmount</span></dt>
+                <dd>
+If specified, only financial transactions with an amount higher or equal to this amount are selected.</dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumTotalAmount</span></dt>
+                <dd>
+If specified, only financial transactions with an amount lower or equal to this amount are selected.</dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinimumUnbalancedAmount</span></dt>
+                <dd>
+If specified, only financial transactions with an unbalanced amount higher or equal to this amount are selected. This parameter has no effect on Gains.</dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaximumUnbalancedAmount</span></dt>
+                <dd>
+If specified, only financial transactions with an unbalanced amount lower or equal to this amount are selected. This parameter has no effect on Gains.</dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br />
+Is specified, only selects invoice summaries with the specified payer type.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">InPayerGroup</span></dt>
+                <dd>
+Specifies if the payer of the financial transaction must be a member of the correspondent group specified in the PayerGroup parameter, or should not be a member of it.</dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span></dt>
+                <dd>
+If specified, only financial transactions whose payer is member (or not a member: see the InPayerGroup parameter) of this correspondent group are selected.</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">NotShippedToDestination</span></dt>
+                <dd>
+If specified, then only financial transactions that are not yet on a financial shipment for this destination are selected. You cannot specify a destination if the "NotshippedForDestFunction" parameter is already used. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">NotShippedToDestFunction</span></dt>
+                <dd>
+Financial transaction based site function returning a valid correspondent id as a PositiveInteger. If this site function is specified only financial transactions that are not yet on a financial shipment to the calculated destination are selected. You can not specify a site function if the "NotshippedForDestination" parameter is already used. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dd>
+A financial transaction based, logical valued site function. If it is specified, it must return TRUE for a financial transaction to be selected by the query.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnSeries</span></dt>
+                <dd>
+Indicates if selection on the 'Series' field of an invoice summary is required. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Series</span></dt>
+                <dd>
+If the 'SelectOnSeries' parameter is set, then only financial transactions belonging to the specified series are selected. "?" means: select invoice summaries that have no series. No ranges or wildcards allowed</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvsDocNo</span></dt>
+                <dd>
+Indicates if selection on the invoice summary document number is required. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromInvsDocNo</span></dt>
+                <dd>
+If selection on invoice summary document number is requested (SelectOnInvsDocNo parameter), only invoice summaries with a document number equal or higher than this document number are selected. Note that if both the 'from' and 'to' selections are set to '?', only invoice summaries that have no document number get selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToInvsDocNo</span></dt>
+                <dd>
+If selection on invoice summary document number is requested (SelectOnInvsDocNo parameter), only invoice summaries with a document number lower or equal than this document number are selected. Note that if both the 'from' and 'to' selections are set to '?', only invoice summaries that have no document number get selected.</dd>
+                <dt><span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MinimumInvsStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed, Balanced, Purged</span><br />
+Only invoice summaries with a status equal or higher to this status are selected.</dd>
+                <dt><span class="Type"><a href="invoicesummarystatus.htm">InvoiceSummaryStatus</a></span>&#160;<span class="Parameter">MaximumInvsStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed, Balanced, Purged</span><br />
+Only invoice summaries with a status equal or lower than this status are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDueDate</span></dt>
+                <dd>
+If specified, only invoice summaries with a due date later or equal than this date are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDueDate</span></dt>
+                <dd>
+If specified, only invoice summaries with a due date before or equal to this date are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromGroupingDate</span></dt>
+                <dd>
+If specified, only invoice summaries with a grouping date after or equal to this date are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToGroupingDate</span></dt>
+                <dd>
+If specified, only invoice summaries with a grouping date before or equal to this date are selected.</dd>
+                <dt><span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span></dt>
+                <dd>
+If specified, only invoice summaries with an 'Invoice grouping type' equal to the specified one are selected.</dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimumReminderLevel</span></dt>
+                <dd>
+If specified, only invoice summaries with a reminder level higher or equal to the specified one are selected.</dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MaximumReminderLevel</span></dt>
+                <dd>
+If specified, only invoice summaries with a reminder level lower or equal to the specified one are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimumPrintOutCount</span></dt>
+                <dd>
+If specified, only invoice summaries with a printout count higher or equal to the specified one are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumPrintOutCount</span></dt>
+                <dd>
+If specified, only invoice summaries with a printout count lower or equal to the specified one are selected.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dd>
+If specified, only invoice summaries that have been printed after this time are selected. The information in the table 'BillingDocumentOutPrint' table is used for this.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dd>
+If specified, only invoice summaries that have been printed before this time are selected. The information in the 'BillingDocumentOutPrint' table is used for this.
+<br /></dd>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dd>
+If specified, only invoice summaries that have been printed with the specified billing document template are selected. The information in the 'BillingDocumentOutPrint' table is used for this.
+<br /></dd>
+                <dt><span class="Type"><a href="extendedfinancetype.htm">ExtendedFinanceType</a></span>&#160;<span class="Parameter">InvoiceTypes</span></dt>
+                <dd>
+One of: <span class="Parameter">Debit, Credit, Mixed</span><br />
+If specified, only invoice summaries with the corresponding 'InvoiceTypes' field are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToCheck</span></dt>
+                <dd>
+If specified, only invoice summaries with the corresponding 'ToCheck' field value are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnPmntInternalId</span></dt>
+                <dd>
+Indicates if selection on the payment internal id is required. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromPmntInternalId</span></dt>
+                <dd>
+If selection on payment internal id is requested (SelectOnPmntInternalId parameter), only payments with an internal id higher or equal than this internal id are selected. Note that if both the 'from' and 'to' selections are set to '?', only payments that have no internal id get selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToPmntInternalId</span></dt>
+                <dd>
+If selection on payment internal id is requested (SelectOnPmntInternalId parameter), only payments with an internal id lower or equal than this internal id are selected. Note that if both the 'from' and 'to' selections are set to '?', only payments that have no internal id get selected.</dd>
+                <dt><span class="Type"><a href="paymentstatus.htm">PaymentStatus</a></span>&#160;<span class="Parameter">MinimumPmntStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Balanced</span><br />
+Only payments with a status higher or equal to the specified status are selected.</dd>
+                <dt><span class="Type"><a href="paymentstatus.htm">PaymentStatus</a></span>&#160;<span class="Parameter">MaximumPmntStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Balanced</span><br />
+Only payments with a status lower or equal to the specified status are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnGnInternalId</span></dt>
+                <dd>
+Indicates if selection on the gain internal id is required. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromGnInternalId</span></dt>
+                <dd>
+If selection on gain internal id is requested (SelectOnGnInternalId parameter), only gains with an internal id higher or equal than this internal id are selected. Note that if both the 'from' and 'to' selections are set to '?', only gains that have no internal id get selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToGnInternalId</span></dt>
+                <dd>
+If selection on gain internal id is requested (SelectOnGnInternalId parameter), only gains with an internal id lower or equal than this internal id are selected. Note that if both the 'from' and 'to' selections are set to '?', only gains that have no internal id get selected.</dd>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>- InternalId - Type </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

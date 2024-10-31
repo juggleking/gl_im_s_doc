@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Orders|Functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\order verification\order_verification.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Order verification</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order verification</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Usage">Usage</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The order verification program is available from the main menu (<span class="ui_element">Start &gt; Routine &gt; Orders &gt; Verify entry</span>) and as an item in the contextual menu / ribbon of each order.&#160;This program has been developed for clinical verification and therefore checks the explicitly requested properties, materials, microbiology procedures and pathology examinations and <b>not the request definitions</b>.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Note that this program does not provide support for:</p>
+            <ul>
+                <li class="kadov-p" value="1"><a href="../../configuration/requestables/requestables.htm">Issuer-specific request definitions</a>.</li>
+                <li class="kadov-p" value="2">The <a href="../../modules/billing/tariffication/configuration/billing_marks.htm">PanelMember.BillingMarks</a> field (which allows specifying that the panel member should only be requested when the request has a billing mark which appears in the specified list).</li>
+                <li class="kadov-p" value="3">Requests added via MISPL.</li>
+            </ul>
+        </div>
+        <h2><a name="Usage" id="Usage"></a>Usage</h2>
+        <ol>
+            <li class="kadov-p" value="1">When opening the order verification screen via the Order.Verify() contextual menu function, GLIMS allows processing the selected order(s).</li>
+            <li class="kadov-p" value="2">When opening the order verification screen via the main menu, the verification screen will be opened immediately, allowing the user to either <b>enter/scan an order number</b> or push the <span class="ui_element">query</span> button to fill in the query parameters for his selection.&#160;&#160;The user's last settings for the query are saved and restored the next time the query is used.</li>
+        </ol>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_verify.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="518" data-mc-height="440" src="order_verify_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">In the top window, the order to be verified is displayed.&#160;</p>
+        <p style="text-align: left;font-weight: bold;">Entering request definitions</p>
+        <div class="indented">
+            <p class="fieldlabel">Requests fields</p>
+            <div class="indented">
+                <p>The requests field allows to enter the requests which this order should contain.&#160;&#160;This program also allows the use of "RequestByRange" (environment variable).</p>
+            </div>
+            <p class="fieldlabel">Request form</p>
+            <div class="indented">
+                <p>Allows using a request form to add/remove requests. &#160;The default request form used is the one linked to the user's department. &#160;If the department option <span class="ui_element">Req. form is fixed</span> is enabled, no other form can be selected. &#160;If no department specific request form is defined, any form can be selected and the first found is used as default.</p>
+            </div>
+        </div>
+        <p style="text-align: left;font-weight: bold;">Also check urgencies</p>
+        <div class="indented">
+            <p>Allows checking the urgency.</p>
+        </div>
+        <p style="text-align: left;font-weight: bold;">Ignore materials</p>
+        <div class="indented">
+            <p>Allows ignoring the materials.</p>
+        </div>
+        <p style="text-align: left;">When hitting the <span class="ui_element">OK</span> button, the order will be verified.&#160;&#160;If differences have been found, the following message will be displayed.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_ver3.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="285" data-mc-height="119" src="order_ver3_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">If you want to modify the order, click No.&#160;&#160;The next screen will now clearly indicate (<span style="color: #FF0000;">in red</span>) the differences in the order. Request definitions marked with a "+" have been requested in this order, but were not entered during verification. Reques definitions marked with a "-" were entered during verification, but are not requested in this order.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_ver2.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="471" data-mc-height="331" src="order_ver2_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">Select the <span class="ui_element">Correct</span> button to zoom into the order and make you changes.</p>
+        <p style="text-align: left;">When an order is verified , this is now marked in the order by setting Order.Verified = YES.&#160;&#160;When an order is marked as reviewed, this is added to the order log.&#160;&#160;Note that the <a href="orders_query_browser.htm">standard order query</a> allows querying on Order.Verified.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If the order to be verified contains nested panels and one of the members of a panel is discontinued, the <span class="ui_element">Verify</span> function may not notice that a panel member was discontinued.</p>
+        </div>
+    </body>
+</html>

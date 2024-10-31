@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Start time of payment agreement synchronized with lowest object time of order (GLIMS-10920)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2788"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Start time of payment agreement synchronized with lowest object time of order (GLIMS-10920)</h1>
+        <h2>Context</h2>
+        <p>When a new order is created for a new patient (via electronic order entry), the start time of the related <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Payment agreement</span> is set to the creation time of the order.</p>
+        <h2>Issue</h2>
+        <p>If, afterwards, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Lowest object time</span> of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order</span> is updated via</p>
+        <ul>
+            <li value="1">an update of the sampling time of a specimen</li>
+            <li value="2">an order import message (SynchronizeLowestObjectTime)</li>
+            <li value="3">...</li>
+        </ul>
+        <p>this could result in the order's lowest object time being earlier (&lt;) than the payment agreement's start time, which results in an error during tariffication as no payment agreement can be found which is valid on the order's lowest object time.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This problem occurred since GLIMS&#160;9.</p>
+        </div>
+        <h2>Present functionality</h2>
+        <p>The payment agreement's start time will now be set to the order's updated lowest object time when the following conditions are met:</p>
+        <ul>
+            <li xmlns="" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">The difference between the payment agreement's start time and the order's lowest object time is not higher than 7 days.</p>
+            </li>
+            <li xmlns="" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">The payment agreement's <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Party</span> is specified.</p>
+            </li>
+        </ul>
+        <p xmlns="">See also: <a href="GLIMS-11444.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS-11444</a>.</p>
+    </body>
+</html>

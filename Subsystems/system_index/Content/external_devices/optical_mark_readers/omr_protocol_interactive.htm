@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="External devices|Optical Mark Reading" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\omr\omr_protocol_interactive.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>protocol</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor10"></a>
+            <MadCap:concept term="System management" /><a name="kanchor13"></a><a name="kanchor14"></a>Optical Mark protocol (Interactive version - via Order Entry)</h1>
+        <p style="text-align: JUSTIFY;">From now on, we can parameterize each new form layout in GLIMS.</p>
+        <p style="text-align: JUSTIFY;">When a form is ’r;read’, the GLIMS form layout will be used to build a new message, with as input the message as read by the reader. This newly created message while also be parsed (e.g. by OrderEntry) and whilst parsing, certain events will be triggered (e.g. AddRequest, SetObjectTime, SetIssuer, …).</p>
+        <h3 style="text-align: JUSTIFY;">Protocol layout</h3>
+        <div style="text-align: center;">
+            <table style="border-collapse: separate;border-collapse: separate;" width="86%" border="1">
+                <tr>
+                    <td style="width: 34%;">OpticalMarkMessage</td>
+                    <td style="width: 66%;">: OrderCreationMessage<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">OrderCreationMessage</td>
+                    <td style="width: 66%;">: OrderMessageSegment {&#160;&#160;'\' OrderMessageSegment }<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;width: 34%;">OrderMessageSegment</td>
+                    <td style="width: 66%;">: OrderSegment<br />
+| ObjectTimeSegment<br />
+| EncounterSegment<br />
+| PatientPinProviderSegment<br />
+| PatientCodeSegment<br />
+| IssuerSegment<br />
+| AgentSegment<br />
+| SamplingLocationSegment<br />
+| ObjectTimeSegment<br />
+| UrgencySegment<br />
+| ReportInformationSegment<br />
+| RequestableListSegment<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">OrderSegment</td>
+                    <td style="width: 66%;">: 'ExternalId=' String<br />
+| 'ShortId=' String<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ObjectTimeSegment</td>
+                    <td style="width: 66%;">: 'ObjectTime=' DateTimeSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">DateTimeSpecification</td>
+                    <td style="width: 66%;">: Day '/' Month '/' Year '&#160;&#160;' Hours ':' Minutes ':' Seconds<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">Day<br />
+Month<br />
+Year<br />
+Hours<br />
+Minutes<br />
+Seconds</td>
+                    <td style="vertical-align: top;width: 66%;">: Integer[2];<br />
+: Integer[2];<br />
+: Integer[4];<br />
+: Integer[2];<br />
+: Integer[2];<br />
+: Integer[2];</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">EncounterSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'EncounterExternalId=' EncounterSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">EncounterSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: EncounterExternalId<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">PinProviderSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'PinProvider=' String<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">PatientCodeSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Patient=' PatientCodeSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">PatientCodeSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: PatientIdentificationCode<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">IssuerSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Issuer=' IssuerSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">IssuerSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: IssuerIdentificationCode<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">AgentSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Agent=' AgentSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">AgentSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: AgentIdentificationCode<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ReportCopyReceiverSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ReportCopyReceiver=' ReportCopyReceiverSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ReportCopyReceiverSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: ReportCopyReceiverIdentificationCode<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">SamplingLocationSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: SamplingLocation=' String<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ObjectTimeSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ObjectTime=' ObjectTimeString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ObjectTimeString</td>
+                    <td style="vertical-align: top;width: 66%;">: DateTimeSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">UrgencySegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Urgency=' UrgencyString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">UrgencyString</td>
+                    <td style="vertical-align: top;width: 66%;">: String<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ReportInformationSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ReportInformation=' String<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">RequestableListSegment</td>
+                    <td style="vertical-align: top;width: 66%;">: 'RequestableList=' RequestableListSpecification<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">RequestableListSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: RequestableSpecification { ',' RequestableSpecification }<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;width: 34%;">RequestableSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: RequestableMnemonic
+<blockquote><p>[ '&amp;' ObjectTimeSpecification ]<br />
+[ '&amp;' UrgencySpecification ]<br />
+[ '&amp;' CommentSpecification ]<br />
+[ '&amp;' ResultCommentSpecification ]<br />
+[ '&amp;' ResultSpecification ]</p></blockquote><p>;<br />
+/* While inputting requests it is allowed to also enter the result */</p></td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ObjectTimeSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ObjectTime=' ObjectTimeString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ObjectTimeString</td>
+                    <td style="vertical-align: top;width: 66%;">: '\'' DateTimeSpecification '\''<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">UrgencySpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Urgency=' UrgencyString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">UrgencyString</td>
+                    <td style="vertical-align: top;width: 66%;">: '\'' String '\''<br />
+;&#160;<br />
+/* Site specific domain eg 'Cito' */</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">CommentSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ExternalComment=' ExternalCommentString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ExternalCommentString</td>
+                    <td style="vertical-align: top;width: 66%;">: '\'' String '\''<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ResultCommentSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: 'ResultExternalComment=' ResultExternalCommentString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ResultExternalCommentString</td>
+                    <td style="vertical-align: top;width: 66%;">: '\'' String '\''<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ResultSpecification</td>
+                    <td style="vertical-align: top;width: 66%;">: 'Value=' ResultString<br />
+;</td>
+                </tr>
+                <tr>
+                    <td style="width: 34%;">ResultString</td>
+                    <td style="vertical-align: top;width: 66%;">: '\'' String '\''</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="User interface|Workspace|Ribbons|Ribbon configuration" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>User interface - Ribbons: Export / Import</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align: left;">User interface - Ribbons: Export / Import</h1>
+        <h2>Case description</h2>
+        <p>Customers upgrading from GLIMS 8 to GLIMS 9 will typically first upgrade the test environment in which they can prepare the new user interface in GLIMS 9.</p>
+        <p>After having upgraded the production environment to GLIMS&#160;9, it is then possible to export the new user interface configuration from the test environment and import it into the production environment.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Although this document focuses on <b>Ribbons</b>, you would probably also export and import the Home page, Side bar, Quick access toolbar, Roles and Privileges.</p>
+        </div>
+        <h2>Ribbon export</h2>
+        <p>To export the user interface configuration, use the <a href="../application_management/import_export/general/import_export_denormalized.htm">denormalized export program</a>.</p>
+        <h3>Export using a script</h3>
+        <p>Use a <span class="ui_element">Script</span> to export all related tables.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example of the content of an export script</span>
+            </p>
+            <p>bt_ActualFunctionParameterSet<br />bt_ActualFunctionParameter<br />bt_ActualQueryParameterSet<br />bt_ActualQueryParameter<br />um_ToolFunctionPath<br />um_ToolLayout<br />um_Tool<br />um_Ribbon<br />um_RibbonTab<br />um_RibbonTabAssignment<br />um_RibbonGroup<br />um_RibbonItem<br />um_Sidebar<br />um_SidebarGroup<br />um_SidebarItem<br />sc_User<br />ux_Style<br />hp_HomePage<br />hp_ShortcutSection<br />hp_Shortcut<br />hp_WebBrowserSection<br />hp_DateTimeSection<br />um_QuickAccessToolbar<br />um_QuickAccessToolbarItem<br />um_QuickAccessToolbarGroup<br />um_QuickAccessToolbarMenuItem<br />um_QuickAccessToolbarRibItem<br />sc_Role<br />sc_Privilege<br />sc_RolePrivilege<br />sc_UserRoleAssignment<br />EmployeeAssignment</p>
+        </div>
+        <h3>Export manually</h3>
+        <p>If you only need a subset (e.g. only export Ribbon configuration), then do not use the script and select the tables manually. </p>
+        <p class="fieldlabel">Tables</p>
+        <div class="indented">
+            <p>um_Tool, um_Ribbon, um_RibbonTab, um_RibbonTabAssigment, um_RibbonGroup, um_RibbonItem, bt_ActualFunctionParameterSet, bt_ActualFunctionParameter, bt_ActualQueryParameterSet and bt_ActualQueryParameter.</p>
+        </div>
+        <p class="fieldlabel">Languages</p>
+        <div class="indented">
+            <p>Select the languages you want to export.</p>
+        </div>
+        <p class="fieldlabel">File name style</p>
+        <div class="indented">
+            <p>Select <span class="ui_element">Table name</span>.</p>
+        </div>
+        <h2>Ribbon import</h2>
+        <h3><a name="Delete"></a>Delete all existing ribbon tabs</h3>
+        <p>To avoid duplicate ribbon items, you need to delete all existing ribbon tabs before starting the import.</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Login with a user  having a role with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Minimal user type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Developer</span>.</li>
+            <li value="2">Click <span class="ui_element">Start -&gt; Development -&gt; 4GL -&gt; Run procedure</span>.  </li>
+            <li value="3"><span class="ui_element">File name</span> must be <span class="ui_element">gp_DeleteAllRibbonTabs.p.</span></li>
+            <li value="4">Leave the option <span class="ui_element">Pass handle disabled</span>.</li>
+        </ol>
+        <h3>Import using a script</h3>
+        <p>If you used a script to export the tables, then you can also use a script to import the tables.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example of the content of an import script</span>
+            </p>
+            <p>bt_ActualFunctionParameterSet<br />bt_ActualFunctionParameter<br />bt_ActualQueryParameterSet<br />bt_ActualQueryParameter<br />um_ToolFunctionPath<br />um_ToolLayout<br />um_Tool<br />um_Ribbon<br />um_RibbonTab<br />um_RibbonTabAssignment<br />um_RibbonGroup<br />um_RibbonItem<br />um_Sidebar<br />um_SidebarGroup<br />um_SidebarItem<br />sc_User<br />ux_Style<br />hp_HomePage<br />hp_ShortcutSection<br />hp_Shortcut<br />hp_WebBrowserSection<br />hp_DateTimeSection<br />um_QuickAccessToolbar<br />um_QuickAccessToolbarItem<br />um_QuickAccessToolbarGroup<br />um_QuickAccessToolbarMenuItem<br />um_QuickAccessToolbarRibItem<br />sc_Role<br />sc_Privilege<br />sc_RolePrivilege<br />sc_UserRoleAssignment<br />EmployeeAssignment</p>
+        </div>
+        <h3>Import manually</h3>
+        <p>If you selected the tables to be exported manually, then import these tables in the same order as in the import script, skipping those you have not exported.</p>
+        <h2>Troubleshooting</h2>
+        <p>W<span>hen importing um_Tool.csv, there might already be a Tool with the same Function, Table, FunctionPathName and FunctionParameterSet. </span></p>
+        <p><span>If the tool you want to import has a different Mnemonic and a RibbonItem is pointing to this Tool, then the RibbonItem will not be imported either. </span>
+        </p>
+        <p><span>In the um_RibbonItem.csv.csv file you will find lines with <span class="ui_element">Tool not available</span>. In this case, edit the um_RibbonItem.csv file and rename the Tool.Mnemonic reference.</span>
+        </p>
+        <h2>Restart GLIMS</h2>
+        <p>Restart the application and the imported ribbon(s) should be visible.</p>
+    </body>
+</html>

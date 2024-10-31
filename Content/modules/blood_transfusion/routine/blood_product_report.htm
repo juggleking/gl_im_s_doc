@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - blood product report</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1944"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Blood product report</h1>
+        <h2>Reporting logic</h2>
+        <p>GLIMS allows to include transfusion information on reports. When 
+ requesting a blood product in the order entry screen, GLIMS will create 
+ blood selections for the required blood bags. For each blood selection, 
+ a result is automatically created. In the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a>, you can define a <span class="ui_element">Report property</span> which will be used 
+ to report these blood selection results. By including this 
+ report property in a property classification, you can determine where 
+ the transfusion section should be put on the report.</p>
+        <p>The 'result value' of the blood request is determined by the BloodSelection-based MISPL expression indicated in the <span class="ui_element">Report 
+ expression</span> field, also defined in the BTM general settings. As soon as this report expression returns a value different 
+ from unknown, the result value will obtain status <span class="ui_element">Available</span>.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes:</span>
+            </p>
+            <ul>
+                <li value="1">The report expression is re-evaluated at each status change.
+ This allows to define a different result value for each status in the report 
+ expression.</li>
+                <li value="2">
+                    <p>When selecting a blood bag for a blood selection, GLIMS will automatically add a crossmatch request definition to the order (as configured in the <a href="../configuration/blood_products.htm">blood product</a>). This crossmatch request definition requires a blood specimen. As there may be a significant delay between the creation of the original order and the availability of the specimen required for the crossmatch, GLIMS will re-evaluate the Report expression as soon as this specimen becomes Available.</p>
+                </li>
+            </ul>
+        </div>
+        <p>By default, the result value for the report property will automatically 
+ be confirmed and validated after the blood bag has been administered and 
+ the blood selection will be reported. However, if the BTM general setting <span class="ui_element">Validate report result at checkout</span> is enabled, the blood 
+ selection will be reported as soon as the blood bag has been checked out.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example 1</span>
+                    </p>
+                    <p>Report expression' MISPL  that continuously shows the blood selection information:</p>
+                    <blockquote><pre xml:space="preserve">
+string str;
+str := "Demand for a unit of '" + .BloodProduct.Mnemonic + "'" + chr(10) 
+ 
+   
++ "Current status: '" + EnumeratedToString( "BloodSelectionStatus", .Status) + "'";
+if .bloodbag &lt;&gt; ? 
+then
+ 
+  
+str := str + chr(10) + "Selected unit: " + .bloodbag.internalid;
+ 
+  
+if .status = BloodSelectionStatus["Checked"]
+ 
+  
+then str := str + chr(10) + "Crossmatched on " + datetimetostring( .CheckTime, "%d/%m/%Y, %H:%M");
+ 
+  
+endif;
+ 
+  
+if .Status = BloodSelectionStatus["Ready"]
+ 
+  
+then 
+ 
+      
+if .BloodBag.Status = BloodBagStatus["Checkedout"]
+ 
+      
+then str := str + chr(10) + "Checked out on " + datetimetostring( .BloodBag.CheckoutTime, "%d/%m/%Y, %H:%M");
+ 
+      
+else str := str + chr(10) + "Administered on " + datetimetostring( .BloodBag.TransfusionEndTime, "%d/%m/%Y, %H:%M")
+ 
+            
++ " on responsibility of dr. " + .BloodBag.TransfusionHCProvider.Correspondent.Name;
+ 
+      
+endif;
+ 
+  
+endif;
+endif;
+RETURN str;
+</pre><pre xml:space="preserve">&#160;</pre>
+                    </blockquote>
+                    <p><span style="color: #003366; font-weight: bold;">Example 2</span>
+                    </p>
+                    <p>'Report expression' MISPL  that only shows the blood bag (+check out time) after it has been checked out, and nothing beforehand:</p>
+                    <blockquote><pre>
+string str;
+str := ?;
+if .status = BloodSelectionStatus["Ready"]
+then str := "Unit: " + .bloodbag.internalid 
+ 
+   
++ " Checked out on " + datetimetostring( .BloodBag.CheckoutTime, "%d/%m/%Y, %H:%M");
+endif;
+RETURN str;
+</pre>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <h2>Electronic reporting</h2>
+        <p>The <a href="../../../configuration/report_templates/report_templates.htm">Report template</a> field <span class="ui_element">Structured blood transfusion</span> (in the <span class="ui_element">Electronic</span> tab page) can be used to indicate how blood transfusion results should 
+be reported electronically. There are three options:</p>
+        <p class="fieldlabel">Combine results</p>
+        <div class="indented">
+		This is the default value: all blood transfusion results are grouped in one result 
+	record.
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Examples</span></p><p>For HL7 reporting, all blood selection result values 
+	will be concatenated (separated with a "newline" ) in one single OBX record, field 
+ 5.</p><p>For Health One, all blood selection results will be reported 
+ under one line.</p></div></div></div></div>
+        <p class="fieldlabel">Separate results</p>
+        <div class="indented">	
+			Each blood transfusion result will be sent separately. In HL7 
+	reporting this corresponds to 1 OBX segment for each result. The Result/OBX discriminator will be filled with BloodSelection.SeqNo 
+	(internal sequence number used for sorting and unique identification within 
+	the order).<br />This allows all result servers to handle each blood transfusion result 
+	separately.</div>
+        <p class="fieldlabel">Structure results</p>
+        <div class="indented">Not yet supported.</div>
+        <h2>Known issue</h2>
+        <p>When discontinue-repeating a blood selection, the 
+ result will be discontinued and a new result record (with a new Id value) 
+ will be created. As these results are reported by Id (to guarantee 
+ correct export ordering), this implies that the sequence of the results 
+ will no longer be respected.</p>
+    </body>
+</html>

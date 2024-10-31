@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Order entry" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\requestables.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Request definitions</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor112"></a>Request definitions</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> - <a href="#Types">Types</a> - <a href="#Options">Options</a> - <a href="#Replace">Property.Replace</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Request definitions (<a href="../../db/reference_guide/rqbl.htm">Requestable table</a>) determine what will exactly be requested when entering its request code in order entry.&#160;&#160;This can be a single property, a material, a panel, etc.&#160;&#160;</p>
+        <p>Each request definition refers to a <a href="../request_codes/request_codes.htm">request code</a> which is used to request it during order entry.&#160;&#160;</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>When creating a property, material, etc&#160;&#160;GLIMS will automatically create a default request definition and corresponding request code.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>A request definition may depend on the issuer and on the time. This allows to link several request definitions to a single request code.&#160;&#160;When entering a request code in order entry, GLIMS will lookup the appropriate request definition (linked to the request code), taking into account the issuer and time specifications of the request definition.</p>
+        </div>
+        <h2><a name="Fields" id="Fields"></a>Fields</h2>
+        <p>Request definitions are available from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Request definitions</span> -&gt; <span class="ui_element">Request definitions</span>.</p>
+        <h3>General</h3>
+        <p class="fieldlabel">Request code</p>
+        <div class="indented">
+            <p>Select the <a href="../request_codes/request_codes.htm">request code</a> used to request this request definition during order entry.</p>
+        </div>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+        </div>
+        <p class="fieldlabel">Discriminator</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../routine/orders/order_entry/order_entry_discriminator.htm">Requesting tests with a discriminator</a>.</p>
+        </div>
+        <p class="fieldlabel">Start date, End date</p>
+        <div class="indented">
+            <p>The request definition is only valid between these 2 dates.&#160;</p>
+        </div>
+        <p class="fieldlabel">Issuer</p>
+        <div class="indented">
+            <p>If an issuer is specified, this request definition will only be used for orders with this issuer.</p>
+        </div>
+        <p class="fieldlabel"><a name="Is"></a>Is default request definition</p>
+        <div class="indented">
+            <p>Automatically set by GLIMS.&#160;&#160;</p>
+            <p>When creating a property, material, etc&#160;&#160;GLIMS will automatically create a default request definition (and corresponding request code) and will mark it as being the <span class="ui_element">Default request definition</span>.</p>
+        </div>
+        <p class="fieldlabel">Minimal urgency</p>
+        <div class="indented">
+            <p>If specified, this minimal urgency will be applied to all requests created with this request definition. This implies that the urgency of a request is calculated as the maximum of the urgency specified in the order entry screen, and the urgency specified for the request definition.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the request definition is a panel, its urgency is inherited by its members, unless they have a higher urgency by themselves (maximum of both).</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Maximal urgency</p>
+        <div class="indented">
+            <p>Indicates that any request, created with this request definition, should not exceed the specified urgency. When a higher urgency is requested (e.g. at order entry time) it will silently be lowered to the specified limit.&#160;&#160;</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the request definition is a panel,  all panel members will inherit the lowered limit, unless they have a lower urgency limit by themselves.</p>
+            </div>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>The following urgencies are defined in GLIMS:&#160;&#160;N,P,C,S,V</p>
+                <p>A request definition is defined with <span class="ui_element">Minimal urgency</span> P and <span class="ui_element">Maximal urgency</span> S</p>
+                <ul>
+                    <li value="1">The order is requested with urgency N =&gt; the request will have urgency P (minimal urgency)</li>
+                    <li value="2">The order is requested with urgency V =&gt; the request will have urgency S (maximal urgency)</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Specimen handling</p>
+        <div class="indented">
+            <p>Allows the user to select a <a href="../specimen_handling/specimen_handling.htm">Specimen handling</a> record.</p>
+        </div>
+        <h3><a name="Material2"></a>Material variables</h3>
+        <p>Allows to define a request definition variable. <a href="../materials_variables/material_variables.htm">Please check the chapter Material variables</a>.</p>
+        <h3><a name="Billing"></a>Billing</h3>
+        <p class="fieldlabel">Billing category</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../modules/billing/tariffication/configuration/tariffication_orders_partial.htm">Partial order billing</a>.</p>
+        </div>
+        <p class="fieldlabel">To charge</p>
+        <div class="indented">
+            <p>Indicates if this request definition is to be charged during tariffication.</p>
+        </div>
+        <p class="fieldlabel">Allow discount</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../modules/billing/invoicing/configuration/discounts.htm">Discounts</a>.</p>
+        </div>
+        <p class="fieldlabel">Billing mark</p>
+        <div class="indented">
+            <p>This billing mark has precedence over the billing mark specified during (manual or electronic) order entry.</p>
+        </div>
+        <p class="fieldlabel">Assigned billing codes</p>
+        <div class="indented">
+            <p>Shows the <a href="../../modules/billing/tariffication/configuration/billing_codes.htm">assigned billing codes</a>.</p>
+        </div>
+        <h2><a name="Types"></a>Types</h2>
+        <p>A request definition can be of type <a href="#Property">Property</a>, <a href="#Material">Material</a>, <a href="#Panel">Panel</a>, <a href="#Procedur">Procedure</a>, <a href="#Blood">Blood</a>, <a href="#Microbio">Microbiology</a>, <a href="#Patholog">Pathology</a>, or <a href="#Genetics">Genetics</a>. Depending on the type, additional fields will be shown (see below).</p>
+        <h3><a name="Property"></a>Property</h3>
+        <p>Property that will be requested with this request definition.</p>
+        <h3><a name="Material"></a>Material</h3>
+        <p>Material that will be requested with this request definition.</p>
+        <h3><a name="Panel"></a>Panel</h3>
+        <p>A panel allows to group a number of request definitions.&#160;&#160;When requesting a panel in order entry, all request definitions within that panel will be requested.&#160;</p>
+        <h4>Fields</h4>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Free text description.</p>
+        </div>
+        <p class="fieldlabel"><a name="Confirm"></a>Confirm</p>
+        <div class="indented">
+            <p>If enabled, GLIMS will show a confirmation screen with all panel members when requesting the panel.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="request_definitions_panel_confirm.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="457" data-mc-height="232" src="request_definitions_panel_confirm_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">Add / Remove panel members</p>
+            <div class="indented">
+                <p>Click a panel member to add or remove it to / from the panel.</p>
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                    </p>
+                    <ul>
+                        <li value="1">By default, all panel members are included. This can be changed by enabling the <span class="ui_element">Optional</span> field of a panel member.</li>
+                        <li value="2">The selected panel members are not requested until the user presses OK.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="fieldlabel">Discriminator</p>
+            <div class="indented">
+                <p>The panel member's discriminator can be modified using the standard syntax.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>After clicking OK in the confirmation screen, GLIMS does not remember that the requests were actually part of a panel. panel tampering</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Accept"></a>Accept shared members</p>
+        <div class="indented">
+            <p>Is used to determine whether a panel is complete or not.</p>
+            <p>If a panel has a fixed price, GLIMS has to determine whether or not the panel is complete before applying the panel price. Only complete panels can be tariffed.</p>
+            <p>This option is mainly used in case of overlapping panels in the same order.&#160;&#160;When this option is enabled, the panel completeness check will accept that a panel is not fully completed due to the fact that some members have been requested through another panel.</p>
+        </div>
+        <p class="fieldlabel"><a name="Charge"></a>Charge</p>
+        <div class="indented">
+            <p class="fieldlabel">Members only</p>
+            <div class="indented">
+                <p>Only the panel members will be evaluated for tariffication.</p>
+            </div>
+            <p class="fieldlabel">Panel only</p>
+            <div class="indented">
+                <p>Only the panel itself will be evaluated for tariffication, not its members.</p>
+            </div>
+            <p class="fieldlabel">Panel and members</p>
+            <div class="indented">
+                <p>Both the panel itself and its members will be evaluated for tariffication.</p>
+            </div>
+            <p class="fieldlabel">Members or panel</p>
+            <div class="indented">
+                <p>The panel itself will only be tariffed if all panel members are not to be tariffed because they have not been requested with a billing mark that is included in the <span class="ui_element">Tariff member billing marks</span> field of the panel.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Discount rate</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../modules/billing/invoicing/configuration/discounts.htm">Discounts</a>. </p>
+        </div>
+        <p class="fieldlabel">Tariff member billing marks</p>
+        <div class="indented">
+            <p>Allow to specify a list of billing marks (no separator).&#160;&#160;Only requests that have been requested with a billing mark from this list will be tariffed.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Tariff member billing marks = ABC</p>
+                <p>When requesting the panel and specifying <span class="ui_element">D</span> as <span class="ui_element">Billing mark</span> at order entry, the panel members will not be charged.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This option is only applied when the panel members are to be charged, i.e. the option <span class="ui_element">Charge</span> is set to <span class="ui_element">Members only</span> or <span class="ui_element">Panels and members</span>.</p>
+            </div>
+        </div>
+        <h4>Adding members to a panel</h4>
+        <p>To add members to a panel </p>
+        <ol>
+            <li value="1">Select the request definition and choose the contextual menu / ribbon item <span class="ui_element">Panel members</span>. </li>
+            <li value="2">Use the Insert key to add a new panel member.</li>
+        </ol>
+        <p class="fieldlabel">Sequence number</p>
+        <div class="indented">
+            <p>Determines the sequence of the members within the panel. They will be requested in this order.</p>
+            <p>We strongly recommend to always specify a sequence number in order to determine in which sequence panel members must be requested / visualized.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If no sequence number is specified, the panel members are sorted/requested according to the ID of the request code linked to the panel member.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Member mnemonic</p>
+        <div class="indented">
+            <p>Request code that will be added when this panel member is requested.</p>
+        </div>
+        <p class="fieldlabel">Discriminator</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../routine/orders/order_entry/order_entry_discriminator.htm">Requesting tests with a discriminator</a>.</p>
+        </div>
+        <p class="fieldlabel">Billing marks</p>
+        <div class="indented">
+            <p>Allows to specify a list of billing marks (no separator).&#160;&#160;If specified, the panel member will only be requested if its billing mark (specified at order entry) is included in this list.&#160;</p>
+        </div>
+        <p class="fieldlabel">Optional</p>
+        <div class="indented">
+            <p>If enabled, the panel member will not be requested automatically when requesting the panel. You will have to manually add the panel member in the panel confirmation screen which is shown when the <span class="ui_element">Panel</span> option <span class="ui_element">Confirm</span> is enabled (see above).</p>
+        </div>
+        <h3><a name="Procedur"></a>Procedure</h3>
+        <p>No longer supported.</p>
+        <h3><a name="Blood"></a>Blood</h3>
+        <p>Please check the chapter <a href="../../modules/blood_transfusion/routine/blood_product_request.htm">Blood transfusion- Blood request</a>.</p>
+        <h3><a name="Microbio"></a>Microbiology</h3>
+        <p class="fieldlabel">Procedure mnemonic, Procedure material</p>
+        <div class="indented">
+            <p>In microbiology, you actually request a <a href="../../modules/microbiology/configuration/microbiology_procedures.htm">microbiology procedure</a>.</p>
+            <p>These fields allows to select a microbiology procedure, by first selecting the <span class="ui_element">Material</span> of the microbiology procedure.</p>
+        </div>
+        <p class="fieldlabel">Add microscopy</p>
+        <div class="indented">
+            <p>If disabled, the <span class="ui_element">Microscopy property</span> defined in the <a href="../../modules/microbiology/configuration/microbiology_procedures.htm">microbiology procedure</a> will not be requested. This can be used to skip the microscopy phase of the microbiology examination.</p>
+        </div>
+        <h3><a name="Patholog"></a>Pathology</h3>
+        <p class="fieldlabel">Procedure mnemonic, Procedure material</p>
+        <div class="indented">
+            <p>In Pathology, you actually request a <a href="../../modules/pathology/configuration/pathology_procedures.htm">pathology procedure</a>.</p>
+            <p>These fields allow to select a pathology procedure, by first selecting the <span class="ui_element">Material</span> of the pathology procedure.</p>
+        </div>
+        <h3><a name="Genetics"></a>Genetics</h3>
+        <p class="fieldlabel">Genetic procedure</p>
+        <div class="indented">Genetic procedure that is <a href="../../modules/genetics/routine/genetic_exam/g_e_order_entry.htm">requested</a> along with the request definition, leading to the creation of a genetic exam.</div>
+        <h2 style="text-align: left;"><a name="Options" id="Options"></a>Options</h2>
+        <p style="text-align: left;">The <span class="ui_element">Options</span> button allows to define which request definitions should be displayed in the request definition browser.&#160;&#160;</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>The same options are available when looking up a request code during order entry. </p>
+            <p>Microbiology labs can e.g. specify that they only want to see request codes with microbiology request definitions.</p>
+        </div>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="request_definitions_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="400" data-mc-height="314" src="request_definitions_options_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Types</p>
+        <div class="indented">
+            <p>Only show request definitions of this type.</p>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Only show request definitions with this description.</p>
+        </div>
+        <p class="fieldlabel">Issuer, Check</p>
+        <div class="indented">
+            <p>GLIMS allows to define issuer-specific request definitions.&#160;&#160;The <span class="ui_element">Issuer</span> and <span class="ui_element">Check</span> fields allow to take this characteristic into account when looking up a request definition.&#160;&#160;</p>
+            <p>You can specify the issuer and the relation between the issuer and the request definition:</p>
+            <p class="fieldlabel">None</p>
+            <div class="indented">
+                <p>The issuer is not taken into account. All request definitions are shown.</p>
+            </div>
+            <p class="fieldlabel">Available</p>
+            <div class="indented">
+                <p>Only the request definitions which can be requested for the specified issuer are shown.</p>
+            </div>
+            <p class="fieldlabel">Specific</p>
+            <div class="indented">
+                <p>Only the request definitions explicitly referring to this issuer are shown.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">
+            <p class="fieldlabel">Yes</p>
+            <div class="indented">
+                <p>Only show request definitions of which the <a href="../request_codes/request_codes.htm">request code</a> is enabled.</p>
+            </div>
+            <p class="fieldlabel">No</p>
+            <div class="indented">
+                <p>Only show request definitions of which the request code is disabled.</p>
+            </div>
+            <p class="fieldlabel">?</p>
+            <div class="indented">
+                <p>Show all request definitions, without checking if the request code is enabled or not.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Explicit</p>
+        <div class="indented">
+            <p class="fieldlabel">Yes</p>
+            <div class="indented">
+                <p>Only show request definitions of which the <a href="../request_codes/request_codes.htm">request code</a> is marked as <span class="ui_element">Explicit</span>.</p>
+            </div>
+            <p class="fieldlabel">No</p>
+            <div class="indented">
+                <p>Only show request definitions of which the <a href="../request_codes/request_codes.htm">request code</a> is not marked as <span class="ui_element">Explicit</span>.</p>
+            </div>
+            <p class="fieldlabel">?</p>
+            <div class="indented">
+                <p>Show all request definitions, without checking if the request code is marked as <span class="ui_element">Explicit</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Urgency from, to</p>
+        <div class="indented">
+            <p>Only show request definitions with a minimal / maximal urgency between this range.</p>
+        </div>
+        <h2>Property.<a name="Replace" id="Replace"></a>Replace</h2>
+        <p>The goal of this function is to replace all request definitions referring to the original property with request definitions referring to the newly chosen property.&#160;For&#160;more information, please check the chapter <a href="../properties/properties_replace.htm">Properties - Replace</a>.</p>
+    </body>
+</html>

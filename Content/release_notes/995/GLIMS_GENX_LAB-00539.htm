@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.5 - Report XML: implement list detail type mnemonic as tag and short name as attribute (GLIMS_GENX_LAB-00539)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3576"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.5 - </MadCap:conditionalText>Report XML: implement list detail type mnemonic as tag and short name as attribute (GLIMS_GENX_LAB-00539)</h1>
+        <h2>Issue</h2>
+        <p>An issue was reported in the GLIMS Genetics module, where configured locus <a href="../../modules/genetics/config/results/results_config.htm#Addition2" xmlns="http://www.w3.org/1999/xhtml">list detail types</a> were exported inside an XML report, but if the locus list detail type <span class="ui_element">Short name</span> contained a space, the generated XML file was not valid anymore.</p>
+        <h2>Solution</h2>
+        <p>The issue has been fixed.</p>
+        <p>From now on, the following XML naming rules are implemented:</p>
+        <ol>
+            <li xmlns="" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">The list detail type <span class="ui_element">Mnemonic</span> is used as tag and the <span class="ui_element">Short name</span> is used as attribute</p>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Special characters are stripped and replaced with "_Unknown", thus only numbers [0-9] and letters [A-Z] are allowed<ol style="list-style-type: lower-alpha;"><li value="1"><p xmlns="http://www.w3.org/1999/xhtml">Some special characters are stripped and replaced with an underscore "_" or not replaced at all at the beginning or the end of a mnemonic</p></li></ol></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">If the name starts with a number [0-9], the XML element will start with an underscore "_"</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">If the name starts with "XML", the XML element will start with an underscore "_"</li>
+        </ol>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">Warning for upgrade to v9.9.5 and higher</span>
+            </p>
+            <p>Report templates need to be checked for locus result detail or variant result annotation fields, and the tags in question need to be updated in case they contain spaces, special characters or other invalid values for XML tags.</p>
+        </div>
+    </body>
+</html>

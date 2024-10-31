@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - New function for result validation by responsibility delegation (GLIMS-11805)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2979"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>New function for result validation by responsibility delegation (GLIMS-11805)</h1>
+        <h2>Introduction</h2>
+        <p><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validate result by delegation</span> is a new contextual <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Result</span> function. It allows a user without the result validation privilege to do so on behalf of a HC provider, during periods in which the <a href="../../routine/results/results_responsible.htm" xmlns="http://www.w3.org/1999/xhtml">responsible</a> HC provider is  absent. Additionally, it is now possible for a HC provider to manually re-validate a result using a delegation.</p>
+        <h2>Necessary configuration</h2>
+        <h3> Responsibility</h3>
+        <p>The configuration of a <a href="../../routine/results/results_responsible.htm#Defining" xmlns="http://www.w3.org/1999/xhtml">responsibility</a> defines which results can be validated by delegation.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11805_resp.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="605" data-mc-height="602" src="GLIMS-11805_resp_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Defining a <span class="ui_element" xmlns="">Responsibility delegation</span> may affect the determination of the <a href="../../routine/results/results_responsible.htm" xmlns="http://www.w3.org/1999/xhtml">result responsible</a>.</p>
+        </div>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Responsibility delegation</h3>
+        <p>By defining a <span class="ui_element">Responsibility delegation</span> for a <span class="ui_element">Responsibility</span>, you can indicate the time period during which the delegation is in effect, the user to whom the delegation is assigned and the person in charge whose responsibilities are delegated.</p>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11805_editor.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="453" data-mc-height="401" src="GLIMS-11805_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">User</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"> The GLIMS user to whom the delegation is assigned.</p>
+        </div>
+        <p class="fieldlabel">Responsible</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The HC provider whose responsibility is delegated to the user. The delegation responsible will be used as <a href="../../routine/results/results_responsible.htm" xmlns="http://www.w3.org/1999/xhtml">result responsible</a>, if the result responsible calculation did not find an available responsible HC provider.</p>
+        </div>
+        <p class="fieldlabel">	Start daytime / End daytime</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The delegation activation time and the time during the day when the delegation stops to be active. This applies to the days determined by the options <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">On Monday</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">On Tuesday</span>, etc. between the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start date</span> and the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">End date</span>. The start daytime and end daytime settings are not used during holidays, t is assumed that a delegation is valid for the entire holiday period.</p>
+        </div>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The end daytime value can be lower than the start daytime value. <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start daytime</span> 8PM and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">End daytime</span> 8AM means that the user can validate by delegation every day between 8PM in the evening and 8AM the next morning.</p>
+        </div>
+        <p class="fieldlabel">Start date</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Start date of the delegation.</p>
+        </div>
+        <p class="fieldlabel">End date</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">End date of the delegation.</p>
+        </div>
+        <p class="fieldlabel">On Monday / ... / On Sunday</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Delegation is valid on Monday, ..., Sunday.</p>
+        </div>
+        <p class="fieldlabel">Exclude holidays</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Delegation is not valid on holidays.</p>
+        </div>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Privilege</h3>
+        <p>In order to be able to validate results by delegation, the user needs a <a href="../../security/security_privileges.htm" xmlns="http://www.w3.org/1999/xhtml">privilege</a> for the function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">ValidateByDelegation</span>.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Routine: how to validate a result by delegation</h2>
+        <h3>Context function "Validate result by delegation"</h3>
+        <p>A user with the necessary privilege and an active delegation for a result can validate a result via the contextual function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validate result by delegation</span>. An error message will be displayed if no delegation is active for the user logged in at the time of the validation by validation,  or if the responsibility of the delegation does not apply to the result.</p>
+        <h3>Order review and Specimen review</h3>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validate</span> button on the <a href="../../routine/confirmation_validation/confirmation_validation_order_review.htm#Order%20review%20screen" xmlns="http://www.w3.org/1999/xhtml">order review</a> screen and the <a href="../../routine/specimens/specimens_review.htm#Options" xmlns="http://www.w3.org/1999/xhtml">specimen review</a> screen allows the user to validate by delegation, if the current user has the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validate result by delegation</span> privilege, but does not have the general privilege necessary to validate results. Only results that correspond to the responsibility of the defined delegation are then pre-selected.</p>
+        <h3>Display of validation by delegation</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">A result which was validated by delegation acquires the new validation method status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">By delegation</span>. The validation method and validation user are visible in the <span class="ui_element">Status</span> tab of the extended <span class="ui_element">Result</span> editor.</p>
+        <h2>Routine: how to re-validate a result validated by delegation</h2>
+        <p>A HC provider might need to review the results which were validated by delegation and approve the validation of these results.</p>
+        <p>If a HC provider executes the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validate</span> function on a validated result which does not have the Validation method <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Manual</span>, then the HC provider will become the validation user and responsible of the result, thus changing the validation method into <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Manual</span>. This is logged in the result log.</p>
+        <h2>Browsers</h2>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Responsibility delegation browser</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">There is a new <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Responsibility delegation</span> browser, accessible via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondents</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC providers</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Delegations</span>. It can be used to check if the necessary responsibility delegations for a certain time point are available, e.g. for the next weekend. The query options are <span class="ui_element">Responsibility</span>, <span class="ui_element">User</span>, <span class="ui_element">Responsible</span> and <span class="ui_element">Target time</span>.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11805.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="372" data-mc-height="173" src="GLIMS-11805_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Extended result browser</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">It is possible to find results validated by delegation by using this MISPL filter in the <a href="../../routine/results/results_entry_query_browser.htm#Result%20query" xmlns="http://www.w3.org/1999/xhtml">extended result browser</a>:</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">MISPL</span>
+            </p>
+            <p xmlns="">RETURN .ValidationMethod = 5;</p>
+        </div>
+    </body>
+</html>

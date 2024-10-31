@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.50_translation_exclude_for_FR_GR">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.6 - Support for Trix version 3.0 (GLIMS_TRIX_NL-00003)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3046"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.6 - </MadCap:conditionalText>Support for Trix version 3.0 (GLIMS_TRIX_NL-00003)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS now supports version 3.0 of the <a href="../../modules/blood_transfusion/routine/transfusion_trix_connection.htm" xmlns="http://www.w3.org/1999/xhtml">TRIX&#160;interface</a>. This implies that the connection to the web service is now a direct one and no longer established via a translator. </p>
+        <p>Older versions of the Trix&#160;interface will still use the translator connection.</p>
+        <h2>Automated information check from GLIMS to Trix</h2>
+        <p>When creating an order for a patient in GLIMS, GLIMS automatically consults Trix to verify whether or not this patient is known in the Trix&#160;database. If the patient is known, the <a href="../../db/reference_guide/obj.htm" xmlns="http://www.w3.org/1999/xhtml">Object</a> field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">External info available</span> is enabled, as before.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <p>
+                <p xmlns="http://www.w3.org/1999/xhtml">The patient must have a date of birth filled in and a BSN assigned (<a href="../../configuration/correspondents/identifications.htm" xmlns="http://www.w3.org/1999/xhtml">identification</a>). If both are missing, the check is not executed.</p>
+            </p>
+        </div>
+        <h2>Consult Trix info from within GLIMS</h2>
+        <p>The context function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show external info</span> on <a href="../../db/reference_guide/obj.htm" xmlns="http://www.w3.org/1999/xhtml">Object</a> (Object.ShowExternalInfo()) allows the user to consult the external information from Trix. GLIMS reconnects to the web service and displays the temporary URL returned by Trix&#160;in an external web browser.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul>
+                <li value="1">Due to the temporary nature of the returned URL, the web service needs to be called each time the information is required.</li>
+                <li value="2">The URL currently gives access to the login page of Trix. A fully descriptive URL offering a direct link to the required information is expected to be available soon. Consequently, the user needs to enter their credentials and the BSN to see the data.</li>
+            </ul>
+        </div>
+        <p>The function Object.ShowExternalInfo() must be <a href="../../user_interface/user_interface_start_menu_customization.htm" xmlns="http://www.w3.org/1999/xhtml">pre-configured as a menu option</a> on the Object table. </p>
+        <p class="fieldlabel">Parameters</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_TRIX_NL-00003.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="866" data-mc-height="581" src="GLIMS_TRIX_NL-00003_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Webserver address Trix</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The address of the web service (V2) or the full WSDL path or the web address of the URL (V3).</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Redirect Trix</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The web address where Trix is redirected to.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">TimeOut (s)</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">Optional maximum wait time  in seconds for a web service reply (V3).</p>
+            </div>
+        </div>
+    </body>
+</html>

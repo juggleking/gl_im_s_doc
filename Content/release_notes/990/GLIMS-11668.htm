@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Link requested codes of pending orders to request definitions during activation phase (GLIMS-11668)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1229"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Link requested codes of pending orders to request definitions during activation phase (GLIMS-11668)</h1>
+        <p>The requested codes of pending orders created via manual order entry will now be linked to a request definition upon activation of the pending order and no longer upon creation of the pending order since the request definition might change between the creation and activation of the pending order.</p>
+        <p>Consequently, for pending orders created via manually order entry, the <a href="../../routine/orders/orders_m_attribute.htm#%22Request" xmlns="http://www.w3.org/1999/xhtml">Order.Attribute(“RequestList”)</a> MISPL function will now return all requested codes (RequestedCode.Code) in the order. <a href="GLIMS-11641.htm" xmlns="http://www.w3.org/1999/xhtml">This was already the case for pending orders created via electronic order entry.</a></p>
+        <p xmlns="http://www.w3.org/1999/xhtml" class="fieldlabel">Script to correct existing pending orders</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">This modification ensures that new pending orders are created without a request definition reference. However, to correct existing  pending orders, the following conversion script should be run manually as soon as possible after the upgrade to GLIMS 9.9 :</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li xmlns="" value="1">Login with a user  having a role with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Minimal user type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Developer</span>.</li>
+                <li xmlns="" value="2">Choose <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; Development &gt; 4GL &gt; Run procedure</span>.</li>
+                <li xmlns="" value="3"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">File name</span> must be <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">mcv98_ClearRQSCRequestableForPendingOrders</span>.</li>
+            </ol>
+            <p xmlns="http://www.w3.org/1999/xhtml">This script will:</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">ensure that for any pending order having a requested code (but not yet having a request) that is already linked to a request definition, the reference to the request definition is cleared.</li>
+                <li value="2">create a log file (&lt;GLIMS_TEMP&gt;/clear_requestable_reference_in_pending_orders-&lt;DATE&gt;_&lt;TIME&gt;.log) that informs the user about  the processed and skipped pending orders.</li>
+            </ol>
+            <p xmlns="http://www.w3.org/1999/xhtml">The script can be run multiple times (in case of doubt). If the number of processed orders remains 0, the script can be considered as successfully completed.</p>
+        </div>
+    </body>
+</html>

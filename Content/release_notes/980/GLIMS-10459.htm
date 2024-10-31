@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Specification and lookup of German LANRs and BSNRs (GLIMS-10459)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2528"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Specification and lookup of German LANRs and BSNRs (GLIMS-10459)</h1>
+        <h2>Introduction</h2>
+        <p>In&#160;Germany, HC providers usually have a national number, a so-called LANR.&#160;They can also have  a worpkplace specific number, a BSNR. In order to assign the correct issuer to an order, the HC provider's LANR and BSNR must be indicated during order entry.</p>
+        <p>The GLIMS user interface has therefore been adapted to allow the specification and lookup of LANRs and BSNRs in <a href="../../routine/orders/order_entry/main fields/order_entry_tab_main_fields_order.htm#Lebensla" xmlns="http://www.w3.org/1999/xhtml">order entry</a> and <a href="../../configuration/correspondents/correspondents.htm#Via" xmlns="http://www.w3.org/1999/xhtml">correspondent search screens</a>.&#160;The following sections describe the new functionality and the required configuration.</p>
+        <h2>Configuration</h2>
+        <p>Two fields should be filled in under <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System management</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Customize</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">GLIMS&#160;General</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identification</span>:</p>
+        <ul>
+            <li value="1"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for LANR</span>: if this field is not filled in, the <span class="ui_element">LANR</span> and <span class="ui_element">BSNR</span> fields will not be visible in order entry and correspondent search screens.</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for BSNR</span>: fill in this field to be able to specify and lookup BSNRs in order entry and correspondent search screens.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">This field was already used to indicate the provider of BSNRs for executing departments, and thus for executing HC providers.&#160;The provider indicated in this field is now also used as the site's provider of BSNR for requesting HC providers, i.e. issuers.</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">Before GLIMS&#160;9.8, the field used to indicate the site's provider of issuer BSNRs was <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC code provider</span>.&#160;This site provider should now be indicated in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for BSNR</span>. The provider indicated in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC&#160;code provider</span> is however still used for identifications related to German funds.</p>
+                </div>
+                <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The providers indicated in <span class="ui_element">HC code provider</span> and <span class="ui_element">Provider for BSNR</span>  do not have to be identical. However, to allow a smooth transition, current users of GLIMS should indicate the same provider in both fields.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-10479_configuration_BSNR.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="774" data-mc-height="428" src="GLIMS-10479_configuration_BSNR_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <h2>New fields</h2>
+        <p>In the <span class="ui_element">Order entry</span> screen, two fields, <span class="ui_element">LANR</span> and <span class="ui_element">BSNR</span>, have been added for both  issuers and agents.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-10459_oe_LANR-BSNR.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="521" data-mc-height="92" src="GLIMS-10459_oe_LANR-BSNR_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">These fields replace the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HCP code</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identification</span> fields, which are displayed if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for LANR</span> is not indicated.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2">As the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identification</span> field is replaced by the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LANR</span> and&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">BSNR</span> fields, the field <a href="../../routine/orders/order_entry/options/order_entry_options_tab_main.htm#Issuer" xmlns="http://www.w3.org/1999/xhtml">Issuer identif. source</a> in the order entry options is deactivated.</li>
+            </ul>
+        </div>
+        <h2>New lookup possibilities</h2>
+        <p>Double-clicking or pressing CTRL-F in the order entry <span class="ui_element">LANR</span> and <span class="ui_element">BSNR</span> fields opens a window allowing a lookup of LANRs and BSNRs.&#160;The type of window depends on the value of the field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondent search method</span> under <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tools</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Set user preferences</span>:</p>
+        <ul>
+            <li value="1">If the option is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Standard</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Browser</span>, a list of identifications is displayed.&#160;These are the LANRs/BSNRs assigned by the provider specified in the fields <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for LANR</span>/<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">BSNR</span>.</li>
+            <li value="2">If the option is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Via search screen</span>, a <a href="../../configuration/correspondents/correspondents.htm#Correspondent_search_screen" xmlns="http://www.w3.org/1999/xhtml">Correspondent search screen</a> with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LANR</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">BSNR</span> fields appears.</li>
+        </ul>
+        <p xmlns="">The searched and displayed LANRs and BSNRs are those that are valid on the date of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order lowest object time</span>, if this date is known. If the order lowest object time is not known, the searched and displayed LANRs and BSNRs are the codes that are valid on the day the functionality is being used.</p>
+    </body>
+</html>

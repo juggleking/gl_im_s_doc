@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\basicconfig\rprt_header.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Examples of header texts</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Examples of header texts</h1>
+        <p>The header field of the report template allows to specify a dynamic
+text.&#160; Below you will find an example of a header composed of different
+text modules.&#160; Each separate text module contains MISPL
+expressions/programs to fetch the necessary information.</p>
+        <p>The header could look like this:</p>
+        <table border="1" cellpadding="0" cellspacing="0" width="50%">
+            <tr>
+                <td><pre><a href="#Patient_Line1">{&lt; Patient_Line1}</a> <a href="#Patient_Line2">{&lt; Patient_Line2}</a> <a href="#Patient_Line3">{&lt; Patient_Line3}</a> <a href="#Patient_Line4">{&lt; Patient_Line4}</a> <a href="#Patient_Line5">{&lt; Patient_Line5}</a></pre><pre><a href="#Correspondent_Line1">{&lt; Correspondent_Line1}</a> <a href="#Correspondent_Line2">{&lt; Correspondent_Line2}</a> <a href="#Correspondent_Line3">{&lt; Correspondent_Line3}</a> <a href="#Correspondent_Line4">{&lt; Correspondent_Line4}</a> <a href="#Correspondent_Line5">{&lt; Correspondent_Line5}</a></pre>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="Patient_Line1"></a>Patient_Line1</h3><pre>{=IfKnownString(.Object.person().Lastname +" "+ .Object.person().Firstname)}</pre>
+        <h3><a name="Patient_Line2"></a>Patient_Line2</h3><pre>{=IfKnownString(.Object.PersonData("AddressLine1"))}</pre>
+        <h3><a name="Patient_Line3"></a>Patient_Line3</h3><pre>{=IfKnownString(.Object.PersonData("PostalCode")+" "+.Object.PersonData("MunicipalityName"))}</pre>
+        <h3><a name="Patient_Line4"></a>Patient_Line4</h3><pre>{=IfknownString(DateToString(.Object.Person().Birthdate,"%d/%m/%y")) 
++ IfKnownString( " Lft.: " + FractionalToString(.Order.Object.AgeInYears(DateTimeToDate
+(.Order.LowestObjectTime)),"%.0f")) + IfKnownString(" "+ (IF .object.Person().Sex = 1 Then " M " 
+else IF .Object.Person().Sex=2 then " V " 
+else " ? ") + " Encounter Nr.: " + .Object.Person().Stay().Encounter.ExternalId)}</pre>
+        <h3><a name="Patient_Line5"></a>Patient_Line5</h3><pre>{=IfKnownString ("Patient Nr.: " + .Order.Object.PIN("ASZINST"))}</pre>
+        <h3><a name="Correspondent_Line1"></a>Correspondent_Line1</h3><pre>{:
+String Type, Line1;
+IF ((.Order.Agent.Name &lt;&gt; ?) AND 
+(EnumeratedToString("CorrespondentType",.Order.Agent.Type)&lt;&gt;"Ward"))
+THEN 
+Type:=EnumeratedToString("CorrespondentType", .Order.Agent.Type);
+
+IF Type = "HCProvider"
+THEN
+Line1:="Dr. " + IfKnownString(.Order.Agent.HCProvider().LastName + " ") + 
+IfKnownString(.Order.Agent.HCProvider().FirstName);
+ENDIF;
+IF Type = "Person"
+THEN
+Line1:=IfKnownString(.Order.Agent.Person().LastName + " ") +
+IfKnownString(.Order.Agent.Person().FirstName);
+ENDIF;
+IF Type = "Lab"
+THEN
+Line1:=IfKnownString(.Order.Agent.Name + " ") + 
+IfKnownString(" Dr. " + .Order.Issuer.Name) ;
+ENDIF;
+/* IF ((Type &lt;&gt; "HCProvider") AND (Type &lt;&gt; "Person"))
+THEN
+Line1:=IfKnownString(.Order.Agent.Name);
+ENDIF;
+*/
+ENDIF;
+IF ((.IsCopy) OR (.Order.Agent.Name = ?) 
+OR (EnumeratedToString("CorrespondentType",.Order.Agent.Type)="Ward") )
+THEN 
+Type:=EnumeratedToString("CorrespondentType", .Target.Type);
+IF Type = "HCProvider"
+THEN
+Line1:="Dr. " + IfKnownString(.Target.HCProvider().LastName + " ") + IfKnownString(.Target.HCProvider().FirstName);
+ENDIF;
+IF Type = "Person"
+THEN
+Line1:=IfKnownString(.Target.Person().LastName + " ") + IfKnownString(.Target.Person().FirstName);
+ENDIF;
+IF ((Type &lt;&gt; "HCProvider") AND (Type &lt;&gt; "Person"))
+THEN
+Line1:=IfKnownString(.Target.Name);
+ENDIF;
+ENDIF;
+RETURN Line1;}</pre>
+        <h3><a name="Correspondent_Line2"></a>Correspondent_Line2</h3><pre>{=IfKnownString(<a href="#Crsp_prefix">{&lt;Crsp_prefix}</a>.AddressLine1)}</pre>
+        <h3><a name="Correspondent_Line3"></a>Correspondent_Line3</h3><pre>{=IfKnownString({&lt;Crsp_prefix}.Municipality.PostalCode) 
++ IfKnownString(" "+{&lt;Crsp_prefix}.Municipality.Name)}</pre>
+        <h3><a name="Correspondent_Line4"></a>Correspondent_Line4</h3><pre>{=If .Order.Encounter.Type.Code="I" then IfKnownString("Afd : " + 
+.Order.Encounter.FindStay(.Order.LowestObjectTime).Ward.Name + " " + 
+"Room : " + .Order.Encounter.FindStay(.Order.LowestObjectTime).Room ) 
+else "Ambulant"}{IfKnownString(" " + DateTimeToString(.order.LowestObjectTime,"%d/%m/%Y %H:%M"))}</pre>
+        <h3><a name="Correspondent_Line5"></a>Correspondent_Line5</h3><pre>{=IfKnownString(
+"Dept : " + .Object.Person().Stay().Ward.Name + " " +
+"Room : " + .Object.Person().Stay().Room)
+} Rec. {=DateTimeToString(.order.LowestObjectTime,"%d/%m/%Y %H:%M")}</pre>
+        <h3><a name="Crsp_prefix"></a>Crsp_prefix</h3><pre>{:
+String adres;
+IF ((.Order.Agent.Name = ?) OR 
+(EnumeratedToString("CorrespondentType",.Order.Agent.Type)="Ward"))
+THEN adres:=".Order.issuer";
+ELSE adres:=".Order.Agent";
+ENDIF;
+IF .IsCopy THEN adres:=".Target";ENDIF;
+RETURN adres;
+}</pre>
+    </body>
+</html>

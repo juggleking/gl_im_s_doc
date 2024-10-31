@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Check on object comment change during order entry (GLIMS-11725)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2010"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Check on object comment change during order entry (GLIMS-11725)</h1>
+        <h2>Problem description</h2>
+        <ol>
+            <li value="1">A user is creating an order  for  a patient.</li>
+            <li value="2">In the meantime, the same patient's object comment is updated by another user (for instance via the <a href="../../configuration/correspondents/persons.htm" xmlns="http://www.w3.org/1999/xhtml">Person</a> editor).</li>
+            <li value="3">Issue: when the first user saves the order, the object comment added by the second user disappears from the database.</li>
+        </ol>
+        <h2>Solution</h2>
+        <p>This has been corrected. Upon saving the order, GLIMS will now check if the object comment in the database has been updated:</p>
+        <ul>
+            <li value="1">If it has been updated but no object comment is specified in the order entry screen, the order entry screen will take over the object comment from the database.</li>
+            <li value="2">If it has been updated and a different object comment is specified in the order entry screen, a message will be shown informing the user about the object comment having been changed by another user and asking the user whether or not they want to reload (thus overwriting the current object comment). If the answer is:<ul xmlns="http://www.w3.org/1999/xhtml"><li value="1"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Yes</span>: the current object comment will be replaced with the comment from the database.</li><li value="2"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">No</span>: the user is taken back to the order, unable to process the order until the comments are synchronized.</li></ul></li>
+        </ul>
+    </body>
+</html>

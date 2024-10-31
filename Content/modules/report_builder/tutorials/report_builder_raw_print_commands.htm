@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Tutorials">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report Builder - Raw print commands</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor832"></a>
+            <MadCap:concept term="Report builder" />Report Builder - Raw print commands</h1>
+        <h2>Introduction</h2>
+        <p>Labels and Text/PCL reports are traditionally printed by streaming raw printer codes to a file and 'copying' that file to the printer. When GLIMS order handling code was moved from the client session to AppServer, one of the side effects at customer site was that specimen labels weren't always printed as expected (the AppServer couldn't send the label to the local printer).</p>
+        <p>One way to tackle this issue, is to prepare the file on the AppServer, and send it off to the Report builder service for further processing. After all, the Report builder service will most likely be installed on the print server, and thus have access to the printers.</p>
+        <p>However, after consultation with customer services, it became clear that there a number of scenarios where this would not work (e.g. if the <span class="ui_element">Print command</span> uses a batch file which contains logic to determine the printer 'closest' to the workstation)</p>
+        <p>Hence we have decided to cautiously introduce this feature in a way that requires system managers to explicitly 'opt into' the described behaviour.</p>
+        <h2>Evolution</h2>
+        <h3>General setting</h3>
+        <p>There is a general setting <span class="ui_element">Process print commands on Report Builder services</span> which you must enable via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">MATE</span> -&gt; <span class="ui_element">Report builder</span>. This setting is used to process print commands on report builder service instead of the local computer.</p>
+        <h3>Printer setting</h3>
+        <p>There is a <a href="../../../configuration/printers/printers_windows.htm">printer</a>-specific setting <span class="ui_element">Process print command locally</span> which you must disable before print command execution is delegated to a Report builder service.</p>
+        <p>This approach allows our service and support engineers, as well as the system managers at customer site, to migrate gradually after thorough testing.</p>
+        <h2>Print command parameters</h2>
+        <p>For a <span class="ui_element">Print command</span>, the following parameters are available:</p>
+        <ul>
+            <li value="1">&amp;1 = source file path (e.g. c:\tmp\mpr0001.prn)</li>
+            <li value="2">&amp;2 = copy count (e.g. 1)</li>
+            <li value="3">&amp;3 = windows printer path (e.g. \\printserver\printer)</li>
+            <li value="4">&amp;4 = base file name (e.g. mpr0001.prn)</li>
+            <li value="5">&amp;5 = device name (e.g. lab-workstation-1). This last parameter was added to support the 'closest printer' scenario mentioned above.</li>
+        </ul>
+        <h2>Limitations</h2>
+        <p>Take note of the following non-exhaustive list of inherent limitations:</p>
+        <ul>
+            <li value="1">UNC file paths do not work so you have to use DOS-style paths (with shared drive letters such as 'S:\')</li>
+            <li value="2">If you use a <span class="ui_element">Print command</span> such as 'notepad.exe &amp;1' then the Notepad instance will be opened on the server</li>
+        </ul>
+    </body>
+</html>

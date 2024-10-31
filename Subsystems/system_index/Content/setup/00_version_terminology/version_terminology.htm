@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\term_server\jetstream\index.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS version terminology</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" data-mc-changes="16" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align: left;">GLIMS version terminology</h1>
+        <p class="fieldlabel">MAJOR RELEASE  - E.g. 9.0.0</p>
+        <div class="indented">
+            <p>Major scheme changes are involved, requiring a down time of the database and off-line conversion procedures to be run.</p>
+        </div>
+        <p class="fieldlabel">MINOR RELEASE  - E.g.   9.4.0</p>
+        <div class="indented">
+            <p>No or only 'new-objects' schema changes are involved, enabling a customer to upgrade autonomously. </p>
+            <p>The 'auto db upgrade mechanism' will automatically modify the data model  and trigger required conversion procedures.  Down time should be minimal.  The resulting database is backwards compatible with previous minor versions within the same major version.</p>
+            <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+                <div class="MCDropDownBody dropDownBody">
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">About schema changes of type 'new objects'</span>
+                        </p>
+                        <p>If we limit schema changes to adding only certain types of new objects in the database, we have the following advantages concerning migrating from e.g. GLIMS&#160;9.3 to 9.4:</p>
+                        <ul>
+                            <li value="1">Minimal down time, no index rebuild with database down is required.</li>
+                            <li value="2">Schema changes can in principal be done online, while the lab is working; best practice however is to bring lab activity down.</li>
+                            <li value="3">After migration, it is technically possible to revert the new software version. The migrated database remains compatible with the previous version.   No need to restore a backup of the database.</li>
+                            <li value="4">Benefits on future migrations: by eliminating MIPS-defined site attributes, converting them to db fields is no longer necessary when doing future upgrades (major or minor).  This reduces down time when doing major upgrades.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">CORRECTIVE RELEASE  - E.g.   9.4.1</p>
+        <div class="indented">
+            <p>Corrective version.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>We no longer talk about 'functional' or 'structural' version.  What comes in which version (version number level), should depend on the amount of down time which is associated with migrating to the new version,  and of course also the amount of risk the new version of the software introduces.   </p>
+            <p>Schema changes are no longer done exclusively by major version upgrades.  Some schema changes can be supported on a lower release version: minor release will from now on involve minor schema changes.</p>
+        </div>
+    </body>
+</html>

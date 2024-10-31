@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Fixed "Cost location" functionality in the Purchase order editor (GLIMS_STCK-00603)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2513"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Fixed "Cost location" functionality in the Purchase order editor (GLIMS_STCK-00603)</h1>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Problem description</h2>
+        <p>Since GLIMS 9.8,  the <a href="../../configuration/work_places/work_places.htm" xmlns="http://www.w3.org/1999/xhtml">cost location</a> of a <a href="../../modules/stock_management/routine/product_ordering.htm" xmlns="http://www.w3.org/1999/xhtml">purchase order</a> was determined by the <a href="../../modules/stock_management/configuration/stock_management_general_options.htm#Default" xmlns="http://www.w3.org/1999/xhtml">default work place</a> set in the general settings of the Stock management module.</p>
+        <p>This behavior caused the creation of purchase orders with an incorrect value for the cost location:</p>
+        <ul>
+            <li value="1">If this work place was not set or had no cost location, the cost location of the created purchase order remained unknown / empty, even though a work place with a specified cost location was chosen in the editor.</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">If this work place was set and had a cost location, this cost location was inherited for the purchase order, even though a work place with a different cost location was chosen in the editor.</p>
+            </li>
+        </ul>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p class="fieldlabel" xmlns="">Purchase order editor</p>
+        <p>A new field <span class="ui_element">Cost location</span> has been added to the <span class="ui_element">Purchase order</span> editor, which allows the user to edit the cost location directly during the purchase order creation.</p>
+        <p>Unless specified otherwise by the user, this field will correctly inherit the cost location of the default / selected <a href="../../configuration/work_places/work_places.htm" xmlns="http://www.w3.org/1999/xhtml">work place</a>.</p>
+        <p>The invoice and payment information (invoice no, invoice date, payment no, payment date, cost location) in the embedded <span class="ui_element">Billing</span> browser can no longer be updated in the purchase order screen. This information should be supplied during <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">check in</a> and can be modified via the <a href="#Purchase" xmlns="http://www.w3.org/1999/xhtml">Purchase order check</a> function.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00603.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="902" data-mc-height="789" src="GLIMS_STCK-00603_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel" xmlns="">Check in screen</p>
+        <p>The cost location is still inherited from the purchase order but can from now on be updated directly in the <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">Product check in screen</a>, in the corresponding column of the <a href="../../modules/stock_management/routine/product_checkin.htm#5." xmlns="http://www.w3.org/1999/xhtml">embedded Billing browser</a>.</p>
+        <p>Additionally, billing information for previous deliveries is from now on displayed in the same browser (if available), but grayed out and in read-only mode.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00603_check_in.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="893" data-mc-height="873" src="GLIMS_STCK-00603_check_in_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel" xmlns=""><a name="Purchase" xmlns="http://www.w3.org/1999/xhtml"></a>Purchase order check function</p>
+        <p>The <a href="../../modules/stock_management/routine/product_ordering.htm#product6" xmlns="http://www.w3.org/1999/xhtml">Purchase order check</a> function now supports cost location changes next to the other billing data.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00603_check.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="509" data-mc-height="326" src="GLIMS_STCK-00603_check_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Purchase order invoice editor</p>
+        <p>The cost location (and the other invoice and payment related fields) can be modified on purchase order invoice level via the <a href="../../modules/stock_management/tracing/purchase_order_invoices.htm" xmlns="http://www.w3.org/1999/xhtml">Purchase order invoice</a> editor, but only by users having a <a href="../../security/security_roles.htm" xmlns="http://www.w3.org/1999/xhtml">role</a> with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">User type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System manager</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Developer</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00603_order_inv.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="407" data-mc-height="461" src="GLIMS_STCK-00603_order_inv_thumb_0_120.png" tabindex="" /></a>
+        </p>
+    </body>
+</html>

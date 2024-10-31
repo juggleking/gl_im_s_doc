@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Security|Privileges" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Security - Privileges</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Security - Privileges</h1>
+        <h2>About privileges</h2>
+        <ul>
+            <li value="1">Privileges</li>
+            <li value="2"><a href="security_security_center.htm">Security center</a>
+            </li>
+        </ul>
+        <h2>Introduction</h2>
+        <p>Privileges allow to protect access to GLIMS tables, functions and fields. Only users with the required privileges will have access to the associated tables, functions and fields.</p>
+        <p>The <a href="#Configuration">configuration</a> of privileges consists of two steps</p>
+        <ol>
+            <li value="1"><span style="font-weight: bold;">Create privileges and define which tables, functions and fields they protect</span>
+            </li>
+            <li value="2"><span style="font-weight: bold;">Assign the privileges to a user or role (see below)</span>
+            </li>
+        </ol>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>In the theoretical example below, the following rules are defined:</p>
+            <ol>
+                <li value="1">The <span class="ui_element">Result.Confirm</span> function is protected by a privilege named <span class="ui_element">Confirmation</span>. Only users (e.g. Dr Koch) with that privilege or users that are logged in with the role <span class="ui_element">Lab technician</span> will have access to this function.</li>
+                <li value="2">The <span class="ui_element">Result.Validate</span> function is protected by a privilege named <span class="ui_element">Validation</span>. Only users (e.g. Dr Koch) with that privilege or users that are logged in with the role <span class="ui_element">Lab biologist</span> will have access to this function.<br /></li>
+                <li value="3">The field <span class="ui_element">Person.BirthDate</span> is protected for updating by a privilege named <span class="ui_element">Application management</span>. Only ;users that are logged in with the role <span class="ui_element">Application manager</span> will be able to update the birth date of a person.<br /></li>
+                <li value="4">The table <span class="ui_element">sc_User</span> (creation) is protected by a privilege named <span class="ui_element">System administration</span> AND a privilege named <span class="ui_element">Application management</span>. In the example below, no one is currently authorized to create new users as no one has BOTH privileges.</li>
+            </ol>
+            <p>
+                <img src="privileges_scheme.png" alt="" style="border: none;" border="0" />
+            </p>
+        </div>
+        <h2>Role privileges versus user privileges</h2>
+        <p>Privileges can be granted on two levels:</p>
+        <p class="fieldlabel">Role-level </p>
+        <div class="indented">
+            <p>By assigning privileges to a role, all users logging in with that role will be granted these role privileges.</p>
+            <p>Role privileges allow a single definition of a common set of privileges. This eases the maintenance of the assigned privileges. If an individual user needs extra privileges, the role privileges can be extended by individual user privileges (see below).</p>
+        </div>
+        <p class="fieldlabel">User level</p>
+        <div class="indented">
+            <p>Allows to assign privileges to individual users. Mostly used to make exceptions to the role-based privileges.</p>
+        </div>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>The applicable privileges for a user are the <b>union of his/her user privileges and the role privileges</b> of the role chosen at log-in time.</p>
+        </div>
+        <h2><a name="Configuration" id="Configuration"></a>Configuration</h2>
+        <p>The entire <span class="ui_element">privilege - user - role</span> concept can be setup in the <a href="security_security_center.htm">Security center</a>.</p>
+        <h2>Privilege checks</h2>
+        <p>The validation of privileges depends on the <a href="security_roles_creation.htm">user type of the role</a> chosen during login. The four user types are, in increasing order of authority.</p>
+        <p class="fieldlabel">Guests</p>
+        <div class="indented">
+            <p>Guests have no privileges at all. It is impossible to assign a privilege to a guest as GLIMS will not take this into account. As a consequence, guests only have access to fields, functions or tables which are not linked to a privilege.</p>
+        </div>
+        <p class="fieldlabel">Users</p>
+        <div class="indented">
+            <p>Users have access to all functions for which they have the appropriate privilege or for which no privileges have been defined.</p>
+        </div>
+        <p class="fieldlabel">System managers</p>
+        <div class="indented">
+            <p>System managers have access to all fields, functions and tables. They also have the authority to assign privileges to users.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>There is 1 exception: system managers will not have access to functions, tables or fields protected by the <span class="ui_element">_SysAdm_NoPriv1</span> and _<span class="ui_element">SysAdm_NoPriv2</span> privileges if these privileges are not explicitly assigned to them.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Developers</p>
+        <div class="indented">
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>This user type is reserved for MIPS employees. Functions with minimal user type <span class="ui_element">Developer</span> should therefore not be executed without the assistance of a MIPS employee!</p>
+            </div>
+        </div>
+        <h2>Effects on user interface</h2>
+        <p class="fieldlabel">Start menu / Contextual menus</p>
+        <div class="indented">
+            <p><a href="../user_interface/user_interface_start_menu.htm">Start menu items</a> (tool -&gt; function) for which the user does not have the required privileges will be hidden.</p>
+        </div>
+        <p class="fieldlabel">Ribbon</p>
+        <div class="indented">
+            <p><a href="../user_interface/user_interface_ribbons_elements.htm">Ribbon items</a> (tool -&gt; function) for which the user does not have the required privileges will be hidden.</p>
+        </div>
+        <p class="fieldlabel">Side bar</p>
+        <div class="indented">
+            <p><a href="../user_interface/user_interface_side_bar_elements.htm">Side bar items</a> (tool -&gt; function) for which the user does not have the required privileges will be hidden.</p>
+        </div>
+        <p class="fieldlabel">Browser</p>
+        <div class="indented">
+            <ol>
+                <li value="1">When a user does not have the <span class="ui_element">Table</span> privilege to create / delete records from a given table, it will not be possible to add / remove records in the associated browsers.</li>
+                <li value="2">When a user does not have the <span class="ui_element">Read</span> privilege for a <span class="ui_element">Field</span>, the corresponding column in the associated browsers will not be shown.</li>
+            </ol>
+        </div>
+        <p class="fieldlabel">Editor</p>
+        <div class="indented">
+            <ol>
+                <li value="1">When a user does not have the <span class="ui_element">Table</span> privilege to update records from a given table, the fields in the associated editors will be read-only.</li>
+                <li value="2">When a user does not have the <span class="ui_element">Read</span> privilege for a <span class="ui_element">Field</span>, the corresponding field in the associated editors will not be shown.</li>
+                <li value="3">When a user does not have the <span class="ui_element">Update</span> privilege for a <span class="ui_element">Field</span>, the corresponding field in the associated editors will be read-only.</li>
+            </ol>
+        </div>
+    </body>
+</html>

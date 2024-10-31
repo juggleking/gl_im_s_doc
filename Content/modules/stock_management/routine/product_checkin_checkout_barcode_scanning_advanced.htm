@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Stock management|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Advanced barcode scanning during product check-in and check-out</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4225"></a>
+            <MadCap:concept term="Stock management" />Advanced barcode scanning during product check-in and check-out</h1>
+        <h2>Introduction</h2>
+        <p>Glims offers a mechanism to <b>interpret scanned bar codes</b> during product check-in and check-out and automatically set product data.</p>
+        <h2>Bar code interpretation</h2>
+        <p>Bar code interpretation logic is to be defined in the field <span class="ui_element">Product bar code parser</span> 
+of the general options (<span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; Glims Stock 
+Management</span>).&#160;</p>
+        <p>This field allows defining a ProductSpecification-based MISPL expression that should be structured as in the example below:</p>
+        <div class="indented"><pre>
+STRING ReturnValue;
+STRING BarCode;
+</pre><pre>
+ReturnValue := ?;
+</pre><pre>
+BarCode := PeekCharacter("g_BarCode");
+</pre><pre>
+IF .Supplier.Mnemonic = "ST_ROCHE" OR .Supplier.Mnemonic = "Abbott"
+THEN
+ReturnValue := PutTag("InternalId", Substr(BarCode, 1, 12), ReturnValue, "\");
+ReturnValue := PutTag("ExternalId", Substr(BarCode, 1, 11), ReturnValue, "\");
+ReturnValue := PutTag("LotNo", Substr(BarCode, 12, 8), ReturnValue, "\");
+ReturnValue := PutTag("ExpirationDate", Substr(BarCode, 24, 2)+Substr(Barcode,27,2)+"20"+Substr(Barcode,30,2) , ReturnValue, "\");
+ReturnValue := PutTag("Quantity", Substr(BarCode, 32, 5), ReturnValue, "\");
+ENDIF;
+</pre><pre>
+RETURN ReturnValue;
+</pre>
+        </div>
+        <p>It should contain a PeekCharacter() function to get the barcode and a number of PutTag routines which can depend on the supplier or product specification.</p>
+        <h2>Product check-in</h2>
+        <ol>
+            <li value="1">The product check-in program will attempt to extract the external id, lot no, production date, expiration date and quantity from the bar code.<br /></li>
+            <li value="2">If the <span class="ui_element">auto confirm</span> option is set and the barcode is valid, then the product browser is immediately updated with the scanned data. If the <span class="ui_element">auto confirm</span> option is not set, then the barcode info will appear in the scanned quantity, external id, lot, production- and expiration date fields, which can be updated. In that case you have to push the <span class="ui_element">confirm</span> button to update the product browser.<br /></li>
+            <li value="3">The product check-in program also supports the creation of lots, i.e. if the specified lot no does not exist for the product specification, it will be created.<br /></li>
+            <li value="4">Various bar code checks are applied:</li>
+        </ol>
+        <div class="indented">
+            <ul>
+                <li value="1">If the MISPL does not return a tagged parameter list, you will be asked to confirm using the barcode as product external id, which is in fact the default behaviour of the check in program.</li>
+                <li value="2">If the tagged parameter list contains an invalid production/expiration date (=no date at all) or scanned quantity (no integer or &lt;= 0), then the barcode will be rejected.</li>
+                <li value="3">If the scanned quantity is higher than the ordered quantity you will be asked to confirm scanning the ordered quantity.</li>
+                <li value="4">If the scanned lot no is different from the purchase order lot no, you will be asked to confirm overriding the ordered lot.</li>
+            </ul>
+        </div>
+        <h2>Product check-out</h2>
+        <p>The product check-out program will attempt to extract the product external id from the bar code by verifying all product specifications.&#160;&#160;If a product specification can be found, the check-out program will lookup products based on this product external id, otherwise the bar code will be used as such.</p>
+    </body>
+</html>

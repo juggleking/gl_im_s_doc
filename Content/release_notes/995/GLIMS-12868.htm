@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.5 - Results of auto prompt properties should have their own RequestedCode (GLIMS-12868)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1869"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.5 - </MadCap:conditionalText>Results of auto prompt properties should have their own RequestedCode (GLIMS-12868)</h1>
+        <h2>Issue</h2>
+        <p>Since the introduction of the RequestedCode concept in GLIMS 9.3, GLIMS reuses existing RequestedCode records instead of creating new RequestedCode records for requests of auto prompt properties. However, this could cause issues during electronic reporting as the results of those properties are seen as part of the originally requested "item" (for instance: microbiology procedure or panel). Consequently, HL7 messages will report the results as OBX segment within one ORC/OBR block.</p>
+        <h2>Solution</h2>
+        <p>The request of an auto prompt property is now linked to a separate RequestedCode record. This results in a clearer picture of what was originally requested and what was added later on.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p class="fieldlabel">Configuration</p>
+            <ul>
+                <li value="1">A microbiology procedure is configured with references to grafting, microscopy, processing and report properties.</li>
+                <li value="2">The microscopy procedure that outputs the microscopy property outputs two auto prompt properties as well: "auto_propA" and "auto_propB" (to allow the user to provide information on observations made during the microscopy investigation).</li>
+            </ul>
+            <p class="fieldlabel">Routine</p>
+            <ul>
+                <li value="1">
+                    <p xmlns="http://www.w3.org/1999/xhtml">The microbiology procedure is requested during order entry:</p>
+                    <ul>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1">a RequestedCode is created for the microbiology procedure</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2">no requests are created for "auto_propA" and "auto_propB"</li>
+                    </ul>
+                </li>
+                <li value="2">
+                    <p xmlns="http://www.w3.org/1999/xhtml">In the microbiology work screen,</p>
+                    <ul>
+                        <li value="1"> the microbiology action is promoted to status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Microscopy</span>.</li>
+                        <li value="2">a value is provided for the auto prompt property "auto_propA" that is listed in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Results of specimen</span> browser of the work screen.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="fieldlabel">New behaviour</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">A new request for "auto_propA" is added to the order  with its own RequestedCode (in previous versions, the request for "auto_propA" was linked to the RequestedCode of the microbiology action).</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">When generating an electronic report for the order, "auto_propA" is reported in its own OBR/OBX segment and no longer as OBX segment in the OBR segment of the microbiology action.</p>
+            </div>
+        </div>
+    </body>
+</html>

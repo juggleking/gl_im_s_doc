@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en" xml:lang="en" data-mc-search-type="Stem" data-mc-help-system-file-name="billing_index.xml" data-mc-path-to-help-system="../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Tariffication logging on Financial shipment</title>
+        <link href="Resources/Stylesheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Tariffication logging on Financial shipment</h1>
+        <p>A basic configuration consists of 5 tariffication commands.</p>
+        <p>TAR 0: Checking the <span class="ui_element">Order set label</span></p>
+        <ul>
+            <li value="1">Function: ReEvaluateOrderSetDefaults</li>
+            <li value="2">Checks the <span class="ui_element">Order set label</span> and adjusts it when needed</li>
+            <li value="3">Linked to a <span class="ui_element">Task</span>, set for running daily</li>
+        </ul>
+        <p>TAR 1: Tariffication of the <span class="ui_element">Order set</span></p>
+        <ul>
+            <li value="1">Function: Tariff</li>
+            <li value="2">Sets the <span class="ui_element">Order set</span> status to <span class="ui_element">Fixed</span> and generates the <span class="ui_element">Invoices</span></li>
+        </ul>
+        <p>TAR 2: Creation of <span class="ui_element">Invoice summary</span></p>
+        <ul>
+            <li value="1">Function: InvoiceSummaryCreation</li>
+            <li value="2">Sets the status of the <span class="ui_element">Invoices</span> to <span class="ui_element">Fixed</span> and generates the <span class="ui_element">Invoice summaries</span></li>
+        </ul>
+        <p>TAR 3: Creation of <span class="ui_element">Financial shipment</span></p>
+        <ul>
+            <li value="1">Function: PlaceOnFinancialShipment</li>
+            <li value="2">Sets the status of the <span class="ui_element">Invoice summaries</span> to <span class="ui_element">Fixed</span> and generates the <span class="ui_element">Financial shipment</span></li>
+        </ul>
+        <p>TAR 4: Sending of <span class="ui_element">Financial Shipment</span></p>
+        <ul>
+            <li value="1">Function: Send</li>
+            <li value="2">Sets the status of the <span class="ui_element">Financial shipment</span> to <span class="ui_element">Fixed </span></li>
+        </ul>
+        <p>It's in this final step, when the TAR 4 command is run, that GLIMS will do a check of the <span class="ui_element">Financial shipment</span> and the <span class="ui_element">Invoices</span> that it contains.</p>
+        <p>When all requirements are met, GLIMS will execute the TAR 4 command.</p>
+        <p>As a result of this, the <span class="ui_element">Financial shipment</span> will be promoted to status <span class="ui_element">Fixed</span> and the <span class="ui_element">Shipment date</span> on the <span class="ui_element">Financial shipment</span> will be filled in.</p>
+        <p>When there are flaws in the <span class="ui_element">Financial shipment</span> (incorrect statuses, missing elements,...), it won't be sent by the command.</p>
+        <p>As a result of this, the <span class="ui_element">Financial shipment</span> will stay in its original status (<span class="ui_element">Numbered</span> or <span class="ui_element">Initial</span>) and the <span class="ui_element">Shipment date</span> won't be filled in.</p>
+        <p>In this case, the logging on the <span class="ui_element">Financial shipment</span> can give you an indication of why  the command wasn't carried out.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_0.png" />
+        </p>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>In order for GLIMS to check the <span class="ui_element">Financial shipment</span> and save the logging, the <span class="ui_element">Log type</span> Tariffication needs to be enabled. The can be done via: <span class="ui_element">Start - System management - Logging - Log types</span>.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_4.png" />
+        </p>
+        <h2>Checking the Tariffication logging starting from the Financial shipment</h2>
+        <p>On the <span class="ui_element">Financial shipment</span>,  the logging can be checked by clicking on <span class="ui_element">Audit - Log entries</span>.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_1.png" />
+        </p>
+        <p>This will give a screen that will display all the log entries on that <span class="ui_element">Financial shipment</span>. Using 'F6'  the content of each line is displayed.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_2.png" />
+        </p>
+        <h2>Checking the Tariffication logging starting from the Start menu</h2>
+        <p>Using the general menu, navigate to <span class="ui_element">Log types</span>.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_3.png" /> </p>
+        <p>In the list, the <span class="ui_element">Log type</span> Tariffication, can be found. Opening the <span class="ui_element">Logs</span> of this <span class="ui_element">Log type</span> will give the logging of those <span class="ui_element">Financial shipments</span> that haven't been sent.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_5.png" />
+        </p>
+        <p>By clicking on <span class="ui_element">Verify</span>, each logging can be checked.</p>
+        <p>
+            <img src="Resources/Images/TarifficationLogging_6_1499x635.png" style="width: 1499;height: 635;" />
+        </p>
+    </body>
+</html>

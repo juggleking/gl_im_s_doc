@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Fix inconsistent behavior of GetLocusResult and GetVariantResult MISPL functions (GLIMS_GENX_LAB-00465)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1686"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Fix inconsistent behavior of GetLocusResult and GetVariantResult MISPL functions (GLIMS_GENX_LAB-00465)</h1>
+        <p xmlns="">Several issues were detected where the <a href="../../modules/genetics/config/mispl/reporting.htm" xmlns="http://www.w3.org/1999/xhtml">MISPL functions</a> GetVariantResult() and GetLocusResult() did not behave consistently with regards to certain parameters passed compared to other MISPL functions in GLIMS. The following changes have been implemented to resolve this issue:</p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">If the parameter <i xmlns="http://www.w3.org/1999/xhtml">MinimalStatus</i> is not specified, the lowest status will now be assumed (<i xmlns="http://www.w3.org/1999/xhtml">Expected</i> for locus results and <i xmlns="http://www.w3.org/1999/xhtml">Available</i> for variant results), while previously it was <i xmlns="http://www.w3.org/1999/xhtml">Validated</i>.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The parameter <i>Index</i> must now always be specified and has to be different from 0.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Previously, if no <i xmlns="http://www.w3.org/1999/xhtml">MinimalStatus</i> was passed to the GetVariantResult function, it never returned any variant results. This has been fixed.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">Previously, the GetLocusResult() function on GeneticExam or Object could not be used to retrieve all results. When it was used without specifying a locus name  it returned the error message "Locus with name '?' doesn't exist". This has been fixed.</li>
+        </ul>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">The following GetLocusResult MISPL construct was previously not possible (valid on GeneticExam and Object):</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">RETURN .GetLocusResult(?, ?, ?, 1).TestedLocus.Name;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">The following GetVariantResult MISPL construct was previously not possible (valid on GeneticExam, Object and Approach):</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">RETURN .GetVariantResult(?, ?, ?, ?, ?, 1).Variant.Name;</p>
+        </div>
+        <p xmlns="">The behavior of the MISPL functions GetVariantResult() and GetLocusResult() on GeneticExam, Object and Approach has been fixed. These issues occurred since GLIMS v9.9.0.</p>
+    </body>
+</html>

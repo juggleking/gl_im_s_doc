@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Station</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1352"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Station&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Station</td>
+                <td>
+stn</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Stations are locations in the laboratory where technical procedures are carried out. Some stations are automatic analysis instruments, while others are manual.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AbrsStatusCheck"></a>
+        <h3>
+Microbiology &gt; Results &gt; Check antibiotic result status</h3>
+        <div class="MemberHelp">
+            <p>
+Avoids that confirmed antibiotic results are overwritten by new results.  
+<br /><br />If the option is enabled, antibiotic results that are already confirmed will not be overwritten by new results received from the station. 
+<br />If the option is disabled, confirmed antibiotic results may be overwritten. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AbrsStatusCheck</b></p>
+        </div><a name="F_ActiveWorkList"></a>
+        <h3>
+Work order &gt; Worklist &gt; Active work list</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used for analyzers querying the host by a cup number or for mono-directional analyzers sending results for a cup. Each cup corresponds with an entry in the active worklist. Note : Do not fill in an active worklist for stations that do not work via a cup sequence number! 
+<br /><br />The active worklist indicates which tests the analyzer should execute. If an active worklist is entered, the Active work list creation time will be entered automatically.</p>
+            <p class="Synopsis"><span class="Properties">Unique Automatic </span><span class="Type"><a href="wlst.htm">WorkList</a></span>&#160;<b>ActiveWorkList</b></p>
+        </div><a name="F_AllowMoveWorkSchedSpmn"></a>
+        <h3>
+Replacement &gt; Move work to scheduled specimen</h3>
+        <div class="MemberHelp">
+            <p>
+When this field is checked, Glims will allow work to be moved to a specimen being queried which has actions that aren’t ready yet or actions with specimen outputs (sub specimens). If the field is not checked (default), then no work will be moved to the specimen if it has a not ready action or actions with specimen outputs. <br /><br />Important: <br />This field has not only effect on specimen sort queries (i.e. "LAS in slave mode"), it applies to any type of instrument querying for a specimen, and also for the specimen scan program.<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AllowMoveWorkSchedSpmn</b></p>
+        </div><a name="F_AlternateTranslator"></a>
+        <h3>
+Instrument &gt; Connections &gt; Alternate translator</h3>
+        <div class="MemberHelp">
+            <p>
+The alternate translator is useful for stations which use two communication channels which are communicating independently with the station (for example one channel for result upload and another channel for patient download)</p>
+            <p class="Synopsis"><span class="Properties">Unique </span><span class="Type"><a href="trl.htm">gp_Translator</a></span>&#160;<b>AlternateTranslator</b></p>
+        </div><a name="F_AltOrderDataFunction"></a>
+        <h3>
+Identification &gt; Order &gt; Alternate order data function</h3>
+        <div class="MemberHelp">
+            <p>
+Allows specifying an order-based MISPL function returning a string value. When specified, GLIMS will download tagged values from this string value to the station. If no tags are present, GLIMS will download the default values. The table below shows the supported tags and the corresponding MIPS ASTM fields:
+<br /><br />Tag, Field Default when no tag                                            
+<br />WARD1 P.26 Order current encounter -&gt; current Stay -&gt; Ward
+<br />WARD2 O.28.1 If requested in download query:                                               
+<br />                Order.Agent-&gt;Correspondent.InternalId (if ward) or
+<br />                Issuer.Order-&gt;Correspondent.InternalId (if ward)
+<br />WARD3 O.28.2 If requested in download query:                                               
+<br />                Order.Encounter -&gt; current Stay -&gt; Ward
+<br />ISSUER O.17 Order.Issuer-&gt;Correspondent.InternalId
+<br /><br />Example of a site function:
+<br /><br />STRING List;
+<br />STRING IssuerId;
+<br />STRING WardId;
+<br />IssuerId := .Issuer.Identification("ISRPROV");
+<br />WardId := "DEP100"; /* Default ward */
+<br />List := PutTag("Issuer", IssuerId, List, "\");
+<br />List := PutTag("Ward1", WardId, List, "\"); 
+<br />RETURN List;
+<br /><br /><br /> </p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>AltOrderDataFunction</b></p>
+        </div><a name="F_AntibioticPanelMode"></a>
+        <h3>
+Microbiology &gt; Results &gt; Antibiotic panel mode</h3>
+        <div class="MemberHelp">
+            <p>
+GLIMS allows automatic antibiogram creation. Possible values: 
+<br /><br />- None (no panel creation, allow any result): all antibiotic results transmitted by the instrument are stored. 
+<br />- Reject non members: an antibiogram will be generated automatically at the moment the first result arrives. The results of non antibiotic panel members that are transmitted by the instrument will be rejected.
+<br />- Non members not reportable: an antibiogram will be generated automatically at the moment the first result arrives. The results of non antibiotic panel members that are transmitted by the instrument will be set to not reportable (2nd and 3rd option).
+<br /><br />Note: When the 2nd or the 3th option is active, beware that results will also be rejected or will also be set to not reportable when no antibiotic panel is generated for the isolation concerned.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationantibioticpanelmode.htm">StationAntibioticPanelMode</a></span>&#160;<b>AntibioticPanelMode</b></p>
+            <p>
+One of: <span class="Parameter">None, Reject non members, Non members not reportable</span></p>
+        </div><a name="F_Archive"></a>
+        <h3>
+Associated archive</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="larc.htm">Archive</a></span>&#160;<b>Archive</b></p>
+        </div><a name="F_AutoDeleteAbResults"></a>
+        <h3>
+Microbiology &gt; Results &gt; Delete antibiotic results</h3>
+        <div class="MemberHelp">
+            <p>
+Delete existing antibiotic results when new ones are received for the isolation</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AutoDeleteAbResults</b></p>
+        </div><a name="F_Available"></a>
+        <h3>
+Scheduling availability</h3>
+        <div class="MemberHelp">
+            <p>
+If not enabled, this station will not be taken into account during the scheduling phase of order entry.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Available</b></p>
+        </div><a name="F_BarCodeLength"></a>
+        <h3>
+Identification &gt; Sample &gt; Bar code length</h3>
+        <div class="MemberHelp">
+            <p>
+The bar code received from the analyzer may contain leading zeros, not belonging to the specimen internal id. This field indicates the actual length of the specimen internal id. If unknown, the entire bar code is assumed.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>BarCodeLength</b></p>
+        </div><a name="F_BarCodeOffset"></a>
+        <h3>
+Identification &gt; Sample &gt; Bar code offset</h3>
+        <div class="MemberHelp">
+            <p>
+The bar code received from the analyzer may contain leading zeros, not belonging to the specimen internal id. This field indicates the offset at which the actual specimen id starts (no offset = 0).</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>BarCodeOffset</b></p>
+        </div><a name="F_BioradInstrumentCode"></a>
+        <h3>
+Biorad instrument code</h3>
+        <div class="MemberHelp">
+            <p>
+Biorad instrument code</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BioradInstrumentCode</b></p>
+        </div><a name="F_BloodBagId"></a>
+        <h3>
+Transfusion &gt; Blood bag id</h3>
+        <div class="MemberHelp">
+            <p>
+- Internal: Always download the blood bag internal id  
+<br />- BarcodeOrExternal: Download the blood bag external id as barcode, and if the latter is empty, the blood bag external id (this is backward compatible with the field BloodbagIdExternal)  
+<br />- External: Always download the blood bag external id  
+<br />- Barcode: Always download the blood bag external id as barcode  
+<br />- None: This option can be used for performance reasons. It prevents GLIMS from searching blood bag crossmatch tests on stations which never perform such tests.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationbloodbagidentification.htm">StationBloodbagIdentification</a></span>&#160;<b>BloodBagId</b></p>
+            <p>
+One of: <span class="Parameter">Internal, Barcode or external, External, Barcode, None</span></p>
+        </div><a name="F_CalibrationPeriod"></a>
+        <h3>
+Maintenance &gt; Calibration period</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the calibration period in days.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>CalibrationPeriod</b></p>
+        </div><a name="F_CheckDownloadedActions"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Check downloaded actions</h3>
+        <div class="MemberHelp">
+            <p>
+If this option is enabled, GLIMS will only select actions (i.e. result outputs / isolation test outputs) that have not yet been downloaded to this station, as indicated by the download status. If the query is an ALL query, GLIMS will also check if these actions have not yet been queried for by another analyzer, as indicated by the "Queried by station" option. If so, the action will be selected. The last check is not executed in case of a one-specimen query.
+<br /><br />If this option is disabled, all actions will always be selected.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>CheckDownloadedActions</b></p>
+        </div><a name="F_Code"></a>
+        <h3>
+Code</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the station code (which is shorter than the name).</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Code</b></p>
+        </div><a name="F_CodingSystem"></a>
+        <h3>
+Instrument &gt; Data mapping &gt; Coding system</h3>
+        <div class="MemberHelp">
+            <p>
+Determines the search flow to find micro-organism and antibiotic codes received from a station (result messages) and the flow for download of isolated micro-organisms codes to a station.</p>
+            <p class="Synopsis"><span class="Type"><a href="csys.htm">CodingSystem</a></span>&#160;<b>CodingSystem</b></p>
+        </div><a name="F_Color"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Color</h3>
+        <div class="MemberHelp">
+            <p>
+The color used in some programs to distinguish between stations.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Color</b></p>
+        </div><a name="F_CommentAsTextReference"></a>
+        <h3>
+Result &gt; Comments &gt; Comment as text reference</h3>
+        <div class="MemberHelp">
+            <p>
+If enabled, result comment codes received from the station are stored as text reference. This means that the code is prefixed with "{&lt;" and suffixed
+<br />with "}". Note that these text references are not automatically expanded.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>CommentAsTextReference</b></p>
+        </div><a name="F_CommentStorage"></a>
+        <h3>
+Result &gt; Comments &gt; Comment storage</h3>
+        <div class="MemberHelp">
+            <p>
+Determines which types of result comments (coded, textual) received from the station are to be stored.
+<br /><br />- Code or text: Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only coded comment is stored. 
+<br />- Text or code: Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only textual
+<br />comment is stored 
+<br />- Coded only: Only coded comment is stored 
+<br />- Text only: Only textual comment is stored 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationcommentstorage.htm">StationCommentStorage</a></span>&#160;<b>CommentStorage</b></p>
+            <p>
+One of: <span class="Parameter">Code or Text, Text or Code, Code only, Text only</span></p>
+        </div><a name="F_Concentrator"></a>
+        <h3>
+Instrument &gt; Connections &gt; Concentrator</h3>
+        <div class="MemberHelp">
+            <p>
+Allows linking a client station to a station of type "Concentrator".</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Station</a></span>&#160;<b>Concentrator</b></p>
+        </div><a name="F_ConfirmAntibiogram"></a>
+        <h3>
+Microbiology &gt; Results &gt; Auto confirm antibiotic results</h3>
+        <div class="MemberHelp">
+            <p>
+If set, antibiotic results uploaded from the instrument will be automatically confirmed.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ConfirmAntibiogram</b></p>
+        </div><a name="F_ConfirmIsolations"></a>
+        <h3>
+Microbiology &gt; Results &gt; Auto confirm isolations</h3>
+        <div class="MemberHelp">
+            <p>
+If set, isolations uploaded from the instrument will be automatically confirmed.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ConfirmIsolations</b></p>
+        </div><a name="F_ConfirmIsolationTests"></a>
+        <h3>
+Microbiology &gt; Results &gt; Auto confirm isolation tests</h3>
+        <div class="MemberHelp">
+            <p>
+If set, isolation tests uploaded from the instrument will be automatically confirmed.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ConfirmIsolationTests</b></p>
+        </div><a name="F_CreateOrder"></a>
+        <h3>
+Identification &gt; Sample &gt; Create order if necessary</h3>
+        <div class="MemberHelp">
+            <p>
+Used to lookup a specimen in GLIMS when a barcode is received from the instrument.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>CreateOrder</b></p>
+        </div><a name="F_CreateSpecimen"></a>
+        <h3>
+Identification &gt; Sample &gt; Create specimen if necessary</h3>
+        <div class="MemberHelp">
+            <p>
+Used to lookup a specimen in GLIMS when a barcode is received from the instrument.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>CreateSpecimen</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DataSize"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Data size</h3>
+        <div class="MemberHelp">
+            <p>
+With this option, one can specify the data character size of downloaded name fields like for instance the name of the patient.
+<br />When set to 7 bits, the name fields will be downloaded converted to values with characters in the range a-z, A-Z and 0-9. Characters that remain are space and the '-' character. Characters that have not a meaningful
+<br /> translation (such as ©, ¶, ...) are eliminated.
+<br />When set to 8 bits, name fields are downloaded as they are stored in Glims.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="databits.htm">DataBits</a></span>&#160;<b>DataSize</b></p>
+            <p>
+One of: <span class="Parameter">8 bits, 7 bits</span></p>
+        </div><a name="F_Distributor"></a>
+        <h3>
+Instrument &gt; Connections &gt; LAS station</h3>
+        <div class="MemberHelp">
+            <p>
+Allows linking a client station to a station of type "LAS".</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Station</a></span>&#160;<b>Distributor</b></p>
+        </div><a name="F_DnlFinishedTests"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Download finished tests</h3>
+        <div class="MemberHelp">
+            <p>
+Glims is able to download confirmed/validated and/or discontinued tests in a download message. The finished/discontinued tests are downloaded together with new requested tests. This functionality is activated if following conditions are met:
+<br /><br />1. To download confirmed/validated tests: the station receives a test selection query with an indication 'FinishedTests' (MIPS ASTM field Q.15.x)
+<br />To download discontinued tests: the station receives a test selection query with an indication 'CancelledTests' (MIPS ASTM field Q.15.x)
+<br /><br />2. The station for which finished tests should be downloaded, should have the field "Download finished tests" enabled. Note that the field has only effect on the requests scheduled for that station.
+<br /><br />For performance reasons, Glims will only search maximal 24 hours in the past for finished results. For each new ALL-query, results finished before the last query are not downloaded again. Even if a downloaded and confirmed result becomes validated, the result test is no longer downloaded.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>DnlFinishedTests</b></p>
+        </div><a name="F_DownloadGroup"></a>
+        <h3>
+Download group</h3>
+        <div class="MemberHelp">
+            <p>
+Field to link analyzer stations to a common download group. When one or more stations share the same download group value, actions scheduled on one of the stations can be downloaded to all stations of the group. Note that download groups are only used for stations of type "Analyzer".
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>DownloadGroup</b></p>
+        </div><a name="F_DownloadQcAsPatient"></a>
+        <h3>
+Identification &gt; Object &gt; Download QC as Patient</h3>
+        <div class="MemberHelp">
+            <p>
+Download QC as patient samples to station, meaning that samples in the download message to the station will always be sent as if they were patient samples. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>DownloadQcAsPatient</b></p>
+        </div><a name="F_EnteringDeviceId"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Entering device</h3>
+        <div class="MemberHelp">
+            <p>
+Device identification of this station</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>EnteringDeviceId</b></p>
+        </div><a name="F_EventEvaluation"></a>
+        <h3>
+Instrument &gt; Event handling &gt; Event evaluation</h3>
+        <div class="MemberHelp">
+            <p>
+Site function to handle station events</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>EventEvaluation</b></p>
+        </div><a name="F_EvtPrcdResultCnf"></a>
+        <h3>
+Result &gt; Synchronization &gt; Procedure data results &gt; Confirmed</h3>
+        <div class="MemberHelp">
+            <p>
+Set this option if the station should be synchronized with procedure data results that have been confirmed</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>EvtPrcdResultCnf</b></p>
+        </div><a name="F_EvtPrcdResultDis"></a>
+        <h3>
+Result &gt; Synchronization &gt; Procedure data results &gt; Discontinued</h3>
+        <div class="MemberHelp">
+            <p>
+Set this option if the station should be synchronized with procedure data results that have been discontinued</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>EvtPrcdResultDis</b></p>
+        </div><a name="F_EvtPrpoResultDis"></a>
+        <h3>
+Result &gt; Synchronization &gt; Property output results &gt; Discontinued</h3>
+        <div class="MemberHelp">
+            <p>
+Set this option if the station should be synchronized with results that have been discontinued</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>EvtPrpoResultDis</b></p>
+        </div><a name="F_EvtPrpoResultMod"></a>
+        <h3>
+Result &gt; Synchronization &gt; Property output results &gt; Modified</h3>
+        <div class="MemberHelp">
+            <p>
+Set this option if the station should be synchronized with modified result values. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>EvtPrpoResultMod</b></p>
+        </div><a name="F_FutureObjectTime"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Future object time limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used for optimalization in the selection of actions for work order download.
+<br />When set, Glims will not process actions for which the action's object time is more recent than the future object time limit. The limit is expressed in a number of 24 hours.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>FutureObjectTime</b></p>
+        </div><a name="F_Group"></a>
+        <h3>
+Group</h3>
+        <div class="MemberHelp">
+            <p>
+Group to which the station belongs</p>
+            <p class="Synopsis"><span class="Type"><a href="stg.htm">StationGroup</a></span>&#160;<b>Group</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Station</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_IdentificationType"></a>
+        <h3>
+Identification &gt; Sample &gt; Identification type</h3>
+        <div class="MemberHelp">
+            <p>
+The Identification type is the type of specimen identification used on the station.
+<br />When a bar code is sent from the station, the program first checks if there is a specimen identification record for this bare code, before trying specimen external or specimen internal id (see relevant fields).</p>
+            <p class="Synopsis"><span class="Type"><a href="spit.htm">SpecimenIdentificationType</a></span>&#160;<b>IdentificationType</b></p>
+        </div><a name="F_IsolationCommentTarget"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Store comment as</h3>
+        <div class="MemberHelp">
+            <p>
+Store received comment by default as isolation internal or external comment?</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationcommenttarget.htm">StationCommentTarget</a></span>&#160;<b>IsolationCommentTarget</b></p>
+            <p>
+One of: <span class="Parameter">Internal, External</span></p>
+        </div><a name="F_IsolationNumbering"></a>
+        <h3>
+Microbiology &gt; Results &gt; Isolation numbering</h3>
+        <div class="MemberHelp">
+            <p>
+The isolation numbering field determines how isolations are identified in the communication with the station: either via the internal sequencer (e.g. Merlin) or the external sequencer (e.g. SIR)  </p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="isolationnumbering.htm">IsolationNumbering</a></span>&#160;<b>IsolationNumbering</b></p>
+            <p>
+One of: <span class="Parameter">Internal, External</span></p>
+        </div><a name="F_IsolationSequenceType"></a>
+        <h3>
+Microbiology &gt; Isolation sequence type</h3>
+        <div class="MemberHelp">
+            <p>
+This field refers a isolation sequence type.</p>
+            <p class="Synopsis"><span class="Type"><a href="ist.htm">IsolationSequenceType</a></span>&#160;<b>IsolationSequenceType</b></p>
+        </div><a name="F_IsolClearComments"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Clear isolation comments</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if internal and external isolation comment are to be cleared with each uploaded isolation from the station.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>IsolClearComments</b></p>
+        </div><a name="F_IsolCommentAsTextRef"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Isolation comment as text ref.</h3>
+        <div class="MemberHelp">
+            <p>
+If enabled, isolation comment codes received from the station are stored as text reference. This means that the code is prefixed with "{&lt;" and suffixed with "}". Note that these text references are not automatically expanded.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>IsolCommentAsTextRef</b></p>
+        </div><a name="F_IsolCommentStorage"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Isolation comment storage</h3>
+        <div class="MemberHelp">
+            <p>
+Determines which types of isolation comments (coded, textual) received from the station are to be stored.
+<br /><br />- Code or text: Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only coded comment is stored. 
+<br />- Text or code: Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only textual
+<br />comment is stored 
+<br />- Coded only: Only coded comment is stored 
+<br />- Text only: Only textual comment is stored 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationcommentstorage.htm">StationCommentStorage</a></span>&#160;<b>IsolCommentStorage</b></p>
+            <p>
+One of: <span class="Parameter">Code or Text, Text or Code, Code only, Text only</span></p>
+        </div><a name="F_IsolMultiCommentLines"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Isolation multiple comment lines</h3>
+        <div class="MemberHelp">
+            <p>
+If set, comments are separated with a new line character. If not set, comments are concatenated with 1 blank character. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>IsolMultiCommentLines</b></p>
+        </div><a name="F_IsolOverwriteComment"></a>
+        <h3>
+Microbiology &gt; Isolation comments &gt; Overwrite comment</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if an internal or external isolation comment should be overwritten by a newly uploaded comment from the station.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>IsolOverwriteComment</b></p>
+        </div><a name="F_IsolUpdateStatusLimit"></a>
+        <h3>
+Microbiology &gt; Results &gt; Isolation update status limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows limiting the status in which isolations can be updated by a station. This field offers the following options: 
+<br /><br />Available: if the isolation is confirmed or validated, the update is rejected. Available isolations may be updated. 
+<br />Confirmed: if the isolation is validated, the update is rejected. Available and confirmed isolations may be updated. 
+<br />Validated: the update is always allowed, even for validated isolations. 
+<br /><br />The default value is "Available". Note that discontinued isolations are always rejected.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="isolationupdatestatuslimit.htm">IsolationUpdateStatusLimit</a></span>&#160;<b>IsolUpdateStatusLimit</b></p>
+            <p>
+One of: <span class="Parameter">Available, Confirmed, Validated</span></p>
+        </div><a name="F_IsotUpdateStatusLimit"></a>
+        <h3>
+Microbiology &gt; Results &gt; Isolation test update status limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows limiting the status in which isolation tests can be updated by a station. This field offers the following options:
+<br />Available
+<br />Confirmed
+<br />Validated</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="isolationtestupdatestatuslimit.htm">IsolationTestUpdateStatusLimit</a></span>&#160;<b>IsotUpdateStatusLimit</b></p>
+            <p>
+One of: <span class="Parameter">Available, Confirmed, Validated</span></p>
+        </div><a name="F_LASConnectSeverity"></a>
+        <h3>
+Instrument &gt; Event handling &gt; LAS connect severity limit</h3>
+        <div class="MemberHelp">
+            <p>
+LAS connect severity limit<br />Any station flag 'laboratory device severity' equal or lower than this severity will force the current station to become 'Connected'.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>LASConnectSeverity</b></p>
+        </div><a name="F_LASDisconnectSeverity"></a>
+        <h3>
+Instrument &gt; Event handling &gt; LAS disconnect severity limit</h3>
+        <div class="MemberHelp">
+            <p>
+LAS disconnect severity limit<br />Any station flag 'laboratory device severity' equal or higher than this severity will force the current station to become 'Disconnected'</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>LASDisconnectSeverity</b></p>
+        </div><a name="F_LastCalibration"></a>
+        <h3>
+Maintenance &gt; Last calibration</h3>
+        <div class="MemberHelp">
+            <p>
+Last calibration</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>LastCalibration</b></p>
+        </div><a name="F_LastConfigChange"></a>
+        <h3>
+Last configuration change time</h3>
+        <div class="MemberHelp">
+            <p>
+Last time a reload of the configuration was requested</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastConfigChange</b></p>
+        </div><a name="F_LastMaintenance"></a>
+        <h3>
+Maintenance &gt; Last maintenance</h3>
+        <div class="MemberHelp">
+            <p>
+Last maintenance</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>LastMaintenance</b></p>
+        </div><a name="F_LastScannedPosition"></a>
+        <h3>
+Last scanned position</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>LastScannedPosition</b></p>
+        </div><a name="F_LastScannedRack"></a>
+        <h3>
+Last scanned rack</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>LastScannedRack</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MaintenancePeriod"></a>
+        <h3>
+Maintenance &gt; Maintenance period</h3>
+        <div class="MemberHelp">
+            <p>
+The Maintenance period is the ideal number of days between consecutive maintenance sessions of the instrument.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>MaintenancePeriod</b></p>
+        </div><a name="F_MarkActionByGroup"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Mark actions by download group</h3>
+        <div class="MemberHelp">
+            <p>
+For stations grouped in a "Download group" (stations with the same remote id) you can mark that an action (and its result outputs / isolation test outputs) has been downloaded by one of the stations belonging to the download group. In order to activate this marking mechanism, you must enable the option "Mark action by group" for all stations that belong to the download group. This option will prevent stations to download actions which are already downloaded to another station of the same download group.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MarkActionByGroup</b></p>
+        </div><a name="F_Material"></a>
+        <h3>
+Identification &gt; Sample &gt; Primary material</h3>
+        <div class="MemberHelp">
+            <p>
+Refers to the primary material of the station. When SearchViaOrder or CreateSpecimen is used, the specimen is supposed to contain this material.</p>
+            <p class="Synopsis"><span class="Type"><a href="mat.htm">Material</a></span>&#160;<b>Material</b></p>
+        </div><a name="F_MaxResultXmtStatus"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Maximal result status</h3>
+        <div class="MemberHelp">
+            <p>
+Sets the maximal result status for which results can be selected for download to the station.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="maxresultdownloadstatus.htm">MaxResultDownloadStatus</a></span>&#160;<b>MaxResultXmtStatus</b></p>
+            <p>
+One of: <span class="Parameter">Expected, Available</span></p>
+        </div><a name="F_MicroResultsGroup"></a>
+        <h3>
+Microbiology &gt; Results &gt; Microbiology upload group</h3>
+        <div class="MemberHelp">
+            <p>
+Accept microbiology results of any station in the group</p>
+            <p class="Synopsis"><span class="Type"><a href="stg.htm">StationGroup</a></span>&#160;<b>MicroResultsGroup</b></p>
+        </div><a name="F_MinActionBtchDnlStatus"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Minimal action status</h3>
+        <div class="MemberHelp">
+            <p>
+This option determines the minimal status that actions should have before they will be downloaded in batch (ALL-query).
+<br /><br />When set to "Inputting", specimens should not be confirmed in order to be downloaded. 
+<br />When set to "Pending", specimens should first be confirmed.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="minactionbtchdnlstatus.htm">MinActionBtchDnlStatus</a></span>&#160;<b>MinActionBtchDnlStatus</b></p>
+            <p>
+One of: <span class="Parameter">Inputting, Pending</span></p>
+        </div><a name="F_MinSpmnBtchDnlStatus"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Minimal Specimen Status</h3>
+        <div class="MemberHelp">
+            <p>
+The minimal status an input specimen should have before its actions can be selected during batch download (i.e. all query). Possible values are “initial”, which will take all specimen (sampled or not yet sampled) into account, or “expected” which will discard the actions of specimen that are not yet sampled. Remark that specimen that have an automatically started "sampling procedure" (i.e. a procedure only having an specimen output) also have the status “expected”</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="minspecimenbtchdnlstatus.htm">MinSpecimenBtchDnlStatus</a></span>&#160;<b>MinSpmnBtchDnlStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Expected</span></p>
+        </div><a name="F_Mnemonic"></a>
+        <h3>
+Mnemonic</h3>
+        <div class="MemberHelp">
+            <p>
+The Mnemonic is the default visible identification of the station. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">Mnemonic</span>&#160;<b>Mnemonic</b></p>
+        </div><a name="F_MoveIfKnownOutboundId"></a>
+        <h3>
+Replacement &gt; Move if known outbound id</h3>
+        <div class="MemberHelp">
+            <p>
+Move output of actions only if at least one assessment method has known outbound id</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MoveIfKnownOutboundId</b></p>
+        </div><a name="F_MoveWorkOfScannedSpmn"></a>
+        <h3>
+Replacement &gt; Move work of scanned specimen</h3>
+        <div class="MemberHelp">
+            <p>
+Allow actions of an earlier scanned specimen from moving to a queried specimen:<br /><br />  By default Glims will not allow moving work from an action to a specimen being queried if the specimen from which outputs are being moved from was scanned earlier by the inquiring station. Glims recognizes the 'source' specimen as being scanned when a scan event for the station is available in the specimen audit trail.<br /><br />This field ensures backward compatibility, when enabled then the check on the scan event is disabled (by default it is disabled).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MoveWorkOfScannedSpmn</b></p>
+        </div><a name="F_MultipleCommentLines"></a>
+        <h3>
+Result &gt; Comments &gt; Multiple comment lines</h3>
+        <div class="MemberHelp">
+            <p>
+If set, comments are separated with a new line character. If not set, comments are concatenated with 1 blank character.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MultipleCommentLines</b></p>
+        </div><a name="F_Name"></a>
+        <h3>
+Name</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the name of the auto-analyzer, place of survey etc.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">String</span>&#160;<b>Name</b></p>
+        </div><a name="F_PastObjectTime"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Past object time limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used for optimalization in the selection of actions for work order download.
+<br />When set, Glims will not process actions for which the action's object time is older than the past object time limit. The limit is expressed in a number of 24 hours.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>PastObjectTime</b></p>
+        </div><a name="F_PatientIdentification"></a>
+        <h3>
+Identification &gt; Object &gt; Patient identification</h3>
+        <div class="MemberHelp">
+            <p>
+Determines how the patient should be identified in analyzer communication by PIN, PVN, object internal id or national number.
+<br /><br />When "National number" is selected, the national number is sent in the work order message's patient id field (MIPS ASTM P.3.1.1). It also instructs Glims to search by national number when a station queries for a patient by id. Glims will also send the national number in the work order message as the patient's universal number (MIPS ASTM P.5.1.1). </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationpatientidentification.htm">StationPatientIdentification</a></span>&#160;<b>PatientIdentification</b></p>
+            <p>
+One of: <span class="Parameter">Person identification code, Order encounter external id, Current encounter external id, Object internal id, National number, Object id</span></p>
+        </div><a name="F_PersonAltName"></a>
+        <h3>
+Work order &gt; General &gt; Patient data &gt; Person alternative name</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows to customize the patient alternative name field (P.7.1.1) in the outgoing work order ASTM-message to the station. The options to choose from are:<br />i.	The last name of the spouse (= default)<br />ii.	The person’s last name<br />iii.	The display last name<br />iv.	The legal name<br />v.	Nothing (if the station does not need this information at all, then there is no need to send it)<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="personnamechoice.htm">PersonNameChoice</a></span>&#160;<b>PersonAltName</b></p>
+            <p>
+One of: <span class="Parameter">none, display last name, last name, legal name, spouse last name</span></p>
+        </div><a name="F_PersonLastName"></a>
+        <h3>
+Work order &gt; General &gt; Patient data &gt; Person last name</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows to customise the patient last name field (P.6.1.1) in the outgoing work order ASTM-message to the station. The options to choose from are:<br />i.	The person’s last name (= default)<br />ii.	The last name of the spouse<br />iii.	The display last name<br />iv.	The legal name<br />v.	Nothing (if the station does not need this information at all, then there is no need to send it)<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="personnamechoice.htm">PersonNameChoice</a></span>&#160;<b>PersonLastName</b></p>
+            <p>
+One of: <span class="Parameter">none, display last name, last name, legal name, spouse last name</span></p>
+        </div><a name="F_QCCheckTranslator"></a>
+        <h3>
+Instrument &gt; Connections &gt; QC check translator</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used for stations which have to check QC results with an external QC check program communicating with this translator.</p>
+            <p class="Synopsis"><span class="Type"><a href="trl.htm">gp_Translator</a></span>&#160;<b>QCCheckTranslator</b></p>
+        </div><a name="F_QCDeviationUsage"></a>
+        <h3>
+Result &gt; QC &gt; Population accuracy &gt; Deviation usage</h3>
+        <div class="MemberHelp">
+            <p>
+How should the Deviation-field (M.5.1.1) of an ASTM QC result record (M.3.1.1 = QC) be used for the accuracy of the corresponding QC population?</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="qcdeviationaccuracyusage.htm">QCDeviationAccuracyUsage</a></span>&#160;<b>QCDeviationUsage</b></p>
+            <p>
+One of: <span class="Parameter">Ignore, Calculate limits</span></p>
+        </div><a name="F_QCManager"></a>
+        <h3>
+Maintenance &gt; QC manager</h3>
+        <div class="MemberHelp">
+            <p>
+Refers to the user who acts as QC manager for this station. This user may receive email alerts when important events occur (e.g. evaluation period of a control is full).</p>
+            <p class="Synopsis"><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>QCManager</b></p>
+        </div><a name="F_QCSetTargetDeviation"></a>
+        <h3>
+Result &gt; QC &gt; Population precision &gt; As target deviation</h3>
+        <div class="MemberHelp">
+            <p>
+Use the Deviation-field (M.5.1.1) of an ASTM QC result record (M.3.1.1 = QC) to set the target-deviation (precision) of the corresponding QC population.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>QCSetTargetDeviation</b></p>
+        </div><a name="F_QCSetTargetMean"></a>
+        <h3>
+Result &gt; QC &gt; Population precision &gt; As target mean</h3>
+        <div class="MemberHelp">
+            <p>
+Use the Target-field (M.4.1.1) of an ASTM QC result record (M.3.1.1 = QC) to set the target-mean (precision) of the corresponding QC population.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>QCSetTargetMean</b></p>
+        </div><a name="F_QCSetTargetValue"></a>
+        <h3>
+Result &gt; QC &gt; Population accuracy &gt; As target value</h3>
+        <div class="MemberHelp">
+            <p>
+Use the Target-field (M.4.1.1) of an ASTM QC result record (M.3.1.1 = QC) to set the target-value (accuracy) of the corresponding QC population.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>QCSetTargetValue</b></p>
+        </div><a name="F_ReagentLotSolver"></a>
+        <h3>
+Result &gt; Reagents &gt; Reagent lot solver</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>ReagentLotSolver</b></p>
+        </div><a name="F_RemoteId"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Remote id</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the remote instrument identification. Useful to identify concentrator client stations upon queries from the concentrator (the concentrator is queried for one/more samples scheduled on a concentrator client station with a remote id matching the remote id transmitted in the query)</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>RemoteId</b></p>
+        </div><a name="F_ReportWorklistAge"></a>
+        <h3>
+Work order &gt; Report Worklist &gt; Report worklist age</h3>
+        <div class="MemberHelp">
+            <p>
+Maximal age of work list in hours.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>ReportWorklistAge</b></p>
+        </div><a name="F_ReportWorklistItems"></a>
+        <h3>
+Work order &gt; Report Worklist &gt; Report worklist items</h3>
+        <div class="MemberHelp">
+            <p>
+This field is considered in combination with the other worklist selection parameters: stn_ReportWorklistPattern, stn_ReportWorklistVersions and stn_ReportWorklistAge.
+<br /><br />If enabled, procedure outputs are selected only if they are defined as an item on the work list template of the work list being selected.
+<br /><br />If disabled, all outputs of a work list entry procedure are selected, no matter if work list template items are defined.
+<br /><br />Note:
+<br />If a selected work list has no template, all result output will be selected, no matter the setting of stn_ReportWorklistItems.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ReportWorklistItems</b></p>
+        </div><a name="F_ReportWorklistPattern"></a>
+        <h3>
+Work order &gt; Report Worklist &gt; Report worklist pattern</h3>
+        <div class="MemberHelp">
+            <p>
+Wildcard pattern for worklist name.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ReportWorklistPattern</b></p>
+        </div><a name="F_ReportWorklistVersions"></a>
+        <h3>
+Work order &gt; Report Worklist &gt; Report worklist versions</h3>
+        <div class="MemberHelp">
+            <p>
+Versions of worklists.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationworklistversions.htm">StationWorklistVersions</a></span>&#160;<b>ReportWorklistVersions</b></p>
+            <p>
+One of: <span class="Parameter">Latest, All</span></p>
+        </div><a name="F_ResultCommentTarget"></a>
+        <h3>
+Result &gt; Comments &gt; Store comment as</h3>
+        <div class="MemberHelp">
+            <p>
+Store received comment by default as result internal or external comment?</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationcommenttarget.htm">StationCommentTarget</a></span>&#160;<b>ResultCommentTarget</b></p>
+            <p>
+One of: <span class="Parameter">Internal, External</span></p>
+        </div><a name="F_ResultComplTimeLookup"></a>
+        <h3>
+Result &gt; Other &gt; Result completion time lookup</h3>
+        <div class="MemberHelp">
+            <p>
+Use instrument completion time to find existing results</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ResultComplTimeLookup</b></p>
+        </div><a name="F_ResultStartTimeLookup"></a>
+        <h3>
+Result &gt; Other &gt; Result start time lookup</h3>
+        <div class="MemberHelp">
+            <p>
+Use instrument start time to find existing results</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ResultStartTimeLookup</b></p>
+        </div><a name="F_ResultUpdateStatusLim"></a>
+        <h3>
+Result &gt; Other &gt; Result update status limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows limiting the status in which results can be updated by a station. This field offers the following options:<br />Available<br />Confirmed<br />Validated</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="resultupdatestatuslimit.htm">ResultUpdateStatusLimit</a></span>&#160;<b>ResultUpdateStatusLim</b></p>
+            <p>
+One of: <span class="Parameter">Available, Confirmed, Validated</span></p>
+        </div><a name="F_RunCapacity"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Run capacity</h3>
+        <div class="MemberHelp">
+            <p>
+The maximum numbers of samples per run. Indicates the number of samples that fit into the instrument's tray.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>RunCapacity</b></p>
+        </div><a name="F_RunCreation"></a>
+        <h3>
+Result &gt; Runs &gt; Run creation</h3>
+        <div class="MemberHelp">
+            <p>
+Decides how StationRun records for this station are created: 
+<br /><br />a. 'Manual': station run records will be created manually (e.g. via Station.StartRuns() ); 
+<br />b. 'Automatic': station run records will be automatically created during result entry, following the rules defined in AssessmentMethod.RequiredStartQC, Assessmentmethod.RequiredEndQC and AssessmentMethod.QCCycleLength
+<br />c. 'Ad hoc': station run records will be created automatically when the Result.ProcessRun() function is used or when navigating to nonexisting runs in the StatioRun Review browser.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationruncreation.htm">StationRunCreation</a></span>&#160;<b>RunCreation</b></p>
+            <p>
+One of: <span class="Parameter">None, Manual, Automatic, Ad Hoc</span></p>
+        </div><a name="F_RunEvaluation"></a>
+        <h3>
+Result &gt; Runs &gt; Run evaluation</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the validity of a station run is to be examined at the start or at the end of a run (taking start and end qc results into account).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="stationrunevaluation.htm">StationRunEvaluation</a></span>&#160;<b>RunEvaluation</b></p>
+            <p>
+One of: <span class="Parameter">None, At start, At end</span></p>
+        </div><a name="F_SampleQueryByWorklist"></a>
+        <h3>
+Work order &gt; Worklist &gt; Sample query by worklist</h3>
+        <div class="MemberHelp">
+            <p>
+When enabled, Glims will allow sample queries on the selected worklists. This means that only actions belonging to the queried sample are downloaded.
+<br />When disabled, only the ALL queries will download all actions of the selected worklists</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SampleQueryByWorklist</b></p>
+        </div><a name="F_SamplingAddress"></a>
+        <h3>
+Identification &gt; POC &gt; Sampling address</h3>
+        <div class="MemberHelp">
+            <p>
+Correspondent where the sampling address is stored</p>
+            <p class="Synopsis"><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>SamplingAddress</b></p>
+        </div><a name="F_SamplingLocation"></a>
+        <h3>
+Identification &gt; POC &gt; Sampling location</h3>
+        <div class="MemberHelp">
+            <p>
+Indication where specimens were sampled</p>
+            <p class="Synopsis"><span class="Type"><a href="samplinglocation.htm">SamplingLocation</a></span>&#160;<b>SamplingLocation</b></p>
+            <p>
+One of: <span class="Parameter">Central, Decentral, Object site, Specific, Series</span></p>
+        </div><a name="F_SearchViaOrder"></a>
+        <h3>
+Identification &gt; Sample &gt; Search via order</h3>
+        <div class="MemberHelp">
+            <p>
+Used to lookup a specimen in GLIMS when a barcode is received from the instrument.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SearchViaOrder</b></p>
+        </div><a name="F_SendCompleteSelection"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Send complete selection</h3>
+        <div class="MemberHelp">
+            <p>
+If set, the complete test selection will always be sent to the station. When a request is added to an already downloaded specimen, all result outputs (the ones already sent and new ones) are selected for download.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SendCompleteSelection</b></p>
+        </div><a name="F_SendRepeatInfo"></a>
+        <h3>
+Work order &gt; General &gt; Test selection &gt; Send modification method</h3>
+        <div class="MemberHelp">
+            <p>
+If set, Glims will download the result repeat or dilute information to the station.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SendRepeatInfo</b></p>
+        </div><a name="F_SeqNo"></a>
+        <h3>
+Seq no</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>SeqNo</b></p>
+        </div><a name="F_SerialNumber"></a>
+        <h3>
+Instrument &gt; Instrument specification &gt; Serial no</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the serial number of the instrument.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>SerialNumber</b></p>
+        </div><a name="F_SourceBodySiteName"></a>
+        <h3>
+Identification &gt; Specimen variables &gt; Source body site name</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used to indicate which specimen variable should be considered as the source body site. This field is used in combination with the "Specimen variables" field.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>SourceBodySiteName</b></p>
+        </div><a name="F_SpecimenSizeUnit"></a>
+        <h3>
+Instrument &gt; Data mapping &gt; Specimen size unit</h3>
+        <div class="MemberHelp">
+            <p>
+Default specimen size unit on station.
+<br />Upon download of a specimen, the specimen size value will be converted to this unit.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="unit.htm">Unit</a></span>&#160;<b>SpecimenSizeUnit</b></p>
+        </div><a name="F_SpecimenVariables"></a>
+        <h3>
+Identification &gt; Specimen variables &gt; Specimen variables</h3>
+        <div class="MemberHelp">
+            <p>
+This option determines which specimen variables should be downloaded to the analyzer.
+<br /><br />1. Only source body site: Only the specimen variable known as the specimen source body site (E.g.: left arm, left hand, right lung) is downloaded. The source body site variable is identified by the material variable for which the name equals the one specified in the "Source body site" field. In case this field is not specified, Glims will assume that the body site variable is the one with the lowest sequence number.  
+<br /><br />2. All: all specimen variables are downloaded. If the specimen source body site is identified in the "Source body site" field, Glims will download this specimen variable as source body site. All other specimen variables are downloaded as non specimen source body site variables. If no specimen source is identified as being the source body site, Glims assumes there is no source body site and will download all specimen variables as non specimen source body site variables.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationspecimenvariables.htm">StationSpecimenVariables</a></span>&#160;<b>SpecimenVariables</b></p>
+            <p>
+One of: <span class="Parameter">Only source body site, All</span></p>
+        </div><a name="F_SpmnAutoConfSeverity"></a>
+        <h3>
+Identification &gt; Sample &gt; Specimen auto confirm severity</h3>
+        <div class="MemberHelp">
+            <p>
+Highest severity level for which specimens can be confirmed automatically upon an event communicated by the station. See also StationEventCode.Severity</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>SpmnAutoConfSeverity</b></p>
+        </div><a name="F_StoreOperatorId"></a>
+        <h3>
+Result &gt; Other &gt; Store operator id</h3>
+        <div class="MemberHelp">
+            <p>
+The internal server broker for analyzers supports the storage of the operator id of a result received from an analyzer. If this option is activated, the id received from the analyzer should exist in Glims as user login name or user initials. If not, the result will be rejected ! If the option is enabled and no operator id is received, the batch user of the internal service will be used. The operator id will appear in the result audit trail like the following example: 11/09/03 10:51:54 Downloaded by the-operator-id [10.20]
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>StoreOperatorId</b></p>
+        </div><a name="F_StoreVerifierId"></a>
+        <h3>
+Result &gt; Other &gt; Store verifier id</h3>
+        <div class="MemberHelp">
+            <p>
+The internal server broker for analyzers supports the storage of the verifier id of a result received from an analyzer. If this option is activated, the id received from the analyzer should exist in Glims as user login name or user initials. If not, the result will be rejected !
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>StoreVerifierId</b></p>
+        </div><a name="F_SynchronizeBackward"></a>
+        <h3>
+Identification &gt; Sample &gt; Synchronize backward</h3>
+        <div class="MemberHelp">
+            <p>
+In GLIMS, it possible to indicate in e.g. the specimen receipt program that the object time of an order and its entire contents (results, specimens, ...) should be synchronized with the current time.
+<br /><br />To allow this mechanism to be used automatically when a specimen is confirmed via e.g. a sample distributor, you can use the following fields: 
+<br /><br />1. Station.SynchronizeBackward and Station.SynchronizedForward indicate that if a specimen is confirmed via scanning for this station, synchronization is to take place.  
+<br />2. The field Order.Synchronized indicates if an order has already been synchronized or not.   
+<br />3. An order can only be synchronized once. 
+<br /><br />Note: The synchronization options of the specimen scan and specimen receipt programs will have preference over the settings of the selected station in these programs.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SynchronizeBackward</b></p>
+        </div><a name="F_SynchronizeForward"></a>
+        <h3>
+Identification &gt; Sample &gt; Synchronize forward</h3>
+        <div class="MemberHelp">
+            <p>
+See option 'Synchronize backward'</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SynchronizeForward</b></p>
+        </div><a name="F_SyncReagentLotOnUpload"></a>
+        <h3>
+Result &gt; Reagents &gt; Synchronize lot on upload</h3>
+        <div class="MemberHelp">
+            <p>
+Link results with reagent lot created with a previous result message</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SyncReagentLotOnUpload</b></p>
+        </div><a name="F_TimeLastAllQryCncTst"></a>
+        <h3>
+Last all query for canceled tests</h3>
+        <div class="MemberHelp">
+            <p>
+Datetime to keep track of the time when the last all query for canceled tests was received.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>TimeLastAllQryCncTst</b></p>
+        </div><a name="F_TimeLastAllQryFinTst"></a>
+        <h3>
+Last all query for finished tests</h3>
+        <div class="MemberHelp">
+            <p>
+Datetime to keep track of the time when the last all query for finished tests was received</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>TimeLastAllQryFinTst</b></p>
+        </div><a name="F_Translator"></a>
+        <h3>
+Instrument &gt; Connections &gt; Translator</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the translator in case of online connection with an instrument or hospital information system. </p>
+            <p class="Synopsis"><span class="Properties">Unique </span><span class="Type"><a href="trl.htm">gp_Translator</a></span>&#160;<b>Translator</b></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+This fields determines the type of station (one of Analyzer, Concentrator, Distributor, Counter, Scan, Manual, Calculator).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationtype.htm">StationType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Analyzer, Concentrator, LAS, Counter, Scan, Manual, Calculator</span></p>
+        </div><a name="F_UnknownSpecimenTrigger"></a>
+        <h3>
+Identification &gt; POC &gt; Unknown specimen trigger</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function will be called if the incoming specimen identification is not found in the database. The base table record of this function will contain the original identification in the Specimen.InternalId field.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>UnknownSpecimenTrigger</b></p>
+        </div><a name="F_UploadPerSpecimen"></a>
+        <h3>
+Result &gt; Other &gt; Upload per specimen</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the station (or the translator) sends all the results of the same specimen in one action. If no set, then the QC result upload will create an action with a result output for each possible qc population for this qc material, in order to make sure that the next qc result of the same control material is stored in the same action (otherwise an action would be created for each separate result of the same control material, leading to problems in the confirmation browser). 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>UploadPerSpecimen</b></p>
+        </div><a name="F_UrgencyLevelCodes"></a>
+        <h3>
+Instrument &gt; Data mapping &gt; Urgency levels</h3>
+        <div class="MemberHelp">
+            <p>
+Mapping of urgency levels with those on instrument. For instance:
+<br />R,S1,S2,S3,U
+<br />Urgency level 1 will be transmitted to the translator as 'R', urgency level 2 will be transmitted as 'S1', etc.
+<br /><br />If the urgency level is not within the list or if the field stn_UrgencyLevels is unknown, the urgency code will be transmitted to the translator as 'R' for level 1 and 'S' for any level above 1</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>UrgencyLevelCodes</b></p>
+        </div><a name="F_UseSpecimenExternalId"></a>
+        <h3>
+Identification &gt; Sample &gt; Use external id</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the bar code in a query or result should be used to search the specimen via its external id field.
+<br />When SpecimenIdentificationType is specified, a SpecimenIdentification with this bar code always has precedence over the external id.
+<br />Note that a 'range query' will also be treated via a specimen external id range search (unlesss specimenidentificationtype has been set)</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>UseSpecimenExternalId</b></p>
+        </div><a name="F_UseSpecimenInternalId"></a>
+        <h3>
+Identification &gt; Sample &gt; Use specimen internal id as barcode</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the bar code in a query or result should be used to search the specimen via its internal id field.
+<br />When SpecimenIdentificationType or UseSpecimenExternalId is also specified, a SpecimenIdentification with this bar code or a specimen with this external id always has precedence over the internal id.
+<br />Note that a 'range query' will be treated as a specimen internal id range search (unlesss specimenidentificationtype or UseSpecimenExternalId was set).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>UseSpecimenInternalId</b></p>
+        </div><a name="F_Variables"></a>
+        <h3>
+Variables</h3>
+        <div class="MemberHelp">
+            <p>
+Hidden field containing XML text. For future use</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Variables</b></p>
+        </div><a name="F_VerifyUploadedMaterial"></a>
+        <h3>
+Result &gt; Other &gt; Verify uploaded material</h3>
+        <div class="MemberHelp">
+            <p>
+Verify if material received in result message matches with specimen</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>VerifyUploadedMaterial</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_WorklistAge"></a>
+        <h3>
+Work order &gt; Worklist &gt; Worklist age</h3>
+        <div class="MemberHelp">
+            <p>
+Maximal age of work list in hours. Work lists that are older than the given number of hours since the time of the station inquiry are not selected.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>WorklistAge</b></p>
+        </div><a name="F_WorklistExclusive"></a>
+        <h3>
+Work order &gt; Worklist &gt; Exclusive worklist selection</h3>
+        <div class="MemberHelp">
+            <p>
+Enable if only this station should transmit work orders by means of the worklist selection</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>WorklistExclusive</b></p>
+        </div><a name="F_WorklistItems"></a>
+        <h3>
+Work order &gt; Worklist &gt; Worklist items</h3>
+        <div class="MemberHelp">
+            <p>
+This field is considered in combination with the other worklist selection parameters: stn_WorklistPattern, stn_WorklistVersions and stn_WorklistAge.
+<br /><br />If enabled, procedure outputs are selected only if they are defined as an item on the work list template of the work list being selected. If disabled, all outputs of a work list entry procedure are selected, no matter if work list template items are defined.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>WorklistItems</b></p>
+        </div><a name="F_WorklistNamePattern"></a>
+        <h3>
+Work order &gt; Worklist &gt; Worklist name pattern</h3>
+        <div class="MemberHelp">
+            <p>
+Wildcard pattern for worklist name. When using this work list name pattern, you MUST also specify a work list age.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>WorklistNamePattern</b></p>
+        </div><a name="F_WorklistVersions"></a>
+        <h3>
+Work order &gt; Worklist &gt; Worklist versions</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if only the latest version or all versions of a work list (with the same name) should be selected.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="stationworklistversions.htm">StationWorklistVersions</a></span>&#160;<b>WorklistVersions</b></p>
+            <p>
+One of: <span class="Parameter">Latest, All</span></p>
+        </div><a name="F_WorkPlace"></a>
+        <h3>
+Work place</h3>
+        <div class="MemberHelp">
+            <p>
+The Work place spinner references the work place to which the station belongs. A laboratory can be divided into different subspecialties called workplaces. For example: Biochemistry, Hematology, Immunology, etc. A workplace can contain different stations. An example could also be a workplace containing all Advia stations.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<b>WorkPlace</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_MicrobiologyActions"></a>
+        <h3>
+Actions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActions</b> ()</p>
+        </div><a name="M_ActiveWorkList"></a>
+        <h3>
+Active work list&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ActiveWorkList</b> ()</p>
+        </div><a name="M_AltOrderDataFunction"></a>
+        <h3>
+Alternate order data function&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AltOrderDataFunction</b> ()</p>
+        </div><a name="M_AlternateTranslator"></a>
+        <h3>
+Alternate translator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AlternateTranslator</b> ()</p>
+        </div><a name="M_AssessmentMethodCodes"></a>
+        <h3>
+Assessment method codes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+When the station is of type distributor or concentrator, this function allows to map assessment methods of clients stations with codes valid on the concentrator or distributor system.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AssessmentMethodCodes</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AssessmentmethodsOfStation"></a>
+        <h3>
+Assessment methods&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AssessmentmethodsOfStation</b> ()</p>
+        </div><a name="M_Archive"></a>
+        <h3>
+Associated archive&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Archive</b> ()</p>
+        </div><a name="M_Tasks"></a>
+        <h3>
+Browse&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Tasks</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_StationsOfStationByMnemonicLASstation"></a>
+        <h3>
+By Mnemonic&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationsOfStationByMnemonicLASstation</b> ()</p>
+        </div><a name="M_StationrunsOfStationByStartTime"></a>
+        <h3>
+By Start time&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationrunsOfStationByStartTime</b> ()</p>
+        </div><a name="M_StationChannelQCStatus"></a>
+        <h3>
+Channel status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationChannelQCStatus</b> ()</p>
+        </div><a name="M_CodingSystem"></a>
+        <h3>
+Coding system&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CodingSystem</b> ()</p>
+        </div><a name="M_Concentrator"></a>
+        <h3>
+Concentrator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Concentrator</b> ()</p>
+        </div><a name="M_RunConfirmation"></a>
+        <h3>
+Confirm runs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RunConfirmation</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">PreSelectRuns</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PreSelectRuns</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="M_DilutionCodes"></a>
+        <h3>
+Dilution codes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DilutionCodes</b> ()</p>
+        </div><a name="M_EditProcedures"></a>
+        <h3>
+Edit procedures&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Allows to edit the inputs and outputs of a procedure in one screen</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EditProcedures</b> ()</p>
+        </div><a name="M_EventCodes"></a>
+        <h3>
+Event codes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EventCodes</b> ()</p>
+        </div><a name="M_EventEvaluation"></a>
+        <h3>
+Event evaluation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EventEvaluation</b> ()</p>
+        </div><a name="M_GenerateWorkListTemplate"></a>
+        <h3>
+Generate work list template&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GenerateWorkListTemplate</b> ()</p>
+        </div><a name="M_Group"></a>
+        <h3>
+Group&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Group</b> ()</p>
+        </div><a name="M_IdentificationType"></a>
+        <h3>
+Identification type&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>IdentificationType</b> ()</p>
+        </div><a name="M_IsolationSequenceType"></a>
+        <h3>
+Isolation sequence type&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>IsolationSequenceType</b> ()</p>
+        </div><a name="M_Distributor"></a>
+        <h3>
+LAS station&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Distributor</b> ()</p>
+        </div><a name="M_SortingZones"></a>
+        <h3>
+LAS station sorting zones&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SortingZones</b> ()</p>
+        </div><a name="M_MicroResultsGroup"></a>
+        <h3>
+Microbiology upload group&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicroResultsGroup</b> ()</p>
+        </div><a name="M_MicrobiologyMicroorganismTestMethods"></a>
+        <h3>
+Microorganism test methods&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyMicroorganismTestMethods</b> ()</p>
+        </div><a name="M_NewTask"></a>
+        <h3>
+New task&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>NewTask</b> (<span class="Type">Date</span>&#160;<span class="Parameter">Date</span>, <span class="Type"><a href="priority.htm">Priority</a></span>&#160;<span class="Parameter">Priority</span>, <span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<span class="Parameter">User</span>, <span class="Type">String</span>&#160;<span class="Parameter">Description</span>, <span class="Type">String</span>&#160;<span class="Parameter">Comment</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MailUser</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">Date</span></dt>
+                <dt><span class="Type"><a href="priority.htm">Priority</a></span>&#160;<span class="Parameter">Priority</span></dt>
+                <dd>
+One of: <span class="Parameter">Low, Normal, High, Alarm</span><br /></dd>
+                <dt><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<span class="Parameter">User</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Description</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Comment</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MailUser</span></dt>
+            </dl>
+        </div><a name="M_Material"></a>
+        <h3>
+Primary material&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Material</b> ()</p>
+        </div><a name="M_Procedures"></a>
+        <h3>
+Procedures&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Procedures</b> ()</p>
+        </div><a name="M_MicrobiologyProcedures"></a>
+        <h3>
+Procedures starting on station&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyProcedures</b> ()</p>
+        </div><a name="M_PublishLASStatusOverview"></a>
+        <h3>
+Publish laboratory device status overview</h3>
+        <div class="MemberHelp">
+            <p>
+Publish laboratory device LAS status overview</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PublishLASStatusOverview</b> ()</p>
+        </div><a name="M_QCQCAudits"></a>
+        <h3>
+QC audits&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCQCAudits</b> ()</p>
+        </div><a name="M_QCCheckTranslator"></a>
+        <h3>
+QC check translator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCCheckTranslator</b> ()</p>
+        </div><a name="M_QCManager"></a>
+        <h3>
+QC manager&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCManager</b> ()</p>
+        </div><a name="M_ReagentLotSolver"></a>
+        <h3>
+Reagent lot solver&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReagentLotSolver</b> ()</p>
+        </div><a name="M_ReloadConfiguration"></a>
+        <h3>
+Reload configuration&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ReloadConfiguration</b> ()</p>
+        </div><a name="M_ResultFlags"></a>
+        <h3>
+Result flags&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ResultFlags</b> ()</p>
+        </div><a name="M_ResultsToConfirm"></a>
+        <h3>
+Results to confirm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ResultsToConfirm</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SamplingAddress"></a>
+        <h3>
+Sampling address&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SamplingAddress</b> ()</p>
+        </div><a name="M_SetLASStatusConnected"></a>
+        <h3>
+Set LAS status connected&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Set LAS status connected</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SetLASStatusConnected</b> ()</p>
+        </div><a name="M_SetLASStatusDisconnected"></a>
+        <h3>
+Set LAS status disconnected&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Set LAS status disconnected</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SetLASStatusDisconnected</b> ()</p>
+        </div><a name="M_SetMicrobiologySynchronisation"></a>
+        <h3>
+Set microbiology synchronisation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SetMicrobiologySynchronisation</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncMcraSts</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsGrafting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsMicroscopy</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReading</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReReading</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReadC</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReadV</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReady</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsClosed</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsDsc</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncCarr</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrInsert</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrUpdate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrDelete</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncIsol</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolInsert</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolUpdate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolDelete</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncIsot</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotInsert</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotUpdate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotDelete</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncMcraSts</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsGrafting</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsMicroscopy</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReading</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReReading</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReadC</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReadV</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsReady</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsClosed</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncMcraStsDsc</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncCarr</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrInsert</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrUpdate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncCarrDelete</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncIsol</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolInsert</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolUpdate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsolDelete</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">EnableSyncIsot</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotInsert</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotUpdate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SyncIsotDelete</span></dt>
+            </dl>
+        </div><a name="M_SpecimenSizeUnit"></a>
+        <h3>
+Specimen size unit&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SpecimenSizeUnit</b> ()</p>
+        </div><a name="M_StartRuns"></a>
+        <h3>
+Start runs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>StartRuns</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">StartTime</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OnlyEndRunsWithMedianResultCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowEndedRuns</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">StartTime</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OnlyEndRunsWithMedianResultCount</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowEndedRuns</span></dt>
+            </dl>
+        </div><a name="M_StationAssignments"></a>
+        <h3>
+Station assignments&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationAssignments</b> ()</p>
+        </div><a name="M_LogStationLog"></a>
+        <h3>
+Station log&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogStationLog</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_StationstatusOfStation"></a>
+        <h3>
+Station status</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationstatusOfStation</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_StationUsers"></a>
+        <h3>
+Station users&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationUsers</b> ()</p>
+        </div><a name="M_StationsOfConcentrator"></a>
+        <h3>
+Stations of concentrator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationsOfConcentrator</b> ()</p>
+        </div><a name="M_StationsOfDistributor"></a>
+        <h3>
+Stations of distributor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationsOfDistributor</b> ()</p>
+        </div><a name="M_StopRuns"></a>
+        <h3>
+Stop runs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>StopRuns</b> (<span class="Type">String</span>&#160;<span class="Parameter">EndTime</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ExcludeEmpty</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ExcludeUnprocessed</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OnlyEndRunsWithMedianResultCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowEndedRuns</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">EndTime</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ExcludeEmpty</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ExcludeUnprocessed</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OnlyEndRunsWithMedianResultCount</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowEndedRuns</span></dt>
+            </dl>
+        </div><a name="M_SynchronizeResultReagents"></a>
+        <h3>
+Synchronize results with reagents&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SynchronizeResultReagents</b> (<span class="Type">String</span>&#160;<span class="Parameter">AvailableSince</span>, <span class="Type">String</span>&#160;<span class="Parameter">AvailableUntil</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AvailableSince</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AvailableUntil</span></dt>
+            </dl>
+        </div><a name="M_Translator"></a>
+        <h3>
+Translator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Translator</b> ()</p>
+        </div><a name="M_UnknownSpecimenTrigger"></a>
+        <h3>
+Unknown specimen trigger&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>UnknownSpecimenTrigger</b> ()</p>
+        </div><a name="M_UnprocessedStationRunsOfStation"></a>
+        <h3>
+Unprocessed runs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>UnprocessedStationRunsOfStation</b> ()</p>
+        </div><a name="M_ReagentLotUsage"></a>
+        <h3>
+Used reagent lots&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReagentLotUsage</b> ()</p>
+        </div><a name="M_WorkPlace"></a>
+        <h3>
+Work place&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WorkPlace</b> ()</p>
+        </div><a name="M_WorkflowVisualizationTool"></a>
+        <h3>
+Workflow Visualization Tool&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WorkflowVisualizationTool</b> ()</p>
+        </div><a name="M_WorkListTemplates"></a>
+        <h3>
+Worklist templates&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WorkListTemplates</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_GetStationEventCode"></a>
+        <h3>
+GetStationEventCode</h3>
+        <div class="MemberHelp">
+            <p>
+Finds a station event code on this station.</p>
+            <p class="Synopsis"><span class="Type"><a href="stec.htm">StationEventCode</a></span>&#160;<b>GetStationEventCode</b> (<span class="Type">String</span>&#160;<span class="Parameter">EventCode</span>, <span class="Type">String</span>&#160;<span class="Parameter">EventType</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">EventCode</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">EventType</span></dt>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Stations</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="#" class="selected">Station</a>.<a href="#F_Concentrator">Concentrator</a></p>
+        </div>
+        <h3>
+Stations</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="#" class="selected">Station</a>.<a href="#F_Distributor">Distributor</a></p>
+        </div>
+        <h3>
+Worklist templates</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="wlt.htm">WorkListTemplate</a>.<a href="wlt.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Procedures</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="proc.htm">Procedure</a>.<a href="proc.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Result flags of station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="snfg.htm">StationFlag</a>.<a href="snfg.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Assessment methods on station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="amtd.htm">AssessmentMethod</a>.<a href="amtd.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Microbiology procedures</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="mcrp.htm">MicrobiologyProcedure</a>.<a href="mcrp.htm#F_DefaultStation">DefaultStation</a></p>
+        </div>
+        <h3>
+Microbiology actions on station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Microorganism test methods of station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="motm.htm">MicroOrganismTestMethod</a>.<a href="motm.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Specimen audits</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="spau.htm">SpecimenAudit</a>.<a href="spau.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+QC audits</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="qcau.htm">QCAudit</a>.<a href="qcau.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Reagent lot usage</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rgtu.htm">ReagentUsage</a>.<a href="rgtu.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Runs of station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="srun.htm">StationRun</a>.<a href="srun.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Tasks for station</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="tsk.htm">Task</a>.<a href="tsk.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Station logs</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stlg.htm">StationLog</a>.<a href="stlg.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Dilution codes</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="dlc.htm">DilutionCode</a>.<a href="dlc.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Station assignments</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stna.htm">StationAssignment</a>.<a href="stna.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+LAS sorting zones</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="srtz.htm">SortingZone</a>.<a href="srtz.htm#F_Distributor">Distributor</a></p>
+        </div>
+        <h3>
+Station event codes</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stec.htm">StationEventCode</a>.<a href="stec.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Station events</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stne.htm">w_StationEvent</a>.<a href="stne.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Micro screen sync devices</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="mcrs.htm">MicroScreenSyncDevice</a>.<a href="mcrs.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Assessment method codes</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="amc.htm">AssessmentMethodCode</a>.<a href="amc.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Specimen sort audits</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="ssa.htm">SpecimenSortAudit</a>.<a href="ssa.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Station users</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="stnu.htm">StationUser</a>.<a href="stnu.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Station status</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Supportive Cascade </span><a href="stns.htm">StationStatus</a>.<a href="stns.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Actions of stations</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wact.htm">w_ActionsOfStation</a>.<a href="wact.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Statistic runs</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="brun.htm">BAMRun</a>.<a href="brun.htm#F_Station">Station</a></p>
+        </div>
+        <h3>
+Material validity rules</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="mavr.htm">MaterialValidityRule</a>.<a href="mavr.htm#F_Station">Station</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Standard"></a>
+        <h3>
+Standard station query</h3>
+        <div class="MemberHelp">
+            <p>
+Standard station query</p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Mnemonic </b>
+            </li>
+            <li value="3"><span class="Properties">Unique </span><b>+ ActiveWorkList </b>
+            </li>
+            <li value="4"><span class="Properties">Unique </span><b>+ AlternateTranslator </b>
+            </li>
+            <li value="5"><b>+ AltOrderDataFunction </b>
+            </li>
+            <li value="6"><b>+ Archive </b>
+            </li>
+            <li value="7"><b>+ CodingSystem </b>
+            </li>
+            <li value="8"><b>+ Concentrator + Mnemonic </b>
+            </li>
+            <li value="9"><b>+ Distributor + Mnemonic </b>
+            </li>
+            <li value="10"><b>+ EventEvaluation </b>
+            </li>
+            <li value="11"><b>+ Group </b>
+            </li>
+            <li value="12"><b>+ IdentificationType + Mnemonic </b>
+            </li>
+            <li value="13"><b>+ IsolationSequenceType </b>
+            </li>
+            <li value="14"><b>+ Material + Mnemonic </b>
+            </li>
+            <li value="15"><b>+ MicroResultsGroup </b>
+            </li>
+            <li value="16"><b>+ QCCheckTranslator </b>
+            </li>
+            <li value="17"><span class="Properties">Unique </span><b>+ QCManager + Mnemonic </b>
+            </li>
+            <li value="18"><b>+ ReagentLotSolver </b>
+            </li>
+            <li value="19"><b>+ RemoteId </b>
+            </li>
+            <li value="20"><b>+ SamplingAddress </b>
+            </li>
+            <li value="21"><b>+ SpecimenSizeUnit </b>
+            </li>
+            <li value="22"><span class="Properties">Unique </span><b>+ Translator </b>
+            </li>
+            <li value="23"><b>+ Type </b>
+            </li>
+            <li value="24"><b>+ UnknownSpecimenTrigger </b>
+            </li>
+            <li value="25"><b>+ WorkPlace </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

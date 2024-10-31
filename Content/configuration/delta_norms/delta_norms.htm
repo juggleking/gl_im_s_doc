@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Lab procedures|Norms and severities" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\deltanorms.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title> Delta norms</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1> Delta norms</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> 
+ - <a href="#Examples">Examples</a> - <a href="#Use_baseline_value_for_studies">Use 
+ baseline value for studies</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p><a name="kanchor150"></a>Delta norms set reference 
+ values for the difference between consecutive assessments of the same 
+ property on the same object.&#160;&#160;</p>
+        <p>The search for previous results 
+ against which delta checks are executed takes the following criteria into 
+ account :</p>
+        <ol>
+            <li class="kadov-p" value="1">Unsolicited results are not taken into account, 
+	 because they might be unreliable.</li>
+            <li class="kadov-p" value="2">The minimal previous result status should at least 
+	 be <span class="ui_element">Confirmed</span>, not <span class="ui_element">Available</span>, for the same reason.</li>
+        </ol>
+        <p>Select the property for which you want to define a delta norm and select the contextual menu/ribbon item <span class="ui_element">Delta norms.&#160;</span></p>
+        <h2><a name="Fields"></a>Fields</h2>
+        <p class="fieldlabel">Severity</p>
+        <div class="indented">
+            <p>Severity 
+	 applied to results for which this delta check fails. &#160;For more information, please check the chapter <a href="../severities/severities.htm">Severities</a>.</p>
+        </div>
+        <p class="fieldlabel">Discriminator</p>
+        <div class="indented">
+            <p>If specified, this delta 
+	 norm will only be applied when the property was requested with the 
+	 specified discriminator.&#160;</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When GLIMS&#160;evaluates which delta 
+	 norms are applicable, the following logic is applied: as soon as 1 
+	 delta norm for the result's discriminator is found, only delta norms 
+	 matching the result discriminator will be considered.&#160;&#160;Other 
+	 delta norms will no longer be taken into account.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Object template</p>
+        <div class="indented">
+            <p>If specified, this delta norm will only be applied for objects of the specified 
+	 template. (e.g. delta norm only applicable for objects of object template 
+	 'horse')</p>
+        </div>
+        <p class="fieldlabel">Discriminator restricted</p>
+        <div class="indented">
+            <p>Indicates that the base result used to compare the new result 
+	 with, should have the same discriminator as the new result.</p>
+        </div>
+        <p class="fieldlabel">Material restricted</p>
+        <div class="indented">
+            <p>Indicate that the delta norm is restricted 
+	 to results of the same material.</p>
+        </div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">
+            <p>Can 
+	 be used to disable the delta norm without deleting it. Not deleting 
+	 a delta norm allows it to be included with values assessed earlier, 
+	 when the delta norm was still enabled.</p>
+        </div>
+        <p class="fieldlabel">Eligibility</p>
+        <div class="indented">
+            <p>Allows specifying a Result-based, Logical-valued MISPL expression. </p>
+            <p>It is 
+	 evaluated as a final criterion for each delta norm fitting the result 
+	 context. </p>
+            <ul>
+                <li value="1">If it evaluates to <span class="ui_element">False</span>, the delta norm is not eligible. 
+	 </li>
+                <li value="2">If it evaluates to <span class="ui_element">True</span>, the delta 
+	 norm is eligible.&#160;&#160;</li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When executing the specified MISPL function, 
+	 the updated result record is not yet written to the database.&#160;&#160;This 
+	 implies that start table methods like <span class="ui_element">.NumericValue</span> will NOT work! </p>
+                <p>The only <span class="ui_element">Result</span> fields that can be 
+	 relied upon in this MISPL field are <span class="ui_element">.RawValue</span> and <span class="ui_element">.AvailabilityUser</span></p>
+            </div>
+        </div>
+        <p class="fieldlabel">Type</p>
+        <div class="indented">
+            <p class="fieldlabel">Linear</p>
+            <div class="indented">
+                <p>In case of <span class="ui_element">Linear</span> delta norms, it is assumed that the new result is allowed to deviate from 
+ the previous result by the <span class="ui_element">same number PER Lapse denominator</span> (see below).</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>When the allowed deviation is 10% per 2 days (<span class="ui_element">Lapse denominator</span>), 
+ then the allowed deviation after 4 days is 20% of the original value.&#160;</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Exponential</p>
+            <div class="indented">
+                <p>In case of <span class="ui_element">Exponential</span> delta norms, it is assumed that the new result is allowed to deviate from the previous result by the <span class="ui_element">same percentage per 
+ Lapse denominator</span> and that this is a cumulative process.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>When the allowed deviation is -10% per 2 days (<span class="ui_element">Lapse denominator</span>) and 
+ the original value is 100, then the allowed value is 90 after 
+ 2 days, 81 after 4 days, 72.9 after 6 days, ect.</p>
+                </div>
+                <p>The formula used is:</p>
+                <div class="box_grey">
+                    <p> <i>X = X0 * EXP(1 + &lt;p&gt;/100, &lt;time&gt; / &lt;Lapse 
+ denominator&gt;)</i></p>
+                    <p>where &lt;p&gt; is expressed in percent and typically 
+ is negative.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Lapse denominator</p>
+        <div class="indented">
+            <p>A fractional day count. Check the description of the <span class="ui_element">Type</span> field for an example of its usage.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Assume a linear delta norm: </p>
+                <ul>
+                    <li style="text-align: left;" value="1">Low limit= -10, </li>
+                    <li style="text-align: left;" value="2">High limit= 
+	 20 </li>
+                    <li style="text-align: left;" value="3">Lapse denominator= 14.&#160;&#160;</li>
+                </ul>
+                <p style="text-align: left;">Result:</p>
+                <ul>
+                    <li style="text-align: left;" value="1">After 7 days, 
+	 the high limit=10%</li>
+                    <li style="text-align: left;" value="2">After 14 days, the high limit=20%, 
+	 </li>
+                    <li style="text-align: left;" value="3">After 28 days, the high limit=40%, etc.&#160;&#160;</li>
+                </ul>
+                <p style="text-align: left;">Note:</p>
+                <ul>
+                    <li style="text-align: left;" value="1">The 
+	 lapse denominator is valid for both relative (%) and absolute (see 
+	 <span class="ui_element">Pivot</span> field) value shifts.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Minimum lapse</p>
+        <div class="indented">
+            <p> A fractional day count. If the time lapse since the previous result 
+	 does not exceed this minimum, the delta norm is not applied.&#160;&#160;</p>
+            <p>Typical 
+	 usage: avoid using an exponential delta norm when the time difference 
+	 is too small.</p>
+        </div>
+        <p class="fieldlabel">Maximum lapse</p>
+        <div class="indented">
+            <p>A fractional day count. If the time lapse since the previous result 
+	 exceeds this maximum, the delta norm is not applied.</p>
+        </div>
+        <p class="fieldlabel">Low limit</p>
+        <div class="indented">
+            <p> The acceptable value shift since the previous result, 
+	 expressed in percentage.&#160;&#160;If the value shift is lower than 
+	 the <span class="ui_element">Low limit</span>, the delta norm will be applied.</p>
+        </div>
+        <p class="fieldlabel">High limit</p>
+        <div class="indented">
+            <p>The acceptable value shift since the previous result, expressed 
+	 in percentage.&#160;&#160;If the value shift exceeds the high limit, 
+	 the delta norm will be applied.&#160;&#160;</p>
+        </div>
+        <p class="fieldlabel">Pivot</p>
+        <div class="indented">
+            <p>It is 
+	 possible that the allowed shift value is calculated by applying the 
+	 specified limits to the <span class="ui_element">Pivot</span> value.&#160;&#160;This implies that 
+	 a <span class="ui_element">fixed</span> limit range will be used instead of a <span class="ui_element">relative</span> one.&#160;&#160;</p>
+            <p>When 
+	 will this fixed range be applied:</p>
+            <p class="fieldlabel">Linear delta norms</p>
+            <div class="indented">
+                <p>If the previous result 
+	 value is lower than the pivot value.</p>
+            </div>
+            <p class="fieldlabel">Exponential delta norms</p>
+            <div class="indented">
+                <p>If the time between 
+	 two assessments is shorter than the pivot value, which in this case 
+	 is a time indication in fractional days.&#160;&#160;This prevents 
+	 the allowed difference from approaching zero when the time difference 
+	 between the old and the new value becomes too small.</p>
+            </div>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Assume a linear delta norm: </p>
+                <ul>
+                    <li value="1">Low limit=-20</li>
+                    <li style="text-align: left;" value="2"> High limit=10</li>
+                    <li style="text-align: left;" value="3">Pivot=15</li>
+                    <li style="text-align: left;" value="4">Previous value = prev&#160;</li>
+                </ul>
+                <p>Result</p>
+                <ul>
+                    <li value="1">Previous result equal to or higher than 15 -&gt; relative shift value -&gt; 
+ acceptance range : <b>prev -20%</b> - <b>prev +10%</b></li>
+                    <li value="2">Previous result lower than 15 -&gt; fixed shift value -&gt; acceptance 
+ range:&#160;&#160;<b>prev -3</b> - <b>prev +1.5</b></li>
+                </ul>
+            </div>
+            <p>The <span class="ui_element">Pivot</span> is a threshold value, expressed in the unit 
+ of the property. Below this value, the <span class="ui_element">absolute</span> shift extremes 
+ at the pivot point apply. The figure below illustrates the idea.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="deltanorm2.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="360" data-mc-height="358" src="deltanorm2_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">External comment</p>
+        <div class="indented">
+            <p>Multilingual 
+	 comment printed on the report when the norm is violated.</p>
+        </div>
+        <p class="fieldlabel">Internal comment</p>
+        <div class="indented">
+            <p>A Result-based, multilingual message shown when the norm 
+	 is violated.</p>
+        </div>
+        <p class="fieldlabel">Use base line</p>
+        <div class="indented">
+            <p>Please check the paragraph <a href="#Use_baseline_value_for_studies">Use baseline value 
+	 for studies</a>.</p>
+        </div>
+        <h2 style="text-align: left;"><b style="font-weight: bold;"><a name="Examples"></a>Examples 
+ of delta norm settings</b>
+        </h2>
+        <h3>In terms of percentages</h3>
+        <p style="text-align: left;">The result of a property ranges between 100 
+ - 500 (norms).&#160;&#160;If you want the delta check always to be executed 
+ in terms of percentages, then you should specify a very low pivot.</p>
+        <p style="text-align: left;">E.g.</p>
+        <ul>
+            <li style="text-align: left;" value="1">Pivot = -10</li>
+            <li style="text-align: left;" value="2"><span style="color: #008000;">Low 
+	 limit = -10</span>
+            </li>
+            <li style="text-align: left;" value="3"><span style="color: #6699FF;">High 
+	 limit = 20</span>
+            </li>
+            <li style="text-align: left;" value="4"><span style="color: #FF9933;">Previous 
+	 result = 110</span>
+            </li>
+        </ul>
+        <p style="text-align: left;">If current result = 120 (above the pivot value), 
+ then a relative check will be performed =&gt;<br />acceptable value shift = (<span style="color: #FF9933;">110</span> + <span style="color: #FF9933;">110</span>*<span style="color: #008000;">-0.1</span>=) <b>99 - 132 </b>(=<span style="color: #FF9933;">110</span>+<span style="color: #FF9933;">110</span>*<span style="color: #6699FF;">0.2</span>) </p>
+        <p style="text-align: left;">All results between 99-132 will not be flagged 
+ for delta check violation.</p>
+        <h3>In 
+ terms of fixed shifts</h3>
+        <p style="text-align: left;">The result of a property ranges between 100 
+ - 500 (norms).&#160;&#160;If you want the delta check always to be executed 
+ with fixed value shifts, then you will have to specify a very high pivot.</p>
+        <p style="text-align: left;">E.g.</p>
+        <ul>
+            <li style="text-align: left;" value="1"><span style="color: #FF6666;">Pivot 
+	 = 1000</span>
+            </li>
+            <li style="text-align: left;" value="2"><span style="color: #008000;">Low 
+	 limit = -3</span>
+            </li>
+            <li style="text-align: left;" value="3"><span style="color: #6699FF;">High 
+	 limit = 5</span>
+            </li>
+            <li style="text-align: left;" value="4"><span style="color: #FF9933;">Previous 
+	 result = 110</span>
+            </li>
+        </ul>
+        <p style="text-align: left;">If current result = 100 (below the pivot value), 
+ then an absolute check will be performed =&gt; <br />acceptable value shift 
+ = (<span style="color: #FF9933;">110</span>+<span style="color: #FF6666;">1000</span>*<span style="color: #008000;">-0.03</span>=)&#160;&#160;<b>80 - 160 </b>(=<span style="color: #FF9933;">110</span>+<span style="color: #FF6666;">1000</span>*<span style="color: #6699FF;">0.05</span>)</p>
+        <p style="text-align: left;">All results between 80-160 will not be flagged 
+ for delta check violation.</p>
+        <h2><a name="Use_baseline_value_for_studies"></a>Use baseline value for studies</h2>
+        <h3>Introduction</h3>
+        <p>Regular delta norms in GLIMS&#160;define reference values for the difference 
+ between consecutive assessments of the same property on the same object.&#160;&#160;When 
+ executing a delta norm check for a result, GLIMS&#160;will lookup the most 
+ recent previous and confirmed result for value comparison.</p>
+        <p>For clinical trials (studies), it is possible to <b>perform the delta 
+ norm check against a result that is manually marked as "baseline 
+ value"</b> instead of using the most recent previous result.&#160;&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This feature can only be used for results that belong to a study.</p>
+        </div>
+        <h3>Features</h3>
+        <p class="fieldlabel">Mark a result as being a base line value</p>
+        <div class="indented">
+            <p>A result can be (un)marked as a base line value for delta norms as follows:</p>
+            <ul>
+                <li value="1">From a <span class="ui_element">Result</span>, select the contextual menu / ribbon item <span class="ui_element">Mark as base line</span></li>
+                <li value="2">Using the&#160;&#160;<span class="ui_element">Result</span>-based MISPL function 
+	 <span class="ui_element">SetAsBaseLine(Yes/No)</span>.&#160;&#160;</li>
+            </ul>
+            <p>The <span class="ui_element">Result</span> option <span class="ui_element">Is base line value</span> will be checked.</p>
+        </div>
+        <p class="fieldlabel">When to use the base line value</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Delta norm</span> option <span class="ui_element">Use base line</span> indicates how the base line feature needs to be applied. Possible options:</p>
+            <p class="fieldlabel">No base line</p>
+            <div class="indented">
+                <p>Base line values 
+		 will never be used, the regular delta check will be performed 
+		 (using the most recent previous result).</p>
+            </div>
+            <p class="fieldlabel">Preference for base line</p>
+            <div class="indented">
+                <p>If a base line value can be found, it will be used for the delta 
+		 check, else the regular delta check will be performed.</p>
+            </div>
+            <p class="fieldlabel">Only base line</p>
+            <div class="indented">
+                <p> If a base 
+		 line value can be found, it will be used for the delta check, else 
+		 NO delta check will be performed.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When using base line values, GLIMS&#160;will look for the most recent 
+	 result (of the same patient with the same study) for which the field 
+	 <span class="ui_element">Is base line value</span> is enabled.&#160; </p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|General" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\order_person_series\index.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Generate order / person series</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor205"></a>Extra tools -&gt; Create order / person series</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Order%20series" name="kanchor206">Order series</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Person%20series">Person series</a>
+            </li>
+        </ul>
+        <h2><a name="Order series"></a>Order series</h2>
+        <h3>Introduction</h3>
+        <p>GLIMS features a dedicated program to generate a set of orders.&#160;&#160;It 
+ can be accessed from the main menu via <span class="ui_element">Start -&gt; Routine 
+ -&gt; Orders -&gt; Create series</span>.&#160;</p>
+        <h3>Main page</h3>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="orderseries_main.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="548" data-mc-height="431" src="orderseries_main_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h4 style="text-align: left;">General order info</h4>
+        <div class="indented">
+            <p class="fieldlabel">Study</p>
+            <div class="indented">
+                <p style="text-align: left;">Allows selecting a study for the orders.&#160;&#160;If the study correspondent 
+	 (or its issuer, or its responsible) is a known PIN provider, it will 
+	 be automatically used for subsequent PIN selecting.&#160;&#160;If 
+	 the study has a default request definition, it will be proposed by default.</p>
+            </div>
+            <p class="fieldlabel">Order 
+	 count</p>
+            <div class="indented">
+                <p style="text-align: left;">Allows specifying the number of orders to be generated 
+	 for each selected patient (see "Patients" page).</p>
+            </div>
+            <p class="fieldlabel">PIN 
+	 source</p>
+            <div class="indented">
+                <p style="text-align: left;">When selecting patients by PIN (in the "Patients" 
+	 page), a browser will be displayed showing the patient identifications 
+	 issued by this PIN provider.</p>
+            </div>
+            <p class="fieldlabel">Request, object time, 
+	 issuer, agent and department for each order&#160;&#160;</p>
+            <div class="indented">
+                <p>Just 
+	 as in the manual order entry program, the issuer and agent can be 
+	 selected via their identifications.&#160;&#160;It is possible to specify 
+	 a single request or a multiple request list like "Na,k,Cl".</p>
+                <p>Just like in the manual order entry program, the order series generator 
+	 allows typing Ctrl-F in the request list in order to add requests 
+	 to the existing list by selecting one or several request definitions from 
+	 a popup selection browser.&#160;&#160;Note that, as opposed to the 
+	 PIN selection browser or the Code Scan screen, the already entered 
+	 request mnemonics are not pre-selected in the browser: the browser 
+	 is only used to ADD request mnemonics to the list.</p>
+            </div>
+            <p class="fieldlabel">Post-commit</p>
+            <div class="indented">
+                <p>Allows specifying 
+	 an order-based, string-valued site function to be executed after the 
+	 order has been created, just like the manual order entry program. 
+	 
+	<p>When this site function returns a non-empty string, it is considered 
+	 to be an error message and will be shown as such to the user. Note 
+	 that this error message does not prevent the order from being written 
+	 to the database.</p><p>This post-commit site function, as well as the PIN provider, Order 
+	 Short Id post-processing site function and the person selection method 
+	 is stored in the user preferences for later reuse.</p></p>
+            </div>
+        </div>
+        <h4>Short id layout</h4>
+        <blockquote>
+            <p>The layout of the order short id can be specified using the following 
+ fields: <span class="ui_element">prefix</span>, <span class="ui_element">suffix</span> and <span class="ui_element">start from</span>. For instance, 
+ if prefix is 'ORD', suffix is 'a', start from is '0' and order count is 
+ '100' then 100 orders will be created with short id's from 'ORD00a' to 
+ 'ORD99a'.</p>
+            <p>The <span class="ui_element">Post-processing</span> function can be used to add a check digit 
+ to the short id.&#160;&#160;The following list of order data can be used 
+ in the function:</p>
+            <ul>
+                <li class="kadov-p" value="1">The object</li>
+                <li class="kadov-p" value="2">The issuer</li>
+                <li class="kadov-p" value="3">The agent (if supplied in the user interface)</li>
+                <li class="kadov-p" value="4">The department (can be the department from the 
+	 user interface or the user's department if none supplied in the user 
+	 interface)</li>
+                <li class="kadov-p" value="5">The lowest object time</li>
+                <li class="kadov-p" value="6">The order short id</li>
+            </ul>
+        </blockquote>
+        <h4>Other options</h4>
+        <p class="fieldlabel">Root and work specimen labels</p>
+        <div class="indented">
+            <p>This 
+	 option is saved in the user preferences.&#160;&#160;Labels of orders 
+	 are printed after a series of orders has been created. This means 
+	 that all labels for an order series will be printed consecutively.&#160;&#160;&#160;When 
+	 labels have to be printed, the order label is printed first.</p>
+        </div>
+        <p class="fieldlabel">Confirm specimens</p>
+        <div class="indented">
+            <p>Allows the 
+	 user to decide to apply automatic root specimen confirmation or not.&#160;&#160;This 
+	 option is saved in the user preferences.</p>
+        </div>
+        <h3>Patients page</h3>
+        <p>This page allows selecting the patients for whom orders are to be created.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="orderseries_patients.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="548" data-mc-height="431" src="orderseries_patients_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Selection</p>
+        <div class="indented">
+            <p style="text-align: left;">Indicates how you want to select your patients.</p>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">Select 
+		 persons</p>
+            <div class="indented">
+                <p style="text-align: left;">This mode allows selecting patients 
+		 by using the fields:</p>
+                <p class="fieldlabel">Add person</p>
+                <div class="indented">
+                    <p style="text-align: left;">Uses the person 
+			 search screen.</p>
+                </div>
+                <p class="fieldlabel">Add PIN</p>
+                <div class="indented">
+                    <p style="text-align: left;">Select a patient 
+			 through its PIN (PIN provider is set in the main page).</p>
+                </div>
+                <p class="fieldlabel">Add group</p>
+                <div class="indented">
+                    <p style="text-align: left;">Allows selecting 
+			 a correspondent group: only members of type "Person" 
+			 will be added.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Use 
+		 dialysis encounters</p>
+            <div class="indented">
+                <p style="text-align: left;">When set, the encounter referred to by 
+		 the field Person.DialysisEncounter is used as the new Order.Encounter. 
+		 Persons without such an encounter are ignored.</p>
+            </div>
+            <p class="fieldlabel">Scan 
+		 codes</p>
+            <div class="indented">
+                <p style="text-align: left;">You must first enter a last name and 
+		 then scan the codes which will be used as first name.&#160;&#160;The 
+		 program checks if a patient with this last name and the scanned 
+		 code as first name is already known. If so, the patient is reused. 
+		 If not, a new patient is created.&#160;&#160;Additionally, during 
+		 the scanning of the codes, a visual indication is added to already 
+		 existing patients to inform the user of this fact.&#160;&#160;The 
+		 maximum number of different codes that can be scanned is 2000.&#160;&#160;Identifications 
+		 containing a comma will not be accepted.	&#160;</p>
+            </div>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">Person browser </p>
+        </div>
+        <div class="indented">
+            <p style="text-align: left;">Shows all selected 
+	 patients for which orders will be created.&#160;&#160;Deleting patients 
+	 from the selected list is possible by using the &lt;Delete&gt; key 
+	 in 	the browser.</p>
+        </div>
+        <h2><a name="Person series"></a>Person series</h2>
+        <p>GLIMS features a dedicated program to generate a series of persons.&#160;&#160;It 
+ can be accessed from the main menu via <span class="ui_element">Start -&gt; Correspondents 
+ -&gt; Persons -&gt; Create series</span>.&#160;&#160;The following 
+ screen will be displayed:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="personseries.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="470" data-mc-height="314" src="personseries_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>The layout of the name can be specified using the following fields: 
+ <span class="ui_element">prefix</span>, <span class="ui_element">suffix</span> and <span class="ui_element">range</span> (from - to) and <span class="ui_element">first 
+ name</span>. For instance, if <span class="ui_element">prefix</span> is 'series', <span class="ui_element">first name</span> 
+ is john and <span class="ui_element">from</span> is '0' and to is '99' then 100 persons will be 
+ created with names from 'john series00' to 'john series99'.</p>
+        <p>Optionally, you can specify an <span class="ui_element">object template</span>, the <a href="../configuration/correspondents/persons.htm">person</a>'s 
+ <span class="ui_element">birth date</span> and <span class="ui_element">sex</span>.</p>
+        <p>The fields <b>Encounter type</b>, <b>Institution</b> and <b>Maximum 
+ validity date</b> are used to automatically create encounters for the 
+ new persons. When the institution has an Encounter ExternalId MISPL, an 
+ encounter is automatically created for that person, using the specified 
+ encounter type and validity date. The EncounterExternalId MISPL of the 
+ institution is used to determine the external id.</p>
+        <p>When the institution has an identification code (via Institution.Correspondent.IdentificationCode), 
+ an identification is automatically created, using the specified validity 
+ date and the identification code.</p>
+        <p>When an existing person is found with the same last name, first name 
+ and birth date as for the series to be created, a warning is given.&#160;&#160;However, 
+ the user can still accept and the series will be created anyhow.&#160;&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>You risk to bump into the maximum amount of duplicate lastname/firstname/birthdate 
+ combinations when using this frequently. This amount is high, but limited. 
+ The discriminator will count from "0" to "ZZ". After 
+ "ZZ", you will no longer be able to create a person with that 
+ lastname/firstname/birthdate combination.</p>
+        </div>
+    </body>
+</html>

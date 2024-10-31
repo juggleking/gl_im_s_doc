@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Billing document templates" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Invoicing_-_Billing_document_templates">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Invoicing - Billing document templates</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor202"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor21"></a>Invoicing: Billing document templates</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> 
+ - <a href="#Examples">Examples</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The most important parameter when printing a billing document is the 
+ ‘billing document template’. 
+ This template determines the layout of the printed document.&#160; It 
+ can be specified in the following functions: Invoice.Print, InvoiceSummary.Print 
+ and FinancialShipment.Print.</p>
+        <p>By default, all billing documents will be fixed after successful printing.&#160;The printed billing documents can be marked (recommended) by creating 
+ a ‘billing document out 
+ prints’ which stores when, how many times and with which layout a 
+ billing document has been printed.</p>
+        <p>Billing document templates also play an important role in the configuration of the <a href="../routine/billing_documents_send_mail.htm">Emailing</a> function for billing documents.</p>
+        <h2><a name="Fields"></a>Fields</h2>
+        <p>For a full description of all fields, please check 
+ the reference manual.</p>
+        <ul>
+            <li class="kadov-p" value="1"><b style="font-weight: bold;">Document type</b> can be: 
+	
+	<ul><li class="kadov-p" value="1"><b style="font-weight: bold;">Invoice</b>: templates 
+ of this type can be used to print invoices</li><li class="kadov-p" value="2"><b style="font-weight: bold;">Financial transaction</b>: 
+ templates of this type can be used to print invoice summaries and payments 
+ (indirectly via the transaction)</li><li class="kadov-p" value="3"><b style="font-weight: bold;">Financial shipment</b>: 
+ templates of this type can be used to print financial shipments.&#160; 
+ It can also be used to print multiple invoice summaries as one document.</li><li class="kadov-p" value="4"><b style="font-weight: bold;">Financial shipment 
+ list</b>:&#160;templates of this type can be used to print multiple shipments 
+ as one document.</li></ul></li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="billing_document_template_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="630" data-mc-height="716" src="billing_document_template_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;" align="left">Symbols that can be used in the header/footer texts:</p>
+        <p style="text-align: left;" align="left"><span style="font-weight: bold;">&amp;PageNo</span>: Will 
+ display the current page number </p>
+        <p style="text-align: left;" align="left"><span style="font-weight: bold;">&amp;TotalPages</span>: 
+ Will display the total page number. &#160;<span style="text-align: left;">E.g. {Page &amp;PageNo 
+ of &amp;TotalPages} could be translated into 'Page 2 of 4'. </span></p>
+        <p style="text-align: left;" align="left"><span style="font-weight: bold;">&amp;BatchPageNo</span>: 
+ can be used in the header or footer to print the running page number in 
+ the current batch. &#160;This 
+ batch page number is reset upon each call of the billing document generator 
+ and keeps increasing until the end of the current batch. &#160;&#160;This 
+ batch page number can assist in checking whether all pages that were generated 
+ by the program have physically been printed. </p>
+        <p style="text-align: left;" align="left">For large laboratories that use the billing document generation 
+ programs to generate large documents, an option has been added to improve 
+ performance. &#160;To 
+ obtain maximum speed, one can set the option 'LoadItemData' in the BillingDocumentTemplate 
+to NO. In this case, the field bdln_TotalAmountOthers 
+ will not be taken into account when used in text expressions.</p>
+        <p style="text-align: left;" align="left">The billing document print program allows to specify if a trailing form 
+ feed should be added to the output file via the field 
+ BillingDocumentTemplate.AddFormFeed.</p>
+        <h2><a name="Examples"></a>Examples</h2>
+        <ul>
+            <li class="kadov-p" value="1"><a href="billing_document_templates_example_1.htm">Print an invoice summary which 
+ merely contains the number of occurring billing items in the invoice summary.</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="billing_document_templates_example_2.htm">Print an invoice summary containing 
+ all billing items which occur in the invoice summary.</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="billing_document_templates_example_3.htm">Print an invoice summary containing 
+ an introductory page which displays the invoice summary number and the 
+ total amount.&#160; The next page contains all invoices occurring in the 
+ invoice summary and the corresponding patient data, issuer, order internal 
+ id, invoice document number, billing items and fee.</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="billing_document_templates_example_4.htm">Print an invoice summary containing 
+ all occurring invoices with their corresponding order internal id, invoice 
+ document number and billing items.</a>
+            </li>
+        </ul>
+    </body>
+</html>

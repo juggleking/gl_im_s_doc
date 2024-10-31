@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Exact">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>exact</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2931"></a>
+            <MadCap:concept term="Billing" /><a href="../financial_shipments_send.htm">FinancialShipment.Send</a><a name="kanchor277"></a> -&gt; Exact</h1>
+        <p>Inhoud: <a href="#Inleiding">Inleiding</a> - <a href="#Configuration">Configuratie</a> - <a href="#Routine">Routine</a></p>
+        <h2><a name="Inleiding" id="Inleiding"></a>Inleiding</h2>
+        <p>De GLIMS functie <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> laat toe om een verrekenbestand te genereren dat ingelezen dan worden in het boekhoud-pakket ”r;Exact” of ”r;Globe 2000”.</p>
+        <h2><a name="Configuration" id="Configuration"></a>Configuratie</h2>
+        <p>Het aanmaken van een EXACT "Medial" bestand (via de functie FinancialShipment.Send) vereist een aantal parametrisaties:</p>
+        <ol>
+            <li class="kadov-p" value="1">Maak een organisatie "EXACT" aan.
+<ol><li class="kadov-p" value="1">Tabblad betaling:
+<ol><li class="kadov-p" value="1">Vul Bankrekening en Bank id in.</li></ol></li></ol></li>
+            <li class="kadov-p" value="2">Fondsen
+<ol><li class="kadov-p" value="1">Moeten een Identificatie hebben (=debiteurnummer) naar EXACT, maximaal 6 cijfers (numeriek!)</li></ol></li>
+            <li class="kadov-p" value="3">Dummypatient: maak een dummypatient aan
+<ol><li class="kadov-p" value="1">Moet een Identificatie hebben (=debiteurnummer particulieren (9990)) naar EXACT, maximaal 6 cijfers (numeriek). Alle particuliere patienten worden namelijk onder deze DummyPatient naar EXACT geboekt.</li></ol></li>
+            <li class="kadov-p" value="4">Firma "Medial_Fa" SiteAttributen
+<ol><li class="kadov-p" value="1">EXACT_DAGBOEKTYPE= M</li><li class="kadov-p" value="2">EXACT_DAGBOEKNUMMER= 901</li><li class="kadov-p" value="3">EXACT_VERKOOPSREKNR= 121000 (=grootboekrekeningnummer)</li><li class="kadov-p" value="4">EXACT_BTWREKNR= 153100 (=grootboekBTWrekeningnummer)</li><li class="kadov-p" value="5">EXACT_SUPPORTKOST= &lt;NO&gt; (supporteren van kostenplaatsen)</li></ol></li>
+            <li class="kadov-p" value="5">De file die gecreerd wordt moet met de naam "fmuta.csv" in EXACT worden ingelezen.</li>
+        </ol>
+        <p>De periode aanduiding in het Exact bestand is gebaseerd op de laagste en hoogste Order.CompletionTime van de betreffende Orders. Het maandnummer is het nummer van de hoogst voorkomende einddatum in de periode aanduiding van de betreffende debiteur.</p>
+        <h2><a name="Routine" id="Routine"></a>Routine</h2>
+        <p>De generatie van het Exact bestand gebeurt via de functie FinancialShipment.Send (protocol = Exact).&#160;&#160;Voor meer uitleg over alle beschikbare opties, kan u terecht in de reference manual.</p>
+        <p class="fieldlabel">Payer account</p>
+        <div class="indented">
+            <p class="kadov-p">GLIMS uses accounts to group invoices before sending them to external accounting software.&#160;&#160;It is possible to define accounts per correspondent instead of per tariff.&#160;&#160;The correspondent table has two fields: <span class="ui_element">Account number</span> and <span class="ui_element">Fee account number</span> which allow indicating the account number for costs and fees.
+<p>The <span class="ui_element">Payer account</span> option allows to export the data in these new fields.</p><p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="exact.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="484" data-mc-height="378" src="exact_thumb_0_120.png" alt="" tabindex="" /></a></p></p>
+        </div>
+    </body>
+</html>

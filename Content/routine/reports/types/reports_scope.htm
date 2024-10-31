@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports|Report types" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\reporttypes\rpt_scope.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Encounter, year, object and specimen reports</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor132"></a><a href="../../index_routine.htm">Basic routine</a> -&gt; <a href="../index_reports.htm" name="kanchor133">Reports</a> -&gt; Encounter, year, object 
+ and specimen reports</h1>
+        <p>In the <a href="../../../configuration/default_reports/default_reports.htm">default report configuration</a>, 
+ it is possible to specify a <b>scope</b>, which indicates WHAT should 
+ appear on the report.</p>
+        <p align="left" class="fieldlabel">Encounter 
+ reports</p>
+        <div class="indented">
+            <p align="left" style="text-align: left;"> All results obtained during the encounter of a patient will 
+ be reported. These results will be divided into different segments (columns). 
+ Placing all the reports in a row, will provide a complete overview.</p>
+        </div>
+        <p align="left" class="fieldlabel">Year 
+ reports</p>
+        <div class="indented">
+            <p align="left" style="text-align: left;"> All results obtained for a patient during an entire year 
+ will be reported.</p>
+        </div>
+        <p align="left" class="fieldlabel">Object 
+ report</p>
+        <div class="indented">
+            <p align="left" style="text-align: left;"> Extended year reports. All results for a patient will appear 
+ on the report, without any time-related criteria.</p>
+        </div>
+        <p align="left" class="fieldlabel">Specimen 
+ report</p>
+        <div class="indented">
+            <p align="left" style="text-align: left;"> All results for one particular specimen will be put on one 
+ report. E.g. An order has three different specimen =&gt; each specimen 
+ will be put on a separate report. Results which are not linked to a specimen 
+ (e.g. weight of the patient) will be included on each report.</p>
+        </div>
+        <h3><a name="kanchor134"></a>Sending multiple copies of the same encounter, year or object report 
+ and using these reports as 'Copy' reports.</h3>
+        <p>In previous releases, a single encounter, year or object report was 
+ created per object, scope and template. This implied that an existing 
+ report was simply re-routed to the new target when a new order for the 
+ same patient was entered. This was consistent with the idea of having 
+ a 'patient file' which simply followed the patient and where any new pages 
+ where simply sent to wherever the patient was being treated. This method 
+ also implied that it was very difficult to use these types of reports 
+ for sending copies to other recipients, or even to different issuers of 
+ orders appearing on the same report page.</p>
+        <p>In the new model, this limitation has been lifted. Since each page of 
+ such a report has its own Report Page and Report records, it is possible 
+ to specify that a certain report page should be sent to different recipients, 
+ either as originals (e.g. each issuer on a page gets his own printout), 
+ or as copies. This has in fact become the default behavior: each target 
+ gets his own copy of the report page.</p>
+        <p>However, it is possible to specify, in the Default Report that triggers 
+ a report, that the report is not 'Target specific'. When this field is 
+ set to False, an existing report for the same page, the same template 
+ and the same medium will be rerouted in order to refer to the new target, 
+ in stead of creating a new report. In this case, it becomes impossible 
+ to know who received a copy of such a report in the past.</p>
+        <p>As it is possible to send a separate copy to each recipient, is also 
+ possible to add a copy of all missing pages to a (new) recipient's report 
+ list.&#160; This is accomplished via the DefaultReport.AddMissingPages 
+ field. When this field is set, upon creation of a new report targeted 
+ for a certain recipient, the previous pages of the same report group are 
+ checked, and a new report record is created for each page for which no 
+ report was sent to this recipient. This allows sending a copy of the patient's 
+ file pages that were added since a given correspondent last received a 
+ page from this report. </p>
+        <h3>Reprinting a page of an encounter, year or object report</h3>
+        <p>Since each physical page is represented by its own Report Page record 
+ and each printout of this page by its own Report records, it is easy to 
+ reprint such a page, without having to reprint the other pages of the 
+ same report group.</p>
+        <p>The desired page can either be found via the Order.Report() browser, 
+ or via the Object.ReportGroups browser.</p>
+        <h3>Suppressing discontinued report columns of an encounter, year or object 
+ report</h3>
+        <ul>
+            <li class="kadov-p" value="1">When the text report program detects that a column 
+ is completely empty (e.g. all of the results have been discontinued), 
+ the column is suppressed on the report, and any remaining columns are 
+ shifted to the left. </li>
+            <li class="kadov-p" value="2">When an order is being discontinued completely, the 
+ program will try to delete any scheduled report columns and report copies 
+ containing results of this order.&#160; All reports which were already 
+ sent containing this column (Report.LastOutputTime &gt; ReportColumn.CreationTime) 
+ will be marked with 'NeedsChecking=Yes' and 'Active=No', in order to allow 
+ sending a corrective or discontinuation report.</li>
+        </ul>
+        <h3>Using the Report.Order field</h3>
+        <p>The field Report.Order normally refers to the most recent order necessitating the
+current report. For order-scoped reports, this is obviously the original order itself. For encounter reports, object reports or year reports, this field is not as unambiguous,&#160;
+since the report can contain several orders.&#160; It is therefore never a good idea to use the Report.Order reference in the report configuration.</p>
+        <p>However, as stated above, the field should normally refer to the most recent order
+of the report page.&#160; In the case where an order is created, having a lower object time than the most recent order on a report, a new column is inserted in the report.&#160;
+This may necessitate moving the most recent column(s) of this report to a new page. In this case, the Report.Order reference of the old report will be updated.</p>
+        <h3>Re-organizing year, object or encounter reports</h3>
+        <p>The function ReportGroup.Reorganize() reorganizes all existing columns in a 
+year, object or encounter report group. All columns are sorted by their sorting 
+time and are assigned to new pages if required. The program makes sure that when 
+a report column is moved to another page, the required Report records are moved 
+or created, making sure that if a target was scheduled to receive a copy from 
+the report page containing column X, this will still be the case after the 
+reorganization.</p>
+        <p>This function is executed automatically for each year, object or encounter 
+report when a Person.Merge operation is being performed. Typically, after such 
+an operation the pages of the 2 originals person's object reports are merged 
+together, thus yielding a bad sorting order of the contained columns. The 
+automatic execution of ReportGroup.Organize() makes sure the columns are 
+reorganized as necessary.</p>
+    </body>
+</html>

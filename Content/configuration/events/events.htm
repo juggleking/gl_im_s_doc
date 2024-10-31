@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Communication">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-us" /><title>Event handling system</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Event handling system</h1>
+        <h2>Introduction</h2>
+        <p>The event handling system in GLIMS can be used to</p>
+        <ul>
+            <li class="kadov-p" value="1">report result changes to an external system (Procedure 
+	 data Results, property output results and QC results).</li>
+            <li class="kadov-p" value="2">send an electronic specimen arrival report to 
+	 the HIS system upon confirmation of a specimen.</li>
+            <li class="kadov-p" value="3">sending ADT messages to a result server or other 
+	 system when relevant patient data is updated.</li>
+        </ul>
+        <p>The event handling system consists of 2 steps:</p>
+        <ul>
+            <li class="kadov-p" value="1">Event publishing: to be configured as described 
+	 below</li>
+            <li class="kadov-p" value="2">Event processing: using a command and task</li>
+        </ul>
+        <h2>Result Event Export</h2>
+        <h3>PropertyOutput Results</h3>
+        <h4>Configuration:</h4>
+        <ul>
+            <li class="kadov-p" value="1">Edit applicable Station, select Result tab, select 
+	 Synchronization tab</li>
+            <li class="kadov-p" value="2">For PropertyOutput Results, two Events are supported: 
+	 
+	<ul><li class="kadov-p" value="1">Modified: 
+		<ul><li class="kadov-p" value="1">Result Confirmation</li><li class="kadov-p" value="2">Result Validation</li><li class="kadov-p" value="3">Result Value change</li><li class="kadov-p" value="4">Result Comment change</li></ul></li><li class="kadov-p" value="2">Discontinued 
+		<ul><li class="kadov-p" value="1">Result Discontinuation</li></ul></li></ul></li>
+            <li class="kadov-p" value="3">Also note that any changes made in Station Result 
+	 synchronization will update the existing QC EventHandlers.</li>
+        </ul>
+        <h4>EventHandler Records</h4>
+        <blockquote>
+            <p>If Station PropertyOutput Result synchronization is enabled, an EventHandler 
+ will be automatically created with field data:</p>
+            <ul>
+                <li class="kadov-p" value="1">Name 'StnPrpoRslt-{Station.Id}', e.g. 'StnPrpoRslt-12345'</li>
+                <li class="kadov-p" value="2">EventTpe will be named the same way as Name</li>
+                <li class="kadov-p" value="3">SubType will contain the sub event types configured 
+	 for the Station {Modified,Discontinued}, e.g. 'Modified,Discontinued' 
+	 or 'Modified' or even empty when both are unchecked</li>
+                <li class="kadov-p" value="4">Enabled will be set to YES</li>
+                <li class="kadov-p" value="5">Discriminator will be unknown</li>
+            </ul>
+            <p><b style="font-weight: bold;">Notes:</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">Fields EventType, EventSubType and Table are non-editable.</li>
+                <li class="kadov-p" value="2">Field Name can be changed freely.</li>
+                <li class="kadov-p" value="3">Field Enabled can be changed. E.g. when we no longer 
+	 wish to publish Events for the EventHandler.</li>
+                <li class="kadov-p" value="4">Field Discriminator may be used for Query filtering</li>
+                <li class="kadov-p" style="text-align: left;" value="5">Prior to Glims 8.4, the EventHandler record referred 
+	 a Translator record. This dummy record was only used for query filtering. 
+	 From v8.4 on, the Discriminator field should be used for query filtering. 
+	 A conversion is performed from 8.4 on which will copy the name of 
+	 the Translator (is referred) post fixed with a '_' character into 
+	 the Discriminator field.<br />	This field should contain alphanumerical data.</li>
+            </ul>
+        </blockquote>
+        <h4 style="text-align: left;">EventHandler Command Query</h4>
+        <blockquote>
+            <p style="text-align: left;"><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" style="text-align: left;" value="1">Name is removed from the Query screen. Its value 
+	 is converted into EventType (if EventType = ?). The reason why we 
+	 remove Name is: 
+	<ul><li class="kadov-p" style="text-align: left;" value="1">EventHandler.Name can be changed freely after 
+		 EventHandler creation.</li><li class="kadov-p" style="text-align: left;" value="2">Name and EventType contain same value on automatic 
+		 creation.</li></ul></li>
+                <li class="kadov-p" style="text-align: left;" value="2">EventType, this field is the main query selection 
+	 criteria. Wildcards are allowed, e.g. 'StnPrpoRslt-*'</li>
+                <li class="kadov-p" style="text-align: left;" value="3">Discriminator, refers the EventHandler.Discriminator 
+	 field for Query filtering.<br /></li>
+                <li class="kadov-p" style="text-align: left;" value="4">Enabled, yes/no or ?.</li>
+            </ul>
+        </blockquote>
+        <h4 style="text-align: left;">EventHandler Command Function</h4>
+        <blockquote>
+            <p style="text-align: left;"><b style="font-weight: bold;">Function</b>
+            </p>
+            <blockquote>
+                <p style="text-align: left;">'ExportResultEvents'</p>
+            </blockquote>
+            <p style="text-align: left;"><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" style="text-align: left;" value="1">CodingSystem (Properties, Units, ... check driver 
+	 specifications)</li>
+                <li class="kadov-p" value="2">Sender (check driver specifications)</li>
+                <li class="kadov-p" value="3">Receiver (check driver specifications)</li>
+                <li class="kadov-p" value="4">Processing Translator driver (G_HOUL)</li>
+            </ul>
+        </blockquote>
+        <h3>ProcedureData Results</h3>
+        <h4>Configuration:</h4>
+        <ul>
+            <li class="kadov-p" value="1">Edit applicable Station, select Result tab, select 
+	 Synchronization tab</li>
+            <li class="kadov-p" value="2">For ProcedureData Results, two Events are supported: 
+	 
+	<ul><li class="kadov-p" value="1">Confirmed 
+		<ul><li class="kadov-p" value="1">Result Confirmation</li></ul></li><li class="kadov-p" value="2">Discontinued 
+		<ul><li class="kadov-p" value="1">Result Discontinuation</li></ul></li></ul></li>
+            <li class="kadov-p" value="3">Also note that any changes made in Station Result 
+	 synchronization will update the existing QC EventHandlers.</li>
+        </ul>
+        <h4>EventHandler Records</h4>
+        <blockquote>
+            <p>If Station ProcedureData Result synchronization is enabled, an EventHandler 
+ will be automatically created with field data:</p>
+            <ul>
+                <li class="kadov-p" value="1">Name 'StnPrcdRslt-{Station.Id}', e.g. 'StnPrcdRslt-12345'</li>
+                <li class="kadov-p" value="2">EventType will be named the same way as Name</li>
+                <li class="kadov-p" value="3">SubType will contain the sub event types configured 
+	 for the Station {Confirmed,Discontinued}, e.g. 'Confirmed,Discontinued' 
+	 or 'Confirmed' or even empty when both are unchecked</li>
+                <li class="kadov-p" value="4">Enabled will be set to YES</li>
+                <li class="kadov-p" value="5">Discriminator will be unknown</li>
+            </ul>
+            <p>Same notes as for PropertyOutput results</p>
+        </blockquote>
+        <h4>EventHandler Command Query</h4>
+        <blockquote>
+            <p>Same as for PropertyOutput results</p>
+        </blockquote>
+        <h4>EventHandler Command Function</h4>
+        <blockquote>
+            <p><b style="font-weight: bold;">Function</b>
+            </p>
+            <blockquote>
+                <p>'ExportResultEvents'</p>
+            </blockquote>
+            <p><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">CodingSystem (Properties, Units, ... check driver 
+	 specifications)</li>
+                <li class="kadov-p" value="2">Sender (check driver specifications)</li>
+                <li class="kadov-p" value="3">Receiver (check driver specifications)</li>
+                <li class="kadov-p" value="4">Processing Translator driver (G_HOUL)</li>
+            </ul>
+        </blockquote>
+        <h3>QC Results</h3>
+        <h4>Configuration:</h4>
+        <ul>
+            <li class="kadov-p" value="1">Go to GLIMS Menu: Start -&gt; System Management 
+	 -&gt; Customize -&gt; GLIMS QC -&gt; tab page "Result synchronization"
+	&#160;
+	<ul><li class="kadov-p" value="1">Confirmed</li><li class="kadov-p" value="2">Validated</li><li class="kadov-p" value="3">Discontinued</li></ul></li>
+            <li class="kadov-p" value="2">On creation of new QC Lots, an new EventHandler 
+	 will be automatically created (if QC export is enabled on SpecificSite).</li>
+            <li class="kadov-p" value="3">Also note that any changes made in SpecificSite 
+	 QC Result synchronization will update the existing QC EventHandlers.</li>
+        </ul>
+        <h4>EventHandler Records</h4>
+        <blockquote>
+            <p>If QC Result synchronization is enabled, EventHandlers will be automatically 
+ created with field data:</p>
+            <ul>
+                <li class="kadov-p" value="1">Name 'QclQCRslt-{QCLot.Id}', e.g. 'QclQCRslt-12345'</li>
+                <li class="kadov-p" value="2">EventTpe will be named the same way as Name</li>
+                <li class="kadov-p" value="3">SubType will contain the sub event types configured 
+	 for the Station {Confirmed,Validated,Discontinued}, e.g. 'Confirmed,Discontinued' 
+	 or 'Confirmed' or even empty when all are unchecked</li>
+                <li class="kadov-p" value="4">Enabled will be set to YES</li>
+                <li class="kadov-p" value="5">Discriminator will be unknown</li>
+            </ul>
+            <p>Same notes as for PropertyOutput results</p>
+        </blockquote>
+        <h4>EventHandler Command Query</h4>
+        <blockquote>
+            <p>Same as for PropertyOutput results</p>
+        </blockquote>
+        <h4>EventHandler Command Function</h4>
+        <blockquote>
+            <p><b style="font-weight: bold;">Function</b>
+            </p>
+            <blockquote>
+                <p>'ExportQCResultEvents'</p>
+            </blockquote>
+            <p><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">CodingSystem (Properties, Units, ... check driver 
+	 specifications)</li>
+                <li class="kadov-p" value="2">Sender (check driver specifications)</li>
+                <li class="kadov-p" value="3">Receiver (check driver specifications)</li>
+                <li class="kadov-p" value="4">Processing Translator driver (G_HOUL)</li>
+            </ul>
+        </blockquote>
+        <h2>ADT Event Export</h2>
+        <h4>Configuration:</h4>
+        <ul>
+            <li class="kadov-p" value="1">Create new EventHandler record for ADT export: 
+	 
+	<ul><li class="kadov-p" value="1">Name : Free choice</li><li class="kadov-p" value="2">EventType : ADT</li><li class="kadov-p" value="3">EventSubType : comma-separated list of 'Create,Update'</li><li class="kadov-p" value="4">Table 'Person'</li><li class="kadov-p" value="5">Enabled 'YES'</li></ul></li>
+        </ul>
+        <h4>EventHandler Command Query</h4>
+        <blockquote>
+            <p><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">EventType = 'ADT'</li>
+                <li class="kadov-p" value="2">Enabled = YES</li>
+                <li class="kadov-p" value="3">Discriminator = ?</li>
+            </ul>
+        </blockquote>
+        <h4>EventHandler Command Function</h4>
+        <blockquote>
+            <p><b style="font-weight: bold;">Function</b>
+            </p>
+            <blockquote>
+                <p>'ExportADTEvents'</p>
+            </blockquote>
+            <p><b style="font-weight: bold;">Fields</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">CodingSystem (check driver specifications)</li>
+                <li class="kadov-p" value="2">Sender (check driver specifications)</li>
+                <li class="kadov-p" value="3">Receiver (check driver specifications)</li>
+                <li class="kadov-p" value="4">Processing Translator driver (G_HADX)</li>
+            </ul>
+        </blockquote>
+        <h2>Notes</h2>
+        <h3>Usage of EventHandler.Discriminator and EventHandler.Query.Discriminator</h3>
+        <blockquote>
+            <p>The EventHandler.Query uses the EventType for selection criteria (with 
+ or without wildcards).<br />As the EventType cannot be changed manually we can use the Discriminator 
+ to only query EventHandlers with the same Discriminator. The Discriminator 
+ field can be edited freely but must contain at least one alphanumerical 
+ character (v8 only restriction due to conversion-issues).</p>
+        </blockquote>
+        <h3>EventHandler.Enabled</h3>
+        <blockquote>
+            <p>Setting Enabled to NO:</p>
+            <ul>
+                <li class="kadov-p" value="1">Events for this EventHandler will no longer be 
+	 published</li>
+                <li class="kadov-p" value="2">If the EventHandler.Query specifes Parameter Enabled=YES, 
+	 then old unprocessed Events will be no longer processed</li>
+            </ul>
+        </blockquote>
+        <h3>Event Purging</h3>
+        <blockquote>
+            <p>The EventHandler Purge() function should be used to clean up processed 
+ Events.</p>
+        </blockquote>
+        <h3>Event Combining</h3>
+        <blockquote>
+            <p>If a certain Result is changed multiple times without the Event being 
+ processed, then only one Event will be created for it.</p>
+        </blockquote>
+        <h3>Event Processing Log</h3>
+        <blockquote>
+            <p>Will contain processing errors, if any. If an Event cannot be processed 
+ correctly, it will be reprocessed in the next Command run. There exists 
+ no MAX reprocessing count. On failure, the Event will be processed again 
+ and again (this issue will be dealt with in future versions).</p>
+        </blockquote>
+        <h3>Processing to external systems</h3>
+        <blockquote>
+            <p>Due to a design flaw, events can only be sent to one external system.</p>
+        </blockquote>
+    </body>
+</html>

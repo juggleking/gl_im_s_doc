@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Results" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\restlist\restlist.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Generating an overview of unfinished orders/results</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor107"></a><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="../results/index_results.htm">Results</a> -&gt; Overview of unfinished orders/results</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Using%20Action%20or%20Order-based%20MISPL%20functions">Using Action or Order-based MISPL functions</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#result%20query">Using the result query</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#worklist">Using an outline work list</a>
+            </li>
+        </ul>
+        <h3><a name="Using Action or Order-based MISPL functions"></a>Using Action or Order-based MISPL functions</h3>
+        <p>Two MISPL functions are available to generate an overview of (unfinished) orders and requests:</p>
+        <p class="fieldlabel">Action based</p>
+        <div class="indented">
+            <p>Action.PropertyList(MinimalResultStatus, MaximalResultStatus, PropertyFieldName, AllowUnsolicitedResults.</p>
+            <p>Returns a comma separated list of properties for which there are results, belonging to this action and with a status between 'MinimalResultStatus' and 'MaximalResultStatus'.</p>
+        </div>
+        <p class="fieldlabel">Order based</p>
+        <div class="indented">
+            <p> Order.PropertyList(MinimalResultStatus, MaximalResultStatus, PropertyFieldName, PropertyClassification, AllowUnsolicitedResult.</p>
+            <p>Returns a comma separated list of properties for which there are results, belonging to this order and with a status between 'MinimalResultStatus' and 'MaximalResultStatus'.</p>
+        </div>
+        <h3><a name="result query"></a>Generate an overview of properties which have not been executed within a certain specified period using the Result query</h3>
+        <p>1. Define a site attribute (integer) on the Property table; e.g. Duration.</p>
+        <p>2. Specify the duration in this Property site attribute; e.g. 8 (hours).</p>
+        <p>3. When generating the list using the result query (Start -&gt; Routine -&gt; Result query), specify the MISPL below in the <span class="ui_element">Filter</span> field:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="restlist_wlst.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="428" data-mc-height="321" src="restlist_wlst_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h4 style="text-align: left;">MISPL function</h4>
+        <div class="indented"><pre>
+String Duration;
+Integer OverTime ;
+Fractional X,OverTime2;
+Duration := GetSiteAttribute("Property", .Property.Id, "Duration") ;
+</pre><pre>
+/* if Duration unknown, take 24 hours*/
+IF Duration = ? then
+  Duration := "24" ; 
+ENDIF ; 
+</pre><pre>
+/* expressed in hour */
+Overtime := StringToInteger(Duration) ; 
+</pre><pre>
+/* As a fractional part of 1 day */
+OverTime2  := Overtime / 24. ;            
+</pre><pre>
+/* Calculate the time difference between now and object Time of analysis */
+X := DateAndTimeToDateTime (Today(), Now())  - .ObjectTime ;
+</pre><pre>
+RETURN X &gt; OverTime2 ;
+</pre>
+        </div>
+        <h3><a name="worklist" id="worklist"></a>Generate an overview list by mean of an outline work list</h3>
+        <p>You can use the text fields in the <span class="ui_element">Outline</span> tab folder of the work list template to produce this kind of overview list:</p>
+        <h4>Page header</h4>
+        <div class="indented"><pre>
+!R! SPO P;   FONT 76;CSET 0N ; EXIT; 
+Arbeitsliste für {=.Name} vom {=DateToString(Today(),"%d.%m.%y")} / {=TimeToString(StringToTime("C"),"%H:%Mh")}
+Einträge: {=IntegerToString(.EntryCount,"%d")}   Seite: &amp;PageNo
+</pre>
+        </div>
+        <h4>Action section</h4>
+        <div class="indented"><pre xml:space="preserve">
+==============================================================================================================
+Patient: {= Substr(.Object.InternalId + FILL(" ", 14), 1, 14) } ({=Entry(Lookup(EnumeratedToString("Sex", 
+.Object.Person().Sex), "Male,Female,Other,Unknown,Ambiguous,Not applicable",  ?),"M,F,O,U,A,N", ?) })  {= Substr(IF EnumeratedToString("ObjectType", .Object.Type) = "Person"
+THEN (.Object.Person().LastName + (IF IfKnownString(.Object.Person().SpouseLastName) &lt;&gt; "" THEN "-" + 
+.Object.Person().SpouseLastName ELSE "") +  (IF IfKnownString(.Object.Person().FirstName) &lt;&gt; ""  THEN ", " + 
+.Object.Person().FirstName  ELSE (IF IfKnownString(.Object.Person().MiddleName) &lt;&gt; "" THEN ", " + 
+.Object.Person().MiddleName ELSE "")) ) ELSE "?" + FILL(" ", 30),1, 30) } Einsender: {= .Order().Issuer.Name}
+Material: {=.SpecimenInput().Specimen.Material.Description()} Probennummer: {=.SpecimenInput().Specimen.InternalId} 
+Zeitdauer : {=FractionalToString(.Procedure.Turnover,"%2.0f")} Tag(e) / Anfgefordert am :{=DateTimeToString(.StartTime,"%d.%m.%Y")}
+--------------------------------------------------------------------------------------------------------------  
+</pre>
+        </div>
+        <h4>Result section</h4>
+        <div class="indented"><pre>
+Resultatstatus : {=EnumeratedToString("ResultStatus",.Status)+" / " + .Property.Mnemonic + ":"
++ IfKnownString( .Attribute("Value"))}  Wiederholungen: {=IfKnownString(IntegerToString(.AssessmentCount,"%d"))} 
+</pre>
+        </div>
+        <h4>Output example</h4>
+        <div class="indented">
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="ResteListe.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="801" data-mc-height="434" src="ResteListe_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <p>&#160;</p>
+    </body>
+</html>

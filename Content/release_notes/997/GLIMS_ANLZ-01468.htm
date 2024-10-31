@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Analyzer communication: codes of Material variable choice records were not taken into account  when used in a coding system (GLIMS_ANLZ-01468)</title>
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor739"></a>
+            <MadCap:concept term="Release notes" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+            <MadCap:conditionalText xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Analyzer communication: codes of Material variable choice records were not taken into account  when used in a coding system (GLIMS_ANLZ-01468)</h1>
+        <p>Normally when a <a href="../../configuration/coding_systems/coding_systems.htm" xmlns="http://www.w3.org/1999/xhtml">coding system</a> is set on a station, it is expected to use the corresponding code of a record in the coding system  instead of the mnemonic or name of a record. However, this was not the case for <a href="../../configuration/materials_variables/material_variables.htm#Choices" xmlns="http://www.w3.org/1999/xhtml">Material variable choice</a> records when included in a Work order reply message (O.16.1.2 and, if required, in M-record "spmv" field M.5.1.1). The information was not coded in the message sent by GLIMS as it remained the GLIMS mnemonic instead of its coded equivalent.</p>
+        <p>This issue has been corrected.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The behaviour can be heavily influenced by the way <a href="../../configuration/stations/stations.htm#Specimen" xmlns="http://www.w3.org/1999/xhtml">Specimen variables</a> are configured on a station.</p>
+            <table style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');width: 100%;" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+                <col class="TableStyle-Alternating-Column-Column1" />
+                <col class="TableStyle-Alternating-Column-Column1" />
+                <col class="TableStyle-Alternating-Column-Column1" />
+                <col class="TableStyle-Alternating-Column-Column1" />
+                <col class="TableStyle-Alternating-Column-Column1" />
+                <thead>
+                    <tr class="TableStyle-Alternating-Head-Header1">
+                        <th class="TableStyle-Alternating-HeadE-Column1-Header1">Specimen variables</th>
+                        <th class="TableStyle-Alternating-HeadE-Column1-Header1">Source body site</th>
+                        <th class="TableStyle-Alternating-HeadE-Column1-Header1">Work order message field Specimen source (O.16.1.2)</th>
+                        <th class="TableStyle-Alternating-HeadE-Column1-Header1">
+                            <p xmlns="http://www.w3.org/1999/xhtml">Work order message spmv M-segment</p>
+                            <p xmlns="http://www.w3.org/1999/xhtml"> Specimen variable choice (M.5.1.1)</p>
+                        </th>
+                        <th class="TableStyle-Alternating-HeadD-Column1-Header1">Additional remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="TableStyle-Alternating-Body-Body1">
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">Only source body site</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">?</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">Code of the material variable choice as defined in the coding system, but ONLY for the first specimen variable of a specimen.</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">/</td>
+                        <td class="TableStyle-Alternating-BodyD-Column1-Body1">In case a specimen can have multiple specimen variables, ONLY the first one will be reported. Make sure  the selected choice is in the coding system.</td>
+                    </tr>
+                    <tr class="TableStyle-Alternating-Body-Body2">
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body2">Only source body site</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body2">Mnemonic of a material variable, e.g. "Colour".</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body2">Code of the material variable "Colour" as defined in the coding system.</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body2">/</td>
+                        <td class="TableStyle-Alternating-BodyD-Column1-Body2">&#160;</td>
+                    </tr>
+                    <tr class="TableStyle-Alternating-Body-Body1">
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">All</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">?</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">/</td>
+                        <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                            <p xmlns="http://www.w3.org/1999/xhtml">One "spmv" M-segment for each specimen variable having a value for which the coding system has a code for the material variable choice in the coding system.</p>
+                            <p xmlns="http://www.w3.org/1999/xhtml"> 
+M.5.1.1 of each "spmv" M-Segment will have the code of that material variable choice corresponding with the specimen variable value.
+</p>
+                        </td>
+                        <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                    </tr>
+                    <tr class="TableStyle-Alternating-Body-Body2">
+                        <td class="TableStyle-Alternating-BodyB-Column1-Body2">All</td>
+                        <td class="TableStyle-Alternating-BodyB-Column1-Body2">Mnemonic of a material variable, e.g. "Colour".</td>
+                        <td class="TableStyle-Alternating-BodyB-Column1-Body2">Code of the material variable "Colour" as defined in the coding system.</td>
+                        <td class="TableStyle-Alternating-BodyB-Column1-Body2">
+                            <p xmlns="http://www.w3.org/1999/xhtml">One "spmv" M-segment for each specimen variable having a value for which the coding system has a code for the material variable choice in the coding system. 
+</p>
+                            <p xmlns="http://www.w3.org/1999/xhtml">M.5.1.1 of each "spmv" M-Segment will have the code of that material variable choice corresponding with the specimen variable value.</p>
+                            <p xmlns="http://www.w3.org/1999/xhtml">
+M.5.1.2	Specimen variable choice value: the "Colour" specimen variable has the value SSBS (=Specimen Source Body Site).</p>
+                        </td>
+                        <td class="TableStyle-Alternating-BodyA-Column1-Body2">&#160;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

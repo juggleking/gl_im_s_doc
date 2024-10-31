@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Lab archive|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Lab archive - Storing specimens</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor476"></a>
+            <MadCap:concept term="Lab archive" />Lab archive - Storing specimens</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS offers different ways to store a specimen in an archive: by scanning 
+ the specimen, via MISPL or through analyzer communication.</p>
+        <h2>Via Specimen scan</h2>
+        <p>The <a href="../../../routine/specimens/specimens_scan.htm">specimen 
+ archive scan</a> program makes use of the Lab archive tables like Archive, 
+ ArchivePart, RackType, Rack, and ItemStorage. This occurs automatically 
+ <b>when a station is selected which refers to a lab archive</b>.</p>
+        <h3>Rack lookup</h3>
+        <p>When selecting a rack in the specimen scan program (by scanning or entering 
+ its code), its archive part mnemonic and rack usage fields are shown next 
+ to the specimen barcode field as additional information.</p>
+        <p>Using the <a href="../configuration/lab_archive_configuration.htm#Last">Last used rack</a> field of a lab archive (field that 
+ is automatically filled), the specimen scan program will by default propose 
+ the last rack scanned for this archive.</p>
+        <p>If the rack code is specified, the scan program will check if the rack refers 
+ to the lab archive for which you are currently scanning (by checking the 
+ Rack.Archive field) in order to determine the rack in GLIMS. This 
+ implies each rack where Rack.Archive refers to the current archive can 
+ be chosen in the specimen scan program, regardless of its rack type! In 
+ other words, any rack can be chosen for any archive, providing it has 
+ not already been reserved for another archive.</p>
+        <p>To allow this, the role of the rack code is very important. The 
+ rack code must be specified. When necessary, it is automatically 
+ filled with Rack.SeqNo. The rack string entered in the specimen 
+ scan program is used to find a rack with a matching code. The 
+ sequence number of a rack is not taken into account when looking up a 
+ rack via the specimen scan program. Only the rack "code" and 
+ "archive" fields, together with a possible check on the rack 
+ usage, are used to find a rack.</p>
+        <p>The rack usage allows to reserve the use of a number of racks for a 
+ special purpose (e.g. a study). When the user is filling a 
+ rack with a specific usage in the specimen scan program, the next rack 
+ proposed will be a rack with the same usage.</p>
+        <p>When the rack is found, the Rack.Type.Capacity is used as default value 
+ for the current rack capacity (as opposed to the Station.RunCapacity).</p>
+        <h3>Rack position lookup</h3>
+        <p>Once the rack has been determined, the specimen scan program
+ searches for a free position in that rack. If you enter the code 
+ of a rack which still contains specimens (according to the ItemStorage 
+ table), the following happens:</p>
+        <ul>
+            <li value="1">If the most recent specimen in the rack is older 
+	 than the storage period, you are asked whether the entire rack should be cleared. If the answer is YES, the rack is cleared, otherwise, 
+	 you will not be allowed to use this rack. To determine 
+	 the storage period of a rack, GLIMS looks in the following fields: 
+	 Rack.StoragePeriod, ArchivePart.StoragePeriod and Archive.StoragePeriod. 
+	 When a field does not contain a value, the next one is tried.</li>
+            <li value="2">If the specimen is less than StoragePeriod days 
+	 old, you are asked whether you want to keep filling this rack. If you answer 
+	 YES you can continue with this rack. This 
+	 message can be suppressed by deactivating the specimen scan option 
+	 <a href="../../../routine/specimens/specimens_scan.htm#One">One rack per day</a>.</li>
+            <li value="3">By default, the specimen scan program proposes 
+	 the position following the highest taken position in the rack. However, 
+	 if the <a href="../configuration/lab_archive_configuration.htm#Use">Use first free position</a> option of the rack type 
+	 is enabled, the first free position of a rack will be used.</li>
+        </ul>
+        <p>The rack can be alphanumeric. Of course, in this case, automatic incrementation 
+ of the rack number is no longer performed.</p>
+        <h3>Archive reasons</h3>
+        <p>The fields <span class="ui_element">Archive reason</span> and <span class="ui_element">Archive sub reason</span> become 
+ active when <span class="ui_element">Save into</span> is set to <span class="ui_element">Storage location</span>. These two fields are filled with gp_text mnemonics starting with "ARCH-" 
+ and "ARCH-S-". The latter two prefixes are stripped 
+ when displayed in the specimen scan program (example above: "reason 1" 
+ and "subreason1"). The actual text modules must be based on the Specimen 
+ table. </p>
+        <p>If the <span class="ui_element">Automatic</span> option (<span class="ui_element">Options</span> tab) is enabled, you will have to select the archive 
+ (sub) reason before entering the barcode. It is also possible to query 
+ on these two specimen scan fields in order to obtain a list of specimens 
+ archived with a specific code.</p>
+        <h2>Via MISPL</h2>
+        <p>GLIMS also allows storing a specimen in an archive or looking up a stored 
+ specimen via MISPL.</p>
+        <p><b style="font-weight: bold;">Specimen.GetStorage(ArchiveMnemonic, Usage)</b>
+        </p>
+        <div class="indented">This MISPL function returns a reference to a storage record for this 
+ specimen, referring to a rack of the specified archive and usage.</div>
+        <p><b style="font-weight: bold;">Specimen.SetStorage(Override, ArchiveMnemonic, 
+ Usage, CodePattern, Reason)</b>
+        </p>
+        <div class="indented">
+            <p>Allows creating an item storage record for this specimen in a rack for 
+ the specified Archive and Usage.</p>
+            <p>The CodePattern wild card may be used to enhance the rack specification. 
+ If a free position in such a rack can be found, an item storage record 
+ is created for this specimen. </p>
+            <p>The Override parameter allows indicating if an already existing 
+ item storage record for this specimen, archive and rack usage should be 
+ replaced (instead of being reused). Possible values:</p>
+            <ul>
+                <li value="1">YES : delete old storage record (for same archive) and create new one</li>
+                <li value="2">NO : if old storage record (for same archive) exists, do nothing 
+ (leave it).</li>
+                <li value="3">? : ignore and leave existing storage records (if any) and add 
+ a new one.</li>
+            </ul>
+            <p>The last rack chosen via this MISPL function is remembered in the item 
+ storage record, in order to continue where it left of upon the next call.</p>
+        </div>
+        <p class="fieldlabel"><span lang="EN-US">Specimen.Attribute("IsolationStorageList")</span>
+        </p>
+        <p class="fielddescription">Returns 
+ a list containing –for each storage record of each isolation on the specimen- the 
+ archive, the rack and the position in the rack.</p>
+        <p><b style="font-weight: bold;">Material.CreationTrigger</b>
+        </p>
+        <div class="indented">The field Material.CreationTrigger refers to a Specimen-based, Logical-valued 
+ site function which is executed whenever a specimen for this material 
+ is created. A typical use would be to use the Specimen.SetStorage() function 
+ to assign an archive position to the specimen.</div>
+        <h2>Via analyzer communication</h2>
+        <p>When a station that refers a lab archive sends an archive message (e.g. 
+ a Sample Aliquotter), the station communication program will try to create 
+ an ItemStorage record connecting the specimen and the rack corresponding 
+ to the specified positions.</p>
+        <p>To determine the rack, the following hierarchy is used:</p>
+        <ol>
+            <li value="1">The rack with the same code belonging to an archive (through the 
+	 Rack.Archive field)</li>
+            <li value="2">If a rack is found with the same code that is not yet assigned 
+	 to an archive, this rack will be used and the rack will automatically 
+	 be assigned to the archive (through the Rack.Archive field)</li>
+            <li value="3">If a rack is found with the same code but it is already reserved 
+	 for another archive, an error will be produced.</li>
+        </ol>
+    </body>
+</html>

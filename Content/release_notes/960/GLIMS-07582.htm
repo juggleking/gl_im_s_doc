@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - Reschedule actions when specimen becomes available (GLIMS-07582)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor189"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor190"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>Reschedule actions when specimen becomes available (GLIMS-07582)</h1>
+        <h2>Introduction</h2>
+        <p>During action scheduling, properties which can be measured on different materials are scheduled on their preferred material. However, it can be desirable to have the actions rescheduled  as soon as a specimen in the order becomes available (e.g. via the reception scan).</p>
+        <h2>New functionality</h2>
+        <p class="fieldlabel">Configuration</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">A new general option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Reschedule when specimen becomes available</span> can now be found in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Customize &gt; GLIMS&#160;General</span>. By default, the option is disabled.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-07582.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="757" data-mc-height="305" src="GLIMS-07582_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>It is recommended to also enable the general option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Schedule actions preferably on available specimens</span> as the purpose of rescheduling is to take into account the available specimens.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">How does it work</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">When <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Reschedule when specimen becomes available</span> is enabled and a specimen becomes available in an order with multiple specimens, GLIMS will verify if any rescheduling can be done. If rescheduling makes sense, the existing actions will be "cleaned up" (i.e. actions that have not yet been started or downloaded will be deleted). Subsequently, the action scheduling is again performed.</p>
+            <h4 xmlns="http://www.w3.org/1999/xhtml">Conditions for rescheduling</h4>
+            <p xmlns="http://www.w3.org/1999/xhtml">Action rescheduling takes place when there is at least one output result or specimen which can be rescheduled.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">A result which is the output of an action can be rescheduled if</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">the result status is <span class="ui_element">Initial</span> or <span class="ui_element">Expected</span></li>
+                <li value="2">the result can be derived from another specimen in the order (if the result can only be derived from the current specimen, then rescheduling does not make sense)</li>
+                <li value="3">the result is neither reused nor a duplicate of another result</li>
+                <li value="4">the result is not part of a microbiology action (e.g. microscopy result) or pathology exam (the result specimen is the specimen of a pathology exam)</li>
+                <li value="5">the property datatype is not <span class="ui_element">Antibiogram</span> or <span class="ui_element">Culture</span></li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">A specimen which is the output of an action can be rescheduled if</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">the specimen status is <span class="ui_element">Initial</span> or <span class="ui_element">Expected</span></li>
+                <li value="2">the specimen is not sampled (<span class="ui_element">Sampled</span> = NO)</li>
+                <li value="3">no label has been generated for the specimen (<span class="ui_element">Label printed</span> = NO)</li>
+                <li value="4">the specimen is not reused</li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                <p>Rescheduling does NOT take place</p>
+                <ul>
+                    <li value="1">for microbiology and pathology actions.</li>
+                    <li value="2">when a specimen is set to <span class="ui_element">Available</span> by the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_scheduling.htm">automatic sample login function</a>.</li>
+                </ul>
+            </p>
+            <h4 xmlns="http://www.w3.org/1999/xhtml">Conditions for action deletion</h4>
+            <p xmlns="http://www.w3.org/1999/xhtml">Actions will not be deleted if :</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">their <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Download status</span> is set</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2">their <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Status</span> &gt;= <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Partial</span></li>
+                <li value="3">they occur on a work list</li>
+            </ul>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When GLIMS&#160;deletes actions, this can result in implicitly requested specimens which are obsolete. These will be deleted after rescheduling if they are not referenced, if no label has been printed yet for the specimen and if the specimen has not yet been sampled. This could result in gaps between the internal IDs of the remaining specimens.</p>
+            </div>
+        </div>
+    </body>
+</html>

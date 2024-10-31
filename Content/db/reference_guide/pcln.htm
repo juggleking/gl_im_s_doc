@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - PropertyClassificationNode</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1646"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+PropertyClassificationNode&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Property classification node</td>
+                <td>
+pcln</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This class stores the individual nodes of the property classification trees. </p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_BaseTable"></a>
+        <h3>
+Base table</h3>
+        <div class="MemberHelp">
+            <p>
+By using this field, the user can indicate that the dynamic text in the property classification node label is to be expanded on the specified table.
+<br /><br />Possible selections are: Result, Specimen, Order, Object, Report, PropertyClassificationNode and Property. Any other table selection will be ignored and the Result table will assumed. If no table is selected, again the Result table will be assumed.
+<br /><br />Examples of useful labels: 
+<br /><br />As property node label: Salmonella {&lt; "(" + .Specimen.Material.Mnemonic + ")"}
+<br />As chapter header: Order info: {.ReportInformation} With basetable = "Order".</p>
+            <p class="Synopsis"><span class="Type"><a href="rttb.htm">rt_Table</a></span>&#160;<b>BaseTable</b></p>
+        </div><a name="F_Classification"></a>
+        <h3>
+Position &gt; Classification</h3>
+        <div class="MemberHelp">
+            <p>
+The Classification spinner references the property classification this node is part of. It is set automatically, as it is determined by the context from which you launched the editing in the first place.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<b>Classification</b></p>
+        </div><a name="F_Content"></a>
+        <h3>
+Content</h3>
+        <div class="MemberHelp">
+            <p>
+Allows to specify a MISPL expression. It can be used to add a calculated value to a report. The base table for the MISPL expression is the table specified in the field "Base table for label". 
+<br /><br />One can use it for instance to add a calculated history graph to an MS Word report. 
+<br /><br />Note that the content function has to take care of any formatting that has to occur. For instance, if the text is too long to fit on one line, one may use the FitText MISPL function to break up the text in lines which do fit. The column overflow protection mechanism which automatically cuts off any line which does not seem to fit on the page (replacing the removed text with an "@"-sign) is not active for content nodes. The text of the content function is put on the report without any change.
+<br /><br />This field is also supported for electronic reports. However, in case of microbiology results a distinction must be made between structured and non-structured microbiology results (as set in the report template).
+<br /><br />1. Non-structured microbiology results 
+<br /><br />The result value will be replaced by the return value of the content MISPL (Base table: Result)
+<br /><br />2. Structured microbiology results         
+<br /><br />2.1. Result Property type &lt;&gt; Antibiogram/Culture
+<br /><br />The result value will be replaced by the return value of the content MISPL (Base table: Result) 
+<br /><br />2.2. Result Property type = Antibiogram/Culture
+<br /><br />    2.2.1 Culture Result Property
+<br /><br />The Isolation Appraisal Mnemonic/Description/Text will be replaced by the return value of the content MISPL (Base table: Isolation) 
+<br /><br />    2.2.2. Antibiogram Result Property
+<br /><br />The Antibiotic MIC value will be replaced by the return value of the content MISPL (Base table: AntibioticResult)</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>Content</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DefaultValue"></a>
+        <h3>
+Consult &gt; Default value</h3>
+        <div class="MemberHelp">
+            <p>
+Default value when creating a consult</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>DefaultValue</b></p>
+        </div><a name="F_FlushCommentsAfter"></a>
+        <h3>
+Reportability &gt; Flush comments after</h3>
+        <div class="MemberHelp">
+            <p>
+- When a PROPERTY node is marked as 'Flush comments after', then the comment is printed immediately after the current node (without foot note reference when it concerns a non-cumulative result).  
+<br /><br />GLIMS will not use the general footnote numbering method for properties marked with 'Flush comments after'. Instead, a reference like (*), (**), ... is used. This has the advantage that such immediately flushed comments do not influence the numbering scheme for the foot notes which are printed at the end of the chapter or the end of the report. Moreover, it reduces the danger that the reader interprets such a numbered foot note reference as a result value.
+<br /><br />Furthermore, it is possible to have such immediately flushed comments printed in the result value column, as opposed to printing then at the left margin of the report. To do this, simply set the new ReportTemplate.CommentInValue field to TRUE. 
+<br /><br />- When a TITLE node is marked, then the comments of all the results in the corresponding (sub) chapter are buffered. As soon as the chapter corresponding with the marked node is finished, the comments belonging to this chapter are flushed (with a footnote reference). 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>FlushCommentsAfter</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">PropertyClassificationNode</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_KeepLinesTogether"></a>
+        <h3>
+Layout &gt; Keep lines together</h3>
+        <div class="MemberHelp">
+            <p>
+If set, there will be no page breaks within the paragraph. If the paragraph doesn't fit entirely on the page, it will be put on the following page. If this option is set for a "title" node, the program will try to keep the title and all its sub nodes together. 
+<br /><br />When a result where the node is marked with KeepLinesTogether=TRUE is followed by a comment paragraph (triggered via FlushCommentsAfter=TRUE on the property node), a 'method' or a 'Sop' paragraph, the program will try to keep the result and these extra paragraphs together.  
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>KeepLinesTogether</b></p>
+        </div><a name="F_KeepWithNext"></a>
+        <h3>
+Layout &gt; Keep with next</h3>
+        <div class="MemberHelp">
+            <p>
+If set, there will be no page breaks between this paragraph and the following one. If this option is set for a "title" node, the program will try to keep the title and all its sub nodes together. Moreover, if the next chapter of the same level in the classification is actually present in the report, the program will try to keep this chapter and the next chapter together.   
+<br />On ANY node, this option is only respected when the next node of the same level (and the same parent) of the property classification is actually present in the report. 
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>KeepWithNext</b></p>
+        </div><a name="F_Label"></a>
+        <h3>
+Label</h3>
+        <div class="MemberHelp">
+            <p>
+Here you can specify the name of your title which can be printed on the report. </p>
+            <p class="Synopsis"><span class="Type">Multilingual</span>&#160;<b>Label</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Mandatory"></a>
+        <h3>
+Consult &gt; Mandatory</h3>
+        <div class="MemberHelp">
+            <p>
+Mandatory field in a consult</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Mandatory</b></p>
+        </div><a name="F_PageBreakAfter"></a>
+        <h3>
+Layout &gt; Page break after</h3>
+        <div class="MemberHelp">
+            <p>
+This option indicates whether a page break should be inserted before the next node of the same level. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>PageBreakAfter</b></p>
+        </div><a name="F_PageBreakBefore"></a>
+        <h3>
+Layout &gt; Page break before</h3>
+        <div class="MemberHelp">
+            <p>
+This option should be set if the classification node is to be preceded by a page-break.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>PageBreakBefore</b></p>
+        </div><a name="F_Parent"></a>
+        <h3>
+Position &gt; Parent</h3>
+        <div class="MemberHelp">
+            <p>
+The parent is unknown for top-level nodes.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="#" class="selected">PropertyClassificationNode</a></span>&#160;<b>Parent</b></p>
+        </div><a name="F_PhysicalLineCount"></a>
+        <h3>
+Layout &gt; Physical line count</h3>
+        <div class="MemberHelp">
+            <p>
+This field can e.g. be used to indicate that a paragraph takes no (0) lines because it is printed on the right hand side of the sheet; or to indicate the number of lines a graphic chart takes. 
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>PhysicalLineCount</b></p>
+        </div><a name="F_Postamble"></a>
+        <h3>
+Layout &gt; Postamble</h3>
+        <div class="MemberHelp">
+            <p>
+Example: print codes to reposition after having printed an antibiogram in the right column or print codes to display a title in bold.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Postamble</b></p>
+        </div><a name="F_Preamble"></a>
+        <h3>
+Layout &gt; Preamble</h3>
+        <div class="MemberHelp">
+            <p>
+Example: print codes to position in right column for printing an antibiogram</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Preamble</b></p>
+        </div><a name="F_Property"></a>
+        <h3>
+Property</h3>
+        <div class="MemberHelp">
+            <p>
+Enter the property. If the label is not specified, the property description will be displayed on the report. If a label is entered, it will overrule the property description. </p>
+            <p class="Synopsis"><span class="Type"><a href="prop.htm">Property</a></span>&#160;<b>Property</b></p>
+        </div><a name="F_RepeatPerSpecimen"></a>
+        <h3>
+Reportability &gt; Repeat per specimen</h3>
+        <div class="MemberHelp">
+            <p>
+This toggle box is set if this node has an exclusive row per specimen. Example: for microbiology reporting, where the same property might appear several times in an order, but for different specimens. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>RepeatPerSpecimen</b></p>
+        </div><a name="F_Reportable"></a>
+        <h3>
+Reportability &gt; Reportable</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates the conditions under which this node is shown on reports:
+<br /><br />* When requested: as soon as a result is requested
+<br /><br />* When complete: The results corresponding with this node and/or the results all its sub-nodes (in case of property classification node label) will only be reported when they are complete. When the 'Reportable' field of a property classification node used as 'label' is set to 'When complete' and not all underlying result nodes are complete, the properties will be included in the report, but ALL the result values will be hidden (and reported via the ReportTemplate.EmptyResultText). So, the underlying result values will only be reported if ALL of them are complete. This applies to both text and electronic reporting. 
+<br /><br />Remark: the decision whether a report/result is considered to be complete, depends on two default report fields:
+<br /><br />- DefaultReport.CompletenessStatus: when one of the results has a status lower than the CompletenessStatus, this result (and the report) is considered as incomplete.   
+<br />- DefaultReport.MBCompletenessStatus: when the microbiology action of a culture result has a status lower than the MBCompletenessStatus, this result (and both its culture result and the report) is considered as incomplete.
+<br /><br />When these values are not specified, the following defaults apply :
+<br /><br />- For 'status' reports, CompletenessStatus is set to 'Validated' and MBCompletenessStatus is set to 'Closed' 
+<br />- For 'value' reports with MinimalResultStatus = 'Validated', CompletenessStatus is set to 'Validated' and MBCompletenessStatus is set to 'Closed' 
+<br />- For 'value' reports with MinimalResultStatus = 'Confirmed', CompletenessStatus is set to 'Confirmed' and MBCompletenessStatus is set to 'Ready' 
+<br />- For 'value' reports with MinimalResultStatus = 'Available', CompletenessStatus is set to 'Available' and MBCompletenessStatus is set to 'Ready' 
+<br /><br />Caution when setting the 'New results' option in the report generator screen to 'New result only' or 'New results required':
+<br /><br />Example 1: 
+<br /><br />Diff panel, Reportable = WhenComplete
+<br /><br />Eosino = 120, validated
+<br />Baso = ?, expected
+<br />Blast = ?, expected
+<br /><br />reported with 'Mark output' enabled and NewResultOnly/NewResultRequired WILL NOT export a report (No new results). This is expected behavior because not all diff members are complete, so we cannot report 'Baso' nor 'Blast' (not complete) and thus we cannot report 'Eosino' despite its completeness ! 
+<br /><br />Example 2 :
+<br /><br />Diff panel, reportable = WhenComplete
+<br /><br />Eosino = 120, validated
+<br />Baso = ?, expected
+<br />Blast = ?, expected
+<br /><br />Natrium = 130, validated
+<br /><br />reported with 'Mark output' enabled and NewResultOnly will export a report with only the 'Natrium' result value specified. If 'Baso' and 'Blast' become complete, all tests will be exported and the report will become complete.
+<br /><br />* Always: the node is always displayed on the report, regardless whether a result is requested and regardless of its status</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="reportable.htm">Reportable</a></span>&#160;<b>Reportable</b></p>
+            <p>
+One of: <span class="Parameter">When requested, When complete, Always</span></p>
+        </div><a name="F_ReportCondition"></a>
+        <h3>
+Reportability &gt; Report condition</h3>
+        <div class="MemberHelp">
+            <p>
+This is a result-based MISPL function used for report entry filtering.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>ReportCondition</b></p>
+        </div><a name="F_ReportPreviousResults"></a>
+        <h3>
+Reportability &gt; Report previous results of node(s)</h3>
+        <div class="MemberHelp">
+            <p>
+This dictates how the previous results for this node (and any subnodes which do not override) are reported. It overrides the settings on Report if the report reports Preivous Results.</p>
+            <p class="Synopsis"><span class="Type"><a href="reportpreviousresultsofnode.htm">ReportPreviousResultsOfNode</a></span>&#160;<b>ReportPreviousResults</b></p>
+            <p>
+One of: <span class="Parameter">None, By chapter, By property</span></p>
+        </div><a name="F_ReportStyle"></a>
+        <h3>
+Layout &gt; Report style</h3>
+        <div class="MemberHelp">
+            <p>
+Exported in Glims Report Builder XML file; can be optionally used to determine the report layout.
+<br />If no ReportStyle is deined, and the PropertyClassificationNode is linked to a Property, then the Property.ReportFormat enumerated is exported instead.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ReportStyle</b></p>
+        </div><a name="F_SeqNo"></a>
+        <h3>
+Position &gt; Seq no</h3>
+        <div class="MemberHelp">
+            <p>
+Node's order specification</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type">PositiveInteger</span>&#160;<b>SeqNo</b></p>
+        </div><a name="F_Sequencer"></a>
+        <h3>
+Position &gt; Sequencer</h3>
+        <div class="MemberHelp">
+            <p>
+For internal use only. Represents the node sequence if the tree is descended left-recursive.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Sequencer</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_WidowOrphanControl"></a>
+        <h3>
+Layout &gt; Widow/Orphan control</h3>
+        <div class="MemberHelp">
+            <p>
+When reporting and "Widow/Orphan control" is set, the first line of the paragraph will not be printed by itself at the bottom of the page (Orphan) and the last line will not be printed by itself at the top of the page (Widow).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>WidowOrphanControl</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_BaseTable"></a>
+        <h3>
+Base table&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BaseTable</b> ()</p>
+        </div><a name="M_Classification"></a>
+        <h3>
+Classification&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Classification</b> ()</p>
+        </div><a name="M_Content"></a>
+        <h3>
+Content&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Content</b> ()</p>
+        </div><a name="M_DefaultValue"></a>
+        <h3>
+Default value&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DefaultValue</b> ()</p>
+        </div><a name="M_Parent"></a>
+        <h3>
+Parent&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Parent</b> ()</p>
+        </div><a name="M_Property"></a>
+        <h3>
+Property&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Property</b> ()</p>
+        </div><a name="M_ReportCondition"></a>
+        <h3>
+Report condition&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReportCondition</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Subnodes of classification node</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="#" class="selected">PropertyClassificationNode</a>.<a href="#F_Parent">Parent</a></p>
+        </div>
+        <h3>
+Label Text</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="ml54.htm">PropertyClassificNodeLabel</a>.<a href="ml54.htm#F_Label">Label</a></p>
+        </div>
+        <h3>
+Report rows</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="wrr.htm">w_ReportRow</a>.<a href="wrr.htm#F_PropClassNode">PropClassNode</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Classification + Parent + SeqNo </b>
+            </li>
+            <li value="3"><b>+ BaseTable </b>
+            </li>
+            <li value="4"><b>+ Classification + Property + Sequencer </b>
+            </li>
+            <li value="5"><b>+ Classification + Reportable </b>
+            </li>
+            <li value="6"><b>+ Classification + Sequencer </b>
+            </li>
+            <li value="7"><b>+ Content </b>
+            </li>
+            <li value="8"><b>+ DefaultValue </b>
+            </li>
+            <li value="9"><b>+ Parent + SeqNo </b>
+            </li>
+            <li value="10"><b>+ Property + Classification + Sequencer </b>
+            </li>
+            <li value="11"><b>+ ReportCondition </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+Parent.Classification = Classification</li>
+            <li value="2">
+Content.Table = BaseTable</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

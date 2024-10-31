@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Objects" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\object_attribute.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Object attributes</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Object attributes</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Fields</a> - <a href="#Linking%20an%20object%20attribute%20to%20an%20object">Link attribute to object</a> - <a href="#Usage">Usage</a> - <a href="#MISPL%20functions">MISPL functions</a> - <a href="#Object%20attribute%20history">Object attribute history</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>By means of object attributes, extra diagnostic information can be stored and taken into account during result validation, norm interpretation, tariffication.</p>
+        <p>An example would be <span class="ui_element">Pregnancy</span>.<br /></p>
+        <h2><a name="Configuration" id="Configuration"></a>Fields</h2>
+        <p>Object attributes are available from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Objects</span> -&gt; <span class="ui_element">Object attributes</span>.</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>GLIMS also offers an <a href="../../application_management/import_export/import/import_object_attributes.htm">object attribute import</a> program.</p>
+        </div>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="object_attributes_fields.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="665" data-mc-height="565" src="object_attributes_fields_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+        </div>
+        <p class="fieldlabel">Seq no</p>
+        <div class="indented">
+            <p>Indicates both the order in which object attributes are shown and their relative importance.</p>
+        </div>
+        <p class="fieldlabel">Active</p>
+        <div class="indented">
+            <p>Only active object attributes can be assigned to an object.</p>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Optional, multilingual description.</p>
+        </div>
+        <p class="fieldlabel">Flag, Flag severity</p>
+        <div class="indented">
+            <p>The primary intention of these fields is to inform the user (e.g. on a work list, in the validation program) that a patient has a specific object attribute.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>GLIMS will not show the object attribute information automatically. You should use a MISPL expression in e.g. </p>
+                <ul>
+                    <li value="1">the row label of a work list.</li>
+                    <li value="2">the externalization window of the validation screen.</li>
+                </ul>
+                <p>You can use the following MISPL functions to retrieve object attributes with a specific flag or flag severity:</p>
+                <ul>
+                    <li value="1"><a href="../../db/reference_guide/obj.htm#M_AttributeList">Object.AttributeList</a>
+                    </li>
+                    <li value="2"><a href="../../routine/orders/orders_m_attribute.htm">Order.Attribute("ObjectAttributeFlags")</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Default period</p>
+        <div class="indented">
+            <p> Indicates how long the object attribute is normally valid.&#160;&#160;This field will automatically determine the object attribute's end date when specifying the start date in the order entry screen (see below).</p>
+        </div>
+        <p class="fieldlabel">Maximum period</p>
+        <div class="indented">
+            <p>The maximum number of days that this attribute can be active.&#160;&#160;When manually specifying an object attribute's end date, GLIMS will use this field to check if the maximum period is not exceeded.</p>
+        </div>
+        <p class="fieldlabel">Department</p>
+        <div class="indented">
+            <p>Can be used in <a href="../../security/shielding/shielding.htm">department shielding</a>. Users will not be able to see or update object attributes which are shielded.</p>
+        </div>
+        <h2><a name="Linking an object attribute to an object"></a>Linking an object attribute to an object</h2>
+        <p>You can assign an object attribute to an object during order entry. The <span class="ui_element">Attributes</span> page of the order entry screen shows a browser with all object attributes.</p>
+        <p>When entering the <span class="ui_element">Start date</span>, GLIMS will automatically determine the <span class="ui_element">End date</span> using the object attribute's <span class="ui_element">Default period</span>.</p>
+        <p>
+            <img src="object_attributes_oe.png" />
+        </p>
+        <p>&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The order entry program takes the privileges on the <span class="ui_element">ObjectAttributeHistory</span> table into account by making the browser read-only when the user lacks one of the Create/Update/Delete privileges.</p>
+        </div>
+        <h2><a name="Usage" id="Usage"></a>Usage</h2>
+        <p>Object attributes can be used for:</p>
+        <ul>
+            <li class="p" value="1"><a href="../norms/norms.htm">Norms</a>
+            </li>
+            <li class="p" value="2"><a href="../../modules/blood_transfusion/routine/blood_bag_selection_ranking.htm">Ranking rules (Transfusion)</a>
+            </li>
+            <li class="p" value="3"><a href="../../routine/confirmation_validation/confirmation_validation_valab_validation.htm">Valab validation</a>
+            </li>
+            <li class="p" value="4">Billing</li>
+            <li class="p" value="5">...</li>
+        </ul>
+        <h2 style="text-align: left;"><a name="MISPL functions"></a>MISPL functions</h2>
+        <p class="fieldlabel">Setting an object attribute</p>
+        <div class="indented">
+            <p style="text-align: left;">The <a href="../../db/reference_guide/obj.htm#M_SetAttribute">Object.SetAttribute</a> MISPL function allows to assign an attribute to an object.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>You could define a MISPL function that automatically sets an object attribute depending on the result value of a test.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Retrieving an object attribute</p>
+        <div class="indented">
+            <p>The following MISPL functions allow to retrieve the object attributes of an object:</p>
+            <ul>
+                <li value="1"><a href="../../db/reference_guide/obj.htm#M_AttributeList">Object.AttributeList</a>
+                </li>
+                <li value="2"><a href="../../routine/orders/orders_m_attribute.htm">Order.Attribute("ObjectAttributeFlags")</a>
+                </li>
+            </ul>
+            <p>They can be used to define object attribute dependent rules.</p>
+        </div>
+        <p class="fieldlabel">Clearing an object attribute</p>
+        <div class="indented">
+            <p>The <a href="../../db/reference_guide/obj.htm#M_ClearAttribute">Object.ClearAttribute</a> MISPL function allows to specify an <span class="ui_element">End date</span> for a given attribute.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>An option is available to completely remove an object attribute history for a patient when the specified <span class="ui_element">End date</span> lies before the start date of the object attribute history record. &#160;This is only allowed for object attribute history records that do not have an end date yet.</p>
+                <p>This option has been implemented as a Logical site attribute named <span class="ui_element">_DelWhenClearedLT1Day</span> on table <span class="ui_element">ObjectAttribute</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Deleting an object attribute</p>
+        <div class="indented">
+            <p>The <a href="../../db/reference_guide/obj.htm#M_DeleteAttribute">Object.DeleteAttribute</a> MISPL function deletes any attribute history for a given object attribute that was active on the specified <span class="ui_element">EndDate</span>. &#160;It treats the <span class="ui_element">EndDate</span> as an inclusive boundary (meaning any attributes that started or ended exactly on the specified date are also deleted).</p>
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Use this MISPL function with extreme care as it irreversibly deletes the object attribute ! Use the MISPL function <a href="../../db/reference_guide/obj.htm#M_ClearAttribute">Object.ClearAttribute</a> if you only want to specify an end date without deleting the attribute.</p>
+            </div>
+        </div>
+        <h2 style="text-align: left;"><a name="Object attribute history"></a>Object attribute history</h2>
+        <p>The contextual menu / ribbon item  <span class="ui_element">Attribute history</span> on an <span class="ui_element">Object</span> allows to consult all object attributes that have been assigned to an object.</p>
+    </body>
+</html>

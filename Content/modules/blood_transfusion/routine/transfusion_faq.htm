@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Tools &amp; Case studies">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM FAQ</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3399"></a>
+            <MadCap:concept term="Blood transfusion" />
+            BTM - Frequently Asked Questions</h1>
+        <ul>
+            <li value="1"><a href="#Download%20blood%20bag%20external%20id%20to%20blood%20analyzer">Download blood bag external id to blood analyzer</a>
+            </li>
+            <li value="2"><a href="#Navigating%20to%20the%20person's%20n-th%20antigen(-antibody)%20record">Navigating to the person's n-th antigen(-antibody) record</a>
+            </li>
+            <li value="3"><a href="#An%20Internal%20ID%20MISPL%20expression%20that%20allows%20to%20re-enter%20existing%20blood%20bags">An Internal ID MISPL expression that allows to re-enter existing blood bags</a>
+            </li>
+            <li value="4"><a href="#Reset%20options%20in%20blood%20bag%20query">Reset options in blood bag query</a>
+            </li>
+            <li value="5"><a href="#How%20to%20display%20the%20available%20blood%20bags%20of%20a%20person">How to display the available blood bags of a person</a>
+            </li>
+            <li value="6"><a href="#Display%20a%20table%20of%20the%20blood%20bags%20that%20are%20currently%20'reserved'%20or%20'checked'%20for%20a%20patient">Display a table of the blood bags that are currently 'reserved' or 'checked' for a patient</a>
+            </li>
+        </ul>
+        <h2><a name="Download blood bag external id to blood analyzer"></a>Download blood bag external id to blood analyzer</h2>
+        <p>An option in the <span class="ui_element">Station</span> editor (<span class="ui_element">Transfusion</span> tab &gt; <span class="ui_element">Blood bag id</span> &gt; <span class="ui_element">External</span>) is available for blood analyzers which require blood bag identifications for crossmatch tests.</p>
+        <ul>
+            <li value="1">If this option is enabled, GLIMS will download the blood bag external id as barcode to the station. If the latter is empty, the blood bag internal id will be used.</li>
+            <li value="2">If this option is disabled, GLIMS will download the blood bag internal id to the station.</li>
+        </ul>
+        <h2><a name="Navigating to the person's n-th antigen(-antibody) record"></a>Navigating to the person's n-th antigen(-antibody) record</h2>
+        <p>The MISPL-function Person.AntigenByNumber(&lt;n&gt;) allows navigating to the person's n-th antigen(-antibody) record, where 'n' is the only parameter. The antigens are returned sorted by</p>
+        <blockquote>
+            <p>1. antigen sequence number <br />2. antigen meaning<br />3. antigen mnemonic.</p>
+        </blockquote>
+        <h2><a name="An Internal ID MISPL expression that allows to re-enter existing blood bags"></a>An Internal ID MISPL expression that allows to re-enter existing blood bags</h2>
+        <p>The following MISPL expression asks the confirmation of the user :</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p><pre>
+string ExtNumber, IntNumber;
+</pre><pre>
+ExtNumber := .ExternalId;
+IntNumber := Identifier( "Bloodbag", ExtNumber, 1);
+</pre><pre>
+if IntNumber = ExtNumber + "1"
+then
+   /* external number does not yet exist in Glims */
+   return( ExtNumber );
+endif;
+</pre><pre>
+if AskYesNo ("Bloodbag " + ExtNumber + " already exists. Do wish to enter it anyway with extension 'A' ?",
+   "Existing blood bag number", YES, NO )
+then 
+   return( ExtNumber + "A" );
+endif;
+</pre><pre>
+return(ExtNumber);
+</pre>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Reset options in blood bag query"></a>Reset options in blood bag query</h2>
+        <p>When opening the <span class="ui_element">blood bag query</span> screen, the selections of the previous user will be displayed by default. In order to avoid this, you can assign a parameter set to the menu function (no setup needed).</p>
+        <h2><a name="How to display the available blood bags of a person"></a>How to display the available blood bags of a person</h2>
+        <p>A MISPL function is available to display the available blood bags of a person. The function (.Person().AvailableBloodBagByNumber(&lt;Product&gt;, &lt;Autologous&gt;, &lt;Status&gt;, &lt;number&gt;) expects 4 parameters:</p>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">Product</b>: should be the mnemonic of the blood product for which bags should be selected (or unknown if all products are allowed).</li>
+            <li value="2"><b style="font-weight: bold;">Autologous</b>: should be 'YES' when 'autologous' bags are expected or 'NO' when 'directed' bags are expected.</li>
+            <li value="3"><b style="font-weight: bold;">Status</b>: should be an integer value corresponding to one of the possible statuses of a blood bag (StringToEnumerated can be used for that). If <span class="ui_element">Unknown</span> is indicated in the status field, all bags between <span class="ui_element">Verifying</span> and <span class="ui_element">Initial</span> will be taken into account, otherwise all bags between <span class="ui_element">Verifying</span> and the supplied status will be considered.</li>
+            <li value="4"><b style="font-weight: bold;">Number</b>: indicates that the n'th blood bag will be returned. The bags are sorted ascending, by receipt time.</li>
+        </ul>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>This function could be used in the object data sheet as follows:</p><pre>
+{:
+string list;
+BloodBag BagId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  BagId := .person().AvailableBloodBagByNumber(?, ?, BloodbagStatus["Checked"], i);
+  if BagId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + EnumeratedToString("BloodBagStatus", BagId.Status) +
+           "&lt;/td&gt;&lt;td&gt;" +datetimetostring(BagId.ReceiptTime, "%x") +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic +
+           "&lt;/td&gt;&lt;td&gt;" + BagId.InternalId +
+         + "&lt;/td&gt;&lt;td&gt;" + EnumeratedToString("DonationType", BagId.DonationType) + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL BagId = ?;
+</pre><pre>
+if list = "" then return "&lt;h2&gt; No autologous or directed units for this patient (that are not checked out yet).&lt;/h2&gt;"; 
+endif; return "&lt;h2&gt; Autologous or directed units for this patient (not checked out yet)&lt;/h2&gt; &lt;table border=1&gt;
+&lt;tr align=center&gt;&lt;td&gt;&lt;b&gt;Status&lt;/td&gt;&lt;td&gt;&lt;b&gt;Received on&lt;/td&gt;&lt;td&gt;&lt;b&gt;Product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Unit number &lt;/b&gt;
+&lt;/td&gt;&lt;td&gt;&lt;b&gt;Donation type &lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;" + list + "&lt;/table&gt;";
+}
+</pre>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Display a table of the blood bags that are currently 'reserved' or 'checked' for a patient"></a>Display a table of the blood bags that are currently Reserved or Checked for a patient</h2>
+        <p>You can use the MISPL function "Object.BloodSelectionByNumber( &lt;productmnemonic&gt;, &lt;minimalstatus&gt;, &lt;maximalstatus&gt;, &lt;number&gt; )" to navigate to each blood selection of a certain object (patient). When &lt;number&gt; (the last parameter) increases, starting from 1, all blood selections can be looped sequentially. To select only blood selections of a certain blood product, specify its mnemonic in the first parameter. By default only blood selections with status between Initial and Reserved are selected by this function. If you want another minimal or maximal status, specify them in the second and third parameters.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>This can be used as follows in an object datasheet (in format HTML) to display a table of the blood bags that are currently Reserved or Checked for the patient.</p><pre>
+{:
+string list;
+BloodSelection SelId;
+BloodBag BagId;
+Result RsltId;
+Integer i;
+list := "";
+i := 1;
+REPEAT
+  SelId := .BloodSelectionByNumber(?, bloodselectionstatus["reserved"], ?, i);
+  if SelId &lt;&gt; ?
+  then
+     i := i + 1;
+     list := list + "&lt;tr align=center&gt; &lt;td&gt;" + enumeratedtostring("BloodSelectionStatus", Selid.Status) +
+           "&lt;/td&gt;&lt;td&gt;" + SelId.BloodProduct.Mnemonic + 
+           "&lt;/td&gt;&lt;td&gt;" + datetimetostring(SelId.UtmostTransfusionTime, "%x %X") ;
+     /* add blood bag info */
+     BagId := SelId.BloodBag;
+     IF BagId &lt;&gt; ?
+     THEN
+         list := list + 
+           "&lt;/td&gt;&lt;td&gt;" + BagId.ExternalId + 
+           "&lt;/td&gt;&lt;td&gt;" + BagId.Specification.Mnemonic + 
+           "&lt;/td&gt;&lt;td&gt;" + Enumeratedtostring("BloodGRoup", BagId.BloodGroup) + 
+           "&lt;/td&gt;&lt;td&gt;" + Enumeratedtostring("BloodRhesus", BagId.Rhesus) ;
+     ELSE
+         list := list + "&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt;" ;
+     ENDIF;
+     /* add crossmatch info */
+     RsltId := SelId.CheckResult;
+     IF RsltId &lt;&gt; ?
+     THEN
+         list := list + 
+           "&lt;/td&gt;&lt;td&gt;" + RsltId.Property.Mnemonic + 
+           "&lt;/td&gt;&lt;td&gt;" + ifknownstring( RsltId.Attribute("Value") ) + 
+           "&lt;/td&gt;&lt;td&gt;" + ifknownstring(datetimetostring(RsltId.AvailabilityTime, "%x %X")) ;
+     ELSE
+         list := list + "&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt;" ;
+     ENDIF;
+     list := list + "&lt;/td&gt;&lt;/tr&gt;";
+  endif;
+UNTIL SelId = ?;
+if list = "" then return "&lt;h2&gt; No relevant blood selections for this patient. &lt;/h2&gt;"; endif;
+return( "&lt;h2&gt; Blood selections for this patient&lt;/h2&gt; &lt;table border=1&gt;&lt;tr align=center&gt;" +
+  "&lt;td&gt;&lt;b&gt;Status&lt;/td&gt;&lt;td&gt;&lt;b&gt;Requested product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Transf.before&lt;/td&gt;" +
+  "&lt;td&gt;&lt;b&gt;Unit number&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Selected product&lt;/td&gt;&lt;td&gt;&lt;b&gt;Bl. gr.&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Rh.D&lt;/b&gt;&lt;/td&gt;" +
+  "&lt;td&gt;&lt;b&gt;Crossmatch&lt;/td&gt;&lt;td&gt;&lt;b&gt;Value&lt;/td&gt;&lt;td&gt;&lt;b&gt;Performed on&lt;/td&gt;&lt;/tr&gt;" + 
+  list + "&lt;/table&gt;" );
+}
+</pre>
+                </div>
+            </div>
+        </div>
+        <p>Output examples:</p>
+        <p>
+            <img src="bloodbagsforpatient.gif" style="border-width: 1px;border-style: solid;" alt="" width="878" height="169" border="1" />
+        </p>
+        <p>
+            <img src="bloodbagsforpatient2.gif" style="border: none;" alt="" width="974" height="557" border="0" />
+        </p>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Report types|Result reports|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report builder - Result reports: file inclusions</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor867"></a>
+            <MadCap:concept term="Report builder" />Report Builder - Result reports: File inclusions</h1>
+        <h3>Introduction</h3>
+        <p>Limited support is available for file inclusions in the "Content" MISPL of property classification "Label" nodes.</p>
+        <p>The Object.MicrobiologicHistory MISPL function can result in a very long string of character. &#160;Once it reaches the upper limit of 3000 characters, it would stop with a message that the history was too long. To circumvent this limitation, an option was added to write such a long history to a temporary file on disk, which is then included on the report.</p>
+        <p>To this end, limited support was added for file inclusions, specifically for Content MISPL return values on Label nodes of the property classification tree.</p>
+        <h3>Restrictions</h3>
+        <p>Report Builder does not support file inclusions in other places (comments, etc.) In addition, you have to use a special syntax to prepare the MISPL return value to make this work (see example below).</p>
+        <p>Although you can use this to include other files as well (using plain text, html or rtf as markup), file formats with styled text may not be fully supported by the underlying JasperReports engine. The HTML support, for instance, does not extend beyond HTML 3.2 features.</p>
+        <h3>Jasper template files</h3>
+        <p>The SingleOrderReport example layout:</p>
+        <h4>Chapter.jrxml/Chapter.jasper</h4>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>this has an additional Detail block to use the subreport FileInclude.jasper</p>
+            </li>
+            <li class="p" value="2">
+                <p>look at the PrintWhenExpression to see that this is triggered if Detail.Type is "File"</p>
+            </li>
+            <li class="p" value="3">
+                <p>it also passes some parameters that you may want to look at</p>
+            </li>
+        </ol>
+        <h4>FileInclude.jrxml/FileInclude.jasper</h4>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>this has several Detail blocks, allowing you to apply different markups (plain text, html, rtf)</p>
+            </li>
+            <li class="p" value="2">
+                <p>bear in mind that the MicrobiologicHistory text is just plain text...</p>
+            </li>
+            <li class="p" value="3">
+                <p>also note that the HTML and RTF support is a bit limited</p>
+            </li>
+            <li class="p" value="4">
+                <p>the actual thing that makes this construct work, is the data field expression</p>
+            </li>
+        </ol>
+        <p style="margin-left: 40px;">###<br />
+be.mips.util.FileUtilities.readFileAsString($F{Detail.Value.File.Source}, "YES".equalsIgnoreCase($F{Detail.Value.File.Delete}))<br />
+###</p>
+        <p style="margin-left: 40px;">This uses the new FileUtilities class to read a file into a string, optionally deleting the file afterwards.</p>
+        <p style="margin-left: 40px;">Note that to compile the FileInclude subreport, you'll need to copy the 'be' directory from MA_ROOT/jar/cls/be into the directory containing your .jrxml/.jasper files.</p>
+        <p style="margin-left: 0px;">To use the new file inclusion mechanism in your Report Builder layout, you should update your Chapter.jrxml file to mirror the new example.</p>
+        <h3>MISPL example</h3>
+        <p>You can use the following Content MISPL for your MicrobiologicHistory Label node:</p>
+        <p>###</p>
+        <p>String mbichis;</p>
+        <p>mbichis := .MicrobiologicHistory(?, ?, ?, 5, ?, ?, ?, ?, ?, "File=YES");</p>
+        <p>RETURN REPLACE(REPLACE(mbichis,"&lt;FILE SRC='","&lt;?xml version=""1.0""?&gt;&lt;%File Source="""),"' DEL=YES&gt;",""" Delete=""YES"" /&gt;");</p>
+        <p>###</p>
+        <p>Note that in the above example we doubled the double quotes to escape them in the replacement strings.</p>
+    </body>
+</html>

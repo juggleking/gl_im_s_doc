@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.SampleNet only">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Resources/StyleSheets/samplenet_glims.css" rel="stylesheet" type="text/css" /><title>Watchdog architecture</title>
+        <link href="" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Watchdog architecture</h1>
+        <h2>Overview</h2>
+        <p>
+            <img src="../Images/watchdog_architecture_full.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h2>Message flows&#160;</h2>
+        <table cellspacing="0" width="100%">
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;" width="70">
+                    <img src="../Images/watchdog_architecture_arrow_black.png" alt="" style="border: none;" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;">At regular intervals, 
+		 services report their status (and the status of the connected 
+		 translators) to the Watchdog daemon.</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;">
+                    <img src="../Images/watchdog_architecture_arrow_brown.png" alt="" style="border: none;" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;">The Watchdog daemon 
+		 transmits this information via the Dashboards, Alerts<MadCap:conditionalText data-mc-conditions="Primary.SampleNet only"> or a Nagios 
+		 agent</MadCap:conditionalText>.</td>
+            </tr>
+            <tr>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;">
+                    <img src="../Images/watchdog_architecture_arrow_orange.png" alt="" style="border: none;" border="0" />
+                </td>
+                <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;vertical-align: top;">When starting / 
+		 stopping a service/translator from within the Dashboard, this 
+		 request is sent to the Watchdog daemon. &#160;The Watchdog daemon 
+		 then asks the appropriate XML control service to perform the start/stop 
+		 action.</td>
+            </tr>
+        </table>
+        <h3>See also:</h3>
+        <ol>
+            <li class="mips_list_numbered" value="1"><a href="Watchdog_installation_configuration.htm">Watchdog 
+	 installation and configuration</a>
+            </li>
+            <li class="mips_list_numbered" value="2"><a href="Watchdog_in_a_multi-server_environment.htm">Watchdog 
+	 in a multi-server environment</a>
+            </li>
+            <li class="mips_list_numbered" value="3"><a href="../Dashboard/Dashboard_about.htm">About 
+	 the dashboard</a>
+            </li>
+            <li class="mips_list_numbered" value="4"><a href="Watchdog_notifications.htm">Watchdog notifications</a>
+            </li>
+            <li class="mips_list_numbered" value="5" data-mc-conditions="Primary.SampleNet only"><a href="Watchdog_nagios_integration.htm">Nagios integration</a>
+            </li>
+        </ol>
+    </body>
+</html>

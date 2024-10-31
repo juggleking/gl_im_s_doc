@@ -1,0 +1,36 @@
+{:
+STRING sRetVal, LF;
+LF := Chr(10);
+
+sRetVal := """BloodGroup""" + "," +
+	"""Rhesus""" + "," +
+	"""DeterminationDate1""" + "," +
+	"""DeterminationDate2""" + "," +
+	"""DeterminationStatus""" + ","+
+	"""PositiveScreening""" + "," +
+	"""PositiveScreeningTime""" + "," +
+	"""LastScreeningPositive""" + "," +
+	"""LastScreeningTime""" + "," +
+	"""TransfusionAdvice""" + "," +
+	"""TransfusionReaction""" + "," +
+	"""HLATypeSero""" + "," +
+	"""HLATypeDNA""" + "," +
+	"""HLATypeLocusA""" + "," +
+	"""HLATypeLocusB""" + "," +
+	"""HLATypeLocusC""" + "," +
+	"""HLATypeLocusDR""" + "," +
+	"""HLATypeLocusDQ""" + "," +
+	"""CrossMatchAdvice""";
+
+sRetVal := sRetVal + LF + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + LF;
+sRetVal := sRetVal + "%%" + LF;
+sRetVal := sRetVal + "%% Application: GLIMS" + LF;
+sRetVal := sRetVal + "%% Table: prmr" + LF;
+sRetVal := sRetVal + "%% Exported on: " + DateToString(Today(), "%d/%m/%Y");
+sRetVal := sRetVal + " at " + TimeToString(Now(), "%X")+ LF;
+sRetVal := sRetVal + "%% Exported by: " + CurrentUser() + LF;
+sRetVal := sRetVal + "%%" + LF;
+sRetVal := sRetVal + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%";
+
+RETURN sRetVal;
+}

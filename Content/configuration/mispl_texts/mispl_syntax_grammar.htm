@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced|MISPL and texts|MISPL" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\mispl-text\syntax_index_01.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Syntax 
+ and grammar</title>
+        <script language="JavaScript" type="text/javascript">/*<![CDATA[*/
+<!-- // hide from old browsers
+// hide text from MSIE browsers
+with (document)
+{
+	write("<STYLE TYPE='text/css'>");
+	if (navigator.appName == 'Microsoft Internet Explorer')
+		{
+		write(".hiddentext {display:none} .outline {cursor:hand; text-decoration:underline}");
+		}
+	write("</STYLE>");
+}
+// show text on click for MSIE browsers
+function expandIt(whichEl)
+{
+	if (navigator.appName == 'Microsoft Internet Explorer')
+		{
+		whichEl.style.display = (whichEl.style.display == "block" ) ? "none" : "block";
+		}
+	else return;
+}
+// end hiding from old browsers -->
+/*]]>*/</script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Syntax 
+ and grammar</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Tokens">Tokens</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Grammar">Grammar</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Precedences">Precedences</a>
+            </li>
+        </ul>
+        <h2><a name="Tokens"></a>Tokens</h2>
+        <p>Below are the regular expressions defining the MISPL tokens. Check out 
+ this <a href="mispl_regular_expressions.htm">technical MIPS document on regular expressions</a>.</p>
+        <p>The quotations marks (") indicate that whatever is contained between 
+ a pair of quotes is to be taken as text characters. Thus "ab+" 
+ matches the string ab+ and is equivalent to ab\+, which is less readable. 
+ A quote preceded by a backslash (\) designates the quote character itself.</p>
+        <p>Uppercase characters can be safely interpreted as case-insensitive: 
+ TRUE, true and True are equivalent. Strictly, the correct pattern specification 
+ should be [Tt][Rr][Uu][Ee]. </p>
+        <ol><pre>	IntegerConstant		:	[0-9]+
+				;
+	FractionalConstant 	:	[0-9]+\.[0-9]*(E[-+]?[0-9]+)?
+				|	[0-9]*\.[0-9]+(E[-+]?[0-9]+)?
+				|	[0-9]+E[-+]?[0-9]+
+				;	
+	StringConstant		:	\"(\"\"|[^"\n])*\"
+				;
+	LogicalConstant		:	FALSE | NO | TRUE | YES
+				;
+	UnknownValue		:	"?"
+				;
+	Identifier		:	[a-zA-Z_][a-zA-Z0-9_]*
+				;
+	UnaryOperator		:	NOT | "!" | "-" | "+"
+				;
+	BinaryOperator		:	"+" | "-" | "*" | "/" | "%"
+				;
+	RelationalOperator	 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;:	LT | "&lt;" | LE | "&lt;=" | GT | "&gt;" | GE | "&gt;="
+				;
+	EqualityOperator &#160;&#160;&#160;	:	EQ | "=" | NE | "&lt;&gt;"
+				;
+	LogicalOperator		:	AND | "&amp;&amp;" | OR | "||"
+				;</pre>
+        </ol>
+        <p><b>Remark</b>
+        </p>
+        <p>Binary Operator "/": important remark Dividend / Divider:</p>
+        <p>In case the Dividend and the Divider are both of type Integer, the result 
+will also be of a truncated type Integer.</p><pre>e.g.
+321 / 60 returns 5
+359 / 60 returns 5</pre>
+        <p>If a fractional result is required, one should force the Dividend or the 
+Divider into a fractional</p><pre>e.g.
+321.0 / 60   returns 5.35
+321   / 60.0 returns 5.35
+359.0 / 60   returns 5.98333</pre>
+        <h2><a name="Grammar"></a>Grammar</h2>
+        <p style="text-align: left;" align="left">Like any programming language, MISPL has an associated grammar 
+ that defines the acceptable syntax for programs. The MISPL grammar is 
+ formally described in the table below. Each row in the table is a grammar 
+ rule. The first rule defines the element 'Program' in terms of smaller 
+ elements. Further down, you'll find the definitions of those smaller elements, 
+ and so on. Elements in <i><span style="color: #0000FF;">italic</span></i> must 
+ be translated (using another rule, unless obvious); elements in <span style="color: #FF0000;"><b>bold</b></span> must be used literally. 
+ Vertical bars denote alternative choices. Square brackets denote optional 
+ inclusion. Curly braces denote optional repeated inclusion. Parentheses 
+ denote grouping.</p>
+        <table style="width: 100%;height: 322px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" height="322" width="100%" border="1">
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Program</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13">( <span style="color: #FF0000;"><b>CHARACTER</b></span> 
+ | <span style="color: #FF0000;"><b>DATE</b></span> | <span style="color: #FF0000;"><b>DECIMAL</b></span> 
+ | <span style="color: #FF0000;"><b>INTEGER</b></span> | <span style="color: #FF0000;"><b>LOGICAL</b></span> ) <span style="color: #FF0000;"><b>PROGRAM</b></span> 
+ { <i><span style="color: #0000FF;">Declaration</span></i> } { <i><span style="color: #0000FF;">Statement</span></i> } <i><span style="color: #0000FF;">ReturnStatement</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Declaration</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13">( <span style="color: #FF0000;"><b>DATE</b></span> | <span style="color: #FF0000;"><b>DATETIME</b></span> |&#160; <span style="color: #FF0000;"><b>FRACTIONAL</b></span> | <span style="color: #FF0000;"><b>INTEGER</b></span> 
+ | <span style="color: #FF0000;"><b>LOGICAL</b></span> | <span style="color: #FF0000;"><b>STRING</b></span> | <span style="color: #FF0000;"><b>TIME</b></span> 
+ | <span style="color: #0000FF;">Class</span> | <span style="color: #0000FF;">Enumeration</span> 
+ ) <i><span style="color: #0000FF;">Identifier</span></i> { <span style="color: #FF0000;"><b>,</b></span> <i><span style="color: #0000FF;">Identifier</span></i>} <span style="color: #FF0000;"><b>;</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Identifier</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>String 
+ that starts with a letter or an underscore.</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>Class</i></span>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>A built-in 
+ Class (cfr&#160; ERDs / Class Reference)</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>Enumeration</i></span>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>A built-in 
+ Enumeration (cfr Class Reference)</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Statement</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13">( <i><span style="color: #0000FF;">Expression</span></i> | <i><span style="color: #0000FF;">IfStatement</span></i> | <i><span style="color: #0000FF;">WhileStatement</span></i> 
+ | <i><span style="color: #0000FF;">RepeatStatement</span></i> | <i><span style="color: #0000FF;">Assignment</span></i> )<span style="color: #FF0000;"><b>;</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 12px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="12"><i><span style="color: #0000FF;">IfStatement</span></i>
+                </td>
+                <td style="height: 12px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="12"><span style="color: #FF0000;"><b>IF</b></span> <i><span style="color: #0000FF;">Expression</span></i><span style="color: #FF0000;"><b>THEN</b></span> 
+ { <i><span style="color: #0000FF;">Statement</span></i> } [ <span style="color: #FF0000;"><b>ELSE</b></span> 
+ { <i><span style="color: #0000FF;">Statement</span></i> } ] <span style="color: #FF0000;"><b>ENDIF</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">WhileStatement</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #FF0000;"><b>WHILE</b></span> <i><span style="color: #0000FF;">Expression</span></i><span style="color: #FF0000;"><b>DO</b></span> 
+ { <i><span style="color: #0000FF;">Statement</span></i> } <span style="color: #FF0000;"><b>DONE</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 14px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="14"><i><span style="color: #0000FF;">RepeatStatement</span></i>
+                </td>
+                <td style="height: 14px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="14"><span style="color: #FF0000;"><b>REPEAT</b></span> 
+ { <i><span style="color: #0000FF;">Statement</span></i> } <span style="color: #FF0000;"><b>UNTIL</b></span> <i><span style="color: #0000FF;">Expression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 12px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="12"><i><span style="color: #0000FF;">ReturnStatement</span></i>
+                </td>
+                <td style="height: 12px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="12"><span style="color: #FF0000;"><b>RETURN</b></span> <span style="color: #0000FF;"><i>Expression</i></span><span style="color: #FF0000;"><b>;</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Assignment</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Identifier</span></i> <span style="color: #FF0000;"><b>:=</b></span><i><span style="color: #0000FF;">Expression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Expression</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">PrimaryExpression</span></i> 
+ | <i><span style="color: #0000FF;">UnaryExpression</span></i> | <i><span style="color: #0000FF;">BinaryExpression</span></i> | <i><span style="color: #0000FF;">TernaryExpression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">PrimaryExpression</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Constant</span></i> 
+ | <i><span style="color: #0000FF;">Identifier</span></i> [ <b><span style="color: #FF0000;">(</span></b><i><span style="color: #0000FF;">ExpressionList</span></i> <b><span style="color: #FF0000;">)</span></b> ] [ <span style="color: #FF0000;"><b>.</b></span> <i><span style="color: #0000FF;">Member</span></i> { <span style="color: #FF0000;"><b>.</b></span> <i><span style="color: #0000FF;">Member</span></i> } ] | ( <i><span style="color: #0000FF;">Expression</span></i> )&#160;<i><span style="color: #0000FF;"> </span></i>| Enumerated</td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i>Member</i></span>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Identifier</span></i> 
+ [ <span style="color: #FF0000;"><b>(</b></span><i><span style="color: #0000FF;">ExpressionList</span></i> <span style="color: #FF0000;"><b>)</b></span> ]</td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Enumerated</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i style="font-style: italic;">Enumeration</i></span><span style="color: #FF0000;"><b>["</b></span><span style="color: #0000FF;"><i>Enumerator</i></span>&#160;<span style="color: #FF0000;"><b>"]</b></span></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i style="font-style: italic;">Enumerator</i></span>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #0000FF;"><i style="font-style: italic;">A value 
+ for the Enumeration at hand (</i><i>cfr Class Reference)</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">UnaryExpression</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13">( <span style="color: #FF0000;"><b>NOT</b></span> | <span style="color: #FF0000;"><b>!</b></span> | <span style="color: #FF0000;"><b>-</b></span> 
+ | <span style="color: #FF0000;"><b>+</b></span> ) <i><span style="color: #0000FF;">Expression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">BinaryExpression</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Expression</span></i> 
+ ( <span style="color: #FF0000;"><b>+</b></span> | <span style="color: #FF0000;"><b>-</b></span> 
+ | <span style="color: #FF0000;"><b>*</b></span> | <span style="color: #FF0000;"><b>/</b></span> 
+ | <span style="color: #FF0000;"><b>%</b></span> | <span style="color: #FF0000;"><b>LT</b></span> 
+ | <span style="color: #FF0000;"><b>&lt;</b></span> | <span style="color: #FF0000;"><b>LE</b></span> 
+ | <span style="color: #FF0000;"><b>&lt;=</b></span> | <span style="color: #FF0000;"><b>GT</b></span> 
+ | <span style="color: #FF0000;"><b>&gt;</b></span> | <span style="color: #FF0000;"><b>GE</b></span> 
+ | <span style="color: #FF0000;"><b>&gt;=</b></span> | <span style="color: #FF0000;"><b>EQ</b></span> 
+ | <span style="color: #FF0000;"><b>=</b></span> | <span style="color: #FF0000;"><b>NE</b></span> 
+ | <span style="color: #FF0000;"><b>&lt;&gt;</b></span> | <span style="color: #FF0000;"><b>AND</b></span> | <span style="color: #FF0000;"><b>&amp;&amp;</b></span> 
+ | <span style="color: #FF0000;"><b>OR</b></span> | <span style="color: #FF0000;"><b>||</b></span> 
+ ) <i><span style="color: #0000FF;">Expression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">TernaryExpression</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><span style="color: #FF0000;"><b>IF</b></span> <i><span style="color: #0000FF;">Expression</span></i><span style="color: #FF0000;"><b>THEN</b></span> <i><span style="color: #0000FF;">Expression</span></i><span style="color: #FF0000;"><b>ELSE</b></span> <i><span style="color: #0000FF;">Expression</span></i></td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">ExpressionList</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13">[ <i><span style="color: #0000FF;">Expression</span></i> { <span style="color: #FF0000;"><b>,</b></span><i><span style="color: #0000FF;">Expression</span></i> 
+ } ]</td>
+            </tr>
+            <tr>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">Constant</span></i>
+                </td>
+                <td style="height: 13px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13"><i><span style="color: #0000FF;">IntegerConstant</span></i> 
+ | <i><span style="color: #0000FF;">FractionalConstant</span></i> | <i><span style="color: #0000FF;">StringConstant</span></i> | <i><span style="color: #0000FF;">LogicalConstant</span></i> 
+ | <span style="color: #FF0000;"><b>?</b></span></td>
+            </tr>
+        </table>
+        <h2><a name="Precedences"></a>Precedences</h2>
+        <p>The table below summarizes the rules for precedence and associativity 
+ of all operators. Operators on the same line have the same precedence; 
+ rows are in order of decreasing precedence, so, for example, *, /, and 
+ % have the same precedence, which is higher than that of + and -. </p>
+        <div style="text-align: center;" align="center">
+            <table style="width: 307px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="307" border="1">
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">Operator</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">Associativity</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">NOT -</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">right to left</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">* / %</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">+ -</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">LT LE GT GE</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">EQ NE</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">AND</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">OR</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">left to right</td>
+                </tr>
+                <tr>
+                    <td style="width: 52%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="52%">IF THEN ELSE</td>
+                    <td style="width: 48%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="48%">right to left</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

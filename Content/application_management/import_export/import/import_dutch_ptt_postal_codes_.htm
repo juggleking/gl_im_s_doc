@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific import" data-mc-conditions="Primary.50_translation_exclude_for_FR_GR" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\import-export\import_export15.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Dutch PTT postal code</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor425"></a>
+            <MadCap:concept term="Application management" />Import Dutch PTT postal codes (Dutch customers only)</h1>
+        <p><b style="font-weight: bold;"><span style="color: #FF0000;">LEES DIT AANDACHTIG VOORALEER DEZE FUNCTIE IN GEBRUIK TE NEMEN !</span></b>
+        </p>
+        <ul>
+            <li value="1"><a href="#Inleiding">Inleiding</a>
+            </li>
+            <li value="2"><a href="#Werking">Werking</a>
+            </li>
+            <li value="3"><a href="#Gebruikersinterface">Gebruikersinterface</a>
+            </li>
+            <li value="4"><a href="#Importeren">Importeren</a>
+            </li>
+            <li value="5"><a href="#Extra%20info">Extra info</a>
+            </li>
+        </ul>
+        <h2><a name="Inleiding" id="Inleiding"></a>Inleiding</h2>
+        <p>De postcodetabel wordt geleverd op twee niveaus, namelijk op REEKS- en op HUISNUMMERniveau. Enkel REEKSniveau wordt door GLIMS ondersteund. Zowel het basisbestand als de maandelijkse mutatiebestanden kunnen geïmporteerd worden.</p>
+        <p>De tabel bevat alle woonplaatsen, straten en postcodes van Nederland met bijbehorende huisnummerreeksen. Voor de straatnaam worden 3 schrijfwijzen (officiële, NEN 5825 en PTT) meegeleverd en voor de woonplaats 2 (NEN 5825 en PTT).</p>
+        <p>De OFFICIËLE schrijfwijze van de straatnaam (in hoofd- en kleine letters) is gelijk aan de vermelding op het Gemeentelijk Raadsbesluit en bestaat uit maximaal 43 karakters.</p>
+        <p>De NEN 5825 is bepaald door het Nederlands Normalisatie-instituut, gevestigd in Delft en voorgeschreven door het Ministerie van Binnenlandse Zaken voor het uitwisselen van adresgegevens tussen overheidsorganisaties. De straatnamen en woonplaatsen bestaan uit maximaal 24 karakters. De straatnaam wordt in hoofd- en kleine letters weergegeven en de woonplaats in hoofdletters.</p>
+        <p>De PTT-schrijfwijze is conform de conventies voor uniforme schrijfwijze van namen en adressen. De straatnaam bestaat uit maximaal 17 karakters en de woonplaats uit maximaal 18 karakters. De gegevens worden in hoofdletters geleverd en de IJ wordt vermeld als Y. Straatnaamdelen zoals laan, straat, weg, e.d. worden binnen de PTT-schrijfwijze altijd afgekort.</p>
+        <h2><a name="Werking" id="Werking"></a>Werking</h2>
+        <p>De functie gp_Site.ImportDutchPostalCodes() (Systeembeheer &gt; Importeren &gt; Postcodetabel) kan enkel gestart worden wanneer er een land geconfigureerd is met als code 'NL'. Bovendien hangt de werking van het programma volledig af van de instellingen bij dit land:</p>
+        <p style="text-align: center;">
+            <img src="../ptt_land.gif" alt="" width="296" height="173" border="0" />
+        </p>
+        <ol>
+            <li value="1"><b style="font-weight: bold;">Adrestype</b>: "Standaard" of "Nederlands"</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li value="1">In het geval "<b>Standaard</b>" maakt de postcode in combinatie met de woonplaats een postcode uniek. Dit zijn dan ook de enige twee velden die uit het postcodebestand worden overgenomen. <span style="color: #FF0000;">Gebruik deze optie om compatibel te blijven, zoniet riskeert U alle postcodes dubbel in uw systeem op te nemen !</span><br /></li>
+                <li value="2">Wanneer voor "<b>Nederlands</b>" wordt geopteerd, worden de postcodes conform de Nederlandse huisnummerreeksen geïmporteerd. Zo'n huisnummerreeks is even of oneven, en er wordt rekening gehouden met onbebouwde straten en woonschepen/woonwagens zonder huisnummer. Zolang GLIMS hiervoor echter geen verdere ondersteuning biedt, wordt het gebruik van deze optie afgeraden.</li>
+            </ul>
+        </blockquote>
+        <ol>
+            <li value="2"><b style="font-weight: bold;">Postcodeformaat</b>: "9999XX" of "9999 XX"<br />Via deze optie beslist U als de postcodes al dan niet moeten opgeslagen worden met een spatie tussen het 4-cijferige numerieke deel en de 2 letters.</li>
+        </ol>
+        <h2><a name="Gebruikersinterface" id="Gebruikersinterface"></a>Gebruikersinterface</h2>
+        <p style="text-align: center;">
+            <img src="../pttimport.gif" alt="" width="435" height="186" border="0" />
+        </p>
+        <p>Er zijn 3 opties:</p>
+        <ol>
+            <li value="1"><b style="font-weight: bold;">Bestandsnaam</b>
+                <br />Geef hier de naam en locatie van het importbestand aan.<br /></li>
+            <li value="2"><b style="font-weight: bold;">Woonplaats schrijfwijze</b>
+                <br />Kies de schrijfwijze die door GLIMS moet overgenomen worden. Hou bij uw keuze niet alleen rekening met uw eigen voorkeur, maar ook met andere importbestanden die door uw organisatie eventueel gebruikt worden. Wanneer U bijvoorbeeld ook artsen importeert door middel van de VEKTIS bestanden wordt aangeraden om hier voor de NEN schrijfwijze te kiezen.<br /></li>
+            <li value="3"><b style="font-weight: bold;">Straatnaam schrijfwijze</b>
+                <br />Deze optie is enkel actief indien het adrestype voor NL op "Nederlands" staat. Kies opnieuw de schrijfwijze die door GLIMS moet worden overgenomen. Noteer dat bij een onbebouwde straat de woonplaats/wijkcode (eerste 4 posities van de postcode) in combinatie met de straatnaam PTT een reeks uniek maakt. Als logisch gevolg kan een 100% correcte verwerking van mutaties voor onbebouwde straten dus enkel gegarandeerd worden indien U kiest voor voor straatnaamschrijfwijze PTT. In het andere geval zal de 'schade' echter beperkt blijven aangezien straatnaamwijzigingen eerder zeldzaam zijn.</li>
+        </ol>
+        <h2><a name="Importeren" id="Importeren"></a>Importeren</h2>
+        <p>Tijdens het importeren wordt de voortgang weergegeven, en bij successvolle afloop komt een korte samenvatting:</p>
+        <p style="text-align: center;">
+            <img src="../summary.gif" alt="" width="321" height="204" border="0" />
+        </p>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">Afvoermutaties</b>
+            </li>
+        </ul>
+        <blockquote>
+            <p>Bij het splitsen of samenvoegen van postbussenreeksen verdwijnt de relatie tussen oud en nieuw. In dit geval krijgt u één of meer af- en opvoeren. Indien een postcode reeds verwezen wordt door een Correspondent zal deze, ondanks de afvoer-instructie, toch in GLIMS behouden blijven.</p>
+        </blockquote>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">Genegeerde records</b>
+            </li>
+        </ul>
+        <blockquote>
+            <p>Er zijn 2 records die steeds standaard genegeerd worden: het voorloop- en het sluitrecord. Daarnaast kunnen mutaties wijzigingen bevatten die voor GLIMS niet van toepassing zijn. Deze records worden eveneens 'genegeerd'. De niet relevante velden van het postcodebestand zijn: extract woonplaatsnaam, extract straatnaam, gemeentecode, gemeentenaam, provinciecode en cebuco-code.</p>
+        </blockquote>
+        <h2><a name="Extra info"></a>Extra info</h2>
+        <ul>
+            <li value="1"><a href="../pctabel.pdf">De officiële postcodetabel handleiding</a> (106Kb PDF document)</li>
+            <li value="2">Meer informatie over een nieuwe webservice van Omnidata kunt u vinden op <a href="http://www.AdresXpress.nl">http://www.AdresXpress.nl</a></li>
+        </ul>
+    </body>
+</html>

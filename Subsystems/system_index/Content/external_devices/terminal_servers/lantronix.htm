@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\term_server\lantronix.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>lantronix</title>
+        <meta name="Microsoft Border" content="none, default" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor14"></a>
+            <MadCap:concept term="System management" />Terminal servers: Lantronix</h1>
+        <p>
+            <img src="lantronix_ets.jpg" style="width: 150px;height: 121px;border-style: none;border-style: none;" width="150" height="121" border="0" />
+        </p>
+        <p><a href="http://www.lantronix.com/products/mds/ets4p_8p_16p/index.html">Lantronix</a>
+        </p>
+        <h2>Setting up the hardware</h2>
+        <p>When you set up the terminal server for the first time, it does not have an IP address yet, so you can't connect to it using the network. A serial connection must be made with the terminal adapter to configure the network parameters.</p>
+        <ol>
+            <li class="kadov-p" value="1">You should connect the terminal server to a serial port (a.k.a. COM-port, RS-232 interface) of a PC or laptop to assign an IP number to it. The cable to do this is shipped with the terminal server. At the side of the terminal server, you should plug it in port 1, at the side of the computer, you should plug it in one of the serial ports.</li>
+            <li class="kadov-p" value="2">Connect the terminal server to the network, by plugging in a standard network cable into the network connector (don't confuse this with the serial ports!)</li>
+            <li class="kadov-p" value="3">Turn on the power of the terminal server.</li>
+            <li class="kadov-p" value="4">Start HyperTerminal. This is a serial terminal emulation program, shipped with any Windows NT. You can find this in the <em>Start</em>-menu <em>-&gt; Programs -&gt; Accessories -&gt; Hyperterminal</em>.</li>
+            <li class="kadov-p" value="5">Answer "<em>No</em>" when asked to configure a modem</li>
+            <li class="kadov-p" value="6">Give your session a name (e.g. "<em>Terminal Server</em>") and hit OK.</li>
+            <li class="kadov-p" value="7">Change the "<em>Connect using</em>" drop-down box to the serial port you have plugged the terminal server into (COM1/COM2) and hit OK.</li>
+            <li class="kadov-p" value="8">Enter the following settings, and hit the OK button.
+
+      <ul><li class="kadov-p" value="1">Bits per second: <strong>9600</strong></li><li class="kadov-p" value="2">Data bits: <strong>8</strong></li><li class="kadov-p" value="3">Parity: <strong>None</strong></li><li class="kadov-p" value="4">Stop bits: <strong>1</strong></li><li class="kadov-p" value="5">Flow control: <strong>none</strong></li></ul></li>
+            <li class="kadov-p" value="9">hit the <strong>enter</strong> key</li>
+            <li class="kadov-p" value="10">A Username&gt; prompt will be displayed. After you enter a username, you will get the Local&gt; prompt.</li>
+            <li class="kadov-p" value="11">Type <em>SET PRIVILEGED</em> (+ enter)</li>
+            <li class="kadov-p" value="12">Type system (not echoed)</li>
+            <li class="kadov-p" value="13">Type DEFINE SERVER IPADDRESS nnn.nnn.nnn.nnn (substitute nnn.nnn.nnn.nnn with a unique IP number e.g. 192.168.1.204. This number should be assigned according to the network numbering scheme in the lab/hospital.)</li>
+            <li class="kadov-p" value="14">Type logout</li>
+            <li class="kadov-p" value="15">Close HyperTerminal. You can save your current session for later reconfiguration. You can answer <em>yes</em> when asked to disconnect.</li>
+            <li class="kadov-p" value="16">Now the initial terminal server setup is finished. The rest of the configuration can be done using a telnet connection now. The serial cable can be disconnected now if necessary.</li>
+        </ol>
+        <h2>Configuring ports</h2>
+        <h3>Analyzer communication</h3>
+        <p>For each analyzer to be connected to the terminal server, you will have to configure a port <b>x</b> for it.&#160; (substitute <strong>x</strong> with the port number on the terminal server the analyzer is connected to)</p>
+        <ol>
+            <li class="kadov-p" value="1">Start <em>telnet</em> from any workstation in the network to the terminal server. You can do this by going to the <em>Start</em>-menu -&gt; <em>Run...,</em> and type <em>telnet</em> + OK<em>.</em></li>
+            <li class="kadov-p" value="2">Go to the <em>Connect -&gt; Remote System</em> menu item</li>
+            <li class="kadov-p" value="3">Fill in the following parameters and hit the <em>Connect</em> button
+
+      <ul><li class="kadov-p" value="1">Host Name: The IP number of your terminal server</li><li class="kadov-p" value="2">Port: <strong>telnet</strong></li><li class="kadov-p" value="3">TermType: <strong>vt100</strong></li></ul></li>
+            <li class="kadov-p" value="4">Hit enter once</li>
+            <li class="kadov-p" value="5">Type set priv (password: system)</li>
+            <li class="kadov-p" value="6">Type show port <b>x</b></li>
+            <li class="kadov-p" value="7">Type define port <b>x</b> access remote</li>
+            <li class="kadov-p" value="8">Type define port <b>x</b> autoprompt disabled</li>
+            <li class="kadov-p" value="9">Type define port <b>x</b> broadcast disabled</li>
+            <li class="kadov-p" value="10">Type define port <b>x</b> loss disabled</li>
+            <li class="kadov-p" value="11">Type define port <b>x</b> verif disabled</li>
+            <li class="kadov-p" value="12">Type define port <b>x</b> remote disabled</li>
+            <li class="kadov-p" value="13">Type define port <b>x</b> telnet pad disabled</li>
+            <li class="kadov-p" value="14">Type define port <b>x</b> flow control none</li>
+            <li class="kadov-p" value="15">Type define port <b>x</b> autostart disabled&#160;</li>
+            <li class="kadov-p" value="16">Type define port <b>x</b> break disabled</li>
+            <li class="kadov-p" value="17">Type define port <b>x</b> inactivity logout disabled</li>
+            <li class="kadov-p" value="18">Have a look at the communication parameters of the analyzer. You should take note of the port speed, the number of data bits, stop bits and the parity. Now enter the same settings in the terminal server:</li>
+            <li class="kadov-p" value="19">Type <em>define port <strong>x</strong> speed <strong>speed</strong></em> (substitute <strong>speed</strong> by the value you have seen in the analyzer setting; this should be 57600 or less)</li>
+            <li class="kadov-p" value="20">Type <em>define port <strong>x</strong> character <strong>databits</strong></em> (substitute <strong>databits</strong> by the value you have seen in the analyzer setting; this should be 7 or 8)</li>
+            <li class="kadov-p" value="21">Type <em>define port <strong>x</strong> parity <strong>parity</strong></em> (substitute <strong>parity</strong> by the value you have seen in the analyzer setting; this can be <em>none</em> (usually), <em>odd</em> or <em>even</em>)</li>
+            <li class="kadov-p" value="22">logout port <b>x</b></li>
+            <li class="kadov-p" value="23">logout</li>
+            <li class="kadov-p" value="24">Close telnet.</li>
+        </ol>
+        <h2>Serial information</h2>
+        <p>The pinout of the RJ45 Serial Ports is shown below. &#160;In case of 8 pins, the first and last pin are not used.</p>
+        <p>
+            <img src="rj45_lantronix.gif" style="border: none;width: 400px;height: 119px;float: none;border-style: none;" width="400" height="119" border="0" />
+        </p>
+        <h2>Glims configuration</h2>
+        <ul>
+            <li class="kadov-p" value="1">specify the host 'ip-address' (or alias name as specified in hosts file)</li>
+            <li class="kadov-p" value="2">specify the port number (in the range of 30xx)</li>
+        </ul>
+    </body>
+</html>

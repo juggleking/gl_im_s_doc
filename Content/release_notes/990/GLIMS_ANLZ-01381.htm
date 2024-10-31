@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Option to clear the download status of all specimen actions when Specimen.SamplingTime is updated (GLIMS_ANLZ-01381)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1158"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Option to clear the download status of all specimen actions when Specimen.SamplingTime is updated (GLIMS_ANLZ-01381)</h1>
+        <h2>Issue</h2>
+        <p>When a station was working in <a href="../../communication/analyzers/analyzers_download_status.htm" xmlns="http://www.w3.org/1999/xhtml">download mode</a> (ALL query), the action/specimen was forwarded as soon as the action was known in GLIMS based on the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Inputting</span> <a href="../../configuration/stations/stations.htm#Minimal" xmlns="http://www.w3.org/1999/xhtml">Station.MinimalActionStatus</a>. This message has a scheduled sampling time deriving from the Specimen.SamplingTime.</p>
+        <p>However, when GLIMS received an update of the Specimen.SamplingTime, this information did not trigger a new message to the station, although that new information can be crucial.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="">A GLP LAS/Distributor needs to keep a specimen for 15 minutes after sampling on the track, before it can go to the analyzers.</p>
+        </div>
+        <h2>New functionality</h2>
+        <p>A new system wide option is available in the <a href="../../configuration/specificsite/glims_general_options.htm#Stations" xmlns="http://www.w3.org/1999/xhtml">GLIMS general settings</a> for stations to clear the download status of all actions upon a Specimen.SamplingTime update:</p>
+        <p><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Clear download status upon sampling time update</span>
+        </p>
+        <p xmlns="">When enabled, each update of the sampling time of a specimen will clear the download status of all the actions for which the specimen is the input. It is the equivalent of manually going over all the actions of a specimen and applying the pop-up menu function <a href="../../communication/analyzers/analyzers_download_status.htm#Clearing%20the%20download%20status" xmlns="http://www.w3.org/1999/xhtml">Clear download status</a> with all of its options activated.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_ANLZ-01381.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="713" data-mc-height="270" src="GLIMS_ANLZ-01381_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The option is disabled by default for backwards compatibility.</p>
+            <p xmlns="">This new feature must be seen in the broader context of Specimen collection, together with the functionalities provided by the following modifications:</p>
+            <ul>
+                <li value="1"> <a href="GLIMS-11353.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS-11353</a> which introduces the specimen status change from <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Initial</span> to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expected</span> if a specimen sampling time is confirmed (i.e. Specimen.Sampled = YES). </li>
+                <li value="2"><a href="GLIMS_ANLZ-01382.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS_ANLZ-01382</a> which introduces a new station option to not just look for actions with a minimal status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Inputting</span>, but also ignore the ones with specimens that are not yet <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expected</span> (thanks to GLIMS-11353 <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expected</span> more or less means <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Sampled</span>).</li>
+            </ul>
+        </div>
+    </body>
+</html>

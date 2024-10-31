@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Do not take into account results of sub specimens based on paired specimens for the calculation of the order lowest object time (GLIMS-13383)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor220"></a>
+            <MadCap:concept term="Release notes" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+            <MadCap:conditionalText xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Do not take into account results of sub specimens based on paired specimens for the calculation of the order lowest object time (GLIMS-13383)</h1>
+        <h2>Issue</h2>
+        <p>Although the order lowest object time did not change, the order log showed a change of the order lowest object time from the current time to a time in the past (of the paired specimen) and back to the current time.</p>
+        <h2>Configuration</h2>
+        <ul>
+            <li value="1">Create a procedure with a material input (MIPS_Mat8) and property output (MIPS_Prop8).</li>
+            <li value="2">Create a procedure with a material input (MIPS_Mat8) and material output (MIPS_Mat8_Sub).</li>
+            <li value="3">Create a procedure with a material input (MIPS_Mat8_Sub) and property output (MIPS_Prop8_Sub).</li>
+            <li value="4">Create a procedure with a material input (MIPS_Mat8_Sub) and property output (MIPS_Prop8_Sub2).</li>
+        </ul>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Scenario</h2>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create a first order for a given person.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Request MIPS_Mat8 and MIPS_Prop8 for e.g. 01/07/2022 06:00.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Confirm the availability of the specimen.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">Create a second order for the same person.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="5">Request MIPS_Mat8 and MIPS_Prop8 for e.g. 14/07/2022 12:00.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="6">Confirm the availability of the specimen.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="7">Create a third order for the same person.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="8">Request MIPS_Mat8 and MIPS_Prop8 for the current time.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="9">Save the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="10">Reopen the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="11">Request the paired specimen of 14/07.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="12">Request MIPS_Prop8_Sub on this paired specimen.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="13">Save the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="14">Reopen the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="15">Add a request (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Right-click &gt; Requests &gt; Add request</span>) for MIPS_Prop8_Sub2 on the sub material MIPS_Mat8_Sub.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="16">Save the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="17">Reopen the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="18">Request the paired specimen of 01/07.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="19">Save the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="20">Open the order log.</li>
+        </ol>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">This issue, which occurred since GLIMS 9.6.0, has already been corrected through GLIMS-10999 (9.9.1) and GLIMS-13090 (9.9.5).</p>
+    </body>
+</html>

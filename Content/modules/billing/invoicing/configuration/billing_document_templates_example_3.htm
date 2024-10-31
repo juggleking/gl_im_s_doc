@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\billing_module\invoicing\bdtp_ex3.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Billing document template example 3</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3655"></a>
+            <MadCap:concept term="Billing" />Billing document template example 3</h1><b><i><p>Aim:</p></i></b>Print an invoice summery containing an introductory page which
+displays the invoice summary number and the total amount.&#160; The next page
+contains all invoices occurring in the invoice summary and the corresponding
+patient data, issuer, order internal id, invoice document number, billing items
+and fee.
+<b><i><p>Condition:</p></i></b> All and only the "Fee" billing codes contain the
+character "H".
+<i><b><p>Example: </p></b></i>In the example below, the amounts are expressed in FL.
+(Dutch currency) and the euro price is calculated by means of the MISPL function
+<b>ToEuro.</b><table border="1" width="100%" cellspacing="0" cellpadding="4"><tr><td width="100%"><pre>                &lt;Firm&gt;
+                                         &lt;AddressLine1&gt; 
+                                         &lt;PostalCode + Municipality&gt;
+                                         Tel: &lt;Telephone&gt;
+                                         Fax: &lt;Fax&gt;
+                                         Bank: &lt;BankAccount&gt;
+
+</pre><pre>                                              &lt;Payer&gt;
+                                              &lt;AddressLine1&gt; 
+                                              &lt;PostalCode+Municipality&gt;
+Invoice number  : 01040002
+Debtor number   : 2222
+Invoice date    : 06/04/2001
+Expiration date : 18/05/2001
+
+
+
+</pre><pre>                              DECLARATION
+
+
+Total amount according to following specification:    Fl  91.00    Eur  41.29
+
+Please mention the invoice and debtor number on your payment.</pre></td></tr></table><p>&#160;</p><table border="1" width="100%" cellspacing="0" cellpadding="4"><tr><td width="100%"><pre>Annex: Invoice specifications                  Page 2 of 2
+=======================================================================
+Issuer        : DR. I.L. BOOR, arts
+Patient       : G Geel-Groen
+Birth Date    : 12/12/1912
+Policy        : 22222221</pre><pre>Order nr      : A_0104060002 op 06/04/2001
+Invoice nr    : 0104060001
+Invoice amount:                            Fl     48.00    Eur    21.78
+CTG-codes     :
+050502    050502    
+Fee           : 03088315 Fl   16.00
+=======================================================================
+Issuer        : ZALVER KW, arts
+Patient       : St Nicolaas
+Birth Date    : 05/12/1901
+Policy        : 11111112</pre><pre>Order nr      : A_0104060001 op 06/04/2001
+Invoice nr    : 0104060002
+Invoice amount:                            Fl     43.00    Eur    19.51
+CTG-codes     :
+039750    039750    
+Fee           : 03020051 Fl   14.00
+=======================================================================</pre><pre>Total amount :                            Fl     91.00    Eur    41.29</pre></td></tr></table><p><b><i>Configuration</i></b></p><p align="center"><img border="0" src="bdtpex3.gif" width="598" height="365" /></p><pre><b>Fee:</b>
+/* UserFractional1: Fee */                                             
+LOGICAL FeeFound;                                                      
+STRING RetVal;                                                                                                                                            </pre><pre>FeeFound := (NumEntries(.Tariff.BillingCode.Code,"H") - 1 &gt; 0 ); </pre><pre>IF FeeFound
+THEN
+   RetVal:=
+          "UserFractional1=" +            FractionalToString(.InvoiceItem.NetAmount,"%8.2lf") +
+          "\UserFractional2=0" +
+          "\UserFractional3=0" +
+          "\UserFractional4=0";
+ELSE
+   RetVal:=
+          "UserFractional1=0" +
+          "\UserFractional2=0" +
+          "\UserFractional3=0" +
+          "\UserFractional4=0";
+ENDIF;
+RETURN RetVal;</pre><pre><b>Sorting = N
+Cumulation = ?</b></pre><p align="center"><img border="0" src="bdtpex3b.gif" width="598" height="365" /></p><table border="1" width="100%" cellspacing="0" cellpadding="4"><tr><td width="100%"><pre>BD_addressing:	
+{=Fill(" ",54)}{=IfKnownString(.InvoiceSummary.Firm.Correspondent.Addressing)}
+{=Fill(" ",54)}{=IfKnownString(.InvoiceSummary.Firm.Correspondent.AddresLine1)}
+{=Fill(" ",54)}{=IfKnownString(.InvoiceSummary.Firm.Correspondent.Municipality.PostalCode)} {=IfKnownString(.InvoiceSummary.Firm.Correspondent.Municipality.Name)}
+{=Fill(" ",54)}{=IfKnownString("Tel :" + .InvoiceSummary.Firm.Correspondent.Phone)}
+{=Fill(" ",54)}{=IfKnownString("Fax :" + .InvoiceSummary.Firm.Correspondent.Fax}
+{=Fill(" ",54)}{=IfknownString("Bank: " + IfKnownString(.InvoiceSummary.Firm.Correspondent..BankId + " ") + .InvoiceSummary.Firm.Correspondent..BankAccount)} 
+</pre><pre>{=Fill(" ",50)}{=IfKnownString(.InvoiceSummary.Payer.Name)}
+{=Fill(" ",50)}{=IfKnownString(.InvoiceSummary.Payer.Addressing)}
+{=Fill(" ",50)}{=IfKnownString(.InvoiceSummary.Payer.AddresLine1)}
+{=Fill(" ",50)} )}{=IfKnownString(.InvoiceSummary.Payer.Municipality.PostalCode)} {=IfKnownString(.InvoiceSummary.Payer.Municipality.Name)}
+Invoice number : {=.InvoiceSummary.DocNo}
+Debtor number  : {=.InvoiceSummary.Payer.Identification("EXACT")}
+Invoice date   : {=DateToString(.InvoiceSummary.ExternalDate,"%x")}
+Expiration date: {=DateToString(.InvoiceSummary.ExternalDate + .InvoiceSummary.Firm.PaymentTerm,"%x")}
+{=Fill(" ",30)}DECLARATION
+</pre><pre>Total amount according to following specification: {=Rpad("Fl  " + FractionalToString(.InvoiceSummary.Amount,"%8.2lf"),15," ")} {=Rpad("Eur " + FractionalToString(ToEuro(.InvoiceSummary.Amount,2),"%8.2lf"),15," ")}
+</pre><pre>
+Please mention the invoice and debtor number on your payment.
+</pre></td></tr></table><p>&#160;</p><table border="1" width="100%" cellspacing="0" cellpadding="4"><tr><td width="100%"><pre><b>PageNumbering:</b>
+Annex: Invoice specifications                  Page &amp;PageNo of &amp;TotalPages
+</pre><pre><b>HD_HealthInsurance</b>
+{=Fill("=",80)}
+Issuer        : {=.Invoice.Order.Issuer.Name}{=IF .Invoice.Order.Issuer.Type=3 THEN ", arts" ELSE ""}
+Patient       : {=IfKnownString(.Invoice.Order.Object.Person().LastName}
+Birth Date    : {=IfKnownString(.Invoice.Order.Object.Person().ExtendedBirthDate("%x")}
+Policy        : {=.Invoice.PaymentAgreement.Matriculation}</pre><pre>Order nr      : {=.Invoice.Order.InternalId} op {=DateTimeToString(.Invoice.Order.LowestObjectTime,"%d/%m/%Y")}
+Invoice nr    : {=.Invoice.DocNo}
+Invoice amount: {=Fill(" ",30)}{=Rpad("Fl  " + FractionalToString(.Invoice.Amount,"%8.2lf"),15," ")} {=Rpad("Eur " + FractionalToString(ToEuro(.Invoice.Amount,2),"%8.2lf"),15," ")}
+CTG-codes     :</pre><pre><b>Footer_HealthInsurance</b>
+Honorarium    : {=.Invoice.Data("ExecutorList")} Fl {=FractionalToString(.UserFractional1,"%7.2lf")}</pre><pre><b>CTG-Codes:</b>
+{= Lpad(.NomenclatureCode,10," ")}</pre><pre><b>TR_HealthInsurance</b>
+{=Fill("=",80)}</pre><pre>Total amount : {=Fill(" ",30{=Rpad("Fl  " + FractionalToString(.InvoiceSummary.Amount,"%8.2lf"),15," ")} {=Rpad("Eur " + FractionalToString(ToEuro(.InvoiceSummary.Amount,2),"%8.2lf"),15," ")}</pre></td></tr></table><p>&#160;</p></body>
+</html>

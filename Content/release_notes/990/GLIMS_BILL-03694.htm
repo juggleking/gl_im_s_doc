@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Fixed missing budget item for panels in URL of LDT reports (GLIMS_BILL-03694)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2916"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Fixed missing budget item for panels in URL of LDT reports (GLIMS_BILL-03694)</h1>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Issue</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">The URL of the LDT report did not reference the  budget item in case of a panel (the <a href="../../configuration/requestables/requestables.htm" xmlns="http://www.w3.org/1999/xhtml">request definition</a> of which had the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Charge</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Panel only</span>) with more than one panel member, one of which did not require reporting.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Cause</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">Upon tariffication / budget calculation, one budget item is shared by all panel member requests if the billing code is assigned on panel level. Since this budget item was always linked to the request of the first panel member, the budget item was not included in the URL if this panel member was not to be reported.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">This has been corrected: if a budget item is shared by multiple requests, the budget item will now be linked to the request of the first panel member that appears on the report. This way, the budget item will be included in the URL.</p>
+    </body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Epidemiology" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\epidemiology\epid_hospitalinfections.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Epidemiology - Hospital infections</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1320"></a>
+            <MadCap:concept term="Epidemiology" /><a name="kanchor108"></a>Epidemiology - Hospital infections</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Automatic%20detection" name="kanchor109">Automatic detection</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Automatic%20warning">Automatic warning</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Cross%20infections">Cross infections</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Cross_infection_requires_antibiogram">Cross 
+	 infection requires antibiogram</a>
+            </li>
+            <li class="kadov-p" value="5"><a href="#Viewing">Viewing</a>
+            </li>
+            <li class="kadov-p" value="6"><a href="#Chronological%20overview">Chronological 
+	 overview</a>
+            </li>
+        </ul>
+        <h2><a name="Automatic detection"></a>Automatic detection</h2>
+        <p>When GLIMS does the automatic <a href="isolations_series.htm">detection 
+ of isolation doubles</a>, GLIMS will group identical isolations (of the 
+ same patient) together in a so-called 'Isolation series'. At the same 
+ time GLIMS will also look if the isolation series can be grouped with 
+ one or more other isolation series (of other patients). If this is the 
+ case, a 'Hospital infection' will be created, grouping all these related 
+ isolation series together.</p>
+        <p>All information regarding possibly related infections is stored in 2 
+ fields:</p>
+        <ol style="list-style-type: lower-alpha;">
+            <li class="kadov-p" value="1">'From' : contains the list of other infections 
+	 that could have transmitted the germ + in which ward;&#160;<br />	it also contains the list of other identical infections but for which 
+	 no common ward was found (patient was not in same ward during transmission 
+	 period).<br />	&#160;&#160;</li>
+            <li class="kadov-p" value="2">'Toward' : contains same information as 'From', 
+	 but reversed: which other infections have been caused by this infection 
+	 ?</li>
+        </ol>
+        <p style="text-align: center;">
+            <img src="hospitalinfection_scheme.png" alt="" width="643" height="295" border="0" />
+        </p>
+        <p>The conditions that must be fulfilled to link 2 isolation series together, 
+ are (all parameters can be set in 'System management -&gt; Customize -&gt; 
+ <a href="../microbiology/configuration/microbiology_general_options.htm">GLIMS 
+ microbiology</a>'):</p>
+        <ol>
+            <li class="kadov-p" value="1">The microorganism must be the same or 'similar'. 
+	 <span>The detection of hospital infections - which by default searches 
+	 for identical organisms for a certain patient, can be defined to consider 
+	 all organisms within a certain <a href="../microbiology/configuration/micro_organisms.htm">taxonomic 
+	 group</a>. The level of this group can be defined with the option 
+	 "<b>Slightly different microorganisms may be identical</b>" 
+	 in the general '<a href="../microbiology/configuration/microbiology_general_options.htm">microbiology 
+	 settings</a>'.</span><br />	&#160;</li>
+            <li class="kadov-p" value="2"><span>Cross infections are only created if the 
+	 </span><span style="font-weight: bold;">first isolation of the source 
+	 infection is validated</span><span>.</span><span><br />	&#160; </span>
+            </li>
+            <li class="kadov-p" value="3">GLIMS also compares the <a href="isolations_discriminator.htm">discriminator 
+	 of the isolations</a> and if these are different, the isolations will 
+	 be considered as different and no <a href="#Cross%20infections">cross 
+	 infection</a> will be created between these isolation series.<br />	&#160; </li>
+            <li class="kadov-p" value="4">The <b>resistance patterns</b> of the detected 
+	 isolations of both series must be 'similar'. The 'Maximum difference 
+	 ' is used.&#160;&#160;&#160;The <b>antibiograms of 2 consecutive isolations 
+	 match with a maximal difference</b> of 'x'.&#160;&#160;The <b>antibiograms 
+	 of the first isolation and last isolation of the isolation series 
+	 match with a maximal difference </b>of 'y'<br /><br />	where 'x' and 'y' are decimal numbers that can be configured in 'System 
+	 management -&gt; Customize -&gt; <a href="../microbiology/configuration/microbiology_general_options.htm">GLIMS 
+	 microbiology</a>'.</li>
+            <blockquote>
+                <p>For more information about antibiogram differences, please check 
+	 the chapter "<a href="isolations_series.htm">Isolation doubles</a>".</p>
+            </blockquote>
+            <li value="5"><b style="font-weight: bold;">Time/place matching</b>:<br /><br />	For the detection of cross infections, isolation series are considered 
+	 to continue till the end of the patient's encounter.&#160; 
+	When 2 patients have stayed in the same ward, and 
+	 for one of these patients (patient A) an isolation was detected *before* 
+	 both patients were in the same ward, it can still be detected as a 
+	 cross infection (from patient A to B), even *after* the last isolation 
+	 was detected, as long as that isolation was detected during the same 
+	 encounter of that patient (A). 
+	The reason is that we assume that after an isolation 
+	 has been detected, it does not just disappear immediately after. The 
+	 micro-organism is assumed to reside in the patient until the end of 
+	 the encounter.</li>
+            <blockquote>
+                <p>The cross infection detection mechanism does not use the option 
+	 "Maximum number of days between 2 consecutive isolations of a 
+	 series". Instead, the mechanism goes back as far as the beginning 
+	 of the patients' admission to the hospital, to find possible causing 
+	 cross infections (contamination sources).&#160; </p>
+                <p>If several hospitalized encounters are valid at the same time for 
+	 the same patient, only the most recent one is considered as valid 
+	 (the most recently started, or -if the start time is the same- the 
+	 most recently created one). The others are ignored.</p>
+                <p>When several stays within an encounter have same the start time, 
+	 only the most recently created one is considered as valid.</p>
+            </blockquote>
+            <li value="6">For isolation series (infections), the field '<b>Hospital acquired</b>', 
+	 is automatically set to Yes or No according to the parameter '<b>Maximum 
+	 number of days between admission and hospital acquired</b>' in the 
+	 <a href="../microbiology/configuration/microbiology_general_options.htm">microbiology 
+	 specific settings</a> and/or in the microorganism 'Epidemiology' settings.&#160;&#160;The 
+	 field is set by the function 'Determine infection'. 
+	<p>Example: if the "<b>Maximum number of days between admission 
+	 and hospital acquired" </b>is set to "3" and a patient 
+	 enters on 01/01/2008 then an isolation detected on 02/01/2008 will 
+	 NOT be considered as "hospital acquired".</p><p>Only isolation series of which the option "hospital acquired" 
+	 is enabled are considered during the detection of <a href="#" class="selected">hospital 
+	 infections</a>.</p></li>
+        </ol>
+        <p>The following detection parameters can also be specified per micro-organism 
+ or micro-organism family:</p>
+        <ul>
+            <li class="kadov-p" value="1">Maximum antibiogram difference between 2 consecutive 
+	 isolations&#160;</li>
+            <li class="kadov-p" value="2">Maximum total antibiogram difference between first 
+	 and last isolation of a series</li>
+            <li class="kadov-p" value="3">Maximum number of days between admission and hospital 
+	 acquired</li>
+        </ul>
+        <p>This means that each parameter that is specified for a certain microorganism 
+ is automatically inherited by all descendant microorganisms.&#160;</p>
+        <h3>Detection of cross infections caused by ambulatory patients</h3>
+        <p>If an isolation was detected for patient A while he was not hospitalized 
+ (so during an ambulatory encounter), and afterwards he is hospitalized 
+ and stays in the same ward as patient B (for which the same micro-organism 
+ is also detected), then Glims is able to detect this as a cross infection.</p>
+        <p>This is not the default behaviour however.&#160;&#160;To obtain this, 
+ the following configuration is required:</p>
+        <ol>
+            <li value="1">In the general microbiology options (Start -&gt; Microbiology -&gt; 
+	 Configuration -&gt; Settings):&#160;&#160;a field named "<span style="font-weight: bold;">Infection lag before encounter</span>" 
+	 is available. With this option, you can specify how 
+	 many days Glims should look back in time (before the start of the 
+	 hospitalized encounter), while searching for isolations of patient 
+	 A *before* patient A was hospitalized. (default period = 0 days)<br />	&#160; </li>
+            <li value="2">In the micro-organism configuration screen: the same option is 
+	 available, so that it is possible to override the general value and 
+	 vary the value of this period according to the micro-organism or family. 
+	 This option is also inherited by all micro-organisms below it (in 
+	 the tree).</li>
+        </ol>
+        <h2><a name="Automatic warning"></a>Automatic warning</h2>
+        <p>GLIMS provides the possibility of being informed automatically of the 
+ fact that a hospital infection has been detected, or that a known hospital 
+ infection expands. For this you can set a '<b>Infection trigger</b>' in 
+ 'System management -&gt; Settings -&gt; GLIMS microbiology'.</p>
+        <p>This trigger is executed:</p>
+        <ol>
+            <li class="kadov-p" value="1">When a hospital infection is detected the first 
+	 time.</li>
+            <li class="kadov-p" value="2">Whenever a new isolation series (for some other 
+	 patient) is added to an existing hospital infection.</li>
+        </ol>
+        <h2><a name="Cross infections"></a>Cross infections</h2>
+        <p>The function 'Determine infections' also creates a '<b>Cross-infection</b>' 
+ record as a link between different infections (Isolation series) of different 
+ patients that were in the same ward in the same period. They can be viewed 
+ from an 'Isolation series' with the contextual menu functions '<b>Possibly 
+ caused by</b>' and '<b>Possibly transmitted toward</b>'.</p>
+        <p>Glims also offers a trigger that runs each time a cross infection is 
+ created.&#160;&#160;This <b>cross infection trigger </b>can be specified 
+ in the general microbiology options (Start -&gt; System management -&gt; 
+ Customize -&gt; Glims microbiology).&#160;&#160;The defined MISPL expression 
+ must have "CrossInfection" as base table.&#160;&#160;The main 
+ advantage that the cross infection trigger has over the "Infection 
+ trigger" is that more information is available: from patient, to 
+ patient, via ward, via room etc.&#160; </p>
+        <h2><a name="Cross_infection_requires_antibiogram"></a>Cross infection requires 
+ antibiogram</h2>
+        <p>It is possible to define that GLIMS should only create cross infections 
+ when both the source and target infection have an antibiogram. &#160;This 
+ can be specified on two levels:</p>
+        <h4>General setting</h4>
+        <p>In the general settings (Start -&gt; System management -&gt; Customize 
+ -&gt; GLIMS microbiology), the option "Antibiogram required for cross 
+ infections" allows to indicate that GLIMS should not create cross 
+ infections between 2 infections if both do not have reportable antibiotic 
+ results.</p>
+        <h4>Per micro-organism</h4>
+        <p>If for certain micro-organism (families), an exception should be made 
+ to the general setting, the micro-organism option "Antibiogram required 
+ for cross infections" can be used. &#160;The setting of this option 
+ will be inherited by all underlying micro-organisms.</p>
+        <p>Possible values:</p>
+        <p class="fieldlabel">YES</p>
+        <p class="fielddescription">For this microorganism (and all underlying 
+ organisms) GLIMS will only create cross infections when antibiograms are 
+ available for source and target infection.</p>
+        <p class="fieldlabel">NO</p>
+        <p class="fielddescription">For this microorganism (and all underlying 
+ organisms) GLIMS will create cross infections even when no antibiograms 
+ are available for source and target.</p>
+        <p style="font-weight: bold;">?</p>
+        <p class="fielddescription">When left unknown, the value is inherited from 
+ the parent microorganism family to which it belongs. &#160;When no parent 
+ is available, &#160;the general setting is applied.</p>
+        <h2><a name="Viewing"></a>Viewing</h2>
+        <ol>
+            <li class="kadov-p" value="1">From an isolation, you can see its isolation series 
+	 and its hospital infection with the 'Infection status' menu option. 
+	 You can also navigate to the isolation series and from there on to 
+	 the hospital infection.</li>
+        </ol>
+        <ol start="2">
+            <li class="kadov-p" value="2">From the main menu of microbiology, there is an 
+	 option to browse all hospital infections. From a hospital infection, 
+	 you can 
+	<ol style="list-style-type: lower-alpha;"><li class="kadov-p" value="1"><p>ask the list of contained isolation series; 
+		 for each series you can ask the list of isolations.&#160;</p></li><li class="kadov-p" value="2"><p>ask an <a href="../../user_interface/user_interface_tree_views.htm">outline</a> overview, which shows the isolation 
+		 series, their isolations, etc....</p><p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="hospitalinfection_overview.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="892" data-mc-height="474" src="hospitalinfection_overview_thumb_0_120.png" tabindex="" /></a></p></li></ol></li>
+        </ol>
+        <p style="text-align: left;">Note: it is possible to show only infections, 
+ cross infections and hospital infections in browsers if they have a minimum 
+ infection severity.&#160;&#160;This minimum severity can be specified 
+ in the general epidemiology options (Start -&gt; System management -&gt; 
+ Customize -&gt; Glims microbiology -&gt; tab page "Epidemiology"), 
+ in the field "Only severity &gt;=".</p>
+        <h2 style="text-align: left;"><a name="Chronological overview"></a>Chronological 
+ overview</h2>
+        <p class="MsoNormal">From a hospital infection, the contextual menu function 
+ 'Chronological overview' is available. It shows in a horizontal time line:</p>
+        <ul>
+            <li class="MsoNormal" value="1">in <span style="background-color: #ff0000;">RED 
+	 bars</span>: all contained isolation series, each with a sequence 
+	 number, the detection date, the patient and the original ward;<br />	&#160; </li>
+            <li class="MsoNormal" value="2">in <span style="background-color: #ffff00;">YELLOW 
+	 bars</span>: for each isolation series: the cross-infections that 
+	 might have transmitted the organism onto another patient; showing: 
+	 the common ward where transmitted, the probable date/period of transmission, 
+	 and the sequence number of the other isolation series (of the other 
+	 patient)</li>
+        </ul>
+        <p class="MsoNormal">This overview can be printed as a HTML page by right-clicking 
+ in the window.</p>
+    </body>
+</html>

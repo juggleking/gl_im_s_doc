@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Pathology information in analyzer communication</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Pathology information in analyzer communication</h1>
+        <p>GLIMS supports the transmission of pathology information between an instrument (Station) and GLIMS.</p>
+        <h3>Communication messages</h3>
+        <p>Please check the GLIMS ASTM internal protocol documentation for more details about the messages and fields. &#160;In the documentation menu, click Communication -&gt; Internal protocols -&gt; ASTM.</p>
+        <h3>Query for pathology examinations</h3>
+        <p>When receiving a query message, GLIMS will either send information related to all pathology examinations (ALL-query) or the examination for a specific specimen (Single specimen query).</p>
+        <p>The selection of a pathology examination is based on:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>the download status of the examination</p>
+            </li>
+            <li class="p" value="2">
+                <p>the status of the examination (from running to validated)</p>
+            </li>
+            <li class="p" value="3">
+                <p>a sampling time offset (when available in the query message)</p>
+            </li>
+            <li class="p" value="4">
+                <p>when a pathology procedure code set is configured on the inquired station's coding system, the availability of a code for the pathology examination's procedure</p>
+            </li>
+        </ol>
+        <p>When requested in the query message, GLIMS will also transmit the carriers and carrier tests of the examination in the work order message. Both Single specimen query and ALL query messages can contain additional selection criteria on the carriers. The extra selection criteria are:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>Carrier is being processed or not (in GLIMS this is reflected by a specified or unknown grafting time)</p>
+            </li>
+            <li class="p" value="2">
+                <p>Carrier.Printed: yes or no</p>
+            </li>
+            <li class="p" value="3">
+                <p>Medium type: blocks, slides</p>
+            </li>
+        </ol>
+        <h3>Download status of a pathology examination</h3>
+        <p>When sending pathology work orders, GLIMS will mark the pathology examination involved. The following downloaded items are available in the download log:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>the examination itself</p>
+            </li>
+            <li class="p" value="2">
+                <p>carriers</p>
+            </li>
+            <li class="p" value="3">
+                <p>carrier tests</p>
+            </li>
+        </ol>
+        <p>The function "Station download log" on a pathology examination opens a browser showing the items that were downloaded. Columns shown are:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>The station to which it was sent</p>
+            </li>
+            <li class="p" value="2">
+                <p>The type of item being sent (pathology examination, carrier, carrier test)</p>
+            </li>
+            <li class="p" value="3">
+                <p>Details of the item:</p>
+                <ol style="list-style-type: decimal;">
+                    <li class="p" value="1">
+                        <p>If a pathology examination: the mnemonic of the procedure and the status of the examination</p>
+                    </li>
+                    <li class="p" value="2">
+                        <p>If a carrier: the carrier internal id (like '1', '2', ...) and the medium mnemonic</p>
+                    </li>
+                    <li class="p" value="3">
+                        <p>If a carrier test: the carrier test sequence number, the carrier internal id and the medium test mnemonic.</p>
+                    </li>
+                </ol>
+            </li>
+            <li class="p" value="4">
+                <p>The date &amp; time the item was sent.</p>
+            </li>
+            <li class="p" value="5">
+                <p>A reset check box: Each row can be checked for resetting the download status of that item</p>
+            </li>
+        </ol>
+        <p>A "Reset" button allows to clear the download status of the items being checked for reset. A "Refresh" button reloads the download status of all items.</p>
+        <p>Remark: The field Station.CheckDownloadedAction should be enabled so that GLIMS does not download the same pathology information twice.</p>
+        <h3>Upload of pathology related information to GLIMS</h3>
+        <p>The goal of the pathology result upload is:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>Changing the pathology carrier status to "processed" (in Glims this is reflected by a specified grafting time)</p>
+            </li>
+            <li class="p" value="2">
+                <p>Adding or replacing pathology carrier comment</p>
+            </li>
+            <li class="p" value="3">
+                <p>Creating pathology carrier tests, or updating the pathology carrier test values</p>
+            </li>
+        </ol>
+        <p>All changes can be related to a user Id specified in the result message. When the field "store operator ID" is enabled on the result receiving station, GLIMS will search for the user with a login name or initials matching the status user ID. When no match is found, the pathology carrier record and related records following it are not processed by GLIMS.</p>
+    </body>
+</html>

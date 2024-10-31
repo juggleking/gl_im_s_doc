@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\specimen scan\specimen_scan3.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Specimen scan - the program</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor183"></a>Specimen scan: how does it work?</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields%20and%20buttons">Fields 
+ and buttons</a> - <a href="#Moving_actions">Moving actions</a> 
+ - <a href="#Remarks">Confirm specimen when scanned</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The specimen scan program is available from the main menu (<span class="ui_element">Start</span> -&gt;
+ <span class="ui_element">Routine</span> -&gt; <span class="ui_element">Specimen</span> -&gt; <span class="ui_element">Scan</span>). This program scans 
+ the specimen identification (or the specimen internal id).&#160;The 
+ specimen scan program will always try to find a specimen where Specimen.InternalId 
+ is equal to the scanned bar code, even when the selected station uses 
+ specimen identifications.&#160;&#160;The practical usage of this program is described <a href="specimens_scan_use_cases.htm">here</a>.</p>
+        <p style="text-align: center;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_scan.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="628" data-mc-height="620" src="specimens_scan_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2><a name="Fields and buttons"></a>Fields and buttons</h2>
+        <h3>General</h3>
+        <p>When scanning, the <span class="ui_element">Last location</span> of the specimen is automatically 
+ updated. Optionally the <span class="ui_element">Storage location</span> or <span class="ui_element">Home location</span> 
+ is updated. The current station must be selected.&#160;</p>
+        <p>The <span class="ui_element">Rack capacity</span> and <span class="ui_element">Next position</span> fields are used for 
+ <a href="../../modules/lab_archive/routine/lab_archive_store_specimens.htm">specimen 
+ archiving</a>.&#160;&#160;The currently entered rack or position can be 
+ cleared explicitly using 2 buttons located next to the rack and 
+ position entry fields. This allows selecting any rack or position in a 
+ rack (including a rack for which no additional scanning is currently allowed) 
+ and clear the contents of that rack or that position.&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">During the deletion of an ItemStorage record, the Specimen.StorageLocation 
+	 field is either replaced by the location stored in the most recent 
+	 alternative ItemStorage record of this specimen, or is cleared when 
+	 no other item storage record can be found.</li>
+                <li value="2">The scan program checks privileges defined for the function "Rack.ClearRack" 
+	 and hides the "X" button (clear full content of rack) if 
+	 the user does not have the appropriate privilege.&#160;&#160;Note 
+	 that the button to clear only 1 position of the rack is not protected 
+	 by this privilege.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Archive (sub) reason </p>
+        <p>These fields are used 
+ for the <a href="../../modules/lab_archive/routine/lab_archive_store_specimens.htm">specimen 
+ archive</a> module. They only become active when the field <span class="ui_element">Save into</span> is set to <span class="ui_element">Storage location</span>.&#160;&#160;These two fields are filled with gp_text mnemonics starting with "ARCH-" 
+ and "ARCH-S-".&#160;&#160;The latter two prefixes are stripped 
+ when displayed in the specimen scan program (cf.  <a href="../../modules/lab_archive/routine/lab_archive_store_specimens.htm">example</a>: "text1" and 
+ "text3"). The actual text modules must be based on the Specimen 
+ table.&#160;&#160;&#160;<br />&#160;&#160;<br />If the <span class="ui_element">Automatic</span> option is enabled, you will have to select the archive 
+ (sub) reason before entering the barcode.&#160;&#160;It is also possible 
+ to query on these two specimen scan fields in order to obtain a list of 
+ specimens archived with a specific code.</p>
+        <h3>Last scanned</h3>
+        <p>For the scanned specimen the following data are displayed by default:</p>
+        <div class="indented">
+            <p class="fieldlabel">Current position</p>
+            <p class="fieldlabel">Specimen internal id</p>
+            <p class="fieldlabel">Barcode</p>
+            <p class="fieldlabel">Order, issuer and object</p>
+            <p class="fieldlabel">Available volume</p>
+            <p class="fieldlabel">Previous location</p>
+            <p class="fieldlabel">Home location and storage location</p>
+            <p class="fieldlabel">The workflow (actions with status, station, volume 
+	 needed and result properties) and general status</p>
+            <p class="fieldlabel">Patient info</p>
+            <div class="indented">
+                <p class="kadov-p">The object field shows the <a href="../../configuration/objects/objects_externalization.htm">object 
+	 externalization</a> of the last scanned specimen's object.</p>
+            </div>
+            <p class="fieldlabel">The highest urgency of the actions related to the 
+	 specimen, in the colors defined via the order urgency color scheme.</p>
+        </div>
+        <p>The text in this info box can be customized via a specimen-based dynamic 
+ text specified in the options page (specimen info).</p>
+        <h3>Options</h3>
+        <p class="fieldlabel">Allow creation of 
+	 specimen or order</p>
+        <div class="indented">
+            <p> Allow creation of specimen or order when permitted 
+	 by the station.	&#160;</p>
+        </div>
+        <p class="fieldlabel"><a name="One"></a>One rack per day</p>
+        <div class="indented">
+            <p>	 Is used for the <a href="../../modules/lab_archive/routine/lab_archive_store_specimens.htm">archive</a> 
+	 module.&#160;Allows to suppress the warning message which is 
+	 shown when scanning the code of a rack that already contains non-expired 
+	 specimens of another day.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Show details</p>
+        <div class="indented">
+            <p> If set, a detailed description of 
+	 the workflow will be displayed.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Show actions of current department only</p>
+        <div class="indented">
+            <p> When enabled, only the actions of the current user's department will be listed for the scanned specimen.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When the specimen scan option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check if specimen is ready</span> is also enabled and the actions related to the current user's department are in status 'Ready', a message will inform the user that the specimen is ready (even though other actions for other departments might not be).</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Show actions with 
+	 status 'Ready'</p>
+        <div class="indented">
+            <p> If set, actions with status 'Ready' will also be 
+	 displayed.	&#160;</p>
+        </div>
+        <p class="fieldlabel">All levels</p>
+        <div class="indented">
+            <p> Show 
+	 only the first level actions (i.e. the actions where the scanned specimen 
+	 is input) or all action levels (i.e. also the actions on the subspecimens).</p>
+        </div>
+        <p class="fieldlabel">Show sub-actions</p>
+        <div class="indented">
+            <p>If 
+	 set, instead of showing a list of the actions, the procedures scheduled 
+	 on the specimen are shown. Each procedure is represented 
+	 by a box with a color as defined in the Station.Color field.&#160;&#160;When 
+	 the status action is 'Realized' the background color of the actions 
+	 will be changed to grey. When the action is 'Read', the color will 
+	 be changed to light gray.<br /><br />The box contains the station mnemonic, the procedure code or name, 
+	 the required volume and a status indication of the actions. Note that 
+	 when repeat actions have been created, all actions of the same procedure 
+	 are represented by the same procedure box.&#160;&#160;Each action's 
+	 urgency is also shown in the station box.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Reschedule at close</p>
+        <div class="indented">If this option is activated, <a href="../orders/order_entry/order_entry_action_scheduling.htm">rescheduling</a> is postponed until the scanning screen is closed. If it is deactivated, rescheduling takes place every time a specimen is scanned and becomes available.</div>
+        <p class="fieldlabel">Asynchronous specimen confirmation</p>
+        <div class="indented">Indicates whether the specimen confirmation (and thus the specimen rescheduling if <a href="../orders/order_entry/order_entry_action_scheduling.htm#Reschedu">Reschedule when specimen becomes available</a> is active) should be delegated to the AppServer.
+        <div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Asynchronous specimen confirmation</span> option only has effect when the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Reschedule at close</span> is not active.</p></div></div>
+        <p class="fieldlabel">Double storage action</p>
+        <div class="indented">
+            <p><span class="ui_element">Allow</span>: when 
+		 a specimen already has a location, the new location is created 
+		 without warning.</p>
+            <p class="kadov-p"><span class="ui_element">Confirm</span>: 
+		 when the specimen already has a location, the user is asked if 
+		 he is sure to add this new location. Upon a negative answer, the 
+		 new location is not created.</p>
+            <p class="kadov-p"><span class="ui_element">Refuse</span>: the 
+		 program does not allow scanning a new location for a specimen 
+		 which already has a location</p>
+            <p class="kadov-p"><span class="ui_element">Replace</span>: 
+		 when the specimen already has a location, the user is asked if 
+		 he wants to replace the existing location(s) of the specimen with 
+		 the new location. Upon a negative answer, the new location is 
+		 not stored.		&#160;</p>
+        </div>
+        <p class="fieldlabel">Specimen info text</p>
+        <div class="indented">
+            <p> Allows specifying 
+	 a specimen-based dynamic text which determines the contents of the 
+	 specimen info box in the 'Last scanned' page of the specimen scan 
+	 program.</p>
+            <p>The height of the zone used to display specimen info text can be easily 
+ changed on the fly by dragging the separator between the specimen info 
+ and the work flow widget up or down.<br /><br />To allow a more permanent setting of this height, the SpecimenInfo widget 
+ also supports settings its height via the "&lt;!--height=xx--&gt;" 
+ syntax in html text definitions, in exactly the same way as is already 
+ supported when using a html header text for specific browsers.&#160;&#160;This 
+ way, the height of the specimen info widget is determined by the text 
+ definition itself.&#160;</p>
+        </div>
+        <p class="fieldlabel">New internal Id function</p>
+        <div class="indented">
+            <p> Allows 
+	 choosing a specimen-based, string-valued site function which will 
+	 be executed on the scanned specimen in order to determine a new internal 
+	 id.&#160;&#160;Note that it is the responsibility of the site function 
+	 to determine whether this specimen requires a new internal id.&#160;&#160;When 
+	 changing a specimen's internal id for the first time in each session, 
+	 the user is asked for confirmation.</p>
+        </div>
+        <h3>Actions</h3>
+        <p class="fieldlabel">Automatic</p>
+        <div class="indented">
+            <p> If 
+	 set, no confirmation will be required.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Own labels / sublabels</p>
+        <div class="indented">
+            <p> 
+	 If the <span class="ui_element">Own labels</span> option is set, GLIMS will print the 'own labels' 
+	 of the scanned specimen. If the Sublabels option is set, GLIMS will 
+	 print the 'own labels' of the actual, physical subspecimens (if any) 
+	 AND the sublabels of the scanned specimen (material input labels with 
+	 MaterialInput.IsSubLabel=YES).&#160;&#160;For more information, <a href="../../configuration/specimens/specimens_labels.htm">check the 
+	 chapter on specimen labels</a>.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Carrier labels</p>
+        <div class="indented">
+            <p>If set the <a href="../../modules/microbiology/configuration/carriers_label_printers.htm">carrier 
+	 labels</a> will be printed.</p>
+        </div>
+        <p class="fieldlabel">Isolation test labels</p>
+        <div class="indented">
+            <p> 
+	 Are printed in the sequence defined by Procedure / MicroOrganism / 
+	 MicroOrganismTest SeqNo to provide a fixed sorting. The isolation 
+	 test <a href="../../configuration/printers/set_devices.htm">label 
+	 printer</a> defined for the current user is used.<br /></p>
+        </div>
+        <p class="fieldlabel">Check order completeness</p>
+        <div class="indented">
+            <p> 
+	 If set, the program will automatically check if all specimens of an 
+	 order are scanned (without having to press the <span class="ui_element">Check order</span> 
+	 button. This check will take place when the first specimen of a new 
+	 order is scanned (only then the program can check the previous order)	&#160;&#160;</p>
+        </div>
+        <p class="fieldlabel">Check if specimen 
+	 is ready</p>
+        <div class="indented">
+            <p> Allows prohibiting the assignment of the rack position 
+	 to the specimen when not all of the specimen's actions have attained 
+	 status 'Ready'.</p>
+        </div>
+        <p class="fieldlabel">Synchronize future object times</p>
+        <div class="indented">
+            <p>When 
+	 a specimen or order is processed while this option is active, its 
+	 sampling time will be compared with the current time. When the sampling 
+	 time is higher than the current time (i.e. it was intended for a sampling 
+	 time in the future), the object time of the order is synchronized.&#160;&#160;For 
+	 simple orders (only one object time) this implies that the object 
+	 time of the order and all its specimens and results is set to the 
+	 current time.	&#160;</p>
+        </div>
+        <p class="fieldlabel">Synchronize past object times</p>
+        <div class="indented">
+            <p> 
+	 Also allows synchronizing the object times of orders where the object 
+	 time lies in the PAST. This is useful for labs where the actual specimen 
+	 receipt time is a better indication for the real sampling time than 
+	 the one introduced during order entry.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>Remarks about object time synchronization:</p>
+                <ul>
+                    <li value="1">In both directions (synchronize forward and backward), the program 
+	 tries to ensure that the largest sampling time in the order is synchronized 
+	 with the current time, so that all sampling times of the different 
+	 specimens in the order are smaller or equal to the current time.</li>
+                    <li value="2">An order object time change is logged in the order log.</li>
+                    <li value="3">The synchronization options of the specimen scan and specimen receipt programs have priority over the settings of the selected station in these programs. Please consult the <a href="../orders/order_entry/options/order_entry_options_tab_scheduling.htm">Mark as synchronized</a> option in the Order entry documentation to disable unwanted backward / forward synchronization and to check the <span class="ui_element">Synchronized</span> flag of the order.</li>
+                </ul>
+            </div>
+        </div>
+        <h3>Buttons</h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="24">
+                    <img src="specimenscan_checkorder.gif" alt="" style="border: none;" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">All specimens of 
+		 the current order are checked and a list of the unscanned root 
+		 specimens is displayed.</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="24">
+                    <img src="specimenscan_openorder.gif" alt="" style="border: none;" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Opens the order 
+		 entry screen for the specimen's order, which allows viewing more 
+		 information regarding the specimen or even modifying some data.</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="24">
+                    <img src="specimenscan_openspecimen.gif" alt="" style="border: none;" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Opens the specimen 
+		 editor, which allows viewing more information regarding the specimen 
+		 or even modifying some data.</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="24">
+                    <img src="specimenscan_printlabels.gif" alt="" style="border: none;" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Print <a href="../../configuration/specimens/specimens_labels.htm">own 
+		 and sub specimen labels</a> for the current specimen.</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="24">
+                    <img src="specimenscan_distribute.gif" alt="" style="border: none;" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Allows to mark the 
+		 scanned specimen with Specimen.Distributed = YES. When the scanned 
+		 specimen is already marked as such, the button is not sensitive. 
+		 
+		<p>When a user uses this button to mark a specimen as being distributed 
+		 manually, the program will search all non-ready actions having 
+		 this specimen as input and which belong to a 'sample distribution' 
+		 station (i.e. where Procedure.Station.Type = "Distributor").&#160;&#160;When 
+		 such actions are found, any unavailable output results are discontinued, 
+		 while any specimen output record referring to unavailable specimens 
+		 are deleted.</p><p>The logic is based on the assumption that when the user states 
+		 that the specimen has been distributed manually into all its required 
+		 sub-samples, we can assume that the specimens which were scheduled 
+		 to be derived from this specimen by the distributor no longer 
+		 have to be created by the distributor station.&#160;&#160;</p><p>So, whether the distribution procedure makes use of (dummy) 
+		 properties (which typically receive the created aliquot position 
+		 as result) or submaterials as outputs, if a query for the original 
+		 bar code is sent from the distributor, Glims will reply that no 
+		 further subsamples are required.&#160;&#160;In the latter case 
+		 (where the distributor procedure has specimen records as outputs), 
+		 the resulting specimens still have to confirmed as being available 
+		 (e.g. by scanning them in the same specimen scan program).</p></td>
+            </tr>
+        </table>
+        <p class="fieldlabel">Clear</p>
+        <div class="indented">
+            <p>Ignore the new home and storage location.</p>
+        </div>
+        <p class="fieldlabel">OK</p>
+        <div class="indented">
+            <p>Accept the new home and storage location.</p>
+        </div>
+        <h2><a name="Moving_actions"></a>Moving actions</h2>
+        <p>The specimen scan program will move actions to the scanned&#160;specimen 
+ whenever required and possible. Click here for more information about 
+ the <a href="specimens_move_actions.htm">conditions for moving actions</a>.</p>
+        <p>When one or more actions have been moved after the specimen was scanned, 
+ a message is shown (automatically disappears after 1 second) with a bell 
+ sound.</p>
+        <p>
+            <img src="../../communication/analyzers/GLIMS_ANLZ-00980_message.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p>The tool tip of the specimen information box shows the actions being 
+ moved.</p>
+        <p>
+            <img src="../../communication/analyzers/GLIMS_ANLZ-00980_tooltip.png" alt="" style="border: Solid 1px #808080;border-width: 1px;border-style: solid;" border="1" />
+        </p>
+        <h2><a name="Remarks" id="Remarks"></a>Confirm specimen when scanned</h2>
+        <p>Normally, when a specimen is scanned, it is automatically confirmed 
+ if this was not yet the case. However, the GLIMS general setting <a href="../../configuration/specificsite/glims_general_options.htm#Confirm">Confirm specimen on scan</a> allow you to limit the automatic confirmation to specific situations.</p>
+    </body>
+</html>

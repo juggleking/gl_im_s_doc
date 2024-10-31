@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Management" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\management\qcp_print.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>The QC Population Print function</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3690"></a>
+            <MadCap:concept term="Quality control" /><a name="kanchor347"></a><a href="../../index_qc.htm" name="kanchor348">Quality control</a> -&gt; The QC Population Print function</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Selection%20options">Selection options</a> - <a href="#Specific_options">Specific options</a> - <a href="#Output_options">Output options</a> - <a href="#Automation">Automation</a> - <a href="#Examples%20of%20QC%20population%20printouts">Output examples</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>From each QC population, you can select the contextual menu function <b>Print</b><a name="kanchor349"></a>.&#160;&#160;The contents of the QC population printout is determined by the <a href="../configuration/qc_populations.htm">type of QC population</a> (Precision, Accuracy or Combined) for which the audit has been performed.</p>
+        <ul>
+            <li class="kadov-p" value="1">QC population <b>printouts for precision checks</b> will only mention the Maximal CV check results.</li>
+            <li class="kadov-p" value="2">QC population <b>printouts for accuracy checks</b> will only mention the Maximal R check results (absolute or relative, depending on the pivot and/or target deviation configuration).</li>
+            <li class="kadov-p" value="3">QC population <b>printouts for combined checks</b> will mention the Maximal CV check results and the Maximal R check results (absolute or relative, depending on the pivot and/or target deviation configuration).</li>
+        </ul>
+        <p>
+            <img src="../../../report_builder/qc_print_output_options.png" style="border: none;" alt="" width="611" height="698" border="0" />
+        </p>
+        <h2><a name="Selection options"></a>Selection options</h2>
+        <p><b style="font-weight: bold;">Period</b>
+        </p>
+        <blockquote>
+            <p><b style="font-weight: bold;">This month / Previous month</b>&#160;&#160;</p>
+            <blockquote>
+                <p>Allows selecting all QC populations of this month or the previous month.</p>
+            </blockquote>
+            <p><b style="font-weight: bold;">Until Yesterday</b> / <b>Until Today</b> / <b>Until Previous Month</b></p>
+            <blockquote>
+                <p>The main purpose of these three options is to allow results which were not audited in the 2 previous months to be automatically included in this month's audit.</p>
+                <p>When using one of these three options and no start date is specified, then the latter is calculated as the highest end date of the stored audits + 1, with a maximum of 2 months ago. The actual start date stored in the QCAudit record will be the date of the first actual result in the audit, with a minimum of the start of the previous month for 'Until Previous Month' and the start of the current month for the others.</p>
+            </blockquote>
+            <p>In all cases, when the end date is not specified, it will be derived from the period setting. When using the 'Until Today' or 'This Month' option, the actual end date stored in the QCAudit record will be the date of the last result in the audit, with a minimum of 'Yesterday'.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">From - to</b>
+        </p>
+        <blockquote>
+            <p>Allows selecting all QC populations within a date range</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Accuracy</b>, <b>precision</b>, <b>combined</b>:&#160;</p>
+        <blockquote>
+            <p>Include <a href="../configuration/qc_populations.htm#Accuracy%20check">accuracy</a>, <a href="../configuration/qc_populations.htm#Precision%20check">precision</a> and/or <a href="../configuration/qc_populations.htm#Combined%20check">combined</a> populations.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Shift count</b>
+        </p>
+        <blockquote>
+            <p>Only include results of the <a href="../configuration/qc_shifts.htm">first x shifts</a>.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Official results</b>
+        </p>
+        <blockquote>
+            <p>Determines which results are used to calculate the statistics for the created QCAudit record. It also marks the used results with 'Official=YES' in the created QCResult records. &#160;<a href="../configuration/qc_shifts.htm">See also: QC shifts</a></p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Store as official audit</b>&#160;</p>
+        <blockquote>
+            <p>During the printing of a QC population, QC audit records will be created.&#160;&#160;For more detailed information, please <a href="qc_audits.htm">check the chapter on audit reports</a>.&#160;</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">GLIMS&#160;will only create a QC audit if the population contains</p>
+                <ul xmlns="http://www.w3.org/1999/xhtml">
+                    <li value="1">
+                        <p xmlns="">at least 15 confirmed QC results for a <a href="../rilibak/qc_rilibak.htm">RiliBÄK</a> population (within the date range specified in the QC population print settings). </p>
+                        <p xmlns="">If the date range specified in the QC population print settings covers a period longer than 3 months, the minimum of 15 confirmed QC results is not required. A message will still inform the user that less than 15 confirmed results are available.</p>
+                    </li>
+                    <li value="2">
+                        <p xmlns="">at least 20 confirmed QC results for a non-RiliBÄK population  (within the date range specified in the QC population print settings).</p>
+                    </li>
+                </ul>
+            </div>
+        </blockquote>
+        <h2><a name="Specific_options" id="Specific_options"></a>Specific options</h2>
+        <p><b style="font-weight: bold;">Create document</b>
+        </p>
+        <blockquote>
+            <p>If set, an actual document will be printed.&#160;&#160;If not audit reports will be created but no actual document will be generated.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Only print official results</b>
+        </p>
+        <blockquote>
+            <p>If set only official results (as selected with the 'Official results' option) will be included in the printout.&#160;&#160;If not, all results will be printed.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Header, Body and Footer</b>
+        </p>
+        <blockquote>
+            <p>For the header, the footer as well as the result body, it is possible to specify a QCAudit or QCAuditResult-based dynamic text to be used instead of the default.&#160;&#160;If such a text is specified, the corresponding default is suppressed.</p>
+            <p>When the returned text contains the string "&lt;Html&gt;" and the chosen format is html, then the text is added to the output as is. This makes it possible to specify your own html formatting via standard html tags. In the other case, the text is presumed to be passed to html as a preformatted text.&#160;&#160;</p>
+            <p>For the body text, the passed text is passed to HTML between &lt;TR&gt; and &lt;/TR&gt; tags, so it is treated by HTML as being the contents of a row.&#160;&#160;</p>
+            <p>Note that the QCPopulation.Material field is included in the property description of the default header. This optional field indicates the basic patient material for which this QC control is intended.&#160;&#160;The property description on the printout can then be "Na (Serum)" when QCPopulation.AssessmentMethod.Property.Mnemonic = NA and QCPopulation.Material.Mnemonic = Serum.</p>
+            <p><a href="qc_populations_print_example_header_text.htm">Example of a header text</a> - <a href="qc_populations_print_example_body_text.htm">Example of a body text</a></p>
+            <p><span style="font-weight: bold;">For PDF and XML reports</span>, the header, body and footer texts can be used for exporting additional data in the XML file. The texts can be flat text or a (well-formed !) XML string. &#160;In the first case, the text is inserted as such as one node in the XML. In the second case, the XML text is inserted as a sub-tree in the XML file.</p>
+        </blockquote>
+        <p><b><span style="font-weight: bold;">P</span></b><span style="font-weight: bold;">age width, page height</span>
+        </p>
+        <p style="margin-left: 40px;">Allow to fine-tune the layout of the document to be generated.</p>
+        <p><b style="font-weight: bold;">Page skip</b>
+        </p>
+        <blockquote>
+            <p>Allows suppressing the automatic page break between the printouts. This allows for a more concise overview.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Graphs</b>
+        </p>
+        <blockquote>
+            <p>Allows selecting which graphs should be included</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Graph orientation</b>
+        </p>
+        <p style="margin-left: 40px;"><b style="font-weight: normal;">F</b>or PDF and XML reports, this option allows printing the Levey-Jennings graph horizontally (above the results) or vertically (in the results table).</p>
+        <h2><b style="font-weight: bold;"><a name="Output_options" id="Output_options"></a>Output options</b>
+        </h2>
+        <p style="font-weight: normal;"><b><span style="font-weight: normal;">Please check the chapter "<a href="../../../report_builder/report_types/common/report_builder_output_options.htm">Report builder - output options</a>"</span></b>
+        </p>
+        <h3><b style="font-weight: bold;">Remarks</b>
+        </h3>
+        <blockquote>
+            <ol style="list-style-type: decimal;">
+                <li style="margin-left: -20px;" class="p" value="1">
+                    <p>In case of HTML precision print-outs, an actual graph will be included (<a href="#A%20HTML%20precision%20control%20print%20out%20with%20graph">see example below</a>).&#160;&#160;Note that you need the <a href="../../../../application_management/licenses/licenses.htm">GRAPHICS license</a> for this.</p>
+                </li>
+                <li style="margin-left: -20px;" class="p" value="2">
+                    <p>The chosen "Format" is passed to the text module as a variable called "Format", and can thus be accessed via the "{Format}" syntax.</p>
+                </li>
+            </ol>
+        </blockquote>
+        <h2><a name="Automati"></a><b style="font-weight: bold;"><a name="Automation" id="Automation"></a>Automation</b>
+        </h2>
+        <p>It is possible to automate this document generation using <a href="../../../../configuration/generic/commands_tasks/commands_tasks.htm">commands and tasks</a>.&#160;&#160;&#160;The base table is <i>QCPopulation</i>, the query to be used is <i>ExtendedQuery</i> and the function should be <i>QCPPrint</i>.&#160;</p>
+        <p>The QC Population <i>ExtendedQuery</i> has a 'Special' parameter. When this is set to <i>'Auditable'</i>, the query only selects precision control populations with at least 15 unaudited results from different days and accuracy control populations with at least 1 unaudited result (both since the date of the last QC audit).</p>
+        <p>Remark: this program also takes the 'Ignored deviation count' of the QC population into account.</p>
+        <h2 style="text-align: left;"><a name="Examples of QC population printouts"></a>Examples of QC population printouts</h2>
+        <h3 style="text-align: left;"><b style="font-weight: bold;">A precision control print out (HTML)</b>
+        </h3>
+        <p style="text-align: left;">Click the image to see the full document.</p>
+        <p style="text-align: center;"><a href="qc_populations_print_example_01.htm"><img src="../../qcprint.gif" alt="" width="800" height="483" border="0" /></a>
+        </p>
+        <h3 style="text-align: left;"><b style="font-weight: bold;"><a name="A HTML precision control print out with graph"></a>A precision control print out with graph (HTML)</b>
+        </h3>
+        <p>The MIPS Graph Tool is integrated in the QC HTML reports, so that QC graphs are shown as real graphs on HTML printouts.&#160;&#160;Each point on the graph is linked to a point in the data table. The graph has a reference line to show the mean value, and areas to display the 1s, 2s and 3s values.</p>
+        <p>Note that the HTML output requires the <a href="../../../../application_management/licenses/licenses.htm">'GRAPHICS' license</a>.</p>
+        <p style="text-align: center;">
+            <img src="../../qcprint_htmlgraph.gif" alt="" width="782" height="629" border="0" />
+        </p>
+        <h3 style="text-align: left;"><b style="font-weight: bold;">An accuracy control printout</b>
+        </h3>
+        <p style="text-align: left;">Click the image to see the full document.</p>
+        <p style="text-align: center;"><a href="qc_populations_print_example_02.htm"><img src="../../qcprint2.gif" alt="" width="800" height="483" border="0" /></a>
+        </p>
+        <h3 style="text-align: left;">A combined control print out</h3>
+        <p style="text-align: center;">
+            <img src="../../qcprint_combined.gif" style="border: none;" alt="" width="778" height="629" border="0" />
+        </p>
+    </body>
+</html>

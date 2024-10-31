@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Management">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Recalculate QC population statistics</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2661"></a>
+            <MadCap:concept term="Quality control" />Recalculate QC population statistics</h1>
+        <h2>Introduction</h2>
+        <p>From each QC population, you can select the contextual menu function "Recalculate 
+ statistics".&#160;&#160;It allows to recalculate all the statistical 
+ data about the selected population such as the total and numeric count, 
+ the calculated mean, CV and standard deviation.</p>
+        <h2>Options</h2>
+        <p style="text-align: center;">
+            <img src="../../qcp_recalculate_statistics.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p class="fieldlabel">Start date/time</p>
+        <p class="fielddescription">When specified, only results since this date/time 
+ are taken into account for the statistics calculation. When not specified, 
+ the last start date used for this population is reused.</p>
+        <p class="fieldlabel">End date/time</p>
+        <p class="fielddescription">When specified, only results up to this date/time 
+ are taken into account for the statistics calculation.&#160;&#160;&#160;</p>
+        <p class="fieldlabel">Execute checks</p>
+        <p class="fielddescription">Allows specifying if the checks have to be 
+ re-evaluated upon processing the most recent result of the population.</p>
+        <p class="fieldlabel">Set target mean</p>
+        <div class="indented">
+            <p>When enabled, the method will update the population's 
+ target mean with the calculated mean value.</p>
+        </div>
+        <p class="fieldlabel">Set target deviation</p>
+        <p class="fielddescription">When enabled, the QC population's target deviation 
+ will be updated with the calculated standard deviation.</p>
+        <h2>Support for outlier calculation</h2>
+        <h3>Description</h3>
+        <p>GLIMS supports the Grubbs' test for outliers. &#160;Grubbs' test is 
+ based on the assumption of normality. That is, one should first verify 
+ that the data can be reasonably approximated by a normal distribution 
+ before applying the Grubbs' test.</p>
+        <p>The Grubbs test statistic is the largest absolute deviation from the 
+ sample mean in units of the sample standard deviation (In GLIMS, sample 
+ is a set of QC results of a QC population).</p>
+        <p>Links for more information:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1"><a href="http://en.wikipedia.org/wiki/Grubbs%27_test_for_outliers" target="_blank">http://en.wikipedia.org/wiki/Grubbs%27_test_for_outliers</a>
+            </li>
+            <li class="mips_list_bulleted" value="2"><a href="http://www.itl.nist.gov/div898/handbook/eda/section3/eda35h1.htm" target="_blank">http://www.itl.nist.gov/div898/handbook/eda/section3/eda35h1.htm</a>
+            </li>
+        </ul>
+        <p>When configured, GLIMS will use that method <span style="font-weight: bold;">when 
+ statistics are recalculated</span> or <span style="font-weight: bold;">when 
+ QC results are added</span> (manually or by an instrument).</p>
+        <h3>Configuration</h3>
+        <p>The following <span style="font-weight: bold;">QC population</span> 
+ fields can be configured for activating the Grubbs' test:</p>
+        <p style="text-align: center;">
+            <img src="../../qcp_grubbs.png" alt="" style="border: none;" width="838" height="521" border="0" />
+        </p>
+        <p class="fieldlabel">Grubbs</p>
+        <p class="fielddescription">Should be enabled if you want to check on outliers 
+ using the Grubbs' test.</p>
+        <p class="fieldlabel">Grubbs probability</p>
+        <p class="fielddescription">Possible values: 0.100, 0.050, 0.025, 0.010, 
+ 0.005. Default is 0.100.<br /><br />The value of this field indicates the probability that a value belongs 
+ to the supposed normal distribution.</p>
+        <p class="fieldlabel">Grubbs minimal values</p>
+        <p class="fielddescription">Minimum number of QC results in the QC population 
+ before the Grubbs' test will be applied.</p>
+        <h3>QC results</h3>
+        <p class="fieldlabel">Is outlier</p>
+        <p class="fielddescription">Indicates if the result was detected as an 
+ outlier and excluded from QC population statistics.</p>
+        <p class="fieldlabel">Outlier info</p>
+        <p class="fielddescription">Contains information related to the exclusion 
+ of the result from QC population statistics.</p>
+        <p class="fieldlabel">QC result browser </p>
+        <p class="fielddescription">The QC result browser (QC population -&gt; 
+ Results) has an extra column indicating if a result was detected as an 
+ outlier. The outlier info is shown at the bottom of the browser (below 
+ the result comment information box).</p>
+    </body>
+</html>

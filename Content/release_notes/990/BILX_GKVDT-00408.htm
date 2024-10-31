@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - BSNR-LANR grouping and improved field value assignment for KVDT BESA records (BILX_GKVDT-00408)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2896"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>BSNR-LANR grouping and improved field value assignment for KVDT BESA records (BILX_GKVDT-00408)</h1>
+        <p xmlns="">This modification tackles issues regarding the BESA records for <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">KVDT</a> export.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Issues</h2>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">When a HC provider who practiced in different departments had the same BSNR, the BESA header could contain double LANR entries for this same BSNR. This was the case for non-LG KVDT shipments as well.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The field value of FK&#160;0203 "BSNR Bezeichnung" corresponded to the field value of <a href="../../configuration/correspondents/departments.htm#Name" xmlns="http://www.w3.org/1999/xhtml">Department.Name</a>. If different departments had the same BSNR, the resulting FK&#160;0203 field value could be random.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">The contact information for the BSNR address (fields FK0205 – FK0218) is that of the Arzt/ Firma (HC provider/ firm), but it should be possible to fill these fields out with the contact information of a preferred department.</li>
+        </ol>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Modification</h2>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">When several executing departments have the same BSNR, the BESA header does not contain double LANR entries for the same BSNR anymore.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The field FK 0203 "BSNR Bezeichnung" can now contain the value of a new optional <a href="../../configuration/site_attributes/site_attributes_site_domains.htm" xmlns="http://www.w3.org/1999/xhtml">site attribute</a> "_besa0203" (<span class="ui_element">Data type</span>: String, <span class="ui_element">Table</span>: Department) instead of the Department.Name.&#160;If this site attribute is left empty, the Department.Name is used.<p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00408_1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="537" data-mc-height="532" src="BILX_GKVDT-00408_1_thumb_0_120.png" tabindex="" /></a></p></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">It is now possible to use the contact information of a preferred department as values for the fields FK0205 – FK0218. To this end a new optional site attribute "_besaUseBSNRAddressOfCrsp" is available on the executing departments (table Department). The instances of this site attribute must contain a reference to a Correspondent record. The fields <span class="ui_element">Datatype</span> and <span class="ui_element">Target table</span> must therefore be set to <span class="ui_element">Reference</span> and <span class="ui_element">Correspondent</span> respectively.<p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00408_2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="538" data-mc-height="534" src="BILX_GKVDT-00408_2_thumb_0_120.png" tabindex="" /></a></p></li>
+        </ol>
+    </body>
+</html>

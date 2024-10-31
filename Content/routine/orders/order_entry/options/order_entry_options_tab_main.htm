@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry options" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry options\orderentryoptions_04.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order entry options: Main</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order entry options: Main</h1>
+        <p class="fieldlabel">Default value</p>
+        <div class="indented">Time at which the order's object should be checked for the requested properties. It is proposed for each new order in the order entry dialog's Requests page, and shown in the order entry status bar.
+        <p>This field can be used in combination with the <a href="order_entry_options_tab_scheduling.htm">Automatic sample login</a> option. This functionality is better illustrated in hospitals where an order is created on a specific day, while the material is scheduled to be sampled the day after. Do not forget to set the default object time in the future too.</p><p>The default object time parameter is shown as a day count and a time.  The time field contains the time-of-day part of the intended object time.  The day count indicates if this is intended for today, or &lt;x&gt; days in the future/past.</p><p class="fieldlabel">Day count</p><ul><li value="1">A negative number allows to specify a default object time which lies that number of day in the past (e.g. -1 = yesterday).  It is possible to specify a date in the past, but a 7-day limit is applied. When the chosen object time is more than 5 days in the past, the order entry program requires an extra confirmation from the user.</li><li value="2">A positive number allows to specify a default object time which lies that number of day in the future (e.g. 1 = tomorrow).</li><li value="3"><p>0: implies today.</p><div class="text_box_warnings"><p><span style="color: #ff0000; font-weight: bold;">Warning</span></p><p>If you specify a date count 0 and a time count 08:00 and you open the order entry screen at 10:00, the object time will remain at today 08:00.</p></div></li><li value="4"><p>?: implies today, if the day time is not yet in the past, else tomorrow . </p><div class="text_box_warnings"><p><span style="color: #ff0000; font-weight: bold;">Warning</span></p><p>If you specify a date count 0 and a time count 08:00 and you open the order entry screen at 10:00, the object time will automatically be shifted to tomorrow 08:00.</p></div></li></ul></div>
+        <p class="fieldlabel">Rounding</p>
+        <div class="indented">Time span expressed in hours and minutes which is used for rounding up the proposed object times. 
+        <div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Example</span></p><p>Object time rounding = 03:00. The next three hour multiple since midnight (00h00) will be the proposed object time. For example if the object time is 13h17 it rounds up to 15h00.</p></div></div>
+        <p class="fieldlabel">Max days in past / Max days in future</p>
+        <div class="indented">In order entry, when GLIMS considers the specified object time to be improbable, a confirmation message is shown.  This date range (as compared to the reception time) can be configured using these options.  Setting these options to "?" implies that GLIMS will not check the specified object time at all.
+        <p>See also <a href="../order_entry_tab_requests.htm">Order entry - Requests</a>.</p></div>
+        <p class="fieldlabel"><a name="Request"></a>Request form</p>
+        <div class="indented">In the <a href="../../../../configuration/request_forms/request_forms.htm">Request 
+ form</a> list, the initial request form used by the order entry dialog's 
+ Request form button can be selected. If "?" is entered in this 
+ field, the user will not be able to use the Request form button during 
+ order entry.</div>
+        <p class="fieldlabel"><a name="Encounte"></a>Encounter selection</p>
+        <div class="indented">
+            <p>When a person is chosen in the order entry program, the program automatically 
+ tries to retrieve the most recent open encounter for this person.</p>
+            <p>It is possible to have a pop-up selection browser allowing manual selection 
+ of the correct encounter. If needed, the browser appears as soon as a 
+ person is selected.</p>
+            <p class="fieldlabel">Manual</p>
+            <div class="indented">
+                <p>The browser 
+	 always appears, even when there is only one open encounter.</p>
+            </div>
+            <p class="fieldlabel">Manual when ambiguous</p>
+            <div class="indented">
+                <p>The browser appears as soon as there is more than 1 open encounter 
+	 for this person or if the most recent encounter has no External Id.</p>
+            </div>
+            <p class="fieldlabel">Automatic</p>
+            <div class="indented">
+                <p>The 
+	 manual selection browser only appears when the encounter that would 
+	 be automatically selected has no External Id.</p>
+            </div>
+            <p class="fieldlabel">Automatic when hospitalized</p>
+            <div class="indented">
+                <p>	 Same as automatic, but non-hospitalized encounters are ignored in 
+	 the search for an encounter that can be selected.</p>
+            </div>
+            <p class="fieldlabel">User defined</p>
+            <div class="indented">
+                <p>This option offers a customizable mechanism to automatically select 
+ the appropriate encounter for electronic orders and orders placed in the 
+ future. GLIMS can automatically select an encounter based on 
+ a calculated score for each encounter. The encounter with the 
+ highest score will be selected.</p>
+            </div>
+            <p>The encounter score is calculated by a MISPL expression which is defined 
+ in the field <a href="../../../../configuration/specificsite/glims_general_options.htm#Encounte">Encounter selection trigger</a>. The 
+ MISPL expression has base table "Order" and should return an 
+ integer which will be the encounter score.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">When an ambiguous encounter number has been typed 
+	 in, the automatic selection browser popup mechanism will automatically 
+	 bring a selection list to the screen.</li>
+                    <li value="2">Each of these encounters is proposed to the user 
+	 (together with its number, last ward, start and end time, institution). 
+	 The user can either accept this encounter or reject it. If he accepts, 
+	 the current encounter is used for the current order.</li>
+                    <li value="3">The field used to enter the encounter number does 
+	 not accept encounters where the current object time lies more than 
+	 12 hours outside the start time - end time range of the encounter.</li>
+                    <li value="4">The object time specified in the order entry screen 
+	 is also passed to the selection browser which can be called by either 
+	 hitting CTRL-F or entering an ambiguous encounter. The 
+	 object time will then be used as "Reference time" option 
+	 in the encounter query. However, the encounter browser 
+	 will also show the encounters when the specified "Reference time" 
+	 option does not lay more than 12 hours outside the start time-end 
+	 time range. This restriction, i.e. 
+	<ol><li value="1">do not allow encounters that have ended more 
+		 than 12 hours before the order's object time</li><li value="2">do not allow encounters that will start more 
+		 than 12 hours after the order's object time</li></ol><p>has been added to reduce the chance of selecting old or closed encounters. Users 
+	 who want to disable this restriction in the order entry screen, can 
+	 activate the environment variable MA_AllowClosedEncounters=YES in 
+	 their Progress.ini file.</p></li>
+                    <li value="5">Additionally, when the order entry program detects 
+	 that a selected encounter is not open at the object time and the user 
+	 has not yet entered any requests, it proposes to change the order's 
+	 object time to either the start or the end time of the chosen encounter. 
+	 Accepting this effectively changes the object time in the order entry 
+	 screen, while rejecting this leaves the original object time alone.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Check for duplicate requests</p>
+        <div class="indented">Normally, when requesting properties via the order entry screen, the program checks if the same test has already been requested for the same object and object time. If so, the user gets a warning and can cancel his request.  The <span class="ui_element">Check for duplicate requests</span> option allows you to switch off this mechanism.
+        <div class="text_box_warnings"><p><span style="color: #ff0000; font-weight: bold;">Warning</span></p><p>Although the batch order entry server (e.g. for electronic order entry) also uses this parameter, the old-style environment variable 'OrderCheckDuplicateResult' still has precedence, for compatibility reasons. We strongly advise to remove the use of this environment variable as soon as possible.</p></div></div>
+        <p class="fieldlabel">Issuer required</p>
+        <div class="indented">Determines whether an issuer is required for order creation.</div>
+        <p class="fieldlabel">Object required</p>
+        <div class="indented">Determines whether an object is required for order creation.</div>
+        <p class="fieldlabel">Billing mark required</p>
+        <div class="indented">If set, the <a href="../../../../modules/billing/tariffication/configuration/billing_marks.htm">billing 
+	 mark</a> must be specified before entering a request.</div>
+        <p class="fieldlabel">Automatic object search</p>
+        <div class="indented">If not activated, GLIMS does not try to find an object when users type characters in fields such as <span class="ui_element">Last name</span> and <span class="ui_element">Birth date</span>. Explicit search using arrow keys or CTRL-F remains allowed.
+        <p>This option is typically deactivated for workflows where  patient records are not usually reused. In that case, the order entry program skips the confirmation regarding the creation of a new object when the order is saved.</p></div>
+        <p class="fieldlabel">Request via root specimen</p>
+        <div class="indented">Determines whether all request definitions of the matching order should 
+	 be requested via the same root specimen. If this field is enabled, 
+	 you will first have to enter a material in the order entry screen, 
+	 and then the requests. If this field is not activated, GLIMS will 
+	 choose the material by means of the configured procedures.</div>
+        <p class="fieldlabel">Recalculate specimen internal id</p>
+        <div class="indented">
+            <p>If 
+ enabled and when adding requests to an existing order via the 
+ order entry screen, GLIMS will recalculate the internal id of the specimen(s) 
+ on which the requests have been added.</p>
+            <p>A Specimen-based, String-valued 
+ site function that recalculates the specimen internal id must be specified 
+ in the field <a href="../../../../configuration/specificsite/glims_general_options.htm#Spec">Spec 
+ internal id recalc</a>. Only when the site function to recalculate 
+ the specimen internal id is defined, the order entry option 
+ will be accessible.</p>
+        </div>
+        <p class="fieldlabel"><a name="Method"></a>Method to select paired specimens</p>
+        <div class="indented">Allows to indicate whether you want to select the <a href="../order_entry_tab_requests.htm#Paired">specimen to be reused</a> 
+ from a result or specimen browser.</div>
+        <p class="fieldlabel">Suppress automatic popup of person search 
+ screen</p>
+        <div class="indented">If enabled, GLIMS will not use the <a href="../../../../configuration/correspondents/persons_search.htm">person 
+ search screen</a> in order entry, regardless of the user setting.</div>
+        <p class="fieldlabel"><a name="Person"></a>Person identif. source</p>
+        <div class="indented">Used when showing/looking up the PIN of the patient that is specified in the <a href="../order_entry_tab_object.htm">Object tab page </a>of the order entry screen.  If not specified, GLIMS will use the default identification source from the <a href="../../../../configuration/correspondents/persons_search.htm">user's preferences</a>.</div>
+        <p class="fieldlabel"><a name="Issuer"></a>Issuer identif. source</p>
+        <div class="indented">This field allows you to select a correspondent that will act as default provider of issuer, agent and copy receiver identifications.
+        <p>When showing/looking up the identification of an issuer, agent or copy receiver that is specified in the <a href="../order_entry_tab_order.htm">Order tab page</a> of the order entry screen, the identification assigned by this default issuer identification source will be used.</p><p>When not specified, the regular identification source (specified in the <a href="../../../../configuration/specificsite/glims_general_options.htm">General settings</a>) will be used.</p><p data-mc-conditions="Primary.50_translation_exclude_for_FR">If you wish to use the German <a href="../main fields/order_entry_tab_main_fields_order.htm#Specific">LANR and BSNR</a>, enable the order entry option <span class="ui_element">Use LANR and BSNR as issuer identification source</span>.</p></div>
+        <p class="fieldlabel"><a name="Identif."></a>Identif. source access</p>
+        <div class="indented">This field applies to the default identification source specified in the user preferences.  When looking up a patient by PIN in the <span class="ui_element">Object</span> tab page of the order entry screen (either locally in GLIMS or by querying an external system), you can also show the identification provider which is used.  The option can be set to:
+        <ul><li value="1"><span class="ui_element">Hidden</span>: the identification source will not be shown.</li><li value="2"><span class="ui_element">Read-only</span>: the identification source will be shown but cannot be changed.</li><li value="3"><span class="ui_element">Update</span>: the identification source will be shown and can be changed (to perform a query to another external system).</li></ul></div>
+        <p class="fieldlabel"><a name="Before"></a>Before creation or update</p>
+        <div class="indented">
+            <p class="fieldlabel">Usage</p>
+            <div class="indented">This field allows defining a MISPL function which is evaluated BEFORE the order and its requests are actually saved to the database. The function is always executed on the client PC.
+            <p>Its main purpose is to check the mandatory fields and the global correctness of the order. The function can inspect all order, object, issuer, agent,...  fields.</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>This field can also be used for electronically created orders (and not only manually created orders).</p></div></div>
+            <p class="fieldlabel">Checking which tests have already been requested</p>
+            <div class="indented">If you want to check the list of requests of this order in order to make a decision, you can use the MISPL function <a href="../../orders_m_attribute.htm#%22Request">Order.Attribute("RequestList")</a>.</div>
+            <p class="fieldlabel">Supported data types</p>
+            <ul>
+                <li value="1">
+                    <p>String (recommended): The specified MISPL function can return a string. If a string other than '?' is returned, it is interpreted as an error message and the order is not stored.</p>
+                    <div class="text_box_tips">
+                        <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                        </p>
+                        <p>When the returned string starts with "%INFO%", it is displayed on screen (or in case of electronic order entry returned as information to the calling application) and the order is stored anyway.</p>
+                    </div>
+                </li>
+                <li value="2">
+                    <p>Logical (not recommended): The specified MISPL function can return a logical value. A value &lt;&gt; TRUE will result in an error message. An error will prevent the creation of the order.</p>
+                    <div class="text_box_warnings">
+                        <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                        </p>
+                        <p>The use of logical-valued evaluation functions is not at all recommended! It is better to use a string-valued function, which also allows you to return an informational or error message back to the calling program.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <p class="fieldlabel"><a name="After"></a>After creation or update</p>
+        <div class="indented">
+            <p class="fieldlabel">Usage</p>
+            <div class="indented">The post-commit evaluation is run AFTER the order and its requests are saved to the database and BEFORE action scheduling. The function is always executed on the client computer. When it returns False or an error message, an error is shown to the user, but the order is still saved. Thus, such an error is only shown as a warning but will be seen by the user.  The field allows to enter a MISPL function to e.g. add a request, extra order info, etc.</div>
+            <p class="fieldlabel">Supported data types</p>
+            <div class="indented">This MISPL function can also be string-valued instead of logical-valued. When a string-valued function returns a string different from the unknown value (?), this is interpreted as an error message. This message is shown to the user and the order is considered invalid.</div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This field can also be used for electronically created orders (and not only manually created orders).</p>
+            </div> </div>
+        <p class="fieldlabel">Layout code</p>
+        <div class="indented">Determines which layout will be used for the order entry screen.  For more information, please check the chapter <a href="../../../../user_interface/user_interface_window_customize.htm">Screen customization</a>.</div>
+        <p class="fieldlabel"><a name="Auto-act"></a>Auto-activate this dialog</p>
+        <div class="indented">By activating this option, the order entry options screen will always be displayed when opening the order entry screen.</div>
+    </body>
+</html>

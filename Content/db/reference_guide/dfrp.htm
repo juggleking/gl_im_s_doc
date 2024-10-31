@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - DefaultReport</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1767"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+DefaultReport&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Default report</td>
+                <td>
+dfrp</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Default reports are used at order entry time, to determine which report records must be created, based on the preferences of the order issuer. Creating a report record effectively schedules the generation of a document delivering results. Default reports contain default values for these actual report records.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Active"></a>
+        <h3>
+Main &gt; Active</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if this default report is active. When not, it is not taken into account during the automatic report scheduling for a new order.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Active</b></p>
+        </div><a name="F_AdditionalPeriod"></a>
+        <h3>
+Previous results &gt; Additional period</h3>
+        <div class="MemberHelp">
+            <p>
+The Additional period (only for encounter-scoped reports) specifies from how many days before the encounter start results can appear on the report. </p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>AdditionalPeriod</b></p>
+        </div><a name="F_AddMissingPages"></a>
+        <h3>
+Main &gt; Add missing pages</h3>
+        <div class="MemberHelp">
+            <p>
+When this field is set, upon creation of a new report targeted to a certain recipient, the previous pages of the same report group are checked, and a new report record is created for each page for which no report was sent to this recipient. This allows sending a copy of the patient's file pages that were added since a given correspondent last received a page from this report.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AddMissingPages</b></p>
+        </div><a name="F_Code"></a>
+        <h3>
+Code</h3>
+        <div class="MemberHelp">
+            <p>
+Used for selecting a default report via MISPL or for creating a manual report</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Code</b></p>
+        </div><a name="F_CompletenessStatus"></a>
+        <h3>
+Settings &gt; Completeness status</h3>
+        <div class="MemberHelp">
+            <p>
+When one of the results has a status lower than the Completeness status, this result (and the report) is considered as incomplete.</p>
+            <p class="Synopsis"><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<b>CompletenessStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span></p>
+        </div><a name="F_Correspondent"></a>
+        <h3>
+Main &gt; Correspondent</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the correspondent which expressed these report wishes.</p>
+            <p class="Synopsis"><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Correspondent</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_ElectronicSignature"></a>
+        <h3>
+Main &gt; Electronic signature</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="electronicsignatureprovider.htm">ElectronicSignatureProvider</a></span>&#160;<b>ElectronicSignature</b></p>
+            <p>
+One of: <span class="Parameter">No, CPS, eID</span></p>
+        </div><a name="F_Eligible"></a>
+        <h3>
+Main &gt; Eligibility</h3>
+        <div class="MemberHelp">
+            <p>
+The Eligible field references an Order-based, Logical-valued MISPL expression that is evaluated at order entry to determine whether or not actual reports must be derived from this default report. You could for example create correspondent groups with several issuers and then check on these groups in your MISPL expression.
+<br /><br /><br /><br /></p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>Eligible</b></p>
+        </div><a name="F_ErrorGenThreshold"></a>
+        <h3>
+Settings &gt; Error threshold</h3>
+        <div class="MemberHelp">
+            <p>
+Error threshold above which the generation of the report stops. Copied in the report error generation threshold of each newly scheduled report.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>ErrorGenThreshold</b></p>
+        </div><a name="F_Exclusive"></a>
+        <h3>
+Main &gt; Exclusive</h3>
+        <div class="MemberHelp">
+            <p>
+If set, then as soon as one exclusive report is selected for scheduling, all non-exclusive reports are ignored.
+<br />This can be helpful for sending special reports under specific circumstances.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Exclusive</b></p>
+        </div><a name="F_ExplicitTarget"></a>
+        <h3>
+Main &gt; Explicit target</h3>
+        <div class="MemberHelp">
+            <p>
+The Explicit target must be specified only if Target type is Explicit. It directly references the correspondent who is to receive the reports. </p>
+            <p class="Synopsis"><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>ExplicitTarget</b></p>
+        </div><a name="F_HideCumulComments"></a>
+        <h3>
+Previous results &gt; Hide cumulative comments</h3>
+        <div class="MemberHelp">
+            <p>
+if enabled, previous external comments on cumulative order reports will be suppressed. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>HideCumulComments</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">DefaultReport</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_IssuerGroup"></a>
+        <h3>
+Main &gt; Issuer group</h3>
+        <div class="MemberHelp">
+            <p>
+The issuer group will limit reports to be generated only for orders that have an issuer that belongs to this group. 
+<br />For cumulative reports, only the results of previous orders that have an issuer that belongs to the issuer group in the default report will be added.</p>
+            <p class="Synopsis"><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<b>IssuerGroup</b></p>
+        </div><a name="F_IssuerRestricted"></a>
+        <h3>
+Previous results &gt; Issuer restricted</h3>
+        <div class="MemberHelp">
+            <p>
+Determines whether or not results requested by other issuers can appear on a cumulative order report. When set, then only results of orders where the issuer is the same or belongs to the same practice are printed on the report. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>IssuerRestricted</b></p>
+        </div><a name="F_Language"></a>
+        <h3>
+Settings &gt; Output &gt; Language</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows to select an optional language other than the default language.</p>
+            <p class="Synopsis"><span class="Type"><a href="lng.htm">gp_Language</a></span>&#160;<b>Language</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MaterialRestricted"></a>
+        <h3>
+Previous results &gt; Material restricted</h3>
+        <div class="MemberHelp">
+            <p>
+When set, indicates that each row of a report should only contain results referring to a root specimen of the same material (and primary material variable when applicable).
+<br /><br />Previous results will not be added when they do not match with a material (and material variable) in the primary results.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MaterialRestricted</b></p>
+        </div><a name="F_MaximumPrintCount"></a>
+        <h3>
+Settings &gt; Output &gt; Max print count</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates that the report should only be generated a maximum number of times. As soon as Report.PrintVersion reaches this maximum, the report is deactivated (Report.Active=NO and Report.NeedsChecking=NO) and will not be generated again, unless when reactivated manually.
+<br /><br />This is helpful in those cases where the number of versions of the report sent to the report target should be limited (e.g. only send once). Note that DefaultReport.MaximumPrintCount=0 will lead to the creation of inactive reports!
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>MaximumPrintCount</b></p>
+        </div><a name="F_MBCompletenessStatus"></a>
+        <h3>
+Settings &gt; Microb. compl. status</h3>
+        <div class="MemberHelp">
+            <p>
+When the microbiology action of a culture result has a status lower than the one indicated, this result (and both its culture result and the report) is considered as incomplete. 
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="microbiologyactionstatus.htm">MicrobiologyActionStatus</a></span>&#160;<b>MBCompletenessStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Grafting, Microscopy, Reading, ReReading, ReadConfirmed, ReadValidated, Ready, Closed, Discontinued</span></p>
+        </div><a name="F_Medium"></a>
+        <h3>
+Settings &gt; Output &gt; Report medium</h3>
+        <div class="MemberHelp">
+            <p>
+The Report medium is the delivery method for this report. The report is sent either by Courier, Fax, Phone, Modem, E-mail, Communication or File. </p>
+            <p class="Synopsis"><span class="Type"><a href="reportmedium.htm">ReportMedium</a></span>&#160;<b>Medium</b></p>
+            <p>
+One of: <span class="Parameter">Courier, Fax, Phone, Modem, E-mail, Communication, File</span></p>
+        </div><a name="F_MinimalResultStatus"></a>
+        <h3>
+Settings &gt; Minimal result status</h3>
+        <div class="MemberHelp">
+            <p>
+Results with a lower status than the one indicated will be hidden. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<b>MinimalResultStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span></p>
+        </div><a name="F_PartialReportHold"></a>
+        <h3>
+Settings &gt; Partial report hold</h3>
+        <div class="MemberHelp">
+            <p>
+The Partial report hold is the number of days to hold (prevent) output of partial reports. It is a fractional: 1 hour is approx. 0.04 days.</p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>PartialReportHold</b></p>
+        </div><a name="F_PreviousResults"></a>
+        <h3>
+Previous results &gt; Previous results</h3>
+        <div class="MemberHelp">
+            <p>
+The Previous results field determines which previous results are printed on the report. There are four options:
+<br /><br />None: no previous results are printed.
+<br /><br />All: all results of previous results within the current Property Classification are printed.
+<br /><br />ByChapter: a previous result is only printed if the current order has a result for a property from the same property classification chapter (i.e.: only print previous hematology results if the current order also contains hematology)
+<br /><br />ByProperty: a previous result is only printed if the current order contains the same property.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="reportpreviousresults.htm">ReportPreviousResults</a></span>&#160;<b>PreviousResults</b></p>
+            <p>
+One of: <span class="Parameter">None, All, By chapter, By property</span></p>
+        </div><a name="F_Printer"></a>
+        <h3>
+Settings &gt; Output &gt; Printer</h3>
+        <div class="MemberHelp">
+            <p>
+The Printer determines where reports following this default will be printed. It overrides the printer specified from the template record, but is itself overridden by the printer specified from the target correspondent record. 
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<b>Printer</b></p>
+        </div><a name="F_Recapitulative"></a>
+        <h3>
+Previous results &gt; Previous results required ("recapitulative")</h3>
+        <div class="MemberHelp">
+            <p>
+Restrict to properties or chapters for which previous results exist?</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Recapitulative</b></p>
+        </div><a name="F_ReportDiscResults"></a>
+        <h3>
+Settings &gt; Report discontinued results</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows indicating whether or not discontinued results are to be reported. 
+<br /><br />Remarks:
+<br /><br />- For medicard, medidoc, EDI1.0, medigest, Imed, HealthOne and MEDVRI1.0 reports, the value of this field has been fixed to 'NO', i.e. discontinued results will never be put on the report (as these reports cannot transfer result status information).  
+<br /><br />- Discontinued results are considered as being new results, so that a report is triggered for generation even if the 'New results' field in the report generation screen is set to "New results required". However, if the latter is set to "Only new results" (and the "Report discontinued results" option is not set) and the only new result is a discontinued result, no report will be sent. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ReportDiscResults</b></p>
+        </div><a name="F_RequiredApproval"></a>
+        <h3>
+Main &gt; Approval required</h3>
+        <div class="MemberHelp">
+            <p>
+Approval required before report generation</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>RequiredApproval</b></p>
+        </div><a name="F_Scope"></a>
+        <h3>
+Main &gt; Scope</h3>
+        <div class="MemberHelp">
+            <p>
+The scope indicates WHAT should appear on the report. It imposes object time criteria on the results to be included in the report. 
+<br /><br />- Order reports: All results of a particular order will be displayed on the report. This is the standard report type.
+<br /><br />- Exclusive reports are like special order reports, ruling out the creation of other reports. They offer the possibility to create special reports for specific orders suppressing the normal reports.
+<br /><br />- Encounter reports: All results obtained during the encounter of a patient will be reported. These results will be divided into different segments (columns). Placing all the reports in a row, will provide a complete overview.
+<br /><br />- Year reports: all results obtained for a patient during an entire year will be reported.
+<br /><br />- Object report: extended year reports. All results for a patient will appear on the report, without any time-related criteria.
+<br /><br />- Specimen report: all results for one particular specimen will be put on one report. E.g. An order has three different specimen =&gt; each specimen will be put on a separate report. Results which are not linked to a specimen (e.g. weight of the patient) will be included on each report.
+<br /><br />- Study: used for study reports.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="reportscope.htm">ReportScope</a></span>&#160;<b>Scope</b></p>
+            <p>
+One of: <span class="Parameter">Order, Day, Encounter, Period, Object, Exclusive, Specimen, Year, Study, Ward, Medical record, Obsolete</span></p>
+        </div><a name="F_StartDate"></a>
+        <h3>
+Settings &gt; Start date</h3>
+        <div class="MemberHelp">
+            <p>
+When filled in, this start date will be used as start date of newly created object reports, as opposed to the default (Order.ObjectTime - DefaultReport.AdditionalPeriod)
+<br /></p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>StartDate</b></p>
+        </div><a name="F_TargetSpecific"></a>
+        <h3>
+Main &gt; Target-specific</h3>
+        <div class="MemberHelp">
+            <p>
+The Target-specific field indicates if a separate report should be created for each target (e.g. issuer). A default report with TargetSpecific = NO is not allowed for default reports with scope Order, Specimen or Study.
+<br /><br />For instance, for issuer-targeted object reports:
+<br /><br />- When not set, there will be only one object report per patient and per report template.
+<br />- When set, there will be a separate report record per patient per template and per issuer
+<br />Also, when this field is set, an issuer-targeted report will only contain pages which contain at least one result requested by this issuer
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>TargetSpecific</b></p>
+        </div><a name="F_TargetType"></a>
+        <h3>
+Main &gt; Target type</h3>
+        <div class="MemberHelp">
+            <p>
+The Target type is one of Default, Issuer, Agent, Object, Location, Explicit, Family doctor and Study. It determines if and how the report is targeted indirectly to its recipient correspondent. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="reporttargettype.htm">ReportTargetType</a></span>&#160;<b>TargetType</b></p>
+            <p>
+One of: <span class="Parameter">Default, Issuer, Agent, Location, Object, Explicit, Family doctor, Study</span></p>
+        </div><a name="F_Template"></a>
+        <h3>
+Main &gt; Report template</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the template for this default report.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="rptp.htm">ReportTemplate</a></span>&#160;<b>Template</b></p>
+        </div><a name="F_TriggerStatus"></a>
+        <h3>
+Settings &gt; Trigger status</h3>
+        <div class="MemberHelp">
+            <p>
+If a result reaches this status, the report becomes eligible for further inspection by setting its NeedsChecking field.
+<br /><br />'Status reports': reports with a trigger status below 'Available' are considered to be 'Status' reports. This implies that each status change makes the report eligible for generation.
+<br /><br />'Value reports': reports with a trigger status &gt;= 'Available' are considered to be 'Value' reports. This implies that only actual result value changes or external comment changes makes the report eligible for generation. Result status changes (except the moment that the trigger status is exceeded) will not be considered when checking if the report has to be generated. So a value report can only be triggered:
+<br /><br />- The moment that the trigger status is exceeded (e.g. first report generation)
+<br /><br />- The result value or external comment has changed (and naturally the status has to exceed the trigger status)
+<br /><br />There is one exception: a 'value' report will also be triggered upon each result status increase when it is a 'communication' or 'electronic' report (i.e. Report.Medium = Communication). 
+<br /><br />This differentiation between 'Status' and 'Value' reports also has an influence on the interpretation of the 'New results' option in the report generation screen.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<b>TriggerStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span></p>
+        </div><a name="F_Usage"></a>
+        <h3>
+Main &gt; Usage</h3>
+        <div class="MemberHelp">
+            <p>
+The Usage field determines for what type of purpose this default report is used, and when it will be eligible by the report scheduler.
+<br /><br />'Standard': this is the 'normal' case. It indicates a report that is automatically scheduled during order entry, as an original. Also, when an order for a given issuer is entered, his private Default Report configuration will only be used when at least one active Default Report with Usage = 'Standard' is found for this issuer (see below, Linking default reports to an issuer).
+<br /><br />'Standard copy': It indicates a report that is automatically scheduled during order entry, but should be considered as a copy rather than an original. Also, after scheduling of the site's organization default reports (thus skipping the issuer's default reports), any of the issuer's default reports where Usage = Standard Copy are added to the already scheduled reports.
+<br /><br />When 'Screen', it is only eligible when a screen report is generated. The Microsoft Word report generator can also be used for screen report consultation. The viewer will be the same file viewer as used in the preview of such documents (i.e., a Microsoft Web Browser viewer, or the default application installed for .doc documents).
+<br /><br />'Manual copy': this indicates a default report which is only taken into account when reports are being scheduled for Order.ReportCopyReceiver (or being added manually or via MISPL). Remember that you can specify such a report copy receiver in the order entry screen. In this case, after scheduling of the original reports, the order is rescheduled as if the copy receiver was the issuer. In this case, the default reports marked as 'Manual Copy' will also be eligible for scheduling. Moreover, all reports scheduled during such an operation will be marked with 'Usage = Manual Copy', regardless of the original default report's Usage setting.
+<br /><br />When 'Manual', it will not be used by the report scheduler at all. It indicates a report that is typically added manually or via MISPL.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="reportusage.htm">ReportUsage</a></span>&#160;<b>Usage</b></p>
+            <p>
+One of: <span class="Parameter">Screen, Standard, Standard copy, Manual copy, Manual</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_Correspondent"></a>
+        <h3>
+Correspondent&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Correspondent</b> ()</p>
+        </div><a name="M_Eligible"></a>
+        <h3>
+Eligibility&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Eligible</b> ()</p>
+        </div><a name="M_ExplicitTarget"></a>
+        <h3>
+Explicit target&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ExplicitTarget</b> ()</p>
+        </div><a name="M_IssuerGroup"></a>
+        <h3>
+Issuer group&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>IssuerGroup</b> ()</p>
+        </div><a name="M_Language"></a>
+        <h3>
+Language&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Language</b> ()</p>
+        </div><a name="M_Printer"></a>
+        <h3>
+Printer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Printer</b> ()</p>
+        </div><a name="M_Template"></a>
+        <h3>
+Report template&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Template</b> ()</p>
+        </div><a name="M_Reports"></a>
+        <h3>
+Reports&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Reports</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Reports</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="rprt.htm">Report</a>.<a href="rprt.htm#F_DefaultReport">DefaultReport</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>- Correspondent - Active - Usage - Scope - Template - Medium - TargetType - ExplicitTarget - Eligible </b>
+            </li>
+            <li value="3"><b>+ Code </b>
+            </li>
+            <li value="4"><b>+ Correspondent + Code + Active </b>
+            </li>
+            <li value="5"><b>+ Eligible </b>
+            </li>
+            <li value="6"><b>+ ExplicitTarget </b>
+            </li>
+            <li value="7"><b>+ IssuerGroup </b>
+            </li>
+            <li value="8"><b>+ Language </b>
+            </li>
+            <li value="9"><b>+ Printer </b>
+            </li>
+            <li value="10"><b>+ Template + Correspondent </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

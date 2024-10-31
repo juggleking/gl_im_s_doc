@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Point_of_care_connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Point of care connections</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Point-of-care connections</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#CreateSpecimenOrder%20MISPL%20function" name="kanchor311">CreateSpecimenOrder 
+ MISPL function</a> - <a href="#Remarks">Remarks</a> - <a href="#Examples">Examples</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This document describes how GLIMS supports point-of-care connections.&#160;&#160;Typically, 
+ this concerns communication with analyzers that are located outside the 
+ laboratory.&#160;&#160;Patient samples are analyzed by the instrument 
+ while no order has been entered in GLIMS.&#160;&#160;On result upload 
+ to GLIMS, neither specimen nor order information will be available in 
+ GLIMS.&#160;&#160;So based on the information in the result message, e.g. 
+ patient or encounter data, GLIMS will have to create the required specimens 
+ and order automatically.</p>
+        <p>This mechanism can be implemented via the CreateSpecimenOrder MISPL 
+ function (Base table "SpecificSite") which is typically called 
+ from with the site function specified in the Station field <span class="ui_element">Unknown 
+ specimen trigger</span>, which is executed when an unknown bar code is 
+ sent by the station.</p>
+        <p>The usage of this MISPL function requires <a href="../../application_management/licenses/licenses.htm">the 
+ "Point-Of-Care" license</a>.</p>
+        <h2><a name="kanchor312"></a>Retrieving data from the result message sent by the POC analyzer</h2>
+        <h3>Introduction</h3>
+        <p>The POC analyzer result message toward GLIMS will contain an identification 
+ string in the ASTM field O.3 which normally corresponds with a specimen 
+ internal id, external id or identification.&#160;&#160;GLIMS will first 
+ check if this identification string corresponds to an existing specimen 
+ in the database.&#160;&#160;For more information on how a specimen is 
+ looked up, please check the chapter <a href="../../routine/specimens/specimens_search_via_barcode.htm">Specimen 
+ and order search via barcode</a>.&#160;&#160;&#160;If a matching specimen 
+ is found, the results will be linked to this specimen.&#160;</p>
+        <p>For point-of-care connections, this identification string will typically 
+ not be a specimen identification, but for instance a patient or encounter 
+ identification number (PIN or PVN).&#160;&#160;This should be agreed upon 
+ between the lab and the analyzer operator.&#160;&#160;</p>
+        <p><a name="kanchor313"></a>If GLIMS cannot find a matching specimen, the MISPL program specified 
+ in Station.UnknownSpecimenTrigger is executed on a temporary specimen 
+ record.&#160;&#160;There are two methods to extract data from that temporary 
+ specimen record and pass this data to the "CreateSpecimenOrder" 
+ MISPL function: via its internal id or via its internal comment (see below)</p>
+        <p>If necessary, an order for the specimen is created for the specified 
+ order id, issuer and agent, and request list (parameters in the CreateSpecimenOrder 
+ MISPL function). In orders created by this MISPL function, the patient's 
+ current encounter will be used as the order encounter.&#160;&#160;The 
+ return value is either the internal id or a specimen identification code 
+ for the retrieved or created specimen (see description of the "SpecimenCode" 
+ parameter).&#160;&#160;This return value is used to return the created 
+ specimen to the calling analyzer upload program.</p>
+        <h3>Using information stored in the Specimen.InternalId field</h3>
+        <p>When using the Specimen.InternalId field to extract data from the result 
+ message, you have the disadvantage that the content of the internal id 
+ field may vary according to the driver used to send the message to Glims.&#160;&#160;So 
+ for each POC analyzer, this may differ and therefore the "Station.UnknownSpecimenTrigger" 
+ MISPL function will have to be checked for each POC analyzer.&#160;&#160;A 
+ more standard way of retrieving data from the result message is via the 
+ Specimen.InternalComment field (documented below).</p>
+        <p>The incoming bar code is stored in the Specimen.InternalId field. Typically, 
+ the MISPL program defined in the field "Station.UnknownSpecimenTrigger" 
+ will check the incoming bar code for its contents and will then call the 
+ CreateSpecimenOrder MISPL function with appropriate parameters based on 
+ the contents of the incoming bar code.&#160;&#160;When the incoming information 
+ actually contains an encounter or patient identification number, this 
+ information can be passed to this MISPL function via the ObjectCode parameter. 
+ When a specimen corresponding with the SpecimenCode parameter can not 
+ yet be found, it is created for the specified object.</p>
+        <h3><a name="Using"></a>Using information stored in the Specimen.InternalComment field</h3>
+        <p>This mechanism was introduced more recently and allows the user to access 
+ data from the result message in a more standard way.&#160;It can 
+ be used for any POC analyzer and is driver independent.</p>
+        <p>The "Station.UnknownSpecimenTrigger" MISPL function has access to data in the ASTM result message 
+ received from the station's translator. The data is passed as a tagged 
+ list in Specimen.InternalComment.&#160;The main 'context' tags are: 
+ Message, Patient, Specimen and Result. Each tag's value is also a tagged 
+ list representing the fields in that context of the message.&#160;The 
+ result context tag concerns the first result uploaded in the message.</p>
+        <p>For an overview of the available fields and an example of a MISPL function, please check the chapter "ASTM - Internal GLIMS protocol" (<span class="ui_element">Communication &gt; Internal protocols &gt; ASTM - Internal GLIMS protocol &gt; Related issues &gt; Fields accessible with Station.UnknownSpecimenTrigger</span>).</p>
+        <h2><a name="CreateSpecimenOrder MISPL function"></a>CreateSpecimenOrder MISPL 
+ function</h2>
+        <h3>Synopsis</h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="90%" bgcolor="#E6E6E6" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;"><span class="Type"><i style="font-style: italic;">String</i></span>&#160;<b>CreateSpecimenOrder</b> 
+		 (<span class="Type"><i>String</i></span>&#160;<span class="Parameter"><span style="color: #008000;">SpecimenCode</span></span>, <span class="Type"><i>Mnemonic</i></span>&#160;<span class="Parameter"><span style="color: #008000;">MaterialMnemonic</span></span>, 
+		 <i><span class="Type">String</span>&#160;</i><span class="Parameter"><span style="color: #008000;">ObjectCode</span></span>, <i><span class="Type">String</span>&#160;</i><span class="Parameter"><span style="color: #008000;">OrderInternalId</span></span>, 
+		 <i><span class="Type">String</span>&#160;</i><span class="Parameter"><span style="color: #008000;">OrderShortId</span></span>, <span class="Type"><i>String</i></span>&#160;<span class="Parameter"><span style="color: #008000;">OrderExternalId</span></span>, 
+		 <span class="Type"><i>String</i></span>&#160;<span class="Parameter"><span style="color: #008000;">IssuerAndAgentInternalId</span></span>, <span class="Type"><i>Mnemonic</i></span>&#160;<span class="Parameter"><span style="color: #008000;">DepartmentMnemonic</span></span>, <span class="Type"><i>String</i></span>&#160;<span class="Parameter"><span style="color: #008000;">RequestList</span></span>)</td>
+            </tr>
+        </table>
+        <h3>Parameters</h3>
+        <p><span style="color: #008000;"><b style="font-weight: bold;">SpecimenCode</b></span>
+        </p>
+        <blockquote>
+            <p>The original specimen code.&#160;&#160;The following syntaxes are supported:</p>
+            <ul>
+                <li class="kadov-p" value="1"><b style="font-weight: bold;">InternalId,</b><b style="font-weight: bold;">&lt;Code&gt;:</b> in this case, the created 
+	 specimen will have &lt;Code&gt; as internal id.&#160;&#160;The “InternalId” 
+	 keyword is optional.<br />	&#160;&#160;</li>
+                <li class="kadov-p" value="2"><b style="font-weight: bold;">ExternalId,&lt;Code&gt;</b>: 
+	 in this case, the specimen is searched for and created using the code 
+	 as external id.<br />	&#160;&#160;</li>
+                <li class="kadov-p" value="3"><b style="font-weight: bold;">Identification,&lt;IdentificationType&gt;,&lt;Code&gt;</b>: 
+	 in this case, the created specimen will have an automatically generated 
+	 internal id, and a specimen identification record for the specimen 
+	 identification type &lt;SpecimenIdentificationType&gt; with code &lt;Code&gt; 
+	 will be created.</li>
+            </ul>
+            <p>The return value of the MISPL function depends on the syntax used (internal 
+ id, external id, identification).</p>
+        </blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">MaterialMnemonic</span></b></span>
+        </p>
+        <blockquote>
+            <p>The mnemonic of the specimen's material.</p>
+        </blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">ObjectCode</span></b></span>
+        </p>
+        <blockquote>
+            <p>The object specification. Three syntaxes are supported:</p>
+            <ul>
+                <li class="kadov-p" value="1"><b style="font-weight: bold;">&lt;ObjectInternalId&gt;,[{Modifier}]</b>: 
+	 the internal id of the desired object<br />	&#160;&#160;</li>
+                <li class="kadov-p" value="2"><b style="font-weight: bold;">Identification,&lt;SourceCode&gt;,&lt;Code&gt;,[{Modifier}]</b>: 
+	 the object is searched via the Identification table. An identification 
+	 record having the correspondent with internal id &lt;SourceCode&gt; 
+	 and a code &lt;Code&gt; leading to a person is searched for.<br />	&#160;</li>
+                <li class="kadov-p" value="3"><b>Encounter,[&lt;InstitutionMnemonic&gt;],[&lt;EncounterExternalId&gt;],[{Modifier}]</b>: 
+	 an active encounter with external id &lt;EncounterExternalId&gt; in 
+	 the institution with mnemonic &lt;InstitutionMnemonic&gt; is searched 
+	 for.<br /><br />	The institution mnemonic is optional. So when looking up patients by 
+	 their encounter external ID without institution, ensure that the encounter 
+	 external ID's are unique when multiple institutions are involved ! 
+	 An error will be produced when another encounter with the same external 
+	 id is found for a different person. </li>
+            </ul>
+            <blockquote>
+                <p>{} = repeatable, [] = optional</p>
+                <p>"<b>Modifier</b>" can be:</p>
+                <p><b style="font-weight: bold;">1. AllowCreation</b>: can be used in all 
+ three syntaxes.&#160;&#160;It allows the automatic creation of a patient 
+ when the patient cannot be found in the database.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li value="1">Internal id mode:: CreateSpecimenOrder(?, "Serum", "555592121,AllowCreation", 
+	 ....)</li>
+                    <li value="2">PIN mode: CreateSpecimenOrder(?, "Serum", "PIN,PINPROVIDER,555592121,AllowCreation", 
+	 ....)</li>
+                    <li value="3">Encounter mode: CreateSpecimenOrder(?, "Serum", "Encounter,INST,555592121,AllowCreation", 
+	 ....)</li>
+                </ul>
+                <p>In the first example, when no valid PIN with external id 555592121 supplied 
+ by PINPRIOVIDER can be found, a new person will be created. In this example, 
+ an identification record (PIN) will also be created automatically. In 
+ encounter mode, an encounter will be created automatically.</p>
+                <p>The following fields are filled:</p>
+                <blockquote>
+                    <p>Person.LastName = "tmp-" + code (e.g. tmp-555592121)<br />Person.FirstName = "&lt;Automatic&gt;"<br />Person.BirthDate = ?<br />Person.InternalId = code (when working in internal id mode!)</p>
+                    <p>Identification.Code = code (when working in PIN mode!)<br />Identification.StartDate = TODAY<br />Identification.EndDate = TODAY<br />Identification.Automatic = YES</p>
+                    <p>Encounter.Externalid = code (when working in encounter mode!)<br />Encounter.StartTime = today 00:00<br />Encounter.EndTime = tomorrow 00:00<br />Encounter.Automatic = YES</p>
+                </blockquote>
+                <p>Note that the creation of patients when working in internal id mode 
+ will always force the recalculation of the person internal id, except 
+ when using SpecificSite.PINType=Icelandic. This implies that this will 
+ typically not have the desired effect for most customers.</p>
+                <p>Also note that since this may create a lot of patients with last name 
+ = "tmp-" + a numeric part, you may have to adapt your SpecificSite.PersonInternalId 
+ function in order to avoid having to many duplicate person internal id 
+ values (e.g. take the digits in the person name into account when building 
+ an internal id!).</p>
+                <p>If this option is NOT set and an object code is specified which cannot 
+ be found in the database, Glims will show an error on the screen or in 
+ the log file, but the MISPL function will simply return an unknown return 
+ value, without raising a fatal error condition.&#160;&#160;This opens 
+ the possibility for the calling MISPL program to try to deal with this 
+ situation (e.g. by a subsequent CreateSpecimenOrder call with another 
+ object specification).</p>
+                <p><b style="font-weight: bold;">2. DaysOutdated=days:</b> days is the 
+ number of days the encounter may be closed. (default is 0).&#160;&#160;This 
+ value is only supported for the 3rd syntax which uses encounter information.</p>
+                <p>When looking up a patient by encounter, the "CreateSpecimenOrder" 
+ MISPL function will by default not consider closed encounters.&#160;&#160;This 
+ has been implemented to prevent that orders are created for the wrong 
+ patient.</p>
+                <p>In some cases, this behaviour might be too strict (e.g. when the POC 
+ instrument sends results after the patient's encounter has been closed).&#160;&#160;To 
+ cope with this situation, the "CreateSpecimenOrder" MISPL function 
+ allows to indicate that Glims should still consider encounters of which 
+ the end date time is outdated for a specified number of days.</p>
+            </blockquote>
+        </blockquote>
+        <p><span class="Parameter"><span style="color: #008000;"><b style="font-weight: bold;">OrderInternalId</b></span></span>
+        </p>
+        <blockquote>
+If specified, the created order will receive this value in its internal 
+ id field. If possible, an existing order having this internal id will 
+ be reused. 
+</blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">OrderShortId</span></b></span>
+        </p>
+        <blockquote>
+If specified, the created order will be given this value as short id. 
+</blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">OrderExternalId</span></b></span>
+        </p>
+        <blockquote>
+If specified, the created order will receive this value as external id. 
+ 
+</blockquote>
+        <p><span class="Parameter"><span style="color: #008000;"><b style="font-weight: bold;">IssuerAndAgentInternalId</b></span></span>
+        </p>
+        <blockquote><span style="font-weight: bold;">Introduction</span> 
+&#160; 
+This parameter supports two different syntaxes to specify 
+ the order's issuer and agent. 
+&#160; 
+<span style="font-weight: bold;">Syntax 1</span> 
+&#160; 
+The parameter is interpreted as comma-separated list 
+ of which the first component represents the issuer internal id and the 
+ second component represents the agent internal id of the order. 
+&#160; 
+[IssuerInternalId],[AgentInternalId] 
+&#160; 
+<span style="font-weight: bold;">Syntax 2</span><p>This syntax uses tagged list:</p><p style="margin-left: 40px;">\Issuer=...\Agent=...</p><p>Issuer and Agent content are also lists which may contain:</p><p style="margin-left: 40px;">\InternalId=...</p><p style="margin-left: 40px;">\Identification=...</p><p>Identification content is another tagged list:</p><p style="margin-left: 40px;">\Source=...</p><p style="margin-left: 40px;">\Code=...</p><h4 style="font-weight: normal;text-decoration: underline;">Notes</h4><ol style="list-style-type: decimal;"><li class="p" value="1"><p>Passing a source value which does not exist in the 
+	 database will block the creation of the order.</p></li><li class="p" value="2"><p>A non existing issuer or agent (because of non-matching 
+	 internal id or identification code) will not block the creation of 
+	 the order, but the issuer and/or agent will not be specified in the 
+	 created order.</p></li></ol><h4 style="font-weight: normal;text-decoration: underline;">Example</h4><blockquote><pre>
+STRING OldCode, NewCode, RequestList;
+STRING IssuerIdentificationList,IssuerList,IssuerAndAgentList;
+LOGICAL OldIssuerAndAgentMode;</pre><pre>
+OldCode := .InternalId;
+NewCode := ?;
+OldIssuerAndAgentMode := FALSE;</pre><pre>
+IF OldIssuerAndAgentMode
+THEN
+&#160;&#160;IssuerAndAgentList := "UtkerV";
+ELSE
+&#160;&#160;IssuerIdentificationList := PutTag("Source", "RIZIV", IssuerIdentificationList, "\");
+&#160;&#160;IssuerIdentificationList := PutTag("Code", "000001", IssuerIdentificationList, "\");
+&#160;&#160;IssuerList := PutTag("Identification", IssuerIdentificationList, IssuerList, "\");
+&#160;&#160;IssuerAndAgentList := PutTag("Issuer", IssuerList, IssuerAndAgentList, "\");
+ENDIF;</pre><pre>
+RequestList := "ORI_1,ORI_2";
+NewCode := CreateSpecimenOrder("Identification,MegaIdt," + OldCode,
+&#160;&#160;"DryBlood", ?, ?, ?, ?, IssuerAndAgentList, "DEPN", RequestList);</pre><pre>
+RETURN NewCode;</pre></blockquote><p>In this case, the IssuerAndAgentList parameter would return "\Issuer=~\Identification=~~\Source=RIZIV~~\Code=000001".</p><span style="font-weight: bold;">Order entry options</span><p>The CreateSpecimenOrder MISPL function also supports the following order 
+ entry options.</p><p>When the issuer or agent internal id is not specified, the following 
+ options are checked:</p><blockquote><p>DefaultIssuer = Ward<br />DefaultIssuer = Attending Physician<br />DefaultIssuer = Specialism</p><p>DefaultAgent = Specialism<br />DefaultAgent = Ward</p></blockquote><p>When the issuer or agent internal id is specified, the program searches 
+ for a unique correspondent having this internal id. When this search is 
+ ambiguous, the search is tried again using the DefaultIssuerType and DefaultAgentType 
+ from the order entry options.</p><p>In case of result upload, these settings are retrieved from the batch 
+ user's order entry options.&#160;&#160;In the service linked to the translator 
+ which takes care of the analyzer communication, a login user is specified.&#160;&#160;The 
+ order entry options of this user are used.&#160;&#160;Note that the order 
+ entry options of a batch user can be set by making this an interactive 
+ user, logging in as this user, calling order entry, changing the order 
+ entry options and making the user a batch user again.</p><p>When using the specimen scan program, the order entry options of the 
+ interactive user are used.</p></blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">DepartmentMnemonic</span></b></span>
+        </p>
+        <blockquote>
+The mnemonic of the department to which this order is connected. 
+</blockquote>
+        <p><span class="Parameter"><b style="font-weight: bold;"><span style="color: #008000;">RequestList</span></b></span>
+        </p>
+        <blockquote>
+A comma-separated list of request definition mnemonics which are added to the 
+ created (or retrieved) order.&#160;&#160;This will typically be the case 
+ when the analyzer message is a query message and not a result upload message. 
+ 
+<p>Some analyzers can also send a result start time which can be used as 
+ object time for the order that is to be created.&#160;&#160;This result 
+ start time is typically sent as a component of the comma-separated contents 
+ of ASTM field O.3 (which also contains the identification string mentioned 
+ earlier).&#160;</p><p>Using the MISPL function 'Entry', you can retrieve this result start 
+ time and store it in a variable.&#160;&#160;This variable can then be 
+ used in the RequestList parameter and will be used as the order object 
+ time.&#160;&#160;In order to do so, '<b>Object time:'</b> should be included 
+ as a string in the request list.&#160;&#160;Format: OBJECTTIME:yyyymmdduummss.</p><p>By adding the option <b>KeepSeconds</b> to the RequestList parameter in the CreateSpecimenOrder MISPL function call, the user can specify that the seconds of the object time need to be taken into account. By default, the seconds are not taken into account, which results in specimen reuse when GLIMS receives for instance two subsequent POC messages in a time frame of one minute and these messages each contain a result for the same POC&#160;property and the same order but for a different specimen.</p><div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #868686" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />MISPL example</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_code_snippet" xmlns="http://www.w3.org/1999/xhtml"><p xmlns="http://www.w3.org/1999/xhtml">CreateSpecimenOrder(?, "EDTA", "19140417BIAA07", ?, ?, ?, ?, "DEPN", "OneOrderPerDay,OBJECTTIME:20220819115621,KeepSeconds");</p></div></div></div><p>
+By adding the code <span style="color: rgb(0, 0, 0);font-family: Verdana, Arial, sans-serif;font-size: 11px;font-style: normal;font-variant: normal;letter-spacing: normal;line-height: normal;orphans: auto;text-align: justify;text-indent: 0px;text-transform: none;white-space: normal;widows: auto;word-spacing: 0px;-webkit-text-stroke-width: 0px;font-weight: bold;">OneOrderPerDay</span> 
+to the RequestList parameter in the CreateSpecimenOrder MISPL function call, 
+the user can specify that an existing order of the same patient, date, issuer 
+and department should be reused as opposed to creating an order for each object 
+time. This comes in especially handy when treating several times the same test 
+battery for the same patient during the day. GLIMS will reuse the last order of 
+that day, patient, issuer and department without checking the origin of the 
+order.</p></blockquote>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <h3>Mark specimen as being a POC specimen&#160;</h3>
+        <p>The field Specimen.POCSpecimen indicates if this specimen is a Point-of-care 
+ specimen, which means that is was created automatically by using the Station.UnknownSpecimentrigger 
+ function during a specimen query or a result upload for an unsolicited 
+ specimen.&#160;&#160;For such a specimen, unsolicited results sent via 
+ a result upload message, are automatically requested, thus allowing both 
+ reporting AND billing of these results.</p>
+        <p>Since the fact that the specimen is a POC specimen is stored in the 
+ database, the above functionality also works when the results are uploaded 
+ via separate messages.&#160;&#160;Note that a specimen created via the 
+ Station.CreateSpecimen field, is NOT considered to be a POC specimen!</p>
+        <h3>Specimen status</h3>
+        <p>A specimen created via the CreateSpecimenOrder MISPL function is always 
+ immediately be marked as available, regardless of any order entry options.</p>
+        <h3>Order MISPL's not executed</h3>
+        <p>When an order is created using the CreateSpecimenOrder MISPL function, 
+ the following MISPL's are not executed:</p>
+        <ol style="list-style-type: decimal;">
+            <li value="1">Evaluation before commit (order entry options)</li>
+            <li value="2">Evaluation after commit&#160;(order entry options)</li>
+            <li value="3">Evaluation after scheduling&#160;(order entry options)</li>
+            <li value="4">Action after order entry (general settings)</li>
+        </ol>
+        <h3>Reusing existing specimen or order for the same object and object time&#160;</h3>
+        <p>The CreateSpecimeOrder() MISPL function tries to reuse an existing specimen 
+ or order for the same object and object time when possible.&#160;&#160;This 
+ avoids creating double orders when the result message from e.g. a point-of-care 
+ station is transmitted twice.&#160;&#160;When the POC station does not 
+ supply the object time explicitly or the object time<br />is not passed to the MISPL function via the ObjectTime:YYYYMMMDDHHMMSS 
+ syntax, the order is reused when the message is transmitted twice within 
+ the same minute (since in such a case the current time is used as object 
+ time).</p>
+        <p>Note that this will only happen when neither order or specimen has 
+ been specified. This implies that for callers who either pass a specimen 
+ specification or an order specification to this MISPL function, the program 
+ will always create a new order and specimen when the specified record 
+ does not yet exist.</p>
+        <h3>Sampling location and sampling address</h3>
+        <p><a name="kanchor314"></a>GLIMS allows for a sampling location and sampling address to be 
+ copied from the station which communicates with the "point of care" 
+ instrument to the order being created. These fields can be configured 
+ on the POC station.</p>
+        <h3>Distinction between result upload and query message</h3>
+        <p>As mentioned in the RequestList parameter description, the CreateSpecimenOrder 
+ MISPL function can be executed both in the case of a result upload message 
+ and a query message.&#160;&#160;In order to distinguish both cases, the 
+ internal comment of the temporary specimen record which is used to execute 
+ the MISPL trigger is filled with a tagged list containing "Context=&lt;Context&gt;\Station=&lt;StationMnemonic&gt;", 
+ where &lt;Context&gt; is either "Result" or "Query". 
+ These tags can be extracted with the ExtractTag("Context", .InternalComment, 
+ "\") MISPL function.</p>
+        <p>Example:</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="90%" bgcolor="#E6E6E6" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;"><pre>
+STRING NewCode, RequestList;
+OldCode := .InternalId;
+NewCode := ?;
+IF ExtractTag("Context", .InternalComment, "\") = "Query"
+THEN
+&#160;
+RequestList := "Na,K,CL";
+ELSE
+&#160;&#160;
+IF ExtractTag("Context", .InternalComment, "\") = "Result"
+&#160;&#160;
+THEN
+&#160;&#160;&#160;
+RequestList := ?;
+&#160;&#160;
+ENDIF;
+ENDIF;
+IF MATCHES(OldCode, "^Unk.*", NO)
+THEN
+&#160;&#160;
+NewCode := CreateSpecimenOrder("Identification,Hitachi," + OldCode,
+&#160;&#160;&#160;&#160;&#160;&#160;
+"Serum", "Identification,MipsInst,0001", ?, ?, ?, ?, "DEPN",
+&#160;&#160;&#160;&#160;&#160;&#160;
+RequestList); 
+ENDIF;
+RETURN NewCode;</pre>
+                </td>
+            </tr>
+        </table>
+        <h2><a name="Examples" id="Examples"></a>Examples</h2>
+        <h3>Example 1</h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="90%" bgcolor="#E6E6E6" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;"><pre>
+STRING OldCode, NewCode, Time;
+STRING OldCode_Pin, OldCode_AnalyzerId, OldCode_Material,OldCode_Issuer,OldCode_ObjectTime,OldCode_ObjectDate;
+STRING Pin,Requestable, Material, Issuer, Department;
+STRING ObjectDateTime;</pre><pre>
+NewCode := "?";
+OldCode &#160;&#160;:= .InternalId;</pre><pre>
+Time := TimeToString (Now(),"%H%M%S");</pre><pre>
+IF (NumEntries(OldCode,",") = 1)
+THEN
+&#160;&#160;&#160;message ("This is a query = no order creation");
+ELSE
+&#160;&#160;&#160;OldCode_Pin &#160;&#160;&#160;&#160;&#160;&#160;&#160;:= Entry(1,OldCode,","); &#160;
+&#160;&#160;&#160;OldCode_AnalyzerId := Entry(2,OldCode,","); &#160;
+&#160;&#160;&#160;OldCode_Material &#160;&#160;:= Entry(3,OldCode,","); &#160;
+&#160;&#160;&#160;OldCode_Issuer &#160;&#160;&#160;&#160;:= Entry(4,OldCode,","); &#160;
+&#160;&#160;&#160;OldCode_ObjectDate := Entry(5,OldCode,","); &#160;
+&#160;&#160;&#160;OldCode_ObjectTime := Entry(7,OldCode,","); &#160;</pre><pre>
+&#160;&#160;&#160;Pin &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;:= "?";
+&#160;&#160;&#160;Issuer &#160;&#160;&#160;&#160;&#160;&#160;:= OldCode_Issuer;
+&#160;&#160;&#160;Material &#160;&#160;&#160;&#160;:= "zVB_LI_HEP"; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Material mnemonic */
+&#160;&#160;&#160;Requestable &#160;:= ?; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Requestable mnemonic */
+&#160;&#160;&#160;Department &#160;&#160;:= "AA"; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* choice from department mnemonic AA,GB,WE */</pre><pre>
+&#160;&#160;&#160;message ("pin = " + OldCode_Pin +" Issuer = "+ OldCode_Issuer); 
+&#160;&#160;&#160;message ("Material = " + OldCode_Material+" analyserID = " + OldCode_AnalyzerId);</pre><pre>
+&#160;&#160;&#160;/* Add ObjectTime */
+&#160;&#160;&#160;IF (IfknownString(OldCode_ObjectDate) &lt;&gt; "" AND 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;IfknownString(OldCode_ObjectTime) &lt;&gt; "") THEN
+&#160;&#160;&#160;&#160;&#160;ObjectDateTime := OldCode_ObjectDate + OldCode_ObjectTime; 
+&#160;&#160;&#160;&#160;&#160;Requestable := "OBJECTTIME:" + ObjectDateTime;
+&#160;&#160;&#160;ENDIF; &#160;&#160;</pre><pre>
+&#160;&#160;&#160;/* PIN gets a value &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;*/
+&#160;&#160;&#160;/* Expected PIN in glims=25069795 (start position 5 and 8 digits long) &#160;&#160;&#160;&#160;*/
+&#160;&#160;&#160;/* The PIN is 13 digits long if received from barcode receiver &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;*/
+&#160;&#160;&#160;/* The PIN is 8 digits long if specified manually &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;*/</pre><pre>
+&#160;&#160;&#160;IF len(OldCode_Pin) = 13 THEN
+&#160;&#160;&#160;&#160;&#160;&#160;Pin := Substr(OldCode_Pin,5,8);
+&#160;&#160;&#160;ELSE
+&#160;&#160;&#160;&#160;&#160;&#160;IF len(OldCode_Pin) = 8 THEN
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Pin := OldCode_Pin;
+&#160;&#160;&#160;&#160;&#160;&#160;ELSE
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;message ("The length of the PIN is not 8 or 13 digits long, the incorrect PIN = ");
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;message (OldCode_Pin); 
+&#160;&#160;&#160;&#160;&#160;&#160;ENDIF;
+&#160;&#160;&#160;ENDIF;</pre><pre>
+&#160;&#160;&#160;IF ((OldCode_AnalyzerId = "6014")or
+&#160;&#160;&#160;(OldCode_AnalyzerId = "5818") ) THEN
+&#160;&#160;&#160;&#160;&#160;&#160;Department := "AA";
+&#160;&#160;&#160;ELSE IF ((OldCode_AnalyzerId = "5990")) THEN
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Department := "WE";
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE IF ((OldCode_AnalyzerId = "5992") or
+&#160;&#160;&#160;(OldCode_AnalyzerId = "3035")) THEN
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Department := "GB";
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ELSE
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;message ("Unknown AnalyzerId = ");
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;message (OldCode_AnalyzerId);
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ENDIF;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ENDIF;
+&#160;&#160;&#160;ENDIF;</pre><pre>
+&#160;&#160;&#160;NewCode := CreateSpecimenOrder("Identification,Short_Id," + Pin + Time ,Material,"Encounter,ASZINST," + Pin,
+&#160;&#160;&#160;?,?,?,Issuer,Department,Requestable);</pre><pre>
+ENDIF;</pre><pre>
+RETURN NewCode;</pre>
+                </td>
+            </tr>
+        </table>
+        <h3>Example 2</h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="90%" bgcolor="#E6E6E6" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;"><pre>
+STRING OldCode, NewCode, SpecimenCode, MaterialMnemonic, ObjectCode, OrderInternalId, OrderShortId; 
+STRING OrderExternalId, IssuerInternalId, DepartmentMnemonic, RequestList;
+STRING PatientMedicalRecNo, PatientHospitalId, TestSelection, InstrumentSpecimenId, OperatorId;
+STRING RequestPanels;
+String ObjectTimeString;</pre><pre>
+RequestPanels :=
+&#160;&#160;"T0=E3+,T1=EC4+,T2=EC6+,T4=CG8+,T5=G,T6=EC8+,T7=6+,T8=CG4+,T9=EG6+,T10=G3+,T11=EG7+,T12=Crea,T13=ACT,T200=PCxGlucuse";</pre><pre>
+NewCode := ?;
+OldCode := .InternalId;
+PatientMedicalRecNo := Entry (1, OldCode, ",");
+PatientHospitalId := Entry (2, OldCode, ",");
+TestSelection := Entry (3, OldCode, ",");
+InstrumentSpecimenId := Entry (4, OldCode, ",");
+OperatorId := Entry (5, OldCode, ",");
+ObjectTimeString := Entry (6, OldCode, ",");
+IssuerInternalId := Entry (7, OldCode, ",");</pre><pre>
+SpecimenCode := ?;
+MaterialMnemonic := "DryBlood";
+ObjectCode := "Identification,MipsInst," + IfKnownString(PatientMedicalRecNo);
+OrderInternalId := ?;
+OrderShortId := STRIP(InstrumentSpecimenId, ?);
+OrderExternalId := ?;
+IssuerInternalId := "UtkerV";
+DepartmentMnemonic := "DEPN";</pre><pre>
+/* Request panels according to manufacturer test selection code */
+RequestList := ExtractTag ("T"+TestSelection, RequestPanels, ",");</pre><pre>
+/* Add ObjectTimeString to requestlist */
+IF (IfknownString(ObjectTimeString) &lt;&gt; "")
+THEN
+&#160;&#160;&#160;&#160;RequestList := RequestList + "," + "OBJECTTIME:" + ObjectTimeString;
+ENDIF;</pre><pre>
+NewCode := CreateSpecimenOrder(SpecimenCode, MaterialMnemonic, ObjectCode, OrderInternalId, 
+OrderShortId, OrderExternalId, IssuerInternalId, DepartmentMnemonic, RequestList);</pre><pre>
+MESSAGE("M5");</pre><pre>
+RETURN NewCode;</pre>
+                </td>
+            </tr>
+        </table>
+        <h3>Example 3</h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="90%" bgcolor="#E6E6E6" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 5px;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;">STRING OldCode, NewCode, RequestList;<br />		STRING PinCode;<br />		STRING AgentAndIssuerInternalId ;<br />		OldCode := .InternalId;<br />		NewCode := ?;<br /><br />		MESSAGE ("OldCode:" + IfKnownString(OldCode));<br /><br />		PinCode := Entry(1, OldCode, ?);<br />		RequestList := "NA,K,Cl";<br /><br />		AgentAndIssuerInternalId := "UtkerV,UtkerB";<br /><br />		NewCode := CreateSpecimenOrder(?, "DryBlood", "Identification,MIPS," 
+		 + PinCode, ?, ?, ?, AgentAndIssuerInternalId, "DEPN", 
+		 RequestList);&#160;<br /><br />		MESSAGE ("NewCode:" + IfKnownString(NewCode));<br /><br />		RETURN NewCode;</td>
+            </tr>
+        </table>
+    </body>
+</html>

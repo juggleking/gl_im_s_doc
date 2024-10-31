@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.50_translation_exclude_for_GER,Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Financial export in RIZIV format: correction + support for "rekening C" (GLIMS_BILL-03667)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor920"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Financial export in RIZIV format: correction + support for "rekening C" (GLIMS_BILL-03667)</h1>
+        <p>The following improvements have been implemented for the export of financial data in the Belgian <span class="ui_element">RIZIV</span> format via the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</a> function:</p>
+        <p class="fieldlabel">Correction</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">For an <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order</span> linked to an <a href="../../configuration/encounters/encounters.htm" xmlns="http://www.w3.org/1999/xhtml">Encounter</a> with a <a href="../../configuration/stays/stays.htm" xmlns="http://www.w3.org/1999/xhtml">Stay</a>, field 17 of record types 20 and 80 will now always be filled with the value "0000". In previous versions, this field was filled with an invalid value which caused the <span class="ui_element">Financial shipment</span> to be rejected.</p>
+        </div>
+        <p class="fieldlabel">Newly supported fields (for "rekening C")</p>
+        <ul>
+            <li value="1">The combined fields 45-46-47a and 53-54a of record types 10 and 90 will be filled with blanks.</li>
+            <li value="2">The combined fields 55-56 of record types 80 and 90 will be filled with the value "+00000000000".</li>
+            <li value="3">For record type 95, field 411 will contain "+" and field 412 will contain "00000000000"; for record type 96, field 511 will contain "+" and 512 will contain "00000000000".</li>
+            <li xmlns="" value="4">The version in the header segment is now "02".</li>
+        </ul>
+        <p class="fieldlabel">Site functions</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The exported values can be customized using site functions. The name of the site function should match the pattern "Send_RIZIV_RECxx_Values", where xx is the record type.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03667.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="530" data-mc-height="504" src="GLIMS_BILL-03667_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">For the above-mentioned correction, this means that any  conversions that were added to the site functions "Send_RIZIV_REC20_Values" and "Send_RIZIV_REC80_Values" as a workaround  can now be removed.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">For the above-mentioned combined fields, this means that if site functions are required to customize the exported values, only the first field should be mentioned. For instance, if the combined fields 45-46-47 need a different value to be exported, only "45" should be mentioned.</p>
+        </div>
+    </body>
+</html>

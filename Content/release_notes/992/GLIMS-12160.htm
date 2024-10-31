@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.50_translation_exclude_for_FR_GR">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.2 - Allow Hungarian customers to check the social security number of the patient during order entry (GLIMS-12160)</title>
+        <link href="../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor60"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.2 - </MadCap:conditionalText>Allow Hungarian customers to check the social security number of the patient during order entry (GLIMS-12160)</h1>
+        <h2>Introduction</h2>
+        <p>This modification introduces functionality that allows Hungarian customers to check the social security number of the patient during order entry  by sending a request via a web service to the platform of the Hungarian National Health Insurance Fund.</p>
+        <h2>Configuration</h2>
+        <h3>Identification of the "Own organization"</h3>
+        <p>The <a href="../../configuration/specificsite/glims_general_options.htm#Identifi" xmlns="http://www.w3.org/1999/xhtml">Own organization</a> should have an <a href="../../configuration/correspondents/identifications.htm" xmlns="http://www.w3.org/1999/xhtml">identification</a> that is assigned by the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Own organization</span>.</p>
+        <h3>"External info system" = "Taj"</h3>
+        <p>Set the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">External info system</span> in the <a href="../../configuration/specificsite/glims_general_options.htm#More" xmlns="http://www.w3.org/1999/xhtml">GLIMS general settings</a> to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Taj</span>.</p>
+        <h3>Path to WSDL file</h3>
+        <p>Define an Organization-based  site attribute <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">_TajWSDLFILE</span> (of data type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">String</span>) in which the path to the WSDL file (web service descriptive language file) should be specified for the <a href="../../configuration/specificsite/glims_general_options.htm#Identifi" xmlns="http://www.w3.org/1999/xhtml">Own organization</a>.</p>
+        <h3>Web service user name and password</h3>
+        <p>Define two Department-based site attributes  <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">_TajUserName</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">_TajPassword</span> (of data type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">String</span>) in which the user name and password used to connect to the web service should be specified per <a href="../../configuration/correspondents/departments.htm" xmlns="http://www.w3.org/1999/xhtml">department</a>.</p>
+        <h3>Status of web service reply</h3>
+        <p>Define an Order-based site attribute <span class="ui_element">_TajStatus</span> (of data type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">String</span>) to store the status of the web service reply.</p>
+        <h3>Certificates</h3>
+        <p>Import the required certificates in the OpenEdge certificate store on the computers that will be performing the check.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-12160_certificate.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="615" data-mc-height="466" src="GLIMS-12160_certificate_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If the order post-processing is performed on the AppServer, the certificates need to be available on the server running the AppServer as well.</p>
+        </div>
+        <h2>Routine: Checking the social security number during order entry</h2>
+        <p>When the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">External info system</span> is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Taj</span>, a button will be displayed in the order entry screen to allow the user to manually request the checking of the validity of the social security number. The request is sent if the patient has a payment agreement with matriculation. If not performed manually, the checking of the social security number will take place in the post-commit phase of the order.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-12160.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="568" data-mc-height="348" src="GLIMS-12160_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The order entry screen will indicate the status of the reply:</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" xmlns="http://www.w3.org/1999/xhtml" class="TableStyle-Standard" cellspacing="0">
+            <col class="TableStyle-Standard-Column-Column1" />
+            <col class="TableStyle-Standard-Column-Column1" />
+            <tbody>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1" style="font-weight: bold;">Color</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1" style="font-weight: bold;">Status</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Green</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Valid number; insured</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Red</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Valid number; not insured</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Brown/olive</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Invalid number</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyE-Column1-Body1">Blue</td>
+                    <td class="TableStyle-Standard-BodyD-Column1-Body1">Provided abroad; number temporarily invalid</td>
+                </tr>
+                <tr class="TableStyle-Standard-Body-Body1">
+                    <td class="TableStyle-Standard-BodyB-Column1-Body1">Yellow</td>
+                    <td class="TableStyle-Standard-BodyA-Column1-Body1">Valid number; limited benefits</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

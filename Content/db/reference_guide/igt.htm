@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - InvoiceGroupingType</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2612"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+InvoiceGroupingType&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Invoice grouping type</td>
+                <td>
+igt</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Determines how invoices must be grouped on invoice summaries. For instance: 1 per payer, 1 per month, 1 per order, etc... Whenever invoices are put on invoice summaries, GLIMS uses such an invoice grouping type record to determine how to group the invoices. GLIMS locates the invoice grouping type record in the following order:
+<br />1) if one is explicitly specified in the method that creates the invoice summaries then that one is used.
+<br />2) if the invoice Payer has an 'invoice grouping type' specified then that one is used.
+<br />3) otherwise the default invoice grouping type defined in the GLIMS configuration is used.
+<br />If an existing invoice summary is found that corresponds with all the settings and it is not yet fixed, then it is reused. Fixed invoice summaries are never reused. This also means that it is important to 'fix' invoice summaries as soon it is no longer allowed to reuse them (i.e. if they are send to the payer). If no existing invoice summary is found, a new one is created according to the settings.
+<br />It is a good idea to use different invoice grouping type records per 'type' of grouping. Use a mnemonic that describes the type and nut just the periodicity. So in Germany were the billing to the 'Kassen' is done per quarter: name the invoice grouping type 'Kassen' and not 'Quarterly'.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AllowMixedFinanceType"></a>
+        <h3>
+Allow mixed finance type</h3>
+        <div class="MemberHelp">
+            <p>
+If set to TRUE, then credit and debit invoices are put together on a single invoice summary with the 'invoice types' field set to Mixed. If FALSE, seperate invoice summaries are created for credit and debit invoices.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AllowMixedFinanceType</b></p>
+        </div><a name="F_ClosureDay"></a>
+        <h3>
+Closure day</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the InvoiceGrouping field is set to 'PerPeriod'. It defines which day is the end date of the period. When left unknown (value ?) the 'normal' end date is taken: the last day of the month for 'monthly', sunday for 'weekly' etc...
+<br />If a positive number is entered, this number defines the end date in number of days from the normal period start. So for a 'monthly' grouping, a closure day of 15 causes the period to run from the 16th to the 15th of the next month. 0 or negative values are not allowed.
+<br />When an invoice summary is created, the field 'GroupingData' is set to the value calculated based on the closure day.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>ClosureDay</b></p>
+        </div><a name="F_CreateDaysBack"></a>
+        <h3>
+Max days back for creation</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the InvoiceGrouping field is set to 'PerPeriod'. This field defines how many days it is allowed to go in the past for creation of new invoice summaries. GLIMS tries to find an invoice summary with a 'grouping date' based on the invoice external date. If this calculated 'grouping date' lays in the past and such an invoice summary does not exist yet, then the 'CreateDaysBack' parameter defines if it is allowed to create such an invoice summary.
+<br />The following values are allowed:
+<br />+ if this parameter is left unknown (?), then there is no restriction on how far back in the past it is allowed to create invoice summaries.
+<br />+ if this parameter has a positive value 'x', only invoice summaries with a 'grouping date' not older then 'x' days before TODAY are created. The net effect is that if the invoice's external date is older then 'today - x', then 'today - x' is used in stead of that invoice's external date for grouping purposes. This also means that a value of 0 for 'x' means that 'today' is used in stead of the invoice's external date!
+<br />+ negative values for 'x' are not allowed.
+<br />See also the 'ReuseDaysBack' parameter.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>CreateDaysBack</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Description"></a>
+        <h3>
+Description</h3>
+        <div class="MemberHelp">
+            <p>
+A free format description for this grouping type.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Description</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Id</b></p>
+        </div><a name="F_InvoiceGrouping"></a>
+        <h3>
+Invoice grouping</h3>
+        <div class="MemberHelp">
+            <p>
+Specifies how invoices must be grouped on invoice summaries. The following values are supported:
+<br />- 'per payer': one invoice summary per payer. This means that as long as an existing invoice summary for a payer is not fixed, it is reused.
+<br />- 'per order': a new invoice summary is created for each order.
+<br />- 'per orderset': a new invoice summary is created for each orderset.
+<br />- 'per invoice': a new invoice summary is created for each invoice.
+<br />- 'per period': invoices will be grouped by the specified period. The invoice's 'external date' is used to determine the required period.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="invoicegrouping.htm">InvoiceGrouping</a></span>&#160;<b>InvoiceGrouping</b></p>
+            <p>
+One of: <span class="Parameter">Per payer, Per order, Per order set, Per invoice, Per period</span></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MaxInvsPerPeriod"></a>
+        <h3>
+Max invs per period</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the InvoiceGrouping field is set to 'PerPeriod'. It defines the maximum number of invoice summaries that are allowed for the same period. Invoice summaries are possibly reused (see other parameters) if they are not fixed. If all invoice summaries with the required 'grouping date' are fixed, a new one is created for the same grouping date until the maximum number is reached. If the maximum number is reached, the following period is tried.
+<br />0 or negative values are not allowed. A value of '?' means that an unlimited number of invoice summaries per period are allowed.
+<br />This maximum number is per series and per invoice summary's 'InvoiceTypes'</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>MaxInvsPerPeriod</b></p>
+        </div><a name="F_Mnemonic"></a>
+        <h3>
+Mnemonic</h3>
+        <div class="MemberHelp">
+            <p>
+The mnemonic code for this invoice grouping type.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">Mnemonic</span>&#160;<b>Mnemonic</b></p>
+        </div><a name="F_Period"></a>
+        <h3>
+Period</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the InvoiceGrouping field is set to 'PerPeriod'. In that case, this field defines the periodicity of the grouping.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="invoicegroupingperiod.htm">InvoiceGroupingPeriod</a></span>&#160;<b>Period</b></p>
+            <p>
+One of: <span class="Parameter">Daily, Weekly, Half monthly, Monthly, Quarterly, Per4Months, Half yearly, Yearly</span></p>
+        </div><a name="F_ReuseDaysBack"></a>
+        <h3>
+Max days back for reuse</h3>
+        <div class="MemberHelp">
+            <p>
+This field is only important if the InvoiceGrouping field is set to 'PerPeriod'. This field defines how many days it is allowed to go in the past for the reuse of existing (non fixed) invoice summaries. GLIMS tries to find an invoice summary with a 'grouping date' based on the invoice external date. If this calculated 'grouping date' lays in the past and such an invoice summary does exist and it is not yet fixed, then the 'ReuseDaysBack' parameter defines if it is allowed to reuse such an invoice summary.
+<br />The following values are allowed:
+<br />+ if this parameter is left unknown (?), then there is no restriction on how far back in the past it is allowed to reuse invoice summaries.
+<br />+ if this parameter has a positive value 'x', only invoice summaries with a 'grouping date' not older then 'x' days before TODAY are reused. The net effect is that if the invoice's external date is older then 'today - x', then 'today - x' is used in stead of that invoice's external date for grouping purposes. This also means that a value of 0 for 'x' means that 'today' is used in stead of the invoice's external date!
+<br />+ negative values for 'x' are not allowed.
+<br />See also the 'CreateDaysBack' parameter.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>ReuseDaysBack</b></p>
+        </div><a name="F_Series"></a>
+        <h3>
+Series</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice grouping type series site function (invoice based, string valued). The return value is a backslash seperated tagged list. Currently only one tag is supported: 'Series'. 
+<br />The series-value is used as an extra criterion when assigning an invoice to an invoice summary. The derived series-value must match the invoice summary's series value. Not specifying this site function, or returning the empty string ('') matches with '?' in the invoice summary series field.
+<br />This allows to have 2 or more invoice summaries in parallel for the same period and payer. As an example one could have seperate invoice summaries for invoices with an amount below 100 euro and above 100 euro. In Germany this is used for the 'Kassenabrechnung'. In that case 2 seperate invoice summaries are created per fund, one for the orders that can be processed using a KVDT tape and one for those that can't.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>Series</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_InvoiceRejectionTypeActions"></a>
+        <h3>
+Invoice rejection type actions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceRejectionTypeActions</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_Series"></a>
+        <h3>
+Series&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Series</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Correspondents</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="crsp.htm">Correspondent</a>.<a href="crsp.htm#F_InvoiceGroupingType">InvoiceGroupingType</a></p>
+        </div>
+        <h3>
+Specific sites</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="ssit.htm">SpecificSite</a>.<a href="ssit.htm#F_DefaultInvGrouping">DefaultInvGrouping</a></p>
+        </div>
+        <h3>
+Invoice summaries</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="invs.htm">InvoiceSummary</a>.<a href="invs.htm#F_InvoiceGroupingType">InvoiceGroupingType</a></p>
+        </div>
+        <h3>
+Actions of invoice grouping type</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="irta.htm">InvoiceRejectionTypeAction</a>.<a href="irta.htm#F_InvoiceGroupingType">InvoiceGroupingType</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Mnemonic </b>
+            </li>
+            <li value="3"><b>+ Series </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

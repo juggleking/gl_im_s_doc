@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="ODBC">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS ODBC setup</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor9"></a>
+            <MadCap:concept term="System management" />System manual -&gt; ODBC: Setup</h1>
+        <p>The following procedures describe how to set up an ODBC connection to 
+ the Glims database. Setting up an ODBC connection to the Genrw and Genro 
+ databases can be done in the same way.</p>
+        <h2>Windows server configuration</h2>
+        <ol>
+            <li value="1">In the services file (c:\Windows\System32\drivers\etc\services), 
+	 define port "<span lang="NL-BE">glimssqlsv" 
+	 and assign a free port number. Example:&#160;&#160;glimssqlsv &#160;&#160;&#160;&#160;&#160;&#160;&#160;15025/tcp</span></li>
+            <li value="2"><span lang="NL-BE">Go to Progress Explorer, database 
+	 "GLIMS" &#160;</span>
+            </li>
+            <li value="3"><span lang="NL-BE">Open "DefaultConfiguration" 
+	 &#160;</span>
+            </li>
+            <li value="4"><span lang="NL-BE">Below "DefaultConfiguration", 
+	 right mouse click "New..."&#160;&#160;&#160;<br /><br /><small style="font-size: smaller;"><span lang="NL-BE" style="font-family: 'Courier New', Courier, monospace;"><img src="odbc_setup_files/image002.jpg" alt="" width="576" height="377" border="0" /></span></small><br /><br /><br /></span>
+            </li>
+            <li value="5"><span lang="NL-BE">Enter "glimssqlsv" 
+	 in the Service name field. This field refers to the entry you have 
+	 created in the services file.<br />	Enter the number of servers and mark the server group as "SQL 
+	 ONLY".&#160;<br />	Optionally, the "DefaultServerGroup" can be set to "4GL 
+	 only".<br /><br /><small style="font-size: smaller;"><span lang="NL-BE" style="font-family: 'Courier New', Courier, monospace;"><img src="odbc_setup_files/image004.jpg" alt="" width="576" height="376" border="0" /></span></small><br />	&#160;</span>
+            </li>
+            <li value="6">In glimssv.pf (located in the Dat folder of the Glims installation) 
+	 , increase -Mn with the number of servers specified for SQL and set 
+	 -Mbp to the old value of -Mn (or the number of sql servers if the 
+	 latter would be higher, which is unlikely).<br />	&#160;</li>
+            <li value="7">Restart the database</li>
+        </ol>
+        <h2>Server setup on UNIX</h2>
+        <ol>
+            <li value="1">In the services file (/etc/services), define port "<span lang="NL-BE">glimssqlsv</span>" and assign a free port number.<br /><br />	Example:<br /><br />	glimssqlsv &#160;&#160;&#160;&#160;&#160;&#160;&#160;15025/tcp<br />	&#160;</li>
+            <li value="2">Define a secondary login broker in $GLIMS/.glimsrc. Instead of 
+	 having a single GLIMSGLIMSV environment variable, you will need two 
+	 environment variables GLIMSGLIMSSV, equal to the SQL broker port you 
+	 have added in the services file, and GLIMSGLIMSSV2, equal to the original 
+	 login broker port of the database.&#160;<br /><br />	Example:<br /><br />	GLIMSGLIMSSV=glimssqlsv<br />	GLIMSGLIMSSV2=glimsglimssv<br />	&#160;</li>
+            <li value="3">In&#160;&#160;$GLIMS/dat/glimssv.pf, increase -Mn with the number 
+	 of required SQL servers&#160;and set -Mbp to the old value of -Mn 
+	 (or the number of sql servers if the latter would be higher, which 
+	 is unlikely).<br />	&#160;</li>
+            <li value="4">Check the existence of -Ma, -Mn and -Mpd parameters in glimssv2.pf. 
+	 if so, make them equal to the values in glimssv.pf.<br />	&#160;</li>
+            <li value="5">Restart the databases</li>
+        </ol>
+        <h2>Granting rights</h2>
+        <p>Some additional GRANT SELECT .. TO PUBLIC SQL statements must be executed 
+ in order to grant access to the data in the tables. This has to be done 
+ after the activation of the ODBC connection, and this must be repeated 
+ after every major Glims upgrade.<br /><br /><span style="color: #FF0000;">Please contact MIPS to setup the appropriate 
+ rights !!</span></p>
+        <h2>Client setup</h2>
+        <ol>
+            <li value="1">Define a new User DSN or System DSN in the Data Sources (ODBC) 
+	 Control Panel applet of the ODBC client PC.<br />	&#160;<br /><span lang="NL-BE"><img src="odbc_setup_files/image012.jpg" alt="" width="461" height="377" border="0" /></span><br />	&#160;</li>
+            <li value="2">Select the Progress OpenEdge driver	&#160;<br />	&#160;</li>
+            <li value="3">Enter the following information:<br />	&#160; 
+	<ul><li class="p" value="1"><p style="word-spacing: 0;text-indent: 0;"><b style="font-weight: bold;">Data 
+		 Source Name</b>: &#160;Any mnemonic for your ODBC connection</p></li><li class="p" value="2"><p style="word-spacing: 0;text-indent: 0;"><b style="font-weight: bold;">Description</b>: 
+		 &#160;Any Description for your ODBC connection</p></li><li class="p" value="3"><p style="word-spacing: 0;text-indent: 0;"><b style="font-weight: bold;">Host 
+		 name</b>: &#160;Name or IP address of the database server</p></li><li class="p" value="4"><p style="word-spacing: 0;text-indent: 0;"><b style="font-weight: bold;">Port 
+		 number</b>:&#160;&#160;The port number given to the "glimssqlsv" 
+		 entry in the services file on the server</p></li><li class="p" value="5"><p style="word-spacing: 0;text-indent: 0;"><b style="font-weight: bold;">Database 
+		 name</b>:&#160;<span style="color: #FF0000;"><span lang="NL-BE">Make 
+		 sure that the database name is identical to the database name 
+		 in Progress Explorer (name of the database file, case-sensitive)</span></span></p></li><li class="p" value="6"><p style="word-spacing: 0;text-indent: 0;"><span lang="NL-BE"><b style="font-weight: bold;">User 
+		 ID</b>:&#160;&#160;Only "mipsodbc" has SQL access to 
+		 the Glims tables in the database. <br />		&#160;</span><span style="border-collapse: separate;color: #000000;font-family: 'Times New Roman';font-style: normal;font-variant: normal;font-weight: normal;letter-spacing: normal;line-height: normal;orphans: 2;text-align: -webkit-auto;text-indent: 0px;text-transform: none;white-space: normal;widows: 2;word-spacing: 0px;-webkit-border-horizontal-spacing: 0px;-webkit-border-vertical-spacing: 0px;-webkit-text-decorations-in-effect: none;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;font-size: medium;"><br /></span><span lang="NL-BE"><img src="odbc_setup_files/image013.jpg" alt="" width="403" height="484" border="0" /><br /><br />		&#160;</span></p></li></ul></li>
+            <li value="4">Click "Test Connect" to test the connection. &#160;Ask a MIPS representative for a password.<br />	&#160;<br /><span lang="NL-BE"><img src="odbc_setup_files/image014.jpg" alt="" width="326" height="201" border="0" /><br />	&#160;<br /></span> You should get a message "Connection established!"</li>
+        </ol>
+        <p><span style="color: #FF0000;">It is is important that the default isolation 
+ is set to "READ UNCOMMITTED" to avoid lock table overflows on 
+ the server</span>.</p>
+        <ol>
+            <li value="1">Select the DSN you have just created and click "Configure 
+	 ..."<br />	&#160;<br /><span lang="NL-BE"><img src="odbc_setup_files/image006.jpg" alt="" width="463" height="377" border="0" /></span><br />	&#160;</li>
+            <li value="2">Go to the Advanced tab page and set "Default Isolation Level" 
+	 to "READ UNCOMMITTED"<br />	&#160;&#160;<br /><span lang="NL-BE"><img src="odbc_setup_files/image008.jpg" alt="" width="404" height="485" border="0" /><br /><br />	&#160;</span></li>
+            <li value="3">Save the new settings.<br />	&#160;</li>
+        </ol>
+        <h2>Troubleshooting</h2>
+        <p>After establishing a connection, the&#160;glims.lg 
+ database log file will contain something like:</p><pre>
+2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) SQL Server 10.1C.00 started, configuration: "glims.defaultconfiguration" 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) "SqlServerGroup" started on IPv4 port 3001 for address 0.0.0.0, pid 1720 (0x000006b8).
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) Thread stack size: 1024000 (bytes).
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) DLC from ENVIRONMENT VARIABLE is: c:\dlc101c 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) WRKDIR from REGISTRY is: C:\prowrk\dlc101c\ 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) JDKHOME from REGISTRY is: c:\dlc101c\jdk 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) JREHOME from REGISTRY is: c:\dlc101c\jre 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) CLASSPATH from ENVIRONMENT VARIABLE is: .;C:\Program Files\Java\jre1.6.0_07\lib\ext\QTJava.zip 
+[2010/01/06@15:11:17.783+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4656 &#160;I SQLSRV2 3: (-----) PROSQL_LOCKWAIT_TIMEOUT value is: 5 seconds
+[2010/01/06@15:11:18.298+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-3764 &#160;I SRV &#160;&#160;&#160;&#160;3: (8873) &#160;Login usernum 23, remote SQL client. 
+[2010/01/06@15:11:18.298+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-3764 &#160;I SRV &#160;&#160;&#160;&#160;3: (7129) &#160;Usr 23 set name to mipsodbc. 
+[2010/01/06@15:11:18.314+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-3764 &#160;I SRV &#160;&#160;&#160;&#160;3: (453) &#160;&#160;Logout by mipsodbc on &#160;. 
+[2010/01/06@15:12:45.390+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4364 &#160;I SRV &#160;&#160;&#160;&#160;3: (8873) &#160;Login usernum 23, remote SQL client. 
+[2010/01/06@15:12:45.390+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4364 &#160;I SRV &#160;&#160;&#160;&#160;3: (7129) &#160;Usr 23 set name to mipsodbc. 
+[2010/01/06@15:12:45.406+0100] P-1720 &#160;&#160;&#160;&#160;&#160;&#160;T-4364 &#160;I SRV &#160;&#160;&#160;&#160;3: (453) &#160;&#160;Logout by mipsodbc on &#160;.</pre>
+        <p>This log file can be used a first resource in case of troubleshooting.</p>
+    </body>
+</html>

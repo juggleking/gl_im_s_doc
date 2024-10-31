@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - Detect recursion issue in Jasper templates (MATE_RB-00069)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor971"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor972"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>Detect recursion issue in Jasper templates (MATE_RB-00069)</h1>
+        <p>Incorrectly configured Jasper report templates may lead to recursion issues where the same page is printed over and over gain (e.g. a report header which is too small to print all the data).</p>
+        <p>GLIMS will now show an error when such a problem is detected.</p>
+        <p>Moreover, it is now possible to set maximum number of pages and the maximum generation time for a single report. The following options can be defined for the <a href="../../modules/report_builder/concept/report_builder_service.htm">Report builder service</a>:</p>
+        <div class="indented">
+            <p>-Dmips.reportbuilder.maxpages=1000</p>
+            <p>-Dmips.reportbuilder.maxtime=1</p>
+        </div>
+        <p>The settings above define that a single report can have a maximum of 1000 pages and should be generated within 1 minute.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Customers that do not yet use a Report builder service can define the following parameters in the progress.ini file:</p>
+            <div class="indented">
+                <p>MA_JVM_MAXREPORTPAGES=1000</p>
+                <p>MA_JVM_MAXREPORTTIME=1</p>
+            </div>
+        </div>
+    </body>
+</html>

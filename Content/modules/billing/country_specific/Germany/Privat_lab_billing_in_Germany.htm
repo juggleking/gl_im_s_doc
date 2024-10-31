@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns:x="http://UnknownNamespace.xsd" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Country-specific|Germany" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Privat_lab_billing_in_Germany">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Private lab billing in Germany</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3540"></a>
+            <MadCap:concept term="Billing" />Private lab billing in Germany</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Decision%20scheme">Decision 
+ scheme</a> - <a href="#Implementation%20in%20GLIMS">Implementation in GLIMS</a> - <a href="#Configuration%20scheme%20example">Configuration
+scheme example</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes some tariffication and invoicing issues which 
+ typically apply to German private labs.&#160; It mainly discusses who 
+ will be the "Sender" of the invoice, who will be the "Receiver" 
+ of the invoice, which requests can be charged to which "Receiver", 
+ which price lists are to be used...</p>
+        <h2><a name="Decision scheme"></a>Reimbursement scheme</h2>
+        <p>The figure below gives an example of how the billing process in a private lab
+could be organized.</p>
+        <p align="center">
+            <img src="private_billing_germany.jpg" style="width: 774px;height: 538px;float: none;" width="774" height="538" border="1" />
+        </p>
+        <h2 align="left"><a name="Implementation in GLIMS"></a>How can the decision rules be
+implemented in GLIMS</h2>
+        <h3>'Kassen' - 'Privat'</h3>
+        <p>A first decision has to be made on whether a request is to be charged to the
+"Kassen" or to a private HC Provider/patient.&#160; This decision can
+be based on the request's <b>billing mark</b> specified during order
+entry.&#160;&#160;&#160;</p>
+        <h4>Billing mark definition</h4>
+        <ol>
+            <li value="1">The list of available billing marks can be defined as a site domain.</li>
+            <li value="2">The order entry option "Billing mark required" allows to specify that the billing mark must be specified before entering a request</li>
+            <li value="3">For each request, you can manually enter the billing mark during order
+ entry</li>
+            <li value="4">The order entry screen also features an 'Order billing mark (OBM)'
+ field.&#160; It allows entering a default billing mark for the entire order. When specified, this billing mark is used for each request where no explicit billing mark is specified (including requests added later on, e.g. via
+ MISPL).&#160;</li>
+            <li value="5">When an order is rewritten and only 1 different billing mark is used in its requests, then the order inherits this billing mark.</li>
+            <li value="6">The order billing mark is also supported via the electronic order entry programs.</li>
+            <li value="7">The "Panel member" field "Billing mark list" allows to specify that the
+ panel member should only be considered when the request has a billing mark which appears in the
+ specified list.</li>
+        </ol>
+        <h4>Using the billing mark as classification criterion</h4>
+        <blockquote>
+            <p>In the policy clause, the "Billing marks" field (comma-separated
+ list of billing marks) can be specified as a condition.</p>
+        </blockquote>
+        <h3>'Klassen' </h3>
+        <p>The subdivision into "Klasse" (OI, OIII, MIII, etc) can be
+implemented by means of reimbursement classes.&#160; These reimbursement classes
+can then also be used as condition in the policy clause to determine the
+"Sender", i.e. the reimburser type (MG, GP, LG, etc).</p>
+        <h3>'Einsender' - 'Empfanger'</h3>
+        <p>The next decision level determines who will be the "Receiver" (K,P,E).&#160;
+Some tests are to be invoiced to the issuer, other directly to the
+patient.&#160; To this purpose, you can use the "<b>Spectrum</b>" as criterion.&#160;
+A spectrum actually is a billing code group and can be assigned to a
+correspondent (e.g. HC Provider).&#160; The issuer's spectrum determines which billing codes can be
+placed on the issuer's invoice.&#160; The issuer's spectrum is copied to the
+order set and can also be used as parameter in the order set default MISPL.</p>
+        <blockquote>
+            <p>Note: you can use the 'Billing code' contextual menu function "Add to group" to easily assign a number of billing codes to a spectrum.</p>
+        </blockquote>
+        <h3>Conclusion</h3>
+        <p>Based on the billing mark, reimbursement class and spectrum, the policy
+clause will determine the tariffing lab (Einsender), the reimburser type (Empfanger),
+the price list to be used and the possible specific discount to be applied.</p>
+        <h2><a name="Configuration scheme example"></a>Configuration scheme example</h2>
+        <p>When configuring the policy clauses, you must make sure that you cover each
+of the situations shown in the reimbursement scheme above.&#160; The example below
+shows how the policy clauses could be configured.</p>
+        <table border="0" cellpadding="0" cellspacing="1" width="959" style="border-collapse: collapse;table-layout: fixed;">
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#808080">&#160;</td>
+                <td width="80" bgcolor="#808080"><b><span style="color: #FFFFFF;">Leistung</span></b>
+                </td>
+                <td width="141" bgcolor="#808080"><b><span style="color: #FFFFFF;">Ksttr klasse</span></b>
+                </td>
+                <td width="68" bgcolor="#808080"><b><span style="color: #FFFFFF;">Spektrum</span></b>
+                </td>
+                <td width="60" bgcolor="#808080">&#160;</td>
+                <td class="xl24" width="54" bgcolor="#808080"><b><span style="color: #FFFFFF;">==&gt;</span></b>
+                </td>
+                <td width="92" bgcolor="#808080"><b><span style="color: #FFFFFF;">Sender</span></b>
+                </td>
+                <td width="138" bgcolor="#808080"><b><span style="color: #FFFFFF;">Empfanger</span></b>
+                </td>
+                <td width="56" bgcolor="#808080"><b><span style="color: #FFFFFF;">Pricelist</span></b>
+                </td>
+                <td width="63" bgcolor="#808080"><b><span style="color: #FFFFFF;">Tocharge</span></b>
+                </td>
+                <td width="63" bgcolor="#808080"><b><span style="color: #FFFFFF;">Comment</span></b>
+                </td>
+                <td width="60" bgcolor="#808080">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#808080">&#160;</td>
+                <td class="xl25" width="80" bgcolor="#808080"><b><span style="color: #FFFFFF;">Billing
+ mark</span></b>
+                </td>
+                <td class="xl25" width="141" bgcolor="#808080"><b><span style="color: #FFFFFF;">Reimbursment
+ class</span></b>
+                </td>
+                <td class="xl25" width="68" bgcolor="#808080"><b><span style="color: #FFFFFF;">Spectrum</span></b>
+                </td>
+                <td class="xl25" width="60" bgcolor="#808080"><b><span style="color: #FFFFFF;">&#160;</span></b>
+                </td>
+                <td class="xl25" width="54" bgcolor="#808080"><b><span style="color: #FFFFFF;">&#160;</span></b>
+                </td>
+                <td class="xl25" width="92" bgcolor="#808080"><b><span style="color: #FFFFFF;">Tariffing
+ lab</span></b>
+                </td>
+                <td class="xl25" width="138" bgcolor="#808080"><b><span style="color: #FFFFFF;">Reimb.
+ type</span></b>
+                </td>
+                <td class="xl25" width="56" bgcolor="#808080"><b><span style="color: #FFFFFF;">&#160;</span></b>
+                </td>
+                <td class="xl25" width="63" bgcolor="#808080"><b><span style="color: #FFFFFF;">&#160;</span></b>
+                </td>
+                <td class="xl25" width="63" bgcolor="#808080"><b><span style="color: #FFFFFF;">&#160;</span></b>
+                </td>
+                <td width="60" bgcolor="#808080">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" colspan="12" style="height: 12.75pt;" width="929" bgcolor="#C0C0C0"><b>Kassen
+ Leistungen</b>
+                </td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">K(assen)</td>
+                <td width="141" bgcolor="#E6E6E6">OI-II</td>
+                <td width="68" bgcolor="#E6E6E6">in spek</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">Eins's LG</td>
+                <td width="138" bgcolor="#E6E6E6">Einsender</td>
+                <td width="56" bgcolor="#E6E6E6">Eins's</td>
+                <td colspan="3" width="190" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">K</td>
+                <td width="141" bgcolor="#E6E6E6">OI-II</td>
+                <td width="68" bgcolor="#E6E6E6">out</td>
+                <td width="60" bgcolor="#E6E6E6">--&gt; Error</td>
+                <td colspan="7" width="512" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">U(schein)</td>
+                <td width="141" bgcolor="#E6E6E6">OI-II</td>
+                <td width="68" bgcolor="#E6E6E6">/</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">GP</td>
+                <td width="138" bgcolor="#E6E6E6">Kassen</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">K</td>
+                <td width="141" bgcolor="#E6E6E6">OIII</td>
+                <td width="68" bgcolor="#E6E6E6">/</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">GP</td>
+                <td width="138" bgcolor="#E6E6E6">Kassen</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">K</td>
+                <td width="141" bgcolor="#E6E6E6">OIII'</td>
+                <td colspan="3" width="186" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">MG</td>
+                <td width="138" bgcolor="#E6E6E6">Kassen</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">OI/OIII/OIII'</td>
+                <td width="68" bgcolor="#E6E6E6">/</td>
+                <td colspan="5" width="382" bgcolor="#E6E6E6">&#160;</td>
+                <td width="63" bgcolor="#E6E6E6">no</td>
+                <td colspan="2" width="125" bgcolor="#E6E6E6">skip Privatziffern</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">I</td>
+                <td width="141" bgcolor="#E6E6E6">&#160;</td>
+                <td width="68" bgcolor="#E6E6E6">/</td>
+                <td colspan="5" width="382" bgcolor="#E6E6E6">&#160;</td>
+                <td width="63" bgcolor="#E6E6E6">no</td>
+                <td colspan="2" width="125" bgcolor="#E6E6E6">skip IGELziffern</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" colspan="12" style="height: 12.75pt;" width="929" bgcolor="#C0C0C0"><b>Privat
+ Leistungen</b>
+                </td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P(rivat)</td>
+                <td width="141" bgcolor="#E6E6E6">MI-II</td>
+                <td width="68" bgcolor="#E6E6E6">in</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">Eins's LG</td>
+                <td width="138" bgcolor="#E6E6E6">Einsender</td>
+                <td width="56" bgcolor="#E6E6E6">Eins's</td>
+                <td colspan="3" width="190" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MI-II</td>
+                <td width="68" bgcolor="#E6E6E6">out</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">GP</td>
+                <td width="138" bgcolor="#E6E6E6">Patient</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MIII</td>
+                <td width="68" bgcolor="#E6E6E6">in Eins spek</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">LG</td>
+                <td width="138" bgcolor="#E6E6E6">Einsender</td>
+                <td width="56" bgcolor="#E6E6E6">Eins's</td>
+                <td colspan="3" width="190" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MIII</td>
+                <td width="68" bgcolor="#E6E6E6">out</td>
+                <td width="60" bgcolor="#E6E6E6">&lt;&gt; SE</td>
+                <td width="54" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">GP</td>
+                <td width="138" bgcolor="#E6E6E6">Patient</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MIII</td>
+                <td width="68" bgcolor="#E6E6E6">out Eins spek</td>
+                <td width="60" bgcolor="#E6E6E6">SE</td>
+                <td width="54" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">GP !</td>
+                <td width="138" bgcolor="#E6E6E6">Patient</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MIII'</td>
+                <td width="68" bgcolor="#E6E6E6">in</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">MG</td>
+                <td width="138" bgcolor="#E6E6E6">Einsender</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">P</td>
+                <td width="141" bgcolor="#E6E6E6">MIII'</td>
+                <td width="68" bgcolor="#E6E6E6">out</td>
+                <td colspan="2" width="116" bgcolor="#E6E6E6">&#160;</td>
+                <td width="92" bgcolor="#E6E6E6">MG</td>
+                <td width="138" bgcolor="#E6E6E6">Patient</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">K</td>
+                <td width="141" bgcolor="#E6E6E6">MI/III/III'</td>
+                <td width="68" bgcolor="#E6E6E6">/</td>
+                <td colspan="5" width="382" bgcolor="#E6E6E6">&#160;</td>
+                <td width="63" bgcolor="#E6E6E6">no</td>
+                <td colspan="2" width="125" bgcolor="#E6E6E6">skip
+ Kassenziffern</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" colspan="12" style="height: 12.75pt;" width="929" bgcolor="#C0C0C0"><b>IGEL
+ Leistungen</b>
+                </td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" style="height: 12.75pt;" width="60" bgcolor="#E6E6E6">&#160;</td>
+                <td width="80" bgcolor="#E6E6E6">I(gel)</td>
+                <td width="141" bgcolor="#E6E6E6">MI</td>
+                <td colspan="4" width="280" bgcolor="#E6E6E6">&#160;</td>
+                <td width="138" bgcolor="#E6E6E6">spec instance=PVS</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+            <tr height="17" style="height: 12.75pt;">
+                <td height="17" colspan="2" style="height: 12.75pt;" width="142" bgcolor="#E6E6E6">&#160;</td>
+                <td width="141" bgcolor="#E6E6E6">MIII</td>
+                <td colspan="4" width="280" bgcolor="#E6E6E6">&#160;</td>
+                <td width="138" bgcolor="#E6E6E6">"</td>
+                <td colspan="4" width="248" bgcolor="#E6E6E6">&#160;</td>
+            </tr>
+        </table>
+    </body>
+</html>

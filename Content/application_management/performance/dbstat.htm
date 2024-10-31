@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Performance tuning" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\dbstat.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Database statistics</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor405"></a>
+            <MadCap:concept term="System management;Application management" />Database statistics</h1>
+        <h2>Access</h2>
+        <p> This tool is available from the main menu: <span class="ui_element">Start -&gt; System management -&gt;
+
+Database -&gt; Statistics</span>.&#160;For more information on each field, please
+check the Progress manuals.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dbstat.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="762" data-mc-height="411" src="dbstat_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>This tool has been developed for MIPS employees
+only.&#160;The function has minimal user type
+<span class="ui_element">Developer</span> and should therefore not be executed without the assistance of a
+MIPS employee!&#160;</p>
+        </div>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Locks</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show</span> option is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Locks</span>, two  buttons <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Analyze and dump</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Generate pro traces</span> are  available.</p>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Analyze and dump</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">Allows to dump lock information to a text file.</div>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Generate pro traces</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">Allows to generate protrace files for locked/locking processes (for local processes only).</div>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dbstat_locks.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="762" data-mc-height="411" src="dbstat_locks_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Performance</h2>
+        <p align="left">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show</span> option is set to <span class="ui_element">Performance</span>, a <span class="ui_element">Diagnose</span> button allows to verify
+the following items (PROGRESS databases only, not for ORACLE !):</p>
+        <blockquote>
+            <p align="left">Database buffer cache hit ratio &gt;= 93 %<br />Checkpoints are at least 90 seconds apart<br />Buffers flushed should be less than 100 /day<br />Record waits should be less than 3 /hour<br />Page writer queued writes &lt; 25 % of total apw writes<br />No APW should be active on GENRO database<br />Minimum 1 APW's for genrw<br />Minimum 2 APW's for glims<br />Empty bi buffer waits should be less than 0.1% of # bi writes<br />writes by BIW % should be &gt;= 60; (or 30 when AIW also running)<br />Partial bi writes &lt; 50% total bi writes<br />check if db need to be extend (writing in overlow extend)<br />warning if db block size &lt; 4 K<br />warning if bi block size &lt; 4 K<br />Lock table high water mark &lt; 80% of lock table<br />-Ma &lt;n&gt; should be -Ma 4 at most (-Ma 6 for genro allowed).</p>
+        </blockquote>
+        <p align="left">A warning and/or advice will produced if one of the above items
+is not met.</p>
+        <p align="left"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dbstat_performance.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="762" data-mc-height="411" src="dbstat_performance_thumb_0_120.png" tabindex="" /></a>
+        </p>
+    </body>
+</html>

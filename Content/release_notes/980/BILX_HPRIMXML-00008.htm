@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.50_translation_exclude_for_GER">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Financial export in "HPRIM XML 1.07" format 
+			(BILX_HPRIMXML-00008)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4103"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Financial export in "HPRIM XML 1.07" format 
+			(BILX_HPRIMXML-00008)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS now supports exporting financial data (using the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</a> function) in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HPRIM XML 1.07</span> format. This new version replaces version 1.04.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_HPRIMXML-00008.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="557" data-mc-height="474" src="BILX_HPRIMXML-00008_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Ins-A / Ins-C provider</h2>
+        <p>In the GLIMS&#160;general settings (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Customize &gt; GLIMS&#160;General</span>), two new fields are available:</p>
+        <ul>
+            <li value="1">French Ins-A provider</li>
+            <li value="2">French Ins-C provider</li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_HPRIMXML-00008_glims_general.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="780" data-mc-height="744" src="BILX_HPRIMXML-00008_glims_general_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The patient identifications assigned by the specified Ins-C / Ins-A providers will  be exported in the "insC" / "insA" tags of the "numeroIdentifiantSante" tag.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_HPRIMXML-00008_ins.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="348" data-mc-height="145" src="BILX_HPRIMXML-00008_ins_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">If not specified, the patient identifications assigned by the Ins-C / Ins-A providers will not be exported.</li>
+                <li value="2">The patient identification assigned by the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">National pin provider</span> (as specified in the GLIMS general settings via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Customize &gt; GLIMS&#160;General</span>) is still exported (in the "identifiant" tag of the "numeroIdentifiantSante" tag). If no national pin provider is found, the provider specified in the FinancialShipment.Send screen will be used or, if not found, the financial shipment's destination (Correspondent). This was already the case prior to HPRIM XML 1.07.</li>
+            </ul>
+        </div>
+        <h2>Export of the exoneration code "ALD"</h2>
+        <p>When the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Person&#160;data reader</span> option in the GLIMS general settings is set to <span class="ui_element">Carte Vitale</span>, the field <span class="ui_element">Exoneration code</span> ("Code exo") is available in the <span class="ui_element">FS</span>&#160;tab page of the order entry screen.</p>
+        <p>When <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Exoneration code</span> is set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">4 - ALD</span>, it will be exported (in the attribute "rapportExoneration" of the "acteNGAP" tag).</p>
+        <p>
+            <img src="BILX_HPRIMXML-00008_code_exo.png" xmlns="http://www.w3.org/1999/xhtml" />
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul>
+                <li value="1"> For specimen requests, no exoneration code is exported.</li>
+                <li value="2">It is possible to overrule - for a request - the exoneration code specified in the order by setting the request's billing mark to<ul><li value="1"> "0": no exoneration code will be exported for this request.</li><li value="2">"4": exoneration code "4" will be exported for this request, even if the exoneration code of the order is not set to "4".</li></ul></li>
+            </ul>
+        </div>
+    </body>
+</html>

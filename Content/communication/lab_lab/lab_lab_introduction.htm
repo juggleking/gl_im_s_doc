@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Lab - Lab">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Lab_Lab_Introduction</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor149"></a>Lab - Lab communication: Introduction</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Communication_concept">Communication 
+ concept</a> - <a href="#Communication_protocol">Communication protocol</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The lab - lab communication functionality in Glims consists of outsourcing 
+ tests from one laboratory to another.&#160; The idea is to send tests 
+ from Lab X to Lab Y and to send the results back from Lab Y to Lab X.&#160; 
+ The documentation of the lab lab concept will focus on communication between 
+ two (or more) Glims systems although Glims could also communicate to a 
+ third party LIS.</p>
+        <h2><a name="Communication_concept"></a>Communication concept</h2>
+        <p>Lab X receives the original orders.&#160; Using a selection mechanism, 
+ some or all tests of that order will be sent to Lab Y which will execute 
+ the actual tests.&#160; When the results for these tests are available 
+ in Lab Y, they are sent back to Lab X.</p>
+        <p style="text-align: center;" align="center">
+            <img src="lab_lab_communication_concept.png" style="border: none;width: 674px;height: 350px;float: none;border-style: none;border-style: none;" width="674" height="350" border="0" />
+        </p>
+        <p>&#160;</p>
+        <h2><a name="Communication_protocol"></a>Communication protocol</h2>
+        <p>The communication between the laboratories is most commonly based on the HL7 2.5 protocol 
+ and uses 4 drivers to handle all messaging.</p>
+        <ul>
+            <li value="1">The <b>homx </b>driver exports the tests from Lab X.&#160; The test export 
+ is based on action export. </li>
+            <li value="2">The <b>homl </b>driver imports the tests in Lab Y.</li>
+            <li value="3">The <b>houl </b>driver export the results from Lab Y. The result export is 
+ based on electronic reports.</li>
+            <li value="4">The <b>houi </b>driver import the results in Lab X.</li>
+        </ul>
+        <p style="text-align: center;" align="center">
+            <img src="lab_lab_communication_drivers.png" style="border: none;width: 676px;height: 218px;float: none;border-style: none;" width="676" height="218" border="0" />
+        </p>
+    </body>
+</html>

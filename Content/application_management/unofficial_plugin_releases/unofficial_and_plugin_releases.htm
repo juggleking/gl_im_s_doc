@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Unofficial and plugin releases">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" /><title>Unofficial and plugin releases</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2883"></a>
+            <MadCap:concept term="System management;Application management" />Unofficial and plugin releases</h1>
+        <h2><b style="font-weight: bold;">Unofficial releases (hotfixes)</b>
+        </h2>
+        <h3>Introduction</h3>
+        <p>To provide a quick solution to an urgent problem, MIPS sometimes offers separate <span class="ui_element">.r files</span> which are used by the application. These .r files are not part of the official GLIMS releases.</p>
+        <p>To manage these .r files, MIPS makes an inventory of all .r files distributed to our customers. These .r files are not used by the application unless they are accompanied by an associated <span class="ui_element">.info xml file</span> which is to be provided by MIPS. This XML file will list all unofficial releases (.r files) that MIPS has registered for a particular customer.</p>
+        <h3>Installation</h3>
+        <ol>
+            <li value="1">
+                <p>Copy the <span class="ui_element">.r file</span> and its associated <span class="ui_element">.info xml file</span> in the GLIMS root folder.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">Depending on the type of issue solved by the .r file, the files need to be copied only on the server or both on the server and clients. Please verify this with the MIPS development department !</li>
+                        <li value="2">In case of a UNIX server, you may need different .r files for the server and for the Windows clients.</li>
+                    </ul>
+                </div>
+            </li>
+            <li value="2">Restart all GLIMS sessions to activate the .r files.</li>
+        </ol>
+        <h3>Usage</h3>
+        <p>When starting the application, all .r files in the PROPATH are detected and each one is investigated:</p>
+        <table width="100%" cellspacing="0" style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating">
+            <col style="width: 400px;" class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1"><b style="font-weight: bold;">IF</b>
+                </td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1"><b style="font-weight: bold;">THEN</b>
+                </td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">No info file exists</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">all .r files will be renamed to .old</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1">If the encrypted control string in the info file is incorrect, or the database / operating system is incorrect</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1">An error message will be displayed and the .r files will be renamed to .err</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">If the minimal version required for the .r file is not available</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">An error message will be displayed and the .r file will be renamed to .new</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1">If the knock off version for the .r file is  lower than or equal to the actual application version. The knock off version is the version in which the solution provided by the .r file is officially released.</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1">An error message will be displayed and the .r file will be renamed to .old</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">the .r file is validated</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">The .r file will be used by the application and is visible in the tab page <span class="ui_element">Unofficial releases</span> of the <a href="../about_box/about_box.htm">About box</a>.</td>
+            </tr>
+        </table>
+        <h2><b style="font-weight: bold;">Plugin releases</b>
+        </h2>
+        <h3>Introduction</h3>
+        <p>In some cases, MIPS must provide functional modifications earlier than the next official release date. This can be due to legal requirements (e.g. billing). These functional modifications can be distributed to customers using dedicated <span class="ui_element">.pl files</span> (plugins). Each .pl file must be accompanied by a file with the same name + extension <span class="ui_element">.info</span>, being an xml file that validates the .pl file.</p>
+        <h3>Installation</h3>
+        <ol>
+            <li value="1">
+                <p>Copy the <span class="ui_element">.pl file</span>  and its associated <span class="ui_element">.info xml file</span> in the <span class="ui_element">lib</span> folder of the GLIMS installation folder.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <ul>
+                        <li value="1">Depending on the type of functionality provided by the .pl file, the files need to be copied only on the server or both on the server and clients. Please verify this with the MIPS development department !</li>
+                        <li value="2">In case of a UNIX server, you may need different .pl files for the server and for the Windows clients.</li>
+                    </ul>
+                </div>
+            </li>
+            <li value="2">Restart all GLIMS sessions to activate the .pl files.</li>
+        </ol>
+        <div class="indented">
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Do NOT put the new PL-file in the PROPATH variable of the progress.ini file !</p>
+            </div>
+        </div>
+        <h3>Usage</h3>
+        <p>When starting the application, all .pl files that are found in the same directory as func.pl and corr.pl ( i.e. the lib dir), are investigated:</p>
+        <table width="100%" style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col style="width: 400px;" class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1"><b style="font-weight: bold;">IF</b>
+                </td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1"><b style="font-weight: bold;">THEN</b>
+                </td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">No info file exists for the pl-file</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">The .pl file is ignored</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1">If the encrypted control string in the info file is incorrect, or the database / operating system / server identifier is incorrect</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1">An error message will be displayed and the info file will be renamed to .err</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">The info file's structural version differs from the application's structural version
+<p>Or</p><p>The info file's knockoff version &gt;=the application's version. The knock off version is the version in which the 
+				functionality provided by the .pl file is officially released.</p></td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">A warning message will be displayed and the info file will be renamed to .old. The .pl file will also be renamed to .old</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body1">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body1">The info file's minimal version &gt; the application's version</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body1">A warning message is displayed and the .pl file is ignored</td>
+            </tr>
+            <tr class="TableStyle-Alternating-Body-Body2">
+                <td class="TableStyle-Alternating-BodyE-Column1-Body2">the .pl file is validated</td>
+                <td width="496" class="TableStyle-Alternating-BodyD-Column1-Body2">The .pl file will be used by the application and is visible in the tab page <span class="ui_element">Plugins</span> of the <a href="../about_box/about_box.htm">About box</a>.</td>
+            </tr>
+        </table>
+    </body>
+</html>

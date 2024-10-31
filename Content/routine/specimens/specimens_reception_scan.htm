@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Specimen_reception_scan">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Specimen reception scan</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Specimen reception scan</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Usage">Usage</a> 
+ - <a href="#User_interface">User interface</a> - <a href="#Options">Options</a> 
+ - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This program allows sample reception via scanning. It can 
+ be accessed from the main menu via <span class="ui_element">Start -&gt; Routine -&gt; 
+ Specimens -&gt; Reception scan</span>.</p>
+        <h2><a name="Usage" id="Usage"></a>Usage</h2>
+        <p>The specimen reception scan program has many possible uses:</p>
+        <ul>
+            <li value="1">It can be used for simple specimen confirmation. 
+	 In this case the program simply finds the specimen and confirms it. In 
+	 this mode, the program tries to determine the specimen using <a href="specimens_search_via_barcode.htm">the 
+	 standard search mechanism</a>. The selected station determines 
+	 if the search should be done via a specimen identification, the external 
+	 id or the internal id.</li>
+            <li value="2">It can be used to assign the correct bar code to 
+	 the sample. If the <span class="ui_element">Station</span> field <span class="ui_element">Search via order</span> 
+	 is set and the <span class="ui_element">Material</span> is specified in the scan program, then 
+	 the program searches an unambiguous specimen of this material in the 
+	 order determined by the <span class="ui_element">SpecificSite.BarCodeParser</span> site function. Via the <span class="ui_element">Allow 
+	 selection</span> option, the program can even allow the user to 
+	 choose between equivalent specimens of this order. If the specimen 
+	 is found, then the scanned bar code is assigned to its specimen identification 
+	 or external id, depending on the <span class="ui_element">Station</span> settings.</li>
+            <li value="3">
+                <p>When the <span class="ui_element">Station</span> fields <span class="ui_element">Create specimen if necessary</span> 
+	 and <span class="ui_element">Create order if necessary</span> are set and the scan option <span class="ui_element">Allow 
+	 creation</span> is set, the program can even create an empty order 
+	 and/or an unsolicited specimen when the previous steps did not yield 
+	 an existing specimen. This mode allows automatic creation of specimens 
+	 not expected for this order, or even the reception of specimens PRIOR 
+	 to order entry.</p>
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p>This option should be used with the utmost care.</p>
+                </div>
+            </li>
+        </ul>
+        <h2><a name="User_interface" id="User_interface"></a>User interface</h2>
+        <h3>General fields</h3>
+        <p class="fieldlabel">Bar code</p>
+        <div class="indented">
+            <p>Allows 
+	 scanning a sample barcode.</p>
+        </div>
+        <p class="fieldlabel">Station</p>
+        <div class="indented">
+            <p> Enter 
+	 a dummy station that is used as "reception" station.</p>
+        </div>
+        <p class="fieldlabel">Material</p>
+        <div class="indented">
+            <p> When 
+	 scanning a specimen that is not yet known in GLIMS, you will have 
+	 to specify the material of that specimen. You can do this 
+	 manually or use the "Material button screen" functionality 
+	 (see option <a href="#Material_buttons">Material buttons</a> described below). If 
+	 the specimen is already known in GLIMS, the material is not to be 
+	 specified.</p>
+        </div>
+        <p class="fieldlabel">Selected button</p>
+        <div class="indented">
+            <p>Shows the name of the selected material button. For more information, see <a href="#Show">Show button screen on start</a>.</p>
+        </div>
+        <h3>Single scan mode</h3>
+        <p>When used in single scan mode (i.e. the option <span class="ui_element">Use buffered mode</span> 
+ is not enabled (see below)), each scanned specimen will be processed immediately. In 
+ the <span class="ui_element">History</span> tab page, the last processed specimen is 
+ shown and a log can be consulted of the scanned specimens. The 
+ button <span class="ui_element">Show specimens</span> allows reviewing the last scanned 
+ specimens.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimen_reception_nobuffering.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="503" data-mc-height="398" src="specimen_reception_nobuffering_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3>Buffered scan mode</h3>
+        <p>Instead of processing each scanned specimen immediately, you can also 
+ choose to work in buffered mode (by enabling the option <span class="ui_element">Use buffered 
+ mode</span>, see below). This allows scanning multiple specimens 
+ (which will be listed in a browser) and then processing these specimens 
+ in one action.</p>
+        <h4>Buffered mode page</h4>
+        <p>All scanned specimens will be listed 
+ in a browser with the following columns:</p>
+        <div class="indented">
+            <p class="fieldlabel">P</p>
+            <div class="indented">
+                <p>Indicates 
+	 if the specimen has been processed (after clicking the <span class="ui_element">Save 
+	 all</span> button).</p>
+            </div>
+            <p class="fieldlabel">N</p>
+            <div class="indented">
+                <p>Indicates 
+	 that the scanned specimen is a new specimen (i.e. not yet known in 
+	 GLIMS).</p>
+            </div>
+            <p class="fieldlabel">Barcode</p>
+            <p class="fieldlabel">Material</p>
+        </div>
+        <p>Buttons:</p>
+        <div class="indented">
+            <p class="fieldlabel">Delete</p>
+            <div class="indented">
+                <p> Remove 
+	 the selected specimen from the browser.</p>
+            </div>
+            <p class="fieldlabel">Arrow up/down</p>
+            <div class="indented">
+                <p> 
+	 Navigate through the specimens.</p>
+            </div>
+            <p class="fieldlabel">Delete all</p>
+            <div class="indented">
+                <p> Remove 
+	 all specimens from the browser.</p>
+            </div>
+            <p class="fieldlabel">Save all</p>
+            <div class="indented">
+                <p>Process 
+	 the scanned specimens (listed in the browser).</p>
+            </div>
+        </div>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimen_reception_buffering1.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="503" data-mc-height="532" src="specimen_reception_buffering1_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h4><a name="History"></a>History page</h4>
+        <p>In the <span class="ui_element">History</span> tab page, 
+ the last processed specimen is shown and a log can be consulted of the 
+ scanned specimens. The button <span class="ui_element">Show specimens</span> 
+ allows reviewing the last scanned specimens.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimen_reception_buffering2.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="503" data-mc-height="383" src="specimen_reception_buffering2_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h2><a name="Options" id="Options"></a>Options</h2>
+        <p>The  icon in the lower left corner gives 
+ access to the options screen:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimens_reception_scan_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="588" data-mc-height="687" src="specimens_reception_scan_options_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Only 
+	 root specimens</p>
+        <div class="indented">
+            <p>If enabled, when looking for a matching specimen 
+	 in GLIMS, only root specimens will be considered.</p>
+        </div>
+        <p class="fieldlabel">Allow selection</p>
+        <div class="indented">
+            <p>The reception scan program can also be used to assign the correct 
+	 bar code to a sample. If the <span class="ui_element">Station</span> field <span class="ui_element">Search via order</span> 
+	 is set and the <span class="ui_element">Material</span> is specified in the scan program, 
+	 then the program searches an unambiguous specimen of this material 
+	 in the order determined by the <span class="ui_element">SpecificSite.BarCodeParser</span> site 
+	 function.</p>
+            <p>Via the <span class="ui_element">Allow selection</span> option, the program can even allow 
+	 the user to choose between equivalent specimens of this order. In 
+	 that selection screen, GLIMS shows the property codes. If the 
+	 property code is unknown, the short name is shown. If the short 
+	 name is unknown, the mnemonic is shown.</p>
+        </div>
+        <p class="fieldlabel">Allow creation</p>
+        <div class="indented">
+            <p>When the <span class="ui_element">Station</span> fields <span class="ui_element">Create specimen if necessary</span> 
+	 and <span class="ui_element">Create order if necessary</span> are set and the scan option <span class="ui_element">Allow 
+	 creation</span> is set, the program can even create an empty order 
+	 and/or an unsolicited specimen when the specimen could not be found. 
+	 This mode allows automatic creation of specimens not expected for 
+	 this order, or even the reception of specimens PRIOR to order entry. </p>
+            <p>This option should be used with the utmost 
+	 care!</p>
+        </div>
+        <p class="fieldlabel">Synchronize object times</p>
+        <div class="indented">
+            <p class="fieldlabel">Synchronize future 
+	 object times</p>
+            <div class="indented">
+                <p>When a specimen or order is processed 
+	 while this option is active, its sampling time will be compared with 
+	 the current time. When the sampling time is higher than the current 
+	 time (i.e. it was intended for a sampling time in the future), the 
+	 object time of the order is synchronized. For simple orders 
+	 (only one object time) this implies that the object time of the order 
+	 and all its specimens and results is set to the current time.</p>
+            </div>
+            <p class="fieldlabel">Synchronize past 
+	 object times</p>
+            <div class="indented">
+                <p> Also allows synchronizing the object times of orders 
+	 where the object time lies in the PAST. This is useful for labs where 
+	 the actual specimen receipt time is a better indication for the real 
+	 sampling time than the one introduced during order entry.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">In both directions (synchronize forward and backward), 
+	 the program tries to ensure that the largest sampling time in the 
+	 order is synchronized with the current time, so that all sampling 
+	 times of the different specimens in the order are smaller or equal 
+	 to the current time.</li>
+                    <li value="2">An order object time change is logged in the order 
+	 log.</li>
+                    <li value="3">The synchronization options of the specimen scan and specimen receipt programs have priority over the settings of the selected station in these programs. Please consult the <a href="../orders/order_entry/options/order_entry_options_tab_scheduling.htm">Mark as synchronized</a> option in the Order entry documentation to disable unwanted backward / forward synchronization and to check the <span class="ui_element">Synchronized</span> flag of the order.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Use 
+	 buffered mode</p>
+        <div class="indented">
+            <p>Instead of processing each scanned specimen immediately, 
+	 you can also choose to work in buffered mode. This allows 
+	 scanning multiple specimens (which will be listed in a browser) and 
+	 then processing these specimens in one action.</p>
+        </div>
+        <p class="fieldlabel">Reschedule at close</p>
+        <div class="indented">If this option is activated, <a href="../orders/order_entry/order_entry_action_scheduling.htm">rescheduling</a> is postponed until the scanning screen is closed. If it is deactivated, rescheduling takes place every time a specimen is scanned and becomes available. </div>
+        <p class="fieldlabel"><a name="Asynchro"></a>Asynchronous specimen confirmation</p>
+        <div class="indented">Indicates whether the specimen confirmation (and thus the specimen rescheduling if <a href="../orders/order_entry/order_entry_action_scheduling.htm#Reschedu">Reschedule when specimen becomes available</a> is active) should be delegated to the AppServer.
+        <div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Asynchronous specimen confirmation</span> option only has effect when the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Reschedule at close</span> is not active.</p></div></div>
+        <p class="fieldlabel">Skip setup order activation</p>
+        <div class="indented">
+            <p>If this option is set, GLIMS will activate pending orders without showing the order activation screen to the user.</p>
+        </div>
+        <p class="fieldlabel">Asynchronous barcode processing</p>
+        <div class="indented">
+            <p>If this option is set, the barcode processing will be done asynchronously on the AppServer in order to allow the user to continue scanning specimens while the AppServer is processing the barcode. This results in a considerable performance benefit.</p>
+            <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p> Asynchronous barcode processing cannot be used if any user input  (for instance: specimen selection, interactive MISPL functions, user actions during order activation, etc.) is required during the barcode scanning.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">New internal id</p>
+        <div class="indented">
+            <p>Allows 
+	 choosing a Specimen-based, string-valued site function which will 
+	 be executed on the scanned specimen in order to determine a new internal 
+	 id. Note that it is the responsibility of the site function 
+	 to determine whether this specimen requires a new internal id. When 
+	 changing a specimen's internal id for the first time in each session, 
+	 the user is asked for confirmation.<br /></p>
+        </div>
+        <p class="fieldlabel"><a name="Material_buttons"></a>Material buttons</p>
+        <div class="indented">
+            <p><a name="With"></a>With this field, you can define a screen with material buttons. This 
+ allows choosing a material after having scanned a <b>new</b> specimen 
+ (not yet known in Glims) via a screen with buttons where each button represents 
+ a material. This can be more efficient for the user than 
+ filling out the material field each time, especially when using a touch 
+ screen.</p>
+            <p>The field actually contains the mnemonic of a gp_Site-based dynamic 
+ text describing the contents and size of the button screen, together with 
+ the position, size, label and return value of each button.</p>
+            <p>A screen definition text should now comply with the following format:</p>
+            <div class="indented">
+                <p>"&lt;Screen title&gt;" &lt;Width in pixels&gt; &lt;Height 
+ in pixels&gt;<br />. (separator)<br />"&lt;Tab page name&gt;" &lt;Tab page position&gt;<br />. (separator)<br />"&lt;Button Label&gt;" &lt;X position&gt; &lt;Y Position&gt; 
+ &lt;Width&gt; &lt;Height&gt; &lt;BorderWidth&gt; &lt;Font&gt; &lt;Bordercolor&gt; 
+ "&lt;Return value&gt;" "&lt;Tooltip&gt;" "&lt;Image&gt;" 
+ &lt;Tab page position&gt;</p>
+            </div>
+            <p>The <b>first line</b> contains a global screen definition:</p>
+            <div class="indented">
+                <p>"&lt;Screen title&gt;" &lt;Width in pixels&gt; &lt;Height 
+ in pixels&gt;</p>
+            </div>
+            <p>The <b>next line</b> contains only a period (.) and serves as separator</p>
+            <div class="indented">
+                <p>The line(s) after the first separator line allows defining <b>tab pages</b>. Format:</p>
+                <div class="indented">"&lt;Tab page name&gt;" &lt;Tab page position&gt;</div>
+                <p>If no tab pages are needed, simply specify a period (.).</p>
+            </div>
+            <p>The <b>following lines</b> contain the <b>button definitions</b>, one 
+ button per line, using the syntax</p>
+            <div class="indented">
+                <p>"&lt;Button Label&gt;" &lt;X position&gt; &lt;Y Position&gt; 
+ &lt;Width&gt; &lt;Height&gt; &lt;BorderWidth&gt; &lt;Font&gt; &lt;Bordercolor&gt; 
+ "&lt;Return value&gt;" "&lt;Tooltip&gt;" "&lt;Image&gt;" 
+ &lt;Tab page position&gt;</p>
+                <p>X, Y, Width and Height are all in pixels. The only mandatory 
+ fields are &lt;Button Label&gt; and &lt;Return value&gt;. Do 
+ not put any comments in the text !</p>
+                <p>The configured font should refer to a font that is defined in the progress.ini file (Fonts section).</p>
+                <p>Once a button is chosen, its &lt;Return value&gt; will be used as material 
+ mnemonic for the scanned specimen. You can also specify a <span style="font-weight: bold;">request code</span> as &lt;Return value&gt;. If 
+ so, GLIMS will add the request definition variables to the specimen (e.g. 
+ sampling origin or method). The format for the &lt;Return value&gt; 
+ is "Rqcd\" + &lt;request code&gt;</p>
+                <p>If the reception scan program should ask for a <span style="font-weight: bold;">discriminator</span>, 
+ use the following syntax:</p>
+                <div class="indented">"&lt;button label&gt;" ... "Rqcd/&lt;Request 
+ code&gt;/&lt;Discriminator&gt;" ... </div>
+                <p>So, there are 3 entries, separated by a forward slash. This implies 
+ that the discriminator functionality is only available for request codes, 
+ not for materials! The inputted value will be used to create/update 
+ a specimen with discriminator (Specimen.Discriminator).</p>
+            </div>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Example of a dynamic text for a button 
+ screen:</p>
+                <div class="indented">
+                    <p>"Choose a material" 900 400<br />.<br />"Page 1" 1<br />"Page 2" 2<br />.<br />"Serum" 8 8 100 63 0 6 ? "Serum" "Serum" 
+ ? 1<br />"Req. Ur-MidStream" 110 9 147 104 0 ? ? "Rqcd/Ur-MidStream" 
+ "Add request code Ur-MidStream" ? 1<br />"DryBlood" 8 8 100 63 0 6 ? "Serum" "Serum" 
+ ? 2</p>
+                </div>
+            </div>
+            <p>Once displayed, <b>the screen can be customized by hitting the &lt;F12&gt;</b> 
+ function key and following on-screen instructions. It is also 
+ possible to customize the label, tool tip and return value of a button 
+ by simply double clicking it.</p>
+        </div>
+        <p class="fieldlabel"><a name="Show"></a>Show button screen on start</p>
+        <div class="indented">
+            <p>When this option is enabled and a material button screen is selected (see option Material buttons described above), the selected material button screen will be opened when opening the specimen reception scan program and will stay open as long as the specimen reception scan screen is open. Instead of having the material button screen pop up at each scan, the user can now click once on a material button in order for the selected button to be taken into account for several scans. The selected button will also be visible in the specimen reception scan screen (see <span class="ui_element">Selected button</span> described above). If a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Material</span> is specified in the specimen reception scan screen, the currently activated button will be ignored.</p>
+        </div>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <ul>
+            <li value="1">Most of these functions are also available 
+	 when a station performs a specimen query or result download, or when 
+	 a work list is created using specimen scanning or when scanning a 
+	 bar code in the <a href="specimens_scan.htm">original specimen scan 
+	 program</a>. This way, any station (e.g. a regular blood 
+	 analyzer, a specimen sorter or an aliquotter) can confirm existing 
+	 specimens, assign bar codes to specimens or even create new specimens.</li>
+            <li value="2">Disable automatic specimen confirmation upon scan: please consult the description of the GLIMS general setting <a href="../../configuration/specificsite/glims_general_options.htm#Confirm">Confirm specimen on scan</a>.</li>
+        </ul>
+    </body>
+</html>

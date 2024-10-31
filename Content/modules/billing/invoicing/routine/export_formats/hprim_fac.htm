@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="HPRIM_Facturation">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>HPRIM Facturation</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1573"></a>
+            <MadCap:concept term="Billing" />HPRIM Facturation</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Customized_content_with_MISPL">Customize with MISPL</a> - <a href="#Identifications">Identifications</a> - <a href="#Remarks">Routine</a> - <a href="#Message%20layout">Message layout</a> - <a href="#Example%20file">Example file</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Using the <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> function and selecting "HPRIM Facturation" as protocol, GLIMS allows creating files conform "HPRIM Message données de facturation version 2.1".&#160;&#160;&#160;Before transferring billing data, you must collect all data on a financial shipment.&#160;&#160;Once a shipment is sent, the shipment and its underlying data will be fixed and protected against later modifications. As a result, corrections are collected on a new shipment (version).</p>
+        <p>The protocol option HPRIM FAC implies HPRIM version 2.1.&#160;&#160;GLIMS also support HPRIM v2.0 (use the option HPRIM FAC v2.0).</p>
+        <p style="text-align: center;">
+            <img src="hprim_fac.gif" alt="" width="484" height="378" border="0" />
+        </p>
+        <p><b style="font-weight: bold;">Force executing lab</b>: allows to determine the contents of the ACT.9 (Identification de l’exécutante) field:</p>
+        <ul>
+            <li class="kadov-p" value="1">If not set, this will be BillingItem.ExecutingLab</li>
+            <li class="kadov-p" value="2">If set, this will be OrderSet.ReceivingLab</li>
+        </ul>
+        <p><b style="font-weight: bold;">A</b><b style="font-weight: bold;">ctivity</b>
+        </p>
+        <blockquote>
+            <p>If this option is enabled, then the 'Activité' is placed in a C(omment) segment and sent after each FAC segment</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">OK</b>
+        </p>
+        <blockquote>
+            <p>Create an .OK file for each generated HPRIM file.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Send rest</b>
+        </p>
+        <blockquote>
+            <p>When exporting billing data (financial shipments) using the "HPRIM FAC" format, Glims will mark the last successfully exported invoice.&#160;&#160;When an error occurs during the billing data export, Glims thus knows which invoices have already been sent.&#160;&#160;When re-exporting the financial shipment (after having made the necessary corrections), you can enable the option "Send rest" which allows to send the remaining invoices to be exported.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">File per encounter</b>
+        </p>
+        <blockquote>
+            <p>If enabled, a file will be generated for each encounter.&#160;&#160;If not enabled, you can use the option "Message per" to determine if you want a start and end segment per encounter or a single start and end segment for the shipment.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Message per</b>&#160;</p>
+        <blockquote>
+            <p>If the option "File per encounter" is not enabled, this options allows to indicate whether an HPRIM file which has multiple blocks (=multiple Encounters) should have a single start (H) and end (L) segment, or whether each block should get its own header and end.</p>
+        </blockquote>
+        <h2><a name="Customized_content_with_MISPL" id="Customized_content_with_MISPL"></a>Customized content with MISPL</h2>
+        <p>The contents of the HPRIM FAC message can be customized with MISPL.&#160;&#160;In order to do so,&#160;&#160;a site function with description HPRIM_&lt;SegmentName&gt;_Values must be defined.&#160;&#160;The return value of this site function should be a string (tagged list of fields to customize).</p>
+        <p>Examples:</p>
+        <ul>
+            <li class="kadov-p" value="1">RETURN("\ACT.9=x\ACT.10=y"); // will fill the ACT fields 9 and 10</li>
+            <li class="kadov-p" value="2">RETURN("\ACT.9=x\ACT.9.1.2=x2\ACT.9.1.3=x3"); // update 3 subfields.</li>
+        </ul>
+        <p>Base tables for the site functions:</p>
+        <ul>
+            <li class="kadov-p" value="1">Base table InvoiceItem for the ACT segment</li>
+            <li class="kadov-p" value="2">Base table Invoice for the FAC segment</li>
+            <li class="kadov-p" value="3">Base table Order for the P segment</li>
+            <li class="kadov-p" value="4">Base table FinancialShipment or Invoice for the H segment depending on the chosen batch level</li>
+        </ul>
+        <h2><a name="Identifications" id="Identifications"></a>Identifications</h2>
+        <p>All transferred correspondents id's are identification codes assigned by the financial shipment’s correspondent. If no identification code is available for the correspondent, then the correspondent’s mnemonic is used.</p>
+        <p>However, the "national numbers" are identification codes assigned by the Health care provider specified in specific site (e.g. Sécu)</p>
+        <h2><a name="Remarks" id="Remarks"></a>Routine</h2>
+        <p>Select one or more financial shipments and execute the "Send" function (with protocol HPRIM FAC).&#160;&#160;If the shipment is successfully processed then:</p>
+        <ul>
+            <li class="kadov-p" value="1">One or more file(s) are produced and the financial shipment will be fixed.</li>
+            <li class="kadov-p" value="2">A summary of transfer will be written in the shipment's comment.</li>
+            <li class="kadov-p" value="3">Detected errors are logged in the GLIMS logging.</li>
+            <li class="kadov-p" value="4">If the option 'File check' is disabled, then all size, domain (numeric/alfanumeric) and mandatory checks are disabled - which can be useful when processing large shipments without the need to correct the (few) errors.</li>
+        </ul>
+        <p>It is recommended to use the shipment external id as file name.&#160;&#160;You can use the symbolic file name {ExtId}.HPR.&#160;&#160;Note the existence of the 'File per encounter' option which creates one file version (&lt;shipment externalId&gt;[NN].HPR per encounter.</p>
+        <h2><a name="Message layout"></a>Message layout</h2>
+        <p>Each P segment can only contain 1 FAC segment. The P segment is repeated if there are multiple FAC segments for the same patient.</p>
+        <blockquote>
+            <p><a href="../../../../../communication/direct/Reporting/hprim/segments/hprim_h.htm">H</a> (Header segment)<a href="../../../../../communication/direct/Reporting/hprim/segments/hprim_p.htm"><br />P</a> (Patient identification segment)<br />&#160;&#160;<a href="hprim_fac_segment.htm">FAC</a><br />&#160;&#160;&#160;&#160;&#160;C (comment segment)&#160;&#160;&#160;&#160;<br />&#160;&#160;&#160;&#160;&#160;<a href="hprim_act_segment.htm">ACT</a><br />&#160;&#160;&#160;&#160;&#160;ACT<br />&#160;&#160;&#160;&#160;&#160;...<a href="../../../../../communication/direct/Reporting/hprim/segments/hprim_l.htm"><br />L</a> (Trailer segment)</p>
+        </blockquote>
+        <h2><a name="Example file"></a>Example file</h2>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" bgcolor="#E0E0E0" border="1" bordercolor="#000000">
+            <tr>
+                <td style="width: 100%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;">H|~^\&amp;|1507||SGL~glims||FAC|||CPage~C-Page correspondent||P|H2.1~C|20030211141439<br />P|1|19680622BUYB05|19680622BUYB05|1234567t|Buyle~Bart~~~||19680622|U||~paardeweg 5||053790426^797979|97000097008~AALDERS&amp;HJ&amp;&amp;&amp;&amp;Prof.~L||||||||||19800101000000||~7~A2||||||||20190101000000<br />FAC|1|1234567t|0202-00006|20000202121100|00002~A2~Bijzondere tandheelkunde||N<br />ACT|1|BTEST|56|1|1|CPBB1||8/56613/9~4006~Microbiology|1001|R<br />ACT|2|BTEST|50|1|1|CPBB3||8/56613/9~4006~Microbiology|2002|R<br />L|1|||<br />H|~^\&amp;|1508||SGL~glims||FAC|||CPage~C-Page correspondent||P|H2.1~C|20030211141439<br />P|1|19670730BUYJ00|19670730BUYJ00|98111|buyle~jan~~~||19670730|U||~|||||||||||||19980319094700||~~C2||||||||<br />FAC|1|98111|0202-00007|20000202121300|~C2~Oogheelkunde||N<br />ACT|1|BTEST|56|1|1|CPBB1||8/56613/9~4006~Microbiology|1001|R<br />ACT|2|BTEST|53|1|1|CPBB3||8/56613/9~4006~Microbiology|3003|R<br />L|1|||</td>
+            </tr>
+        </table>
+    </body>
+</html>

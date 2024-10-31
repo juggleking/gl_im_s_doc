@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\his\edifact\edifactlab.html">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Edifact v1.0 - medlab</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align: left;"><a name="kanchor386"></a>EDIFACT V1.0 - MEDLAB</h1>
+        <h2>Edifact v1.0 MEDLAB Report Layout</h2>
+        <blockquote>
+            <p>{} : Repeatable<br />
+[ ] : Not mandatory</p>
+            <p><a href="#UNA%20-%20Service%20string%20advice">UNA</a> Service string advice<a href="#UNB%20-%20Interchange%20header"><br />
+UNB</a> Interchange header<a href="#UNH%20-%20Message%20header"><br />
+UNH</a> Message header<a href="#ZKH%20-%20Hospital%20information"><br />
+ZKH</a> Hospital information<a href="#PID%20-%20Patient%20Identification"><br />
+PID</a> Patient identification<br />
+[ <a href="#PAD%20-%20Patient%20Address">PAD</a> ] Patient address<br />
+[ <a href="#BLG%20-%20Bloodgroup">BLG</a> ] Blood group<br />
+[ <a href="#ART%20-%20Issuer">ART</a> ] Doctor<a href="#AFD%20-%20Laboratory"><br />
+AFD</a> Laboratory<br /><a href="#KOP%20-%20Copy%20report">KOP</a> Copy report<br />
+{<br />
+&#160;&#160;&#160;&#160;<a href="#DET%20-%20Sample/Request%20datetime">DET</a> 
+ Requesting date/time<br />
+&#160;&#160;&#160;&#160;<a href="#IDE%20-%20Sample/Request%20identification">IDE</a> 
+ Request identification<br />
+&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="#SEC%20-%20Section%20header">SEC</a> 
+ Section e.g. chemistry<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="#BEP%20-%20Result%20value">BEP</a> Result<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="#OPB%20-%20Comments%20on%20result">OPB</a> Comment on result<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="#NUB%20-%20Properties%20to%20be%20executed">NUB</a> ]<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[<a href="#OPU%20-%20Comments%20on%20request">OPU</a>]<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;}<br />
+}<a href="#UNT%20-%20Message%20trailer"><br />
+UNT</a> Message trailer<a href="#UNZ%20-%20Interchange%20trailer"><br />
+UNZ</a> Interchange trailer</p>
+        </blockquote>
+        <h2>Message segments and mapping details</h2>
+        <h3><a name="UNA - Service string advice"></a>UNA - Service string advice</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Header tag</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">-</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">":+.? `"</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="UNB - Interchange header"></a>UNB - Interchange header</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">1.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Syntax identification</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">"UNOA"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">1.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Syntax version</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">"1"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">2.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p>Sender 
+		 Identification</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">35</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Identification.Code of Site.Organization</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">2.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Receiver Identification</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">35</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">HCProvider Identification.Code (*)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">3.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Date of processing</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Format: YYMMDD</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">3.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Time of processing</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Format: HHMM</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Interchange Control ref</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Order.InternalId</p>
+                </td>
+            </tr>
+        </table>
+        <p>(*) Identification code or mailbox number of HCProvider for Organization 
+ HaagNet.</p>
+        <p>Caution: UNB 2.1 and UNB 2.2 MUST be available in GLIMS.</p>
+        <h3><a name="UNH - Message header"></a>UNH - Message header</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Message no</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Order.ord_InternalId</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Message type</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">-</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"MEDLAB"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Message version</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">-</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"1"</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="ZKH - Hospital information"></a>ZKH - Hospital information</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Name</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">70</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Site Organization.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.1.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Street</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Site Organization.Correspondent.Addressline1</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.4.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Municipality</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Site Organization.Correspondent.Municipality.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.5.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">PostalCode</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Site Organization.Correspondent.Municipality.PostalCode</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Phone</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Site Organization.Correspondent.Phone</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="PID - Patient Identification"></a>PID - Patient Identification</h3>
+        <p>Mandatory segment. </p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">BirthYear</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">YEAR of Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">BirthMonth</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">MONTH OF Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">BirthDay</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">DAY OF Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Sex</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"M", "V" or 
+		 "O"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">LastName</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">if female then Person.SpouseLastName</p>
+                    <p style="text-align: CENTER;">else Person.LastName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">LastName (fem spouse)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">if female Person.LastName else 
+		 ""</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">FirstName</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">12</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.FirstName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">MiddleName</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">8</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.MiddleName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;width: 10%;" bgcolor="#E8E8E8">4</td>
+                <td style="vertical-align: TOP;text-align: center;width: 24%;" bgcolor="#E8E8E8">Patient PIN (sender)</td>
+                <td style="vertical-align: TOP;text-align: center;width: 13%;" bgcolor="#E8E8E8">12</td>
+                <td style="vertical-align: TOP;text-align: center;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;text-align: center;width: 40%;" bgcolor="#E8E8E8">PIN provided by PinProvider correspondent 
+		 in Report Generation function screen</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;width: 10%;" bgcolor="#E8E8E8">5</td>
+                <td style="vertical-align: TOP;text-align: center;width: 24%;" bgcolor="#E8E8E8">Patient PIN (receiver)</td>
+                <td style="vertical-align: TOP;text-align: center;width: 13%;" bgcolor="#E8E8E8">12</td>
+                <td style="vertical-align: TOP;text-align: center;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;text-align: center;width: 40%;" bgcolor="#E8E8E8">PIN provided by Receiver correspondent in 
+		 Report Generation function screen</td>
+            </tr>
+        </table>
+        <h3><a name="PAD - Patient Address"></a>PAD - Patient Address</h3>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Street</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.Correspondent.AddressLine1</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Municipality</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.Correspondent.Municipality.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">PostalCode</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.Correspondent.Municipality.</p>
+                    <p style="text-align: CENTER;">PostalCode</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Phone</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Person.Correspondent.Phone</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="BLG - Bloodgroup"></a>BLG - Bloodgroup</h3>
+        <table cellspacing="2" width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Bloodgroup</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Calculated bloodgroup and Rhesus 
+		 (concatenated)<br /><br />
+		Only exported when the PMR "Determination status" has 
+		 reached its maximal status (as defined in a site domain).</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="ART - Issuer"></a>ART - Issuer</h3>
+        <p>Must be a HCProvider.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Type</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p>Default 
+		 value is "H".</p>
+                    <p>GLIMS allows to export the type of HC provider as follows:</p>
+                    <ol>
+                        <li class="mips_list_numbered" value="1">The report target is a HC provider.</li>
+                        <li class="mips_list_numbered" value="2">A HC provider is a correspondent.</li>
+                        <li class="mips_list_numbered" value="3">The correspondent can belong 
+			 to a correspondent class.</li>
+                        <li class="mips_list_numbered" value="4">A coding system for correspondent 
+			 classes can be defined.</li>
+                        <li class="mips_list_numbered" value="5">This coding system is specified 
+			 in the report template.</li>
+                        <li class="mips_list_numbered" value="6">The code of the applicable correspondent 
+			 class will be exported in the ART segment.</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Code</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Mnemonic if numerical</p>
+                    <p style="text-align: CENTER;">else "999999"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">LastName</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.LastName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3.4.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Title</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">10</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Title</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Street</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Correspondent.AddressLine1</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4.4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Municipality</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Correspondent.<br />
+		Municipality.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4.5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">PostalCode</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Correspondent.<br />
+		Municipality.PostalCode</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4.7</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Country</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Correspondent.<br />
+		Municipality.Country.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Phone</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HCProvider.Correspondent.Phone</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="AFD - Laboratory"></a>AFD - Laboratory</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Name</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">70</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">ResultRequest.PropertyOutput.<br />
+		ProcedureOutput.Procedure.<br />
+		Department.Lab.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Phone</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">20</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">… .Lab.Correspondent.<br />
+		crsp_Phone</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="KOP - Copy report"></a>KOP - Copy report</h3>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: left;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Name</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: left;">Fixed value: 'VAN' or 'NAAR' (Original 
+		 report or Copy report)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">2</td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">Person</td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: center;">40</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: center;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">Order.Issuer 
+		 or Order.ReportCopyReceiver (Original report or Copy report)</td>
+            </tr>
+        </table>
+        <p>How to configure an Edifact copy report in GLIMS:</p>
+        <ul>
+            <li value="1">During order entry, you must specify the issuer and copy receiver.</li>
+            <li value="2">For both issuers a separate, issuer-specific default report must 
+	 be created.&#160;&#160;In the default report of the copy receiver, 
+	 the field 'Is copy' must be enabled.</li>
+        </ul>
+        <p>Example:</p>
+        <blockquote>
+            <p>Faber is the issuer<br />
+Utker is the copy receiver</p>
+            <p>Two files will be generated:</p>
+            <blockquote>
+                <p>File 1:</p>
+                <p>UNA:+.? '<br />
+UNB+UNOA:1+SendId+FaberMail+030122:0920+20030122-00001'<br />
+UNH+20030122-00001+MEDLAB:1'<br />
+ZKH+Medical Information for P+Industriepark Zwijnaarde 3A:::Zwijnaarde:9052+?+31(9)220.23.21'<br />
+PID+Unknown:Unknown:Unknown+O+Asante:::::'<br />
+PAD+Unknown:::Unknown+'<br /><b><span style="color: #FF0000;">ART+H+999999+Faber:::dr.+Willemskade 57:::Gent:9000::B+'</span></b><br />
+AFD+Laboratorium 2A+09-3241624'<br /><span style="color: #FF0000;"><b>KOP+NAAR+Dr. Vanille Utker'</b></span><br />
+DET:1+03:01:22+09:04'<br />
+IDE:1+N+122-00001'<br />
+SEC:1:1+Hematologie'<br />
+SEC:1:2+Chemie'<br />
+NUB:1:1+Natrium'<br />
+UNT+13+20030122-00001'<br />
+UNZ+1+20030122-00001'</p>
+                <p>File 2:</p>
+                <p>UNA:+.? '<br />
+UNB+UNOA:1+SendId+Utker+030122:0921+20030122-00001'<br />
+UNH+20030122-00001+MEDLAB:1'<br />
+ZKH+Medical Information for P+Industriepark Zwijnaarde 3A:::Zwijnaarde:9052+?+31(9)220.23.21'<br />
+PID+Unknown:Unknown:Unknown+O+Asante:::::'<br />
+PAD+Unknown:::Unknown+'<br /><span style="color: #FF0000;"><b>ART+H+999999+Utker:::Dr.++09/885577'</b></span><br />
+AFD+Laboratorium 2A+09-3241624'<br /><b><span style="color: #FF0000;">KOP+VAN+dr. Hendrik Faber'</span></b><br />
+DET:1+03:01:22+09:04'<br />
+IDE:1+N+122-00001'<br />
+SEC:1:1+Haematology'<br />
+SEC:1:2+Chemistry'<br />
+NUB:1:1+Natrium'<br />
+UNT+13+20030122-00001'<br />
+UNZ+1+20030122-00001'</p>
+            </blockquote>
+        </blockquote>
+        <h3><a name="DET - Sample/Request datetime"></a>DET - Sample/Request datetime</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Year</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">YEAR OF Result.Specimen.SamplingTime</p>
+                    <p style="text-align: CENTER;">or Order.ReceiptTime if no sampling 
+		 time given</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Month</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">MONTH OF "</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1.3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Day</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">DAY OF "</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Hour</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HOUR OF "</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2.2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Minute</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">MINUTE OF "</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="IDE - Sample/Request identification"></a>IDE - Sample/Request 
+ identification</h3>
+        <p>Mandatory segment.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Code Complete</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"J" or "N"</p>
+                    <p style="text-align: CENTER;">Only "J" if all results 
+		 are validated</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Identification</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Order.InternalId truncated to 
+		 the last</p>
+                    <p style="text-align: CENTER;">9 characters</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="SEC - Section header"></a>SEC - Section header</h3>
+        <table cellspacing="2" width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Name</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">PropertyClassificationNode.Label 
+		 (*)</p>
+                </td>
+            </tr>
+        </table>
+        <p>(*) Multilingual, No returns allowed.</p>
+        <h3><a name="BEP - Result value"></a>BEP - Result value</h3>
+        <p>If there are no ResultValues, no message will be generated.</p>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Kind of result</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"0"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Result mnemonic</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Result.Property.Description (*1)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Value</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Calculated Result.Value (*2) or</p>
+                    <p style="text-align: CENTER;">ReportTemplate.rptp_EmptyResultText</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Indication correction</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">"1" if Result value 
+		 is a correction</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Unit</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Result.Property.Unit</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Severity</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p>'*' 
+		 if:</p>
+		- Result.NormSeverity &lt;&gt; 0 or&#160;<br />
+		- Result.DeltaNormSeverity &lt;&gt; 0 or&#160;<br />
+		- Result.ManualSeverity &lt;&gt; 0</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">7</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">LowLimit</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Norm.LowLimit</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">8</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">HighLimit</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Norm.HighLimit</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Code Result</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">10</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Property.Mnemonic</p>
+                </td>
+            </tr>
+        </table>
+        <p>(*1) Multilingual, no returns allowed.</p>
+        <p>(*2) If the length of the ResultValue exceeds 9 characters it will be 
+ put in the OPB segment instead of the BEP segment.</p>
+        <p>Remark:<br />
+DefaultReport.TriggerStatus:</p>
+        <p>Example: TriggerStatus: Validated.</p>
+        <p>This means: There minimal is one Result in the Edifact message that 
+ has the validated status.</p>
+        <h3><a name="NUB - Properties to be executed"></a>NUB - Properties still to 
+ be executed</h3>
+        <table cellspacing="2" width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Property</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">30</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Result.Property.Description</p>
+                </td>
+            </tr>
+        </table>
+        <p>The NUB segment will only be generated if ReportTemplate.EmptyResultText 
+ = ?.&#160;&#160;All results with status &lt; validated will then be put 
+ into the NUB segments.</p>
+        <h3><a name="OPU - Comments on request"></a>OPU - Comments on request</h3>
+        <table cellspacing="2" width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Comment</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">70</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Request.ExternalComment</p>
+                </td>
+            </tr>
+        </table>
+        <p>The OPU segment(s) will only be generated if ReportTemplate.EmptyResultText 
+ = ?.&#160;&#160;All comments of results with status &lt; validated will 
+ then be put into the OPU segments.</p>
+        <h3><a name="OPB - Comments on result"></a>OPB - Comments on result</h3>
+        <table cellspacing="2" width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Comment</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">70</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Result.ExternalComment (*) + Request.ExternalComment</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: JUSTIFY;">(*) Multiple OPB segments are possible. 
+ They are distinct from each other by an extra sequence number. Whole words 
+ at the end of a line are transferred to the next OPB segment (words at 
+ the end of a comment line are not truncated). Returns are not allowed 
+ in the comment field - they will force the creation of a new OPB segment.</p>
+        <h3><a name="UNT - Message trailer"></a>UNT - Message trailer</h3>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Number of segments (*)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Format Integer</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Message reference nr</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Order.InternalId</p>
+                </td>
+            </tr>
+        </table>
+        <p>(*) Without UNA, UNB and UNZ.</p>
+        <h3><a name="UNZ - Interchange trailer"></a>UNZ - Interchange trailer</h3>
+        <table width="50%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#BFBFBF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Nr of messages</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Format Integer</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 24%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Interchange reference nr</p>
+                </td>
+                <td style="vertical-align: TOP;width: 13%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 14%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Y</p>
+                </td>
+                <td style="vertical-align: TOP;width: 40%;" bgcolor="#E8E8E8">
+                    <p style="text-align: CENTER;">Order.InternalId</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

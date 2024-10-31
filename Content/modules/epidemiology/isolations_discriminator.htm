@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Epidemiology">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Epidemiology - Isolation discriminator</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3904"></a>
+            <MadCap:concept term="Epidemiology" />Epidemiology - Isolation discriminator</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Configuration</a> 
+ - <a href="#Usage">Usage</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>In order to better distinguish different strains of the same micro-organism, 
+ a field is available on 
+ isolations, labeled "<b>Discriminator</b>". Note that discussions 
+ might arise about the correct terminology, but in absence of consensus 
+ this term was chosen, and it does not change anything to the functionality.&#160; 
+ The "discriminator" is considered as a text that represents some 
+ more detailed information about the micro-organism that was selected for 
+ that isolation. </p>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <p>The discriminator text will be automatically calculated by a MISPL function 
+ and this calculation can be based on all information known in GLIMS about 
+ the isolation, including isolation tests and antibiogram.</p>
+        <p>In the micro-organism configuration the field "<b>Function to 
+discriminate similar isolations</b>" 
+ can be used to enter a 
+ site-function, based on table "Isolation", which calculates 
+ a text that will be used as the discriminator of the isolation.</p>
+        <h2><a name="Usage"></a>Usage</h2>
+        <ol>
+            <li class="kadov-p" value="1">When the mechanism for the <b><a href="isolations_series.htm">isolation 
+ doubles detection</a></b> is run (either when validating a microbiology 
+ action or in batch during the night), GLIMS will calculate the discriminator 
+ of the isolations and store it in the "discriminator" field on the 
+ Isolation record.<br />
+	&#160;&#160; </li>
+            <li class="kadov-p" value="2">
+	When the mechanism for the isolation doubles detection also creates 
+ <br />
+	&#160; 
+	
+	<ul><li class="kadov-p" value="1">New isolation series</li><li class="kadov-p" value="2">New cross infections</li><li class="kadov-p" value="3">New hospital infections</li></ul><p>the discriminator is also copied to these new records.&#160; </p></li>
+            <li class="kadov-p" value="3">When GLIMS tries to decide if <a href="isolations_series.htm">2 
+ isolations on the same patient are identical</a>, it will also compare 
+ their discriminator fields and if those fields are different then the isolations 
+ will be considered as different.<br />
+	&#160; </li>
+            <li class="kadov-p" value="4">When GLIMS tries to decide if <a href="hospital_infections.htm">2 
+ isolation series on 2 different patients are identical</a> and should 
+ be linked by a <b>cross infection</b>, it will also compare their discriminator 
+ fields and if those fields are different then they will be considered 
+ as different and no cross infection will be created between these isolation 
+ series.</li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="SMS_FAC">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>SMS FAC</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2774"></a>
+            <MadCap:concept term="Billing" />SMS FAC</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Identifications">Identifications</a> - <a href="#Routine">Routine</a> - <a href="#Output%20files">Output files</a> - <a href="#Message%20structure">Message structure</a> - <a href="#Example%20file">Example file</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Using the <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> function and selecting "SMS FAC" as protocol, GLIMS allows creating files that comply with SMS 'Cotation des Actes' version 8 of 05/11/1998.</p>
+        <p>Before transferring billing data, you must collect all data on a financial shipment.&#160;&#160;Once a shipment is sent, the shipment and its underlying data will be fixed and protected against later modifications. As a result, corrections are collected on a new shipment (version).</p>
+        <p style="text-align: center;">
+            <img src="sms_fac.gif" style="border: none;" alt="" width="480" height="344" border="0" />
+        </p>
+        <h2><a name="Identifications" id="Identifications"></a>Identifications</h2>
+        <p>All transferred correspondents id's (lab, executors, ..) are identification codes assigned by the financial shipment’s destination (= source = id provider). If no identification code is available for the correspondent, the correspondent’s mnemonic is used.</p>
+        <h2><a name="Routine" id="Routine"></a>Routine</h2>
+        <p>Select one or more financial shipments and execute the "Send" function (with protocol SMS FAC).&#160;&#160;If the shipment is successfully processed then:</p>
+        <ul>
+            <li class="kadov-p" value="1">One file is produced per successful processed financial shipment.</li>
+            <li class="kadov-p" value="2">The financial shipment will be fixed on successful processing.</li>
+            <li class="kadov-p" value="3">A summary of the transfer will be written in the GLIMS logging (type 'SMS facturation') and in the shipment's comment.</li>
+            <li class="kadov-p" value="4">Detected errors are logged in the GLIMS logging.</li>
+        </ul>
+        <h2><a name="Output files"></a>Output files</h2>
+        <p>One file is generated per successfully processed financial shipment. The file name is &lt;shipment external id&gt;.FAC. As a result, the shipment external id MISPL should be chosen carefully and follow the SMS file name restrictions (PREFIXNNNN.EXT where PREFIX=1-5chars, NNNN is a sequence number).</p>
+        <p>A possible shipment external id MISPL expression is:</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1" bordercolor="#000000">
+            <tr>
+                <td style="width: 100%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" bgcolor="#E0E0E0">STRING DocNo;<br />STRING Firm;<br />DocNo:= .ExternalId; /* default is original value */<br />IF .Destination.InternalId = "SMS" THEN<br />&#160;&#160;&#160;/* SMS facturation shipments: &lt;FI&gt;NNNN */<br />&#160;&#160;&#160;Firm:=SUBSTR(Firm.Mnemonic, 1, 3)<br />&#160;&#160;&#160;DocNo := Identifier("FshpExtIdSMS_" + Firm, Firm, 4));<br />ELSE<br />&#160;&#160;&#160;/* numbering of other, not SMS financial shipments */<br />&#160;&#160;&#160;DocNo := DateToString(.ExternalDate, "%Y%m%d");<br />ENDIF;<br />RETURN (DocNo);</td>
+            </tr>
+        </table>
+        <h2><a name="Message structure"></a>Message structure</h2>
+        <blockquote>
+            <p style="text-align: left;"><a href="#H">H</a>
+                <br />&#160;&#160;<a href="#FA">FA</a><br />&#160;&#160;&#160;&#160;&#160;&#160;<a href="#AC">AC</a>(1)<br />&#160;&#160;&#160;&#160;&#160;&#160;AC(2)<br />&#160;&#160;&#160;&#160;&#160;&#160;AC(n)<a href="#L"><br />L</a></p>
+        </blockquote>
+        <h3><a name="H" id="H"></a>H (Header segment)</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">H</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Mandatory</b>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Format</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Comment</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Identification message</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A(lphanumeric)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"H"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Délimiteurs</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"^~\&amp;"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Emiteur</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&lt;=16A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Financial shipment’s firm (identification code + correspondent name)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Id^Nom</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>7</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Type de message</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>3A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"FAC"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>10</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Receveur</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&lt;=16A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Financial shipment’s destination (Identification code + correspondent name)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Id^Nom</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>12</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Traitement</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"P"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>13</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Version ASTM</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"A.2"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Date et Heure envoi</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>12A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Current date and time</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>AAAAMMJJHHMM</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="FA" id="FA"></a>FA (Facture segment)</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">FA</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Mandatory</b>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Format</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Comment</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Identification message</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"FA"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>IPP<br />Identification patient</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>15A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Patient identification code (or internal id when no available)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Numéro de demande SMS</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>(7)N(umeric)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Order short id</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Is required when no encounter is given</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Date</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>8A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Order lowest object time (date part)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>AAAAMMJJ</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Heure</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>4A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Order lowest object time</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>HHMM</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>UF de réalisation</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>5A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Executing lab (given in billing item)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>7</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>UF de demande</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>5A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Order issuer identification code or internal id<br />IF the issuer is not a ward then the order agent or stay_ward is used(see remark *1)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>8</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Indicateur fin de cotation</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Always "1"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Numero de venue<br />(sejour/episode)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&lt;15A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Encounter external id</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Is required when no order short id is specified</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="AC" id="AC"></a>AC (Acte segment)</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">AC</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Mandatory</b>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Comment</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Identification message</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"AC"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Code de l’acte<br />(Nomenclature)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>10A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Tariff nomenclature code</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Lettre clef</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>3A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Base value code<br />(as defined in the price code table)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>B, K,…</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Coefficient</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>4N</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>Tariff base value</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="L" id="L"></a>L (Trailer segment)</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">L</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Mandatory</b>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Format</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Comment</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Identification message</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>A</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"L"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Nombre de segment de type P</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>"1"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 9%;" bgcolor="#E8E8E8">
+                    <p>5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 25%;" bgcolor="#E8E8E8">
+                    <p>Compteur de ligne</p>
+                </td>
+                <td style="vertical-align: TOP;width: 4%;" bgcolor="#E8E8E8">
+                    <p>*</p>
+                </td>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>N</p>
+                </td>
+                <td style="vertical-align: TOP;width: 26%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Total segment count</p>
+                </td>
+            </tr>
+        </table>
+        <h2><a name="Example file"></a>Example file</h2>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1" bordercolor="#000000">
+            <tr>
+                <td style="width: 100%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" bgcolor="#E0E0E0">H|^~\&amp;|||CHAGC_FB^Firm CHAGC Biologie||FAC|||CHAGC_i^CHAGC||P|A.2|199911021424<br />FA|137273||19990601|1439|2100|3068|1|319902065<br />AC|1635|B|50<br />L|||1|4<br />H|^~\&amp;|||CHAGC_FB^Firm CHAGC Biologie||FAC|||CHAGC_i^CHAGC||P|A.2|199911021424<br />FA|12108||19990601|1435|2100|2680|1|319975290<br />AC|1104|B|40<br />L|||1|4<br />H|^~\&amp;|||CHAGC_FB^Firm CHAGC Biologie||FAC|||CHAGC_i^CHAGC||P|A.2|199911021424<br />FA|4730||19990601|1432|2100|2680|1|319975369<br />AC|1104|B|40<br />AC|0578|B|15<br />AC|0514|B|20<br />AC|0563|B|15<br />L|||1|7</td>
+            </tr>
+        </table>
+    </body>
+</html>

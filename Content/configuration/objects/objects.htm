@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Objects" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\objects.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>objects</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Objects</h1>
+        <h2>Introduction</h2>
+        <p>The term <span class="ui_element">Object</span> is used in GLIMS as a common denominator 
+ for everything the laboratory assesses properties of. Typical objects 
+ for clinical laboratories are patients.&#160;&#160;As GLIMS does not only 
+ support tests on 'human' patients, the term <span class="ui_element">Object</span> is used.</p>
+        <p>Object types are: </p>
+        <ul>
+            <li value="1"><a href="../correspondents/persons.htm">Person</a>
+            </li>
+            <li value="2">Animal</li>
+            <li value="3">Lot</li>
+            <li value="4">QC lot</li>
+            <li value="5">Unknown</li>
+        </ul>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>An object is created during order entry.&#160;&#160;You will e.g. first have to define or import persons and then create an order for these 
+ persons.&#160;&#160;When saving the order, an object will automatically 
+ be created by GLIMS.</p>
+        </div>
+        <h2>Unknown objects</h2>
+        <p class="fieldlabel">Creation of unknown objects</p>
+        <div class="indented">
+            <p>When entering object information during order entry, GLIMS requires 
+ </p>
+            <ul>
+                <li value="1">the <span class="ui_element">Person last name</span> in order to select a <span class="ui_element">Person</span> record 
+ </li>
+                <li value="2">the <span class="ui_element">Animal name</span> to select an <span class="ui_element">Animal</span> record.&#160;&#160;</li>
+            </ul>
+            <p>If this information is not available, 
+ an <span class="ui_element">Unknown object</span> record will be created at order entry.</p>
+        </div>
+        <p class="fieldlabel">Person and Animal information stored in Unknown object</p>
+        <div class="indented">
+            <p>The specified <span class="ui_element">Object type</span> (person / animal), <span class="ui_element">Birth date</span> and <span class="ui_element">Sex</span> are stored 
+ in the <span class="ui_element">Unknown object</span> record. This information can later 
+ be used as search criteria to associate the exact person / animal record 
+ with the order.</p>
+            <p>As it can take a while before the actual person / animal is associated to the order, GLIMS&#160;allows to use information stored in the unknown object.</p>
+            <p class="fieldlabel">Norms</p>
+            <div class="indented">
+                <p>The <span class="ui_element">Birth date</span> and <span class="ui_element">Sex</span> stored in the <span class="ui_element">Unknown object</span> will be used to evaluate norms.</p>
+            </div>
+            <p class="fieldlabel">MISPL access</p>
+            <div class="indented">
+                <p>The following Object-based MISPL functions will 
+	 return or use the&#160;&#160;<span class="ui_element">Sex</span> / <span class="ui_element">Birth date</span> values stored in the <span class="ui_element">Unknown 
+	 object</span> record when applicable:</p>
+                <p>Only for <span class="ui_element">Objects of type Person</span> and for <span class="ui_element">Unknown objects with type Person</span>:</p>
+                <ol>
+                    <li value="1">Object.PersonData("BirthDate")</li>
+                    <li value="2">Object.PersonData("Sex")</li>
+                </ol>
+                <p>For <span class="ui_element">Objects of types Person or Animal</span> and for <span class="ui_element">Unknown objects with type Person or Animal</span>:</p>
+                <ol>
+                    <li value="1">Object.Age(?)</li>
+                    <li value="2">Object.BirthDate()</li>
+                    <li value="3">Object.Sex()</li>
+                    <li value="4">Object.GetData("BirthDate,Sex")</li>
+                </ol>
+            </div>
+        </div>
+        <p class="fieldlabel">Object type of Unknown object</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Unknown object</span> field that contains the (preliminary) <span class="ui_element">Type</span> is named <span class="ui_element">PreliminaryType</span>. </p>
+            <p>This field can be accessed via the  Object-based 
+ MISPL function <span class="ui_element">Object.DeclaredType</span>.&#160;</p>
+            <ol>
+                <li value="1">For Objects of Type <span class="ui_element">UnknownObject</span>, this function will 
+	 return the value as stored in <span class="ui_element">UnknownObject.PreliminaryType</span>.</li>
+                <li value="2">For regular Object records, this function returns the value stored 
+	 in <span class="ui_element">Object.Type</span>.</li>
+                <li value="3">A value of {&amp;ObjectTypeUnknown} is never returned.&#160;&#160;For 
+	 unknown object records with an unspecified value for preliminary type, 
+	 <span class="ui_element">?</span> is returned.</li>
+            </ol>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p><pre xml:space="preserve">
+String ObjectType;
+ObjectType := EnumeratedToString("ObjectType", .Object.DeclaredType());&#160;&#160;</pre><pre xml:space="preserve">
+RETURN ObjectType ;</pre>
+            </div>
+        </div>
+        <p class="fieldlabel">Object template of Unknown object</p>
+        <div class="indented">
+            <p>For unknown objects with declared type <span class="ui_element">Person</span> and <span class="ui_element">Animal</span>, 
+ the <span class="ui_element">Object template</span> is saved in the <span class="ui_element">Unknown object</span> record. </p>
+            <p>The <span class="ui_element">Object template</span> stored in the <span class="ui_element">Unknown object</span> will be used when associating the order with the actual animal: only animals with this template can be selected.</p>
+        </div>
+    </body>
+</html>

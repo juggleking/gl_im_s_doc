@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|LAS connections|GLP Systems" data-mc-priority="0" data-mc-time-estimate="0">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Connection with GLP-Systems</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <map id="map1" name="map1">
+            <area shape="rectangle" coords="238,606,419,635" dragDirection="0" href="las_glp_messages_work_order_to_LAS.htm" />
+            <area shape="rectangle" coords="243,573,408,602" dragDirection="0" href="#" />
+            <area shape="rectangle" coords="351,355,563,386" dragDirection="0" href="las_glp_messages_analyzer_test_availability.htm" />
+            <area shape="rectangle" coords="238,292,346,411" dragDirection="0" href="las_glp_active_mq.htm" />
+            <area shape="rectangle" coords="261,650,393,672" dragDirection="0" href="las_glp_messages_result_status_to_LAS.htm" />
+        </map>
+        <h1><a name="kanchor384"></a>Connection with GLP-Systems</h1>
+        <h2>Introduction</h2>
+        <p>This topic describes how GLIMS can communicate with <a href="http://www.glp-systems.com/" target="_blank">GLP-Systems</a>. The GLP system is designed to deliver tubes for diagnosis individually to analyzers. The GLP system itself will not perform diagnosis, but transport the tubes.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="glp.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="567" data-mc-height="233" src="glp_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Configuration</h2>
+        <h3>Stations and Assessment methods</h3>
+        <p class="fieldlabel">GLP system</p>
+        <div class="indented">
+            <p>The GLP system must be defined in GLIMS as a <span class="ui_element">Station</span> where</p>
+            <ul>
+                <li value="1"><span class="ui_element">Type</span> is set to <span class="ui_element">LAS</span>.</li>
+                <li value="2"><span class="ui_element">Translator</span> refers to the GLP translator (J_<span>GLP driver</span>)</li>
+            </ul>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="las_glp_messages_analyzer_test_availability_station_config_LAS.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="761" data-mc-height="654" src="las_glp_messages_analyzer_test_availability_station_config_LAS_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Analyzers connected to GLP systems</p>
+        <div class="indented">
+            <p>The analyzers connected to the GLP system must be defined in GLIMS as a <span class="ui_element">Station</span> where</p>
+            <ul>
+                <li value="1"><span class="ui_element">Type</span> is set to <span class="ui_element">Analyzer</span> or <span class="ui_element">Concentrator</span></li>
+                <li value="2"><span class="ui_element">LAS station</span> refers to the GLP station</li>
+            </ul>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="las_glp_messages_analyzer_test_availability_station_config_analyzer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="749" data-mc-height="642" src="las_glp_messages_analyzer_test_availability_station_config_analyzer_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <h3>Active MQ messaging</h3>
+        <p>Whenever an analyzer is unavailable or cannot execute particular tests, GLIMS can immediately inform the GLP system to avoid that tubes are still transported to that analyzer.</p>
+        <p>To ensure that the GLP system is informed as soon as possible about a LAS status change, GLIMS uses Active MQ to send such notifications.</p>
+        <p><a href="las_glp_active_mq.htm">Read more on how to setup the Active MQ messaging system</a>.</p>
+        <h2>Communication channels</h2>
+        <p>
+            <img src="las_glp_messages_overview.png" usemap="#map1" />
+        </p>
+        <h3>GLIMS -&gt; GLP</h3>
+        <p class="fieldlabel">Work order download messages</p>
+        <div class="indented">
+            <p>GLIMS sends work order messages (specimens and tests to be executed) to the GLP system. GLIMS does not tell the GLP system on which analyzers these tests should be executed. The GLP system itself decides to which analyzer the tubes are transported.</p>
+            <p><a href="las_glp_messages_work_order_to_LAS.htm">Read more ...</a>
+            </p>
+        </div>
+        <p class="fieldlabel">Analyzer and test availability messages</p>
+        <div class="indented">
+            <p>Whenever an analyzer is unavailable or cannot execute particular tests, GLIMS can immediately inform the GLP system to avoid that tubes are still transported to that analyzer.</p>
+            <p><a href="las_glp_messages_analyzer_test_availability.htm">Read more ...</a>
+            </p>
+        </div>
+        <p class="fieldlabel">Result status messages</p>
+        <div class="indented">
+            <p>GLIMS&#160;can inform the LAS whenever a result (obtained by one of its connected analyzers) is confirmed, validated or discontinued. This allows the LAS to move the tube to archive when all work is finished.</p>
+            <p><a href="las_glp_messages_result_status_to_LAS.htm">Read more ...</a>
+            </p>
+        </div>
+        <h3>GLP -&gt; GLIMS</h3>
+        <p class="fieldlabel">Specimen status messages</p>
+        <div class="indented">
+            <p>As a tube moves along the LAS, the GLP system can send specimen status information to GLIMS.</p>
+            <ul>
+                <li value="1">When the specimen is still in status <span class="ui_element">Initial</span> or <span class="ui_element">Expected</span>, a specimen status message from the GLP system can promote it to status <span class="ui_element">Available</span>.</li>
+                <li value="2">All specimen status info received from the GLP system is stored in GLIMS&#160;and can be viewed in the specimen's <span class="ui_element">Audit trail</span>.</li>
+            </ul>
+        </div>
+        <h3>GLIMS &lt;-&gt; Analyzers</h3>
+        <p>The standard communication (work order download and result upload) between GLIMS and analyzers is applicable. Some extra features:</p>
+        <ul>
+            <li value="1"><a href="las_glp_messages_analyzer_test_availability.htm">Station flags</a> sent upon result upload can set the assessment method's <span class="ui_element">Status</span> to <span class="ui_element">Locked</span>. This implies that GLIMS will no longer download this test in work orders to the analyzer until the status is reset to <span class="ui_element">Enabled</span>.</li>
+            <li value="2"><a href="las_glp_messages_analyzer_test_availability.htm">Station flags</a> sent upon result upload can change the <span class="ui_element">LAS status</span> of a <span class="ui_element">Station</span> or <span class="ui_element">Assessment method</span> and this information can be sent to the LAS.</li>
+        </ul>
+    </body>
+</html>

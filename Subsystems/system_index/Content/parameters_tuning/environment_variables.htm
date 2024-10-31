@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Parameter tuning" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\other\environment_variables1.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Environment variables</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align: left;"><a name="kanchor1"></a><a name="kanchor2"></a>System manual -&gt; Environment variables</h1>
+        <p style="text-align: left;">The application startup file (.glimsrc on UNIX or progress.ini on Windows) 
+ defines some additional environment variables required to run the application. 
+ It contains defaults that allow to run the application without changing 
+ them. Only when deviating from a standard configuration, this file will 
+ need to be edited.</p>
+        <dl>
+            <dt style="text-align: left;"><strong>RequestByRange</strong>
+            </dt>
+            <dd style="text-align: left;">When the environment variable RequestByRange has been activated, 
+	 the order entry program will now also accept a syntax like: ‘code1’ 
+	 or ‘code1-code2’, where ‘code1’ and ‘code2’ are numeric and have at 
+	 least 3 digits.<br />	Under these circumstances, all requestables having a mnemonic starting 
+	 with all possible numbers lying between ‘code1’ and ‘code2’ will be 
+	 selected.</dd>
+            <dt style="text-align: left;"><b>OrderEntryEncounterCreationConfirmation</b>
+            </dt>
+            <dd style="text-align: left;">Yes/No.&#160;&#160;Creating or updating an encounter via the order 
+	 entry program generates a confirmation popup screen in order to avoid 
+	 erroneous creation of double encounters.&#160;&#160;For the creation 
+	 of encounters, this can be switched off via an environment variable 
+	 'OrderEntryEncounterCreationConfirmation' with possible values YES 
+	 or NO.&#160;&#160;When not specified, the confirmation is asked for 
+	 sites with a HIS query possibility in the order entry screen.</dd>
+            <dt style="text-align: left;"><strong>OrderInternalIdOnMainPage</strong>
+            </dt>
+            <dd style="text-align: left;">By setting the environment symbol OrderInternalIdOnMainPage=yes, 
+	 it is possible to put the Order.InternaId field in the header part 
+	 of the order entry screen.&#160;&#160;The user will be forced to manually 
+	 enter the order internal id before he can create a new order.&#160;&#160;When 
+	 this field is typed in, the program checks whether another order with 
+	 the same internal id already exists in the database and displays an 
+	 error messages if this is true. As soon as an acceptable internal 
+	 id has been typed in, the field is hidden again.</dd>
+            <dt style="text-align: left;"><strong>OrderShortIdOnMainPage</strong>
+            </dt>
+            <dd style="text-align: left;">By setting the environment symbol OrderShortIdOnMainPage=yes, it 
+	 is possible to put the Order.ShortId field in the header part of the 
+	 order entry screen.&#160;&#160;The user will be forced to manually 
+	 enter the order short id before he can create a new order.&#160;&#160;When 
+	 this field is typed in, the program checks whether another order with 
+	 the same short id already exists in the database and displays an error 
+	 messages if this is true. As soon as an acceptable short id has been 
+	 typed in, the field is hidden again.</dd>
+            <dt style="text-align: left;"><strong>OrderShortIdValidity</strong>
+            </dt>
+            <dd style="text-align: left;">The validity of an order short id can be defined via an environment 
+	 variable OrderShortIdValidity=&lt;x&gt; where &lt;x&gt; is a number 
+	 of days. Both the manual order entry program and the order manager 
+	 will take this into account to determine whether an order with the 
+	 given short id and a receipt time not longer than this &lt;validity&gt; 
+	 ago already exists.<span style="color: #FF0000;">&#160;&#160;</span>So when 
+	 specifying "30", it will not be allowed to reuse the same 
+	 order short id within a period of 30 days.<span style="color: #FF0000;"><br />	Note: when this variable is not set, the default value will make sure 
+	 that an order short id can never be reused !</span></dd>
+            <dt style="text-align: left;"><strong>SpecimenExternalIdValidity</strong>
+            </dt>
+            <dd style="text-align: left;">The validity of a specimen external id can be defined via an environment 
+	 variable SpecimenExternalIdValidity=&lt;x&gt; where &lt;x&gt; is a 
+	 number of days.&#160;The environment 
+ variable  allows you to specify 
+ a period in time during which the external ID as barcode (scanned via specimen scan or queried by an analyzer) can  be found unambiguously. If this variable is not found, the default period taken into account by GLIMS is 30 days.<br /><span style="color: #FF0000;">	Note: the GLIMS database will accept doubles for specimens referring to the same external ID !</span></dd>
+            <dt style="text-align: left;"><a name="WardIsDefaultIssuer" id="WardIsDefaultIssuer"></a><strong>WardIsDefaultIssuer</strong>
+            </dt>
+            <dd style="text-align: left;">This variable (logical) is used in order entry in order to indicate 
+	 whether the ward should be the default issuer.&#160;&#160;Since GLIMS 
+	 5.4G, you can set the default issuer in the order 
+	 entry options.</dd>
+            <dt style="text-align: left;"><a name="WardIsDefaultAgent" id="WardIsDefaultAgent"></a><strong>WardIsDefaultAgent</strong>
+            </dt>
+            <dd style="text-align: left;">This variable (logical) is used in order entry in order to indicate 
+	 whether the ward should be the default agent.&#160;&#160;If set, entering 
+	 an encounter type manually in the order entry screen will copy the 
+	 already specified agent to the ward when the ward is not yet specified 
+	 and when the agent is a ward.<br />	Since GLIMS 5.4G, you can set the default issuer in the order 
+	 entry options.</dd>
+            <dt style="text-align: left;"><strong>OrderEntryObjectTimeConfirmation</strong>
+            </dt>
+            <dd style="text-align: left;">Yes/No. If set to <em>Yes</em>, (and a ZIS connection is active) 
+	 during order entry, the user will be asked to confirm the object time 
+	 before the latter is used in other references (e.g. as start time 
+	 of the encounter). If set to <em>No</em>, no confirmation will be 
+	 asked.</dd>
+            <dt style="text-align: left;"><strong>MA_CustomizeKey</strong>
+            </dt>
+            <dd style="text-align: left;">This variable should be set in order to customize 
+	 the order entry screen.<br />	Example: MA_CustomizeKey=LAB</dd>
+            <dt style="text-align: left;"><strong>MA_NextPageKey</strong>
+            </dt>
+            <dd style="text-align: left;">By defining an environment variable MA_NextPageKey, the user can 
+	 now choose an explicit key to jump from field to field in the dialogs 
+	 which have an active WidgetSequence list.<br /><br />The only program that uses this so far is the order entry screen (settable 
+	 via the order entry options button). When such a key is defined, pressing 
+	 it will bring the user to the next non-visited field from the preconfigured 
+	 list. Also, the F2 (or Do) key or selecting the OK button will then 
+	 immediately save the current screen without going to the next page. 
+	 When such a key is not defined, the F2 or Do keys keep their behaviour 
+	 as before. Currently, only F8, F9, F11, F12 and SHIFT-F7 are supported 
+	 as "Next Page" key.</dd>
+            <dt style="text-align: left;"><strong>MA_Shielding</strong>
+            </dt>
+            <dd style="text-align: left;">We advise not to use this variable any longer.&#160;&#160;It could 
+	 be used in previous Glims versions to activate Shielding.</dd>
+            <dt style="text-align: left;"><strong>MA_OrderShielding</strong>
+            </dt>
+            <dd style="text-align: left;">We advise not to use this variable any longer.&#160;&#160;It could 
+	 be used in previous Glims versions to activate Shielding.</dd>
+            <dt style="text-align: left;"><b>MA_PersonShielding</b>
+            </dt>
+            <dd style="text-align: left;">We advise not to use this variable any longer.&#160;&#160;It could 
+	 be used in previous Glims versions to activate Shielding.</dd>
+            <dt style="text-align: left;"><strong>CombinedName</strong>
+            </dt>
+            <dd style="text-align: left;">See ASTM documentation (Work order message - Patient information record (P)).</dd>
+            <dt style="text-align: left;"><strong>MA_ExitEditorViaFind</strong>
+            </dt>
+            <dd style="text-align: left;">The proces of zooming into a record from a browser, editing and 
+	 saving the record and then selecting a new record from the browser 
+	 to zoom in, may take some time. To speed up this action, this environment 
+	 variable can be used. Check out an example 
+	 and more detailed information.</dd>
+            <dt style="text-align: left;"><strong>MA_ExitEditorViaStandBy</strong>
+            </dt>
+            <dd style="text-align: left;">This environment variable is used for the same purpose as MA_ExitEditorViaFind. 
+	 The only difference is that the editor is no longer displayed when 
+	 leaving it. It is, however, saved on the background.</dd>
+            <dt style="text-align: left;"><strong>ExportDirectory</strong>
+            </dt>
+            <dd style="text-align: left;">This environment variable is used for the batch-executed import/export 
+	 program. It allows to specify the directory where the tables to be 
+	 exported should be saved.</dd>
+            <dt style="text-align: left;"><strong>ExportIndex</strong>
+            </dt>
+            <dd style="text-align: left;">This environment variable is used for the batch-executed import/export 
+	 program. It allows to specify the file which should contain the index 
+	 of all tables to be exported.</dd>
+            <dt style="text-align: left;"><strong>ImportDirectory</strong>
+            </dt>
+            <dd style="text-align: left;">This environment variable is used for the batch-executed import/export 
+	 program. It allows to specify the directory from where the tables 
+	 should be imported.</dd>
+            <dt style="text-align: left;"><strong>ImportIndex</strong>
+            </dt>
+            <dd style="text-align: left;">This environment variable is used for the batch-executed import/export 
+	 program. It allows to specify the file which contains the index of 
+	 all tables to be imported.</dd>
+            <dt style="text-align: left;"><strong>ImportByMnemonic</strong>
+            </dt>
+            <dd style="text-align: left;">YES/NO. This environment variable is used for the batch-executed 
+	 import/export program. It allows to indicate if the tables to be imported 
+	 are specified by mnemonic or by auto id.</dd>
+            <dt style="text-align: left;"><strong>ImportUpdateExistingRecords</strong>
+            </dt>
+            <dd style="text-align: left;">YES/NO. This environment variable is used for the batch-executed 
+	 import/export program. It allows to specify whether existing records 
+	 should be updated during the import.</dd>
+            <dt style="text-align: left;"><strong>MA_Name</strong>
+            </dt>
+            <dd style="text-align: left;">This variable is used to indicate the name of the application being 
+	 run.<br />	Example: MA_NAME=GLIMS.</dd>
+            <dt style="text-align: left;"><strong>GLIMSRemoteCalls</strong>
+            </dt>
+            <dd style="text-align: left;">Yes/No. If this variable is set to <i>Yes</i>, the order entry options <span class="ui_element">Action scheduling mode</span>, <span class="ui_element">Postscheduling mode</span> and <span class="ui_element">Report scheduling mode</span> apply. If GLIMSRemoteCalls is set to <i>No</i>, then the action scheduling, post scheduling and report scheduling will be executed locally, regardless of the order entry options. In order to use GLIMSRemoteCalls, you will have to specify 
+	 MA_HOST and MA_SERVICE (see below).</dd>
+            <dt style="text-align: left;"><b>GLIMSRemoteQuerying</b>
+            </dt>
+            <dd style="text-align: left;">YES/NO. It is possible to perform some queries on a remote machine.&#160;&#160;Please 
+	 check the chapter 
+	 on remote querying for a full description of this functionality.</dd>
+            <dt style="text-align: left;"><strong>MA_HOST</strong>
+            </dt>
+            <dd style="text-align: left;">This variable is used to indicate the server on which GLIMS has 
+	 been installed.&#160;&#160;It must be set on all the clients and the 
+	 server.&#160;&#160;On Unix systems, you can check the server name 
+	 with "uname -a".<br />	Example: MA_HOST=sun450</dd>
+            <dt style="text-align: left;"><b>MA_DEFAULTSERVICEHOST</b>
+            </dt>
+            <dd style="text-align: left;">This variable is used to indicate the computer where Services have 
+	 to run if their Host is not specified. This variable is used for Windows 
+	 only. It should thus only be specified in progress.ini. Example 
+	 : MA_DEFAULTSERVICEHOST=theNT</dd>
+            <dt style="text-align: left;"><strong>MA_SERVICE</strong>
+            </dt>
+            <dd style="text-align: left;">This variable is used to indicate the service used by GLIMS.<br />	Example: MA_SERVICE=2505</dd>
+            <dt style="text-align: left;"><strong>MA_LC_CTYPE</strong>
+            </dt>
+            <dd style="text-align: left;">Country-specific characters are now allowed in mnemonics. From 
+	 now on, all printable characters are allowed in mnemonics. Blank space 
+	 is still not accepted. Determining which characters are printable 
+	 can now be specified per country via the environment variable MA_LC_CTYPE 
+	 which should be set to an appropriate value on both the Glims database 
+	 server and all PC clients. 
+	<p style="text-align: left;">Property mnemonics, however, still have additional restrictions:</p><ul><li class="kadov-p" style="text-align: left;" value="1">The mnemonic should contains at least one alphabetic 
+		 character</li><li class="kadov-p" style="text-align: left;" value="2">Only alphabetical characters (settable via 
+		 the MA_LC_CTYPE variable), digits and delimiters from the set 
+		 ‘ - _ + . , ’ (minus, underscore, plus, period, comma). We recommend 
+		 you not to use the comma character if possible.</li><li class="kadov-p" style="text-align: left;" value="3">Note that setting the MA_LC_CTYPE environment 
+		 variable also allows the usage of country specific characters 
+		 (e.g. ‘é’, ‘ü’, …) correctly in MISPL site functions or text definitions 
+		 !</li></ul></dd>
+            <dt style="text-align: left;"><strong>MA_TIMESOURCE</strong>
+            </dt>
+            <dd style="text-align: left;">Is used to determine which time is used (time stamps etc).</dd>
+        </dl>
+        <blockquote>
+            <ul>
+                <li class="kadov-p" style="text-align: left;" value="1">If not set, the current date of the server is used 
+	 (more specifically the server that contains the genrw-database)</li>
+                <li class="kadov-p" style="text-align: left;" value="2">If set to "LOCAL", the current date of 
+	 the local PC is used (which we do not recommend unless you have serious 
+	 performance issues).&#160;&#160;In order to secure the synchronization 
+	 with the server time, dedicated software tools as e.g. Dimension 4 
+	 can be used.</li>
+                <li class="kadov-p" style="text-align: left;" value="3">You can also specify a database name.&#160;&#160;The 
+	 current date of the server containing that database will be assumed.</li>
+            </ul>
+        </blockquote>
+        <dl>
+            <dd style="text-align: left;">This also influences the MISPL 
+	 functions Today() and Now().</dd>
+        </dl>
+        <p style="text-align: left;"><b style="font-weight: bold;">MA_ShowListWhenAmbiguous (list of table 
+ short names)</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Fields that allow choosing a record by typing in its key or that allow 
+ opening a selection browser by hitting CTRL-F or with a double mouse click 
+ are used in many screens.&#160;&#160;Typically, when typing in an ambiguous 
+ key, they give a warning beep when leaving the field. When trying to commit 
+ the screen, they usually issue a warning message on screen stating that 
+ the chosen record is ambiguous.</p>
+            <p style="text-align: left;">These fields also offer the possibility to automatically display a selection 
+ browser on the screen, showing all the records matching the specified 
+ key value.</p>
+            <p style="text-align: left;">This feature is only active for a given field if the short name of the 
+ corresponding table is specified in the environment variable MA_ShowListWhenAmbiguous.&#160;</p>
+            <blockquote>
+                <p style="text-align: left;">Example: MA_ShowListWhenAmbiguous=mncp,enct,stn</p>
+            </blockquote>
+            <p style="text-align: left;">If you want to activate this feature for all tables at once, put MA_ShowListWhenAmbiguous=* 
+ in your Progress.ini file.<br /><br />Note that this feature does not work when the corresponding key is made 
+ up of more than one field. Examples of these: Person (key is Lastname 
+ + FirstName) and PaymentAgreement (Matriculation + Discriminator).<br /><br />Currently, this feature is only supported for the following tables:&#160;&#160;Antibiotic, 
+ Animal, BloodBag, BloodProduct, ChoiceList, Correspondent, Department, 
+ Encounter, Identification, IsolationAppraisal, Lot, material, MaterialVariable, 
+ MicrobiologyProcedure, Medium, Municipality, MicroOrganism, PathologyProcedure, 
+ QCMaterial, Reagent, Station, User and Ward.</p>
+        </blockquote>
+        <dl>
+            <dt style="text-align: left;"><strong>GLIMSBIN</strong>
+            </dt>
+            <dd style="text-align: left;">Absolute path name of the bin sub-directory</dd>
+            <dt style="text-align: left;"><strong>GLIMSDBF</strong>
+            </dt>
+            <dd style="text-align: left;">Absolute path name of the dbf sub-directory</dd>
+        </dl>
+        <p style="text-align: left;"><strong style="font-weight: bold;">GLIMSDAT</strong>
+        </p>
+        <dl>
+            <dd style="text-align: left;">Absolute path name of the dat sub-directory designating the location 
+	 of the application data files, such as the PROTERMCAP file, the MISPL 
+	 scheme file, etc...<br />	Example: $GLIMSDAT.</dd>
+            <dt style="text-align: left;"><strong>GLIMSLIB</strong>
+            </dt>
+            <dd style="text-align: left;">Absolute path name of the lib sub-directory</dd>
+            <dt style="text-align: left;"><strong>GLIMSTMP</strong>
+            </dt>
+            <dd style="text-align: left;">Absolute path name of the tmp sub-directory</dd>
+            <dt style="text-align: left;"><strong>GLIMSDBS</strong>
+            </dt>
+            <dd style="text-align: left;">Comma separated logical database name list<br />	Example: GLIMSDBS=genro,genrw,glims</dd>
+            <dt style="text-align: left;">&#160;</dt>
+            <dt style="text-align: left;"><b><a name="WindowsPrintingSupportedExtensions" id="WindowsPrintingSupportedExtensions"></a>WindowsPrintingSupportedExtensions</b>
+            </dt>
+            <dd style="text-align: left;">This variable allows specifying a comma-separated list of file 
+	 extensions.&#160;&#160;Files with these extensions can then be printed 
+	 to a Windows printer.&#160;&#160;See 'Using 
+	 Windows printers'.</dd>
+            <dt style="text-align: left;"><b>RenameOrderOnDiscontinue (YES/NO)</b>&#160;</dt>
+            <dd style="text-align: left;">This environment variable allows to rename the order internal id 
+	 when an order is discontinued.&#160;&#160;If the variable is not set 
+	 then the order internal id will not be renamed. If set, and an order 
+	 is discontinued, the order internal id will be renamed so that it 
+	 can be reused. A date stamp (year, month, day, hour, minutes, seconds) 
+	 will be appended to the external id. The order short id will also 
+	 be cleared. 
+	<p style="text-align: left;"><span style="color: #FF0000;">We strongly suggest not to use the RenameOrderOnDiscontinue 
+	 environment variable in combination with HIS communication as the 
+	 new internal id will not be acknowledged and the link with the original 
+	 id will be lost.</span></p></dd>
+            <dt style="text-align: left;"><b>RenameSpecimenOnDiscontinue (YES/NO)</b>
+            </dt>
+            <dd style="text-align: left;">Analogously to the order internal id, the specimen internal id 
+	 will only be renamed if the variable is set to YES.</dd>
+            <dt style="text-align: left;"><b>ExitConfirmation (YES/NO)</b>
+            </dt>
+            <dd style="text-align: left;">If you do not want confirmation upon exiting GLIMS ( "Are 
+	 you sure to leave ?"), you can skip this message by setting ExitConfirmation=NO</dd>
+            <dt style="text-align: left;"><b>ImageServerDir</b>
+            </dt>
+            <dd style="text-align: left;">Allows to specify a directory in which all your image results are 
+	 stored.&#160;&#160;For more information, please check the chapter 
+	 on Graphs and Image results.</dd>
+            <dt style="text-align: left;"><b>CheckBillingRules (YES/NO)</b>
+            </dt>
+            <dd style="text-align: left;">If set to Yes, GLIMS will check the billing code of each requestable 
+	 during order entry and display the associated billing rules at the 
+	 bottom of the screen.&#160;&#160;The default setting is NO.</dd>
+            <dt style="text-align: left;"><b>BrowserSupportedExtensions</b>
+            </dt>
+            <dd>
+                <blockquote style="text-align: left;">
+	Comma-separated list of file extensions.&#160;&#160;This variable allows 
+	 to decide which file type should be previewed using a browser like 
+	 Internet Explorer instead of the normal built-in text editor.&#160;&#160;In 
+	 order to use the browser for previewing reports for instance, the 
+	 variable could contain 'prn' to specify regular text report output 
+	 file extensions.&#160;&#160;The default value for this variable is 
+	 "htm,html".
+	</blockquote>
+            </dd>
+            <dt style="text-align: left;"><b>AllowInteractiveShMemConnnections</b>
+            </dt>
+            <dd style="text-align: left;">With a "Self-servicing client", we mean a progress process 
+	 which is connected to the database through shared memory, that is, 
+	 without -S .. -H network parameters. If such a process is killed with 
+	 a Unix kill -9 command or with the windows task manager, there is 
+	 a possibility that the process had a lock on a buffer.&#160;<br />	That is, the database is being shut down.&#160;&#160;To avoid this, 
+	 for interactive self-servicing clients, a connection with -S .. -H 
+	 is realised instead of the shared memory connection (even if no -S 
+	 is not specified in the *.cpf files). A kill -9 of this progress process 
+	 in that case will not cause the database to shut down (the remote 
+	 client server process will perform the cleanup).<br /><br />	By defining the environment variable "AllowInteractiveShMemConnnections=yes", 
+	 you can overrule this mechanism, thus allowing interactive shared 
+	 memory connections.</dd>
+        </dl>
+        <p style="text-align: left;"><b style="font-weight: bold;">CronRestartInterval</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">A decimal time span value which indicates the number of days after which 
+ a task 
+ scheduler should autonomously restart.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">LogInteractiveSessionErrors</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Determines if interactive session errors will be logged.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">MaxDBWritesPerSec</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Used for limiting disk access of log purge. A reasonable value is 0.3.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">MA_EnableSmartMenus (Yes/No)</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Glims offers smart popup menus.&#160;&#160;This implies that popup menus 
+ will only be active if they are applicable to the selected record.&#160;&#160;Example: 
+ if no printer is defined for a default report, then the option "Printer" 
+ will be grayed out in the popup menu for that default report. Default 
+ value is "Yes".</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">MA_AllowClosedEncounters (Yes/No)</b>
+        </p>
+        <blockquote style="text-align: left;">
+            <p>If set to YES, the default restrictions in the order 
+ entry screen to avoid selection of closed encounters will be disabled.</p>
+        </blockquote>
+        <p class="fieldlabel">UseAutonomousTransaction</p>
+        <div class="indented">
+            <p>When specifying "Yes" for this variable (MA Section), the report's <span class="ui_element">NeedsChecking</span> flag will be set using an autonomous transaction. Autonomous transactions were introduced to avoid locking problems. The setting is only relevant when used with an Oracle database.</p>
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Setting this option can cause a performance degradation (maximum number of open cursors reached) and should only be used when strictly needed.</p>
+            </div>
+        </div>
+    </body>
+</html>

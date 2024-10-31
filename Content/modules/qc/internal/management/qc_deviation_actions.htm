@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Management" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\management\deviation_actions.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Deviation actions</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="Deviatio"></a><a name="aanchor2940"></a>
+            <MadCap:concept term="Quality control" />Deviation actions</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#QC">Severity of a QC&#160;result</a> - <a href="#Reliabil">Reliability of a QC&#160;population</a> - <a href="#Reliabil2">Reliability of an assessment method</a> - <a href="#Change_quality_comment">Prevent automatic confirmation</a> - <a href="#Show">Show warning for QC result</a> - <a href="#Change_quality_comment">Change quality 
+ comment</a></p>
+        <h2 style="text-align: left;"><a name="Introduction"></a>Introduction</h2>
+        <p>This page explains how a QC result severity is assigned and what the possible influences of a QC result severity are.</p>
+        <h2 style="text-align: left;"><a name="QC"></a>Severity of a QC result</h2>
+        <p>There are several places in GLIMS which allow to assign a severity to 
+ a QC result.&#160;The final severity of a QC result is calculated 
+ as the maximum of all absolute severity values.&#160;The possible 
+ QC result severities are:</p>
+        <p class="fieldlabel">QC severity</p>
+        <div class="indented">
+            <p>The <span class="ui_element">QC severity</span> of a QC result is set when the QC result fails one or 
+ more configured <span class="ui_element">QC checks</span>.&#160;<a href="../configuration/qc_checks.htm">For 
+ each type of QC check you can define an individual severity</a>.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If a non-numeric QC&#160;result is entered for a QC&#160;population of type <span class="ui_element">Quantitative</span> or <span class="ui_element">Titer</span>,  the <a href="../configuration/qc_general_options.htm">QC&#160;severity for non-numeric results</a> will be applied as QC&#160;severity for that QC result.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Station severity</p>
+        <div class="indented">
+            <p>A QC result sent by an analyzer can be accompanied by a flag. The <a href="../../../../configuration/station_flags/station_flags.htm#Fields">station 
+ flag configuration</a> in GLIMS allows to set a <span class="ui_element">Severity for QC</span> for each 
+ flag. The  <span class="ui_element">Severity for QC</span>&#160;specified for the station flag accompanying the QC&#160;result will be stored as the QC&#160;result's <span class="ui_element">QC&#160;severity</span> if it is higher than the already assigned QC&#160;severity.</p>
+        </div>
+        <p class="fieldlabel">Manual severity</p>
+        <div class="indented">
+            <p>The manual severity of a QC result can be set as follows:</p>
+            <ol>
+                <li class="kadov-p" value="1">By zooming into the QC result detail screen and 
+	 entering a value in the <span class="ui_element">Manual severity</span> field.</li>
+                <li class="kadov-p" value="2">By entering a manual severity when using the contextual function <span class="ui_element">Modify</span> on a QC result.</li>
+            </ol>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Consulting the severities of a QC result:</p>
+            <ol>
+                <li class="kadov-p" value="1">All QC result severities can be consulted in the 
+	 detail screen of a result.</li>
+                <li class="kadov-p" value="2">In many QC result browsers, a dedicated column indicates 
+	 the severity.</li>
+            </ol>
+        </div>
+        <h2><a name="Reliabil"></a>Reliability of a QC population</h2>
+        <h3>Set to unreliable</h3>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Automatically</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">If a QC&#160;result is entered of which the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">QC&#160;severity</span> exceeds the assessment method's <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">QC&#160;alarm severity</span>, the QC population is automatically set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>.</p>
+        </div>
+        <p xmlns="http://www.w3.org/1999/xhtml" class="fieldlabel">Manually</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">It is possible to manually mark a QC&#160;population as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>. In order to do so, use the contextual function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Set QC population to unreliable</span>. </p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If a QC&#160;population is marked as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>, the <span class="ui_element">Quality</span> field of the associated assessment method will also be set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>.</p>
+        </div>
+        <h3>Reset to reliable</h3>
+        <p class="fieldlabel">Automatically</p>
+        <div class="indented">
+            <p>A QC&#160;population is automatically reset to reliable when a valid QC&#160;result is entered.</p>
+        </div>
+        <p class="fieldlabel">Manually</p>
+        <div class="indented">
+            <p>It is possible to manually mark a QC&#160;population as reliable. In order to do so, use the contextual function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Set QC population to reliable</span>. </p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The <span class="ui_element">Quality</span> field of the associated assessment method may also be reset to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Reliable</span> depending on the assessment method's <a href="#Reset">Quality reset</a> setting.</p>
+        </div>
+        <h2><a name="Reliabil2"></a>Reliability of an assessment method</h2>
+        <h3>Set to unreliable</h3>
+        <h4>Automatically</h4>
+        <p class="fieldlabel">"QC severity" exceeds "QC alarm severity"</p>
+        <div class="indented">
+            <p>In the <a href="../../../../configuration/assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define a <span class="ui_element">QC alarm severity</span>. It 
+ indicates the minimum <span class="ui_element">QC severity</span> which will mark this method as <span class="ui_element">Unreliable</span>.&#160;</p>
+            <p>This has the following effects:</p>
+            <ul>
+                <li value="1">From that moment onwards, 
+	 all patient results will also be marked as unreliable in their <span class="ui_element">Channel 
+	 quality</span> field.</li>
+                <li value="2">If an assessment method is marked 
+	 as <span class="ui_element">Unreliable</span>, the automatic confirmation and validation rules 
+	 will be blocked until the quality status has been reset.&#160;However, 
+	 when manually confirming a result, the auto-validation rules will 
+	 be applied anyhow.</li>
+                <li value="3">The <span class="ui_element">Quality comment</span> 
+	 field of an assessment method indicates the reason of the method (un)reliability.</li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>GLIMS will verify the <span class="ui_element">Evaluation status</span> of a QC population when a QC result would set the assessment method's <span class="ui_element">Quality</span> to <span class="ui_element">Unreliable</span>. If this <span class="ui_element">Evaluation status</span> differs from <span class="ui_element">None</span> (i.e. <span class="ui_element">Evaluation</span> or <span class="ui_element">Closed</span>), GLIMS will not set the assessment method's <span class="ui_element">Quality</span> to <span class="ui_element">Unreliable</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">"Last 
+ QC time" versus "QC Validity"</p>
+        <div class="indented">
+            <p style="text-align: left;">Each time a QC result enters the system, the 
+ time is recorded in the assessment method's <span class="ui_element">Last QC time</span> field.&#160;Each 
+ time a patient result enters the system, the <span class="ui_element">Last QC time</span> 
+ and <span class="ui_element">QC Validity</span> are compared. When the <span class="ui_element">Last QC time</span> is longer 
+ than &lt;QCValidity&gt; hours ago, the <span class="ui_element">Quality</span> field of the assessment method
+ (and the <span class="ui_element">Channel quality</span> of the patient result) is set to <span class="ui_element">Unreliable</span>.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">When a moving average result or a median result is entered, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last QC time</span> of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Assessment method</span> will only be updated if the result causes the channel quality to be set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>.</p>
+            </div>
+        </div>
+        <h4>Manually</h4>
+        <p>Use the  <span class="ui_element">Change 
+		 channel quality</span> contextual function on <span class="ui_element">Assessment method</span>.&#160;A justification 
+		 is to be specified which will be added to the assessment method's 
+		 <span class="ui_element">Quality comment</span> field.</p>
+        <h3><a name="Reset"></a>Reset to reliable</h3>
+        <p class="whs2" style="text-align: left;">When the <span class="ui_element">Quality</span> of an assessment method has been set to <span class="ui_element">Unreliable</span>, there are several ways 
+ to reset the <span class="ui_element">Quality</span> to <span class="ui_element">Reliable</span>.&#160;The <span class="ui_element">QC</span> 
+ tab folder of the assessment method contains a field <span class="ui_element">Quality reset</span>.&#160;Its possible values are:</p>
+        <p class="fieldlabel">Manual</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Quality</span> of the assessment 
+	 method must be reset manually. To do so, use the  <span class="ui_element">Change 
+		 channel quality</span> contextual function on <span class="ui_element">Assessment method</span>.&#160;A justification 
+		 is to be specified which will be added to the assessment method's 
+		 <span class="ui_element">Quality comment</span> field.</p>
+            <p>GLIMS will also add a station log entry with the following 
+		 data:</p>
+            <ul>
+                <li value="1">Event type = Log</li>
+                <li value="2">Code = ChQual</li>
+                <li value="3">Short description = Channel quality changed from 'old-quality' 
+			 to 'new quality'</li>
+                <li value="4">Long description = Channel quality changed from 'old-quality' 
+			 to 'new quality' + the justification text			&#160; </li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Automatic</p>
+        <div class="indented">
+            <p>The first QC result having 
+	 a severity of 0 will reset the <span class="ui_element">Quality</span> to <span class="ui_element">Reliable</span>.</p>
+        </div>
+        <p class="fieldlabel">Automatic - same material</p>
+        <div class="indented">
+            <p>The first QC result of the same QC material having a 
+	 severity of 0 will reset the <span class="ui_element">Quality</span> to <span class="ui_element">Reliable</span>.</p>
+        </div>
+        <p class="fieldlabel">Automatic - all populations</p>
+        <div class="indented">
+            <p>The first 
+	 QC result of the same QC population having a severity of 0 will reset 
+	 the <span class="ui_element">Quality</span> to <span class="ui_element">Reliable</span> provided that all active QC&#160;populations linked to the same assessment method are reliable.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>This is particularly useful when monitoring different concentration levels for the same property, which implies that several active QC populations are linked to the same assessment method. This way, upon entering a valid QC&#160;result, the <span class="ui_element">Quality</span> of the assessment method will not be reset to <span class="ui_element">Reliable</span> if the other QC populations (levels) are still <span class="ui_element">Unreliable</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">End of run</p>
+        <div class="indented">
+            <p>See <a href="qc_channel_quality_monitoring.htm">Automated channel quality monitoring</a>.</p>
+        </div>
+        <h2>Prevent automatic confirmation</h2>
+        <p>In the <a href="../../../../configuration/assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define a <span class="ui_element">QC auto-confirm severity</span>.&#160;QC 
+ results with a <span class="ui_element">Severity</span> up to this level will be auto-confirmed.</p>
+        <h2><a name="Show"></a>Show warning for QC result with QC&#160;severity</h2>
+        <p>In the <a href="../../../../configuration/assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define a <span class="ui_element">QC warning severity</span>.&#160;This 
+ field indicates the <span class="ui_element">QC severity</span> starting from which a warning is issued on 
+ screen when entering a QC result.</p>
+        <h2 style="text-align: left;"><a name="Change_quality_comment"></a>Change quality 
+ comment of assessment method</h2>
+        <p>In order to change an assessment method's <span class="ui_element">Quality comment</span>,  use the <span class="ui_element">Add quality 
+	 comment</span> context function on <span class="ui_element">Assessment method</span>.</p>
+        <p>This function has an option <span class="ui_element">Clear old comment</span> 
+	 which is initially disabled.&#160;When set, the current value 
+	 of the assessment method's quality comment is cleared.&#160;When 
+	 clearing is set, the user is not obliged to enter a comment 
+	 value.&#160;When clearing is not set, the user must enter a 
+	 new comment (or cancel the operation).</p>
+    </body>
+</html>

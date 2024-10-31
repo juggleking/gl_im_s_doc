@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Referral</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor70"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Referral&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Referral</td>
+                <td>
+rfrl</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+None</td>
+            </tr>
+        </table>
+        <p>
+This table stores amongst others the data of the German 'Überweisungsschein' that has no corresponding place in other Glims tables. Also specific data for other 'Schein' types like "Notfall" are in this table.
+<br />Note that a referral sent to a subcontractor ('UnterÜberweisungschein') is not a GLIMS referral, but only a printed form of a worklist!</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Accident"></a>
+        <h3>
+Accident</h3>
+        <div class="MemberHelp">
+            <p>
+Used for the German KV-DT "Unfall, Unfallfolgen" field that is part of the new 'überweisungsschein' valid from 1/7/99.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Accident</b></p>
+        </div><a name="F_AdditionalEntry"></a>
+        <h3>
+Additional entry</h3>
+        <div class="MemberHelp">
+            <p>
+'SKT-Zusatzangaben' in Germany. This field is only needed for some SKT Kassen. The type of information that needs to be provided is specified in the KV-specifica file. If the AdditionalEntry field is empty and a value is needed, then the KV-DT program indicates which data is needed.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>AdditionalEntry</b></p>
+        </div><a name="F_BillingDomain"></a>
+        <h3>
+Billing domain</h3>
+        <div class="MemberHelp">
+            <p>
+An enumerated representing the 'abrechnungsgebiet' in Germany.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="billingdomain.htm">BillingDomain</a></span>&#160;<b>BillingDomain</b></p>
+            <p>
+One of: <span class="Parameter">Default, Dialysis-Physician, Dialysis-Material, Methadone, EmergyPersonal, EmergyOthers, Cytology, Diabetes, Environment, Rheumatism, Brain capacity</span></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_FollowUpPhysician"></a>
+        <h3>
+Follow-up physician</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany this field must be known if the order concerns a NotFall (0104 record on KV-DT). </p>
+            <p class="Synopsis"><span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<b>FollowUpPhysician</b></p>
+        </div><a name="F_FollowUpPhysicianName"></a>
+        <h3>
+Follow-up physician name</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany this field is used (as alternative of the previous field 'follow up fysician') for order concerns a NotFall (0104 record on KV-DT). </p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>FollowUpPhysicianName</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Referral</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_IndicatorO1"></a>
+        <h3>
+Ausnahmeindikation</h3>
+        <div class="MemberHelp">
+            <p>
+This field can contain a 5 digit number possibly indicating that this order does not need to be considered for the German O I./O II. budget control.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>IndicatorO1</b></p>
+        </div><a name="F_IndicatorO3"></a>
+        <h3>
+Indicator O III.</h3>
+        <div class="MemberHelp">
+            <p>
+No longer used since Q2-2005. From Q2-2005 the OI and OIII indicators are replaced by one Ausnahmeindikation.
+<br />This field can contain a 4 digit number possibly indicating that this order does not need to be considered for the German O III. budget control.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>IndicatorO3</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_OfficialIssuer"></a>
+        <h3>
+Offical issuer</h3>
+        <div class="MemberHelp">
+            <p>
+If specified then it will be sent as 'Uberweisung an' arzt in the KV-DT field.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OfficialIssuer</b></p>
+        </div><a name="F_OfficialIssuerASV"></a>
+        <h3>
+Official issuer ASV</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OfficialIssuerASV</b></p>
+        </div><a name="F_OfficialIssuerBSNR"></a>
+        <h3>
+Official issuer BSNR</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OfficialIssuerBSNR</b></p>
+        </div><a name="F_OfficialIssuerLANR"></a>
+        <h3>
+Official issuer LANR</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OfficialIssuerLANR</b></p>
+        </div><a name="F_OriginalIssuer"></a>
+        <h3>
+Original issuer</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany this is the official number of the 'Erstveranlasser' in case of subcontracting.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OriginalIssuer</b></p>
+        </div><a name="F_OriginalIssuerASV"></a>
+        <h3>
+Original issuer ASV</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OriginalIssuerASV</b></p>
+        </div><a name="F_OriginalIssuerBSNR"></a>
+        <h3>
+Original issuer BSNR</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OriginalIssuerBSNR</b></p>
+        </div><a name="F_OriginalIssuerLANR"></a>
+        <h3>
+Original issuer LANR</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OriginalIssuerLANR</b></p>
+        </div><a name="F_PatientDomain"></a>
+        <h3>
+Patient domain</h3>
+        <div class="MemberHelp">
+            <p>
+Enumerated representing the 'Personenkreis' in Germany</p>
+            <p class="Synopsis"><span class="Type"><a href="patientdomain.htm">PatientDomain</a></span>&#160;<b>PatientDomain</b></p>
+            <p>
+One of: <span class="Parameter">Disabled, Severely disabled, Relative, Widow Orphan, Infirm, Suitability, Medical Assistence, Candidate, Initial test, Follow-up, Supplementary, Sequal</span></p>
+        </div><a name="F_ReferralTo"></a>
+        <h3>
+Referral to</h3>
+        <div class="MemberHelp">
+            <p>
+'Uberweisung an' field from the 'überweisungsschein' in Germany. If this field is not filled in, it will automatically default to the value "Laborarzt" on the KV-DT tape.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ReferralTo</b></p>
+        </div><a name="F_SubGroup"></a>
+        <h3>
+Referral sub group</h3>
+        <div class="MemberHelp">
+            <p>
+From the many 'Scheinuntergruppen' that are available only two are typically used by labs. Type 21 (Order or 'Auftragsleistungen') was the type to be used before 1/7/99. Starting from 1/7/99 a new type of 'Überweisungsschein' (muster 10) is to be used; this is type 27. Also two notfall types are supported.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="referralsubgroup.htm">ReferralSubGroup</a></span>&#160;<b>SubGroup</b></p>
+            <p>
+One of: <span class="Parameter">Ordered, Referral, EmergencyDefault, Emergency, LG Direktabrechung, Konsiliar, Co-/Aftertreatment</span></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Referral type</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany this is the 'Kurativ/Präventiv/Sonstige hilfen/...' indication from the 'überweisingsschein'. This is an important field in combination with the EBM-laborreform from 1/7/99!</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="referraltype.htm">ReferralType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Curative, Preventive, ESS, Hospital</span></p>
+        </div><a name="F_ValidFrom"></a>
+        <h3>
+Valid from</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany used for the start of the 'Gültigkeitszeitraum' of the referral that needs to be specified for some 'SKT Kassen'. The exact meaning of this time period depends on the contents of the KV-Specifica file.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>ValidFrom</b></p>
+        </div><a name="F_ValidTo"></a>
+        <h3>
+Valid until</h3>
+        <div class="MemberHelp">
+            <p>
+In Germany used for the end of the 'Gültigkeitszeitraum' of the referral</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>ValidTo</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_FollowUpPhysician"></a>
+        <h3>
+Follow-up physician&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FollowUpPhysician</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_Abrechnungsgebiet"></a>
+        <h3>
+Abrechnungsgebiet&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Fetch referral's 'billing domain' and return the 'Abrechnungsgebiet' code as used for KV purposes.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Abrechnungsgebiet</b> ()</p>
+        </div><a name="M_PersonenKreis"></a>
+        <h3>
+PersonenKreis&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Fetch referral's 'patient domain' and return the 'PersonenKreis' code as used for KV purposes.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PersonenKreis</b> ()</p>
+        </div><a name="M_Scheinuntergruppe"></a>
+        <h3>
+Scheinuntergruppe&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Fetch referral's 'subgroup' and return the 'Scheinuntergruppe' code as used for KV purposes.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Scheinuntergruppe</b> ()</p>
+        </div><a name="M_UeberweisungsTyp"></a>
+        <h3>
+UeberweisungsTyp&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Fetch referral's 'type' and return the 'Kurativ/Präventiv/Sonstige Hilfen' code as used for KV purposes.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>UeberweisungsTyp</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Orders of referral</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Supportive Nullify </span><a href="ord.htm">Order</a>.<a href="ord.htm#F_Referral">Referral</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique Externalization </span><b>+ Id </b>
+            </li>
+            <li value="2"><b>+ FollowUpPhysician </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

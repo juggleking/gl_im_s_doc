@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Genetics|Routine|Billing" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\specimen query\specimenquery.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Genetic exam tariffication</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2647"></a>
+            <MadCap:concept term="Genetics" />Genetic exam tariffication</h1>
+        <p>This chapter describes how genetic exams are tariffed. The required configuration is described <a href="../config/config_genetic_exam_tariffication.htm">here</a>.</p>
+        <h2>Workings</h2>
+        <p>During the <a href="../../billing/tariffication/routine/order_set_tariffication.htm">tariffication</a> of an order set, the billing codes <a href="../config/config_genetic_exam_tariffication.htm">assigned</a> to the request definitions of type <span class="ui_element">Genetics</span> are used to create billing items (via the <a href="../../billing/tariffication/configuration/tariffs.htm">tariffs</a> the billing codes are linked to).</p>
+        <p>When a billing item is created,</p>
+        <ul>
+            <li value="1">it is linked to the request of type <span class="ui_element">Genetics</span>.</li>
+            <li value="2">the <a href="genetic_exam/g_e_browser.htm#Responsi">responsible department</a> of the genetic exam becomes  the executing department of this billing item.</li>
+        </ul>
+        <p>When the genetic exam, and therefore its report result, are validated, the <a href="../../../routine/reports/reports_responsible.htm">responsible person of the report result</a> becomes the executor of the billing item if</p>
+        <ul>
+            <li value="1">this report result responsible person is known, and</li>
+            <li value="2">if the option <a href="../../../configuration/correspondents/labs.htm#Validato">Validator is executor</a> is activated.</li>
+        </ul>
+        <p>Otherwise, the billing item executor is taken from the <a href="../../billing/tariffication/configuration/provisions.htm">Provision</a> table.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If the same (panel) request is added more than once in an order, it is only tariffed once.</p>
+        </div>
+        <h2>Conditions</h2>
+        <p>For the tariffication to work,</p>
+        <ul>
+            <li value="1">the status of the genetic exam should not be <span class="ui_element">Discontinued</span>,</li>
+            <li value="2">the <span class="ui_element">To charge</span> option on the requests and <a href="../config/config_genetic_exam_tariffication.htm">request definitions</a> must be activated.</li>
+        </ul>
+    </body>
+</html>

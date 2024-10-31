@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Performance tuning" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Profiling_services">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Profiling services</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4231"></a>
+            <MadCap:concept term="System management;Application management" /><a name="kanchor392"></a><a name="kanchor393"></a>Profiling services</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Start%20the%20profiler" name="kanchor394">Start the profiler</a>
+- <a href="#Stop%20the%20profiler">Stop the profiler</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The profiling tool allows profiling running GLIMS 'Translator servers' 
+ and 'Task schedulers' and generating a Progress '.out' profile info file.&#160; 
+ The creation of the '.out' file is done at run-time, so the service does 
+ not have to be stopped and restarted.&#160; The '.out' file can be loaded 
+ in the Progress profile info viewer for further analysis (available from 
+ within GLIMS through the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Development</span> -&gt; <span class="ui_element">Profiler</span> 
+ -&gt; <span class="ui_element">View sessions</span>).</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>This profiling tool should only be used by MIPS employees.</p>
+        </div>
+        <h2><a name="Start the profiler"></a>Start the profiler</h2>
+        <p>From the gp_Service table, you can use the contextual menu functions 'Start 
+ profiler'.&#160; When doing so, the service will gather profile information.&#160;&#160;</p>
+        <p><b style="font-weight: bold;">What does it do</b>:</p>
+        <ul>
+            <li value="1">Stops all currently running persistent servers</li>
+            <li value="2">Clears '-q' cache</li>
+            <li value="3">Activates the Progress profiler</li>
+            <li value="4">When receiving the next message(s), the needed persistent 
+ server(s) will be restarted with progress profiling active.&#160;</li>
+        </ul>
+        <p><b style="font-weight: bold;">Options:</b>
+        </p>
+        <p>
+            <img src="../tools/gpservice_startprofiler.gif" style="border: none;width: 247px;height: 120px;float: none;" width="247" height="120" border="0" />
+        </p>
+        <ul>
+            <li value="1"><b>Scope<br /></b>
+                <ul>
+                    <li value="1"><u>Session</u>:&#160; one profiling info file will be generated for all messages received/tasks ran.&#160;&#160;<br />        File format:&#160; * {logfilename_service}_{Date}_{Time}_S{Counter}.out<br /></li>
+                    <li value="2"><u>Detail</u>: the MinimalProcessingTime option will be taken into account.<br />        File format: * {logfilename_service}_{Date}_{Time}_D{Counter}.out<br /></li>
+                </ul>
+            </li>
+            <li value="2"><b>Minimal processing time</b>
+            </li>
+        </ul>
+        <blockquote>
+            <ul>
+                <li value="1"> 0 or ?: one profiling info file will be generated per message received/task ran.<br />      &#160;&#160;</li>
+                <li value="2">&gt;0 : one profiling info file will be generated per message received/task ran.&#160;
+ IF the message/task processing time is longer than this parameter itself<br />      (e.g. 5 seconds -&gt; when message/task processing exceeds 5 seconds, then and only then a profiling info file will be generated).</li>
+            </ul>
+        </blockquote>
+        <ul>
+            <li value="1"><b>Load/Store buttons</b>: not supported</li>
+        </ul>
+        <h2><a name="Stop the profiler"></a>Stop the profiler</h2>
+        <p>From the gp_Service table, you can use the contextual menu functions 'StopProfiler'.&#160; 
+ When doing so, a '.out' file will be saved in the directory of the log 
+ file.</p>
+        <p><b>What does it do:</b>
+        </p>
+        <ul>
+            <li value="1">Stops all currently running persistent servers</li>
+            <li value="2">Clears '-q' cache</li>
+            <li value="3">Deactivates the Progress profiler</li>
+        </ul>
+    </body>
+</html>

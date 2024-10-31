@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Electronic order entry: panel scheduling on imposed specimen (GLIMS_OI-00838)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3554"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Electronic order entry: panel scheduling on imposed specimen (GLIMS_OI-00838)</h1>
+        <h2>Problem description</h2>
+        <p>The following manual order entry scenario ...</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Manually enter the following pending order:</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">Request the material "root_mat".</li>
+                <li value="2">Request a panel  containing only properties ("prop1" and "prop2") on the "root_mat" specimen.</li>
+                <li value="3">Request a second "root_mat" material.</li>
+                <li value="4">Request the property "prop3" on the second "root_mat" specimen.</li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">Scheduling outcome:</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">An order with two specimens for "root_mat": the panel properties are scheduled on the first specimen while the separately requested property "prop3" is scheduled on the second specimen.</p>
+            </div>
+        </div>
+        <p>... resulted in a different scheduling outcome during electronic order entry: upon activation of the electronically entered pending order, the separately requested property and the panel members were scheduled on the same specimen, that is, the specimen referred to by the property request.</p>
+        <h2>Solution</h2>
+        <p>For this scenario, electronic order entry has been aligned with manual order entry.</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">GLIMS receives an order import message for a new order:</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">SpecimenList containing two specimens for the same material<ul><li value="1">Specimen 1: MatA</li><li value="2">Specimen 2: MatA</li></ul></li>
+                <li value="2">RequestList<ul><li value="1">Request 1: panel (Prop1, Prop2) on specimen 1</li><li value="2">Request 2: property (Prop3) on specimen 2</li></ul></li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">Scheduling outcome:</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">The properties of the panel are scheduled on specimen 1</li>
+                <li value="2">The separately requested property is scheduled on specimen 2</li>
+            </ul>
+        </div>
+        <p>The very specific situations involving panel request definitions</p>
+        <ul>
+            <li value="1">that do not contain any material request codes as panel members and</li>
+            <li value="2">that are requested with a provided (root) specimen list containing one explicitly provided specimen </li>
+        </ul>
+        <p xmlns="">will now have the expected outcome of all its members being scheduled on the specified specimen.</p>
+    </body>
+</html>

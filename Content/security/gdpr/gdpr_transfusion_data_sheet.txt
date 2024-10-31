@@ -1,0 +1,203 @@
+<HTML>
+<HEAD>
+<TITLE>T R A N S F U S I O N  D A T A  P A T I E N T
+</TITLE>
+<LINK REL="stylesheet" HREF="C:\GLIMS9\dat\Data-sheet.css" TYPE="text/css">
+<style type="text/css"> 
+   body ~{
+          color: rgb(0, 0, 0); 
+          background: #FFFFFF; 
+        ~};
+</style>
+</HEAD>
+
+<BODY>
+<H1> Data sheet patient {=.Person().LastName} {=.Person().FirstName} </H1>
+<H2> Administrative data</H2>
+
+<UL TYPE="Square">
+<LI><B>Name: </B> {=IfKnownString(.Person().LastName)} {=IfKnownString(.Person().FirstName)} </LI>
+<LI><B>PIN: </B>{=IfKnownString(.PIN("I_MMSJ"))}</LI>
+<LI> <B> Birth date: </B>{=DateToString(.Person().BirthDate,"%d/%m/%y")}</LI>
+<LI> <B> Sex: </B>{=IfKnownString(.Persondata("sex"))}</LI>
+<LI><B> Ward: </B> {=IfKnownString(.Person().Stay(?).Ward.Name)} </LI>
+<LI> <B> Room: </B>{=IfKnownString(.Person().Stay(?).Room)} </LI>
+<LI> <B> Encounter from: </B>{=IfKnownString(datetimetostring(.Person().Stay(?).StartTime, "%x"))} </LI>
+</UL>
+
+<H2> Medical data</H2>
+<UL>
+<LI><B>Date 1st determination: </B>{=IfKnownString(DateToString(.Person().GetMedicalRecord().DeterminationDate1, "%d/%m/%Y"))}</LI>
+<LI><B>Date 2nd determination: </B>{=IfKnownString(DateToString(.Person().GetMedicalRecord().DeterminationDate2, "%d/%m/%Y"))}</LI>
+<LI><B>ABOD: </B>{=IfKnownString(EnumeratedToString("BLoodgroup", .Person().GetMedicalRecord().BloodGroup))} {=IfKnownString(EnumeratedToString("BloodRhesus", .Person().GetMedicalRecord().Rhesus))}</LI>
+<LI><B>Phenotype: </B>
+{: String Fenopatient;
+Fenopatient:="";
+  if .Person().AntigenAntibody("C").AntigenPresence = YES
+  then 
+     Fenopatient := Fenopatient + "C+ ";
+  else
+     if .Person().AntigenAntibody("C").AntigenPresence = NO
+     then
+        Fenopatient := Fenopatient + "C- ";
+     else
+        Fenopatient := Fenopatient + "   ";
+     endif;
+  endif;
+
+  if .Person().AntigenAntibody("c").AntigenPresence = YES
+  then 
+     Fenopatient := Fenopatient + "c+ ";
+  else
+     if .Person().AntigenAntibody("c").AntigenPresence = NO
+     then
+        Fenopatient := Fenopatient + "c- ";
+     else
+        Fenopatient := Fenopatient + "   ";
+     endif;
+  endif;
+
+  if .Person().AntigenAntibody("E").AntigenPresence = YES
+  then 
+     Fenopatient := Fenopatient + "E+ ";
+  else
+     if .Person().AntigenAntibody("E").AntigenPresence = NO
+     then
+        Fenopatient := Fenopatient + "E- ";
+     else
+        Fenopatient := Fenopatient + "   ";
+     endif;
+  endif;
+
+  if .Person().AntigenAntibody("e").AntigenPresence = YES
+  then 
+     Fenopatient := Fenopatient + "e+   ";
+  else
+     if .Person().AntigenAntibody("e").AntigenPresence = NO
+     then
+        Fenopatient := Fenopatient + "e-   ";
+     else
+        Fenopatient := Fenopatient + "     ";
+     endif;
+  endif;
+
+  if .Person().AntigenAntibody("K").AntigenPresence = YES
+  then 
+     Fenopatient := Fenopatient + "K+ ";
+  else
+     if .Person().AntigenAntibody("K").AntigenPresence = NO
+     then
+        Fenopatient := Fenopatient + "K- ";
+     else
+        Fenopatient := Fenopatient + "   ";
+     endif;
+  endif;
+
+  Fenopatient:=LTrim(Fenopatient," ");
+
+  if RTrim(Fenopatient, " ") = ""
+  then
+     Fenopatient := "Unknown";
+  endif;
+  Return Fenopatient;}
+</LI>
+<LI><B>Irregular Antibodies: </B>
+{:String anti;
+  Integer pos;
+  PersonAntigen Antigen;
+  Anti:= "";
+  Pos := 0;
+  repeat
+     Pos := Pos + 1;
+     Antigen := .Person().AntigenByNumber(Pos);
+     if Antigen <> ? and Antigen.AntibodyPresence = true   /* ag x en as x is aanwezig */
+     then
+          Anti:= Anti + "anti-" + Antigen.Antigen.Mnemonic + ", ";   /*antiX, */
+     endif;
+  until Antigen = ?;
+
+  Anti := Rtrim(Anti, " ");
+  Anti := Rtrim(Anti, ",");
+  Return Anti;}
+</LI>
+<LI><B>Object Attributs: </B>{=IfKnownString(.AttributeList(?, ?, ?, ?, ?, ?))}</LI>
+</UL>
+<H2>Transfusion history</H2>
+<table border=1 width=100%>
+   <tr>
+      <td><b>Date</b></td>
+      <td><b>Blood bag no.</b></td>
+      <td><b>Specification</b></td>
+      <td><b>Bloed group</b></td>
+      <td><b>Method</b></td>
+   </tr>
+{:
+BloodSelection BSel;
+BloodBag Bag;
+integer Pos;
+string Out;
+
+Pos := 0;
+Out := "";
+
+repeat
+  Pos := Pos + 1;
+  BSel := .BloodSelectionByNumber(?, 4, 4, Pos);
+  if BSel <> ?
+  then
+     Bag := BSel.BloodBag;
+     Out := Out + "<tr>" + 
+             "<td>" + IfKnownString(DateTimeToString(Bag.TransfusionEndTime, "%d/%m/%Y %H:%M")) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(Bag.InternalId) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(Bag.BloodProduct.Mnemonic + " " + Bag.Specification.Mnemonic) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(EnumeratedToString("BloodGroup", Bag.BloodGroup) + " " + 
+                      IfKnownString(EnumeratedToString("BloodRhesus", Bag.Rhesus))) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(BSel.CheckResult.Property.Mnemonic) + "&nbsp;</td>" +
+             "</tr>";
+  endif;
+until BSel = ?;
+
+return Out;
+}
+</table>
+
+<H2>Outstanding selections</H2>
+
+<table border=1 width=100%>
+   <tr>
+      <td><b>Date</b></td>
+      <td><b>Blood bag no.</b></td>
+      <td><b>Specification</b></td>
+      <td><b>Bloed group</b></td>
+      <td><b>Method</b></td>
+      <td><b>Status</b></td>
+   </tr>
+{:
+BloodSelection BSel;
+BloodBag Bag;
+integer Pos;
+string Out;
+
+Pos := 0;
+Out := "";
+
+repeat
+  Pos := Pos + 1;
+  BSel := .BloodSelectionByNumber(?, 1, 3, Pos);
+  if BSel <> ?
+  then
+     Bag := BSel.BloodBag;
+     Out := Out +  "<tr>" + 
+             "<td>" + DateTimeToString(BSel.Order.LowestObjectTime, "%d/%m/%Y %H:%M") + "&nbsp;</td>" +
+             "<td>" + IfKnownString(Bag.InternalId) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(Bag.BloodProduct.Mnemonic + " " + Bag.Specification.Mnemonic) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(EnumeratedToString("BloodGroup", Bag.BloodGroup) + " " + 
+                      EnumeratedToString("BloodRhesus", Bag.Rhesus)) + "&nbsp;</td>" +
+             "<td>" + IfKnownString(BSel.CheckResult.Property.Mnemonic) + "&nbsp;</td>" +
+             "<td>" + EnumeratedToString("BloodSelectionStatus", BSel.Status) + "&nbsp;</td>" +
+             "</tr>";
+  endif;
+until BSel = ?;
+return Out;
+}
+</table>

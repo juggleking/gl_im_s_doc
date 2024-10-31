@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Laboratory Code Set Distribution: export should include "Electronically explicitly requestable" setting of a request code (GLIMS_CX-00021)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2020"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Laboratory Code Set Distribution: export should include "Electronically explicitly requestable" setting of a request code (GLIMS_CX-00021)</h1>
+        <h2>Context</h2>
+        <p>GLIMS allows to export its configuration data such as properties, units, request definitions, request codes, etc. to an external system (using the j_lcsd driver). This functionality can be accessed by selecting a <a href="../../configuration/property_classifications/property_classifications.htm" xmlns="http://www.w3.org/1999/xhtml">Property classification</a> and choosing <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LCSD Export</span> in the contextual menu / ribbon.</p>
+        <h2>New functionality</h2>
+        <p class="fieldlabel">New option: "Electronically explicitly requestable"</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The <a href="../../configuration/request_codes/request_codes.htm" xmlns="http://www.w3.org/1999/xhtml">Request code</a> field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Electronically explicitly requestable</span> has been added in GLIMS to ensure that certain request codes can be requested during manual order entry  but not via electronic order entry and vice versa. By default, this field is enabled.</p>
+        </div>
+        <p class="fieldlabel">Existing option: "Explicitly requestable"</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element">Electronically explicitly requestable</span> field was added because the existing <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Request code</span> field <a href="../../configuration/request_codes/request_codes.htm#Explicit" xmlns="http://www.w3.org/1999/xhtml">Explicitly requestable</a> only applies to manual order entry. That is: a <span class="ui_element">Request code</span> with <span class="ui_element">Explicitly requestable</span> disabled can still be requested electronically.</p>
+        </div>
+        <p class="fieldlabel">LCSD export</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The purpose of the modification is to have the value of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Electronically explicitly requestable</span> field exported during the <a href="../../communication/ihe/lcsd_export.htm" xmlns="http://www.w3.org/1999/xhtml">LCSD export</a> so that external systems that communicate with GLIMS are aware of this. The exported value (and no longer the exported value of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Explicitly requestable</span> field) is used to fill the HL7 OM1.12 field (Orderability).</p>
+        </div>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Order entry does currently not check the <span class="ui_element">Electronically explicitly requestable</span> setting of an electronically received request code.</p>
+        </div>
+    </body>
+</html>

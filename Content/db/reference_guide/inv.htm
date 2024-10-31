@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Invoice</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor839"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Invoice&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Invoice</td>
+                <td>
+inv</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Invoices group a number of invoice items (of the same order or stay) that should be payed/reimbursed by the same instance. Invoices are created by the order set's Tariff program. Invoices can be debit or credit invoices.
+<br /><br />IMPORTANT: The name of the Invoice table is badly chosen: GLIMS 'invoices' are not actual invoices that you send to customers and expect them to pay: that functionality is provided in GLIMS by invoice summaries! You can NOT register payments in GLIMS for invoices! Invoices are always grouped on invoice summaries, even in singular cases like a patient invoice.   
+<br /></p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AdditionTo"></a>
+        <h3>
+Audit &gt; Addition to</h3>
+        <div class="MemberHelp">
+            <p>
+This indicates that the invoice is drawn up as an addition to an existing invoice. This happens if an order was already tariffed and its invoices fixed; if in that case the order is retariffed after an extension was made (requests were added to the order) then that can result in additional billing items to tariff. Since the original invoices are already fixed, a new invoice is created containing the additional invoice items.
+<br />Additions are only created if both invoices have the same firm, payer, order, payertype, etc...
+<br />This information can be used by billing reporting programs to inform the payer that this is an additional invoice.</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Invoice</a></span>&#160;<b>AdditionTo</b></p>
+        </div><a name="F_Amount"></a>
+        <h3>
+Main &gt; Amount</h3>
+        <div class="MemberHelp">
+            <p>
+The amount equals the sum the of the net amounts of the child invoice items. This means that the invoice item level discounts are included in this amount, but not the VAT.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>Amount</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DocNo"></a>
+        <h3>
+Doc no</h3>
+        <div class="MemberHelp">
+            <p>
+The document number of the invoice. This number is assigned by a dedicated site function defined in GLIMS's configuration.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>DocNo</b></p>
+        </div><a name="F_ExternalDate"></a>
+        <h3>
+External date</h3>
+        <div class="MemberHelp">
+            <p>
+The external date is the document's official date. It is set by the tariffing program with a value corresponding to the 'TariffTimeType' setting of the policy used to perform the billing.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>ExternalDate</b></p>
+        </div><a name="F_FinanceType"></a>
+        <h3>
+Finance type</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the financing type of the invoice.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="financetype.htm">FinanceType</a></span>&#160;<b>FinanceType</b></p>
+            <p>
+One of: <span class="Parameter">Debit, Credit</span></p>
+        </div><a name="F_Firm"></a>
+        <h3>
+Firm</h3>
+        <div class="MemberHelp">
+            <p>
+The firm is the invoice producer.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<b>Firm</b></p>
+        </div><a name="F_GrossVAT"></a>
+        <h3>
+Main &gt; Gross VAT</h3>
+        <div class="MemberHelp">
+            <p>
+This field is the unrounded sum of the related invoice item's unrounded VAT amounts.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Fractional</span>&#160;<b>GrossVAT</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Invoice</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InvoiceRejectionType"></a>
+        <h3>
+Audit &gt; Invoice rejection type</h3>
+        <div class="MemberHelp">
+            <p>
+With this field, credit notes refer to the invoice rejection type. 
+<br />This field is set by GLIMS when using the 'order crediting' method for invoice credit note creation. 
+<br />By using the InvoiceRejectionType table during creation of invoice summaries (for credit invoices and new debit invoice versions) the invoice summary series can be determined this way instead of using the InvoiceGroupingType-series-mispl.</p>
+            <p class="Synopsis"><span class="Type"><a href="irt.htm">InvoiceRejectionType</a></span>&#160;<b>InvoiceRejectionType</b></p>
+        </div><a name="F_InvoiceSummary"></a>
+        <h3>
+Main &gt; Invoice summary</h3>
+        <div class="MemberHelp">
+            <p>
+The invoice summary on which this invoice occurs.</p>
+            <p class="Synopsis"><span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<b>InvoiceSummary</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Order"></a>
+        <h3>
+Main &gt; Order</h3>
+        <div class="MemberHelp">
+            <p>
+This is the order to which the invoice is restricted.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>Order</b></p>
+        </div><a name="F_OrderSet"></a>
+        <h3>
+More &gt; Order set &gt; Order set</h3>
+        <div class="MemberHelp">
+            <p>
+The order set to which the invoice's order was assigned at tariffication time.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="os.htm">OrderSet</a></span>&#160;<b>OrderSet</b></p>
+        </div><a name="F_Payer"></a>
+        <h3>
+Payer</h3>
+        <div class="MemberHelp">
+            <p>
+This is the invoice's recipient. The invoice will be placed on an invoice summary of the same payer.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Payer</b></p>
+        </div><a name="F_PayerType"></a>
+        <h3>
+Payer type</h3>
+        <div class="MemberHelp">
+            <p>
+The payer type of the invoice. It reflects the relation of the payer with the invoice's order and equals the 'PayerType' of the policy clause that caused this invoice.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<b>PayerType</b></p>
+            <p>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span></p>
+        </div><a name="F_PaymentAgreement"></a>
+        <h3>
+More &gt; Payment agreement</h3>
+        <div class="MemberHelp">
+            <p>
+The payment agreement that was used to create this invoice.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<b>PaymentAgreement</b></p>
+        </div><a name="F_Phrase"></a>
+        <h3>
+More &gt; Phrase</h3>
+        <div class="MemberHelp">
+            <p>
+This is a phrase to add (if specified) at the end of the invoice print out. It may contain dynamic text elements.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Phrase</b></p>
+        </div><a name="F_PrintOutCount"></a>
+        <h3>
+Audit &gt; Print out count</h3>
+        <div class="MemberHelp">
+            <p>
+The print out count indicates the number of times this invoice was printed with tne 'mark' setting on..</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>PrintOutCount</b></p>
+        </div><a name="F_Reimburser"></a>
+        <h3>
+Main &gt; Reimburser</h3>
+        <div class="MemberHelp">
+            <p>
+The reimburser is the party that pays under normal circumstances. In most cases the reimburser equals the payer. However in special cases the payer is a different correspondent. An example from Belgium: if a lab has insufficient insurance data for a patient it might be forced to send the invoice that was meant for the fund (=reimburser) to the patient itself (= payer).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>Reimburser</b></p>
+        </div><a name="F_ReimburserType"></a>
+        <h3>
+Main &gt; Reimburser type</h3>
+        <div class="MemberHelp">
+            <p>
+The reimburser type of the invoice. It reflects the relation of the reimburser with the invoice's order and equals the 'ReimburserType' of the policy clause that caused this invoice.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<b>ReimburserType</b></p>
+            <p>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span></p>
+        </div><a name="F_RejectedInvoice"></a>
+        <h3>
+Audit &gt; Rejected invoice</h3>
+        <div class="MemberHelp">
+            <p>
+With this field, credit notes refer to the original debit invoice. This field is set by GLIMS when using the 'automatic' method for credit note creation (invoice item rejection, invoice credit note creation etc...). Also, new debit invoices in turn use the RejectedInvoice reference to refer to the credit note.
+<br />Invoice and 'RejectedInvoice' must have the same firm and payer.</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Invoice</a></span>&#160;<b>RejectedInvoice</b></p>
+        </div><a name="F_RejectionReason"></a>
+        <h3>
+Audit &gt; Rejection reason</h3>
+        <div class="MemberHelp">
+            <p>
+For credit invoices this field contains optionally a reason for the rejection of the original invoice. Note that any value in this field triggers special behaviour when creation tapes for Belgian funds.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>RejectionReason</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+This is the invoice's document status.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span></p>
+        </div><a name="F_Stay"></a>
+        <h3>
+More &gt; Stay &gt; Stay</h3>
+        <div class="MemberHelp">
+            <p>
+In case of hospitalization, this field specifies the stay to which the invoice's order was assigned at tariffication time.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="stay.htm">Stay</a></span>&#160;<b>Stay</b></p>
+        </div><a name="F_ToCheck"></a>
+        <h3>
+Main &gt; To check</h3>
+        <div class="MemberHelp">
+            <p>
+An indication marking the fact that this invoice needs to be verified.
+<br />The value of this field can be changed manually (i.e. set to FALSE after verification) or can be set via a special 'validate invoices' function.
+<br />The value is initially set by GLIMS to 'no' except if any of the following conditions was true:
+<br />- for one of the order sets billed in this invoice summary the 'check invoicing' was set
+<br />- the 'check invoicing' field of the payer (correspondent) was set.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ToCheck</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_VersionNumber"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+The version number is usually one. If however, a new version of a financial shipment is made with 'full crediting', then for each individual invoice a credit note and a completely new debit invoice is created (as a copy of the original). The latter is necessary because an invoice can only figure on 1 invoice summary. The new debit invoice will (must) have the same document number, therefore the version number will be increased with 1.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>VersionNumber</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_AdditionTo"></a>
+        <h3>
+Addition to&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AdditionTo</b> ()</p>
+        </div><a name="M_AdditionalInvoices"></a>
+        <h3>
+Additional invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AdditionalInvoices</b> ()</p>
+        </div><a name="M_AssignDocumentNumber"></a>
+        <h3>
+Assign document number&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method assigns a document number to the invoice. The invoice number is generated by a dedicated site function, defined in the GLIMS configuration. This method skips invoices that are already in the status numbered or higher.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>AssignDocumentNumber</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The external date that must be assigned to the invoice during numbering. If this parameter is unknown ("?") then the invoice's external date is left unchanged if it is specified, otherwise the tariff time is used.</dd>
+            </dl>
+        </div><a name="M_BillingItemConfirmation"></a>
+        <h3>
+Billing item confirmation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method sets the ConfirmationStatus field of the billing items on the selected invoices. This method actually has 2 phases.
+<br />1) In the first phase, the method verifies which billing items needs confirmation. Those that don't need confirmation receive a confirmation status 'NotRequired'. The others receive a status 'NotAcknowledged'. The most important criteria for this method to decide that a billing item doesn't require a manual confirmation: the first billing item for requests that 
+<br />- or are explicitely requested and have a result or are explicitly validated.
+<br />- or explicitely marked as to be charged.
+<br />Other billing items must be confirmed manually.
+<br />2) In a second phase all billing items that are left in the status 'NotAcknowledged' are presented to the user, grouped per order. The user can then manually confirm these billing items, giving them the status 'Acknowledged'.
+<br />This method should be used in Germany for all invoices sent to the KV using a KVDT file: indeed the KVDT creation method will refuse any billing item that is not yet confirmed.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>BillingItemConfirmation</b> (<span class="Type">String</span>&#160;<span class="Parameter">LogProcess</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">LogProcess</span></dt>
+                <dd>
+If specified, this is the proces name of the log that is created by this run.</dd>
+            </dl>
+        </div><a name="M_InvoiceChangeAmounts"></a>
+        <h3>
+Change amounts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method allows for manual changes of invoice item amounts. Also all other invoices (of other payers) for the same billing items can be changed in the same session. An array editor is opened showing a row for each invoice item on the invoice. The first column is the template of the billed request, the second column the tariff's nomenclature code. Then there are 2 columns for each invoice involved in this billing item: the first column shows the amount that can be changed. The second column is not editable and shows the original unchanged amount. The column header gives the payer's mnemonic.
+<br />If any value is changed manually, the following happens when the array editor is closed:
+<br />- for any fixed invoice on which an amount was changed, a corresponding credit invoice is created for the changed invoice items plus a new debit invoice with invoice items for the new amounts. A dialog box askes if a document number must be assigned to the newly created invoices. It also asks if existing credit invoices (same order, firm &amp; payer) should be reused.
+<br />- for any non-fixed invoice on which an amount was changed, the amount in the actual invoice item is changed. This causes corresponding amount changes in the invoice, invoice summary etc...
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceChangeAmounts</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ReuseExistingCreditNotes</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocNo</span></dt>
+                <dd>
+Assign document number to new created invoice(s).</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ReuseExistingCreditNotes</span></dt>
+                <dd>
+Reuse existing credit notes</dd>
+            </dl>
+        </div><a name="M_InvoiceStatusChange"></a>
+        <h3>
+Change status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Upgrades or downgrades the status of the invoice.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>InvoiceStatusChange</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">StatusUpgrade</span></dt>
+                <dd>
+If TRUE, the invoice status is upgraded. Otherwise it is downgraded. Invoices that already have the lowest (downgrading) or highest (upgrading) status are ignored. Any non-allowed status change (like downgrading an invoice on an invoice summary that is already fixed) causes an error.</dd>
+            </dl>
+        </div><a name="M_CreditNoteCreation"></a>
+        <h3>
+Credit-note creation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method completely credits a debit invoice by creating a credit invoice containing all the invoice items of the original invoice (using the invoice item's 'CreditNote' field).</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>CreditNoteCreation</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CreditOtherParties</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">DeleteUnfixedInvoices</span>, <span class="Type">String</span>&#160;<span class="Parameter">RejectionReason</span>, <span class="Type"><a href="irt.htm">InvoiceRejectionType</a></span>&#160;<span class="Parameter">RejectionType</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">DowngradeOsStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AddToSummary</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CreditOtherParties</span></dt>
+                <dd>
+Should other invoices (for another payer) of the same order be credited as well? </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">DeleteUnfixedInvoices</span></dt>
+                <dd>
+Only invoices in the status 'fixed' can be credited. If this paramater is FALSE, an error is generated for invoices that are not in the status fixed. If this parameter is TRUE, non-fixed invoices are deleted by this method, if possible.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RejectionReason</span></dt>
+                <dd>
+Free text, describing the rejection reason. Will be copied to the corresponding field of the credit invoice.</dd>
+                <dt><span class="Type"><a href="irt.htm">InvoiceRejectionType</a></span>&#160;<span class="Parameter">RejectionType</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span></dt>
+                <dd>
+If TRUE, this method will try to reuse any existing credit invoice (for the same order, firm, payer, ...) that has not yet reached the status fixed.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">DowngradeOsStatus</span></dt>
+                <dd>
+Should the order set status be downgraded also? That way the order can be automatically selected for a retariffication.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span></dt>
+                <dd>
+Should the requests' status be downgraded as well?</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AddToSummary</span></dt>
+            </dl>
+        </div><a name="M_DeassignFromInvoiceSummary"></a>
+        <h3>
+Deassign from invoice summary&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Removes the invoice from an invoice summary. The invoice summary amounts are automatically corrected. The method fails if the invoice was already fixed, unless it is explicitely requested to downgrade the invoice status first. 
+<br />If requested this method also removes invoice summary and shipment(s) that become empty.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>DeassignFromInvoiceSummary</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">RemoveEmptyInvoiceSummary</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RemoveEmptyShipments</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UnfixInvoiceSummary</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RemoveEmptyInvoiceSummary</span></dt>
+                <dd>
+Also deletes the invoice summary, if this invoice was the last invoice on that invoice summary.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RemoveEmptyShipments</span></dt>
+                <dd>
+Also deletes all financial shipments that become empty due to the removal of this invoice. This option is of course only active if the removal of empty invoice summaries was requested.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UnfixInvoiceSummary</span></dt>
+                <dd>
+If TRUE, fixed invoice summaries are first downgraded before the deassignation of the invoice.</dd>
+            </dl>
+        </div><a name="M_Firm"></a>
+        <h3>
+Firm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Firm</b> ()</p>
+        </div><a name="M_InvoiceRejectionType"></a>
+        <h3>
+Invoice rejection type&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceRejectionType</b> ()</p>
+        </div><a name="M_InvoiceSummary"></a>
+        <h3>
+Invoice summary&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceSummary</b> ()</p>
+        </div><a name="M_InvoiceSummaryCreation"></a>
+        <h3>
+Invoice Summary creation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method places the invoice on an existing or new invoice summary, according to the specifications. Invoices can only be placed on invoice summaries of the same firm and payer. The only exception to this rule is if the invoice payer has specified another correspondent as its invoice summary payer (field Payer in the Correspondent table). To which invoice an invoice summary is assigned and if new invoice summaries must be created, is determined mostly by the invoice grouping type used.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>InvoiceSummaryCreation</b> (<span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MixedFinanceType</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocumentNo</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="igt.htm">InvoiceGroupingType</a></span>&#160;<span class="Parameter">InvoiceGroupingType</span></dt>
+                <dd>
+Specify how invoices must be grouped on invoice summaries. This is an optional field and overrides the specifications at the payer level. The actual 'InvoiceGroupingType' used is determined in the following order:
+<br />1 the invoice grouping type specified by this parameter
+<br />2 otherwise the invoice grouping type of the invoice's payer (correspondent field)
+<br />3 otherwise the default invoice grouping type specified in GLIMS's configuration.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span></dt>
+                <dd>
+If TRUE, newly created invoice summaries are immediately numbered. </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+The external date to be used for newly created invoice summaries, in case they must be numbered. If "?", the default is used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MixedFinanceType</span></dt>
+                <dd>
+Specifies if it is allowed to create mixed invoice summaries. If left unknown (?) the specifications of the invoice grouping type are used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocumentNo</span></dt>
+                <dd>
+If TRUE, unnumbered invoices are also numbered. The external date that is used in this case is the same one as for the invoice summary.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span></dt>
+                <dd>
+Specifies how the 'ToCheck' flag of the invoice summary must be set. If left unknown (?) the default is taken from either the order set settings or the 'CheckInvoices' flag of the payer.</dd>
+            </dl>
+        </div><a name="M_ItemscreditNote"></a>
+        <h3>
+Items (credit note)&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ItemscreditNote</b> ()</p>
+        </div><a name="M_ItemsInvoice"></a>
+        <h3>
+Items (Invoice)&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ItemsInvoice</b> ()</p>
+        </div><a name="M_Order"></a>
+        <h3>
+Order&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Order</b> ()</p>
+        </div><a name="M_OrderCrediting"></a>
+        <h3>
+Order crediting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Allows to credit a set of invoices starting from one chosen invoice: relationship in between is the used payment agreement during tariffication.
+<br />Purpose of this function: the possibility to credit invoices of several orders/order sets simultaneously starting from one invoice (order) by looking up all related orders/invoices of the invoice (order) payment agreement. </p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrderCrediting</b> ()</p>
+        </div><a name="M_OrderSet"></a>
+        <h3>
+Order set&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrderSet</b> ()</p>
+        </div><a name="M_Payer"></a>
+        <h3>
+Payer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Payer</b> ()</p>
+        </div><a name="M_PaymentAgreement"></a>
+        <h3>
+Payment agreement&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PaymentAgreement</b> ()</p>
+        </div><a name="M_Payments"></a>
+        <h3>
+Payments&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Payments</b> ()</p>
+        </div><a name="M_PlaceOnFSELot"></a>
+        <h3>
+Place on FSE shipment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PlaceOnFSELot</b> ()</p>
+        </div><a name="M_Print"></a>
+        <h3>
+Print&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Prints the selected invoice(s) according to the specifications. </p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Print</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+The layout (billing document template) with which the invoice will be printed. Note that this can be overriden by the 'JobExpressionId' parameter. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+If TRUE, the fact that this invoice is printed will be logged in the BillingDocumentOutPrint table. In that case also the print out count field of the invoice will be incremented. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+If TRUE, the invoice will be fixed after printing</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dd>
+If output to file is selected, this parameter must contain the file name. </dd>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dd>
+The printer</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dd>
+The number of copies to print.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dd>
+If TRUE, an on-screen preview of the printout is shown before printing. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">JobExpressionId</span></dt>
+                <dd>
+Invoice based, string valued site function. If present, this site function returns a "\" separated list of tags that override the other parameter specifications. The following tags are supported:
+<br />\Layout=&lt;layoutname&gt;
+<br />\Printer=&lt;printername&gt;
+<br />\Copies=&lt;number&gt; 
+<br />\Language=&lt;languagecode&gt;
+<br />\Columns=&lt;n&gt;
+<br />\Orientation=&lt;[v]&gt;
+<br />Each tag is optional, but if specified it overrides the value specified in the dialog box.
+<br />It is possible to return multiple lists, each separated by a ",". Each tagged list starts its own print job.
+<br />As an example:
+<br />"\Layout=INVSimpel\Printer=cat &gt; PrintFile1,\Layout=Test\Printer=_Wordpad"
+<br />This starts 2 print jobs.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span></dt>
+                <dd>
+If output to file is selected, this indicates that the default file name should be used.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span></dt>
+                <dd>
+Indicates that output must be written to file. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleRecordsSeparately</span></dt>
+                <dd>
+Indicate if the selected records must be printed as one document or separately. Separatly means that each selected invoice is printed individually using the specified settings. Otherwise, the selected invoice are treated as a single 'virtual' invoice summary and can be printed with a billing document template of type 'InvoiceSummary'.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforePrinting</span></dt>
+                <dd>
+This option allows printing of initially unnumbered billing documents with their document number. If selected, the invoice will be numbered before printing starts. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SeparateFileEachRecord</span></dt>
+                <dd>
+Indicates whether all selected invoices should be dumped into one global file, or whether for each invoice a unique file must be created. </dd>
+            </dl>
+        </div><a name="M_Printouts"></a>
+        <h3>
+Printouts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Printouts</b> ()</p>
+        </div><a name="M_Reimburser"></a>
+        <h3>
+Reimburser&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Reimburser</b> ()</p>
+        </div><a name="M_RejectedInvoice1"></a>
+        <h3>
+Rejected invoice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RejectedInvoice1</b> ()</p>
+        </div><a name="M_RejectedInvoice"></a>
+        <h3>
+Rejected invoice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RejectedInvoice</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SendMail"></a>
+        <h3>
+Send mail&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Function to send documents by email</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SendMail</b> (<span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span>, <span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">TemplateId</span></dt>
+                <dd>
+Billing document template </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UsePayerLayout</span></dt>
+                <dd>
+For invoice summaries the billing document template of the payer can be chosen</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Mark</span></dt>
+                <dd>
+Mark the event that the email has been sent</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberBeforeEmailing</span></dt>
+                <dd>
+Number invoices before mailing</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">NumberChildInvoices</span></dt>
+                <dd>
+Number also the child invoices </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ExternalDate</span></dt>
+                <dd>
+External date of invoice summary (? = Today)</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Fix</span></dt>
+                <dd>
+Fix the document</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FixChildInvoices</span></dt>
+                <dd>
+Fix child invoices</dd>
+                <dt><span class="Type"><a href="billingdocumenttypeemail.htm">BillingDocumentTypeEmail</a></span>&#160;<span class="Parameter">RecordType</span></dt>
+                <dd>
+One of: <span class="Parameter">Invoice, Invoice summary, Financial transaction, Financial shipment, Billing document printout</span><br /></dd>
+            </dl>
+        </div><a name="M_Stay"></a>
+        <h3>
+Stay&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Stay</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_AnInvoiceItem"></a>
+        <h3>
+AnInvoiceItem&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a reference to a randomly chosen item of the invoice. This is only useful in those situations where data is needed that is only known at invoice item level but that is the same for all invoice items of a single invoice; this is of course configuration dependent. As an example consider a lab that always uses the same executor: information that is stored in a billing item. The 'AnInvoiceItem' method allows the executor to be known at invoice level.</p>
+            <p class="Synopsis"><span class="Type"><a href="iit.htm">InvoiceItem</a></span>&#160;<b>AnInvoiceItem</b> ()</p>
+        </div><a name="M_Data"></a>
+        <h3>
+Data&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+General purpose site function that returns a string with information regarding this invoice. Which data is returned is determined by the 'AttributeList' parameter. The return value is always a string.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Data</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span></dt>
+                <dd>
+The name of the requested attribute. The following values are allowed:
+<br />- "OrderList": returns a comma-separated list of internal ids of orders linked with this invoice. The path followed to build this list is via the order set of the billing items of this invoice.
+<br />- "OrderListViaRequest": returns a comma-separated list of internal ids of orders linked with this invoice. The path followed to build this list is via the requests of the billing items of this invoice.
+<br />- "ExecutorList": returns a comma-separated list of mnemonics of the billing items' executors of this invoice.
+<br />Note that the "OrderList" and "OrderListViaRequest" options are less useful now that there is a direct link from invoice to order.
+<br />It is possible to request a list of attributes in a single call. Each attribute name must be separated by a ",". The corresponding values are returned seperated by a " ".</dd>
+            </dl>
+        </div><a name="M_GetPayment"></a>
+        <h3>
+GetPayment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL-function returns the reference of the n-th (second input parameter) payment record associated with the invoice (first input parameter).</p>
+            <p class="Synopsis"><span class="Type"><a href="pmnt.htm">Payment</a></span>&#160;<b>GetPayment</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span></dt>
+                <dd>
+This parameter indicates which payment record must be retrieved. 1 = payment with most recent payment date, 2 = second, etc. ...</dd>
+            </dl>
+        </div><a name="M_NumberOfItems"></a>
+        <h3>
+NumberOfItems&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This site function returns the number of invoice items in this invoice.</p>
+            <p class="Synopsis"><span class="Type">Integer</span>&#160;<b>NumberOfItems</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Billing assessments</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="ba.htm">w_BillingAssessment</a>.<a href="ba.htm#F_Invoice">Invoice</a></p>
+        </div>
+        <h3>
+Rejecting invoices</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="#" class="selected">Invoice</a>.<a href="#F_RejectedInvoice">RejectedInvoice</a></p>
+        </div>
+        <h3>
+Additional invoices of invoice</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="#" class="selected">Invoice</a>.<a href="#F_AdditionTo">AdditionTo</a></p>
+        </div>
+        <h3>
+Items of invoice</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="iit.htm">InvoiceItem</a>.<a href="iit.htm#F_Invoice">Invoice</a></p>
+        </div>
+        <h3>
+Items of credit note</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="iit.htm">InvoiceItem</a>.<a href="iit.htm#F_CreditNote">CreditNote</a></p>
+        </div>
+        <h3>
+Printouts</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bdop.htm">BillingDocumentOutPrint</a>.<a href="bdop.htm#F_Invoice">Invoice</a></p>
+        </div>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_Invoice">Invoice</a></p>
+        </div>
+        <h3>
+Financial shipments</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="fshp.htm">FinancialShipment</a>.<a href="fshp.htm#F_LastSentInvoice">LastSentInvoice</a></p>
+        </div>
+        <h3>
+Payments</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="pmnt.htm">Payment</a>.<a href="pmnt.htm#F_Invoice">Invoice</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_FinancialShipment"></a>
+        <h3>
+Financial shipment</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>FinancialShipment</b> (<span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">FinancialShipment</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">FinancialShipment</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+            </dl>
+        </div><a name="Q_Standard"></a>
+        <h3>
+Standard invoice query</h3>
+        <div class="MemberHelp">
+            <p>
+The standard invoice query.</p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span>, <span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span>, <span class="Type"><a href="financetype.htm">FinanceType</a></span>&#160;<span class="Parameter">FinanceType</span>, <span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Payer</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span>, <span class="Type"><a href="ord.htm">Order</a></span>&#160;<span class="Parameter">Order</span>, <span class="Type"><a href="crcl.htm">CorrespondentClass</a></span>&#160;<span class="Parameter">Issuer</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ViaFse</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">String</span>&#160;<span class="Parameter">RegimeNoCaisse</span>, <span class="Type"><a href="obj.htm">Object</a></span>&#160;<span class="Parameter">Object</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dd>
+If specified, only invoices of this firm are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span></dt>
+                <dd>
+If specified, only invoices with an external date later or equal are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span></dt>
+                <dd>
+If specified, only invoices with an external date before or equal are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span></dt>
+                <dd>
+Defines if selection on invoice document number must be performed.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span></dt>
+                <dd>
+If selection on document number is requested, then only invoices with a document number higher or equal to the specified value are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span></dt>
+                <dd>
+If selection on document number is requested, then only invoices with a document number blow or equal to the specified value are selected. Note that if both from and to values are left "?", this effectivaly means that only invoices without a document numer are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span></dt>
+                <dd>
+If specified, only invoices with a printout count higher or equal to this value are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dd>
+If specified, only invoices with a printout count lower or equal to this value are selected.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) after this time, are selected. For this selection the BillingDocumentOutPrint table is processed.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) before this time, are selected. Fot this selection the BillingDocumentOutPrint table is processed.</dd>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) with this layout (billing document template) are selected. The necessary information is read from the BillingDocumentOutprint table.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span></dt>
+                <dd>
+Indicates if selection on invoice summary is needed.</dd>
+                <dt><span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span></dt>
+                <dd>
+If selection on invoice summary is requested, then only invoices that are part of the specified invoice summary are selected. If this field is left "?" that effectivaly means that only invoices that are not yet on an invoice summary are selected.</dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Only invoices with a status higher or equal to this one are selected.</dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Only invoices with a status below or equal to this one are selected.</dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br />
+If specified, only invoices with this payer type are selected.</dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br />
+If specified, only invoices with this reimburser type are selected.</dd>
+                <dt><span class="Type"><a href="financetype.htm">FinanceType</a></span>&#160;<span class="Parameter">FinanceType</span></dt>
+                <dd>
+One of: <span class="Parameter">Debit, Credit</span><br />
+If specified, only invoices with this finance type are selected.</dd>
+                <dt><span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span></dt>
+                <dd>
+One of: <span class="Parameter">Animal, Lot, Person, Unknown, QC lot</span><br />
+If specified, only invoices for orders with an object of this object type are selected.</dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span></dt>
+                <dd>
+If specified, only invoices with a payer that is member of this correspondent group, are selected.</dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span></dt>
+                <dd>
+If specified, only invoices with a reimburser that is member of this correspondent group, are selected.</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Payer</span></dt>
+                <dd>
+If specified, only invoices with this specific payer are selected.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span></dt>
+                <dd>
+If TRUE, only invoices with an attached stay are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CheckMark</span></dt>
+                <dt><span class="Type"><a href="ord.htm">Order</a></span>&#160;<span class="Parameter">Order</span></dt>
+                <dd>
+If specified, then select only invoices for this order.
+<br /></dd>
+                <dt><span class="Type"><a href="crcl.htm">CorrespondentClass</a></span>&#160;<span class="Parameter">Issuer</span></dt>
+                <dd>
+Selection on (order) issuer</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ViaFse</span></dt>
+                <dd>
+French FSE specific; only applicable when specific site person data reader is 'Carte Vitale'.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dd>
+Optional invoice based, logical valued site function. If specified, an invoice is selected only if TRUE is returned.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RegimeNoCaisse</span></dt>
+                <dd>
+French FSE specific; only applicable when specific site person data reader is 'Carte Vitale'.
+<br /></dd>
+                <dt><span class="Type"><a href="obj.htm">Object</a></span>&#160;<span class="Parameter">Object</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>- Firm - DocNo - VersionNumber </b>
+            </li>
+            <li value="3"><b>+ AdditionTo </b>
+            </li>
+            <li value="4"><b>+ CreationTime </b>
+            </li>
+            <li value="5"><b>- DocNo - VersionNumber </b>
+            </li>
+            <li value="6"><b>+ ExternalDate </b>
+            </li>
+            <li value="7"><b>+ Firm + PayerType + PrintOutCount </b>
+            </li>
+            <li value="8"><b>+ InvoiceRejectionType </b>
+            </li>
+            <li value="9"><b>+ InvoiceSummary - DocNo </b>
+            </li>
+            <li value="10"><b>+ InvoiceSummary + Status </b>
+            </li>
+            <li value="11"><b>+ Order </b>
+            </li>
+            <li value="12"><b>+ OrderSet </b>
+            </li>
+            <li value="13"><b>+ Payer - DocNo </b>
+            </li>
+            <li value="14"><b>+ PaymentAgreement </b>
+            </li>
+            <li value="15"><b>+ Reimburser </b>
+            </li>
+            <li value="16"><b>+ RejectedInvoice </b>
+            </li>
+            <li value="17"><b>+ Stay </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+InvoiceSummary.Firm = Firm</li>
+            <li value="2">
+RejectedInvoice.Firm = Firm</li>
+            <li value="3">
+RejectedInvoice.Order = Order</li>
+            <li value="4">
+AdditionTo.Firm = Firm</li>
+            <li value="5">
+AdditionTo.Order = Order</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

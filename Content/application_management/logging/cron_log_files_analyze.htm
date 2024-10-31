@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Logging" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Analyze_cron_log_files">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Analyze cron log files</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3503"></a>
+            <MadCap:concept term="Application management" />Analyze cron log files</h1>
+        <p>This utility makes it possible to analyze the log files of the GLIMS 
+ CRON jobs. The program can be accessed through the main menu via 
+ <span class="ui_element">Start &gt; System management &gt; Activity &gt; Analyze Task Scheduler Log Files</span>.</p>
+        <p>When starting the program, an empty browser will initially be shown. You 
+ can add files using the <span class="ui_element">Add</span> and <span class="ui_element">Add group</span> buttons. The  <span class="ui_element">Add</span> button allows to manually select one or more cron log files. A 
+ list of files matching a pattern may be added using the <span class="ui_element">Add group</span> 
+ button. Files can also be added to the browser using "drag and drop".</p>
+        <p>The browser shows the start and end time of each job, how much database 
+ access was caused by it, disk reads, hit ratio and the duration. Pressing 
+ the column label in the browser sorts the tasks accordingly. This 
+ makes it easy to figure out which task caused the most system/database 
+ overhead.</p>
+        <ol style="list-style-type: decimal;">
+            <li value="1">
+                <p>Column "<span style="font-weight: bold;">O</span>": if 
+	 checked, the task is <span style="font-weight: bold;">Overdue</span>. 
+	 The scheduled task started 3 minutes or more later than planned because the cron was busy with another task.</p>
+                <p>Too many overdue tasks =&gt; schedule tasks on other crons.<br /></p>
+            </li>
+            <li value="2">
+                <p>Column "<span style="font-weight: bold;">C</span>": if 
+	 checked, <span style="font-weight: bold;">Contention</span> has been 
+	 detected. The scheduled task started at least 10 seconds too late because the cron was busy with another task.</p>
+                <p>Too much contention =&gt; provide more time for the task execution.</p>
+            </li>
+        </ol>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="analyzercronlog_browser.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="861" data-mc-height="343" src="analyzercronlog_browser_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">The <span class="ui_element">Clear</span> button empties the browser. 
+ The <span class="ui_element">Summary</span> button shows an overview with totals and mean 
+ values per task.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="analyzercronlog_summary.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="753" data-mc-height="254" src="analyzercronlog_summary_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+    </body>
+</html>

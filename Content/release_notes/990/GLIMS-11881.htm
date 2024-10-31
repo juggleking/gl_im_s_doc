@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Order.Attribute("NewOrderEntryRequests") should support duplicate requests (GLIMS-11881)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2607"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Order.Attribute("NewOrderEntryRequests") should support duplicate requests (GLIMS-11881)</h1>
+        <p>An issue was reported where the MISPL function <a href="../../routine/orders/orders_m_attribute.htm#%22OrderEn" xmlns="http://www.w3.org/1999/xhtml">Order.Attribute("NewOrderEntryRequests")</a> did not return the  requests entered during the update of an existing order if the order already contained the same requests (entered upon creation of the order).</p>
+        <p> Moreover, if the same request was entered twice during order creation or update, it only appeared once in the list retrieved by the MISPL function.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml" class="fieldlabel">Configuration</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The MISPL function Order.Attribute("NewOrderEntryRequests") is used in the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_main.htm#Before" xmlns="http://www.w3.org/1999/xhtml">Before creation or update</a> trigger.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11881.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="510" data-mc-height="508" src="GLIMS-11881_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+            <p class="fieldlabel">Scenario 1</p>
+            <ol>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">Open order entry and request Serum.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2"> Click OK to create the order =&gt; a message appears containing "Serum".</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="3">Reopen the order. </li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="4">Request Serum again. </li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="5">Click OK =&gt; the pop-up message  contains "Serum" whereas in previous versions  the list was empty.</li>
+            </ol>
+            <p class="fieldlabel">Scenario 2</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">Open order entry and request Serum twice.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2"> Click OK to create the order =&gt; a message appears containing "Serum,Serum" whereas in previous versions the list contained "Serum" only once.</li>
+            </ol>
+        </div>
+        <p>This has been corrected.</p>
+    </body>
+</html>

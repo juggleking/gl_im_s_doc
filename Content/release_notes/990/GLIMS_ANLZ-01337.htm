@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Reduce number of test availability messages sent to the GLP system (GLIMS_ANLZ-01337)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3597"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Reduce number of test availability messages sent to the GLP system (GLIMS_ANLZ-01337)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS can communicate with <a href="../../communication/las/las_glp.htm" xmlns="http://www.w3.org/1999/xhtml">GLP-Systems</a>. Whenever an analyzer is unavailable or cannot execute particular tests, GLIMS can immediately <a href="../../communication/las/las_glp_messages_analyzer_test_availability.htm" xmlns="http://www.w3.org/1999/xhtml">inform the GLP system</a> to avoid that tubes are still transported to that analyzer. </p>
+        <p>GLIMS can therefore assign a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LAS status</span> (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connected</span> / <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Disconnected</span>) to either an entire station or to a specific assessment method.</p>
+        <h2>Past functionality</h2>
+        <p>When the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LAS&#160;status</span> of a station changes from <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Disconnected</span> to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connected</span>, the following messages were sent to inform the GLP system:</p>
+        <ol>
+            <li value="1">a message informing the GLP&#160;system about the station's availability,</li>
+            <li value="2">a message for each assessment method of that station informing the GLP system about the assessment method's LAS status.</li>
+        </ol>
+        <p>This functionality was introduced via <a href="../960/sibling/957/GLIMS_ANLZ-01145.htm" xmlns="http://www.w3.org/1999/xhtml" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">GLIMS_ANLZ-01145</a> and was required to prevent the GLP system from  assuming erroneously that all assessment methods of that station are <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Connected</span>.</p>
+        <h2>Issues</h2>
+        <p>The number of messages sent to the GLP&#160;system when a station's <span class="ui_element">LAS&#160;status</span> is set to <span class="ui_element">Connected</span> needs to be reduced.</p>
+        <ol>
+            <li value="1">The GLP system has difficulties coping with the amount of messages received while some are unnecessary (e.g. sending a message about an assessment method being available after having sent a message indicating that the assessment method's station is available is unnecessary as the GLP system already assumes that the assessment method is available since its station is).</li>
+            <li value="2">The GLP system should not be informed about the LAS status of assessment methods which are disabled in GLIMS&#160;(as they might not be known to the GLP system).</li>
+        </ol>
+        <h2>Present functionality</h2>
+        <p>Now, when the <span class="ui_element">LAS status</span> of a station is set to <span class="ui_element">Connected</span>, GLIMS will send the following messages to inform the GLP&#160;system:</p>
+        <ol>
+            <li value="1">a message informing about the station's availability,</li>
+            <li value="2">a message for each assessment method of that station which is<ol><li value="1">NOT disabled (LIS status)</li><li value="2">Disconnected (LAS status)</li></ol><p xmlns="">to inform about the assessment method's unavailability.</p></li>
+        </ol>
+        <h2>Backward compatibility</h2>
+        <p>GLIMS now behaves differently as the LIS status of an assessment method is now taken into account to inform the GLP&#160;system about the assessment method's LAS status.</p>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Be aware that manually changing the LIS&#160;status of an assessment method to Disabled, while its LAS status is still Connected, can cause issues as the GLP system might not be aware that the assessment method should not be used anymore. In order to avoid this, make sure to first set the assessment method's LAS status to Disconnected (so that a disconnect message is sent to the GLP system) before disabling the assessment method in GLIMS.</p>
+        </div>
+    </body>
+</html>

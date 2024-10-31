@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Monarch_barcode_printer">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Monarch barcode printer</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2"></a>
+            <MadCap:concept term="System management" />Monarch barcode printer</h1>
+        <h2>Official Monarch printer manual</h2>
+        <ul>
+            <li class="kadov-p" value="1"><a href="monarch.pdf">Monarch printer documentation (PDF file)</a>
+            </li>
+        </ul>
+        <h2>Label example&#160;</h2>
+        <h3>Procedure input label&#160;</h3>
+        <blockquote>
+            <p>~{<br />
+F,1,A,R,M,0250,0380,"I2de5"|<br />
+T,001,10,V,0220,0030,0,1,1,1,B,L,0,0|<br />
+T,002,11,V,0200,0030,0,2,1,1,B,L,0,0|<br />
+T,003,14,V,0180,0030,0,2,1,1,B,L,0,0|<br />
+T,004,10,V,0180,0170,0,2,1,2,B,L,0,0|<br />
+T,005,17,V,0140,0030,0,2,2,2,B,L,0,0|<br />
+B,006,10,V,0030,0070,3,10,0110,8,L,0|<br />
+T,007,10,V,0030,0100,0,2,1,2,B,L,0,0|<br /><br />
+~}<br /><br />
+~{ B,1,N,1 |<br />
+1,"{=IfKnownString(SubStr(.Specimen.Object.Person().LastName, 1, 10))}" |<br />
+2,"{=IfKnownString(SubStr(.Specimen.Object.Person().FirstName, 1, 10))}" |<br />
+3,"DN:{=IfKnownString(DateToString(.Specimen.Object.Person().BirthDate, "%d/%m/%y"))}" |<br />
+4,"UF : {=SubStr(IfKnownString(.Action.Order().Issuer.name), 1, 4)}" |<br />
+5,"{=SubStr(.Action.Order().InternalId + " " + IfKnownString(.Action.Procedure.Code), 1, 17)}" |<br />
+6,"{=.BarCode()}" |<br />
+7,"{=.BarCode()}" |<br />
+~}</p>
+        </blockquote>
+        <h3>Specimen label</h3>
+        <blockquote><pre>
+{ F,3,A,R,M,270,550,"3hexa3"|
+T,1,20,V,180,40,0,10,1,1,O,L,0,0|
+B,2,11,V,60,105,4,7,110,8,L,0|
+T,3,25,V,25,105,0,1,1,1,B,L,0,0|
+T,4,25,V,210,40,0,1,1,1,B,L,0,0|
+T,5,10,V,10,520,0,2,1,2,B,L,0,1|
+T,6,6,V,205,420,0,2,1,1,B,L,0,0|
+T,7,4,V,10,50,0,10,1,2,O,L,0,1,1|
+T,8,30,V,05,70,0,2,1,1,B,L,0,0|
+T,9,10,V,225,420,0,2,1,1,O,L,0,0|
+ }
+{ B,3,N,1|E,0,0,1,1,0,1|
+ 1,"Nom"|
+ 2,"12345678"|
+ 3,"123456"|
+ 4,"SERUM"|
+ 5,"01/01/2005"|
+ 6,"18h50"|
+ 7,"12345678"|
+ 8,"NA,K,CL,PRO,GLY"|
+ 9,"27/01/1977"| }
+</pre>
+        </blockquote>
+        <h3>Order label without barcode (Monarch 9830)</h3>
+        <blockquote><pre>
+~{I, A, 0, 0, 0, 0, 0|}
+~{I, B, 1, 1, 0, 0|}
+~{I, C, 0, 0, 0, 0, 812|}
+~{F,1,A,R,G,232,799,"S-Ware"|
+T,1,12,V,100,310,1,1,1,0,B,L,0,0|
+T,2,12,V,60,310,1,1,1,0,B,L,0,0|
+T,3,12,V,20,310,1,1,1,1,B,L,0,0|
+} 
+~{B,1,N,1|
+1,"{=DateTimeToString(.LowestObjectTime,"%x")}"|
+2,"Order No."|
+3,"{=IfKnownString(.InternalId)}"|
+} 
+</pre>
+        </blockquote>
+        <h3>Specimen label with barcode</h3>
+        <blockquote><pre>
+~{I, A, 0, 0, 0, 0, 0|}
+~{I, B, 1, 1, 0, 0|}
+~{I, C, 0, 0, 0, 0, 812|}
+~{F,1,A,R,G,232,799,"S-Ware"|
+B,1,12,V,70,320,8,8,60,8,L,0|
+T,2,12,V,40,310,1,1,1,1,B,L,0,0|
+T,3,12,V,130,310,1,1,1,1,B,L,0,0|
+T,4,12,V,10,310,1,1,1,1,B,L,0,0|
+} 
+~{B,1,N,1|
+1,"{=.Barcode()}"|
+2,"{=.Barcode()}"|
+3,"{=Trim(Substr(.Action.Procedure.Station.Code,1,12),"12")} {=.MaterialInput.Material.Mnemonic}"|
+4,"{=.Action.Order().InternalId}"|
+} 
+</pre>
+        </blockquote>
+        <p>&#160;</p>
+    </body>
+</html>

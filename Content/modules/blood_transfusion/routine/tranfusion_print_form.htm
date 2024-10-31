@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Print tranfusion form</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2239"></a>
+            <MadCap:concept term="Blood transfusion" />           BTM - Printing a transfusion form</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Via%20blood%20selection">Via blood selection</a> - <a href="#Via%20blood%20bag">Via blood bag</a>  - <a href="#Example">Example</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>GLIMS offers two ways to print a transfusion form: via blood selection and via blood bag. The MISPL function BloodSelection.PrintForm allows automatic printing of the transfusion form. You can use this MISPL in the selection trigger, check-out trigger, property trigger of the crossmatch, ...</p>
+        <h2><a name="Via blood selection"></a>Via blood selection</h2>
+        <h3>Manually</h3>
+        <p>From each blood selection, you can select the contextual function <span class="ui_element">Print transfusion form</span>.</p>
+        <p class="fieldlabel">Form</p>
+        <div class="indented">By default, the transfusion form specified in the corresponding blood product will be printed.</div>
+        <p class="fieldlabel">Printer</p>
+        <div class="indented">
+            <p> By default, this is the transfusion form printer  defined via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Tools</span> -&gt; <span class="ui_element">Set devices</span>.</p>
+        </div>
+        <h3>Via MISPL</h3>
+        <p>This printing function can also be called from within MISPL using BloodSelection.PrintForm. The MISPL function also allows you to specify a different printer that should be used instead of the one configured in the department or in the user settings. The function has an extra parameter 'PrinterName' which can be used for this.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Suppose in a MISPL trigger in some cases you want to print the text module "OurTransfusionForm" on a printer called 'SpecialPrinter'. You should then write: .PrintForm( "OurTransfusionForm" ,"SpecialPrinter" ).</p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Via blood bag"></a>Via blood bag</h2>
+        <h3>Manually</h3>
+        <p class="fieldlabel">BloodBag.PrintForm</p>
+        <div class="indented">
+            <p>From each blood bag, you can select the contextual menu function <span class="ui_element">Print a form</span>. This function is similar to the <a href="../../../routine/orders/orders_generate_document.htm">Order.GenerateDocument</a> function, but the text modules are to be based on the BloodBag table. When automating this function via a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command and task</a> you could for instance regularly print a list of expired or transfused blood bags.</p>
+        </div>
+        <h3>Via MISPL</h3>
+        <p class="fieldlabel">BloodBag.Print()</p>
+        <div class="indented">
+            <p>You can also use the MISPL function BloodBag.Print(). This function has two parameters:</p>
+            <ol>
+                <li value="1">
+                    <p><b style="font-weight: bold;">TextMnemonic</b> (mandatory): This is the mnemonic of the text module that should be evaluated and printed for this blood bag.</p>
+                </li>
+                <li value="2">
+                    <p><b style="font-weight: bold;">PrinterName</b> (optional): name of the printer to send the output to. If no printer is specified the default is assumed (see  <a href="../../../configuration/printers/set_devices.htm">Set devices</a>).</p>
+                </li>
+            </ol>
+        </div>
+        <h2><a name="Example" id="Example"></a>Example</h2>
+        <p>Example of a transfusion form text:</p>
+        <table style="border-collapse: separate;border-collapse: separate;margin-left: 0;margin-right: auto;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="width: 100%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" bgcolor="#E9E9E9"><pre xml:space="preserve">
+***************************************************************************************
+*                            Universitary Hospital MIPS                               *
+*                                     GENT, BELGIUM                                   *
+*                                                                                     *
+*                                Transfusion Laboratory                               *
+*                                 tst. 2614 of 3165                                   *
+***************************************************************************************
+PATIENT DATA                                        {=DatetoString(Today(),"%d-%m-%y")}
+_______________________________________________________________________________________
+Patient name:      {= IF IfKnownString(.Object.Person().SpouseLastName) = "" THEN "" 
+ELSE (.Object.Person().SpouseLastName + " - ")}{= IfKnownString(.Object.Person().LastName)}{= " " +  
+IfKnownString(.Object.Person().MiddleName)}
+Birth date:        {=DateToString(.Object.Person().Birthdate,"%d-%m-%Y")}    
+Sex: {= Entry(Lookup(EnumeratedToString("Sex",.Object.Person().Sex),"Male,Female,Other,Unknown,Ambiguous,Not applicable",","),"M,F,O,U,A,N",",")}  
+Department:  {=IfKnownString(.Object.Person().Stay().Ward.Mnemonic)}
+ObjectInternalId:  {= IfKnownString(.Object.InternalId)}
+</pre><pre>
+Blood group/rhesus: {=.Object.GetResult("BGRhesus",?,1,?).Attribute("VALUE")} 
+_______________________________________________________________________________________
+TRANSFUSION DATA
+</pre><pre>
+Blood requested by:  {=SubStr(IfKnownString(.LastRequest(?)
+.Order.Issuer.HCProvider().LastName)
++ Fill(" ",34),1,34)} Analist: {=.CheckUser.Initials}
+Blood product:              {=.Bloodbag.specification.mnemonic}
+UTMOST TRANSFUSION TIME:  {=DateTimeToString(.UtmostTransfusionTime,"%d-%m-%Y")} 
+{= DateTimeToString(.UtmostTransfusionTime,"%H:%M")} uur
+Blood group/rhesus donor:   {=SubStr(EnumeratedToString("Bloodgroup",.bloodbag
+.typing.bloodgroup)+ Fill(" ",2),1,2)} {=EnumeratedToString("Bloodrhesus",.bloodbag.typing.rhesus)}
+Donation number: {=.BloodBag.ExternalId}
+_______________________________________________________________________________________
+TRANSFUSION DATA (to be filled out by the department)
+Department: {=.Object.Person().Stay().Ward.Mnemonic}
+</pre><pre>
+Has the blood bag been administered ?   YES/NO    If yes, administratio date : ../../..    Time:  ..:..
+</pre><pre>
+Remarks              :.................................................................
+</pre><pre>
+Transfusion reactions:.................................................................
+</pre><pre>
+Signature physician  : .....................
+</pre>
+                    <p>&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <p>Output example:</p>
+        <p>
+            <img src="tsf_example.gif" style="border: none;" alt="" width="770" height="565" border="0" />
+        </p>
+    </body>
+</html>

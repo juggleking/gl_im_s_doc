@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Station_configuration_for_concentrators">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Station configuration for concentrators</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor236"></a>Station configuration for concentrators</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Configuration</a> - <a href="#Concentrator%20translators">Concentrator translators</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes how to configure station and translators in case a "concentrator" is used (connection to a remote PC which in turn is connected to a number of analyzers).</p>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <p>For each analyzer connected to the concentrator PC, a station with corresponding procedures must be defined in GLIMS. The external id of the station should contain the name of the analyzer e.g.</p>
+        <blockquote>
+            <p>&lt;station 1&gt;<br />    &lt;station 2&gt;<br />    &lt;station n&gt;</p>
+        </blockquote>
+        <p>Each station (1-n) has its own remote id. The inbound and outbound id's are to be defined in these station (1-n). There is no need to define a station for the concentrator. For all station (1-n), the SAME translator must be specified; e.g. "labt" (labtrain).</p>
+        <p>How does the connection work ?</p>
+        <blockquote>
+            <p>Order download</p>
+            <blockquote>
+                <p>GLIMS detects that several stations are linked to the same translator and will send all data for these stations.</p>
+            </blockquote>
+            <p>Result upload</p>
+            <blockquote>
+                <p>The concentrator sends the station's external id along with the result. GLIMS looks for a station with a corresponding external id and translator.</p>
+            </blockquote>
+        </blockquote>
+        <h2><a name="Concentrator translators"></a>Concentrator translators</h2>
+        <p>Examples of translators that can be used for concentrator connections: pcd, imma, abln, corn, maes, ...</p>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\btm\btm_config\selectionbrowserheader.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>BTM - Blood selection browser header in HTML</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4092"></a>
+            <MadCap:concept term="Blood transfusion" /><a name="kanchor383"></a>BTM - Example of Selection browser
+header in HTML format</h1><pre>&lt;html&gt;
+&lt;body bgcolor="#FFFFCC"&gt;
+&lt;table border=0 &gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+&lt;font face="Trebuchet MS"&gt;&lt;i&gt;&lt;u&gt;{=.Object.Externalization}&lt;/u&gt;&lt;/i&gt;&lt;/font&gt;
+    &lt;/td&gt;
+    &lt;td align=right&gt;&lt;font face="Trebuchet MS"&gt; &lt;i&gt; Blood group: &lt;/i&gt;&lt;/font&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+&lt;strong&gt;&lt;font face="Courier New" size=7 color="#0000FF"&gt;
+ {=EnumeratedToString("bloodgroup",.Object.Person().GetMedicalRecord().Bloodgroup) + " " +
+EnumeratedToString("bloodrhesus", .Object.Person().GetMedicalRecord().Rhesus)}
+&lt;/font&gt;&lt;/strong&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;
+&lt;font face="Trebuchet MS"&gt; &lt;i&gt;Ward:  &lt;/i&gt;&lt;/font&gt;&lt;font face="Comic Sans MS" size="3"&gt;{:
+String Ward;
+Ward := .Object.Person().Stay().Ward.Name;
+IF Ward = "" THEN Ward := .Object.Person().Stay().Ward.Mnemonic;ENDIF;
+RETURN Ward;
+}&lt;/font&gt;
+    &lt;/td&gt;
+    &lt;td align=right&gt;
+&lt;font face="Trebuchet MS"&gt;&lt;i&gt;Rhesus fenotype: &lt;/i&gt;&lt;/font&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+&lt;font face="Comic Sans MS" size=4 color="#0000FF"&gt;&lt;strong&gt;
+{:
+Logical GroteC;
+Logical KleineC;
+Logical GroteE;
+Logical KleineE;
+String List;
+GroteC:= .Object.Person().GetAntigen("C");
+KleineC:= .Object.Person().GetAntigen("c");
+GroteE:= .Object.Person().Getantigen("E");
+KleineE:= .Object.Person().Getantigen("e");
+IF GroteC OR KleineC OR GroteE or KleineE
+THEN
+ List := IF GroteC AND NOT KleineC THEN
+"CC" ELSE IF GroteC AND
+KleineC THEN "Cc" ELSE IF
+NOT GroteC AND NOT KleineC
+THEN "cc" ELSE "??";
+ List := List + IF GroteE and NOT KleineE THEN
+"EE" ELSE IF GroteE AND
+KleineE THEN "Ee" ELSE IF
+NOT GroteE AND NOT KleineE
+THEN "ee" ELSE "??";
+ENDIF;
+return List;
+}
+&lt;/strong&gt;&lt;/font&gt;
+     &lt;/td&gt;
+   &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </body>
+</html>

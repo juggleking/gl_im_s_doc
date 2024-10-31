@@ -1,0 +1,40 @@
+/*** ANTIBIOTIC ***/
+
+IF .Type = StringToEnumerated("ObservationalResultType", "Antibiotic") THEN
+	
+	sValue := IfKnownString(.Value);
+	sMnemonic := IfKnownString(.Mnemonic);
+	sValue := .Value;
+	sValCode := "1";
+	sCorCode := "0";
+	
+	IF .SubId = ? THEN
+		sOutput := sPrefix + "_ANTIB\    Antibiogramme\\\C\" + sValue + "\" + sValCode + "\" + sCorCode + "\";
+	ELSE
+	
+		IF .SubId = 1 THEN
+			sOutput := .Value + chr(10) +
+				sPrefix + "_ANTIB\    Antibiogramme\\\C\---------------------------------------------------\" + sValCode + "\" + sCorCode + "\" + chr(10) +
+				sPrefix + "_ANTIB\    Antibiogramme\\\C\Antibiotiques                   (1) (2) (3) (4) (5)\" + sValCode + "\" + sCorCode + "\" + chr(10) +
+				sPrefix + "_ANTIB\    Antibiogramme\\\C\---------------------------------------------------\" + sValCode + "\" + sCorCode + "\" + chr(10) +
+				sPrefix + "_ANTIB\    Antibiogramme\\\C\" + substr(Lpad(sMnemonic, 30, " "),1,30) + " : " + 
+				Lpad(IfKnownString(Entry(1, ExtractTag("RIS", sValue, "\"), ",")) + "   " + 
+				IfKnownString(Entry(2, ExtractTag("RIS", sValue, "\"), ",")) +  "   " + 
+				IfKnownString(Entry(3, ExtractTag("RIS", sValue, "\"), ",")) + "   " +
+				IfKnownString(Entry(4, ExtractTag("RIS", sValue, "\"), ",")) + "   " +
+				IfKnownString(Entry(5, ExtractTag("RIS", sValue, "\"), ",")),18," ") + "\" + sValCode + "\" + sCorCode + "\";
+		ENDIF;
+		
+		IF .SubId > 1 THEN
+			sOutput := .Value + chr(10) +
+				sPrefix + "_ANTIB\    Antibiogramme\\\C\" + substr(Lpad(sMnemonic, 30, " "),1,30) + " : " + 
+				Lpad(IfKnownString(Entry(1, ExtractTag("RIS", sValue, "\"), ",")) + "   " + 
+				IfKnownString(Entry(2, ExtractTag("RIS", sValue, "\"), ",")) + "   " + 
+				IfKnownString(Entry(3, ExtractTag("RIS", sValue, "\"), ",")) + "   " + 
+				IfKnownString(Entry(4, ExtractTag("RIS", sValue, "\"), ",")) + "   " + 
+				IfKnownString(Entry(5, ExtractTag("RIS", sValue, "\"), ",")),18," ") + "\" + sValCode + "\" + sCorCode + "\";
+		ENDIF;
+	ENDIF;
+ENDIF;
+
+RETURN sOutput;}

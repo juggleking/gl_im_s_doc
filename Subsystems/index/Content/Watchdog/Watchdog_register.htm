@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Watchdog|Setup">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Resources/StyleSheets/samplenet_glims.css" rel="stylesheet" type="text/css" /><title>Registering Watchdog</title>
+        <link href="" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Registering the Watchdog service/daemon</h1>
+        <p class="Body">When configuring <a href="Watchdog_about.htm">Watchdog</a> 
+ for the first time, you need to:</p>
+        <ol>
+            <li value="1"><a href="Watchdog_XML_control_service.htm">Define 
+	 an XML control service</a>.</li>
+            <li value="2">Register Watchdog (see below).</li>
+            <li value="3"><a href="Watchdog_start.htm">Start 
+	 Watchdog</a>.</li>
+        </ol>
+        <h2>Register the Watchdog service/daemon</h2>
+        <p class="Body">To register Watchdog:</p>
+        <ol>
+            <li value="1">Go to the <span class="ui_element">Register</span> 
+	 window (<span class="ui_element">System Management</span> &gt; <span class="ui_element">Services</span> &gt; <span class="ui_element">Watchdog</span> 
+	 &gt; <span class="ui_element">Register</span>).</li>
+            <li value="2">Fill out the fields as appropriate 
+	 (see below).</li>
+            <li value="3">Click <span class="ui_element">OK</span>.</li>
+        </ol>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Make sure you register WatchDog on 
+		 the main application server. <MadCap:conditionalText data-mc-conditions="Primary.SampleNet only">See also <a href="Watchdog_in_a_multi-server_environment.htm">Watchdog 
+		 in a multi-server environment</a>.</MadCap:conditionalText></p>
+        </div>
+        <h3>Fields</h3>
+        <p style="font-weight: bold;">Service name</p>
+        <div class="indented">
+            <p>Service name is the name of the Windows service 
+ to be registered. Unless a Windows service with that name is already registered 
+ (e.g. when you have multiple application instances running on the same 
+ machine), it can be left to the default value.</p>
+        </div>
+        <p style="margin-left: 0px;font-weight: bold;">Folder</p>
+        <div class="indented">
+            <p>Folder is a reference to the folder where 
+ Watchdog is installed. It defaults to the "Watchdog" subfolder 
+ of the application root folder.</p>
+        </div>
+        <p class="body" style="font-weight: bold;">Server</p>
+        <div class="indented">
+            <p>Server contains the name or 
+ IP address of the server.</p>
+        </div>
+        <p class="body" style="margin-left: 0px;"><span style="font-weight: bold;">Port</span>
+        </p>
+        <div class="indented">
+            <p>The TCP/IP port where Watchdog 
+ is listening. &#160;</p>
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Do not register the 
+ Watchdog service using an alias to the etc/services file. &#160;The port 
+ needs to be numeric ! If not, the daemon log file will contain the following 
+ error message: "DaemonApplication - Argument &lt;port&gt; must be 
+ an integer".</p>
+            </div>
+        </div>
+        <p class="body" style="margin-left: 0px;font-weight: bold;background-color: Transparent;">User 
+ login name</p>
+        <div class="indented">
+            <p>User 
+ login name is a Windows user account that will be used to run the service. 
+ This account does not need administrator privileges but it needs the user 
+ right <span class="ui_element">Log on as a service</span>.</p>
+            <p>If 
+ running in a domain, use &lt;Domain name&gt;\&lt;Login name&gt;. Else, 
+ use &lt;Computer name&gt;\&lt;Login name&gt;.</p>
+        </div>
+        <p class="Body" style="font-weight: bold;">User password</p>
+        <div class="indented">
+            <p>User password is the user's Windows password.</p>
+        </div>
+    </body>
+</html>

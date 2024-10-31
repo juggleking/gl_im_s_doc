@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\term_server\jetstream\index.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>System requirements</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" data-mc-changes="16" />
+        <link href="../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css" rel="stylesheet" data-mc-changes="16" data-mc-stylesheet-type="table" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 style="text-align: left;">System requirements</h1>
+        <table cellpadding="0" cellspacing="7" border="0" data-mc-conditions="Primary.10_webhelp_only">
+            <tr>
+                <td width="100" align="left"><a target="_blank" href="system_requirements.pdf" title="System requirements in PDF format" alt="System requirements in PDF format"><img border="0" src="icon_pdf.png" onmouseover="this.className='highlight'" alt="" /></a>
+                </td>
+                <td>Click this icon to download the system requirements in PDF format</td>
+            </tr>
+        </table>
+        <h2>Warning</h2>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>The hardware requirements in this document are based on our experience with existing GLIMS 9 customers, the input we have got from Progress Software, and a series of stress tests we have performed in order to measure the impact of the new Application Server-based architecture on the server load.</p>
+            <p>These system requirements are known to be correct for GLIMS <span class="PrimaryCurrentVersion">9.9</span>. Today there is no reason to assume that future GLIMS versions will require major changes to these system requirements. However, these requirements may change over time.</p>
+        </div>
+        <h2>Document history</h2>
+        <p>&#160;</p>
+        <p>Current version: 9.9.1</p>
+        <p>Version date: 26/11/2019</p>
+        <p>&#160;</p>
+        <p>The following changes were made to the system requirements since GLIMS version 9.8:</p>
+        <ul>
+            <li value="1">Use OpenEdge 11.7.5</li>
+            <li value="2">Add support for Oracle 12.2</li>
+            <li value="3">Add support for Windows 2016</li>
+            <li value="4">Add support for Windows 2019</li>
+            <li value="5">Add support for SuSE Linux Enterprise Server 12</li>
+            <li value="6">Add support for SuSE Linux Enterprise Server 15</li>
+            <li value="7">Drop support for 32 bit Linux servers</li>
+            <li value="8">Rephrase requirements for GLIMS in multi site environments and in virtual environments</li>
+            <li value="9">Increase disk space requirements due to the new Progress OpenEdge version</li>
+            <li value="10">Add .NET Framework version requirements</li>
+            <li value="11">Increase memory requirements on the application server in a multi-tier architecture</li>
+            <li value="12">Clarify that latency requirements are about roundtrip latency</li>
+            <li value="13">Increase CoreMark requirements</li>
+            <li value="14">Allow slightly higher network latencies</li>
+            <li value="15">Use JRE 1.8 instead of JRE 1.7 + clarify Java license policy</li>
+            <li value="16">Rephrase how GLIMS runs as a 32 bit application on a 64 bit Windows</li>
+        </ul>
+        <p>&#160;</p>
+        <h2>Terminology</h2>
+        <p class="fieldlabel">Database server</p>
+        <div class="indented">
+            <p>The server running the database processes. Fully separating the database from the application is only supported when running on an Oracle database.</p>
+        </div>
+        <p class="fieldlabel">Application server</p>
+        <div class="indented">
+            <p>In a “multi server architecture” this is the server running GLIMS communication processes, task schedulers and Application Servers. When running out of interface connections in the “single server architecture”, an additional application server can be added.</p>
+        </div>
+        <p class="fieldlabel">Remote desktop server</p>
+        <div class="indented">
+            <p>The server running the GLIMS clients in a Windows Terminal Server / Citrix environment.</p>
+        </div>
+        <p class="fieldlabel">GLIMS Report Builder print server</p>
+        <div class="indented">
+            <p>GLIMS clients and task schedulers can send their print jobs to one or more dedicated print servers instead of processing the print job locally. This improves printing speed, reduces the amount of data sent to remote sites and allows defining the Windows printers on a single machine instead of defining them on all GLIMS clients.</p>
+        </div>
+        <p class="fieldlabel">Fat client</p>
+        <div class="indented">
+            <p>A PC running a locally installed GLIMS client.</p>
+        </div>
+        <p class="fieldlabel">Single-tier architecture </p>
+        <div class="indented">
+            <p>In this architecture, both the database and the application (application servers, communication services and task schedulers) are running on the same machine.</p>
+        </div>
+        <p class="fieldlabel">Multi-tier architecture</p>
+        <div class="indented">
+            <p>In this architecture, the database and the application are each running on their dedicated server. Only supported when running on an Oracle database!</p>
+        </div>
+        <p class="fieldlabel">Interface</p>
+        <div class="indented">
+            <p>This is a connection with an external software package. Examples are analyzer connections, hospital information system connections, lab-2-lab connections etc … </p>
+        </div>
+        <p>&#160;</p>
+        <h2>Server requirements</h2>
+        <h3>Single-tier architecture</h3>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Small</p>
+                        <p>&lt; 800 orders/day</p>
+                        <p>&lt; 40 clients</p>
+                        <p>&lt; 25 interfaces</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Medium </p>
+                        <p>&lt;1600 orders/day</p>
+                        <p>&lt; 80 clients</p>
+                        <p>&lt; 50 interfaces</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>	Large </p>
+                        <p>&lt;3200 orders/day</p>
+                        <p>&lt; 100 clients</p>
+                        <p>&lt; 75 interfaces (UNIX)<br />&lt; 50 interfaces (Windows)<br /></p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2" rowspan="2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium</b>
+                        </p>
+                        <p>8 vCPUs</p>
+                        <p>e.g. 4 hyper threaded  physical cores or 8 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel
+ Xeon / Itanium</b>
+                        </p>
+                        <p>16 vCPUs</p>
+                        <p>e.g. 8 hyper threaded  physical cores or 16 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p><b>Intel
+ Xeon / Itanium</b>
+                        </p>
+                        <p>24 vCPUs</p>
+                        <p>e.g. 12 hyper threaded physical cores or 24 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>1 core, 4 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>2 cores, 8 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>3 cores, 12 threads
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">&gt; 14.000 Iterations/second per core</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Windows: 8 GB
+</p>
+                        <p>Unix: 8 GB
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Windows: 12 GB
+</p>
+                        <p>Unix: 16 GB
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p>Windows: 16 GB
+</p>
+                        <p>Unix: 32 GB
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Hard disk expected IOPS on the database disk<br /></td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">150&#160;IOPS</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">300&#160;IOPS</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">450 IOPS</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Hard disk layout</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">
+                        <p>When using <b>local disks</b>, the minimum amount of disks depends on the type of disk and the required amount of IOPS. As a rule of thumb, one standard SAS drive can provide between 150 and 200 IOPS. Higher amounts of IOPS can be obtained by configuring the disks in stripe sets. Every disk should be mirrored for safety and performance reasons.</p>
+                        <p>3 logical disks must be created in RAID 10 (mirroring + striping):</p>
+                        <p>-	A logical disk for the OS and the application (Example: drive C: + D:)</p>
+                        <p>-	A logical disk for the database (Example: drive E:)</p>
+                        <p>-	A logical disk for the backup (Example: drive F:)</p>
+                        <p>Minimum 10k RPM (15k RPM is recommended) for OS + DB.</p>
+                        <p>The use of a <b>SAN</b> is supported. In this case GLIMS needs at least one LUN for the database and one LUN for the backup. The application can be installed either on a local disk or on a third LUN. The use of Fibre Channel access to the disks is strongly recommended. iSCSI and NFS should be used with caution.  Depending on the capabilities of the SAN hardware, data and indexes can be spread over multiple LUNs using different disks and different controllers. This will further improve performance.</p>
+                        <p>The use of RAID5 should be avoided for performance reasons.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2" rowspan="2">Hard disk size</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">On average, the following disk sizes should be sufficient to keep 5 years of routine data online:</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Application: 50 Gb
+</p>
+                        <p>Database: 80 Gb
+</p>
+                        <p>Backup: 80 Gb
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Application: 50 Gb
+</p>
+                        <p>Database: 160 Gb
+</p>
+                        <p>Backup: 160 Gb
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p>Application: 50 Gb
+</p>
+                        <p>Database: 300 Gb
+</p>
+                        <p>Backup: 300 Gb
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">
+                        <p colspan="3">1 Gbit network connection</p>
+                        <p colspan="3">The roundtrip latency between the Glims server and its clients (either running on PCs in the lab or on a remote desktop server) should not be higher than 500 microseconds on average <sup>(2)</sup>. 
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">Supporting at least 1280 x 1024 x 24-bit resolution and color depth</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">Backup</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2" colspan="3">OS compliant tape backup system, or a centralised backup solution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <p>(<sup>2</sup>) This can be tested with hrPing (<a href="">http://www.cfos.de/en/ping/ping.htm</a>) on Windows or with the standard ping command on UNIX.</p>
+        <h3>Multi-tier Architecture</h3>
+        <h4>Database server</h4>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Small</p>
+                        <p>&lt; 800 orders/day</p>
+                        <p>&lt; 40 clients</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Medium </p>
+                        <p>&lt;1600 orders/day</p>
+                        <p>&lt; 80 clients</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>	Large </p>
+                        <p>&lt;3200 orders/day</p>
+                        <p>&lt; 100 clients</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2" rowspan="2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium</b>
+                        </p>
+                        <p>4 vCPUs</p>
+                        <p>e.g. 2 hyper threaded physical  cores or 4 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium</b>
+                        </p>
+                        <p>8 vCPUs</p>
+                        <p>e.g. 4 hyper threaded physical  cores or 8 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium</b>
+                        </p>
+                        <p>16 vCPUs</p>
+                        <p>e.g. 8 hyper threaded  physical cores or 16 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>1 core, 4 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>1 core, 4 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>2 cores, 8 threads
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">&gt; 14.000 Iterations/second per core</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">8 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">16 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">32 GB</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">
+                        <p>Hard disk expected IOPS on the database disk</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">150 IOPS</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">300 IOPS</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">450 IOPS</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Hard disk layout</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">
+                        <p>When using <b>local disks</b>, the minimum amount of disks depends on the type of disk and the required amount of IOPS. As a rule of thumb, one standard SAS drive can provide between 150 and 200 IOPS. Higher amounts of IOPS can be obtained by configuring the disks in stripe sets. Every disk should be mirrored for safety and performance reasons.</p>
+                        <p>3 logical disks must be created in RAID 10 (mirroring + striping):</p>
+                        <p>-	A logical disk for the OS and the application (Example: drive C: + D:)</p>
+                        <p>-	A logical disk for the database (Example: drive E:)</p>
+                        <p>-	A logical disk for the backup (Example: drive F:)</p>
+                        <p>Minimum 10k RPM (15k RPM is recommended) for OS + DB.</p>
+                        <p>The use of a <b>SAN</b> is supported. In this case GLIMS needs at least one LUN for the database and one LUN for the backup. The application can be installed either on a local disk or on a third LUN. The use of Fibre Channel access to the disks is strongly recommended. iSCSI and NFS should be used with caution.  Depending on the capabilities of the SAN hardware, data and indexes can be spread over multiple LUNs using different disks and different controllers. This will further improve performance.</p>
+                        <p>The use of RAID5 should be avoided for performance reasons.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2" rowspan="2">Hard disk size</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">On average, the following disk sizes should be sufficient to keep 5 years of routine data online:</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Application: 10 Gb</p>
+                        <p>Database: 80 Gb</p>
+                        <p>Backup: 80 Gb</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p>Application: 10 Gb</p>
+                        <p>Database: 160 Gb</p>
+                        <p>Backup: 160 Gb</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p>Application: 10 Gb</p>
+                        <p>Database: 300 Gb</p>
+                        <p>Backup: 300 Gb</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">
+                        <p colspan="3">1 Gbit network connection</p>
+                        <p colspan="3">The roundtrip latency between the database server and the Glims application server, clients or remote desktop server should not be higher than 500 microseconds on average <sup>(2)</sup>. 
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">No special requirements</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">Backup</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2" colspan="3">OS compliant tape backup system, or a centralized backup solution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <p>(<sup>2</sup>) This can be tested with hrPing (<a href="">http://www.cfos.de/en/ping/ping.htm</a>) on Windows or with the standard ping command on UNIX.</p>
+        <div class="pagebreakbefore">
+        </div>
+        <h4>Application server</h4>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Small</p>
+                        <p>&lt; 40 clients</p>
+                        <p>&lt; 25 interfaces</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Medium </p>
+                        <p>&lt; 80 clients</p>
+                        <p>&lt; 50 interfaces</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>	Large </p>
+                        <p>&lt; 100 clients</p>
+                        <p>&lt; 75 interfaces (UNIX)<br />&lt; 50 interfaces (Windows)</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2" rowspan="2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium
+</b>
+                        </p>
+                        <p>4 vCPUs</p>
+                        <p>e.g. 2 hyper threaded physical cores or 4 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium
+</b>
+                        </p>
+                        <p>8 vCPUs</p>
+                        <p>e.g. 4 hyper threaded physical cores or 8 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p><b>Intel Xeon / Itanium
+</b>
+                        </p>
+                        <p>16 vCPUs</p>
+                        <p>e.g. 8 hyper threaded physical cores or 16 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p>1 core, 4 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <p><b>IBM Power7</b> </p>
+                        <p>1 cores, 4 threads
+</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <p><b>IBM Power7
+</b>
+                        </p>
+                        <p> 2 cores, 8 threads
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">&gt; 14.000 Iterations/second per core</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">8 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">12 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">16 GB</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Hard disk</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">50 GB of free space</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">
+                        <p colspan="3">1 Gbit network connection</p>
+                        <p colspan="3">The roundtrip latency between the database server and the Glims application server should not be higher than 500 microseconds on average <sup>(2)</sup>. 
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">Supporting at least 1280 x 1024 x 24-bit resolution and colour depth</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body3">Backup</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body3" colspan="3">OS compliant tape backup system, or a centralised backup solution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <p>(<sup>2</sup>) This can be tested with hrPing (<a href="">http://www.cfos.de/en/ping/ping.htm</a>) on Windows or with the standard ping command on UNIX.</p>
+        <h4>Remote desktop server</h4>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Up to 16 users</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Up to 32 users</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>	Up to 48 users</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon</b>
+                        </p>
+                        <p>8 vCPUs</p>
+                        <p>e.g. 4 hyper threaded  physical cores or 8 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Xeon</b>
+                        </p>
+                        <p>16 vCPUs</p>
+                        <p>e.g. 8 hyper threaded  physical cores or 16 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p><b>Intel Xeon</b>
+                        </p>
+                        <p>24 vCPUs</p>
+                        <p>e.g. 12 hyper threaded  physical cores or 24 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">&gt; 14.000 Iterations/second per core</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">8 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">12 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">16 GB</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Hard disk</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">50 GB of free space</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">
+                        <p colspan="3">1 Gbit network connection
+</p>
+                        <p colspan="3">The roundtrip latency between the database server and the remote desktop server should not be higher than 500 microseconds on average <sup>(2)</sup>. 
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">Supporting at least 1280 x 1024 x 24-bit resolution and colour depth</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">Backup</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2" colspan="3">OS compliant tape backup system, or a centralised backup solution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <p>(<sup>2</sup>) This can be tested with hrPing (<a href="">http://www.cfos.de/en/ping/ping.htm</a>) on Windows or with the standard ping command on UNIX.</p>
+        <div class="pagebreakbefore">
+        </div>
+        <h4>GLIMS&#160;Report builder print server</h4>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Small</p>
+                        <p>&lt;1200 reports/hour</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Medium</p>
+                        <p>&lt;1600 reports/hour</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>	Large</p>
+                        <p>&lt;2000 reports/hour</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Core / Xeon</b>
+                        </p>
+                        <p>2 vCPUs</p>
+                        <p>e.g. 1 hyper threaded  physical core or 2 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p><b>Intel Core / Xeon</b>
+                        </p>
+                        <p>4 vCPUs</p>
+                        <p>e.g. 2 hyper threaded  physical cores or 4 virtual cores</p>
+                        <p>2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p><b>Intel Core / Xeon
+</b>
+                        </p>
+                        <p>8 vCPUs</p>
+                        <p>e.g. 4 hyper threaded physical  cores or 8 virtual cores
+</p>
+                        <p>2.4 GHz or better
+
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">&gt; 12.000 Iterations/second per core</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">4 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">6 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">8 GB</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Hard disk</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">50 GB of free space</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2" colspan="3">100 Mbit or 1 Gbit network adapter (recommended)</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3" colspan="3">No special requirements</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">Backup</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2" colspan="3">OS compliant tape backup system, or a centralised backup solution</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <h4>Multi-site environments</h4>
+        <p>When using GLIMS in a multi-site environment over a Wide Area Network (WAN), <b>the usage of a Remote Desktop Server is always required</b>, independent of the bandwidth between the sites.</p>
+        <p>GLIMS is evolving towards a full three tier application model (database + application server + thin clients), but older parts of GLIMS are still client/server based. A client/server application sends many small packets over the network by nature, which makes these parts of the application sensible to network latency. Even when the available bandwidth meets the system requirements, a higher latency, as often observed on a WAN, is known to cause performance problems.</p>
+        <p>&#160;</p>
+        <h4>Requirements for GLIMS in virtual environments</h4>
+        <p>The requirements above apply both to physical and virtual environments.</p>
+        <p>The assigned resources must be dedicated to Glims, at least in a production environment. <b>CPU and memory sharing ("overallocation" or "overprovisioning") is not allowed</b>.</p>
+        <p>All kinds of power management introduce extra latency and should be disabled at all levels (BIOS, VMWare, Windows).</p>
+        <p>Please also read the document “MIPS Position Statement Customer Use and Support of GLIMS and SampleNet in Virtual environments”.</p>
+        <p>&#160;</p>
+        <div class="pagebreakbefore">
+        </div>
+        <h3>Software</h3>
+        <h4>Supported server operating systems</h4>
+        <p class="fieldlabel">Windows</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">Both 32-bit and 64-bit Windows are supported, but in the current version GLIMS still runs as a 32 bit application.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">&#160;</p>
+        <ul>
+            <li value="1">
+                <p>Windows 2008 R2</p>
+            </li>
+            <li value="2">
+                <p>Windows 2012, Windows 2012 R2</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">Windows 2012 R2 is only supported by Glims 9.5.4 and higher</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li value="1">
+                <p>Windows 2016, Windows 2019</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">Windows 2016 and 2019 are only supported by Glims 9.8.10 and higher</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p class="fieldlabel">UNIX</p>
+        <ul>
+            <li value="1">Solaris 10</li>
+            <li value="2">Solaris 11</li>
+            <li value="3">AIX 6.1</li>
+            <li value="4">AIX 7.1</li>
+            <li value="5">SuSE Linux Enterprise Server 11 SP3</li>
+            <li value="6">SuSE Linux Enterprise Server 12</li>
+            <li value="7">SuSE Linux Enterprise Server 15</li>
+            <li value="8">CentOS 6.6 and higher</li>
+            <li value="9">CentOS 7.0 and higher</li>
+            <li value="10">RedHat 6.6 and higher</li>
+            <li value="11">RedHat 7.0 and higher</li>
+            <li value="12">Oracle&#160;Linux 6.6 and higher</li>
+            <li value="13">Oracle Linux 7.0 and higher</li>
+            <li value="14">HP-UX 11i v3 (Itanium)<br /></li>
+        </ul>
+        <div class="indented">
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">Only 64 bits operating systems are supported as of GLIMS version 9.9</li>
+                </ul>
+            </div>
+        </div>
+        <p>&#160;</p>
+        <h4>Support policy related to operating system patches (including Windows Updates)</h4>
+        <p>MIPS doesn’t validate individual operating system patches in a proactive way. However, we commit ourselves to investigate and, if possible, resolve the problems when they occur. We encourage our customers to test the operating system patches in a test environment first.</p>
+        <p>&#160;</p>
+        <div class="pagebreakbefore">
+        </div>
+        <h4><a name="Supporte"></a>Supported Progress version</h4>
+        <p>Progress <b>OpenEdge 11.7.5 </b> is required. </p>
+        <p>&#160;</p>
+        <h4>Supported Oracle versions</h4>
+        <ul>
+            <li value="1">Oracle Database 11.2.0.1</li>
+            <li value="2">Oracle Database 12.1.0.1 </li>
+            <li value="3">Oracle Database 12.2.0.1</li>
+        </ul>
+        <div class="indented">
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">Higher corrective versions of the same Oracle release (e.g.  11.2.0.4, 12.1.0.2…) are also supported, and even recommended.</li>
+                    <li value="2">Oracle 18c, 19c and higher are considered as new Oracle releases that are not supported yet.</li>
+                    <li value="3">The Standard Edition is sufficient, but the Enterprise Edition + Diagnostic Pack offer better means for performance troubleshooting. When using the Standard Edition, MIPS cannot perform detailed performance troubleshooting at the database level.</li>
+                    <li value="4">On Windows, a 32-bit Oracle client is required.</li>
+                    <li value="5">Having a 32-bit Oracle client and a 64-bit Oracle database on the same server (the only possibility in single tier architecture on 64 bit Windows systems) is supported since GLIMS 9.8</li>
+                </ul>
+            </div>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <h4>Supported Java versions</h4>
+        <p>Glims <span class="PrimaryCurrentVersion">9.9</span> requires two Java versions to be installed on the server:</p>
+        <ul>
+            <li value="1">Server &#160;JRE 1.8.0 update 181</li>
+            <li value="2">JDK 1.8.0 update 144 (when using Web services or KV-Connect)</li>
+        </ul>
+        <p>&#160;</p>
+        <p>The GLIMS version for Windows is shipped with the required Java components. On UNIX systems, the listed Java components (or their equivalents if there is no&#160;Oracle Java available for the target platform) need to be available before installing Glims <span class="PrimaryCurrentVersion">9.9</span>.</p>
+        <p>&#160;</p>
+        <p>Note that the required Java versions for GLIMS <span class="PrimaryCurrentVersion">9.9</span> are not impacted by the Oracle license policy change, so these versions can still be used free of charge. However, if higher Java versions are being used, the customer must acquire the appropriate Java licenses.</p>
+        <p>&#160;</p>
+        <h4>Compilers and scripting engines</h4>
+        <p style="font-weight: bold;">&#160;</p>
+        <p style="font-weight: bold;">Windows</p>
+        <p>The GLIMS&#160;version for Windows version is shipped with precompiled binaries. </p>
+        <p>VBScript must be enabled in order to run the MIPS Application&#160;Management scripts.</p>
+        <p>OpenEdge 11.7 requires .NET&#160;Framework 4.6</p>
+        <p>&#160;</p>
+        <p style="font-weight: bold;">UNIX</p>
+        <p>On UNIX systems, a platform specific compiler must be available before installing GLIMS <span class="PrimaryCurrentVersion">9.9</span>:</p>
+        <ul>
+            <li value="1">Linux: GNU gcc and g++</li>
+            <li value="2">AIX: IBM&#160;XL&#160;C</li>
+            <li value="3">HP-UX: HP C/aC++ Developer's Bundle</li>
+            <li value="4">Solaris: Sun&#160;Studio /&#160;Oracle Developer Studio</li>
+        </ul>
+        <p>All platform independent scripts are written in <i>ksh</i>.</p>
+        <p>&#160;</p>
+        <h2>Client requirements</h2>
+        <h3>Hardware</h3>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 159px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" style="width: 392px;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">&#160;</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">
+                        <p>Fat client</p>
+                    </th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">
+                        <p>Thin client</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Processor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p>Intel Core i3 2.4 GHz or better</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">
+                        <p>Intel Pentium IV 2.4 GHz</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">CoreMark (<sup>1</sup>)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">&gt; 12.000 Iterations/second per core</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">N/A</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">RAM</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">4 GB</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">512MB</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Hard disk</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">50 GB  free space</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">-</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Network</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">
+                        <p>100 Mbit or 1 Gbit network adapter (recommended)
+</p>
+                        <p>The roundtrip latency between the database server and the Glims clients should not be higher than 500 microseconds on average
+<sup>(2)</sup>.</p>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">100 Mbit network adapter</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body3">Monitor</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body3" colspan="2">Supporting at least 1280 x 1024 x 24-bit resolution and colour depth</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>(<sup>1</sup>) CoreMark is an industry standard CPU benchmarking tool, published by EEBMC (http://www.eembc.org/coremark). </p>
+        <p>(<sup>2</sup>) This can be tested with hrPing (<a href="">http://www.cfos.de/en/ping/ping.htm</a>) on Windows or with the standard ping command on UNIX.</p>
+        <h3>Software</h3>
+        <h4>Supported Client Operating Systems</h4>
+        <div class="text_box_notes"><span style="color: #616E14; font-weight: bold;">Notes</span>
+            <br />Both 32-bit and 64-bit Windows are supported, but in the current version GLIMS still runs as a 32 bit application.</div>
+        <p>&#160;</p>
+        <ul>
+            <li value="1">Windows 7</li>
+            <li value="2">Windows 8</li>
+            <li value="3">Windows 8.1</li>
+            <li value="4">Windows 10</li>
+        </ul>
+        <p>&#160;</p>
+        <h4>Support policy related to Windows Updates</h4>
+        <p>MIPS doesn’t validate individual operating system patches in a proactive way. However, we commit ourselves to investigate and, if possible, resolve the problems when they occur. We encourage our customers to test the operating system patches in a test environment first.</p>
+        <h4>Supported Progress version</h4>
+        <p>Progress <b>OpenEdge 11.7.5 </b> is required</p>
+        <div class="pagebreakbefore">
+        </div>
+        <h4>Supported Oracle versions</h4>
+        <ul>
+            <li value="1">Oracle Client 11.2.0.1</li>
+            <li value="2">Oracle Client 12.1.0.1</li>
+            <li value="3">Oracle Client 12.2.0.1</li>
+        </ul>
+        <div class="indented">
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">Higher corrective versions of the same Oracle release (e.g. 11.2.0.4, 12.1.0.2, …) are also supported, and even recommended.</li>
+                    <li value="2">Oracle 18c, 19c and higher are considered as new Oracle releases that are not supported yet.</li>
+                    <li value="3">A 32-bit Oracle client is required.</li>
+                </ul>
+            </div>
+        </div>
+        <p>&#160;</p>
+        <h2>Progress OpenEdge Licenses</h2>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">&#160;</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">Server</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">Client</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">Progress OpenEdge database</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">
+                        <ul>
+                            <li value="1">OpenEdge Enterprise RDBMS</li>
+                            <li value="2">OpenEdge Application Server Enterprise</li>
+                            <li value="3">Client Networking</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">
+                        <ul>
+                            <li value="1">Client Networking</li>
+                            <li value="2">OpenEdge Personal RDBMS</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">Oracle Database</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column2-Body2">
+                        <ul>
+                            <li value="1">OpenEdge DataServer for Oracle</li>
+                            <li value="2">OpenEdge Application Server Enterprise</li>
+                            <li value="3">Client Networking</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2">
+                        <ul>
+                            <li value="1">Client Networking</li>
+                            <li value="2">OpenEdge DataServer for Oracle</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <div class="text_box_notes"><span style="color: #616E14; font-weight: bold;">Notes</span> <br />The "OpenEdge Personal RDBMS" license allows clients to read the static information (translations, database scheme information, ...) from a local copy of the genro database. This impoves the GLIMS performance. Older customers might not have this license.<br />When using an&#160;Oracle database, the static information is always fetched from the database.<br /></div>
+        <p>&#160;</p>
+        <h2>Known incompatibilities</h2>
+        <p>GLIMS is being deployed in various customer environments, often living together with outer third party products. Some of these products are known to have minor or major incompatibilities with GLIMS. The table below contains a non-exhaustive list of the currently known incompatibilities and their solution or workaround, if available.</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');mc-table-style-original: url('../../Resources/TableStyles/FirstColumnHeaderLabels_AlternatingRows.css');" class="TableStyle-FirstColumnHeaderLabels_AlternatingRows" cellspacing="1">
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column1" style="width: 25%;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" style="width: 25%;" />
+            <col class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Column-Column2" />
+            <thead>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Head-Header1">
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column1-Header1">Program</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadE-Column2-Header1">Symptom</th>
+                    <th class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-HeadD-Column2-Header1">Solution / Workaround</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body2">Palo Alto&#160;Traps</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body2">Performance problems</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body2">Not known at the time of writing.<br />Contact the&#160;Palo&#160;Alto product support.</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body3">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column1-Body3">VMWare ESXi 6.0 and earlier</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyE-Column2-Body3">Network performance problems when using Windows 2012 (R2)</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyD-Column2-Body3">Upgrade to ESXi 6.0 Update 2 or higher</td>
+                </tr>
+                <tr class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-Body-Body2">
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column1-Body2">VMWare ESXi 6.0 and newer</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyB-Column2-Body2">Network performance problems when the server load increases</td>
+                    <td class="TableStyle-FirstColumnHeaderLabels_AlternatingRows-BodyA-Column2-Body2">
+                        <p>Disable adaptive interrupt coalescing on the network interface</p>
+                        <p>To do so through the vSphere Client, go to <b>VM Settings -&gt; Options tab -&gt; Advanced General -&gt; Configuration Parameters</b> and add an entry for <span style="font-family: 'Courier New';"><span style="font-size: 9pt;">ethernetX.coalescingScheme</span></span><span style="font-size: 9pt;"> </span>with the value of <span style="font-family: 'Courier New'; font-size: 9pt;">disabled</span> (replace X by the number of the NIC).</p>
+                        <p>
+                            <br />
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\kvdt\billing_05.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order based MISPL functions</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2903"></a>
+            <MadCap:concept term="Billing" />Order based MISPL functions</h1>
+        <h4><a name="_Ref451587630"></a>The CheckKVDT MISPL function</h4>
+        <blockquote>
+            <p>The order-based CheckKVDT MISPL function serves to verify if an order contains all the
+ necessary data required for KV-DT billing. It will create a dummy 0102 or 0104 record and
+ verify all official tests. All fields are tested, except for the 5xxx field that contain
+ the GNR and related fields: these are only known after billing. The syntax for the
+ function is </p>
+        </blockquote>
+        <blockquote>
+            <blockquote>
+                <p>.CheckKVDT(TheDate, OKVKennung, CharacterSet)<br />
+    DATE TheDate;<br />
+    STRING OKVKennung;<br />
+    ENUMERATED CharacterSet;</p>
+            </blockquote>
+        </blockquote>
+        <blockquote>
+            <p>with 'TheDate' the date to use to calculate the quarter (important for KV-Specifika
+ files), 'OKVKennung' the OKV (not UKV) kennung of the KV and 'CharacterSet' an enumerated
+ giving the character set. The 'CheckKVDT' function returns a tagged list ('|' separated)
+ with all the errors. Use the 'ExtractTag()' function to extract the tags. The following
+ tags are presents:</p>
+        </blockquote>
+        <ol>
+            <ol>
+                <ol>
+                    <div align="left">
+                        <table border="1" cellspacing="1" bordercolor="#000000" cellpadding="7" width="568">
+                            <tr>
+                                <td width="23%" valign="top" bgcolor="#FFFFFF"><b>Tag</b>
+                                </td>
+                                <td width="77%" valign="top" bgcolor="#FFFFFF"><b>Description</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="23%" valign="TOP">NumberOfErrors</td>
+                                <td width="77%" valign="TOP">The number of errors found. 0 if no errors. Use this value to
+ establish how many 'Errortext_&lt;n&gt;' tags there are.</td>
+                            </tr>
+                            <tr>
+                                <td width="23%" valign="TOP">Errortext_&lt;n&gt;</td>
+                                <td width="77%" valign="TOP">The text describing each error. &lt;n&gt; goes from 1 to
+ 'NumberOfErrors'.</td>
+                            </tr>
+                            <tr>
+                                <td width="23%" valign="TOP">NumberOfWarnings</td>
+                                <td width="77%" valign="TOP">The number of warnings found. 0 if no ewarnings. Use this
+ value to establish how many 'Warningtext_&lt;n&gt;' tags there are.</td>
+                            </tr>
+                            <tr>
+                                <td width="23%" valign="TOP">Warningtext_&lt;n&gt;</td>
+                                <td width="77%" valign="TOP">The text describing each warning. &lt;n&gt; goes from 1 to
+ 'NumberOfWarnings'.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </ol>
+            </ol>
+        </ol>
+        <blockquote>
+            <p>The CheckKVDT() function should only be performed on orders that must be billed to the
+ KV. So before running the function, orders that have the wrong policy must be filtered
+ out. Also some orders for Kassen patienten can not be put on th eKV-DT file, depending on
+ the KV-Specifika file.</p>
+        </blockquote>
+        <h5><a name="_Ref451587952"></a>Example</h5>
+        <p>As an example a MISPL program that displays all errors and warnings:</p>
+        <blockquote>
+            <p>/*<br />
+  This MISPL checks if an order is complete with regard to the German <br />
+  KV-DT billing. Any errors are displayed.<br />
+  - the checks are only performed if the policy is EGO or BMÄ<br />
+  - the characterset must be set to th eone used for the KV_DT tapes.<br />
+  - Not all values of KTAB, scheinuntergruppe and abrechnungsgebiet can be billed<br />
+  via ADT (KV-DT). They can be billed using the normal paper-way...<br />
+  The customer must make sure using the "series" mechanism that such invoices are
+ not put<br />
+  on the tape.<br />
+  This MISPL will not check such orders, but will issue a warning that the order can not be
+ put<br />
+  on tape.<br />
+  You can use following MISPL functions,to determe if we have a KV series invs:</p>
+            <ul>
+                <li value="1">AllowedKTABValues(OKVKEnnung, QuarterQYY),which returns a comma seperated list of
+ allowed KTAB (FK 4106) values</li>
+                <li value="2">AllowedAbrechnungsgebietvalues(KostentraegerGruppe, OKVKennung, Quarter)</li>
+                <li value="3">AllowedScheinuntergruppeValues(OKVKennung, Quarter)</li>
+                <li value="4">Order.Referral().AbrechnungsGebiet()</li>
+                <li value="5">Order.Referral().Scheinuntergruppe()</li>
+            </ul>
+            <p>*/<br />
+  INTEGER NumberOfErrors;<br />
+  INTEGER NumberOfWarnings;<br />
+  INTEGER ErrorNum;<br />
+  INTEGER WarningNum;<br />
+  ENUMERATED CharacterSet;<br />
+  DATE TheDate;<br />
+  STRING OKVKennung;<br />
+  STRING ErrorString;<br />
+  STRING TagValue;<br />
+  STRING Policy;<br />
+  STRING KTAB;<br />
+  STRING AllowedKTABs;<br />
+  STRING PolicyName;<br />
+  STRING Scheinuntergruppe;<br />
+  STRING AllowedScheinuntergruppe;<br />
+  STRING Abrechnungsgebiet;<br />
+  STRING AllowedAbrechnungsgebiet;<br />
+  STRING TheQuarter;<br />
+  LOGICAL RetVal;<br />
+  LOGICAL IsValidKTAB;<br />
+  LOGICAL IsValidScheinuntergruppe;<br />
+  LOGICAL IsValidAbrechnungsgebiet;<br /><br />
+  IF .GetReferral().id = ?<br />
+  THEN<br />
+  &#160;&#160; MESSAGE("Warning: this order has no referral");<br />
+  &#160;&#160; RETURN FALSE;<br />
+  ENDIF;<br /><br /><br />
+  /* First set the characterset that you want to use. By preference, take <br />
+  the same one as is going to be used for the KV-DT tape itself. <br />
+  Possible values are IBM-437, German 7 bit, ISO 8859-1<br />
+  */<br />
+  CharacterSet := StringToEnumerated("XDTCharacterSet", "IBM-437");<br /><br />
+  /*<br />
+  Check if this is an KV-DT order. We verify this using the name<br />
+  of the Policy. If that is is EGO or BMÄ<br />
+  */<br /><br />
+  Policy := .OrderSet.LinkedFinance(1).PaymentAgreement.PolicyName.Policy.Mnemonic;<br />
+  PolicyName := .OrderSet.LinkedFinance(1).PaymentAgreement.PolicyName.Code;<br /><br />
+  IF Policy &lt;&gt; "EGO" AND Policy &lt;&gt; "BMÄ"<br />
+  THEN<br />
+  &#160;&#160; RetVal := TRUE; /* no need to check */<br />
+  ELSE <br />
+  &#160;&#160; /* Set the date and the OKV kennung */<br />
+  &#160;&#160; TheDate := DateTimeToDate(.ReceiptTime);<br />
+  &#160;&#160; TheQuarter := DateToString(TheDate, "%q%y");<br /><br /><br />
+  /* Set the OKV kennung to the correct value */<br />
+  OKVKennung := "46";<br /><br />
+  /* Check if it can be billed using KV-DT */<br />
+  /* check if KTAB is in the list of allowed values for KV (SpecifikaDatei) */<br />
+  AllowedKTABs := AllowedKTABValues(OKVKennung, TheQuarter);<br /><br />
+  /* KTAB value is part the policy name mnemonic(code) form = xxx_KT */<br />
+  KTAB := Entry(2, PolicyName, "_");<br />
+  IsValidKTAB := (KTAB &lt;&gt; "" AND LOOKUP(KTAB, AllowedKTABs, ",")
+ &gt; 0);<br />
+  IF NOT IsValidKTAB<br />
+  THEN<br />
+  &#160;&#160; MESSAGE("Warning; the KTAB value " + IfKnownString(KTAB) + "
+ can not be billed using KV-DT");<br />
+  &#160;&#160; RETURN FALSE;<br />
+  ELSE<br />
+  &#160;&#160; /* check Scheinuntergruppe */<br />
+  &#160;&#160; Scheinuntergruppe := .GetReferral().Scheinuntergruppe();<br />
+  &#160;&#160; AllowedScheinuntergruppe := <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ AllowedScheinuntergruppeValues(OKVKennung, TheQuarter);<br />
+  &#160;&#160; IsValidScheinuntergruppe := <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; (Scheinuntergruppe &lt;&gt; ""<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; AND LOOKUP(Scheinuntergruppe,
+ AllowedScheinuntergruppe, ",") &gt; 0); <br />
+  IF NOT IsValidScheinuntergruppe<br />
+  THEN<br />
+  &#160;&#160; MESSAGE("Warning; the Scheinuntergruppe value " +
+ IfKnownString(Scheinuntergruppe) + <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ " can not be billed using KV-DT");<br />
+  &#160;&#160; RETURN FALSE;<br />
+  ELSE<br />
+  &#160;&#160; /* check Abrechnungsgebiet */<br />
+  &#160;&#160; Abrechnungsgebiet := .GetReferral().AbrechnungsGebiet();<br />
+  &#160;&#160; AllowedAbrechnungsgebiet :=<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ AllowedAbrechnungsgebietvalues(Scheinuntergruppe, OKVKennung, TheQuarter);<br />
+  &#160;&#160; IsValidAbrechnungsgebiet := <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; (Abrechnungsgebiet &lt;&gt; "" <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; AND LOOKUP(Abrechnungsgebiet,
+ AllowedAbrechnungsgebiet, ",") &gt; 0);<br />
+  IF NOT IsValidAbrechnungsgebiet<br />
+  THEN<br />
+  &#160;&#160; MESSAGE("Warning; the Abrechnungsgebiet value " +
+ IfKnownString(Abrechnungsgebiet) + <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ " can not be billed using KV-DT for Scheinuntergruppe " +
+ IfKnownString(Scheinuntergruppe));<br />
+  &#160;&#160;&#160;&#160; RETURN FALSE;<br />
+  &#160;&#160;&#160;&#160; ENDIF;<br />
+  &#160; ENDIF;<br />
+  ENDIF;<br /><br />
+  /* Now check the order */<br />
+  ErrorString := .CheckKVDT(TheDate, OKVKennung, CharacterSet);<br /><br />
+  /* See if there are any errors */<br />
+  TagValue := ExtractTag("NumberOfErrors", ErrorString, "|");<br /><br />
+  NumberOfErrors := StringToInteger(TagValue);<br />
+  IF NumberOfErrors = 0<br />
+  THEN<br />
+  &#160;&#160; RetVal := TRUE;<br />
+  ELSE<br />
+  RetVal := FALSE;<br />
+  /* Display the errors */<br />
+  ErrorNum := 1;<br />
+  WHILE ErrorNum &lt;= NumberOfErrors<br />
+  &#160; DO<br />
+  &#160;&#160; TagValue := ExtractTag("Errortext_" + integertostring(ErrorNum,
+ "%d"), <br />
+  &#160;&#160;&#160;&#160;&#160; ErrorString, "|");<br />
+  &#160;&#160; Message("Error " + IntegerToString(ErrorNum, "%d") +
+ ": " + TagValue);<br />
+  &#160;&#160; ErrorNum := ErrorNum + 1;<br />
+  &#160; DONE;<br />
+  ENDIF;<br /><br />
+  /* See if there are any warnings */<br />
+  TagValue := ExtractTag("NumberOfWarnings", ErrorString, "|");<br />
+  NumberOfWarnings := StringToInteger(TagValue);<br />
+  /* Display the Warnings */<br />
+  WarningNum := 1;<br />
+  WHILE WarningNum &lt;= NumberOfWarnings<br />
+  DO<br />
+  &#160;&#160; TagValue := ExtractTag("Warningtext_" + integertostring(WarningNum,
+ "%d"), ErrorString, "|");<br />
+  &#160;&#160; Message("Warning " + IntegerToString(WarningNum, "%d") +
+ ": " + TagValue); WarningNum := WarningNum&#160;&#160;&#160;&#160; + 1;<br />
+  &#160;&#160; DONE; <br />
+  ENDIF;<br />
+  RETURN RetVal;<br /></p>
+        </blockquote>
+        <h4>GetReferral()</h4>
+        <p>GetReferral() is an order-based MISPL function that retrieves a reference to the
+Referral associated with this order (if any).</p>
+    </body>
+</html>

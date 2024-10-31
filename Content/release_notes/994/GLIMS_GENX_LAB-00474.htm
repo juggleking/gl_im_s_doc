@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Extend automatic approach plan selection for genetic exams (GLIMS_GENX_LAB-00474)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2869"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Extend automatic approach plan selection for genetic exams (GLIMS_GENX_LAB-00474)</h1>
+        <h2>Issue</h2>
+        <p>An issue was detected where the <a href="../../modules/genetics/routine/genetic_exam/g_e_screen.htm#Automati" xmlns="http://www.w3.org/1999/xhtml">automatic selection</a> of an approach plan for a genetic exam failed in some cases, even though there was only one possible approach available. The automatic selection of the single possible approach plan did not happen when the <a href="../../modules/genetics/config/approach_plans/a_p_usages.htm" xmlns="http://www.w3.org/1999/xhtml">approach plan usage</a> of this approach had no defined specific genetic procedure (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Only for genetic procedure</span>) and no specific material (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Only for material</span>), but did have an <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Extra condition function</span>. This problem occurred since GLIMS 9.9.2.</p>
+        <h2>Solution</h2>
+        <p>From now on, the automatic selection is no longer restricted based on the field values for <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Only for genetic procedure</span>,  <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Only for material</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Extra condition function</span>. The latter will be checked for availability. If this condition function returns FALSE or NO, the approach plan will not be available for the automatic selection.</p>
+        <p>Instead, the <a href="../../modules/genetics/config/approach_plans/a_p_usages.htm#Score" xmlns="http://www.w3.org/1999/xhtml">approach plan usage score</a> will be taken into account for the automatic selection. The highest available <span class="ui_element">Score</span> will be automatically selected, if not already used and if it is the only logical option (no other entry with identical score).</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p>A list with four approach plan usage entries with the following scores: 1, 10, 10, 30.</p>
+            <div class="indentedsmall" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">&gt;&#160;There is only one entry with the highest score, so the approach plan usage with the score of 30 is automatically selected.</p>
+            </div>
+            <p xmlns="http://www.w3.org/1999/xhtml">A list with four approach plan usage entries with the following scores: 1, 10, 30, 30.</p>
+            <div class="indentedsmall" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">&gt;&#160;There are two entries with the highest score of 30, so no approach plan usage is automatically selected.</p>
+            </div>
+        </div>
+    </body>
+</html>

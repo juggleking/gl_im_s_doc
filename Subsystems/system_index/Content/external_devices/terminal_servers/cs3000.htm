@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Connecting a terminal server">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="Microsoft Border" content="none, default" /><title>CS 3000</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor16"></a>
+            <MadCap:concept term="System management" />Terminal servers: CS 3000</h1>
+        <h2>Setting up the hardware</h2>
+        <h2>Configuring ports</h2>
+        <h3>Analyzer communication</h3>
+        <p>For each analyzer to be connected to the terminal server, you will have to configure a port for it.</p>
+        <ol>
+            <li class="kadov-p" value="1">Connect the analyzer using the appropriate cable (Standard db-25 connector). Plug in the cable in any port of the terminal server, and connect it to the serial interface of the analyzer.</li>
+            <li class="kadov-p" value="2">Start <em>telnet</em> from any workstation in the network to the terminal server. You can do this by going to the <em>Start</em>-menu -&gt; <em>Run...,</em> and type <em>telnet</em> + OK<em>.</em></li>
+            <li class="kadov-p" value="3">Go to the <em>Connect -&gt; Remote System</em> menu item</li>
+            <li class="kadov-p" value="4">Fill in the following parameters and hit the <em>Connect</em> button
+<ul><li class="kadov-p" value="1">Host Name: The IP number of your terminal server</li><li class="kadov-p" value="2">Port: <strong>telnet</strong></li><li class="kadov-p" value="3">TermType: <strong>vt100</strong></li></ul></li>
+            <li class="kadov-p" value="5">Hit enter once</li>
+            <li class="kadov-p" value="6">enter SET PRIvilege = NetMgr</li>
+            <li class="kadov-p" value="7">setd -tcpappl tcpbp=3000&#160;&#160;(for raw tcp)</li>
+            <li class="kadov-p" value="8">setd -tcpappl tcpnp = disabled&#160;</li>
+            <li class="kadov-p" value="9">setd !'potrnr' -term BA = 9600 (set baud rate)</li>
+            <li class="kadov-p" value="10">setd !'portnr' -term PAR = none (set parity)</li>
+            <li class="kadov-p" value="11">setd !'portnr' -term SB = 1 (set stop bits)</li>
+            <li class="kadov-p" value="12">setd !'portnr' -term DV = Host</li>
+            <li class="kadov-p" value="13">setd !'protnr' -term FCF = none</li>
+            <li class="kadov-p" value="14">setd !'portnr' -term HED = off</li>
+            <li class="kadov-p" value="15">setd !'portnr' -term LFI = none (LFInsertion)</li>
+            <li class="kadov-p" value="16">setd !'portnr' -term XOFF = Disabled</li>
+            <li class="kadov-p" value="17">setd !'portnr' -term XON = Disabled</li>
+            <li class="kadov-p" value="18">setd !'portnr' -term MO = Transparent</li>
+            <li class="kadov-p" value="19">setd !'portnr' -term ECHOD = off</li>
+            <li class="kadov-p" value="20">setd !'portnr' -term&#160;</li>
+            <li class="kadov-p" value="21">enter LOGout on the prompt</li>
+            <li class="kadov-p" value="22">Close telnet.</li>
+        </ol>
+    </body>
+</html>

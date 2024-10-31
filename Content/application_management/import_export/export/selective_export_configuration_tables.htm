@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Workorder_export">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Selective export of configuration tables</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3763"></a>
+            <MadCap:concept term="System management;Application management" />Selective export of configuration tables</h1>
+        <h2>Introduction</h2>
+        <p>The tool <span class="ui_element">Export configuration tables</span> allows you to export a defined set of configuration tables.&#160;Additionally, you can define for each table which incoming references and specific records should be exported as well. The export generates a .txt file that can then be <a href="#Export">imported</a>.</p>
+        <h2>Usage</h2>
+        <p>The tool can for instance be used to export</p>
+        <ul>
+            <li value="1">a little amount of problematic configuration data for subsequent analysis.</li>
+            <li value="2"> the configuration of test databases to routine databases and vice versa.</li>
+        </ul>
+        <p>This tool cannot be used to export routine tables.</p>
+        <p>The data can be exported from a Progress database and then be imported into an Oracle database, and vice versa.</p>
+        <h2>Workings</h2>
+        <h3>Create a JSON file</h3>
+        <p>You first need to create or update a JSON file indicating which configuration tables should be exported.&#160;Optionally, you can also indicate for each table which incoming references and records should be exported.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>Here is an example of a JSON file:</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="selective_export_configuration_tables_json_file.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="580" data-mc-height="953" src="selective_export_configuration_tables_json_file_thumb_0_120.png" tabindex="" /></a>
+            </p><pre xml:space="preserve">{</pre><pre xml:space="preserve">  "incomingReferences": [</pre><pre xml:space="preserve">    {</pre><pre xml:space="preserve">	"table": "Procedure",</pre><pre xml:space="preserve">	"references": ["ProcedureOutput", "ProcedureInput"]
+    },
+    {</pre><pre xml:space="preserve">	"table": "ProcedureOutput",</pre><pre xml:space="preserve">	"references": ["MaterialOutput", "PropertyOutput"]
+    },
+    {
+	"table": "ProcedureInput",
+	"references": ["MaterialInput", "PropertyInput"]
+    },
+    {</pre><pre xml:space="preserve">	"table": "ApproachPlan",
+	 "references": ["PlanActivity", "ApproachPlanUsage", "PlanLocus"]
+    },</pre><pre xml:space="preserve">
+    {
+	 "table": "PlanActivity",
+	 "references": ["PlanTransition"]
+    },
+    {
+	 "table": "ListType",
+	 "references": ["ListDetailType"]
+    },
+    {
+	 "table": "GeneticProcedure",
+	 "references": ["GeneticRequestable", "GeneticProcedureMaterial"]
+    },</pre><pre xml:space="preserve">    {  </pre><pre xml:space="preserve">	"table": "ChoiceList",
+	 "references": ["Choice"]
+    },</pre><pre xml:space="preserve">    {</pre><pre xml:space="preserve">	"table": "Material",</pre><pre xml:space="preserve">	"references": ["MaterialVariable"]
+    },
+    {</pre><pre xml:space="preserve">	"table": "MaterialVariable",
+	 "references": ["MaterialVariableChoice"]
+    },
+    {
+	"table": "Variant",	</pre><pre xml:space="preserve">	"references": ["SequenceVariant", "CopyNumberVariant"]</pre><pre xml:space="preserve">    }</pre><pre xml:space="preserve">],</pre><pre xml:space="preserve">"table": {
+	"name":"ApproachPlan",
+	"records": ["G_NGS"]
+    }</pre><pre xml:space="preserve">}
+					</pre>
+        </div>
+        <p>The only mandatory element is the name(s) of the configuration table(s) to be exported (green box in the example above). If only certain records stored in this table should be exported, you can indicate their  alternative index (mnemonic, name,...) under "records"(yellow box).  
+In the part "IncomingReferences", you can indicate which incoming references of which tables should be exported (purple box).</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The alternative index, incoming and outgoing references can be found in the MIPS-internal tool MADE.&#160;Here are examples:</p>
+            <ul>
+                <li value="1">
+                    <p>The alternative index of Property records are their mnemonics:</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="selective_export_configuration_tables_altindex.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="733" data-mc-height="389" src="selective_export_configuration_tables_altindex_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                    <p>Only single string alternative indices are supported: mnemonics, names, ids,... Alternative indices such as Population_Date_Type and Property_StartDate are not.</p>
+                </li>
+                <li value="2">
+                    <p>Incoming and outgoing references:</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="selective_export_configuration_tables_references.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1523" data-mc-height="485" src="selective_export_configuration_tables_references_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                    <p>Incoming and outgoing references can also be found in the <a href="../../../db/reference_guide/ERD/entity_relationship_diagrams.htm">ERD</a>.</p>
+                </li>
+            </ul>
+        </div>
+        <h3><a name="Export"></a>Export the JSON file</h3>
+        <p>First open the tool via <span class="ui_element">Start</span> -&gt;&#160;<span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Export configuration tables</span>. Then select the created JSON file and indicate the folder to which the data should be exported:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="selective_export_configuration_tables.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1017" data-mc-height="952" src="selective_export_configuration_tables_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>Once you have clicked <span class="ui_element">OK</span>, the exported data appears in  .txt and .csv files in the specified folder. The .txt file can then be imported using the <a href="../general/import_export_denormalized.htm">generic import tool</a>.</p>
+        <h2>What is (not) exported</h2>
+        <h3>Exported</h3>
+        <p>The configuration tables, incoming references and specific records mentioned in the JSON file are exported.            </p>
+        <p>All configuration outgoing references are always exported (they do not need to be mentioned in the JSON file). For instance, if you choose to export the ProcedureOutput table, then all the procedures will be exported.</p>
+        <p>Mandatory references are always exported.&#160;For instance, if the Procedure table is exported, departments and correspondents are exported as well.</p>
+        <p>The Family table is the only routine table that can be exported, if it is mentioned in the IncomingReferences part.</p>
+        <h3>Not exported</h3>
+        <p>No routine table is exported, except the Family table.</p>
+        <p>If configuration records refer to Person records, the latter are not correctly exported.</p>
+        <h2>Known issue</h2>
+        <p><a href="../../../configuration/assessment_methods/assessment_methods.htm">Assessment methods</a> may point to result records that cannot be exported/imported. This does not make the export/import fail but a warning is displayed during the import.</p>
+    </body>
+</html>

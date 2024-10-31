@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Financial export in German "KVDT" 
+ format: updates for KVDT&#160;v5.24 (BILX_GKVDT-00375)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor554"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Financial export in German "KVDT" 
+ format: updates for KVDT&#160;v5.24 (BILX_GKVDT-00375)</h1>
+        <p>The export of financial data in the German <b>KVDT</b> 
+ format (using the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm">FinancialShipment.Send</a> 
+ function) has been updated to support the changes  in KBV regulation  issued on 31/05/2018 and effective as of 01/07/2018.</p>
+        <ol>
+            <li value="1">
+                <p>Regel 854: GOP  32915-32918 (Tariff.NomenclatureCode in GLIMS) need an ICD code (&lt;&gt; UUU).</p>
+                <p>Note: since OMIM-P and OMIM-G codes are not allowed for these GOP, OMIM codes which have been entered on the property will not be exported.</p>
+            </li>
+            <li value="2">
+                <p>Field FK 4121 (Gebührenordnung): new value: 0=EBM. </p>
+                <p>In GLIMS, Gebührenordnung values are automatically converted into policy names and vice versa: PolicyName.Code = &lt;Gebührenordnung&gt;[_&lt;KTAB&gt;][_&lt;AbrechnungTyp&gt;]. The new value "0" will now also be recognized and linked to PolicyName.Code "EBM_*".</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li value="1">
+                        <p>during Kostentraeger import:</p>
+                        <p>Insurance products will be created which refer to those policy names with code "EBM_*". <b>To allow the import to create insurance products (for each fund with EBM), it is necessary to configure a new policy name with code "EBM_&lt;KTAB&gt;" in advance!</b> <b>Creating a new policy name with code "EBM_OO" is sufficient.</b></p>
+                        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00375.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="514" data-mc-height="492" src="BILX_GKVDT-00375_thumb_0_120.png" tabindex="" /></a>
+                        </p>
+                        <p>Note that the Gebührenordnung code which was already stored in the XDT_2006 attribute on the Fund will also store value 0.</p>
+                    </li>
+                    <li value="2">
+                        <p>during the&#160;export of financial data in the <b>KVDT</b>&#160;format:</p>
+                        <p>Invoices using a policy name with code "EBM_*" (and following the convention &lt;Gebührenordnung&gt;[_&lt;KTAB&gt;][_&lt;Abrechnungtyp&gt;]) will automatically export FK 4121 = 0.</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </body>
+</html>

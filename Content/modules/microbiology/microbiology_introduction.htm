@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\microbiology\microbiology_02.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Introduction </title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2073"></a>
+            <MadCap:concept term="Microbiology" /><a name="kanchor187"></a>Microbiology - Introduction</h1>
+        <p>A microbiology examination differs considerably from a regular chemistry 
+ analysis. One of the main differences lies in the fact that in many cases 
+ the lab is provided with a material 
+ and a question 'See what you can find'. The microbiological examination 
+ of a patient sample can involve several steps and the findings can lead 
+ to further examination. For instance, in many cases, a coloring is performed 
+ on the specimen in order to be able to detect any germ presence under 
+ a microscope. After this so-called Gram-coloring, so-called Gram-positive 
+ germs appear as blue colonies, while Gram-negative germs appear as red 
+ colonies. This microscopic examination helps to determine whether further 
+ tests are to be undertaken.</p>
+        <p>When presence of health threatening germs is suspected, the germs are 
+ transferred to one or more nutrient matrices in order to let them incubate. 
+ The nutrients used can depend of many factors (e.g. the result of the 
+ Gram-coloring, the material, the origin of the material, the patient characteristics,...). 
+ This growth is examined at regular intervals. After this stage, several 
+ tests (e.g. growth rate, visual aspects, mobility, sugar consumption, 
+ reaction to certain antibiotics...) can lead to an identification of the 
+ germ.</p>
+        <p>After, or during this step, the lab can decide to test a number of antibiotics on the organism. The 
+ actual antibiotics tested depend on the germ type, material, patient data 
+ and more. In many labs, fixed antibiotic 
+ panels are used. The reaction of the germ to the antibiotics is stored 
+ either in numerical form like the diameter of the growth inhibition zone 
+ around an antibiotic pellet, or in a code form R(esistant), I(ntermediary), 
+ S(ensitive). </p>
+        <p>Since the procedures to 
+ be carried out and the results to be stored are not known beforehand, 
+ the Microbiology LIS subsystem should be very flexible in its data model 
+ and user interface. It should be able to suggest procedures to be undertaken 
+ by evaluating the current specimen data, but should allow storage of any 
+ related or intermediary result entered by the analyst.</p>
+        <p>All relevant data should be stored in a way that permits easy and fast 
+ retrieval of result for daily result operation, previous patient results, 
+ statistical and epidemiological reports, …</p>
+        <p>In microbiology, the specimen should not only be characterized by its 
+ material. It might be necessary to specify the method used to obtain the 
+ specimen (sounded, smearing, puncture, ...), the actual body part of the 
+ patient and others. Some of these characteristics only serve to be reported 
+ back to the issuer, while others play a role in the technical process. 
+ This is met by adding a table MaterialVariable 
+ as a child table of the material table. Each MaterialVariable has a name 
+ and a predetermined set of possible values, which are stored in the Material
+ VariableChoice table (e.g. "Method" with as values "Sounded,Midstream,Other", 
+ "Location" with as values "Left arm, right arm"). 
+ While entering the specimen into the system, the operator may be required 
+ to specify the actual values for these characteristics. The values can 
+ then be taken into account by procedure eligibility expressions to determine 
+ which procedure should be carried out.</p>
+        <p>The table MicrobiologyProcedure 
+ defines which examinations can be undertaken for each material type. Examples 
+ are: "General microbiological examination", "Anaerobe culture", 
+ "Research on Adeno virus". Actually requesting such a procedure 
+ results in the creation of a Microbiology 
+ Action, which will be the centerpiece of further data entry. All isolations 
+ and carriers refer to this record.</p>
+        <p>In order to be able to reuse this module for other purposes (such as 
+ virology or parasitology), all microorganism definitions are stored in 
+ a table called MicroOrganism. 
+ Subtypes of microorganisms are "Germ" (includes microbes and 
+ fungi), "Virus" or "Parasite". </p>
+        <p>Creating an Isolation record 
+ in the database represents the actual presence of such a microorganism 
+ in a specimen. This record refers to the specimen in which the organism 
+ was found and to the microorganism’s definition. The isolation can also 
+ refer a Carrier (Carr), which 
+ represents the physical carrier on which the organism was grafted and 
+ which contains a specific Medium 
+ (Mdm) (e.g. blood agar). Medium 
+ Usage (MdU) records determine under which circumstances a specific 
+ medium should be used (depending on material, requested procedure and 
+ an optional MISPL expression)</p>
+        <p>Each microorganism contains information about the organism (such as 
+ mnemonic, name, medical information, ...) but can also refer to another 
+ microorganism to indicate a microorganism of which this organism is a 
+ special case (e.g. an organism Bacteroides levii can refer to Bacteroides 
+ species) for use in incomplete determinations or for statistical purposes.</p>
+        <p>The table Antibiotic (Ab) contains mnemonic, name, reporting 
+ order (if any), medical comments and other information. Special formulas 
+ assist in the calculation of the RIS code starting from a Kerby-Bauer 
+ or MIC numerical value. Antibiotic 
+ Panel (AbP) groups antibiotics into panels. The Antibiotic 
+ Panel Usage indicates the conditions under which a panel should be 
+ chosen as the default panel to be tested, given a certain combination 
+ of microorganism and specimen material. MISPL expressions allow the use of further selection criteria such as patient age, patient location, issuer, 
+ ... Of course, at run time, the analyst can decide to suppress or add 
+ antibiotics for a specific specimen.</p>
+        <p>Each actual antibiotic result is stored in an Antibiotic 
+ Result (AbRs) record, referring to the antibiotic and the isolation. 
+ This record can store numerical and RIS values and the optional indication 
+ whether this result can be reported.</p>
+        <p>Results of macroscopic evaluation, microscopic evaluation, presence 
+ of red or white blood cells, ... are entered as optional result outputs 
+ of a normal procedure (comparable to chemistry results). At any time, 
+ the user can decide to add extra procedures or results to the specimen 
+ under study.</p>
+        <p>Additional tests performed on the carriers can be stored in the CarrierTest (CarT) table. A carrier test refers to a Medium Test (MdT) definition and can be added automatically via the Medium 
+ Test Usage (MdTU) parametrization, defining which medium tests should 
+ normally be carried out on which media.</p>
+        <p>Additional tests performed on the isolations can be stored in the IsolationTest (IsoT) table. 
+ An isolation test refers to a Microorganism 
+ Test (MOT) definition and can be added automatically via the Microorganism 
+ Test Usage (MOTU) parametrization, defining which microorganism tests 
+ normally should be carried out on which microorganism.</p>
+    </body>
+</html>

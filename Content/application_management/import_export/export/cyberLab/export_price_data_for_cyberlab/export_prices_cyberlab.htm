@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific export|CyberLab|Export price data for Cyberlab">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Export of prices for import in CyberLab</title>
+        <script type="text/javascript" src="../../../../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor277"></a>
+            <MadCap:concept term="Application management" />Export of prices for import in CyberLab</h1>
+        <p>Content: <a href="#Introduc">Introduction</a> - <a href="#Starting">Starting the export</a> - <a href="#Exported">Exported data</a> - <a href="#Non-expo">Non-exported data</a></p>
+        <h2><a name="Introduc"></a>Introduction</h2>
+        <p>GLIMS offers a function to export price information in CSV format to CyberLab: <span class="ui_element">Export price list</span>, based on the gp_site table. The generated .csv file can then be imported in CyberLab to offer a price indication during order entry.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #ff0000;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Warnings</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warnings</span>
+                    </p>
+                    <ul>
+                        <li value="1">This export function requires a separate <a href="../../../../licenses/licenses.htm">license</a>: GLIMS CyberLab synchronization.</li>
+                        <li value="2">The full price export functionality as described here is only supported for the communication between GLIMS 9.6.3 (and higher) and CyberLab 9.12 (and higher).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Starting"></a>Starting the export</h2>
+        <h3>Manually</h3>
+        <p>From the main menu, click <span class="ui_element">Start</span> -&gt; <span class="ui_element">Billing</span> -&gt; <span class="ui_element">Export price lists</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="343" data-mc-height="181" src="export_prices_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The fields of this window are described below. The data specified in these fields is saved and will be automatically displayed when the window is opened again later on.</p>
+        <p class="fieldlabel">Directory</p>
+        <div class="indented">
+            <p>Directory where the exported file will be saved.</p>
+        </div>
+        <p class="fieldlabel">File name</p>
+        <div class="indented">
+            <p>Name of the exported file.</p>
+        </div>
+        <p class="fieldlabel"><a name="HC"></a>HC code provider</p>
+        <div class="indented">
+            <p>The price export function allows the export of both <a href="#Issuer">price list issuers</a> and <a href="#Issuer2">request definition issuers</a> to CyberLab.The system works as follows:</p>
+            <ul>
+                <li value="1">If the <span class="ui_element">HC code provider</span> is filled in, GLIMS looks for the HC provider identification: <ul><li value="1"> if a valid identification is found, it is added to the price export file.</li><li value="2"><p>if a non-valid identification is found, none of the request definition data is exported and a log entry is created under <span class="ui_element">System Management</span> -&gt; <span class="ui_element">Logging</span> -&gt; <span class="ui_element">Logs</span> -&gt; <span class="ui_element">Log type</span> = <span class="ui_element">Export prices for CyberLab</span>.</p><p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_log_entry_identification.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="895" data-mc-height="320" src="export_prices_log_entry_identification_thumb_0_120.png" tabindex="" /></a></p><div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>From this log entry, you can easily get a list of all the identifications assigned to the HC provider:</p><ul><li value="1">right-click on the log entry -&gt; <span class="ui_element">Open subject</span>.</li><li value="2">right-click in the <span class="ui_element">Issuer</span> field -&gt; <span class="ui_element">Go to</span> -&gt; <span class="ui_element">Issuer</span></li><li value="3">right-click anywhere in the <span class="ui_element">Issuer</span> editor -&gt; <span class="ui_element">Identifications</span> -&gt; <span class="ui_element">Assigned to</span>.</li></ul></div></div></div></li></ul></li>
+                <li value="2">If the <span class="ui_element">HC code provider</span> field is left empty, the HC provider mnemonic is exported instead of the identification.
+            </li>
+            </ul>
+        </div>
+        <h3>Automated</h3>
+        <p>In most cases, the export will be run at a regular basis through a command.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_command.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="657" data-mc-height="899" src="export_prices_command_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2><a name="Exported"></a>Exported data</h2>
+        <p>The following list indicates which information elements are present in the .csv file and in which order they currently appear.</p>
+        <ol>
+            <li value="1"><a href="#Requesta">request definition mnemonic</a>
+            </li>
+            <li value="2">Nomenclature code</li>
+            <li value="3">Billing code</li>
+            <li value="4">Billing code description</li>
+            <li value="5"><a href="#Reimburs">Reimbursement class mnemonic</a>
+            </li>
+            <li value="6">Price list mnemonic</li>
+            <li value="7">Price code</li>
+            <li value="8">Base Value code</li>
+            <li value="9">Base Value</li>
+            <li value="10">Multiplier price formula (only if <a href="../../../../../modules/billing/tariffication/configuration/price_lists.htm">extension price list</a> is used)</li>
+            <li value="11">Fixed Amount</li>
+            <li value="12">List Price (Calculated Amount)</li>
+            <li value="13">Discount (is always 0)</li>
+            <li value="14">Charged Price (multiplied with extension factor)</li>
+            <li value="15"><a href="#%22To">To charge field of request definition</a>
+            </li>
+            <li value="16"><a href="#%22To">To charge field of tariff</a>
+            </li>
+            <li value="17">Start date tariff</li>
+            <li value="18">End date tariff</li>
+            <li value="19"><a href="#Issuer">HC provider identification/mnemonic of price list</a>
+            </li>
+            <li value="20"><a href="#Issuer2">Issuer of request definition</a>
+            </li>
+            <li value="21"><a href="#Issuer2">Type of request definition issuer</a>
+            </li>
+        </ol>
+        <p>As illustrated in the example below, these fields are all mentioned in the header of the .csv file. That way, CyberLab and GLIMS can add fields or change the order of the fields as necessary, regardless of the version on which they are running.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_csv_example.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="2813" data-mc-height="55" src="export_prices_csv_example_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>When exporting price information, the validity of the request definition is checked: the export time must lie between the start and end date indicated in the request definition editor.</p>
+                </div>
+            </div>
+        </div>
+        <h3><a name="Requesta"></a>Request definition mnemonic</h3>
+        <p>The request definition that is to be billed is indicated by its mnemonic in field 1 of the .csv file. Two questions arise:</p>
+        <ol>
+            <li value="1">For a <a href="../../../../../modules/billing/tariffication/configuration/tariffication_requestables.htm">request definition</a> to be billed, it needs to be linked with a <a href="../../../../../modules/billing/tariffication/configuration/billing_codes.htm">billing code</a>. What happens if the request definition to be billed does not have any billing code assignment?</li>
+            <li value="2">Request definitions of type <span class="ui_element">Panel</span> are themselves composed of several request definitions that need to be billed. Which price related data is exported to CyberLab, then?</li>
+        </ol>
+        <h4>Request definition without billing code assignment</h4>
+        <p>If the request definition to be billed does not have a billing code assignement, the following mechanism is used:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_requestable_no_billing_code.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="465" data-mc-height="585" src="export_prices_requestable_no_billing_code_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h4><a name="Requesta2"></a>Request definition of type Panel</h4>
+        <p><a href="../../../../../configuration/requestables/requestables.htm#Panel">Request definition of type Panel</a> (called "panel request definitions" below) are themselves composed of several request definitions, which can have their own price data. Thus, in case of a panel request definition, GLIMS first needs to determine which pieces of information should be exported to CyberLab. GLIMS does this on the basis of the value indicated in the  field <span class="ui_element">Charge</span> of the panel request definition editor. This field can have 5 different values:</p>
+        <ul>
+            <li value="1">
+                <p><span class="ui_element">Members only</span>: the data of the panel request definition is not exported, only the data of its members are. This means that the price indicated in CyberLab will be the sum of the prices of the individual panel request definition members.</p>
+            </li>
+            <li value="2"><span class="ui_element">Panel only</span>: only the data of the panel request definition is exported. The price indicated in CyberLab will be that of the panel request definition.</li>
+            <li value="3"><span class="ui_element">Panel and members</span>: The data of both the panel request definition and its members is exported. The price indicated in CyberLab will be that of the panel request definition + the sum of the prices of the individual panel request definition members.</li>
+            <li value="4"><span class="ui_element">Members or panel</span>: this value is not supported by CyberLab.</li>
+            <li value="5"><span class="ui_element">?</span>: This value cannot be chosen if the option <span class="ui_element">To charge</span> of the panel request definition  is activated.</li>
+        </ul>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes </span>
+                    </p>
+                    <p>In case of <span class="ui_element">Members only</span> and <span class="ui_element">Panel and members</span>:</p>
+                    <ul>
+                        <li value="1">If a member is itself a panel request definition, the value of its <span class="ui_element">Charge</span> field is also checked:<ul><li value="1"><span class="ui_element">Members only</span>: the data of the subpanel members is exported, the data of the subpanel itself is not.</li><li value="2"><span class="ui_element">Panel only</span>: the data of the subpanel is exported, that of its members is not.</li><li value="3"><span class="ui_element">Panel and members</span>: the data of both the subpanel and its members is exported.</li></ul></li>
+                        <li value="2">If a panel request definition member does not have a valid <a href="../../../../../modules/billing/tariffication/configuration/tariffs.htm">tariff</a> record for a certain price list, the price information for the panel request definition / panel request definition member is not exported to CyberLab.
+In this case, a log entry mentionning the related billing code is created under <span class="ui_element">System Management</span> &gt; <span class="ui_element">Logging</span> &gt; <span class="ui_element">Logs</span> &gt; <span class="ui_element">Log type</span> = <span class="ui_element">Export prices for CyberLab</span>.</li>
+                        <li value="3">The price of a panel member is the sum of all its billing codes. Therefore, if a panel member has several billing code assignements, then all its billing codes are exported.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example 1</span>
+                    </p>
+                    <p>Panel request definition R is composed of</p>
+                    <ul>
+                        <li value="1">request definition Cl</li>
+                        <li value="2">panel request definition B, itself composed of<ul><li value="1">request definition Na</li><li value="2">request definition K</li></ul></li>
+                    </ul>
+                    <p>Value of the <span class="ui_element">Charge</span> field for panel request definition R: <span class="ui_element">Members only</span></p>
+                    <p>Value of the <span class="ui_element">Charge</span> field for panel request definition B: <span class="ui_element">Panel only</span></p>
+                    <p>--&gt; The export looks as follows:</p>
+                    <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+                        <col style="width: 168px;" />
+                        <col style="width: 129px;" />
+                        <col style="width: 83px;" />
+                        <col />
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">request definition mnemonic</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Nomenclature code</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Billing code</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Price</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Req_R</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">1111</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">BC_Cl</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">10</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Req_R</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">222</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">BC_NA+K</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">20</td>
+                        </tr>
+                    </table>
+                    <p>
+                    </p>
+                    <p><span style="color: #003366; font-weight: bold;">Example 2</span>
+                    </p>
+                    <p>Same as in Example 1 but the value of the <span class="ui_element">Charge</span> field for panel request definition B is <span class="ui_element">Members only</span>.</p>
+                    <p>--&gt; The export looks as follows:</p>
+                    <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+                        <col style="width: 168px;" />
+                        <col style="width: 129px;" />
+                        <col style="width: 83px;" />
+                        <col />
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">request definition mnemonic</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Nomenclature code</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Billing code</b>
+                            </td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Price</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Req_R</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">1111</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">BC_Cl</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">10</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Req_R</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">22211</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">BC_NA</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">5</td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Req_R</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">22212</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">BC_K</td>
+                            <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">5</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The resulting price does not solely depend on the value of the <span class="ui_element">Charge</span> fields. MISPL functions, for instance, can play a role in its calculation.</p>
+                </div>
+            </div>
+        </div>
+        <h3><a name="Reimburs"></a>Reimbursement class mnemonic</h3>
+        <p>The billing code (and thus the request definition record) can be linked with a reimbursement class. Field 5 of the .csv file allows the export of the reimbursement class mnemonic to CyberLab.</p>
+        <h3><a name="&quot;To"></a>"To charge" fields</h3>
+        <p>Both request definitions and tariffs have a <span class="ui_element">To charge</span> field in GLIMS. The value of each of these fields is exported in a dedicated field in the csv file.</p>
+        <h3><a name="Issuer"></a>HC provider identification/mnemonic of price list</h3>
+        <p>The price list HC provider field of the csv file allows the export of price lists that are linked to one or more specific issuers in GLIMS:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_pricelist_issuer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1160" data-mc-height="737" src="export_prices_pricelist_issuer_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>This field contains the <a href="#HC">identification or the mnemonic</a>  of the HC provider to which the price list is related. If several issuers have the same price list, then all the request definitions of this price list are exported for each issuer.</p>
+        <h3><a name="Issuer2"></a>Issuer of request definition and type of request definition issuer</h3>
+        <h4>Issuer of request definition</h4>
+        <p>The issuer of request definition field in the csv file allows the export of the specific issuer linked to the exported request definition in GLIMS:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_prices_requestable_issuer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="692" data-mc-height="312" src="export_prices_requestable_issuer_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>This field contains  either the <a href="#HC">identification or the mnemonic</a> of the request definition issuer.</p>
+        <h4>Type of request definition issuer</h4>
+        <p>This field indicates the <a href="../../../../../configuration/correspondents/correspondents.htm">type</a> of the request definition issuer, which can be any type of the following list:</p>
+        <div class="indented">1 = Person, 2 = Organization, 3 = HcProvider, 4 = Ward, 5 = Institution, 6=Lab, 7=Department, 8=Firm, 9= Fund, 10 = Health Office, 11=Company, 12=Bank, 13= Study</div>
+        <h4>In the case of panel request definitions</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml">Basically, when a request definition is linked to a particular issuer, then the issuer information is exported together with the request definition information.&#160;The situation becomes more complex when this request definition points to a panel request definition whose members are themselves linked to no or different issuers.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">In such cases, the following rule applies:</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">A panel member is exported if 
+        <ul><li value="1">the issuer to which it is linked is identical to the issuer of the panel request definition (more accurately, identical to the issuer of the request definition that points to the panel request definition), or</li><li value="2">this panel member is not linked to any issuer.</li></ul></div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p>1. </p>
+                    <p>Request definition panel Z  has issuer A and contains three members: M1, M2, M3.</p>
+                    <p>M1 has no issuer</p>
+                    <p>M2 has issuer A</p>
+                    <p>M3 has issuer B</p>
+                    <p>--&gt; If issuer A requests Panel Z, M1 and M2 will be exported, M3 will not be exported (independently of whether M3 is a simple request definition or a panel request definition) because it is specific to issuer B.</p>
+                    <p>Obviously, since Panel Z is specific to issuer A, no issuer but A can request it.</p>
+                    <p>&#160;</p>
+                    <p>2. </p>
+                    <p>Request definition panel Z  has no issuer and contains three members: M1, M2, M3.</p>
+                    <p>M1 has no issuer</p>
+                    <p>M2 has issuer A</p>
+                    <p>M3 has issuer B</p>
+                    <p>--&gt; Like in example 1, if issuer A requests Panel Z, M1 and M2 will be exported, M3 will not.</p>
+                    <p>--&gt;&#160;If issuer B requests Panel Z, M1 and M3 will be exported, M2 will not</p>
+                    <p>--&gt;&#160;If issuer C request Panel Z, only M1 will be exported.</p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Non-expo"></a>Non-exported data</h2>
+        <ul>
+            <li value="1">Discount data is not exported.</li>
+            <li value="2">MISPL logic is not exported.</li>
+            <li value="3">Billing code assignment, Tariffs and Price formulas are not exported if the export time lies outside their validity start and end dates.</li>
+        </ul>
+    </body>
+</html>

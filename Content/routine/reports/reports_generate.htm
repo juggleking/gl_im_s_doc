@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\gen_sched\rprt_generate.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Report generation</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Report generation</h1>
+        <ul>
+            <li value="1"><a href="#Report%20query">Report query</a>
+            </li>
+            <li value="2"><a href="#Report%20generation">Report generation</a>
+                <ul>
+                    <li value="1"><a href="#General%20fields">General fields</a>
+                    </li>
+                    <li value="2"><a href="#Text%20page">Text reporting</a>
+                    </li>
+                    <li value="3"><a href="#Electronic%20page">Electronic reporting</a>
+                    </li>
+                    <li value="4"><a href="#Invoicing">Tariffication and invoice 
+		 printing during report generation</a>
+                    </li>
+                    <li value="5"><a href="#Using%20variables%20in%20the%20directory%20and%20file%20name%20specification">Using 
+		 variables in the directory and file name specification</a>
+                    </li>
+                    <li value="6"><a href="#Using_dynamic_texts_in_the_directory_and_file_name_specification">Using 
+		 dynamic texts in the directory and file name specification</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>Although reports can be generated individually, this is often not practical. 
+ The preferred method therefore is to generate sets of reports 
+ (defined by selection criteria) through a single command. From the main 
+ menu, the report generator is available to provide this functionality. 
+ As every command, the report generator provides a two-step user interface. 
+ In the first step, query parameters can be specified. Subsequently, 
+ you provide function parameters.</p>
+        <h2><a name="Report query"></a>Report query</h2>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="report_query.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="706" data-mc-height="469" src="report_query_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Generator</p>
+        <div class="indented">
+            <p>The spinner selects reports based on their intended 
+ generator.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>HTML reports are no longer supported.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Scope</p>
+        <div class="indented">
+            <p>The spinner selects reports based on their scope.</p>
+        </div>
+        <p class="fieldlabel">Target type</p>
+        <div class="indented">
+            <p>The spinner selects reports based on their 
+ target type. </p>
+            <p class="fieldlabel">Target internal id</p>
+            <div class="indented">
+                <p>The spinner is synchronized and selects reports based on the target reference.</p>
+            </div>
+            <p class="fieldlabel">Name</p>
+            <div class="indented">
+                <p>The spinner is synchronized and selects reports based on the target reference.<br />The target can also be selected by <span class="ui_element">name</span>. </p>
+            </div>
+            <p class="fieldlabel">Health care provider code</p>
+            <div class="indented">
+                <p>The target can be selected by <span class="ui_element">health care provider code</span>.</p>
+            </div>
+            <p class="fieldlabel">Identification code</p>
+            <div class="indented">
+                <p>The target can be selected by <span class="ui_element">identification code</span>.</p>
+            </div>
+            <p class="fieldlabel">Type of corespondent</p>
+            <div class="indented">
+                <p> <span class="ui_element">Type 
+ of correspondent</span> can also be set. If the type has been 
+ set, only correspondents of that type can be selected. In the identifications 
+ browser, all the available identifications will be shown but if an identification 
+ is selected that belongs to another type of correspondent a message "Selected 
+ record is not acceptable" will be displayed and the browser will 
+ pop up again to select a valid identification.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Tour prefix</p>
+        <div class="indented">
+            <p> Report generation can 
+ be restricted to tours with the same prefix, while generating the reports 
+ in the order of the correspondents within the tour.</p>
+        </div>
+        <p class="fieldlabel">Template</p>
+        <div class="indented">
+            <p>The spinner selects reports based on their template 
+ reference.</p>
+        </div>
+        <p class="fieldlabel">Study</p>
+        <div class="indented">
+            <p>Select only reports for 
+ a specific study.</p>
+        </div>
+        <p class="fieldlabel"> Minimal urgency</p>
+        <div class="indented">
+            <p> The spinner selects reports based on the 
+ minimal urgency of the results they deliver.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When using Specimen-scoped reports, a separate report will be 
+ created for each separate order and root specimen combination. This 
+ implies that when a root specimen has been reused for another order, a 
+ separate specimen report for this specimen and this order will be created.</p>
+            </div>
+        </div>
+        <div class="indented">
+            <p>A range of <span class="ui_element">order internal id's</span> to select only reports 
+ referring to orders within this range can now be specified.</p>
+        </div>
+        <div class="indented">
+            <p>You can also select <span class="ui_element">order receipt time</span>,i.e. the complete 
+ order receipt date and time interval. Missing dates are interpreted as 
+ today's date. Missing daytimes are interpreted as the start or end of 
+ the day, depending whether it is related to the start or the end date.</p>
+        </div>
+        <p class="fieldlabel">Report status</p>
+        <div class="indented">
+            <p>This field allows for the selection of incomplete 
+ or complete reports. The decision whether a report is 
+ considered to be complete, depends on two default report fields:</p>
+            <div class="indented">
+                <p class="fieldlabel">DefaultReport.CompletenessStatus</p>
+                <div class="indented">
+                    <p> When 
+	 one of the results has a status lower than the CompletenessStatus, 
+	 this result (and the report) is considered as incomplete.<br /></p>
+                </div>
+                <p class="fieldlabel">DefaultReport.MBCompletenessStatus</p>
+                <div class="indented">
+                    <p>When 
+	 the microbiology action of a culture result has a status lower than 
+	 the MBCompletenessStatus, this result (and both its culture result 
+	 and the report) is considered as incomplete.</p>
+                </div>
+                <p>When these values are not specified, the following defaults apply:</p>
+                <ul>
+                    <li value="1">For <span class="ui_element">status</span> reports, CompletenessStatus is set 
+	 to <span class="ui_element">Validated</span> and MBCompletenessStatus is set to <span class="ui_element">Closed</span></li>
+                    <li value="2">For <span class="ui_element">value</span> reports with MinimalResultStatus = 
+	 <span class="ui_element">Validated</span>, CompletenessStatus is set to <span class="ui_element">Validated</span> and MBCompletenessStatus 
+	 is set to <span class="ui_element">Closed</span></li>
+                    <li value="3">For <span class="ui_element">value</span> reports with MinimalResultStatus = 
+	 <span class="ui_element">Confirmed</span>, CompletenessStatus is set to <span class="ui_element">Confirmed</span> and MBCompletenessStatus 
+	 is set to <span class="ui_element">Ready</span></li>
+                    <li value="4">For <span class="ui_element">value</span> reports with MinimalResultStatus = 
+	 <span class="ui_element">Available</span>, CompletenessStatus is set to <span class="ui_element">Available</span> and MBCompletenessStatus 
+	 is set to <span class="ui_element">Ready</span></li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Generated since; Generated until</p>
+        <div class="indented">
+            <p>These  fields allow to 
+ <b><span style="color: #FF0000;">reprint reports</span></b>:</p>
+            <ul>
+                <li value="1">that were last generated between two dates.</li>
+                <li value="2">that were last generated after a certain date.</li>
+                <li value="3">that were last generated before a certain date.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Executing department (group)</p>
+        <div class="indented">
+            <p>Only orders 
+ having at least one result executed in the specified executing department 
+ (group).</p>
+        </div>
+        <p class="fieldlabel">Filter</p>
+        <div class="indented">
+            <p>Allows specifying a report-based MISPL function in order to select reports 
+ using more specific criteria. The MISPL should return a LOGICAL.</p>
+            <ul>
+                <li value="1">If the return value is NO or ? the report will 
+	 not be generated.</li>
+                <li value="2">If the return value equals YES the report will 
+	 be selected.</li>
+            </ul>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>All of the above selection criteria combined with the implicit 
+ criterion that reports are internally marked as eligible for output. 
+ Reports are eligible for output if any of the results they deliver have 
+ been modified since the report was last output.</p>
+        </div>
+        <h2><a name="Report generation"></a>Report generation</h2>
+        <h3><a name="General fields"></a>General fields</h3>
+        <p class="fieldlabel">Preview</p>
+        <div class="indented">
+            <p style="text-align: left;"> 
+	 If enabled, GLIMS will first show a preview on the screen before actually 
+	 printing the report(s).<br /></p>
+        </div>
+        <p class="fieldlabel">Mark output </p>
+        <div class="indented">
+            <p style="text-align: left;">If enabled, delivered results will be marked as output with a time stamp, preventing them from subsequent output until their value or status is modified. If not enabled, the <span class="ui_element">Needs checking</span> flag remains activated and the generation can take place again (e.g. if there exists a batch task) even if nothing has changed.<br /></p>
+        </div>
+        <p class="fieldlabel">Output to file<br /></p>
+        <div class="indented">
+            <p class="fieldlabel">Text reports</p>
+            <div class="indented">
+                <p style="text-align: left;">Allows subsequent specification of a file name for 
+	 output.</p>
+            </div>
+            <p class="fieldlabel">	Electronic reports</p>
+            <div class="indented">
+                <p style="text-align: left;"> If enabled, GLIMS will generate a report overview 
+	 file. <span style="color: #FF0000;">This field is not used to indicate that 
+	 the electronic reports are to be sent to file. Instead you must specify 
+	 the destination in the 'Electronic' page.</span></p>
+            </div>
+            <p class="fieldlabel">File  name </p>
+            <div class="indented">
+                <p style="text-align: left;">This can be expanded with 
+ data from the Report record (and related records such as Target and Order) 
+ using MISPL syntax.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p style="text-align: left;">{=.Target.InternalId} will be expanded to 
+ the internal id of the target correspondent</p>
+                    <p style="text-align: left;">{=.Order.InternalId} will be expanded to the 
+ internal id of the order</p>
+                </div>
+                <p style="text-align: left;">In addition, you can use existing MISPL functions 
+ defined on the Report table.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p style="text-align: left;">assuming there is a SiteFunction 
+ 'MyReportFileName' then the expression {:MyReportFileName} would be expanded 
+ to the evaluated corresponding SiteFunction.</p>
+                </div>
+                <p style="text-align: left;">You can also use Texts defined on the Report 
+ table. </p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p style="text-align: left;">Assuming there is a Text 'ReportFileName' then the expression 
+ {&lt;ReportFileName} would be expanded to the evaluated corresponding 
+ Text.&#160;</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">New 
+	 results</p>
+        <div class="indented">
+            <p>Prevents report sections from being printed if they don't 
+	 deliver any new results.<br /></p>
+            <p>	Possible values are:<br /></p>
+            <p class="fieldlabel">Ignore</p>
+            <div class="indented">
+                <p> The 
+		 new-ness of results plays no role</p>
+            </div>
+            <p class="fieldlabel">New result Required</p>
+            <div class="indented">
+                <p> 
+		 At least one new result has to be present in the report, before 
+		 the entire report is printed.</p>
+            </div>
+            <p class="fieldlabel">Only new results</p>
+            <div class="indented">
+                <p>
+		 Only new results are put on the report. However, in 
+		 case of text reporting (not for electronic reports), a full report 
+		 is sent when it is complete.</p>
+            </div>
+            <p class="fieldlabel">Only new results 
+		 when complete</p>
+            <div class="indented">
+                <p>Only new results are put on the report AND 
+		 these results are only reported if the report is complete (i.e. 
+		 Report.CompletenessTime &lt;&gt; ?). This is typically 
+		 used to report all the tests that were added after the initial 
+		 creation of an order.</p>
+                <p>A report section is a set of adjacent result columns occupying the 
+	 width of a page. Suppressing sections on Encounter or Day reports 
+	 saves trees. Informational properties are never considered 
+	 as being 'new' on the report. This implies that a report for which 
+	 the only results which already contain a value are informational results 
+	 (Property.Informational = YES), will not be generated when the New 
+	 Resultsparameter of the report generator function setup is set 
+	 to New Results Required. Moreover, columns on the 
+	 report which ONLY contain informational properties are completely 
+	 suppressed.</p>
+                <p>A report with DefaultReport.TriggerStatus &gt;= <span class="ui_element">Available</span> is considered 
+	 to be a <span class="ui_element">value</span> report and a report with DefaultReport.TriggerStatus 
+	 &lt; <span class="ui_element">Available</span> is considered to be a <span class="ui_element">Status</span> report.</p>
+                <p class="fieldlabel">Value reports</p>
+                <div class="indented">
+                    <p>The <span class="ui_element">New 
+	 Results</span> parameter of the report generation function has a slightly 
+	 different interpretation: when the value of the result was already 
+	 reported in a previous printout (Result.Status was already &gt;= Report.MinimalResultStatus 
+	 before Report.LastOutputTime), the result is not considered as 'New' 
+	 with respect to this report.</p>
+                    <p>If the report generation parameter <span class="ui_element">New Results</span> is set to <span class="ui_element">New 
+	 Results Required</span>, then the report will only be printed when either 
+	 a new VALUE is reportable, or the report has become complete since 
+	 the last printout.</p>
+                </div>
+                <p class="fieldlabel">Status reports</p>
+                <div class="indented">
+                    <p>A result 
+	 is considered as 'New' when one if its Creation, Availability, Confirmation, 
+	 Validation or Rejection times is more recent than the last report 
+	 output time and this is sufficient to generate the report when the 
+	 <span class="ui_element">New results</span> restriction has been set to <span class="ui_element">New Results Required</span>.</p>
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>Note that a status report is marked with NeedsChecking = YES as 
+	 soon as the report is created.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Output buffering</p>
+        <div class="indented">
+            <p>
+	 Allow to indicate if the reports should first be grouped according 
+	 to the specified value before sending them out.</p>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="85%" border="1">
+                <tr>
+                    <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85">&#160;</td>
+                    <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363"><b style="font-weight: bold;">Text 
+		 reports</b>
+                    </td>
+                    <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342"><b style="font-weight: bold;">Electronic 
+		 reports</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85"><b style="font-weight: bold;">Default</b>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363">When 
+		 printing to a printer, there will be no output buffering. Each 
+		 report will immediately be sent to the printer. 
+		<p>When printing to a file, the Default option will not be taken 
+		 into account. A single file will be generated.</p></td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342">If Translator 
+		 is filled in, 'Default' will be changed into 'By Report' 
+		<p>If Destination is filled in, 'Default' will be changed into 
+		 'By Run'</p></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85"><b style="font-weight: bold;">By 
+		 Target</b>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363">The 
+		 reports will first be grouped by target.</td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342">The 
+		 electronic reports will be sorted and outputted by target.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85"><b style="font-weight: bold;">By 
+		 Report</b>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363">Each 
+		 report is generated and printed as a separate file, even when 
+		 multiple copies of the same report are required.</td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342">Each 
+		 electronic report will be outputted after generation: no sorting 
+		 nor buffering.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85"><b style="font-weight: bold;">By 
+		 Run</b>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363">Not 
+		 supported for text reports.</td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342">All 
+		 electronic reports will be bundled into 1 file or 1 TCP/IP message.</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="85"><b style="font-weight: bold;">By 
+		 Group Practice</b>
+                    </td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="363">Allows 
+		 to group reports by health care practice (the practice specified 
+		 for the health care provider)</td>
+                    <td style="vertical-align: top;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" width="342">Allows 
+		 to group reports by health care practice (the practice specified 
+		 for the health care provider)</td>
+                </tr>
+            </table>
+        </div>
+        <p class="fieldlabel">Calculate 
+	 budgets</p>
+        <div class="indented">
+            <p> Indicates if budget calculation must be triggered by 
+	 the reporting program.</p>
+            <p>Possible values are:</p>
+            <p class="fieldlabel">Never</p>
+            <p class="fieldlabel">Complete and dirty</p>
+            <div class="indented">
+                <p style="text-align: left;">Only when printing a complete report and if an 
+		 existing previous budget calculation is marked as <b>dirty</b>.</p>
+            </div>
+            <p class="fieldlabel">Complete</p>
+            <div class="indented">
+                <p>Only when printing a complete report.</p>
+            </div>
+            <p class="fieldlabel">Always<br /></p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>In this context, "complete 
+	 report" actually means a report of a complete order.</p>
+            </div>
+            <p class="fieldlabel">Budget owner type</p>
+            <div class="indented">
+                <p>Select the correspondent type that is the budget owner.</p>
+            </div>
+            <p class="fieldlabel">Printer</p>
+            <div class="indented">
+                <p>
+	 This printer overrides any defaults at the report level. For 
+	 more information on printer evaluation, please check the chapter <a href="reports_printers.htm">Printer evaluation during reporting</a>.</p>
+            </div>
+        </div>
+        <h3><a name="Text page"></a>Text page</h3>
+        <p class="fieldlabel">Header page; Trailer page</p>
+        <div class="indented">
+            <p>A dynamic text (rp_Printer-based) 
+	 which will be printed each time another printer is selected. A page 
+	 skip is always added before and after these pages. This allows printing 
+	 of a printer-specific text at the start or the end of all reports 
+	 printed on a specific printer.</p>
+        </div>
+        <p class="fieldlabel">Target header page; Target trailer page</p>
+        <div class="indented">
+            <p>A dynamic text (correspondent-based) 
+	 which will be printed each time the report target changes. When the 
+	 field ReportTemplate.PageLineCount is supplied, a page skip is added 
+	 after the header and before the trailer. A page skip is always generated 
+	 before the header and after the trailer. This allows printing of a 
+	 target-specific text for each different target in the selection.</p>
+        </div>
+        <p class="fieldlabel">Add complete history</p>
+        <div class="indented">
+            <p class="p">When activating this option, GLIMS will add 
+	 the complete history of the current patient in the form of cumulative 
+	 columns to the current report page when printing the report, much 
+	 the same way as cumulative columns are added to a standard cumulative 
+	 order report. For more detailed information see <a href="reports_history.htm">How 
+	 to add a complete history on a text report?</a>.</p>
+        </div>
+        <h3><a name="Electronic page"></a>Electronic page</h3>
+        <p class="fieldlabel">Translator</p>
+        <div class="indented">
+            <p>The translator 
+	 to be used when the report message is to be sent by socket.</p>
+        </div>
+        <p class="fieldlabel">Destination	 
+	</p>
+        <div class="indented">
+            <ul>
+                <li value="1">Directory</li>
+                <li value="2">Medibridge</li>
+                <li value="3">Floppy</li>
+                <li value="4">Printer: this option allows printing the report 
+		 output files and can typically be used to print variable text 
+		 reports. For more information on printer evaluation, 
+		 please see the chapter <a href="reports_printers.htm">Printer 
+		 evaluation during reporting</a>.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Path(s)</p>
+        <div class="indented">
+            <p>The directory(ies) 
+	 to be specified when the report is be written to file. In 
+	 case the report is subdivided in several files, it is possible to 
+	 specify a separate directory for each file. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>/tmp/medidoc/report,/tmp/medidoc/comment.</p>
+            </div>
+            <p><span class="ui_element">Translator</span> and <span class="ui_element">Path(s)</span> can both be specified. In that 
+	 case, the report will be sent out on socket AND be written to disk.</p>
+        </div>
+        <p class="fieldlabel">Name(s)</p>
+        <div class="indented">
+            <p>The file 
+	 name (without extension). In case the report is subdivided in several 
+	 files, you can specify multiple names separated by a comma. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Medidoc_rprt_{date}-{###},Medidoc_comm_{Date}-{###}</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Extension(s)</p>
+        <div class="indented">
+            <p> 
+	  In case the report is subdivided in several files, 
+	 you can specify the extension for each file, separated by a comma. 
+	 e.g. 'dat,rem'</p>
+        </div>
+        <p class="fieldlabel">File append</p>
+        <div class="indented">
+            <p> 
+	 Allows the reuse of an existing report file for updates instead of generating 
+	 a new report file.</p>
+            <p class="fieldlabel">Prerequisites</p>
+            <ul>
+                <li value="1"> A report file must already exist with the same file name.</li>
+                <li value="2">The file name pattern does not use an automatic counter mechanism (e.g. 
+ {###}).</li>
+            </ul>
+            <p class="fieldlabel">Usage</p>
+            <div class="indented">
+                <p>If the <span class="ui_element">File append</span> option is set, an existing report file with the same 
+ name is reused for updates instead of generating a new report file. If 
+ the option is not set, than an existing file will not be updated and a 
+ new file will be generated with {##} to ensure uniqueness.</p>
+                <p>This option applies to the following report template generators: Online 
+ (report generation <span class="ui_element">To file</span> selected), HL7, EDI1_0, HPRIM, 
+ VariableText, EDIMEDV1_0, HEALTH1, MEDIGEST, MEDIDOC, MEDICARD, Electronic 
+ reporting to file (Report Destination: Directory, Medibridge and Floppy).</p>
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p>Using this approach, the destination file will be written in multiple 
+ write operations. The receiving side (the software that imports the GLIMS 
+ report files) must be aware of this! It could be possible 
+ that the receiving system is trying to delete the report file while GLIMS 
+ is updating it. These actions must be timed as such that they 
+ do not interfere.</p>
+                </div>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>File name pattern: '{Date}Test.rpt' (assuming that Date = 20030201)<br /><br />* 'File append' is enabled:&#160;<br />-&gt; file '20030201Test.rpt' will be created if it does not yet exist<br />-&gt; file '20030201Test.rpt' will be updated if it already exists<br /><br />* 'File append' is disabled: <br />-&gt; file '20030201Test.rpt' will be created if it does not yet exist<br />-&gt; file '20030201Test01.rpt' will be created if '20030201Test.rpt' already 
+ exists.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Code page</p>
+        <div class="indented">
+            <p> If 
+	 set to default, the code page of the GLIMS database will be sent.</p>
+        </div>
+        <p class="fieldlabel">PIN provider</p>
+        <div class="indented">
+            <p>
+	 GLIMS will always export all patient identifications, accompanied by the identification provider. This field determines 
+	 which patient PIN will be exported as primary PIN (first in the list of identifications). If the PIN provider is not specified, the patient's internal id will be exported as primary PIN.</p>
+        </div>
+        <p class="fieldlabel">HC PIN provider</p>
+        <div class="indented">
+            <p>
+	 If the HC PIN Provider is 
+	 ?, the Patient PIN Provider will be used. Use a 'dummy' 
+	 correspondent as HC PIN Provider when the HC provider's internal id 
+	 must be reported.</p>
+        </div>
+        <p class="fieldlabel">Receiver</p>
+        <div class="indented">
+            <p>The 
+	 correspondent which receives the messages: <span style="color: #FF0000;">always 
+	 specify this correspondent</span>.</p>For disk reports, the receiver specified can be retrieved in a MISPL 
+ expression using the variable <b>&amp;ReportReceiver</b>. This 
+ variable can be used in the report template's header, first page header, 
+ footer and trailer. If used, <b>&amp;ReportReceiver</b> 
+ will be substituted with the internal id of the specified receiver (correspondent).</div>
+        <p class="fieldlabel">Sender</p>
+        <div class="indented">
+            <p> Allows 
+	 specifying an explicit sender in electronic reports. This 
+	 field can be used for all electronic report types, except the fixed 
+	 GLIMS reporting generators Text, HTML, HL-7, HPRIM and IMED(XML). Below 
+	 you will find the usage of this field for the different electronic 
+	 report types:</p>
+            <p class="fieldlabel">Report generators "EDI" and "MEDVRI"</p>
+            <div class="indented">
+                <p>If the sender is specified. it will be sent in the:</p>
+                <ul>
+                    <li value="1">UNB segment</li>
+                    <li value="2">ZKH segment (only if sender's correspondent type 
+	 is <span class="ui_element">Organization</span>)</li>
+                </ul>
+                <p>If the sender is not specified, the <span class="ui_element">Own organization</span> (defined 
+ in SpecificSite) is used as sender in the</p>
+                <ul>
+                    <li value="1">UNB segment</li>
+                    <li value="2">ZKH segment</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Report generators "HL7" and "HPRIM"</p>
+            <blockquote>
+                <p>The sender specified in the report generation screen is not used.</p>
+            </blockquote>
+            <p class="fieldlabel">Report generator "Online"</p>
+            <div class="indented">
+                <ul>
+                    <li value="1">If the sender is specified, it is used to fill 
+	 the &lt;Sender&gt; tag.</li>
+                    <li value="2">If the sender is not specified, the <span class="ui_element">Own organization</span> 
+	 (defined in SpecificSite) is used to fill the &lt;Sender&gt; tag.</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Disk reports "Medidoc", "Health1", "Medicard", 
+ "Medigest", "VarTxt"</p>
+            <blockquote>
+                <p>The sender specified in the report generation screen can be retrieved 
+ in a MISPL expression using the variable <b>&amp;ReportSender</b> 
+ (in analogy with the variable <b>&amp;ReportReceiver</b>). This 
+ variable can be used in the report template's header, first page header, 
+ footer and trailer. If used, the <b>&amp;ReportSender</b> 
+ will be substituted with the internal id of the specified sender (correspondent).</p>
+            </blockquote>
+        </div>
+        <p class="fieldlabel"><a name="Report"></a>Report items</p>
+        <div class="indented">
+            <p>This button allows to indicate which data should (not) be exported. This 
+	 allows to speed up the report generation by excluding information that 
+	 will never be used by the receiving translator. The items that 
+	 can be included / excluded are:</p>
+            <p class="fieldlabel">Orders</p>
+            <div class="indented">
+                <p class="fieldlabel">Order details</p>
+                <p class="fieldlabel">Copy receivers</p>
+                <p class="fieldlabel">Studies</p>
+                <p class="fieldlabel">Referrals</p>
+            </div>
+            <p class="fieldlabel">Specimens</p>
+            <div class="indented">
+                <p class="fieldlabel">Specimen details</p>
+            </div>
+            <p class="fieldlabel">Requests</p>
+            <div class="indented">
+                <p class="fieldlabel">Request details</p>
+            </div>
+            <p class="fieldlabel">Results</p>
+            <div class="indented">
+                <p class="fieldlabel">Result details</p>
+                <div class="indented">
+                    <p>To improve the performance of electronic reports, it is possible 
+	 to exclude the following data:</p>
+                    <ol>
+                        <li class="mips_list_numbered" value="1">Result department details</li>
+                        <li class="mips_list_numbered" value="2">Results status details (Availability, 
+		 Confirmation and Validation user/time)</li>
+                        <li class="mips_list_numbered" value="3">Result assessment method details</li>
+                    </ol>
+                </div>
+                <p class="fieldlabel">Expand result values</p>
+                <div class="indented">
+                    <p>If disabled, the non-expanded result code will 
+	 be exported as result value in electronic reports.</p>
+                </div>
+                <p class="fieldlabel">Isolation details</p>
+            </div>
+            <p class="fieldlabel">Object</p>
+            <div class="indented">
+                <p class="fieldlabel">Medical records</p>
+                <p class="fieldlabel">Object attributes</p>
+                <p class="fieldlabel">Payment agreements</p>
+                <div class="indented">
+                    <p class="fieldlabel">Ranking MISPL</p>
+                    <div class="indented">
+                        <p>By default, only the first (created) <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Payment agreement</span> / <a href="../../db/reference_guide/fnc.htm" xmlns="http://www.w3.org/1999/xhtml">Financing</a>  record of an order (set) is exported. If multiple <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Payment agreement</span> / <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Financing</span>  records are linked to an order (set), it is possible to determine via this <span class="ui_element">Ranking MISPL</span> which one needs to be exported.</p>
+                        <p>The selected site function must be Financing-based and of datatype Integer. The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Financing</span> record for which the site function returns the lowest value will be used to export the payment agreement.</p>
+                        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                            <p><span style="color: #003366; font-weight: bold;">Example</span>
+                            </p>
+                            <p>Suppose the following site function is configured:</p>
+                            <div class="indented" xmlns="">
+                                <p xmlns="http://www.w3.org/1999/xhtml">IF .PaymentAgreement.Fund.Id &lt;&gt; ?</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml">THEN RETURN 2;</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml">ELSE RETURN 1 ;</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+                            </div>
+                            <p>If, for an order with two payment agreements (the first payment agreement being linked to a fund, the second one being linked to the patient),</p>
+                            <ul>
+                                <li value="1">the ranking MISPL is not used, then the payment agreement linked to the fund is exported,</li>
+                                <li value="2">the ranking MISPL is used, then the payment agreement linked to the patient is exported.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="fieldlabel">Encounters</p>
+            <div class="indented">
+                <p class="fieldlabel">Encounter details</p>
+                <p class="fieldlabel">Stays</p>
+            </div>
+            <p class="fieldlabel">Identifications</p>
+            <p class="fieldlabel">Report</p>
+            <div class="indented">
+                <p class="fieldlabel">Classifications</p>
+                <p class="fieldlabel">Embed report data</p>
+                <div class="indented">
+                    <p>If enabled:</p>
+                    <ul>
+                        <li value="1">Attachment reports will be sent embedded in 
+		 the internal message (base64)</li>
+                        <li value="2">Image result data will be sent embedded in 
+		 the internal message (base64)</li>
+                    </ul>
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>When a report export driver is used, the embedded data will be added 
+	 in the exported report data stream. However, not all drivers 
+	 are equipped yet to handle this information. Check the driver specifications to verify what is possible.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="fieldlabel">Site attributes</p>
+            <p class="fieldlabel">Attachments</p>
+        </div>
+        <p class="fieldlabel">Upgrade mode</p>
+        <div class="indented">
+            <p> 
+		 This option should only be used for the URL export/import mechanism 
+		 which is used to synchronize two GLIMS versions during a structural 
+		 upgrade.</p>
+        </div>
+        <h3><a name="Invoicing" id="Invoicing"></a>Invoicing</h3>
+        <p>To invoice during report generation, the Policy option <span class="ui_element">Add to 
+ report</span> must be enabled.</p>
+        <p class="fieldlabel">Tariff parameter 
+	 set</p>
+        <div class="indented">
+            <p> Allows defining a function parameter set for the OrderSet.Tariff 
+	 function. If specified the OrderSet.Tariff function will 
+	 be executed with this parameters set when starting the report generation.<br /></p>
+        </div>
+        <p class="fieldlabel">Print settings</p>
+        <div class="indented">
+            <p> Allows 
+	 defining a function parameter set for the Invoice.Print function. If 
+	 specified then the most recent (Fund) Invoice will be printed with 
+	 these settings. If no invoice with payer type <span class="ui_element">Fund</span> is available 
+	 then the one with payer type <b>Object person</b> will be printed. If there 
+	 is no fund nor patient invoice and if there is only one payer type 
+	 then this invoice will be printed. </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>Note invoice printing 
+	 is only done for order-scoped reports.</p>
+            </div>
+            <p>If the parameter set used for the invoice printing does NOT specify 
+ a printer nor specifies that the output should go to a file, the invoice 
+ print program uses the same output settings as the report print program 
+ for its printer or output file. This is also true for other 
+ grouping mechanisms: when the invoice print parameters do not specify 
+ where the output is to be sent, the settings of the report print program 
+ are inherited.</p>
+        </div>
+        <h3><a name="Using variables in the directory and file name specification"></a>Using 
+ variables in the directory and file name specification</h3>
+        <p>In the <span class="ui_element">Path(s)</span> and <span class="ui_element">Name(s)</span> fields, you can not only specify 
+ a simple text name, but you can also use symbols. These symbols 
+ must be enclosed in curly braces. Supported symbols are:</p>
+        <p class="fieldlabel">{User}</p>
+        <div class="indented">
+            <p>The login 
+	 name of the user which actually creates the file.</p>
+        </div>
+        <p class="fieldlabel">{Date&lt;:format&gt;}</p>
+        <div class="indented">
+            <p> 
+	 The current date in YYMMDD format. The optional &lt;:format&gt; allows 
+	 specifying another format and supports the same options as the MISPL 
+	 <span class="ui_element">DateToString</span> function. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>{Date:%y%m}</p>
+            </div>
+        </div>
+        <p class="fieldlabel">{DateTime&lt;:format&gt;}</p>
+        <div class="indented">
+            <p>The current date and time in YYMMDDHHMMSS format. The optional &lt;:format&gt; 
+	 again allows a different format.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>{DateTime:%H%M} for hours 
+	 and minutes only.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">{TmpDir} <span style="font-weight: normal;">or</span> 
+	 {TempDir}</p>
+        <div class="indented">
+            <p>Replaced by the current temporary directory of the 
+	 application, as displayed by the <span class="ui_element">About</span> dialog.</p>
+        </div>
+        <p class="fieldlabel">{ReportTargetHCPIdentificationCode}</p>
+        <div class="indented">
+            <p> 
+Replaced by the report target's identification code (assigned by the 
+	 HC PIN provider specified in the report generation screen). When 
+	 no identification code can be found, the report target's internal 
+	 id will be used to create the sub-directories.</p>
+        </div>
+        <p class="fieldlabel">Automatically increasing sequencers</p>
+        <div class="indented">
+            <p>You can also add <span class="ui_element">automatically increasing sequencers</span> in file 
+ names. Please check the chapter <a href="../../general/files_name_sequencer.htm">Creating 
+ file names using sequencers</a> for more information.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p> If case of multiple file names with an identical format (e.g. 
+ hprim-{seq:999},attachment-{seq:999}), the symbols {seq:999} will be expanded 
+ analogously for both file names (based on the expansion for the first 
+ file name). This ensures a clear link between both files.</p>
+            </div>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>hprim0007.hpr =&gt; attachment007.txt (even if this is for instance 
+ the first attachment file)</p>
+            </div>
+        </div>
+        <h3><a name="Using_dynamic_texts_in_the_directory_and_file_name_specification" id="Using_dynamic_texts_in_the_directory_and_file_name_specification"></a>Using 
+ dynamic texts in the directory and file name specification</h3>
+        <p>GLIMS allows to use dynamic (Report-based) texts in the path and file 
+ names of electronic reports.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example 1</span>
+            </p><pre>
+Path(s): /tmp/online/{&lt;GetTargetIdentifier HCCodeProvider=RIZIV}
+Name(s): {&lt;GetOrderIdentifier}_{####}</pre><pre>
+Where
+GetTargetIdentifier:
+{: String TargetIdentifier;
+&#160;&#160;&#160;String HCCodeProvider;</pre><pre>
+TargetIdentifier := .Target.Identification(HCCodeprovider);</pre><pre>
+If TargetIdentifier = ?
+then TargetIdentifier := .Target.InternalId;
+endif;</pre><pre>
+return replace(TargetIdentifier, "/", "");
+}</pre><pre>
+And
+GetOrderIdentifier:
+{: String ReportIdentifier;</pre><pre>
+if .Scope = StringToEnumerated("ReportScope", "Order")
+then 
+&#160;&#160;ReportIdentifier := .Order.InternalId; 
+else 
+&#160;&#160;if .Scope = StringToEnumerated("ReportScope", "Specimen")
+&#160;&#160;then
+&#160;&#160;&#160;&#160;ReportIdentifier := .Specimen.InternalId; 
+&#160;&#160;else 
+&#160;&#160;&#160;&#160;if .Scope = StringToEnumerated("ReportScope", "Encounter")
+&#160;&#160;&#160;&#160;then
+&#160;&#160;&#160;&#160;&#160;&#160;ReportIdentifier := .Encounter.ExternalId;
+&#160;&#160;&#160;&#160;else
+&#160;&#160;&#160;&#160;&#160;&#160;if .Scope = StringToEnumerated("ReportScope", "Object")
+&#160;&#160;&#160;&#160;&#160;&#160;then
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ReportIdentifier := .Object.InternalId;
+&#160;&#160;&#160;&#160;&#160;&#160;else
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ReportIdentifier := "xxxxx"; /* Other Scope types yet to be coded */
+&#160;&#160;&#160;&#160;&#160;&#160;endif;
+&#160;&#160;&#160;&#160;endif;
+&#160;&#160;endif;
+endif;</pre><pre>
+return ReportIdentifier;
+}</pre>
+            <p>The output could be: /tmp/Order/10099922288/20051201-00001_0001.txt</p>
+        </div>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example 2</span>
+            </p><pre>
+Path(s): /tmp/online/{= .Target.InternalId}
+Name(s): {= .Order.InternalId}_{####}</pre><pre>
+The output could be: /tmp/Order/Faber/20051201-00001_0001.txt</pre>
+        </div>
+    </body>
+</html>

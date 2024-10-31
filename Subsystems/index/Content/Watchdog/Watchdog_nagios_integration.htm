@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Watchdog" data-mc-conditions="Primary.Glims_only,Primary.SampleNet only">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Resources/StyleSheets/samplenet_glims.css" rel="stylesheet" type="text/css" /><title>Watchdog - Nagios integration</title>
+        <link href="" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Watchdog - Nagios integration</h1>
+        <h2>Introduction</h2>
+        <p>Watchdog is the MIPS product aimed at monitoring communication between 
+ the MIPS applications and analysers (Translators and Translator servers), 
+ as well as background task execution (Task schedulers).</p>
+        <p>Nagios is a more general free / open source software project which aims 
+ to monitor the entire IT infrastructure to ensure systems, applications, 
+ services and business processes are functioning properly. For more information 
+ about Nagios, please visit the website: <a href="http://www.nagios.org" target="_blank">http://www.nagios.org</a>.</p>
+        <p>Watchdog NagiosAgent can "push" status information to Nagios 
+ for the following items:</p>
+        <ul>
+            <li value="1">Translator Servers and associated Translators</li>
+            <li value="2">Task Schedulers</li>
+            <li value="3">Service Controllers</li>
+            <li value="4">Report Builders</li>
+            <li value="5">Message Queues and associated Queue Processors</li>
+            <li value="6">Communication Engines</li>
+            <li value="7">Progress OpenEdge Application Servers</li>
+            <li value="8">Progress OpenEdge Databases used by MIPS applications</li>
+        </ul>
+        <p>Watchdog NagiosAgent does not provide means to start/stop application supportive processes (e.g. Services or Translators), nor does it provide means to monitor Oracle databases used by MIPS applications. Oracle database monitoring can be setup directly in Nagios by means of plug-ins.</p>
+        <h2>Configuration</h2>
+        <p>Watchdog Daemon will be setup on the MIPS application server machine.</p>
+        <p>Watchdog NagiosAgent will be setup on the Nagios server machine, and 
+ configured to automatically connect to the Watchdog Daemon as well as 
+ how to communicate status updates to Nagios.</p>
+        <h3>Properties</h3>
+        <p>Technically, Watchdog NagiosAgent will push all status information to 
+ Nagios by means of a "pipe" – a virtual file in an agreed-upon 
+ location on the file system of the Nagios server machine (e.g. /opt/local/nagios/watchdog.cmd).</p>
+        <p>The path to this virtual file, as well as the Watchdog Daemon host and 
+ port information must be set in the file $WATCHDOG/conf/Watchdog.nagiosagent.properties</p>
+        <h3>Mapping</h3>
+        <p>Another important topic regarding configuration, is that Nagios only 
+ supports a shallow hierarchy of "hosts" and "services". 
+ In addition, IT staff can setup "host groups" to bring together 
+ several "hosts" into a single overview in the Nagios "operations 
+ view" user interface. Watchdog NagiosAgent will require configuration 
+ to map the Watchdog model onto the Nagios model.</p>
+        <p>Some IT administrators may prefer a view per physical machine, while 
+ other IT administrators may prefer a more application-centric view. Watchdog 
+ NagiosAgent can be configured either way.</p>
+        <p>An example of an application-centric configuration is:</p>
+        <ul>
+            <li value="1">a host "Application_Communication" 
+	 for all TranslatorServers with their Translators,</li>
+            <li value="2">a host "Application_CronTasks" for 
+	 all TaskSchedulers,</li>
+            <li value="3">a host "Application_Databases" for 
+	 database monitoring,</li>
+            <li value="4">and a host group "Application" which 
+	 combines these hosts "Application_Communication", "Application_CronTasks" 
+	 and "Application_Databases" into a single overview.</li>
+        </ul>
+        <p>With the proper Nagios setup, laboratory IT staff can then have a specific 
+ view of the MIPS application and business process health.</p>
+        <p>To this end, we provide a mapping mechanism by means of the configuration 
+ file $WATCHDOG/conf/Watchdog.nagiosagent.map.xml - with a structure as 
+ defined in the accompanying document type definition file $WATCHDOG/conf/Watchdog.nagiosagenet.map.dtd</p>
+        <p>Watchdog NagiosAgent monitors this file for changes, and will automatically 
+ re-read this configuration file so you do not need to restart it in order 
+ to apply the changes.</p>
+        <h3>Startup</h3>
+        <p>The system administrator is responsible for setting up a shell script which is automatically run at startup of the server.</p>
+        <p>Such a shell script would look similar to:</p>
+        <div class="box_grey">
+            <p>export WATCHDOGHOME=/path/to/watchdog/dir<br />export WATCHDOGVERSION=6.2.0<br />cd $WATCHDOGHOME/lib<br />java -classpath -Dwatchdog.home="$WATCHDOGHOME" -jar watchdog-nagiosagent-$WATCHDOGVERSION.jar</p>
+        </div>
+        <h3>Example screens</h3>
+        <h4>Overview</h4>
+        <p>
+            <img src="../Images/nagios_overview.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h4>Database monitoring</h4>
+        <p>
+            <img src="../Images/nagios_db_details.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h4>Service monitoring</h4>
+        <p>
+            <img src="../Images/nagios_service_details.png" style="border: none;" alt="" border="0" />
+        </p>
+    </body>
+</html>

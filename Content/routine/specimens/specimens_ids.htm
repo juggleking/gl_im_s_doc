@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-priority="0" data-mc-time-estimate="0">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Specimen ids</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Specimen identifications</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Specimen%20internal%20id">Specimen 
+ internal id</a> - <a href="#Specimen%20external%20id">Specimen external id</a> 
+ - <a href="#Specimen%20identification">Specimen identification</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>In GLIMS, a specimen can be recognized by different identifications 
+ (internal id, external id and specimen identification).&#160; This document 
+ describes how and when these identifications are assigned and how they 
+ are used.</p>
+        <h2><a name="Specimen internal id"></a>Specimen internal id</h2>
+        <p>When manually entering an order in GLIMS and specifying the requests, 
+ GLIMS will verify which materials are needed and create the necessary 
+ specimens.&#160; The latter will always receive an <b>internal id</b>.
+ This id can be assigned by GLIMS using the MISPL functions SpecimenInternalId 
+ and SpecimenInternalIdOnInPut.&#160; 
+ If the order is created in GLIMS via electronic order communication, this 
+ internal id can also be assigned by an external party (electronic order 
+ communication).</p>
+        <p>For information on how to (re)calculate specimen internal ids on the basis of <a href="../orders/order_entry/order_entry_tab_order.htm#Work">work ids</a>, please read the chapters <a href="../orders/orders_m_get_identifier.htm">Order.GetIdentifier</a> and <a href="../orders/orders_m_recalculate_specimen.htm">Order.RecalculateSpecimen</a>.</p>
+        <h2><a name="Specimen external id"></a>Specimen external id</h2>
+        <p>It is also possible that a specimen already has a barcode.&#160;This 
+ barcode can be entered, scanned or sent electronically and will typically 
+ be stored in the specimen <b>external id</b>.&#160;</p>
+        <p>By default, the specimen 
+ external id has to be unique within the workflow.&#160;If your organization uses recurring external IDs, it is recommended to configure a specimen identification.</p>
+        <p>Alternatively, the environment 
+ variable "SpecimenExternalIdValidity" allows you to specify 
+ a period in time during which the external ID as barcode (scanned via specimen scan or queried by an analyzer) can  be found unambiguously. If this variable is not found, the default period taken into account by GLIMS is 30 days.</p>
+        <h2><a name="Specimen identification"></a>Specimen identification</h2>
+        <p>As the internal and external specimen id's may be too long to fit a 
+ barcode, it is possible to convert them to a specimen identification which 
+ can be used for analyzer communication.&#160; This conversion can be configured 
+ by means of specimen identification types, which determine how the specimen 
+ identification is composed (e.g. based on the internal and external id).&#160;&#160;</p>
+        <p>During order entry, GLIMS will check (via the procedures) on which station(s) 
+ the specimen(s) will be put to execute the requested tests.&#160; For 
+ each station, you can indicate which specimen identification type should 
+ be used.&#160; The corresponding identification(s) will automatically 
+ be created for the specimen(s).</p>
+        <p>Specimen identification types can be accessed from the main menu via 
+ <span class="ui_element">Start -&gt; Configuration -&gt; Specimen identification 
+ types</span>:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="specimen_ids.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="331" data-mc-height="194" src="specimen_ids_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="indented">
+            <p align="left" class="fieldlabel">Mnemonic</p>
+            <p align="left" class="fieldlabel">Description</p>
+            <p align="left" class="fieldlabel">Code</p>
+            <div class="indented">
+                <p align="left" style="text-align: left;">Refers a specimen-based string-valued MISPL method which returns the actual 
+ specimen identification.&#160; Example: <i>RETURN (substr(.InternalId,4,?));</i></p>
+            </div>
+            <p align="left" class="fieldlabel">Validity</p>
+            <div class="indented">
+                <p align="left" style="text-align: left;">
+ Number of days that this specimen identification is valid.</p>
+            </div>
+            <p align="left" class="fieldlabel">Evaluation</p>
+            <div class="indented">
+                <p>This option 
+ indicates when the specimen identification should be calculated </p>
+                <p align="left" class="fieldlabel">Once</p>
+                <div class="indented">
+                    <p align="left" style="text-align: left;"> 
+ The specimen identification will only be calculated once, i.e. during 
+ the creation of the specimen in the GLIMS database.</p>
+                </div>
+                <p align="left" class="fieldlabel">Always</p>
+                <div class="indented">
+                    <p align="left" style="text-align: left;">The specimen 
+ identification will be re-calculated whenever the external id or the sampling 
+ time of the specimen changes.&#160; This is typically used when a specimen 
+ identification is based on the specimen external id which is assigned 
+ by an external party (e.g. electronic order communication).&#160; As the 
+ specimen identification is calculated as soon as the specimen is created 
+ in GLIMS, the external id is not yet available in GLIMS.&#160; Therefore, 
+ you should choose this option to re-calculate the specimen identification 
+ as soon as the external id changes.</p>
+                    <p align="left" style="text-align: left;">Potential problem: if the specimen identification 
+ MISPL contains a sequencer, a double increment may occur because the MISPL 
+ may be executed twice.&#160;&#160;</p>
+                </div>
+                <p align="left" class="fieldlabel">Manual</p>
+                <div class="indented">
+                    <p align="left" style="text-align: left;">The specimen identification is never calculated automatically. 
+ This option can be used in combination with the specimen reception scan 
+ program which can save tube barcodes directly as specimen identification 
+ (pre-printed sample barcodes). <br /></p>
+                </div>
+            </div>
+            <p class="fieldlabel">Early receipt days</p>
+            <div class="indented">
+                <p>GLIMS allows to find specimen identification codes (barcodes) that arrive 
+ in the lab earlier than the validity start date of the identification code. 
+ This is useful when orders are planned for the future and it might happen that 
+ a specimen arrives earlier in the lab.</p>
+                <p>This option will have effect on the specimen receipt program and on station 
+ instruments that are querying or sending results for a barcode.&#160; Take for 
+ instance a specimen that has been planned for 3 days further than today. When 
+ setting this field to "2", GLIMS will 'recognize' the barcode from tomorrow 
+ on.</p>
+            </div>
+        </div>
+        <h3 style="TEXT-ALIGN: left;" align="left">Notes</h3>
+        <p>
+            <p style="TEXT-ALIGN: left;" align="left">Each time the specimen sampling date 
+ or receipt date is changed, the start date of a specimen's identification 
+ records is changed to the lowest value of the receipt date and the sampling 
+ date.&#160; Also when the specimen identification is created, this lowest date is 
+ used as start date.&#160; This allows for specimens that were scheduled to be 
+ sampled in the future to be received today, and still allow recognizing the 
+ identification codes when these specimens are put on an analyzer, after they 
+ have been properly confirmed, e.g. via Order.SpecimensConfirm().</p>
+        </p>
+        <p style="text-align: left;" align="left">&#160;</p>
+    </body>
+</html>

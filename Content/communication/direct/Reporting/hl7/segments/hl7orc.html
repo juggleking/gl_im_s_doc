@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="Microsoft Border" content="none, default" /><title>HL7 ORC segment</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>HL7: ORC - common order segment</h1>
+        <p>The Common Order segment (ORC) is used to transmit fields that are common to all orders (all types of services that are requested). The ORC segment is required in the Order (ORM) message. ORC is mandatory in Order Acknowledgment (ORR) messages if an order detail segment is present, but is not required otherwise.</p>
+        <p>If details are needed for a particular type of order segment (e.g., Pharmacy, Dietary), the ORC must precede any order detail segment (e.g., RXO, ODS). In some cases, the ORC may be as simple as the string ORC|OK|&lt;placer order number&gt;|&lt;filler order number&gt;|&lt;cr&gt;.</p>
+        <p>If details are not needed for the order, the order detail segment may be omitted. For example, to place an order on hold, one would transmit an ORC with the following fields completed: ORC-1-order control with a value of HD, ORC-2-placer order number, and ORC-3-filler order number.</p>
+        <p>There is some overlap between fields of the ORC and those in the order detail segments.</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="631" border="1">
+            <tr>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30" bgcolor="#FFFFFF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">SEQ</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30" bgcolor="#FFFFFF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">LEN</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30" bgcolor="#FFFFFF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">DT</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29" bgcolor="#FFFFFF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">OPT</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29" bgcolor="#FFFFFF">
+                    <p style="text-align: CENTER;"><b style="font-weight: bold;">RP/#</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158" bgcolor="#FFFFFF"><b style="font-weight: bold;">ELEMENT NAME</b>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185" bgcolor="#FFFFFF"><b style="font-weight: bold;">GLIMS</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">1</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">ID</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">R</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Order Control</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#1.%20Control" style="color: #0000ff;text-decoration: underline;">Control</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: center;">2</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">75</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CM</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">C</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Placer Order Number</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#2.Pacer%20Order%20Number" style="color: #0000ff;text-decoration: underline;">Placer Order Number</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">3</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">75</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CM</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">C</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Filler Order Number</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#3.%20Filler%20Order%20Number" style="color: #0000ff;text-decoration: underline;">Filler Order Number</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">4</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">75</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CM</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Placer Group Number</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">5</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">2</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">ID</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Order Status</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#Order%20Status" style="color: #0000ff;text-decoration: underline;">Status</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">6</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">1</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">ID</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Response Flag</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">7</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">200</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">TQ</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Quantity/Timing</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#Quantity/Timing" style="color: #0000ff;text-decoration: underline;">Quantity/Timing</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">8</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">200</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CM</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Parent</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">9</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">26</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">TS</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Date/Time of Transaction</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">Current Date/Time</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">10</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">80</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CN</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Entered By</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">11</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">80</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CN</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Verified By</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">12</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">80</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CN</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Ordering Provider</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#Order%20Issuer" style="color: #0000ff;text-decoration: underline;">Order Issuer</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">13</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">80</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CM</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Enterer’s Location</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#Order%20Agent" style="color: #0000ff;text-decoration: underline;">Order Agent</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">14</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">40</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">TN</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">Y/2</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Call Back Phone Number</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#14.%20Order%20Callback%20Phone" style="color: #0000ff;text-decoration: underline;">Order Callback Phone</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">15</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">26</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">TS</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Order Effective Date/Time</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">16</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">200</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CE</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Order Control Code Reason</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#16.%20Control%20Reason" style="color: #0000ff;text-decoration: underline;">Control Reason</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">17</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">60</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CE</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Entering Organization</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#17.%20Entering%20Organization" style="color: #0000ff;text-decoration: underline;">Entering Organization</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">18</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">60</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CE</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Entering Device</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">19</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">80</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">
+                    <p style="text-align: CENTER;">CN</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">
+                    <p style="text-align: CENTER;">O</p>
+                </td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Action By</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">20</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">-</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">-</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">-</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">-</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">21</td>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">80</td>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="30">ST</td>
+                <td style="vertical-align: TOP;text-align: center;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">O</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="29">&#160;</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="158">Issuer Info</td>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" width="185"><a href="#21.%20Issuer%20Info" style="color: #0000ff;text-decoration: underline;">Issuer Info</a>
+                </td>
+            </tr>
+        </table>
+        <h4><a name="1. Control"></a>1. Control</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">ORU: 'RE'</li><li class="kadov-p" value="2">ORM : 'SC'</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">ORM:
+<ul><li class="kadov-p" value="1">'NW' : New Order</li><li class="kadov-p" value="2">'CA' : Cancel Order - causes the Order to be discontinued in GLIMS</li></ul></li></ul></li>
+        </ul>
+        <h4><a name="2.Pacer Order Number"></a>2.Pacer Order Number</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">ORU: Order ShortId</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">ORM: Order ShortId</li></ul></li>
+        </ul>
+        <h4><a name="3. Filler Order Number"></a>3. Filler Order Number</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">ORU: Order InternalId</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">ORU: Order ShortId</li></ul></li>
+        </ul>
+        <h4><a name="Order Status"></a>5. Status</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">Frozen : 'HD'</li><li class="kadov-p" value="2">Initial : 'IP'</li><li class="kadov-p" value="3">Partial : 'A'</li><li class="kadov-p" value="4">Complete, Closed : 'CM'</li><li class="kadov-p" value="5">Discontinued : 'DC'</li></ul></li>
+        </ul>
+        <h4>7. <a name="Quantity/Timing"></a>Quantity/Timing</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">7.4 : ObjectTime</li><li class="kadov-p" value="2">7.6 : Urgency</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">7.4 : ObjectTime</li><li class="kadov-p" value="2">7.6 : Urgency</li><li class="kadov-p" value="3">7.8 : Order Description</li></ul></li>
+        </ul>
+        <p>Urgency GLIMS mapping for import/export default (can be set as translator startup option):</p>
+        <ul>
+            <li class="kadov-p" value="1">1 : R</li>
+            <li class="kadov-p" value="2">2 : N</li>
+            <li class="kadov-p" value="3">3-9 : S</li>
+        </ul>
+        <h4>12. <a name="Order Issuer"></a>Issuer</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">12.1 : Issuer Identification code or its InternalId if no Code was found</li><li class="kadov-p" value="2">12.2 : Issuer LastName</li><li class="kadov-p" value="3">12.3 : Issuer FirstName</li><li class="kadov-p" value="4">12.4 : Issuer MiddleName</li><li class="kadov-p" value="5">12.6 : Issuer Prefix</li><li class="kadov-p" value="6">12.7 : Issuer Title</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">12.1 : Issuer Identification code<br />
+(Looked up as Identification code or via InternalId if not found)</li></ul></li>
+        </ul>
+        <h4>13. <a name="Order Agent"></a>Agent</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export:
+<ul><li class="kadov-p" value="1">13.1 : Agent Identification code or its InternalId if no Code was found</li></ul></li>
+            <li class="kadov-p" value="2">Import:
+<ul><li class="kadov-p" value="1">13.1 : Agent Identification code<br />
+(Looked up as Identification code or via InternalId if not found)</li></ul></li>
+        </ul>
+        <h4><a name="14. Order Callback Phone"></a>14. Order Callback Phone</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export: Order Phone</li>
+            <li class="kadov-p" value="2">Import: Order Phone</li>
+        </ul>
+        <h4><a name="16. Control Reason"></a>16. Control Reason</h4>
+        <ul>
+            <li class="kadov-p" value="1">Import: Order Question<br /><br />
+Note: If you cancel an order = (<a href="#1.%20Control">Order Control</a> = ORC.1 = "CA") and you fill in field ORC.16, the order will be cancelled in GLIMS and the field Order.DiscontinuationReason will contain the information specified in ORC.16.</li>
+        </ul>
+        <h4><a name="17. Entering Organization"></a>17. Entering Organization</h4>
+        <ul>
+            <li class="kadov-p" value="1">Export: Order Department Identification Code</li>
+            <li class="kadov-p" value="2">Import: Order Department Identification Code</li>
+        </ul>
+        <h4><a name="21. Issuer Info"></a>21. Issuer Info</h4>
+        <p>Remark: This is a v2.3.1 field only !</p>
+        <ul>
+            <li class="kadov-p" value="1">Export: Order Issuer Info.</li>
+        </ul>
+    </body>
+</html>

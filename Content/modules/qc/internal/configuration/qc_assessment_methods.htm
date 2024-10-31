@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Configuration" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\configuration\assessment_methods.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Configuration: assessment methods</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1215"></a>
+            <MadCap:concept term="Quality control" />Quality control - Assessment methods</h1>
+        <h2>Introduction</h2>
+        <p>You can open the <a href="../../../../configuration/assessment_methods/assessment_methods.htm">Assessment method</a> browser using the context menu/ribbon of properties or stations. Click then on the <span class="ui_element">QC</span> tab.</p>
+        <h2>General fields</h2>
+        <p class="fieldlabel">QC norm deviation count</p>
+        <div class="indented">
+            <p>Indicates how the norm for QC results of precision controls in result browsers should be calculated: typically 2 or 3 to show the 2 or 3 sigma limits of the QC population. Or 3.5 for Westgard rules.</p>
+            <p>Please check the chapter <a href="../routine/qc_results.htm#Reference_range_for_QC_results">Reference range for QC results</a>&#160;for more information.</p>
+        </div>
+        <p class="fieldlabel">Required start qc / Required end qc / QC cycle length / QC cycle phase / QC phase position</p>
+        <div class="indented">
+            <p>These fields can be used to implement an <a href="../management/qc_channel_quality_monitoring.htm">automated channel quality monitoring system</a>.</p>
+        </div>
+        <p class="fieldlabel">Last QC time - QC validity</p>
+        <div class="indented">
+            <p style="text-align: left;">Each time a QC result enters the system, the 
+ time is recorded in the assessment method's <span class="ui_element">Last QC time</span> field.&#160;Each 
+ time a patient result enters the system, the <span class="ui_element">Last QC time</span> 
+ and <span class="ui_element">QC Validity</span> are compared. When the <span class="ui_element">Last QC time</span> is longer 
+ than &lt;QCValidity&gt; hours ago, the <span class="ui_element">Quality</span> field of the assessment method
+ (and the <span class="ui_element">Channel quality</span> of the patient result) is set to <span class="ui_element">Unreliable</span>.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">When a moving average result or a median result is entered, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last QC time</span> of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Assessment method</span> will only be updated if the result causes the channel quality to be set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Unreliable</span>.</p>
+            </div>
+            <p>Both fields are also shown in the Procedure.ChannelStatus() browser and editor.</p>
+        </div>
+        <p class="fieldlabel">Quality reset</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../management/qc_deviation_actions.htm">Deviation actions</a> for more information.</p>
+        </div>
+        <h2><a name="Patient"></a>Patient day median</h2>
+        <p class="fieldlabel"><a name="Median"></a>Median result count</p>
+        <div class="indented">Number of patient results after which the calculation of a median should take place again, and thus after which another QC result should be added to the QC population.</div>
+        <p class="fieldlabel">Low limit / high limit</p>
+        <div class="indented">If the value of a median  lies below / above the values indicated in these fields, a severity is applied to the QC result which was added to the QC&#160;population upon calculation of that median.</div>
+        <p class="fieldlabel"><a name="Limit"></a>Limit severity</p>
+        <div class="indented">Severity applied to a QC result if the median (calculated on the number of patient results indicated in <span class="ui_element">Median result count</span>) lies outside the limits defined in the <span class="ui_element">low</span> / <span class="ui_element">high limit</span> fields.</div>
+        <div class="indented">Limit severities are used to define the colors of the <span class="ui_element">QC</span> cells in the browser of <a href="../routine/qc_station_runs.htm#RunConfirmation">unprocessed ended stations runs</a>.</div>
+        <p class="fieldlabel"><a name="Alarm"></a>Alarm severity</p>
+        <div class="indented">The alarm severity is relevant when the  <a href="../management/qc_populations_recalculate_statistics.htm">recalculate statistics</a> function is used. This function allows the calculation of a median on all the QC results (i.e on all the <a href="#Median">medians</a> calculated on a number of patient results) added to the QC population during a defined period. The calculation of this "global" median leads to the addition of a "global" QC result to the QC population.</div>
+        <div class="indented">If the global median lies outside the limits defined in the <span class="ui_element">low</span> / <span class="ui_element">high limit</span> fields, an alarm severity is applied to the global QC result.</div>
+        <div class="indented">Alarm severities are used to define the colors of the <span class="ui_element">Median</span> cells in the browser of <a href="../routine/qc_station_runs.htm#RunConfirmation">unprocessed ended stations runs</a>.</div>
+        <p>&#160;</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Median result count: 3</p>
+                    <p>High limit: 65</p>
+                    <p>Low limit: 30</p>
+                    <p>Limit severity: 20</p>
+                    <p>Alarm severity: 30</p>
+                    <p>Measured patient results: 52 - 60 - 71 - 74 - 80 - 78</p>
+                    <p>&#160;</p>
+                    <p>Every time 3 patient results have been measured, a median is calculated:</p>
+                    <ul>
+                        <li value="1">Median of the first three patient results : 60</li>
+                        <li value="2">Median the last three patient results : 78</li>
+                    </ul>
+                    <p>The median of the first three patient results lies between the defined low and high limits: no limit severity is applied to the QC result added to the QC&#160;population.</p>
+                    <p>The median of the last three patient results exceeds the defined high limit: a limit severity of 20 is applied to the QC result added to the QC&#160;population.</p>
+                    <p>Now, the <span class="ui_element">Recalculate statistics</span> function is used and the median of all the QC results (60 and 78) is calculated: 69.</p>
+                    <p>This global median exceeds the defined high limit: an alarm severity of 30 is applied to the global QC result added to the QC&#160;population.</p>
+                </div>
+            </div>
+        </div>
+        <p>Please also check the chapter <a href="../management/qc_patient_median.htm">Quality monitoring via patient median calculation</a>&#160;for more information.</p>
+        <h2>Patient moving average</h2>
+        <p>Please check the chapter <a href="../management/qc_patient_moving_average.htm">Patient moving averages</a>&#160;for more information.</p>
+    </body>
+</html>

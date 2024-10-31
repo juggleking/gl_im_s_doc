@@ -1,0 +1,79 @@
+{:
+STRING Output, Hist, Lijn, Staal, RO;
+INTEGER i,n,m,k,o,c;
+
+m := StringToInteger("{n}");
+Output := ?;
+RO := ?;
+c:= 0;
+
+    Hist := .MicrobiologicHistory("Historiek-MB", ?, m, 1, ?, ?, ?, ?, ?, "ReportFormat:500");
+    i := 1;
+    n := NumEntries(Hist,Chr(10));
+    WHILE i <= n DO
+        Lijn := Entry(i,Hist,Chr(10));
+        IF Index(Lijn," : ") > 0 THEN /* KIEM */
+            Lijn := Replace(LTrim(Lijn," "),"  ", Chr(10));
+            Output := IfKnownString(Output + Chr(10)) + "<B>" + Entry(1,Entry(1,Lijn,Chr(10)),":") + "</B> " + Entry(2,Entry(1,Lijn,Chr(10)),":") + "<BR>";
+            Lijn := Entry(2,Lijn,Chr(10));
+            IF Index(Lijn,":") > 0 THEN /* ANTIBIOGRAM */
+                Output := IfKnownString(Output + Chr(10)) + Replace(Replace(Lijn,":R",":<FONT color=red><B>R</B></FONT>"),":S",":<FONT color=green><B>S</B></FONT>") + "<BR>";
+            ENDIF;
+        ELSE
+            IF Index(Lijn,": ") > 0 THEN /* RESULTAAT */
+                IF Index(Entry(1,Lijn,":"),".toel") > 0 THEN
+                    Output := IfKnownString(Output + Chr(10)) + "<B>" + Entry(1,Entry(1,Lijn,Chr(10)),":") + "</B> " + Entry(2,Entry(1,Lijn,Chr(10)),":") + "<BR>";
+                ELSE
+                    IF c = 1 THEN
+                        k := 1;
+                        o := NumEntries(Lijn,",");
+                        RO := IfKnownString(RO + Chr(10)) + "<H4>Rechtstreeks onderzoek</H4>" + "<TABLE width=50%>";
+                        WHILE k <= o DO
+                            RO := IfKnownString(RO + Chr(10)) + "<TR><TH width=50%>" + 
+                                IfKnownString(Entry(1,Entry(k,Lijn,","),":")) + 
+                                "</TH><TD width=50%>" + Entry(2,Entry(k,Lijn,","),":") + "</TD></TR>";
+                            k := k + 1;
+                        DONE;
+                        RO := IfKnownString(RO + Chr(10)) + "</TABLE>";
+                    ENDIF;
+                ENDIF;
+            ELSE
+                IF Index(Lijn,":") > 0 THEN /* ANTIBIOGRAM */
+                    Output := IfKnownString(Output + Chr(10)) + Replace(Replace(Lijn,":R",":<FONT color=red><B>R</B></FONT>"),":S",":<FONT color=green><B>S</B></FONT>") + "<BR>";
+                ELSE
+                    IF Index(Lijn,"$") > 0 THEN /* HOOFDING */
+                        IF i = 1 THEN
+                            Staal := /*IfKnownString(Output + Chr(10)) + */
+                                "<TABLE width=100%>" + Chr(10) +
+                                "<TR>" + Chr(10) +
+                                "  <TH width=33%>Staalnummer</TH>" + Chr(10) +
+                                "  <TH width=33%>Materiaal</TH>" + Chr(10) +
+                                "  <TH width=33%>Aard</TH>" + Chr(10) +
+                                "</TR>" + Chr(10) +
+                                "<TR>" + Chr(10) +
+                                "  <TD>" + IfKnownString(Entry(1,Lijn,"$")) + "</TD>" + Chr(10) +
+                                "  <TD>" + IfKnownString(Entry(2,Lijn,"$")) + "</TD>" + Chr(10) +
+                                "  <TD>" + IfKnownString(Entry(3,Lijn,"$")) + "</TD>" + Chr(10) +
+                                "</TR>" + Chr(10) +
+                                "</TABLE>";
+                            Staal := "<H3>" + 
+                                     IfKnownString(Entry(2,Lijn,"$")) + 
+                                     IfKnownString(" - " + Entry(3,Lijn,"$")) + 
+                                     IfKnownString(" (" + Entry(1,Lijn,"$") + ")") + 
+                                     IfKnownString(" " + Entry(5,Lijn,"$")) +
+                                     "</H3>";
+                        ENDIF;
+                        Output := IfKnownString(Output + Chr(10)) + 
+                            "<H4>Kweek: " + IfKnownString(Entry(4,Lijn,"$")) + "</H4>";
+                        c := c + 1;
+                    ELSE
+                        Output := IfKnownString(Output + Chr(10)) + Lijn + "<BR>";
+                    ENDIF;
+                ENDIF;
+            ENDIF;
+        ENDIF;
+        i := i + 1;
+    DONE;
+
+RETURN IfKnownString(Staal) + IfKnownString(RO) + IfKnownString(Output);
+}

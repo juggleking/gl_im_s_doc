@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.4.0 - Financial export in "SEPA" format (BILX_GSEPA-00001)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2343"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.4.0 - </MadCap:conditionalText>Financial export in "SEPA" format (BILX_GSEPA-00001)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS&#160;now allows exporting financial data in the <span class="ui_element">SEPA</span> format using the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm">FinancialShipment.Send</a> function.</p>
+        <h2>Configuration</h2>
+        <p>The SEPA export requires some additional configuration. A SEPA CDD document is a financial transaction between </p>
+        <ul>
+            <li value="1">a debitor: the <span class="ui_element">Correspondent</span> linked to the <span class="ui_element">Payer</span>, and</li>
+            <li value="2">a creditor: the <span class="ui_element">Correspondent</span> linked to the <span class="ui_element">Firm</span> of the <span class="ui_element">Lab</span>. </li>
+        </ul>
+        <p>A mandate should be defined between the debitor and the creditor. Mandatory fields for a mandate are </p>
+        <ul>
+            <li value="1"><span class="ui_element">Mandate ID </span>
+            </li>
+            <li value="2"><span class="ui_element">Date of Signature</span>
+            </li>
+        </ul>
+        <p>A creditor correspondent should have a <span class="ui_element">Creditor Identifier</span>.</p>
+        <p>The extra data which is needed for SEPA, should be specified in the <span class="ui_element">Correspondent</span> field <span class="ui_element">Billing comment</span> in XML format in a <span class="ui_element">&lt;SEPA&gt;...&lt;/SEPA&gt;</span> section.</p>
+        <p>The <span class="ui_element">Correspondent</span> linked to the <span class="ui_element">Firm</span> of the <span class="ui_element">Lab</span> should have a <span class="ui_element">&lt;CreditorIdentifier&gt;</span> subnode in its SEPA section in the billing comment.</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>&lt;SEPA&gt;</p>
+                <div class="indented">
+                    <p>&lt;CreditorIdentifier&gt;DE37ZZZ00000155700&lt;/CreditorIdentifier&gt; </p>
+                </div>
+                <p>&lt;/SEPA&gt;</p>
+            </div>
+        </div>
+        <p>The mandate of the customer should be defined in a <span class="ui_element">&lt;Mandate&gt;</span> subnode.</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>&lt;SEPA&gt;</p>
+                <div class="indented">
+                    <p>&lt;Mandate&gt;</p>
+                    <div class="indented">
+                        <p>&lt;MndtId&gt;G192BCDA&lt;/MndtId&gt;</p>
+                        <p>&lt;DtOfSgntr&gt;2013-09-14&lt;/DtOfSgntr&gt;</p>
+                    </div>
+                    <p>&lt;/Mandate&gt;</p>
+                </div>
+                <p>&lt;/SEPA&gt;</p>
+                <p style="font-style: italic;">The data in the &lt;MndtId&gt; node is the Mandate ID. The &lt;DtOfSgntr&gt; node contains the date of signature. The date format is fixed: YYYY-MM-DD.</p>
+            </div>
+        </div>
+        <p>It is possible that multiple firms are defined in a multi-lab environment. A customer can have mandates for different labs. It is possible to define multiple &lt;Mandate&gt; nodes in the SEPA section, but then a &lt;CreditorIdentifier&gt; node is required inside the &lt;Mandate&gt; node in order to differentiate between the different mandates.   When only one mandate is entered, this one will always be selected.  Same principle is used when having two mandates.  If the mandate is not found among the candidates, then the first mandate will be selected.</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>&lt;SEPA&gt;</p>
+                <div class="indented">
+                    <p>&lt;Mandate&gt;</p>
+                    <div class="indented">
+                        <p>&lt;MndtId&gt;G192BCDA&lt;/MndtId&gt;</p>
+                        <p>&lt;DtOfSgntr&gt;2013-09-14&lt;/DtOfSgntr&gt;</p>
+                        <p>&lt;CreditorIdentifier&gt;DE37ZZZ00000155700&lt;/CreditorIdentifier&gt;</p>
+                    </div>
+                    <p>&lt;/Mandate&gt;</p>
+                    <p>&lt;Mandate&gt;</p>
+                    <div class="indented">
+                        <p>&lt;MndtId&gt;H203ABCD&lt;/MndtId&gt;</p>
+                        <p>&lt;DtOfSgntr&gt;2013-08-24&lt;/DtOfSgntr&gt;</p>
+                        <p>&lt;CreditorIdentifier&gt;DE37ZZZ00000166888&lt;/CreditorIdentifier&gt;</p>
+                    </div>
+                    <p>&lt;/Mandate&gt;</p>
+                </div>
+                <p>&lt;/SEPA&gt;</p>
+            </div>
+        </div>
+        <p>It is also possible to specify the <span class="ui_element">SeqTp</span> in the SEPA section of the Billing comment of the debitor</p>
+        <div class="indented">
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>&lt;SeqTp&gt;RCUR&lt;/SeqTp&gt;</p>
+                <p><i>If the SeqTp is not defined in the billing comment, then we will use FRST as SeqTp (see below)</i>
+                </p>
+            </div>
+        </div>
+        <h2>SEPA&#160;Document Structure</h2>
+        <h3>Invoice grouping</h3>
+        <p>A financial shipment can contain multiple invoice summaries for different payers.</p>
+        <p>Each payer can have a different <span class="ui_element">SeqTp</span> value in its billing comment. The SeqTp can only be specified once in a Customer Direct Debit document. </p>
+        <p>This SeqTp value might be important. SeqTp='RCUR' means that the payment must be done in three days.  For SeqTp='FRST', the payment has to be done in six days.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The exact value of the SeqTp field is not validated, the correct value must be entered.</p>
+        </div>
+        <p>GLIMS will group the invoice summaries based on the SeqTp value of the payers.</p>
+        <p>The SEPA export of a financial shipment will produce a file for each SeqTp value. The file name will have a structure CDD&lt;FinancialShipment_id&gt;_&lt;current_date&gt;&lt;SeqTp&gt;.xml.</p>
+        <h3>Fields &amp; Contents</h3>
+        <p class="fieldlabel">Header</p>
+        <ul>
+            <li value="1">MsgId: this will be identical to the file name without the xml extension: "&lt;BIC&gt;_&lt;FinancialShipment_id&gt;_&lt;current_date&gt;_CDD"</li>
+            <li value="2">CredDtTm: date time of the creation of the document</li>
+            <li value="3">NbOfTxs: number of invoice summaries in the document</li>
+            <li value="4">CtrlSum: sum of the unbalanced  amounts of the invoice summaries in the document</li>
+            <li value="5">InitPty/Nm: name of the Firm correspondent of the Financial Shipment</li>
+        </ul>
+        <p class="fieldlabel">PmtInf</p>
+        <ul>
+            <li value="1">PmtInfId: same as the MsgId (see above). We will only have one PmtInf node in a CDD document.</li>
+            <li value="2">PmtMtd: DD (fixed)</li>
+            <li value="3">BtchBookg: true (fixed)</li>
+            <li value="4">NbOfTxs: number of invoice summaries</li>
+            <li value="5">CtrlSum: Sum of the unbalanced  amounts of the invoice summaries in the document</li>
+            <li value="6">PmtTpInf/SvcLvl/CD: SEPA (fixed)</li>
+            <li value="7">PmtTpInf/LclInstrm/CD: CORE (fixed)</li>
+            <li value="8">PmtTpInf/SeqTp:  SeqTp or FRST when not defined.</li>
+            <li value="9">ReqdColltnDt: Requested CollectionDate. <ul><li value="1">If the SeqTp = FRST, then this is the current date + 6 working days. </li><li value="2">If the SeqTp = RCUR, then this is the current date + 3 working days. </li><li value="3">If the SeqTp is not FRST or RCUR, then this is the External date of the financial shipment. If the latter is not specified, then it will be the current date + 8 working days.</li></ul></li>
+            <li value="10">Cdtr/Nm :  Firm.Correspondent.Name</li>
+            <li value="11">CdtrAcct/Id/IBAN:  Firm.Correspondent.BankAccount.IBAN</li>
+            <li value="12">CdtrAgt/FinInstnId/BIC:  Firm.Correspondent.BankAccount.BIC</li>
+            <li value="13">ChrgBr: SLEV (Fixed)</li>
+        </ul>
+        <p class="fieldlabel">DrctDbtTxInf</p>
+        <p>For each invoice summary, there will be a DrctDbtTxInf node under the PmtInf node.</p>
+        <ul>
+            <li value="1">PmtId/EndToEndId: InvoiceSummary ID</li>
+            <li value="2">InstdAmt (Ccy attribute fixed on EUR for the time being): InvoiceSummary unbalanced  Amount</li>
+            <li value="3">DrctDbtTx/ MndtRltdInf MndtId: Mandate ID</li>
+            <li value="4">DrctDbtTx/ MndtRltdInf/DtOfSgntr: Mandate Date of Signature</li>
+            <li value="5">DrctDbtTx/ MndtRltdInf/ AmdmntInd: false (fixed)</li>
+            <li value="6">CdtrSchmeId/Id/PrvtId/Othr/Id: Creditor Identifier</li>
+            <li value="7">CdtrSchmeId/Id/PrvtId/Othr/SchmeNm/Prtry: SEPA (fixed)</li>
+            <li value="8">DbtrAgt/ FinInstnId/BIC:  Payer.BankAccount.BIC</li>
+            <li value="9">Dbtr/Nm:  Payer.Name</li>
+            <li value="10">DbtrAcct/Id/IBAN:  Payer.BankAccount.IBAN</li>
+            <li value="11">RmtInf/Ustrd:  will have the structure &lt;InvoiceSummary.DocNr&gt;, &lt;date invoice summary&gt;, &lt;payer name&gt;</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Only a limited set of characters is allowed in a SEPA document: "a-z", "A-Z", "0-9", ":?,-(+.)/ ". Fields with free text will be formatted to ensure a valid SEPA document.</p>
+        </div>
+    </body>
+</html>

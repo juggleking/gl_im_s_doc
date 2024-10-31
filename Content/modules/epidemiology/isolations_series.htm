@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Epidemiology" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\epidemiology\epid_isolationseries.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Epidemiology - Isolation doubles</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor998"></a>
+            <MadCap:concept term="Epidemiology" /><a name="kanchor77"></a>Epidemiology - Isolation doubles</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Practical%20guide">Practical guide</a>
+                <ul>
+                    <li class="kadov-p" value="1"><a href="#A.%20Automatic%20detection">Automatic detection</a>
+                    </li>
+                    <li class="kadov-p" value="2"><a href="#B.%20Manual%20determination">Manual determination</a>
+                    </li>
+                    <li class="kadov-p" value="3"><a href="#C.%20%20Overview">Overview</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Cross%20infections">Cross infections</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Remarks">Remarks</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The two most important tables are:</p>
+        <ul>
+            <li class="kadov-p" value="1">Isolation 
+ series: grouping the isolations of the same patient and same/similar 
+ anti-biotype </li>
+            <li class="kadov-p" value="2">Hospital 
+ Infection: grouping the isolation series of different patients which 
+ cross-infected each other</li>
+        </ul>
+        <p>With the following relationships:</p>
+
+* An isolation can refer to 
+
+<ol><li class="kadov-p" value="1">the isolation series to which it belongs </li><li class="kadov-p" value="2">the isolation of which it is the double (similar 
+ antibiogram and within x days detected before)</li></ol>
+
+* An isolation has an 'infection 
+ update mode' which can be: 
+
+<ol><li class="kadov-p" value="1"><b style="font-weight: bold;">automatic</b>: the 
+ system will try to figure out whether it belongs to an isolation series 
+ and whether it is a double or original </li><li class="kadov-p" value="2"><b style="font-weight: bold;">explicit double</b>: 
+ the user explicitly declared it as being identical to another isolation 
+ </li><li class="kadov-p" value="3"><b style="font-weight: bold;">explicit original</b>: 
+ the user explicitly declared it as the first occurrence of an isolation 
+ series </li><li class="kadov-p" value="4"><b style="font-weight: bold;">no infection</b>: the 
+ user explicitly declared it as not being an isolation series at all (not 
+ important for statistics)</li></ol>
+
+* An isolation series always refers to 
+
+<ol><li class="kadov-p" value="1">its first isolation (the isolation that was first 
+ detected) </li><li class="kadov-p" value="2">the microorganism </li><li class="kadov-p" value="3">the material in which it was first detected </li><li class="kadov-p" value="4">the patient</li></ol>
+
+* An isolation series can refer to 
+
+<ol><li class="kadov-p" value="1"><a href="hospital_infections.htm">the hospital 
+ infection which it is part of</a></li></ol><h4>Example a possible isolation/isolation series scheme:</h4><p style="text-align: center;" align="center"><img src="isolationseries.png" style="width: 648px;height: 278px;border-style: none;border-style: none;" width="648" height="278" border="0" /></p><h2><a name="Practical guide"></a>Practical guide</h2><p>When an isolation is created, it refers to no isolation series at all.&#160; 
+ Its 'infection update mode' is 'automatic'.</p><p>There is a contextual menu function on isolations called 'Infection 
+ status'. This function shows the actual state of the isolation: the 
+ update mode ('automatic',...) as well as the isolation series it is part 
+ of and the isolation which it is probably the double of.</p><h3><a name="A. Automatic detection"></a>Automatic detection</h3><p>With the contextual menu function on isolations called '<b>Determine 
+ infection</b>' you can let the system figure out if the isolation 
+ belongs to an isolation series, to which one, etc.&#160; When a microbiology 
+ action is validated (either preliminarily or finally), the detection of 
+ isolation series is automatically executed for each isolation contained 
+ within the action.&#160; </p><p>Practically it is advisable to <b>configure a ‘Command’ to do all this 
+ at regular times</b> (like .e.g. every night) for all isolations that 
+ could possibly have been added or modified since the last run.&#160; For 
+ example: every night re-determine the isolation series for all isolations 
+ with sampling time between two months ago and today.</p><p>An isolation series is created if the isolation</p><ol><li class="kadov-p" value="1">has been confirmed </li><li class="kadov-p" value="2">has a positive appraisal</li></ol><p><b style="font-weight: bold;">The system considers an isolation as the 
+ duplicate of another one if</b></p><ol><li style="font-weight: bold;" class="kadov-p" value="1"><b style="font-weight: bold;">it is the 'same' microorganism: </b><blockquote><p><span style="font-weight: 400;">The detection of doubles - which 
+ by default searches for identical organisms for a certain patient, can 
+ be defined to consider all organisms within a certain <a href="../microbiology/configuration/micro_organisms.htm">taxonomic 
+ group</a>. The level of this group can be defined with the option "<b>Slightly 
+ different microorganisms may be identical</b>" in the general '<a href="../microbiology/configuration/microbiology_general_options.htm">microbiology 
+ settings</a>'. (see screenshot below <span style="color: #FF0000;"><b>(1)</b></span>).</span></p><p><span style="font-weight: 400;">E.g. suppose you have set up a structure 
+ like:</span></p><p><span style="font-weight: 400;">[-] Campylobacter species<br />	[-] Campylo Coli (subspecies)<br />	- Campylo Coli type A<br />	- Campylo Coli type B<br />	- Campylo Jejeuni (subspecies)</span></p><p><span style="font-weight: 400;">In this case suppose the doubles 
+ detection level is set to 'Species', then it would be possible that a 
+ Campylo Coli is considered to be a double of a Campylo Jejeuni (if the 
+ antibiograms match etc.).</span></p><p><span style="font-weight: 400;">If the doubles detection level is 
+ set to 'Subspecies', this would not be possible, but a Campylo Coli type 
+ A can still be detected as a double of a Campylo Coli type B.</span></p><p><span style="font-weight: 400;">If you don't want this, but you 
+ only want doubles within strictly the same organism, then you should leave 
+ the doubles detection level empty ('?').</span></p><p><span style="font-weight: 400;">GLIMS will also compare the <a href="isolations_discriminator.htm">isolations' 
+ discriminator</a> and if those are different, the isolations will be considered 
+ as different.</span></p></blockquote></li><li style="font-weight: bold;" class="kadov-p" value="2"><span><b style="font-weight: bold;">it is the same 
+ patient </b></span></li><li class="kadov-p" value="3">the <b>antibiograms of 2 consecutive isolations match 
+ with a maximal difference</b> of 'x' (see screenshot below <span style="color: #FF0000;"><b>(2)</b></span>) </li><li class="kadov-p" value="4">the <b>antibiograms of the first isolation and last 
+ isolation </b>of the isolation series match with a maximal difference 
+ of 'y' (see screenshot below <span style="color: #FF0000;"><b>(3)</b></span>)</li></ol><blockquote><blockquote><p>where 'x' and 'y' are decimal numbers that can be configured in 'System 
+ management -&gt; Customize -&gt; <a href="../microbiology/configuration/microbiology_general_options.htm">GLIMS 
+ microbiology</a>'.</p></blockquote></blockquote><ol><li value="5" class="kadov-p"><p><span><b style="font-weight: bold;">the </b></span><b style="font-weight: bold;">Maximum number of days between 2 consecutive 
+ isolations of a series </b>(see screenshot below <span style="color: #FF0000;"><b>(4)</b></span>) 
+ is not exceeded.</p><p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="epidemiology_general_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="725" data-mc-height="516" src="epidemiology_general_options_thumb_0_120.png" tabindex="" /></a></p></li></ol><p>The following detection parameters can also be specified per micro-organism 
+ or micro-organism family:</p><ul><li class="kadov-p" value="1">maximum number of days between 2 consecutive isolations&#160;</li><li class="kadov-p" value="2">maximum antibiogram difference between 2 consecutive 
+ isolations&#160;</li><li class="kadov-p" value="3">maximum total antibiogram difference between first 
+ and last isolation of a series</li></ul><p>This means that each parameter that is specified for a certain microorganism 
+ is automatically inherited by all descendant microorganisms.&#160;&#160;</p><p><b style="font-weight: bold;">About antibiogram difference</b></p><blockquote><p>The numeric difference of 2 antibiograms is defined as the number of 
+ differences 'Resistant-Sensitive' + half of the number of differences 
+ 'Resistant-Intermediate' and 'Intermediate-Sensitive'.</p><p>Example:</p><table style="width: 50%;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="50%" border="1"><tr><td colspan="6" style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;"><b style="font-weight: bold;">Numeric 
+ antibiogram difference</b></td><td /><td /><td /><td /><td /></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #99CC00;">A1</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #99CC00;">A2</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #99CC00;">A3</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #99CC00;">A4</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #99CC00;">A5</span></b></td></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;"><b style="font-weight: bold;"><span style="color: #6666FF;">Isolation 1</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">R</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">I</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">R</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">R</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">R</b></td></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;"><b style="font-weight: bold;"><span style="color: #6666FF;">Isolation 2&#160;</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">R</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">S</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">I</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">S</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">-</b></td></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;"><b style="font-weight: bold;"><span style="color: #6666FF;">Numeric difference</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">0</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">0.5</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">0.5</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">1</b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;">0</b></td></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td></tr><tr><td style="padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%">&#160;</td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #FF0000;">Total</span></b></td><td style="text-align: center;width: 10%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;" align="center" width="10%"><b style="font-weight: bold;"><span style="color: #FF0000;">2</span></b></td></tr></table><p>Glims also allows defining rules that determine the 
+<b>relevance of 
+ specific antibiotics</b>.</p><p>It can happen that </p><ol><li class="kadov-p" value="1">Some antibiotics are not important when comparing 
+ the antibiogram of 2 isolations.&#160; This means that equal isolations 
+ can have different results in their antibiogram for the same antibiotic, 
+ although both are really the same.</li><li class="kadov-p" value="2">Some antibiotics are so important that, if there 
+ is a difference, the isolations are certainly different.</li></ol><p>To support this in Glims, you can define rules for this.&#160; This 
+ can be done in the tab page "Epid. relevance" of <a href="../microbiology/configuration/antibiotics.htm">
+antibiotic 
+ configuration screen</a>.</p><ol><li class="kadov-p" value="1">Each rule is specific for a certain antibiotic and 
+ a certain micro-organism</li><li class="kadov-p" value="2">Each rule specifies the "relevance":</li></ol><blockquote><p>"Normal" is the default<br />"Difference is decisive"<br />"Difference is ignored"</p><p>"Normal"</p><blockquote><p>This is the default behaviour (as if the rule didn't exist):&#160; a 
+ difference between 2 antibiotic results is counted as 1 point (for R-S) 
+ or 0.5 point (for R-I and I-S).</p></blockquote><p>"Difference is decisive"</p><blockquote><p>In this case a different result for this antibiotic will immediately 
+ imply that both isolations are different. (Technically such a difference 
+ counts as an infinite number of points.)</p></blockquote><p>"Difference is ignored"</p><blockquote><p>This means the system should ignore results for this antibiotic, when 
+ comparing 2 isolations.&#160; The antibiotic will have no influence on 
+ the decision if the isolations are different or equal. Technically such 
+ a difference counts as 0 points.</p></blockquote></blockquote><p>Examples:</p><blockquote><p>"Oxacilline" "Staph.Aureus" =&gt; "Decisive"<br />"Ampicilline" "Staph.Aureus" =&gt; "Ignored"</p></blockquote></blockquote><h3><a name="B. Manual determination"></a>Manual determination</h3><p>With the contextual menu function on isolations called ‘Infection 
+ status’ the user can see and change the way the isolation is treated.</p><ul><li class="kadov-p" value="1">By setting the 'isolation doubles' status of the 
+ isolation to <b>‘Explicit original</b>’, the system will create an isolation 
+ series with this isolation as the first one. </li><li class="kadov-p" value="2">By setting the 'isolation doubles' status of the 
+ isolation to ‘<b>Explicit double</b>’, the user has the opportunity to 
+ choose himself which other isolation it is the double of. The user is 
+ presented a list of isolations that have been detected before in the same 
+ patient. By selecting one of them, the system will link both isolations 
+ and the last isolation will refer to the same isolation series as the 
+ selected one. </li><li class="kadov-p" value="3">By setting the 'isolation doubles' status of the 
+ isolation to ‘<b>No infection</b>’, the system will make sure that the 
+ isolation is not treated as part of an infection. </li><li class="kadov-p" value="4">By setting the 'isolation doubles' status of the 
+ isolation to ‘<b>Automatic determination</b>’ (default), the system will 
+ try to figure everything out by itself.</li></ul><h3><a name="C.  Overview"></a>Overview</h3><ul><li class="kadov-p" value="1">In the main menu there is a function ‘Microbiology 
+ -&gt; Isolation doubles’ to get the list of all isolation series, sorted 
+ by the date/time of the last detected isolation. For each isolation series, 
+ the list of contained isolations can be viewed. </li><li class="kadov-p" value="2">For each isolation there is a function to go to its 
+ isolation series. </li><li class="kadov-p" value="3">In the microbiology statistics the doubles can be 
+ taken into account.</li></ul><p>Note: it is possible to show only infections, cross infections and hospital 
+infections in browsers if they have a minimum infection severity.&#160; This minimum 
+severity can be specified in the general epidemiology options (Start -&gt; System 
+management -&gt; Customize -&gt; Glims microbiology -&gt; tab page "Epidemiology"), in 
+the field "Only severity &gt;=".</p><h2><a name="Cross infections"></a>Cross infections</h2><p>The function <b>'Determine infections' also creates a 'Cross-infection' 
+ record</b> as a link between different infections (Isolation series) of 
+ different patients that were in the same ward in the same period (see 
+ also chapter <a href="hospital_infections.htm">'Hospital infections'</a>). 
+ They can be viewed from an 'Isolation series' with the contextual menu functions 
+ '<b>Possibly caused by</b>' and '<b>Possibly transmitted to</b>'.</p><p>Glims also offers a trigger that runs each time a cross infection is 
+ created.&#160; This <b>cross infection trigger </b>can be specified in 
+ the general microbiology options (Start -&gt; System management -&gt; 
+ Customize -&gt; Glims microbiology).&#160; The defined MISPL expression 
+ must have "CrossInfection" as base table.&#160; The main advantage 
+ that the cross infection trigger has over the "Infection trigger" 
+ is that more information is available: from patient, to patient, via ward, 
+ via room etc.</p><h2><a name="Remarks"></a>Remarks</h2><p>For isolation series (infections), the field '<b>Hospital acquired</b>', 
+ is automatically set to Yes or No according to the parameter '<b>Maximum 
+ number of days between admission and hospital acquired</b>' (see screenshot 
+ above <b><span style="color: #FF0000;">(5)</span></b>) in the <a href="../microbiology/configuration/microbiology_general_options.htm">microbiology 
+ specific settings</a> and/or in the microorganism 'Epidemiology' settings.&#160; 
+ The field is set by the function 'Determine infection'.</p><p>Example: if the <b>Maximum number of days between admission and ' hospital acquired'</b> is set to "3" and a patient enters 
+ on 01/01/2008 then an isolation detected on 02/01/2008 will NOT be considered 
+ as "hospital acquired".</p><p>Only isolation series of which the option "hospital acquired" 
+ is enabled are considered during the detection of <a href="hospital_infections.htm">hospital 
+ infections</a>.</p></body>
+</html>

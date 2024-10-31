@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="External devices|Optical Mark Reading" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\omr\omr_categories.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS categories, forms and form recognition</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor11"></a>
+            <MadCap:concept term="System management" /><a name="kanchor15"></a>GLIMS categories, forms and form recognition</h1>
+        <h2>Categories</h2>
+        <p style="text-align: center;"><b style="font-weight: bold;"><img src="omr_cat.gif" alt="" width="269" height="131" border="0" /></b>
+        </p>
+        <h3>Name</h3>
+        <p>Must be unique.</p>
+        <h3>Identifier</h3>
+        <p style="text-align: JUSTIFY;">An optical mark category specifies a set of forms sharing the same identification ’r;zone’. Which means: the identification marks of these forms are positioned within the same ’r;zone’ or ’r;box’ for each form.</p>
+        <p style="text-align: JUSTIFY;">Such an identification box can be specified using the following syntax:</p>
+        <p style="text-align: JUSTIFY;">"LeftUpperPoint:RightLowerPoint", a point is made up: "Sxx,Cyy,Tzz"<br />
+S = Side, C = Clock and T = Track.</p>
+        <blockquote>
+            <p>eg. S1,C1,T36:S1,C3,T34</p>
+        </blockquote>
+        <p>Which means: the identification ’r;zone’ is positioned at side 1, from clock 1 to clock 2 and from track 34 to track 36.</p>
+        <h2>Forms</h2>
+        <p>Each form has a unique <b>name</b> and a <b>description</b>.</p>
+        <p style="text-align: JUSTIFY;">Also a total <b>side, clock, track, barcode</b> and <b>prompt count</b> must be specified. These are used for validating the input given in the tree editor (e.g. the clock of a mark may not exceed the total clock count of the form at hand, identical for track and side). <b>Barcode Count</b> specifies the maximum ammount of barcodes that can be on the OM sheet (can be zero). Currently, the prompt subtype is not yet supported.</p>
+        <p>The form can be <b>enabled</b> or <b>disabled</b><a name="kanchor16"></a>. If disabled, it will not be used for OMR sheet processing.</p>
+        <p style="text-align: JUSTIFY;">The <b>Form Identification</b> must be filled for form recognition usage. As I mentioned before, a category specifies a set of forms with the same identification ’r;box’.</p>
+        <blockquote>
+            <p style="text-align: JUSTIFY;">e.g. S1,C1,T36:S1,C3,T34&#160;&#160;<b>Category Identifier</b></p>
+            <p style="text-align: JUSTIFY;">e.g. 100010001&#160;&#160;&#160;<strong>Form Identification</strong> filled in form left-to-right upper-to-lower. 1 = mark is set on form, 0 = mark is not set on form.</p>
+            <p style="text-align: JUSTIFY;">e.g. Marks read by reader:</p>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <p>Mark1: (Side 1, Clock 1, Track 34)<br />
+Mark2: (Side 1, Clock 2, Track 35)<br />
+Mark3: (Side 1, Clock 3, Track 36)</p>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+            <p style="text-align: JUSTIFY;">Form identification ’r;box’ as read by the reader matches that of form above (identification 100010001):</p>
+        </blockquote>
+        <div style="text-align: center;">
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="2" width="287" border="1" bordercolor="#008000">
+                <tr>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Side 1</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Track 1</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Track 2</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Track 3</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Clock 1</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">1</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Clock 2</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">1</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">Clock 3</td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">0</p>
+                    </td>
+                    <td style="vertical-align: TOP;width: 25%;padding-left: 7px;padding-top: 7px;padding-right: 7px;padding-bottom: 7px;">
+                        <p style="text-align: CENTER;">1</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p>Each form also has a prefix, suffix and delimiter character (see chapter on <a href="omr_parameterization.htm">Optical mark parameterization and parsing</a>).</p>
+        <h3>Copying OMR form configuration</h3>
+        <p>It is possible to copy OMR form configuration independently of categories. A form contains the configuration of a physical OM sheet. A category can contain a number of&#160;&#160;forms which have an identical identification zone.<br /><br />
+It is possible to copy a form both to the same or to another category.</p>
+        <p style="text-align: center;">
+            <img src="omr_copy.gif" alt="" width="331" height="129" border="0" />
+        </p>
+        <p>In order to do so, select the menu option Duplicate on any OMR category.&#160;</p>
+        <p>First of all, you will have to specify a <b>source form</b> of which the configuration is to be copied. By default, the selected category will be specified as <b>Target category</b>, but as said before, it is also possible to copy the configuration of a form to another category.&#160;&#160;The <b>Target form</b> allows to enter the name of a new form to which the configuration should be copied.</p>
+    </body>
+</html>

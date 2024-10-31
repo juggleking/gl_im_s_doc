@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.3.0 - Export KVDT files using KV-Connect</title>
+        <link rel="StyleSheet" href="../../../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script type="text/javascript" src="../../../../Resources/hyperlink_target.js">
+        </script>
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4226"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.3.0 - </MadCap:conditionalText>Export KVDT files using KV-Connect &#160;(BILX_GKVC-00002)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS 9.3 allows to export KVDT files (German billing) using KV-Connect.</p>
+        <h2>Configuration</h2>
+        <p>Before you can start using KC-Connect, the following configuration is 
+ required in GLIMS:</p>
+        <h3>Change your KV-Connect password</h3>
+        <p>After having received your account information to connect to KV-Connect, 
+ you have to change your password before you start using the connection. 
+ </p>
+        <p>From the main menu, click "Start -&gt; Billing -&gt; Configuration 
+ -&gt; KBV -&gt; <span style="font-weight: bold;">Change KV-Connect password</span>".</p>
+        <p>
+            <img src="../../../../modules/billing/country_specific/Germany/kvdt/kv_connect_change_password.png" style="border: none;" alt="" border="0" />
+        </p>
+        <p class="fieldlabel">Communicate with</p>
+        <p class="fielddescription">The "Test server" option can be used 
+ for testing purposes.</p>
+        <p class="fieldlabel">Login user</p>
+        <p class="fielddescription">Enter your KV-Connect login name.</p>
+        <p class="fieldlabel">Current / New password</p>
+        <p class="fielddescription">Enter your current and new password.</p>
+        <h3>Generate a KV-Connect certificate</h3>
+        <p>After having changed your password, you have to create a public/private 
+ key pair and let the KV-Connect server sign a certificate for these keys. 
+ </p>
+        <p>From the main menu, click "Start -&gt; Billing -&gt; Configuration 
+ -&gt; KBV -&gt; <span style="font-weight: bold;">Generate KV-Connect certificate</span>".</p>
+        <p>
+            <img src="../../../../modules/billing/country_specific/Germany/kvdt/kv_connect_generate_certificate.png" style="border: none;" alt="" border="0" />
+        </p>
+        <p class="fieldlabel">Communicate with</p>
+        <p class="fielddescription">The "Test server" option can be used 
+ for testing purposes.</p>
+        <p class="fieldlabel">Login user / Password</p>
+        <p class="fielddescription">Enter your login name and password</p>
+        <p class="fieldlabel">Key store / pass phrase</p>
+        <p class="fielddescription">Your key pair and certificate are stored in 
+ a Java <span style="font-weight: bold;">Keystore</span> (*.jks file). 
+ &#160;You can choose to create a new one (by specifying a jks file that 
+ does not exist) or reuse an already existing jks. When generating a new 
+ key store, the <span style="font-weight: bold;">pass phrase</span> (password) 
+ provided will then be used to encrypt the key store. If the key store 
+ exists, you have to provide the password it was encrypted with before.</p>
+        <p>Once you have generated a certificate, you can send and receive messages 
+ using KV-Connect. You will always have to provide the most recently generated 
+ jks file so messages can be encrypted/decrypted and signed/verified. Older 
+ jks files will be unable to send proper messages nor be able to decrypt 
+ answers. </p>
+        <p>The key store generated by GLIMS is compatible with the one generated 
+ by the KV-Connect client (cfr. <a href="https://projektportal.kv-connect.de/projects/kvconnect-aiskis/files" target="_blank" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">KV-Connect downloads</a>). 
+ &#160;This means you can use a key store generated by the KV-Connect client 
+ in GLIMS (just point to the .jks files: e.g. c:\KV-Connect\users\&lt;username&gt;\mailkeystore.jks). 
+ You can also let the KV-Connect client use the key store generated by 
+ GLIMS (replace the jks in the user KV-Connect user directory with the 
+ one you have generated).</p>
+        <h3>Known restrictions and limitations</h3>
+        <ul>
+            <li class="mips_list_bulleted" value="1">Use a separate key store for every KV-Connect 
+	 user</li>
+            <li class="mips_list_bulleted" value="2">Certificates signed by KV-Connect are 
+	 only valid for 2 years. Every 2 years you will have to regenerate 
+	 your certificate.</li>
+            <li class="mips_list_bulleted" value="3">When creating a new keystore, you can 
+	 not navigate to this non existing file using the "File open…" 
+	 dialog you get when double clicking the "Key store" field. 
+	 You have to manually type in the full path to the keystore you wish 
+	 to create (e.g. “c:\keystore.jks” without the quotes).</li>
+        </ul>
+        <h2>Export</h2>
+        <p>GLIMS communicates with KV-Connect via the KV-Connect REST server (so 
+ the KV-Connect client is not used).</p>
+        <h3>Generate XML and send to KV-Connect REST server</h3>
+        <p>From a <span style="font-weight: bold;">financial shipment</span>, right-click 
+ and choose "<span style="font-weight: bold;">KBV -&gt; GenerateKVConnectXML</span>".</p>
+        <p>
+            <img src="../../../../modules/billing/country_specific/Germany/kvdt/kv_connect_send_xml.png" style="border: none;" alt="" border="0" />
+        </p>
+        <p class="fieldlabel">Version</p>
+        <p class="fielddescription">Increases automatically when re-sending a financial 
+ shipment. When re-sending a financial shipment, the screen will use the 
+ same information as the first export. This behavior can be changed by 
+ manually resetting this field to "1".</p>
+        <p class="fieldlabel">.xkm Datei</p>
+        <p class="fielddescription">Select the encrypted KVDT file. This is a .xkm 
+ file created using the pruefassistent).</p>
+        <p class="fieldlabel">Sammelerklaerungsdatei</p>
+        <p class="fielddescription">An optional file with extra information.</p>
+        <p class="fieldlabel">BSNR</p>
+        <p class="fielddescription">Automatically derived from the financial shipment 
+ (firm identification).</p>
+        <p class="fieldlabel">Quartal</p>
+        <p class="fielddescription">Automatically derived from the financial shipment's 
+ external date.</p>
+        <p class="fieldlabel">Testdaten / Vollstaendig</p>
+        <p class="fielddescription">&#160;</p>
+        <p class="fieldlabel">Send</p>
+        <p class="fielddescription">When pressing the "Send" button:</p>
+        <ol style="list-style-type: decimal;">
+            <li value="1">
+                <p class="fielddescription">an xml file "einlieferung_Abrechnung.xml" 
+	 is generated (in the same directory as the selected .xkm file)</p>
+            </li>
+            <li value="2">
+                <p class="fielddescription">after entering the KV-Connect login 
+	 details, GLIMS will send the XML file to the KC-Connect REST server</p>
+            </li>
+            <li value="3">
+                <p class="fielddescription">Depending on the result, the financial 
+	 shipment will have status "Sent" or "Transfer failed".</p>
+            </li>
+        </ol>
+        <h3>Check KVConnect reply</h3>
+        <p>GLIMS allows to check the reply for a previously sent .XKM file.</p>
+        <p>From a <span style="font-weight: bold;">financial shipment</span>, right-click 
+ and choose "<span style="font-weight: bold;">KBV -&gt; CheckKVConnectReply</span>".</p>
+        <p>
+            <img src="../../../../modules/billing/country_specific/Germany/kvdt/kv_connect_check_reply.png" style="border: none;" alt="" border="0" />
+        </p>
+        <p class="fieldlabel">Communicate with</p>
+        <p class="fielddescription">The "Test server" option can be used 
+ for testing purposes.</p>
+        <p class="fieldlabel">Destination email</p>
+        <p class="fieldlabel">&#160;</p>
+        <p class="fieldlabel">Login user / password</p>
+        <p class="fielddescription">Enter your login name and password.</p>
+        <p class="fieldlabel">Key store / pass phrase</p>
+        <p class="fielddescription">Enter your key store and pass phrase.</p>
+        <p>This function only checks the replies for the related financial shipments. 
+ The replies are logged in a log type named "KVConnect abrechnung 
+ (check reply)". The log entries have the financial shipment as subject. 
+ These logs are also available from the financial shipment by using the 
+ contextual function "Show log entries".</p>
+    </body>
+</html>

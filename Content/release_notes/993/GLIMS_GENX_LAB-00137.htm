@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.3 - Advanced work list: support printing locus/variant result and specimen collection related information (GLIMS_GENX_LAB-00137)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor173"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.3 - </MadCap:conditionalText>Advanced work list: support printing locus/variant result and specimen collection related information (GLIMS_GENX_LAB-00137)</h1>
+        <h2>Context</h2>
+        <p>The <a href="../../routine/work_lists/work_lists_advanced_editor.htm" xmlns="http://www.w3.org/1999/xhtml">work list</a> functionality did print the specimen and results, but it could not print the locus/variant results even after the adjustments for the Genetics module. Additionally, it was not possible to print out the <a href="../../routine/specimens/specimen_info.htm" xmlns="http://www.w3.org/1999/xhtml">specimen collection info</a> in the same context. The functionality had to be expanded to ensure that work list printing would include the locus and variant result values, as well as the specimen collection information.</p>
+        <h2>Extended support for</h2>
+        <h3> Variant/locus results</h3>
+        <p>When printing  a work list in the Genetics module context, users will from now on be able to print the variant and locus results out as well.</p>
+        <p>The new fields for the variant/locus results, which will also be included in the XML and thus can be added to the PDF using a jasper report are:</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong>Approach</strong>:  name of the approach plan, start time, end time, status</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong>Locus results</strong>: raw value, IsReportable, severity, information about the linked locus (described below), availability time, confirmation time, status, genetic result details (from the lists that add columns to the locus result grids)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong xmlns="http://www.w3.org/1999/xhtml">Tested locus</strong>: creation user, creation time, last update user, last update time, version, name, active, type, extra information about the locus type (e.g. in case of a gene, the default transcript)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong>Variant results</strong>: IsNew, IsRelevant, IsReportable, classification, severity, availability time, confirmation time, status, retest status, allelic state, parental origin (extra info on the variant that is being tested, described below)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong xmlns="http://www.w3.org/1999/xhtml">Variant</strong>: creation user/time, last update user/time, version, found in community, found outside community, found internally, active, classification, name, start position, stop position, type, approval date time, DNA change type, size unit, extra information about the locus that the variant is a variant of, extra information about the variant (e.g. in case of a CNV, the copy count)</p>
+        </div>
+        <p>The structure is as follows:</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00137_1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="440" data-mc-height="605" src="GLIMS_GENX_LAB-00137_1_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p>&#160;</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00137_2.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="431" data-mc-height="582" src="GLIMS_GENX_LAB-00137_2_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Specimen collection information</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">From now on, the following specimen collection information will be included (if available) when printing in the context of an advanced work list:</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong xmlns="http://www.w3.org/1999/xhtml">Specimen collection info</strong>: received quantity, sampler value, container count, quality, foetus (this is the person record), sampling location, sampling address (this is the correspondent), sampler (this is the HC provider)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong xmlns="http://www.w3.org/1999/xhtml">Specimen container definition</strong>: name</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong>Specimen container cap</strong>: name</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><strong>Specimen container type</strong>: name</p>
+        </div>
+        <p xmlns="http://www.w3.org/1999/xhtml">The parent specimen of a sub specimen will always be included as well. If the DNA has been extracted in the lab, the user will be able to see the DNA specimen as well as the root material that it was extracted from.</p>
+        <p>The structure is as follows:</p>
+        <p style="text-indent: 0.5in;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00137_3.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="360" data-mc-height="743" src="GLIMS_GENX_LAB-00137_3_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Specimens</h3>
+        <p>After an update, instead of filling out <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Parent specimen</span> with whatever was stored in the parent specimen field, from now on users will see <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Root specimen</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Direct parent specimen</span>. The root specimen is from now on the root specimen that the sub specimen is derived from in a broader sense, while the direct parent specimen is the specimen that the sub specimen was directly derived from.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">Root</p>
+                <div class="indentedsmall" xmlns="">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Sub specimen 1</p>
+                </div>
+                <div class="indented" xmlns="">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Sub specimen 2</p>
+                </div>
+            </div>
+            <ol>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">For root we have no other root specimen or direct parent specimen. This is the origin of the sub specimen in a broader sense.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2">For sub specimen 1 we only have one root specimen = Root.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="3">For sub specimen 2 we have Root = root specimen, direct parent = sub specimen 1.</li>
+            </ol>
+        </div>
+    </body>
+</html>

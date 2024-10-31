@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Result</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3347"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Result&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Result</td>
+                <td>
+rslt</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+None</td>
+            </tr>
+        </table>
+        <p>
+This table stores the results of property assessements. Each result record can outlive its associated order(s). </p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AlternateUnitNorm"></a>
+        <h3>
+Severity &gt; Norm in alternate unit</h3>
+        <div class="MemberHelp">
+            <p>
+Same contents as Result.Norm, but expressed in alternate unit.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>AlternateUnitNorm</b></p>
+        </div><a name="F_AssessmentCount"></a>
+        <h3>
+Log &gt; Assessment count</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the number of times this result was assessed. Currently it is 1 for normal results and 0 if a result code has been entered for which the 'Assessed' field is false. It is primarily used for statistical purposes, but also the property blocking period check ignores results that were not assessed.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>AssessmentCount</b></p>
+        </div><a name="F_AvailabilityTime"></a>
+        <h3>
+Log &gt; Entered on</h3>
+        <div class="MemberHelp">
+            <p>
+The availability time field indicates the date and time on which the result was entered.<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>AvailabilityTime</b></p>
+        </div><a name="F_AvailabilityUser"></a>
+        <h3>
+Log &gt; Entered by</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the user who entered the result.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>AvailabilityUser</b></p>
+        </div><a name="F_ChannelQuality"></a>
+        <h3>
+Severity &gt; Channel quality</h3>
+        <div class="MemberHelp">
+            <p>
+The channel quality field specifies the quality of the property output channel at the time of assessment.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="channelquality.htm">ChannelQuality</a></span>&#160;<b>ChannelQuality</b></p>
+            <p>
+One of: <span class="Parameter">Unreliable, Dubious, Reliable</span></p>
+        </div><a name="F_Choice"></a>
+        <h3>
+Log &gt; Choice</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the selected choice record. It is only used for enumerated properties.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="chc.htm">Choice</a></span>&#160;<b>Choice</b></p>
+        </div><a name="F_Comparator"></a>
+        <h3>
+Log &gt; Comparator</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the comparator. Unknown means equal (only for numeric results).
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="resultcomparator.htm">ResultComparator</a></span>&#160;<b>Comparator</b></p>
+            <p>
+One of: <span class="Parameter">&lt;, &gt;</span></p>
+        </div><a name="F_ConfirmationMethod"></a>
+        <h3>
+Log &gt; Confirmation method</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates how the result was confirmed. This may be taken into account when deciding when a result modification is allowed and whether the new result should be automatically confirmed.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="confirmationmethod.htm">ConfirmationMethod</a></span>&#160;<b>ConfirmationMethod</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Automatic, Result code, External</span></p>
+        </div><a name="F_ConfirmationTime"></a>
+        <h3>
+Log &gt; Confirmed at</h3>
+        <div class="MemberHelp">
+            <p>
+The confirmation time field contains the date and time on which the result was confirmed.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>ConfirmationTime</b></p>
+        </div><a name="F_ConfirmationUser"></a>
+        <h3>
+Log &gt; Confirmed by</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the user who confirmed this result.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>ConfirmationUser</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DelaySeverity"></a>
+        <h3>
+Severity &gt; Delay severity</h3>
+        <div class="MemberHelp">
+            <p>
+The delay severity is set by material validity rules and assesment method delay check</p>
+            <p class="Synopsis"><span class="Type">Integer</span>&#160;<b>DelaySeverity</b></p>
+        </div><a name="F_DeltaNormSeverity"></a>
+        <h3>
+Severity &gt; Delta norm severity</h3>
+        <div class="MemberHelp">
+            <p>
+The delta norm severity is set by delta norm checking.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>DeltaNormSeverity</b></p>
+        </div><a name="F_Department"></a>
+        <h3>
+Info &gt; Executing department</h3>
+        <div class="MemberHelp">
+            <p>
+Department responsible for the result</p>
+            <p class="Synopsis"><span class="Type"><a href="dept.htm">Department</a></span>&#160;<b>Department</b></p>
+        </div><a name="F_DilutionMode"></a>
+        <h3>
+Dilution &gt; Dilution mode</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="dilutionmode.htm">DilutionMode</a></span>&#160;<b>DilutionMode</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Instrument</span></p>
+        </div><a name="F_DisplayLog"></a>
+        <h3>
+Log &gt; Log</h3>
+        <div class="MemberHelp">
+            <p>
+Complete log of result</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">String</span>&#160;<b>DisplayLog</b></p>
+        </div><a name="F_DisplayString"></a>
+        <h3>
+Value</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">String</span>&#160;<b>DisplayString</b></p>
+        </div><a name="F_DynamicType"></a>
+        <h3>
+Info &gt; Dynamic type</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if this is a result of a dynamic property and if the object time is to be interpreted as an absolute time or in relation to a base object time.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="dynamictype.htm">DynamicType</a></span>&#160;<b>DynamicType</b></p>
+            <p>
+One of: <span class="Parameter">None, Relative, Absolute, Unknown, Discriminator</span></p>
+        </div><a name="F_EffDilutionCondition"></a>
+        <h3>
+Dilution &gt; Effective dilution condition</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>EffDilutionCondition</b></p>
+        </div><a name="F_EffDilutionFactor"></a>
+        <h3>
+Dilution &gt; Effective dilution factor</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveFractional</span>&#160;<b>EffDilutionFactor</b></p>
+        </div><a name="F_Escalation"></a>
+        <h3>
+Info &gt; Escalation</h3>
+        <div class="MemberHelp">
+            <p>
+Escalation status</p>
+            <p class="Synopsis"><span class="Type"><a href="resultescalation.htm">ResultEscalation</a></span>&#160;<b>Escalation</b></p>
+            <p>
+One of: <span class="Parameter">Escalated, Strictly escalated</span></p>
+        </div><a name="F_ExpertSystemFlags"></a>
+        <h3>
+Severity &gt; Expert system flags</h3>
+        <div class="MemberHelp">
+            <p>
+Contains the possible appraisal of an external expert system application. Interpretation: ? = not yet evaluated, empty string = processed and approved, any non-empty string = rejection reason or flags. This field is reset to its initial value on each result value change.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ExpertSystemFlags</b></p>
+        </div><a name="F_Exponent"></a>
+        <h3>
+Log &gt; Exponent</h3>
+        <div class="MemberHelp">
+            <p>
+The Exponent is expressed in the unit of the property and can only be used for numeric properties. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>Exponent</b></p>
+        </div><a name="F_ExternalComment"></a>
+        <h3>
+Comments &gt; External comment</h3>
+        <div class="MemberHelp">
+            <p>
+The external comment is used on outbound reports. It may contain dynamic text.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ExternalComment</b></p>
+        </div><a name="F_ExternalCommentTime"></a>
+        <h3>
+External comment time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>ExternalCommentTime</b></p>
+        </div><a name="F_FirstReportTime"></a>
+        <h3>
+First report</h3>
+        <div class="MemberHelp">
+            <p>
+The date and time when a value for this result was first reported. Note that this field is calculated per generated report.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>FirstReportTime</b></p>
+        </div><a name="F_HasDuplicate"></a>
+        <h3>
+Info &gt; Has duplicate</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if this result has a duplicate.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>HasDuplicate</b></p>
+        </div><a name="F_HasRequestComment"></a>
+        <h3>
+Comments &gt; Has request comment</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the request contains a comment.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>HasRequestComment</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalComment"></a>
+        <h3>
+Comments &gt; Internal comment</h3>
+        <div class="MemberHelp">
+            <p>
+The internal comment is used for internal purposes. It may contain dynamic text. </p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>InternalComment</b></p>
+        </div><a name="F_IsBaseLineValue"></a>
+        <h3>
+Info &gt; Baseline value</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the result is marked as a base line value for delta norms.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>IsBaseLineValue</b></p>
+        </div><a name="F_IsDuplicate"></a>
+        <h3>
+Info &gt; Is duplicate</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if this result is a duplicate of another result</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>IsDuplicate</b></p>
+        </div><a name="F_IsOutlier"></a>
+        <h3>
+Info &gt; Outlier</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if this result is an outlier and excluded from QC statistics</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>IsOutlier</b></p>
+        </div><a name="F_LASSeverity"></a>
+        <h3>
+Severity &gt; LAS severity</h3>
+        <div class="MemberHelp">
+            <p>
+When StationFlag.LASDisconnectSeverity is reached, GLIMS must fill in the Result.LASSeverity with the occurred StationFlag.LASSeverity value.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>LASSeverity</b></p>
+        </div><a name="F_LastReportTime"></a>
+        <h3>
+Last report</h3>
+        <div class="MemberHelp">
+            <p>
+The date and time when a value for this result was last reported</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastReportTime</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Log"></a>
+        <h3>
+Log &gt; Log</h3>
+        <div class="MemberHelp">
+            <p>
+This text field maintains a log of all important events that occured for this result (e.g. entered, confirmed, replaced, ...)</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Log</b></p>
+        </div><a name="F_Mantissa"></a>
+        <h3>
+Log &gt; Mantissa</h3>
+        <div class="MemberHelp">
+            <p>
+The Mantissa is expressed in the unit of the property and can only be used for numeric results.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>Mantissa</b></p>
+        </div><a name="F_ManualSeverity"></a>
+        <h3>
+Severity &gt; Manual severity</h3>
+        <div class="MemberHelp">
+            <p>
+The manual severity is the only accessible severity.</p>
+            <p class="Synopsis"><span class="Type">Integer</span>&#160;<b>ManualSeverity</b></p>
+        </div><a name="F_MeasurementCompleted"></a>
+        <h3>
+Instrument &gt; Measurement completed</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the date and time the result measurement was completed on the instrument
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>MeasurementCompleted</b></p>
+        </div><a name="F_MeasurementStarted"></a>
+        <h3>
+Instrument &gt; Measurement started</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the date and time the result measurement was started on the instrument
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>MeasurementStarted</b></p>
+        </div><a name="F_Method"></a>
+        <h3>
+Info &gt; Method</h3>
+        <div class="MemberHelp">
+            <p>
+Copy of AssessmentMethod.Method at the moment of result entry.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Method</b></p>
+        </div><a name="F_ModificationMethod"></a>
+        <h3>
+Log &gt; Modification method</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+            </p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="modificationmethod.htm">ModificationMethod</a></span>&#160;<b>ModificationMethod</b></p>
+            <p>
+One of: <span class="Parameter">Repeat, Dilution, Replacement, Comment Replacement, Value Selection, Average</span></p>
+        </div><a name="F_NeedsManualConfirm"></a>
+        <h3>
+Status &gt; Needs manual confirmation</h3>
+        <div class="MemberHelp">
+            <p>
+Overrides any automatic confirmation rules. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>NeedsManualConfirm</b></p>
+        </div><a name="F_NeedsManualValidation"></a>
+        <h3>
+Status &gt; Needs manual validation</h3>
+        <div class="MemberHelp">
+            <p>
+Overrides any automatic validation rules. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>NeedsManualValidation</b></p>
+        </div><a name="F_Norm"></a>
+        <h3>
+Severity &gt; Norm</h3>
+        <div class="MemberHelp">
+            <p>
+Reference value(s) used for reporting</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Norm</b></p>
+        </div><a name="F_NormSeverity"></a>
+        <h3>
+Severity &gt; Norm severity</h3>
+        <div class="MemberHelp">
+            <p>
+The norm severity is set on norm checking.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Integer</span>&#160;<b>NormSeverity</b></p>
+        </div><a name="F_Object"></a>
+        <h3>
+Object</h3>
+        <div class="MemberHelp">
+            <p>
+Object</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="obj.htm">Object</a></span>&#160;<b>Object</b></p>
+        </div><a name="F_ObjectTime"></a>
+        <h3>
+Object time</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the time when the object is known to have the property value. In other words, this is the time of the object observation and sampling. </p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type">DateTime</span>&#160;<b>ObjectTime</b></p>
+        </div><a name="F_Order"></a>
+        <h3>
+Order</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>Order</b></p>
+        </div><a name="F_Origin"></a>
+        <h3>
+Log &gt; Origin</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates if the current value was entered manually, via analyzer connection, via calculation, via result import, ... In some countries, calculated results may need specific authorization before they can be charged.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="resultorigin.htm">ResultOrigin</a></span>&#160;<b>Origin</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Analyzer, Calculated, Import, Informational, Statistics</span></p>
+        </div><a name="F_Original"></a>
+        <h3>
+Info &gt; Original</h3>
+        <div class="MemberHelp">
+            <p>
+Refers to the original result this result is a copy of.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>Original</b></p>
+        </div><a name="F_OutlierInfo"></a>
+        <h3>
+Info &gt; Outlier info</h3>
+        <div class="MemberHelp">
+            <p>
+Outlier information related to the exclusion of this result from QC statistics</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>OutlierInfo</b></p>
+        </div><a name="F_PhoneListSeverity"></a>
+        <h3>
+Severity &gt; Phone list severity</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Integer</span>&#160;<b>PhoneListSeverity</b></p>
+        </div><a name="F_PhoneMarkMethod"></a>
+        <h3>
+Log &gt; Phone mark method</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates how the result was marked as 'to be phoned'. When this was done automatically during result entry, then the phone status will be reset when the result is repeated or modified.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="phonemarkmethod.htm">PhoneMarkMethod</a></span>&#160;<b>PhoneMarkMethod</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Automatic, Urgency</span></p>
+        </div><a name="F_PhoneStatus"></a>
+        <h3>
+Status &gt; Phone through</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates if a result has to be reported by phone, or whether it already has been phoned. It can either be set individually or by marking the entire order as such. It will serve as selection criterion for the telephone report program.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="phonestatus.htm">PhoneStatus</a></span>&#160;<b>PhoneStatus</b></p>
+            <p>
+One of: <span class="Parameter">No, Yes, Done</span></p>
+        </div><a name="F_Predecessor"></a>
+        <h3>
+Log &gt; Predecessor</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the previous, discontinued result.
+<br /><br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>Predecessor</b></p>
+        </div><a name="F_Property"></a>
+        <h3>
+Property</h3>
+        <div class="MemberHelp">
+            <p>
+Property of result</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="prop.htm">Property</a></span>&#160;<b>Property</b></p>
+        </div><a name="F_PropertyOutput"></a>
+        <h3>
+Log &gt; Property output</h3>
+        <div class="MemberHelp">
+            <p>
+Delivering property output</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="prpo.htm">PropertyOutput</a></span>&#160;<b>PropertyOutput</b></p>
+        </div><a name="F_QCPopulation"></a>
+        <h3>
+Extra &gt; QC population</h3>
+        <div class="MemberHelp">
+            <p>
+QC population this result belongs to</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="qcp.htm">QCPopulation</a></span>&#160;<b>QCPopulation</b></p>
+        </div><a name="F_QCSeverity"></a>
+        <h3>
+Severity &gt; QC severity</h3>
+        <div class="MemberHelp">
+            <p>
+The QC severity is set by the QC checking.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>QCSeverity</b></p>
+        </div><a name="F_RawUnit"></a>
+        <h3>
+Log &gt; Raw unit</h3>
+        <div class="MemberHelp">
+            <p>
+The raw unit is the unit used at result entry time. This field has no other purpose than the reconstruction of the entered result.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="unit.htm">Unit</a></span>&#160;<b>RawUnit</b></p>
+        </div><a name="F_RawValue"></a>
+        <h3>
+Log &gt; Raw value</h3>
+        <div class="MemberHelp">
+            <p>
+The raw value indicates the raw value as entered by the user or as received from the instrument.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>RawValue</b></p>
+        </div><a name="F_ReferenceTime"></a>
+        <h3>
+Info &gt; Reference time</h3>
+        <div class="MemberHelp">
+            <p>
+The reference time for results of dynamic properties. For normal results, this field is empty or equal to the object time.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>ReferenceTime</b></p>
+        </div><a name="F_RejectionReason"></a>
+        <h3>
+Comments &gt; Discontinuation reason</h3>
+        <div class="MemberHelp">
+            <p>
+The discontinuation reason contains the justification for discontinuation of this result.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>RejectionReason</b></p>
+        </div><a name="F_RejectionTime"></a>
+        <h3>
+Log &gt; Discontinued at</h3>
+        <div class="MemberHelp">
+            <p>
+The discontinuation time field contains the date and time on which the result was discontinued.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>RejectionTime</b></p>
+        </div><a name="F_RejectionUser"></a>
+        <h3>
+Log &gt; Discontinued by</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the user who discontinued this result.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>RejectionUser</b></p>
+        </div><a name="F_ReportingNorms"></a>
+        <h3>
+Reporting norms</h3>
+        <div class="MemberHelp">
+            <p>
+Comma separated list of the identifiers of the reporting norms</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ReportingNorms</b></p>
+        </div><a name="F_ReqDilutionCondition"></a>
+        <h3>
+Dilution &gt; Requested dilution condition</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ReqDilutionCondition</b></p>
+        </div><a name="F_ReqDilutionFactor"></a>
+        <h3>
+Dilution &gt; Requested dilution factor</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveFractional</span>&#160;<b>ReqDilutionFactor</b></p>
+        </div><a name="F_Responsible"></a>
+        <h3>
+Info &gt; Responsible</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<b>Responsible</b></p>
+        </div><a name="F_RestrictedValidator"></a>
+        <h3>
+Status &gt; Validation restricted to</h3>
+        <div class="MemberHelp">
+            <p>
+The restricted validator is the only user who is allowed to validate this result. When using the Validate By Order browser, orders having a result with a restrcited validator other than the current user within the current classification will be skipped.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>RestrictedValidator</b></p>
+        </div><a name="F_ResultMark"></a>
+        <h3>
+Result mark</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">String</span>&#160;<b>ResultMark</b></p>
+        </div><a name="F_SelectedResult"></a>
+        <h3>
+Selected result</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the result id of the selected result upon which this one is based.<br />Filled during select value and select previous run actions.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>SelectedResult</b></p>
+        </div><a name="F_Severity"></a>
+        <h3>
+Severity &gt; Severity</h3>
+        <div class="MemberHelp">
+            <p>
+The severity is the highest (maximum) of the absolute values of all severities: Norm, delta, Manual, QC and Station.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Severity</b></p>
+        </div><a name="F_Shift"></a>
+        <h3>
+Log &gt; Shift</h3>
+        <div class="MemberHelp">
+            <p>
+Shift number of the result</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Shift</b></p>
+        </div><a name="F_Specimen"></a>
+        <h3>
+Specimen</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the root specimen of this result.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<b>Specimen</b></p>
+        </div><a name="F_StationOperator"></a>
+        <h3>
+Instrument &gt; Operator</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the user who entered the result on the station.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="stnu.htm">StationUser</a></span>&#160;<b>StationOperator</b></p>
+        </div><a name="F_StationSeverity"></a>
+        <h3>
+Severity &gt; Station severity</h3>
+        <div class="MemberHelp">
+            <p>
+The station severity is copied from Stationflag if applicable.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>StationSeverity</b></p>
+        </div><a name="F_StationVerifier"></a>
+        <h3>
+Instrument &gt; Verifier</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the user who verified the result on the station.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="stnu.htm">StationUser</a></span>&#160;<b>StationVerifier</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+Status of this result</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span></p>
+        </div><a name="F_TechnicalSeverity"></a>
+        <h3>
+Severity &gt; Technical severity</h3>
+        <div class="MemberHelp">
+            <p>
+The severity which is calculated by the norms with ForSeverity = YES. The technical severity might differ from the severity on reports.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">Integer</span>&#160;<b>TechnicalSeverity</b></p>
+        </div><a name="F_Unsolicited"></a>
+        <h3>
+Info &gt; Unsolicited</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates whether or not this result has been requested. By means of the Result.MarkAsSolicited function you can change the value of this option.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>Unsolicited</b></p>
+        </div><a name="F_Urgency"></a>
+        <h3>
+Info &gt; Urgency</h3>
+        <div class="MemberHelp">
+            <p>
+Urgency level of result</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">SiteEnumerated</span>&#160;<b>Urgency</b></p>
+        </div><a name="F_ValidationMethod"></a>
+        <h3>
+Status &gt; Validation method</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates how the result was validated. This may be taken into account when deciding when a result modification is allowed and whether the new result should be automatically validated.</p>
+            <p class="Synopsis"><span class="Type"><a href="validationmethod.htm">ValidationMethod</a></span>&#160;<b>ValidationMethod</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Automatic, Result code, External, By delegation</span></p>
+        </div><a name="F_ValidationTime"></a>
+        <h3>
+Log &gt; Validated at</h3>
+        <div class="MemberHelp">
+            <p>
+The validation time field contains the date and time on which the result was validated.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>ValidationTime</b></p>
+        </div><a name="F_ValidationUser"></a>
+        <h3>
+Status &gt; Validated by</h3>
+        <div class="MemberHelp">
+            <p>
+The validation user field indicates the user who validated the result.</p>
+            <p class="Synopsis"><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>ValidationUser</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_MarkAsBaseLine"></a>
+        <h3>
+(Un)mark as baseline value&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>MarkAsBaseLine</b> ()</p>
+        </div><a name="M_MicrobiologyActionGrafting"></a>
+        <h3>
+Action grafting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActionGrafting</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_LogActionInputs"></a>
+        <h3>
+Action inputs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogActionInputs</b> ()</p>
+        </div><a name="M_MicrobiologyActionMicroscopy"></a>
+        <h3>
+Action microscopy&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActionMicroscopy</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_LogActionOutputs"></a>
+        <h3>
+Action outputs&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogActionOutputs</b> ()</p>
+        </div><a name="M_MicrobiologyActionProcessing"></a>
+        <h3>
+Action processing&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActionProcessing</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_MicrobiologyActionReporting"></a>
+        <h3>
+Action reporting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActionReporting</b> ()</p>
+        </div><a name="M_TransfusionBloodBagSelection"></a>
+        <h3>
+Blood bag selection&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>TransfusionBloodBagSelection</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_Choice"></a>
+        <h3>
+Choice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Choice</b> ()</p>
+        </div><a name="M_ClearDownloadStatusofResult"></a>
+        <h3>
+Clear download status of result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ClearDownloadStatusofResult</b> ()</p>
+        </div><a name="M_Confirm"></a>
+        <h3>
+Confirm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Confirm</b> ()</p>
+        </div><a name="M_Consults"></a>
+        <h3>
+Consults on this</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Consults</b> ()</p>
+        </div><a name="M_Dilute"></a>
+        <h3>
+Dilute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Dilute</b> (<span class="Type"><a href="dlc.htm">DilutionCode</a></span>&#160;<span class="Parameter">DilutionCodeId</span>, <span class="Type">String</span>&#160;<span class="Parameter">DilutionReason</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RestrictValidation</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="dlc.htm">DilutionCode</a></span>&#160;<span class="Parameter">DilutionCodeId</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">DilutionReason</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RestrictValidation</span></dt>
+            </dl>
+        </div><a name="M_Discontinue"></a>
+        <h3>
+Discontinue&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows to discontinue one or several selected results and subsequently perform an action to be executed: Repeat, Dilute or Discontinue.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Discontinue</b> ()</p>
+        </div><a name="M_LogDuplicates"></a>
+        <h3>
+Duplicates&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogDuplicates</b> ()</p>
+        </div><a name="M_EditPathologyExamOfWhichConclusion"></a>
+        <h3>
+Exam of which conclusion&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EditPathologyExamOfWhichConclusion</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_Department"></a>
+        <h3>
+Executing department&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Department</b> ()</p>
+        </div><a name="M_HistoryGraph"></a>
+        <h3>
+History graph&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>HistoryGraph</b> ()</p>
+        </div><a name="M_MarkAsSolicitedMultiRec"></a>
+        <h3>
+Mark as solicited&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Mark an unsolicited result as solicited. Request and requested code already exist for this result.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>MarkAsSolicitedMultiRec</b> ()</p>
+        </div><a name="M_Modify"></a>
+        <h3>
+Modify&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Please check the GLIMS tutorials (Basic routine -&gt; Results -&gt; Functions) for a full description of this function.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Modify</b> ()</p>
+        </div><a name="M_Object"></a>
+        <h3>
+Object&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Object</b> ()</p>
+        </div><a name="M_CellcounterScreen"></a>
+        <h3>
+Open cell counter&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CellcounterScreen</b> ()</p>
+        </div><a name="M_StationOperator"></a>
+        <h3>
+Operator&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationOperator</b> ()</p>
+        </div><a name="M_Order"></a>
+        <h3>
+Order&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Order</b> ()</p>
+        </div><a name="M_Original"></a>
+        <h3>
+Original&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Original</b> ()</p>
+        </div><a name="M_PhoneThrough"></a>
+        <h3>
+Phone through&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Marks a result as phoned/not phoned, with the possibility to add comment.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PhoneThrough</b> ()</p>
+        </div><a name="M_Predecessor"></a>
+        <h3>
+Predecessor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Predecessor</b> ()</p>
+        </div><a name="M_ViewPreviousResults"></a>
+        <h3>
+Previous results&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ViewPreviousResults</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_DoPrint"></a>
+        <h3>
+Print&#160;</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>DoPrint</b> (<span class="Type">String</span>&#160;<span class="Parameter">Description</span>, <span class="Type">String</span>&#160;<span class="Parameter">ViewType</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">CustomFunction</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span>, <span class="Type">String</span>&#160;<span class="Parameter">FileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span>, <span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">HeaderText</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Description</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ViewType</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">CustomFunction</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToFile</span></dt>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FileName</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseDefaultFileName</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FileAppend</span></dt>
+                <dt><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<span class="Parameter">HeaderText</span></dt>
+            </dl>
+        </div><a name="M_ProcessRun"></a>
+        <h3>
+Process run&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Process station run.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ProcessRun</b> ()</p>
+        </div><a name="M_Property"></a>
+        <h3>
+Property&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Property</b> ()</p>
+        </div><a name="M_PropertyOutput"></a>
+        <h3>
+Property output&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PropertyOutput</b> ()</p>
+        </div><a name="M_QCPopulation"></a>
+        <h3>
+QC population&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCPopulation</b> ()</p>
+        </div><a name="M_QCPopulationsOfChannel"></a>
+        <h3>
+QC populations of channel&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCPopulationsOfChannel</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_QuickReport"></a>
+        <h3>
+Quick report&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QuickReport</b> ()</p>
+        </div><a name="M_ReEvaluate"></a>
+        <h3>
+Re-evaluate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ReEvaluate</b> ()</p>
+        </div><a name="M_ShowAllReagentLotsUsed"></a>
+        <h3>
+Reagent lots used&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowAllReagentLotsUsed</b> ()</p>
+        </div><a name="M_Recalibrate"></a>
+        <h3>
+Recalibrate result&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+Allows recalibrating the result value by changing the value into 
+<br /><br />Fixed term + Coefficient * Old value + Square coefficient * Old value * Old value.
+<br /><br />The fixed term, coefficient and square coefficient can be specified when selecting this menu function. You can use this function for multiple results simultaneously.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Recalibrate</b> (<span class="Type">Fractional</span>&#160;<span class="Parameter">FixedTerm</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">Coefficient</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">SquareCoefficient</span>)</p>
+            <dl>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">FixedTerm</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">Coefficient</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">SquareCoefficient</span></dt>
+            </dl>
+        </div><a name="M_RegisterConsult"></a>
+        <h3>
+Register consult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Register a consult with this result as subject.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RegisterConsult</b> (<span class="Type"><a href="cnst.htm">ConsultType</a></span>&#160;<span class="Parameter">ConsultType</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Target</span>, <span class="Type"><a href="symbolicconsulttarget.htm">SymbolicConsultTarget</a></span>&#160;<span class="Parameter">SymbolicTarget</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="cnst.htm">ConsultType</a></span>&#160;<span class="Parameter">ConsultType</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Target</span></dt>
+                <dt><span class="Type"><a href="symbolicconsulttarget.htm">SymbolicConsultTarget</a></span>&#160;<span class="Parameter">SymbolicTarget</span></dt>
+                <dd>
+One of: <span class="Parameter">Issuer, Patient, Agent, Specific</span><br /></dd>
+            </dl>
+        </div><a name="M_RemoveExportMark"></a>
+        <h3>
+Remove export mark&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Remove the (QC) export mark</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RemoveExportMark</b> (<span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Correspondent</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Correspondent</span></dt>
+            </dl>
+        </div><a name="M_Rerun"></a>
+        <h3>
+Repeat&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows to discontinue one or several selected results and subsequently perform an action to be executed: Repeat, Dilute or Discontinue.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Rerun</b> ()</p>
+        </div><a name="M_TransfusionReportedBloodSelection"></a>
+        <h3>
+Reported blood selection&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>TransfusionReportedBloodSelection</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_MicrobiologyReportedIsolations"></a>
+        <h3>
+Reported isolations&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyReportedIsolations</b> ()</p>
+        </div><a name="M_LogRequests"></a>
+        <h3>
+Requests&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogRequests</b> ()</p>
+        </div><a name="M_Responsible"></a>
+        <h3>
+Responsible&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Responsible</b> ()</p>
+        </div><a name="M_RestrictValidation"></a>
+        <h3>
+Restrict validation</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RestrictValidation</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SelectValue"></a>
+        <h3>
+Select value&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+In GLIMS, it is possible to select a final value for results which have been measured several times. This function allows to select one of the previous results and restore it as the final result. You can also select several previous results in which case the mean value of these results will be restored as final result.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectValue</b> ()</p>
+        </div><a name="M_SelectedResult"></a>
+        <h3>
+Selected result&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SelectedResult</b> ()</p>
+        </div><a name="M_ShowComments"></a>
+        <h3>
+Show comments&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowComments</b> ()</p>
+        </div><a name="M_QCGraph"></a>
+        <h3>
+Show QC graph&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+The QCGraph attempts to show a graph on screen with the QC results from the assessment method used for the result. This method requires the installation of the Mips Graph Active-X component.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCGraph</b> (<span class="Type">String</span>&#160;<span class="Parameter">XMinDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">XMaxDate</span>, <span class="Type"><a href="qcgraphrange.htm">QCGraphRange</a></span>&#160;<span class="Parameter">GraphRange</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">XMinDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">XMaxDate</span></dt>
+                <dt><span class="Type"><a href="qcgraphrange.htm">QCGraphRange</a></span>&#160;<span class="Parameter">GraphRange</span></dt>
+                <dd>
+One of: <span class="Parameter">1 week, 2 weeks, 3 weeks, 1 month, 2 months, explicit, all</span><br /></dd>
+            </dl>
+        </div><a name="M_ShowReagent"></a>
+        <h3>
+Show reagent&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowReagent</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_Specimen"></a>
+        <h3>
+Specimen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Specimen</b> ()</p>
+        </div><a name="M_LogSuccessor"></a>
+        <h3>
+Successor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LogSuccessor</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_SynchronizeWithReagents"></a>
+        <h3>
+Synchronize with reagents&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SynchronizeWithReagents</b> ()</p>
+        </div><a name="M_ToBePhoned"></a>
+        <h3>
+To be phoned&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Logical</span>&#160;<b>ToBePhoned</b> ()</p>
+        </div><a name="M_SelectPreviousRun"></a>
+        <h3>
+Use value from previous run&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function will replace the selected results with the value of the previous run (previous value for a result which has been measured more than once; if there is such a value). The new value is automatically confirmed.  
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectPreviousRun</b> ()</p>
+        </div><a name="M_Validate"></a>
+        <h3>
+Validate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Validate</b> ()</p>
+        </div><a name="M_ValidateByDelegation"></a>
+        <h3>
+Validate result by delegation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Validate the result when a delegation has been authorized by a responsible HCProvider</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ValidateByDelegation</b> ()</p>
+        </div><a name="M_ValidationUser"></a>
+        <h3>
+Validated by&#160;</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ValidationUser</b> ()</p>
+        </div><a name="M_RestrictedValidator"></a>
+        <h3>
+Validation restricted to&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RestrictedValidator</b> ()</p>
+        </div><a name="M_StationVerifier"></a>
+        <h3>
+Verifier&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StationVerifier</b> ()</p>
+        </div><a name="M_ViewImage"></a>
+        <h3>
+View image&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+View graphic contents of special results (.bmp files, XML graph,...). In order to be able to view an image, the property has to be of type Image.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ViewImage</b> ()</p>
+        </div><a name="M_ViewLog"></a>
+        <h3>
+View log&#160;</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ViewLog</b> ()</p>
+        </div><a name="M_ViewOrderImage"></a>
+        <h3>
+View order document&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+The ViewOrderImage() method allows to view the scanned image of the order most recently associated with the current result. </p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ViewOrderImage</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_Action"></a>
+        <h3>
+Action&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="actn.htm">Action</a></span>&#160;<b>Action</b> ()</p>
+        </div><a name="M_AddExternalComment"></a>
+        <h3>
+AddExternalComment&#160;</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>AddExternalComment</b> (<span class="Type">String</span>&#160;<span class="Parameter">Text</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Append</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Text</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Append</span></dt>
+            </dl>
+        </div><a name="M_AddInternalComment"></a>
+        <h3>
+AddInternalComment&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+            </p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>AddInternalComment</b> (<span class="Type">String</span>&#160;<span class="Parameter">Text</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Append</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Text</span></dt>
+                <dd>
+Text to be added, may contain embedded expressions (by means of {=...}) or references to predefined text modules (by means of {&lt;...}). 
+<br />The function returns TRUE or YES on success. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Append</span></dt>
+                <dd>
+Indicates whether or not the text is to be appended. If FALSE or NO, any existing comment will be overwritten. 
+<br />The function returns TRUE or YES on success. </dd>
+            </dl>
+        </div><a name="M_Attribute"></a>
+        <h3>
+Attribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function fetches an attribute of the current result in string format.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Attribute</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span></dt>
+                <dd>
+Supported values:
+<br /><br />"Value"
+<br />"EncounterInfo"
+<br />"ExpandedValue"
+<br />"ReferenceValue"
+<br /><br />For more information, please check the tutorial (Basic routine -&gt; Results -&gt; MISPL functions)</dd>
+            </dl>
+        </div><a name="M_BloodSelectionDiscontinuation"></a>
+        <h3>
+BloodSelectionDiscontinuation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function discontinues and repeats the blood selection for which the current result is the compatibility test. The blood selection is also REPEATED: a new blood selection is created with status 'Initial', so that the process of selecting a blood bag etc. can re-start.
+<br /><br />Some background info:
+<br />Although the compatibility result can be available, its value
+<br />can indicate that the blood bag is incompatibe. Hence, the blood selection must be discontinued.
+<br />Example:
+<br />      RETURN (
+<br />         if .result.attribute("VALUE") = "neg" then
+<br />            .result.BloodSelectionPromotion()
+<br />         else if .result.attribute("VALUE") = "pos" then
+<br />            .result.BloodSelectionDiscontinuation()
+<br />         else if .result.attribute("VALUE") &lt;&gt; ? then
+<br />            Message (" Invalid result for Compatibilit check ")
+<br />         else ?
+<br />        );
+<br /><br />will discontinue the blood selection as soon as the compatibilityresult is positive.
+<br /></p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>BloodSelectionDiscontinuation</b> (<span class="Type">String</span>&#160;<span class="Parameter">Reason</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Reason</span></dt>
+            </dl>
+        </div><a name="M_BloodSelectionPromotion"></a>
+        <h3>
+BloodSelectionPromotion&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>BloodSelectionPromotion</b> ()</p>
+        </div><a name="M_BloodSelectionReported"></a>
+        <h3>
+BloodSelectionReported&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="bsel.htm">BloodSelection</a></span>&#160;<b>BloodSelectionReported</b> ()</p>
+        </div><a name="M_Cancel"></a>
+        <h3>
+Cancel&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function cancels the result and requires a justification. Its functionality is analogous to the interactive 'Discontinue' method.
+<br /><br />Errors:
+<br />A run-time error will be raised if:
+<br />the 'Action' keyword is not one of the 3 possible strings;
+<br />the 'Reason' is empty or unknown.
+<br /></p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>Cancel</b> (<span class="Type">String</span>&#160;<span class="Parameter">Action</span>, <span class="Type">String</span>&#160;<span class="Parameter">Reason</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Action</span></dt>
+                <dd>
+One of "Repeat", "Dilute", "Discontinue".</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Reason</span></dt>
+                <dd>
+Mandatory reason for cancelling of this result.
+<br /></dd>
+            </dl>
+        </div><a name="M_Escalate"></a>
+        <h3>
+Escalate</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>Escalate</b> (<span class="Type">String</span>&#160;<span class="Parameter">Comment</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Stricly</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Comment</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Stricly</span></dt>
+            </dl>
+        </div><a name="M_GetBloodSelection"></a>
+        <h3>
+GetBloodSelection&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="bsel.htm">BloodSelection</a></span>&#160;<b>GetBloodSelection</b> ()</p>
+        </div><a name="M_GetCode"></a>
+        <h3>
+GetCode</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>GetCode</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">CodingSystemMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">CodingSystemMnemonic</span></dt>
+            </dl>
+        </div><a name="M_GetDilutionCode"></a>
+        <h3>
+GetDilutionCode</h3>
+        <div class="MemberHelp">
+            <p>
+Get dilution code id given a dilution code as string<br /><br />Needed in order to be able to dilute a result record using MISPL.<br /><br />e.g. Result based MISPL:<br />.Dilute(.GetDilutionCode("ByHalf"), "Result needs dilution in order to assess correctly", No).<br />-&gt; Will dilute the Result with DilutionCode "ByHalf"<br />-&gt; DilutionCode "ByHalf" must be configured for the Station assessing the Result</p>
+            <p class="Synopsis"><span class="Type"><a href="dlc.htm">DilutionCode</a></span>&#160;<b>GetDilutionCode</b> (<span class="Type">String</span>&#160;<span class="Parameter">Code</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Code</span></dt>
+            </dl>
+        </div><a name="M_GetPriorResult"></a>
+        <h3>
+GetPriorResult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+On success, the function returns the id of the requested result record. On failure, the unknown value is returned. This method has the same purpose as Object.GetResult(), i.e. it fetches a result that can be used to get an attribute by means of the Attribute() method. Note that this function only goes for validated results.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>GetPriorResult</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+Determines how many results are skipped backwards. If 1, the most recent previous result is returned.
+<br /></dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span></dt>
+                <dd>
+Only search for a result with this value.
+<br /></dd>
+            </dl>
+        </div><a name="M_LastOrder"></a>
+        <h3>
+LastOrder&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function should no longer be used. Please use the field "Result.Order" instead.</p>
+            <p class="Synopsis"><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>LastOrder</b> ()</p>
+        </div><a name="M_LastRequest"></a>
+        <h3>
+LastRequest&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="rqst.htm">Request</a></span>&#160;<b>LastRequest</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">Explicit</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Explicit</span></dt>
+            </dl>
+        </div><a name="M_MarkAsSolicited"></a>
+        <h3>
+MarkAsSolicited&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method can be used in MISPL-functions to mark an unsolicited result as solicited. Request and requested code already exist for this result.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>MarkAsSolicited</b> ()</p>
+        </div><a name="M_MicrobiologyAction"></a>
+        <h3>
+MicrobiologyAction&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="mcra.htm">MicrobiologyAction</a></span>&#160;<b>MicrobiologyAction</b> ()</p>
+        </div><a name="M_NumericValue"></a>
+        <h3>
+NumericValue&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>When the result is not yet available, '?' is returned. When the result value starts with '&lt;', a small value is subtracted from the result value, when the result value starts with '&gt;', a small value is added to the result value. This makes it possible to write a MISPL like: 'IF .NumericValue() &gt; 200' when your result value is '&gt; 200'.</p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>NumericValue</b> ()</p>
+        </div><a name="M_PathologyExamOfWhichConclusion"></a>
+        <h3>
+PathologyExamOfWhichConclusion&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="ptex.htm">PathologyExam</a></span>&#160;<b>PathologyExamOfWhichConclusion</b> ()</p>
+        </div><a name="M_PriorAttribute"></a>
+        <h3>
+PriorAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PriorAttribute</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span>, <span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span></dt>
+            </dl>
+        </div><a name="M_ReferenceValue"></a>
+        <h3>
+ReferenceValue&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function returns the reference values for the result.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ReferenceValue</b> ()</p>
+        </div><a name="M_RelatedResult"></a>
+        <h3>
+RelatedResult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows to retrieve a related result of the same object and object time.   
+<br /><br />When 2 or more results exist for the same property and object time, the Result.RelatedResult() method gives precedence to results of the same specimen or the same order. The evaluation sequence of all criteria is:
+<br /><br />1. solicited;
+<br />2. same specimen;
+<br />3. same order.</p>
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>RelatedResult</b> (<span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+Allows to specify the property of which you would like the result.</dd>
+            </dl>
+        </div><a name="M_SetAsBaseLine"></a>
+        <h3>
+SetAsBaseLine&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+                <br />Note that the primary goal of this function is to influence the global result severity in order to trigger some action like e.g. a different display color. If your only intention is to prevent automatic confirmation or validation, it is advised to use the .SetAutomaticConfirmation() or .SetAutomaticValidation() methods instead.
+<br /><br />When specifying a manual severity in the Result.Modify() dialog, it will have precedence over the value that could possibly be set by the property trigger MISPL. When specifying an unknown manual severity, the MISPL value will be preserved.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetAsBaseLine</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">BaseLine</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">BaseLine</span></dt>
+            </dl>
+        </div><a name="M_SetAutomaticConfirmation"></a>
+        <h3>
+SetAutomaticConfirmation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetAutomaticConfirmation</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticConfirmation</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticConfirmation</span></dt>
+            </dl>
+        </div><a name="M_SetAutomaticValidation"></a>
+        <h3>
+SetAutomaticValidation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetAutomaticValidation</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticValidation</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticValidation</span></dt>
+            </dl>
+        </div><a name="M_SetManualSeverity"></a>
+        <h3>
+SetManualSeverity&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function allows to set the manual severity for a result to any value. 
+<br /><br />Note that the primary goal of this function is to influence the global result severity in order to trigger some action like e.g. a different display color. If your only intention is to prevent automatic confirmation or validation, it is advised to use the .SetAutomaticConfirmation() or .SetAutomaticValidation() methods instead.
+<br /><br />When specifying a manual severity in the Result.Modify() dialog, it will have precedence over the value that could possibly be set by the property trigger MISPL. When specifying an unknown manual severity, the MISPL value will be preserved.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetManualSeverity</b> (<span class="Type">Integer</span>&#160;<span class="Parameter">ManualSeverity</span>)</p>
+            <dl>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">ManualSeverity</span></dt>
+            </dl>
+        </div><a name="M_StatisticalWeight"></a>
+        <h3>
+StatisticalWeight&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL function returns the statistical weight (of the related property), applicable at the date/time of result entry ('availability time').</p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>StatisticalWeight</b> ()</p>
+        </div><a name="M_Successor"></a>
+        <h3>
+Successor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">Result</a></span>&#160;<b>Successor</b> ()</p>
+        </div><a name="M_WorkSpecimen"></a>
+        <h3>
+WorkSpecimen</h3>
+        <div class="MemberHelp">
+            <p>
+This must return the specimen on which the result was directly measured/scheduled.<br />It is found by following the ResultOutput-&gt;Action-&gt;SpecimenInput or first recursively ResultOutput-&gt;Action-&gt;Resultput until the Action has a specimeninput<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<b>WorkSpecimen</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Result inputs using result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="rsti.htm">ResultInput</a>.<a href="rsti.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Successor of result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="#" class="selected">Result</a>.<a href="#F_Predecessor">Predecessor</a></p>
+        </div>
+        <h3>
+Duplicates of result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="#" class="selected">Result</a>.<a href="#F_Original">Original</a></p>
+        </div>
+        <h3>
+Results with value selected from result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="#" class="selected">Result</a>.<a href="#F_SelectedResult">SelectedResult</a></p>
+        </div>
+        <h3>
+Result outputs delivering result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rsto.htm">ResultOutput</a>.<a href="rsto.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Assessment method</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="amtd.htm">AssessmentMethod</a>.<a href="amtd.htm#F_FirstQCAlarm">FirstQCAlarm</a></p>
+        </div>
+        <h3>
+Assessment method</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="amtd.htm">AssessmentMethod</a>.<a href="amtd.htm#F_LastQCAlarm">LastQCAlarm</a></p>
+        </div>
+        <h3>
+Requests</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rqst.htm">Request</a>.<a href="rqst.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Deliveries</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="dlvr.htm">w_Delivery</a>.<a href="dlvr.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Blood bag selection for compatibility result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Restrict </span><a href="bsel.htm">BloodSelection</a>.<a href="bsel.htm#F_CheckResult">CheckResult</a></p>
+        </div>
+        <h3>
+Blood selection reported via result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Restrict </span><a href="bsel.htm">BloodSelection</a>.<a href="bsel.htm#F_ReportResult">ReportResult</a></p>
+        </div>
+        <h3>
+Isolations reported by antibiogram result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="isol.htm">Isolation</a>.<a href="isol.htm#F_AntibiogramResult">AntibiogramResult</a></p>
+        </div>
+        <h3>
+Report items</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="wri.htm">w_ReportItem</a>.<a href="wri.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Microbiology action of grafting result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_GraftingResult">GraftingResult</a></p>
+        </div>
+        <h3>
+Microbiology action of processing result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_ProcessingResult">ProcessingResult</a></p>
+        </div>
+        <h3>
+Microbiology action of report result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_ReportResult">ReportResult</a></p>
+        </div>
+        <h3>
+Microbiology action of microscopy result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_MicroscopyResult">MicroscopyResult</a></p>
+        </div>
+        <h3>
+Microbiology action of conclusion result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_ConclusionResult">ConclusionResult</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result1">Result1</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result10">Result10</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result11">Result11</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result12">Result12</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result13">Result13</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result14">Result14</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result15">Result15</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result16">Result16</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result17">Result17</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result18">Result18</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result19">Result19</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result2">Result2</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result20">Result20</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result3">Result3</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result4">Result4</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result5">Result5</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result6">Result6</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result7">Result7</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result8">Result8</a></p>
+        </div>
+        <h3>
+Work orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="word.htm">w_WorkOrder</a>.<a href="word.htm#F_Result9">Result9</a></p>
+        </div>
+        <h3>
+Results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="orsl.htm">w_Result</a>.<a href="orsl.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+QC audits containing result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="qcar.htm">QCAuditResult</a>.<a href="qcar.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Pathology examination</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="ptex.htm">PathologyExam</a>.<a href="ptex.htm#F_ConclusionResult">ConclusionResult</a></p>
+        </div>
+        <h3>
+Work order results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="wors.htm">w_WorkOrderResult</a>.<a href="wors.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Result text</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="rtxt.htm">ResultText</a>.<a href="rtxt.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Reagent lots used to assess result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rsru.htm">ResultReagentUsage</a>.<a href="rsru.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Incomplete results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wire.htm">w_IncompleteResult</a>.<a href="wire.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Extended results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="were.htm">w_ExtendedResult</a>.<a href="were.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Consults on result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="cns.htm">Consult</a>.<a href="cns.htm#F_DiscussedResult">DiscussedResult</a></p>
+        </div>
+        <h3>
+Actions of stations</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wact.htm">w_ActionsOfStation</a>.<a href="wact.htm#F_Result">Result</a></p>
+        </div>
+        <h3>
+Genetic exams</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="gnte.htm">GeneticExam</a>.<a href="gnte.htm#F_ReportResult">ReportResult</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Confirmation"></a>
+        <h3>
+Confirmation query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Confirmation</b> (<span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span></dt>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span></dt>
+                <dd>
+Indicates if unsolicited results can be shown in the previous result columns.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span></dt>
+                <dd>
+When set, the previous result search is restricted to results that were assessed on the same material.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span></dt>
+            </dl>
+        </div><a name="Q_Extended"></a>
+        <h3>
+Extended query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Extended</b> (<span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">Property</span>, <span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">Classification</span>, <span class="Type"><a href="stn.htm">Station</a></span>&#160;<span class="Parameter">Station</span>, <span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span>, <span class="Type"><a href="cstl.htm">CostLocation</a></span>&#160;<span class="Parameter">CostLocation</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span>, <span class="Type"><a href="stdy.htm">Study</a></span>&#160;<span class="Parameter">Study</span>, <span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">ExecutingDepartment</span>, <span class="Type"><a href="dptg.htm">DepartmentGroup</a></span>&#160;<span class="Parameter">ExecutingDepartmentGroup</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleUnassessed</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleQC</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HandleInformational</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">Filter</span>, <span class="Type">String</span>&#160;<span class="Parameter">TimeType</span>, <span class="Type">String</span>&#160;<span class="Parameter">MinimalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">MaximalDate</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Agent</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">AgentGroup</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">IncludeInvisibleProperties</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">Property</span></dt>
+                <dt><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">Classification</span></dt>
+                <dt><span class="Type"><a href="stn.htm">Station</a></span>&#160;<span class="Parameter">Station</span></dt>
+                <dt><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span></dt>
+                <dt><span class="Type"><a href="cstl.htm">CostLocation</a></span>&#160;<span class="Parameter">CostLocation</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span></dt>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span></dt>
+                <dt><span class="Type"><a href="stdy.htm">Study</a></span>&#160;<span class="Parameter">Study</span></dt>
+                <dt><span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">ExecutingDepartment</span></dt>
+                <dt><span class="Type"><a href="dptg.htm">DepartmentGroup</a></span>&#160;<span class="Parameter">ExecutingDepartmentGroup</span></dt>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleUnassessed</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleQC</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleUnsolicited</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HandleInformational</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">Filter</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TimeType</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MinimalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MaximalDate</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Agent</span></dt>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">AgentGroup</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">IncludeInvisibleProperties</span></dt>
+            </dl>
+        </div><a name="Q_OrderReview"></a>
+        <h3>
+Order review query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>OrderReview</b> (<span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningSeverity</span>, <span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">ConclusionProperty</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PreviewCalculations</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">PreviousResultCount</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowSpecimenInternalId</span>, <span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">DisplayClassification</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowPredecessor</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningSeverity</span></dt>
+                <dt><span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">ConclusionProperty</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PreviewCalculations</span></dt>
+                <dd>
+Preview any one-level (non-recursive) calculations that can be derived from the results. The results are shown between parentheses "(" and ")" and are not 'real' results but provide an indication of the result that would be calculated.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">PreviousResultCount</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span></dt>
+                <dd>
+                    <br />
+                </dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span></dt>
+                <dd>
+Indicates if unsolicited results can be shown in the previous result columns.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span></dt>
+                <dd>
+When set, the previous result search is restricted to results that were assessed on the same material.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowSpecimenInternalId</span></dt>
+                <dt><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">DisplayClassification</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowPredecessor</span></dt>
+            </dl>
+        </div><a name="Q_Phone"></a>
+        <h3>
+Phone list query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Phone</b> (<span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">PropertyClassification</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ViewAll</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">PropertyClassification</span></dt>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ViewAll</span></dt>
+            </dl>
+        </div><a name="Q_ResultsOfPopulation"></a>
+        <h3>
+QC Results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>ResultsOfPopulation</b> (<span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span>, <span class="Type"><a href="resultoutlierselection.htm">ResultOutlierSelection</a></span>&#160;<span class="Parameter">Outliers</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span></dt>
+                <dt><span class="Type"><a href="resultoutlierselection.htm">ResultOutlierSelection</a></span>&#160;<span class="Parameter">Outliers</span></dt>
+                <dd>
+One of: <span class="Parameter">Both, Only outliers, No outliers</span><br /></dd>
+            </dl>
+        </div><a name="Q_ResultsOfReport"></a>
+        <h3>
+Report results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>ResultsOfReport</b> ()</p>
+        </div><a name="Q_Report"></a>
+        <h3>
+Results of report</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Report</b> (<span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">PropertyClassificationId</span>, <span class="Type"><a href="ord.htm">Order</a></span>&#160;<span class="Parameter">Order</span>, <span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<span class="Parameter">Specimen</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">PropertyClassificationId</span></dt>
+                <dt><span class="Type"><a href="ord.htm">Order</a></span>&#160;<span class="Parameter">Order</span></dt>
+                <dt><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<span class="Parameter">Specimen</span></dt>
+            </dl>
+        </div><a name="Q_ResultsOfRun"></a>
+        <h3>
+Results of station run</h3>
+        <div class="MemberHelp">
+            <p>
+This query collects all the results belonging to the same station run. A station run is a collection of results measured between a start and end time on the same channel of a station, usually surrounded by one or more start or end qc samples.</p>
+            <p class="Synopsis"><b>ResultsOfRun</b> (<span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span></dt>
+            </dl>
+        </div><a name="Q_Review"></a>
+        <h3>
+Review query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Review</b> (<span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningSeverity</span>, <span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">ConclusionProperty</span>, <span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">DisplayClassification</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">PreviousResultCount</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalResultStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximalSeverity</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningSeverity</span></dt>
+                <dt><span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">ConclusionProperty</span></dt>
+                <dt><span class="Type"><a href="pcl.htm">PropertyClassification</a></span>&#160;<span class="Parameter">DisplayClassification</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">PreviousResultCount</span></dt>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalPreviousStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowImageViewer</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HidePreviousUnsolicited</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MaterialRestricted</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RelativeTimes</span></dt>
+            </dl>
+        </div><a name="Q_WorkStatus"></a>
+        <h3>
+Work status query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>WorkStatus</b> (<span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">Property</span>, <span class="Type"><a href="wlt.htm">WorkListTemplate</a></span>&#160;<span class="Parameter">WorkListTemplate</span>, <span class="Type"><a href="wltg.htm">WorkListTemplateGroup</a></span>&#160;<span class="Parameter">WorkListTemplateGroup</span>, <span class="Type"><a href="stn.htm">Station</a></span>&#160;<span class="Parameter">Station</span>, <span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span>, <span class="Type">Date</span>&#160;<span class="Parameter">MinimalObjectDate</span>, <span class="Type">Time</span>&#160;<span class="Parameter">MinimalObjectDayTime</span>, <span class="Type">Date</span>&#160;<span class="Parameter">MaximalObjectDate</span>, <span class="Type">Time</span>&#160;<span class="Parameter">MaximalObjectDayTime</span>, <span class="Type">Time</span>&#160;<span class="Parameter">TimeInterval</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span>, <span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">ExecutingDepartment</span>, <span class="Type"><a href="dptg.htm">DepartmentGroup</a></span>&#160;<span class="Parameter">ExecutingDepartmentGroup</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="prop.htm">Property</a></span>&#160;<span class="Parameter">Property</span></dt>
+                <dt><span class="Type"><a href="wlt.htm">WorkListTemplate</a></span>&#160;<span class="Parameter">WorkListTemplate</span></dt>
+                <dt><span class="Type"><a href="wltg.htm">WorkListTemplateGroup</a></span>&#160;<span class="Parameter">WorkListTemplateGroup</span></dt>
+                <dt><span class="Type"><a href="stn.htm">Station</a></span>&#160;<span class="Parameter">Station</span></dt>
+                <dt><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">MinimalObjectDate</span></dt>
+                <dt><span class="Type">Time</span>&#160;<span class="Parameter">MinimalObjectDayTime</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">MaximalObjectDate</span></dt>
+                <dt><span class="Type">Time</span>&#160;<span class="Parameter">MaximalObjectDayTime</span></dt>
+                <dt><span class="Type">Time</span>&#160;<span class="Parameter">TimeInterval</span></dt>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br /></dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span></dt>
+                <dt><span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">ExecutingDepartment</span></dt>
+                <dt><span class="Type"><a href="dptg.htm">DepartmentGroup</a></span>&#160;<span class="Parameter">ExecutingDepartmentGroup</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HideUnsolicited</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ Object + Property - ObjectTime - AvailabilityTime </b>
+            </li>
+            <li value="3"><b>+ Choice </b>
+            </li>
+            <li value="4"><b>+ Department </b>
+            </li>
+            <li value="5"><b>+ Object - ObjectTime + Property - AvailabilityTime </b>
+            </li>
+            <li value="6"><b>+ Order </b>
+            </li>
+            <li value="7"><b>+ Original </b>
+            </li>
+            <li value="8"><b>+ Predecessor </b>
+            </li>
+            <li value="9"><b>+ Property - AvailabilityTime </b>
+            </li>
+            <li value="10"><b>+ Property + ObjectTime </b>
+            </li>
+            <li value="11"><b>+ PropertyOutput </b>
+            </li>
+            <li value="12"><b>+ QCPopulation + ObjectTime </b>
+            </li>
+            <li value="13"><b>+ QCPopulation - AvailabilityTime </b>
+            </li>
+            <li value="14"><b>+ RawUnit </b>
+            </li>
+            <li value="15"><b>+ Responsible </b>
+            </li>
+            <li value="16"><b>+ SelectedResult </b>
+            </li>
+            <li value="17"><b>+ Specimen </b>
+            </li>
+            <li value="18"><b>+ StationOperator </b>
+            </li>
+            <li value="19"><b>+ StationVerifier </b>
+            </li>
+            <li value="20"><b>+ Status </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+QCPopulation.AssessmentMethod.Property = Property</li>
+            <li value="2">
+QCPopulation.Lot.Object = Object</li>
+            <li value="3">
+Predecessor.Object = Object</li>
+            <li value="4">
+Predecessor.Property = Property</li>
+            <li value="5">
+Specimen.Object = Object</li>
+            <li value="6">
+PropertyOutput.AssessmentMethod.Property = Property</li>
+            <li value="7">
+Order.Object = Object</li>
+            <li value="8">
+Original.Object = Object</li>
+            <li value="9">
+Original.Property = Property</li>
+            <li value="10">
+SelectedResult.Object = Object</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />All rights reserved.</p>
+    </body>
+</html>

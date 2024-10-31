@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Triple_P">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Triple P</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <p>&#160;</p>
+        <h1><a name="aanchor4229"></a>
+            <MadCap:concept term="Billing" /><a href="../financial_shipments_send.htm">FinancialShipment.Send</a><a name="kanchor391"></a> 
+ -&gt; Triple P</h1>
+        <p>Inhoud: <a href="#Inleiding">Inleiding</a> - <a href="#Configuratie">Configuratie</a> 
+ - <a href="#Remgeld">Remgeld</a> - <a href="#Opmerkingen">Opmerkingen</a> 
+ - <a href="#Bestandsstructuur">Bestandsstructuur</a> - <a href="#Lijst">Lijst van mogelijke foutcodes</a></p>
+        <h2><a name="Inleiding"></a>Inleiding</h2>
+        <p>De GLIMS functie <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> 
+ laat toe om een verrekenbestand te genereren volgens de Triple P layout.</p>
+        <p style="text-align: center;" align="center">
+            <img src="triplep.gif" style="border: none;width: 480px;height: 344px;float: none;border-style: none;" width="480" height="344" border="0" />
+        </p>
+        <p>Wanneer de zending succesvol verstuurd werd zal deze gefixeerd worden 
+ (zodat de zending en onderliggende facturen niet meer gewijzigd kunnen 
+ worden). Het commentaar bij de financiële zending zal ook een korte samenvatting 
+ van het aangemaakte bestand bevatten.</p>
+        <p>Momenteel worden alleen de RIZIV nummers (nomenclatuur codes) doorgestuurd 
+ en niet de bedragen.&#160; Hetzelfde geldt voor 'buiten-nomenclatuur' 
+ codes.</p>
+        <h2><a name="Configuratie"></a>Configuratie</h2>
+        <h4>Voorzorgsmaatregelen</h4>
+        <blockquote>
+            <p>Om vaak voorkomende problemen te vermijden, biedt GLIMS een aantal MISPL-gebaseerde 
+ controles:</p>
+            <ul>
+                <li class="kadov-p" value="1">'Order evaluation' functie (geactiveerd via de orderinvoer 
+ opties) </li>
+                <li class="kadov-p" value="2">'Order set completeness check' (tijdens de tarificatie) 
+ </li>
+                <li class="kadov-p" value="3">'Payment agreement check'&#160; </li>
+                <li class="kadov-p" value="4">'Identification code checks' (formaat/grootte/checkdigit) 
+ van dokters, fondsen en andere identificatienummers) </li>
+                <li class="kadov-p" value="5">'Nomenclature code check'</li>
+            </ul>
+        </blockquote>
+        <h4>Identificatie codes</h4>
+        <blockquote>
+            <p>Alle doorgestuurde correspondent nummers (aanvrager, arts, lab enz.) 
+ zijn identificaties toegekend door de bestemmeling van de verzending (id 
+ verstrekker).&#160; Als geen identificatie gevonden kan worden, wordt 
+ de interne id van de correspondent gebruikt.&#160; De bestemmeling van 
+ de verzending moet dus overeenstemmen met de id verstrekker !</p>
+        </blockquote>
+        <h2><a name="Remgeld"></a>Remgeld aan te rekenen</h2>
+        <p>Elke vergoedingsklasse is van een bepaald type : Normaal, Administratief 
+ Supplement (B), Urgentie Supplement (B), Ana-pat supplement, Order-Tarief, 
+ enz..&#160; Het remgeld is het deel van het administratief supplement 
+ (forfaitair honorarium) dat wordt betaald door de de patient zelf (plcc_ReimburserType).</p>
+        <p>Tijdens de aanmaak van een Triple P bestand, wordt gecontroleerd of 
+ het Remgeld veld geactiveerd moet worden of niet. Voor elke patiëntfaktuur 
+ wordt gecontroleerd of het persoonlijk aandeel van de patiënt, normaliter 
+ dus te betalen door die patient, in de betreffende polis gemarkeerd is 
+ als NIET AAN TE REKENEN.</p>
+        <p>Anders gezegd, controleer:</p>
+        <ul>
+            <li class="kadov-p" value="1">Zijn er vergoedingsklassen van het type Administratief 
+ Supplement </li>
+            <li class="kadov-p" value="2">Indien het geval, check dan of er corresponderende 
+ clausules, in de gerelateerde polis (financiering), zijn, met als schuldenaarstype 
+ de Patient (plcc_ReimburserType) </li>
+            <li class="kadov-p" value="3">Indien het geval, als al deze clausules gemarkeerd 
+ zijn als ‘Niet aan te rekenen’, dan moet het "Kode korting" 
+ veld in het Triple-P bestand (op positie 169) expliciet de waarde "2" 
+ krijgen (=Geen remgeld), en dit in elk record gerelateerd aan de factuur.</li>
+            <li class="kadov-p" value="4">In alle andere gevallen krijgt "Kode korting" 
+ veld de standaard waarde "0"</li>
+        </ul>
+        <h2><a name="Opmerkingen"></a>Opmerkingen</h2>
+        <h4>Welke nomenclatuurcodes doorsturen</h4>
+        <blockquote>
+            <p><b style="font-weight: bold;">NIET door te sturen</b>: administratieve 
+ supplementen en urgentiesupplementen, reden is het vermijden van een dubbele 
+ aanrekening door TripleP.</p>
+            <p>Methode filteren nomenclatuur : deze behorend tot vergoedingsklasse-type 
+ "administratief supplement" niet doorsturen in het bestanbd.&#160; 
+ Correcte configuratie: de vergoedingsklassen "admin.supplementen" 
+ en "urgentiesupplementen" beide definieren als van het type 
+ "administratief supplement" !!!</p>
+        </blockquote>
+        <h4>Wel/niet aanrekenen remgeld</h4>
+        <blockquote>
+            <p>Wordt in het bestand doorgestuurd PER prestatie (anders dan in vb. InfoHos-file 
+ : remgeld adm.suppl.)<br />Bepaling kode korting : zie hoger</p>
+            <p>De nomenclatuurcode van die administratieve supplementen ZELF wordt 
+ dus NIET doorgestuurd.</p>
+        </blockquote>
+        <h4>Indicatie dringendheid</h4>
+        <blockquote>
+            <p>De indicatie van dringendheid (urgentie prestatie) wordt in het bestand 
+ doorgestuurd PER prestatie, de urgentie is vastgelegd bij het verrekenelement 
+ (via de UrgentieMispl gedefinieerd bij het intern labo) :<br />0 = normaal (geen dringendheid) / 1 = nacht / 2 = weekend / 3 = feestdag</p>
+            <p>De nomenclatuurcode van de urgentiesupplementen ZELF wordt dus ook NIET 
+ doorgestuurd.</p>
+        </blockquote>
+        <h4>Status van bedrag</h4>
+        <blockquote>
+            <p>Steeds de waarde 0 doorsturen, ook voor buiten-nomenclatuur aanrekening, 
+ ervan uitgaand dat bijhorende basiswaarde (prijs) in ZIS gekend.</p>
+        </blockquote>
+        <h4>Gekozen verdeling 01/02/03 (indice comptable)</h4>
+        <blockquote>
+            <p>Mag steeds "00001" zijn.</p>
+        </blockquote>
+        <h2><a name="Bestandsstructuur"></a>Bestandsstructuur</h2>
+        <p>Het bestand moet altijd eindigen met&#160; CRLF.&#160; 1 Bestand per 
+ verrekenelement.</p>
+        <table style="width: 100%;border-spacing: 0px;" cellspacing="0" width="100%">
+            <tr>
+                <td style="width: 4%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="4%">
+                    <p><b style="font-weight: bold;">Pos</b>
+                    </p>
+                </td>
+                <td style="width: 16%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="16%">
+                    <p><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 4%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="4%">
+                    <p><b style="font-weight: bold;">A/N</b>
+                    </p>
+                </td>
+                <td style="width: 23%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="23%">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="width: 28%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="28%">
+                    <p><b style="font-weight: bold;">Glims</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p><b style="font-weight: bold;">Comment</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>2</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>UNIEKNR<br />(pat-id)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Uniek nr</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Identification code (PIN)<br />of Object.Person</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Or Internal id if no identification<br />code</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>13</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PATNR<br />(visit-id)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Nr patient</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Encounter.ExternalId</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>33</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>VOLGNR</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Volg nr</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Sequence number starting from<br />"00000" or "00001"<br />(unique for each record sent)</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Format "99999"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>38</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>VANDAT<br />(Exec-Date)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Prestatiedatum = ontvangstdatum voor labo<br />en anatomo</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Ord_ReceiptTime</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>YYYYMMDD</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>46</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>TOTDAT<br />(Till-Date)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Prestatiedatum = protocoldatum<br />voor labo en anatomo</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Instelbaar : plcy</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>YYYYMMDD</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>54</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>DOKT<br />(Med-exec)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Dokter van uitvoering</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>HIS Identification of<br />Bit_Executor</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Only first 6 positions</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>60</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>RIZIVNR<br />(Pres-Id)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Prestatienummer (riziv- of pseudoriziv-nummer)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Tariff.NomenclatureCode</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>6 positions</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>66</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>AG<br />(Visit-Type)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Indicatie ambulant of gehospitaliseerd</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Encounter.Type</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>1 = gehospitaliseerd<br />2 = ambulant</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>67</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>AANT<br />(Nbr_Exe)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Aantal prestaties</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Vast "00001"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>71</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ADOKT<br />(Demand_Med)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Dokter van aanvraag</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>HIS Identification of Order.Issuer</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Only first 6 positions</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>77</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ADAT<br />(Demand_Date)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Datum aanvraag (blanco als geen voorschrijver vereist is)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>MINIMUM of Order’s prescription<br />time and execution dates of requests.</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>YYYYMMDD</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>85</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NWF<br />(Nwf)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Indicatie dringendheid</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>0 = blanco = geen dringendheid</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 = blanco = geen dringendheid<br />1 = "N" (nacht)<br />2 = "W" (weekend)<br />3 = "F" (feestdag)</p>
+                    <p>"U" = algemene dringendheid,<br />wordt geconverteerd tijdens<br />facturering naar N, W of F</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>86</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>RELVERST<br />(Betr_Verstr)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Relatieve prestatie of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>BillingItem : site attribuut "BV"</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>92</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>AANTCOUP<br />(&gt; NOMIMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Aantal coupes of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="4%">
+                    <p>95</p>
+                </td>
+                <td style="width: 16%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="16%">
+                    <p>TAND<br />(&gt; NOMIMP2)</p>
+                </td>
+                <td style="width: 4%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="23%">
+                    <p>Indicatie tandnummer of<br />blanco</p>
+                </td>
+                <td style="width: 28%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;height: 30px;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" height="30" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>98</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PROHON<br />(Imp_Proc)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Procent honorarium,<br />normaal = "100"<br />vb 10,50,100,125, …</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">&#160;</td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds "100"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>101</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>TEKSTK<br />(&gt; NOMIMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Tekstcode getuigschrift<br />(TXTK voor isotopen,<br />TXTKO) of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>107</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>REFDOK<br />(Demand_Ref1)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Referentie dokter of aanvraagnummer labo,</p>
+                    <p>anatomo, kine of blanco</p>
+                    <p>Eventueel invullen met volgnummer vermeld in de parameter "FAK 
+ TRANS LAATSTE VOLGNUMMER",<br />dit is 5 posities + volgnr van 3 posities per patientnummer</p>
+                    <p>Zie ook 185</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Order.ord_internalId; beter is de Order.ord_ShortId via MISPL</p>
+                    <p>Opmerking : geen updates achteraf !!</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>115</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>BEDRSTAT<br />(Imp_B)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%"><span style="color: #FFFFFF;">A/N</span>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Status bedrag</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Enkel in beschouwing nemen<br />statussen 0 en 3</p>
+                    <p>0 = binnen nomenclatuur ??<br />3 = buiten nomenclatuur ??</p>
+                    <p>(Voorlopig) steeds 0 doorsturen</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 = niets<br />1 = bedragen aangepast<br />(BEDRM, BEDRP, BEDRS)<br />2 = procent vermeld in de zone<br />(PROC_BVI, PROC_BPAT, PROC_BSUP)<br />3 = prestatie ten laste patient, niet terugbetaalbare labo-onderzoeken<br />(PROC_BVI, PROC_BPAT, PROC_BSUP)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>116</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>BEDRM<br />(Imp_Bvi)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bedrag mutualiteit (enkel in te vullen als bedragen aangepast, anders 
+ blanco)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>127</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PROC_BVI</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Procent mutualiteit of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>130</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>BEDRP<br />(Imp_Bpat)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bedrag patient (enkel in te<br />vullen als bedragen aangepast, anders blanco)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>141</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PROC_BPAT</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Procent patient op blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>144</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>BEDRS<br />(Imp_Bsup)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bedrag supplementair<br />honorarium of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>155</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PROC_BSUP</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Procent supplementair<br />honorarium of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>158</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>IMP_4BET</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Amount 2e debiteur</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>169</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Kode Korting</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Indicatie korting</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Via check op polisclausules,<br />zie punt 5 (Remgeld aanrekenen ?)</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 = niets<br />2 = geen remgeld = reeds aangerekend</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>170</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>R5Z3<br />(Norm_Exec)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Norm verstrekking</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Record 5, zone 3 magneetband</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>"0"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>171</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>R5Z9</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Geslacht</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Record5, zone 3 magneetband:<br />wordt niet meer gebruikt maar "D" = derde betalersregeling</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>"1" = man<br />"2" = vrouw</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>172</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>R5Z10<br />(Moeder_Kind)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bevalling of niet</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Record 5, zone 10 magneetband<br />Blanco = niet van toepassing</p>
+                    <p>Kan ingegeven worden via een site-attribuut (Order-tabel)</p>
+                    <p>Opmerking :<br />Prestatie doorgeven op<br />verblijfnummer van kind</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 = geen bevalling<br />1 = er is een bevalling en deze prestatie werd verricht voor de moeder<br />2 = er is een bevalling en deze prestaties werden verricht voor<br />de pasgeborene, terwijl de<br />moeder in ziekenhuis verblijft</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>173</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>R5Z26</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Norm voorschrijver</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Zie record 5, zone 26 magneetband</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>174</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>VERD<br />(Acc_Ind)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Gekozen verdeling<br />(01, 02 of 03) volgens het dokterprestatiebestand<br />Indice Comptable</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Vragen Marc (voor Ieper)</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>"00001"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>179</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PLAATS<br />(&gt; NOMINP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Intern nummer van plaats van verstrekking.<br />Dit kan zowel een intern (zelf<br />test uitgevoerd) als een extern<br />(test werd doorgezonden) labo<br />zijn : is vermeld in de tabellen<br />van de ziekenhuizen</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>BillingItem.bit_ExecutingLab</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Intern/Extern labo</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>185</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Referentie<br />(Demand_ref)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Referentie dokter, indien niet infgevuld wordt veld REFDOK (pos. 107) 
+ genomen</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Zie veld REFDOK</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>197</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>MED_SIGN<br />(Med_Sign)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Médecin signataire</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Intern nummer (HIS) uitvoerende<br />dokter (verantwoordelijke)</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Mask "000000"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>203</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>CAMPUS_ID</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Campus Id</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Intern nummer (HIS) instelling</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>206</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>INV_NRB<br />(Inv_Nbr)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Faktuur nummer</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>216</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PREV_INV_NBR<br />(Prev_Inv_Nbr)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Vorig faktuur nummer</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>226</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>TRANSFU_MED</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Transfusion doctor</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>BloodBag à TransfusionHCProvider</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Enkel bij prestatie bloedbank</p>
+                    <p>(tarificatie van bloedproduct), anders steeds "000000"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>232</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>USING_NBR</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Attestation number (blood)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Attestnr. Bloed</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>238</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>RECEIPT_NR</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Number of blood bag</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Bloodbag à bloedzak identificatie</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Enkel bij prestatie bloedbank</p>
+                    <p>(tarificatie van bloedproduct),<br />anders steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>248</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ANNEX<br />(&gt; NOMIMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Annex type</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>253</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ANNEX_CNT<br />(&gt;NOMINP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Annex count</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds "00"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>255</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NOOD<br />(&gt;NOMIMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Nood status of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>256</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NOMAX<br />(&gt;NOMMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Wel/niet maximumregel</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>0 in geval van toch aanrekenen via<br />buiten NC-codes</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 = default<br />1 = NOMAX</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>257</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ATT_PRINT<br />(Att_Print)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Attest gedrukt ?</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>0 = default<br />1 = attest gedrukt</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds "0"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>258</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NOTAR<br />(&gt;NOMMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Cumulregels toepassen ?</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>0 = default<br />1 = geen cumulregels toepassen</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>0 ???</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>259</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>THEDIAG<br />(&gt;NOMMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Therapeutisch "T" of<br />diagnostisch = blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco<br />OF<br />via siteattribuut Therapeutisch</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>260</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>OPERATIE<br />(Operatie_Nr)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Operatienummer</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>272</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PART<br />(&gt;NOMMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Deel</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>"1" = links<br />"2" = rechts<br />"0" = blanco</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>273</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>CORCOUP<br />(&gt;NOMMP2)</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Aantal coronaire coupes</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>275</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ANEST</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Dokter anaestesist</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>281</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>ASSIS</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Dokter assistant</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>287</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>HUISA</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Huisdokter aanwezig ?</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>293</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>VROED</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Vroedvrouw</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>299</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>FORVISAPO</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Doktersnummer apotheker voor viscerosynthes forfait</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>305</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>FORVIS</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Rizivnummer forfait</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>311</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>FORENDAPO</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Doktersnummer apotheker voor endoscopisch forfait</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>317</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>FOREND</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Forfait endoscopisch materiaal</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>323</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Menu_nbr</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Menunummer</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>329</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>IMP_OHAR_INV</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Faktuurbedrag inclusief BTW</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>340</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>TXT</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Vrije tekst voor patientfaktuur</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco<br />(of hebben we dit : Invoice.inv_Phrase ??)</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>366</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Transplantatie</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Indicatie transplantatie zie magneetband</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>367</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>DATAK</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Datum akkoord</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>375</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Exec_Time</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Uitvoeringsdatum</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>379</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NOSUP</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Geen supplementair honorarium</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>380</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>EXT_REF</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Externe referentie bij onderaanneming (voorschrift ontvangen van ander 
+ labo)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Order.ord_ExternalId</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>392</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>NORM_BIRTA</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Norm idem veld pos. 172<br />(R5Z10, bevalling ?)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>393</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>PHARM_PROD</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Productnummer art28, art38</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>405</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>IMP_TOT</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Totaal bedrag</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>416</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>Extl_Labo</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Extern labo bij onderaanneming<br />(voorschrift ontvangen van<br />ander labo)<br />(blanco achteraan eventueel)</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>OrderSet.os_DispatchingLab</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Dispatchend labo</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>422</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>EURO</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bedragen in Euro ?</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>2 = bedragen in euro in de imp_zones vanaf positie 116<br />Indien geen bedragen vermeld<br />dan deze zone op blanco zetten.<br />à Doorsturen blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>423</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>EURO_PHAR</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Faktuurbedrag in Euro ?</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>2 = bedrag in euro in de zone IMP_PHAR_INV (pos 329)<br />à Doosrturen blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>424</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>POLY_NBR</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Nummer poliklinieklijn<br />of blanco</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>Karakterveld, lengte 12</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Steeds blanco</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>436</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>DEMAND_PROT_DATE</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Protocoldatum voor klinische biologie, anatomopathologie, nucleaire 
+ geneeskunde invitro<br />en generische onderzoeken, bij<br />de andere prestatie = blanco, format YYYYMMDD</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>444</p>
+                </td>
+                <td style="width: 16%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="16%">
+                    <p>BLOOD_TYPE</p>
+                </td>
+                <td style="width: 4%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="4%">
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 23%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="23%">
+                    <p>Bloedsoort overeenkomstig de ssorten vermeld in oazisII in de tabel 
+ BLOOD_TYPE</p>
+                </td>
+                <td style="width: 28%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="28%">
+                    <p>(karakterveld lengte 6)</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p>Bloed specificatie (bloedsoort)</p>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" cellspacing="0">
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">450</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">WARD_ID</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Verpleegeenheid
+ van uitvoering<br />      of blanco</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">456</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">WARD_ADM_ID</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Administratieve
+ verpleegeen-<br />      heid van uitvoering of blanco</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">462</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">DEP_ID</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Department
+ : dienst van uit-<br />      voering of blanco</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">468</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">MULTI_OP</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Indicatie
+ meerdere operatie-<br />      streken</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 1 positie</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">469</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">DATAWARE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Extra
+ zone voor data-warehouse en gegevens worden NONIMP2 vermeld met opmerking<br />      DATAW</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 80 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">549</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">FOPRE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Nummer
+ uitzondering<br />      profylaxis of blanco</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 2 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund<br />      Steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">551</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">AMB_HOS</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">=’1’
+ indien deze prestatie als ambulant moet gefactureerd worden zelfs al valt
+ de prestatiedatum in een opnameperiode ….<br />      = ‘2’ …<br />      = ‘3’ = spoed = …</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 1 positie</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">
+                    <p class="MsoNormal" style="MARGIN-RIGHT: -18pt;">Niet ondersteund<br />      Steeds blanco</p>
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">552</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">Opmerking</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Opmerking
+ die in NOMIMP2 wordt vermeld<br />      (“NORKL” zie doc)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Als
+ code korting = 2 (geen<br />      remgeld) dan hier ‘NORKL ‘<br />      (anders blanco)</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">558</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">BTC</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Instellingsnummer
+ van BTC,<br />      achteraan opvulling met<br />      blanco(s)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities<br />      HIS Identification of<br />      BloodBag_Supplier</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Only
+ first 6 positions</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">564</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">UP_DOWN</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">NOMIMP2<br />      opmerking UPDOW</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Numeriek
+ veld : 1 positie</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Steeds
+ waarde “0”</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">565</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">EXT_ADM_DATE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Opnamedatum
+ van elders verblijvende patient</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Encounter.StartDate
+ (indien Encounter.Instution = extern)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">YYYYMMDD</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">573</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">EXT_DEP_RIZIV</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">RIZIV
+ dienst voor een elders verblijvende patient</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 3 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund, blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">576</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">EXT_INST</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Extern
+ instellingsnummer bij<br />      elders verblijvende patient</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 6 posities<br />      HIS Identification of<br />      Encounter.Institution (indien<br />      Encounter.Instution = extern)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Only
+ first 6 positions</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">582</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">DELETE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Blanco
+ of “D” wanneer de aan-<br />      vraag mag geschrapt worden,<br />      op voorwaarde dat er nog niets gefactureerd is van de aanvraag</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Hangt
+ af van type faktuur :<br />      creditnota &gt; waarde “D”<br />      faktuur&#160;&#160;&#160;&#160; &gt; steeds blanco</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">&#160;</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">583</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">PATH_FILE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Voor
+ een annex kan hier de<br />      naam van de file vermeld<br />      worden die de annex bevat (ingescande annexen)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld : 40 posities</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund,<br />      steeds blanco</td>
+            </tr>
+            <tr>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">623</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 16%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="16%" bgColor="#e8e8e8">LOCGE</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 4%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="4%" bgColor="#e8e8e8">&#160;</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 23%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="23%" bgColor="#e8e8e8">Blanco<br />      of<br />      L(okaal)<br />      of<br />      G(eneraal)</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 28%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="28%" bgColor="#e8e8e8">Alfanumeriek
+ veld :1 positie</td>
+                <td style="PADDING-RIGHT: 0px;PADDING-LEFT: 0px;PADDING-BOTTOM: 0px;WIDTH: 24%;PADDING-TOP: 0px;BACKGROUND-COLOR: #e8e8e8;" vAlign="top" width="24%" bgColor="#e8e8e8">Niet
+ ondersteund,<br />      steeds blanco</td>
+            </tr>
+        </table>
+        <h2><a name="Lijst"></a>Lijst van mogelijke foutcodes</h2>
+        <p><a href="triple_p.xlsx">Klik hier om de lijst te raadplegen van de mogelijke foutcodes die ontvangen kunnen worden na het versturen van de zending.</a> </p>
+        <table style="width: 100%;border-spacing: 0px;" cellspacing="0" width="100%" />
+    </body>
+</html>

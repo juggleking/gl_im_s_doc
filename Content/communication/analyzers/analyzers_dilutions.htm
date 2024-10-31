@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Dilutions</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor252"></a>Dilutions</h1>
+        <h2>Introduction</h2>
+        <p>Only instrument dilution is supported. This assumes that GLIMS can send a dilution factor to the instrument, in which case the instrument takes care of both the dilution and the result conversion. </p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">When diluting a result, GLIMS will not change the current result value. The result is discontinued and a dilution factor is sent to the instrument. The instrument performs the dilution and sends a new result value to GLIMS.</li>
+                <li value="2">
+                    <p>When discontinuing a result  that is calculated from other results, these other results are also discontinued when they are not requested explicitly and when no other non-discontinued result needs the same result as input.</p>
+                </li>
+            </ul>
+        </div>
+        <h2>Dilution codes</h2>
+        <p>For each station, the dilution codes supported by the analyzer must be configured in GLIMS.</p>
+        <ol>
+            <li value="1">Select a <span class="ui_element">Station</span>.</li>
+            <li value="2">Choose the contextual menu / ribbon item <span class="ui_element">Dilution codes</span>.</li>
+            <li value="3">Use the <span class="ui_element">Insert</span> key to define a new <span class="ui_element">Dilution code</span>.</li>
+        </ol>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dilution_code_fields.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="515" data-mc-height="535" src="dilution_code_fields_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Code</p>
+        <div class="indented">
+            <p>Code that is shown in GLIMS screens whenever a dilution code must be selected (see <a href="#Manual">Manual dilution</a>).</p>
+        </div>
+        <p class="fieldlabel">Factor</p>
+        <div class="indented">
+            <p>Decimal dilution factor.</p>
+        </div>
+        <p class="fieldlabel">Condition</p>
+        <div class="indented">
+            <p>Dilution condition (sometimes called "protocol" or "method", e.g. UP, DOWN, NEAT).</p>
+        </div>
+        <p class="fieldlabel">Remote factor</p>
+        <div class="indented">
+            <p>The corresponding remote id to be sent/received to/from the instrument. </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>In case of dilutions, it is assumed that the outbound id always matches the inbound id.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Remote condition</p>
+        <div class="indented">
+            <p> Remote id for the condition.</p>
+        </div>
+        <h2><a name="Manual"></a>Manual dilution</h2>
+        <p>Users can manually indicate that a result should be diluted by:</p>
+        <ol>
+            <li value="1">selecting a <span class="ui_element">Result</span>.</li>
+            <li value="2">choosing the contextual menu / ribbon item <span class="ui_element">Dilute</span>.</li>
+        </ol>
+        <p>
+            <img src="dilution_manual.png" />
+        </p>
+        <p class="fieldlabel">Dilution code id</p>
+        <div class="indented">
+            <p>Select the dilution code to be sent to the instrument.</p>
+        </div>
+        <p class="fieldlabel">Dilution reason</p>
+        <div class="indented">
+            <p>Enter a free text or use the <span class="ui_element">Insert</span> key to select a Result-based text module.  </p>
+            <p>The dilution reason can be consulted in the <span class="ui_element">Log</span> tab page of the <span class="ui_element">Result</span> detail screen.</p>
+        </div>
+        <p class="fieldlabel">Restrict validation</p>
+        <div class="indented">
+            <p>If enabled, the new result (sent by the instrument after dilution), can only be validated by the user who executed the Dilute function.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>A user should have the required privileges for both <span class="ui_element">Result.Validate</span> and <span class="ui_element">Result.RestrictValidation</span> before this option can be used.</p>
+            </div>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>This restricted validation can also be obtained by executing the <span class="ui_element">Restrict validation</span> function on a <span class="ui_element">Result</span> record.  From then on, only the current user can validate the result. </p>
+                <p> In the <a href="../../routine/confirmation_validation/confirmation_validation_order_review.htm">Order review</a> screen, such results will not be pre-selected and even when selecting them manually, they will not be validated.</p>
+            </div>
+        </div>
+        <h2>Dilution via MISPL</h2>
+        <p>GLIMS can automatically indicate that a result should be diluted by using the <span class="ui_element">Result</span>-based MISPL function <span class="ui_element">Dilute</span> (in e.g. the <span class="ui_element">Property</span> field <span class="ui_element">On result entry</span>).</p>
+        <p class="fieldlabel">Syntax</p>
+        <div class="indented">
+            <p><span class="ui_element">Dilute</span> (DilutionCode <i>DilutionCodeId</i>, String <i>DilutionReason</i>, Logical <i>RestrictValidation</i>)</p>
+            <div class="indented">
+                <p style="font-style: italic;">DilutionCodeId</p>
+                <div class="indented">The record id of the dilution code. To get the record id, use the Result.GetDilutionCode MISPL function.</div>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p><i>.Dilute(.GetDilutionCode("ByHalf"), "Result needs dilution", No);</i>
+                    </p>
+                    <p>The <span class="ui_element">Dilution code</span> must exist for the <span class="ui_element">Station</span> that assessed the <span class="ui_element">Result</span>.</p>
+                </div>
+                <p style="font-style: italic;">DilutionReason</p>
+                <div class="indented">
+                    <p>The dilution reason can be consulted in the <span class="ui_element">Log</span> tab page of the <span class="ui_element">Result</span> detail screen.</p>
+                </div>
+                <p style="font-style: italic;">RestrictValidation</p>
+                <div class="indented">
+                    <p>This option is intended for <a href="#Manual">manual dilution</a>. In MISPL, we recommend to set this to <span class="ui_element">No</span>.</p>
+                </div>
+            </div>
+        </div>
+        <h2>Default dilution</h2>
+        <p>Some analyzers require a default dilution to be sent regardless whether or not a dilution is requested. To accomplish this, 
+ set the <span class="ui_element">Assessment method</span> field <span class="ui_element">Default dilution</span> to the corresponding 
+ dilution code.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dilution_default_assessment_method.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="769" data-mc-height="669" src="dilution_default_assessment_method_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Diluted results</h2>
+        <p>The requested and effective dilution (which may be different) are stored along with the <span class="ui_element">Result</span> 
+ in the fields </p>
+        <ul>
+            <li value="1">Requested dilution condition</li>
+            <li value="2">Requested dilution factor</li>
+            <li value="3">Effective dilution condition</li>
+            <li value="4">Effective dilution factor</li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dilution_result_log.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="630" data-mc-height="595" src="dilution_result_log_thumb_0_120.png" tabindex="" /></a>
+        </p>
+    </body>
+</html>

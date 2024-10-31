@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Monitoring|Users" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="User_monitor">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>User monitor</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3581"></a>
+            <MadCap:concept term="System management;Application management" />User monitor</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#User%20monitor%20screen">User 
+ monitor screen</a> - <a href="#Options">Options</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The user monitor shows the users currently connected to the database 
+ together with some important database activity statistics. 
+ Note that this tool is only supported for Progress databases !</p>
+        <h2><a name="User monitor screen"></a>User monitor screen</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="user_monitor_browser.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="653" data-mc-height="398" src="user_monitor_browser_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Columns</h3>
+        <p>The <b>/s columns </b>indicate how much the value of the preceding column 
+ has changed during the interval period (see the options button) or when 
+ you manually provoke a refresh by pushing F5.</p>
+        <p>In order to analyze this user monitor, the DBAccess and DBRead columns 
+ are the most important items.</p>
+        <p>The <b>DBRead</b> column shows the amount of database blocks that where 
+ read by this user which could not be found in the database server cache 
+ (physical access to the disks). When this number is high, it may suggest 
+ that the user (or the batch program) is performing a very heavy query. 
+ If such a situation persists and the overall performance is low, it might 
+ be wise to ask this user to stop his activity.</p>
+        <p>The <b>DBAcces</b> column measures the total access to the database 
+ (questions asked to the database). If this is high then CPU usage 
+ will be high too.</p>
+        <p>To facilitate stopping a user's activity, the <b>detail rectangle</b> 
+ at the bottom shows some information regarding this user like the computer 
+ he is working on, his process id, the time he logged in to the system,... 
+ The type of <b>information varies according to the selected user type</b>.</p>
+        <h3>Usage</h3>
+
+This tool has been developed to search for users or processes which put 
+ a high load on the database. Therefore it is possible to sort the 
+ table by clicking in the header. 
+
+<p>Example: Click on the DBRead column. The highest will be on top. Now 
+ check the value of the according /s column. If the value is 0 and if it 
+ stays 0 during some time, this indicates that the process has used a lot 
+ of DBRead in the past but is not performing any DBReads anymore. 
+ If the /s would be high then we have caught a process red handed putting 
+ a high load on the hardware.</p><ul><li value="1">Processes with a high DBAcces and low DBRead: reporting,...</li><li value="2">Processes with a high DBAcces and a high DBRead: 
+ statistics over a long period, invoicing,...</li></ul><h2><a name="Options"></a>Options</h2><p><a href="user_monitor_options.gif"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="user_monitor_options.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="437" data-mc-height="183" src="user_monitor_options_thumb_0_120.png" tabindex="" /></a></a></p><ul><li align="left" value="1"><b style="font-weight: bold;">User types</b>: only display 
+ users of type <ul><li align="left" value="1">Self servicing clients: which do 
+ not connect to the DB over the network (cron's, analyzer brokers). 
+ These contain all GLIMS progress processes executed directly on the server 
+ itself.</li><li align="left" value="2">Remote clients: opposite of self 
+ servicing clients. (e.g. GLIMS PC's)</li><li align="left" value="3">System processes: e.g. BIW, APW, 
+ WDOG (Watchdog)</li><li align="left" value="4">Servers: Progress servers. 
+ Each remote client uses a Progress server to connect to the database.</li></ul></li><li align="left" value="2"><b style="font-weight: bold;">Connection type</b>: <ul><li align="left" value="1">Batch: show batch connections</li><li align="left" value="2">Interactive: show interactive connections</li></ul></li><li align="left" value="3"><b style="font-weight: bold;">Server 
+ number</b>: only show remote clients using the server with this number.</li><li align="left" value="4"><b style="font-weight: bold;">Interval</b>: 
+ the user monitor automatically refreshed itself. This field indicates 
+ the time in seconds after which the monitor screen should be refreshed.</li></ul><h3 align="left">Database connection design</h3><p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="user_monitor_connections.jpg"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="505" data-mc-height="502" src="user_monitor_connections_thumb_0_120.jpg" tabindex="" /></a></p></body>
+</html>

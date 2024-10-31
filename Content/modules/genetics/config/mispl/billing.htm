@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Genetics|Configuration|MISPL functions">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title>MISPL functions for billing</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2406"></a>
+            <MadCap:concept term="Genetics" />MISPL functions for billing</h1>
+        <p>This chapter presents MISPL functions that can be used within <a href="../../../../configuration/mispl_texts/mispl_introduction.htm#Via%20a%20specific%20table">site functions</a> for the <a href="../../routine/billing.htm">billing</a> of genetic exams. These MISPL functions are all based on the GeneticExam table and their parameters are all optional.</p>
+        <h2>GeneticExam.GetApproachCount</h2>
+        <p>The .GetApproachCount MISPL function on GeneticExam allows users to retrieve the number of non-discontinued approaches linked to the genetic exam on which the function is executed. Its data type is Integer. </p>
+        <p>If approach plan mnemonics are given as parameters, only the approaches based on these approach plans are counted.</p>
+        <table id="table1" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 100%;padding-top: 2px;">GeneticExam.GetApproachCount (<i>ValueList</i> <span style="color: #008000;">ApproachPlanMnemonics</span>)</td>
+            </tr>
+        </table>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="billing_mispl1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1065" data-mc-height="700" src="billing_mispl1_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>If the following function is executed on a genetic exam G that has five non-discontinued approaches, it returns "5":</p>
+            <div class="indented">RETURN .GetApproachCount (?);</div>
+            <p>If the following function is executed on  genetic exam H that has five non-discontinued approaches, including two based on approach plan AP1 and one based on approach plan AP2, it returns "3":</p>
+            <div class="indented">RETURN .GetApproachCount ("AP1","AP2");</div>
+            <p>If the following site function is based on the Request-table and executed during tariffication, it will return the number of approaches to be tariffed:</p>
+            <div class="indented">RETURN .GeneticExam.GetApproachCount (?);</div>
+        </div>
+        <h2>GeneticExam.GetApproachList</h2>
+        <p>The .GetApproachList MISPL function on GeneticExam allows users to retrieve the mnemonics of the approach plans on which the non-discontinued approaches of the genetic exam are based.  This function has no parameter and its data type is String.</p>
+        <p>If an approach plan is used for more than one approaches, its mnemonic appears in the returned list more than once.</p>
+        <table id="table2" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 100%;padding-top: 2px;">GeneticExam.GetApproachList ()</td>
+            </tr>
+        </table>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="billing_mispl2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="498" data-mc-height="468" src="billing_mispl2_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>GeneticExam.GetLocusResultCount</h2>
+        <p>The .GetLocusResultCount MISPL function on GeneticExam allows users to retrieve the number of locus results for the non-discontinued approaches of the genetic exam. Its data type is Integer.</p>
+        <p>If the <a href="../genome/loci.htm">name of a locus</a> is added as first parameter, only the locus results linked to this locus are counted. It is not possible to indicate more than one locus name.</p>
+        <p>If a value is provided as second parameter, only the locus results having this value as raw value are counted. It is not possible to indicate more than one value.</p>
+        <table id="table3" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 100%;padding-top: 2px;">GeneticExam.GetLocusResultCount (<i>LocusName</i> <span style="color: #008000;">LocusName</span>,<i>String</i> <span style="color: #008000;">LocusValue</span>)</td>
+            </tr>
+        </table>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="billing_mispl3.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="496" data-mc-height="469" src="billing_mispl3_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Action.ApproachActivity</h2>
+        <p>The .ApproachActivity MISPL function on Action allows users to retrieve the first linked approach activity of a certain action (in theory this is only one).</p>
+        <p>This is a workaround that is required to retrieve the genetic exam and get the father.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>RETURN .ApproachActivity().DisplayName;</p>
+        </div>
+    </body>
+</html>

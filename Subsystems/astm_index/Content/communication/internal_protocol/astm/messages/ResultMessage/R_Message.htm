@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en" xml:lang="en" data-mc-search-type="Stem" data-mc-help-system-file-name="astm_index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="ASTM - Internal GLIMS protocol|Message types |Result messages">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>ASTM Result message</title>
+        <link rel="stylesheet" href="../../../../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h2>ASTM Result message</h2>
+        <h3>Message Layout</h3>
+        <table class="msg1">
+            <tbody>
+                <tr>
+                    <td class="cmsg1"><a href="records/R_H_Record.htm">Message header record (H)</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"><a href="records/R_H_M_EnteringDeviceId_Record.htm">Entering device record (M)</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> {</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_H_M_REAG_Record.htm">Global reagent information record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> }</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">{</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_P_Record.htm">Patient information record (P)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> <a href="records/R_O_Record.htm">Test order record (O)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB3"> <a href="records/R_O_M_IEVT_Record.htm">Instrument event record (M)</a> | <a href="records/R_O_M_SRS_Record.htm">Sort result record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> [</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB3"> <a href="#Ordinary_result_block">Ordinary result block </a>&#160;| <a href="#Microbiology_result_block">Microbiology result block</a> &#160;| <a href="#Pathology_result_block">Pathology result block</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> ]</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">}</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> <a href="records/R_L_Record.htm">Message terminator record (L)</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="Ordinary_result_block"></a>Ordinary result
+block</h3>
+        <table class="msg1">
+            <tbody>
+                <tr>
+                    <td class="cmsg1"> {</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_R_ORD_Record.htm">Ordinary result record (R)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> <a href="records/R_R_M_QC_Record.htm">Result QC data record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> <a href="records/R_R_M_REAG_Record.htm">Result reagent information record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> <a href="records/R_R_M_FLAG_Record.htm">Result flag record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> <a href="records/R_R_C_Record.htm">Result comment record (C)</a> | <a href="records/R_R_C_FLAG_Record.htm">Result comment flag record (C)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> }</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="Microbiology_result_block"></a>Microbiology
+result block</h3>
+        <table class="msg1">
+            <tbody>
+                <tr>
+                    <td class="cmsg1"><a href="records/R_O_M_MTST_Record.htm">Microbiology
+test record (M)</a> </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> {</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_O_CARR_Record.htm">Specimen carrier record
+(M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> &#160;<a href="records/R_O_CARC_Record.htm">Specimen carrier comment
+record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> &#160;<a href="records/R_O_CARO_Record.htm">Specimen carrier observation record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> }</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> {</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_R_ISOL_Record.htm">Isolation result record (R)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> &#160;<a href="records/R_R_CARR_Record.htm">Isolation carrier record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB3"> &#160;<a href="records/R_R_CARC_Record.htm">Isolation carrier comment record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB3"> &#160;<a href="records/R_R_CARO_Record.htm">Isolation carrier observation record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> &#160;<a href="records/R_R_ABRS_Record.htm">Antibiotic result record (R)</a> | <a href="records/R_R_ISOT_Record.htm">Isolation test result record (R)</a> | <a href="records/R_R_ISOL_COMM_Record.htm"> Isolation comment record (C)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> }</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="Pathology_result_block"></a>Pathology result block</h3>
+        <table class="msg1">
+            <tbody>
+                <tr>
+                    <td class="cmsg1"> {</td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> <a href="records/R_O_PCAR_Record.htm">Pathology carrier record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"> &#160;<a href="records/R_O_PCAR_INFO_Record.htm">Pathology carrier info record (M)</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> {</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB2"><a href="records/R_O_PCARTST_Record.htm">Pathology carrier test record (M)</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1">
+                        <div class="TAB1"> }</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cmsg1"> }</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

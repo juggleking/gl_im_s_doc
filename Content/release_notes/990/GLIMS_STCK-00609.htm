@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Correction for the Stock management Check-in trigger (GLIMS_STCK-00609)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2641"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Correction for the Stock management Check-in trigger (GLIMS_STCK-00609)</h1>
+        <h2>Issue</h2>
+        <p>The&#160;<a href="../../modules/stock_management/configuration/stock_management_general_options.htm#Check" xmlns="http://www.w3.org/1999/xhtml">Check in trigger</a> field, which allows entering configurable w_Product based site functions, did not have access to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">lot number</span> specified during <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">Product check-in</a> when the <a href="../../modules/stock_management/configuration/product_lots.htm" xmlns="http://www.w3.org/1999/xhtml">product lot</a> was not the one directly linked to the corresponding <a href="../../modules/stock_management/routine/product_ordering.htm#Purchase_orders" xmlns="http://www.w3.org/1999/xhtml">purchase order</a>. In this specific scenario, this was due to GLIMS not being able to set the field w_Product.Lot. </p>
+        <p>Therefore, the execution of a configurable MISPL call failed when the user wanted to check, for example, <a href="../../modules/stock_management/tools/Stock_management_product_lot_verification.htm#check-in" xmlns="http://www.w3.org/1999/xhtml">whether or not the indicated lot number was known</a>.</p>
+        <p>Furthermore, the <span class="ui_element">Check in trigger</span> was executed immediately after the <span class="ui_element">Check-in</span> action, which was not the most appropriate moment since the database commit only happens after the <span class="ui_element">Check-in screen</span> is confirmed.</p>
+        <h2>Solution</h2>
+        <p>From now on, any existing lot number for a product is taken into account for the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check-in</span> MISPL evaluation, except when lots are created during the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check-in</span> itself, which was already the case in the previous versions of GLIMS.</p>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check in trigger</span> is now executed when the Check-in screen is confirmed. Depending on the return value of the configurable function, the whole <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check-in</span> process can be blocked or any other action can be taken (e.g. automatic sending of an e-mail, etc.)</p>
+    </body>
+</html>

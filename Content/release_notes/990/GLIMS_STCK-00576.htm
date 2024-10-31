@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Changes regarding the activation and updates of (MB) QC lots and (MB) reagent lots (GLIMS_STCK-00576)</title>
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor869"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Changes regarding the activation and updates of (MB) QC lots and (MB) reagent lots (GLIMS_STCK-00576)</h1>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>See also release note GLIMS_STCK-00589, which corrects some aspects of the present release note.</p>
+        </div>
+        <h2>Background</h2>
+        <p>In the <a href="../../modules/stock_management/index_stock_management.htm" xmlns="http://www.w3.org/1999/xhtml">Stock management</a> module, when a new <a href="../../modules/stock_management/configuration/product_lots.htm" xmlns="http://www.w3.org/1999/xhtml">product lot</a> is created (during the configuration of  product lots or during product <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">check-in</a>) on a <a href="../../modules/stock_management/configuration/product_specifications.htm" xmlns="http://www.w3.org/1999/xhtml">product specification</a> which refers to an (MB) QC material or an (MB) reagent, an (MB) QC lot or an (MB) reagent lot is also created and linked to the product lot.&#160;After its creation, the (MB) QC lot or MB reagent lot is immediately set as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Active</span>. As non-MB reagent lots do not have any <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Active</span> field, this does not apply to them.</p>
+        <h2>Issue</h2>
+        <p>(MB) QC lots and MB reagent lots should not be activated as soon as they are created. The reason is twofold: these lots cannot be used before <a href="../../modules/stock_management/routine/product_checkout.htm" xmlns="http://www.w3.org/1999/xhtml">check-out</a> and the configuration can change between check-in and check-out.&#160;Instead, these lots  should be activated at product check-out.</p>
+        <h2>Solution and improvements</h2>
+        <h3>Activation of (MB) QC lots and MB reagent lots</h3>
+        <p>(MB) QC lots and MB reagent lots are now created inactive. MB QC lots and MB reagent lots are are only activated at check-out. For non-MB QC lots, the system is different: at <a href="../../modules/stock_management/routine/product_checkout.htm" xmlns="http://www.w3.org/1999/xhtml">product check-out</a>, GLIMS looks for the most recent (active or inactive) QC lot with the same QC material and with at least one (active or inactive) QC population.</p>
+        <ul>
+            <li value="1">If this QC lot is found, <ul><li value="1">The found QC lot F is used as the basis to <a href="../../modules/qc/internal/routine/qc_lots_create_new_qc_lot.htm" xmlns="http://www.w3.org/1999/xhtml">create a new QC lot</a> N.</li><li value="2">This new QC lot N is activated and gets the lot number, production date, expiration date, populations and attributes of the found QC lot F.</li><li value="3">The populations on the new QC lot N are activated.</li><li value="4">The new QC lot N is linked to the product lot.</li><li value="5">QC lot F is renamed and gets a new unique number based on it former number.</li></ul></li>
+        </ul>
+        <ul>
+            <li value="1">If no such QC lot is found, the inactive QC lot created when the product lot was created is activated. This activated QC lot has no population and no population will be created by the stock management module.</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If a product lot is created starting from an active (MB) QC lot or MB reagent lot, this (MB) QC or MB reagent lot remains active.</p>
+        </div>
+        <h3>Update of product lots</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">When (MB) QC lots and (MB) reagent lots are created, they are linked to the product lots related to the product specification that refers to an (MB) QC material or an (MB) reagent. When these product lots are updated (e.g. change of product lot number or expiration date), the same changes are only applied to the linked (MB) QC lots and MB reagent lots if they are not active yet.&#160;As non-MB reagent lots do not have any <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Active</span> field, they are always updated if the product lot they are linked to is updated.</p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Summary table</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The following table summarizes the workings described above:</p>
+        <table id="table1" style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');width: 100%;" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 112px;" />
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 240px;" />
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 115px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Product lot action</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">QC lot</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">MB QC lot</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Reagent lot</p>
+                        <p xmlns="http://www.w3.org/1999/xhtml">(no <span class="ui_element">Active</span> field)</p>
+                    </th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">MB reagent lot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">creation</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If does not exist: creation, inactive</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If already exists, remains active.</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If does not exist: creation, inactive</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If already exists, remains active.</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If does not exist: creation.</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If already exists, no change</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyD-Column1-Body1">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If does not exist: creation, inactive</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If already exists, remains active.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">update </p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">(change of lot number, production or expiration date)</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If inactive, same changes as for product lot.</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If active, no change.</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If inactive, same changes as for product lot.</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If active, no change.</p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">Same changes as for product lot.</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyD-Column1-Body2">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If inactive, same changes as for product lot.</p>
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">If active, no change.</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">product check-out  </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">
+                        <p bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml">GLIMS looks for the most recent QC lot F with same material and at least one QC population.</p>
+                        <ul>
+                            <li value="1">
+                                If found:
+                            </li>
+                            <ul>
+                                <li bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml" value="1"><a href="../../modules/qc/internal/routine/qc_lots_create_new_qc_lot.htm" xmlns="http://www.w3.org/1999/xhtml">Creation of a new QC lot</a> with lot number, production and expiration date, population(s) and attributes of F.</li>
+                                <li bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml" value="2">Activation of new QC lot and population(s).</li>
+                                <li bgcolor="#EFEFEF" xmlns="http://www.w3.org/1999/xhtml" value="3">Creation of link between product lot and new QC lot.</li>
+                            </ul>
+                            <li value="2">If not found: activation of inactive QC lot created upon product lot creation.</li>
+                        </ul>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">Activation</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">n.a. </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyA-Column1-Body1">Activation</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

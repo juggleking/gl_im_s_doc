@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced|MISPL and texts|Texts" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\externalization2.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Externalizations in browsers</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor62"></a>Info boxes in browsers</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Customizable%20layout%20of%20browser%20master%20externalizations">Customizing the info boxes</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Typographic%20conventions">Typographical 
+	 conventions</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Externalizations">Info boxes</a>
+            </li>
+            <li class="kadov-p" value="5"><a href="#Components">Components</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Many browsers have an <span class="ui_element">Info box</span> at the top of the screen:&#160;result confirmation, result validation, microbiology action browser, 
+ etc. </p>
+        <p>This document describes the contents of these info boxes and how you can customize them.</p>
+        <h2><a name="Customizable layout of browser master externalizations"></a>Customizing the info boxes</h2>
+        <h3>Content</h3>
+        <p>The content of the info boxes can be customized using a text module with mnemonic <span class="ui_element">&lt;Master&gt;Externalization</span>. 
+ (e.g. <span class="ui_element">ObjectExternalization</span>). </p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>By using the symbolic reference 
+ <span class="ui_element">{DefaultExternalization}</span> in the user-defined text module (on 
+ the first level!), the pre-programmed default can be re-used in the user-defined 
+ content.</p>
+        </div>
+        <h3>Fonts</h3>
+        <p>The 
+ font and color can be specified in the Progress.ini 
+ configuration file.&#160;&#160;</p>
+        <ul>
+            <li class="kadov-p" value="1">The font used in the info boxes is font 25.</li>
+            <li class="kadov-p" value="2">The background and foreground color of the info 
+	 boxes are color 74 and 75.</li>
+        </ul>
+        <h3>Size of info boxes</h3>
+        <ol>
+            <li value="1">The info boxes will automatically enlarge (if needed) when clicking inside the box. </li>
+            <li value="2">The original 
+ box size is restored when releasing the mouse button.&#160;&#160;</li>
+            <li value="3">Double-clicking 
+ on the box opens a large text editor to the screen.</li>
+        </ol>
+        <h3>HTML support</h3>
+        <p>When customizing the content of the info boxes, GLIMS allows to use HTML. When the text module contains <span class="ui_element">&lt;HTML&gt;</span>, 
+ your internet browser will be used to display the text instead 
+ of the built-in text editor.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>GLIMS does not support Frames nor iFrames in the HTML definition !</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">The height of an HTML box can be defined by 
+	 placing the comment <span class="ui_element">&lt;!--height=&lt;xx&gt;--&gt;</span> somewhere 
+	 in your HTML text (where <span class="ui_element">&lt;xx&gt;</span> stands for the desired height 
+	 in character units).</li>
+                <li value="2">Automatic enlargement by clicking inside the box is not supported when using HTML.</li>
+                <li value="3">
+                    <p>To preserve the background/foreground colors defined in the Progress.ini file, the following text is added automatically before the custom text:</p>
+                    <div class="indented">
+                        <p><i>&lt;html&gt;&#160;</i>
+                            <br style="font-style: italic;" /><i>&lt;style type="text/css"&gt;&#160;</i>
+                            <br style="font-style: italic;" /><i>body {&#160;</i>
+                            <br style="font-style: italic;" /><i>margin:2; color: rgb(&lt;br&gt;, &lt;bg&gt;, &lt;bb&gt;);&#160;</i>
+                            <br style="font-style: italic;" /><i>background: rgb(&lt;fr&gt;, &lt;fg&gt;, &lt;fb&gt;);</i>
+                            <br style="font-style: italic;" /><i>&lt;/style&gt;</i>
+                        </p>
+                    </div>
+                    <p>where &lt;br&gt; ... &lt;fb&gt; define the rgb-values of the box background 
+ and foreground colors as defined in Progress.ini</p>
+                </li>
+            </ul>
+        </div>
+        <h2><a name="Typographic conventions"></a>Typographic conventions</h2>
+        <blockquote>
+            <p><span style="color: #0000FF; font-style: italic;">Blue italic</span> expands 
+ to a component explained in detail <a href="#Components">below</a>.</p>
+            <p><b style="font-weight: bold;"><span style="color: #FF0000;">Red 
+ bold</span></b> denotes text that will appear literally.</p>
+            <p><span style="color: #008000;"><i style="font-style: italic;">Green 
+ italic</i></span> refers to database members.</p>
+        </blockquote>
+        <h2><a name="Externalizations" id="Externalizations"></a>Info boxes</h2>
+        <h3><a name="Object isolation and antibiogram history"></a>Object isolation 
+ and antibiogram history</h3>
+        <blockquote>
+            <p>Default 
+ menu path: <b>Object &gt; Microbiology &gt; Isolations</b><br />Customize with a text module specified 
+ in <a href="../modules/microbiology/configuration/microbiology_general_options.htm">SpecificSite</a>.<br /></p>
+            <p>Default: <span style="color: #0000FF;"><i>ObjectExternalization</i></span></p>
+        </blockquote>
+        <h3><a name="Browse microbiology actions"></a>Browse microbiology actions</h3>
+        <h4>Upper left corner window</h4>
+        <blockquote>
+            <p>The 
+ upper left corner window is independent of the menu path.<br />Customize with a text module specified 
+ in <a href="../modules/microbiology/configuration/microbiology_general_options.htm">SpecificSite</a>, which can be based on the Object table or the Specimen 
+ table.<br /></p>
+            <p>Default: <span style="color: #008000;"><i>Object.Externalization</i></span></p>
+        </blockquote>
+        <h3><a name="Microbiology screen"></a>Microbiology screen</h3>
+        <h4>Upper left corner window</h4>
+        <blockquote>
+            <p>Customize 
+ with a text module specified in <a href="../modules/microbiology/configuration/microbiology_general_options.htm">SpecificSite</a>, which can be based on the 
+ Object table or the Specimen table.<br /></p>
+            <p>Default: <span style="color: #008000;"><i>Object.Externalization</i></span></p>
+        </blockquote>
+        <h4>Upper middle window</h4>
+        <blockquote>
+            <p>Customize 
+ with a text module specified in <a href="../modules/microbiology/configuration/microbiology_general_options.htm">SpecificSite</a>.<br /></p>
+            <p>Default: <span style="color: #0000FF;"><i>SpecimenExternalization</i></span></p>
+        </blockquote>
+        <h3><a name="Browse properties of object"></a>Browse properties of object</h3>
+        <blockquote>
+            <p>Default 
+ menu path: <b>Object &gt; Result overview</b><br />Customize with "ObjectExternalization" 
+ text module.<br /></p>
+            <p>Default:</p>
+            <p><span style="color: #0000FF;"><i style="font-style: italic;">ObjectExternalization</i></span> [<span style="font-size: x-small;font-family: Arial;color: #FF0000;"><b>- 
+ Stay:</b></span><span style="color: #008000;"><i>Ward.Mnemonic</i></span> [<span style="font-size: x-small;font-family: Arial;color: #FF0000;"><b>room</b></span> <span style="color: #008000;"><i>Stay.Room</i></span>]<span style="color: #0000FF;"><i><br />CorrespondentExternalization</i></span>]</p>
+            <p>Where 
+ the optional part is for person objects only.</p>
+        </blockquote>
+        <h3><a name="Browse results of object"></a>Browse results of object</h3>
+        <blockquote>
+            <p>Default 
+ menu path: <b>Object &gt; Browse results</b><br />Customize with "ObjectExternalization" text module.<br /></p>
+            <p>Default: <span style="color: #0000FF;"><i>ObjectExternalization</i></span></p>
+        </blockquote>
+        <h3><a name="Browse previous results of result (for same object)"></a>Browse 
+ previous results of result (for same object)</h3>
+        <blockquote>
+            <p>Default 
+ menu path: <b>Result &gt; Log &gt; Previous results</b><br />Customize with "ResultExternalization" 
+ text module.<br /></p>
+            <p>Default:</p>
+            <p><i style="font-style: italic;"><span style="color: #0000FF;">ObjectExternalization</span><span style="color: #008000;"><br />.Property.Description</span></i> <span style="font-size: x-small; font-family: Arial; color: #FF0000; font-weight: bold;">results 
+ before</span> <i><span style="color: #008000;">.ObjectTime</span></i></p>
+        </blockquote>
+        <h3><a name="Browse results of order + Browse blood selection(s) of order + Validate results of order + Mark results of order as phoned/not phoned"></a>Browse 
+ results of order + Validate results 
+ of order + Mark results of order as phoned/not phoned</h3>
+        <blockquote>
+            <p>Default 
+ menu paths (in order of appearance):
+            </p>
+            <blockquote>
+                <p><b style="font-weight: bold;">Order</b>&gt;<b style="font-weight: bold;">Requests</b>&gt;<b style="font-weight: bold;">Results<br />Routine</b>&gt; <b>Order review</b><b style="font-weight: bold;"><br />Routine</b>&gt;<b style="font-weight: bold;">Phone list</b></p>
+            </blockquote>
+            <p>Customize 
+ with "OrderExternalization" 
+ text module.<br />Default: <span style="color: #0000FF;"><i>OrderExternalization</i></span></p>
+        </blockquote>
+        <h3>Browse blood selection(s) of order</h3>
+        <div class="indented">
+            <p>Default 
+ menu path: <b style="font-weight: bold;">Order</b>&gt;<b style="font-weight: bold;">Requests</b> &gt; <b style="font-weight: bold;">Blood selections</b><br />Customize with a text module specified 
+ in <a href="../modules/blood_transfusion/configuration/blood_transfusion_general_options.htm">SpecificSite</a> (<span class="ui_element">'Selections of order' header</span>).</p>
+            <p>Default: <span style="color: #0000FF;"><i>OrderExternalization</i></span></p>
+        </div>
+        <h3><a name="Confirm results of action"></a>Confirm results of action</h3>
+        <ol>
+            <p>Default 
+	 menu path: <b>Routine &gt; Confirm by action</b><br />	Customize with "ActionExternalization" 
+	 text module.	</p>
+            <p>Default:</p>
+            <p><span style="color: #0000FF;"><i style="font-style: italic;">ObjectExternalization<br />	SpecimenExternalization</i></span>
+            </p>
+        </ol>
+        <h2><a name="Components" id="Components"></a>Components</h2>
+        <h4><a name="ObjectExternalization" id="ObjectExternalization"></a><span style="color: #0000FF;">ObjectExternalization</span>
+        </h4>
+        <blockquote>
+            <blockquote>
+                <p>[<span style="color: #008000;"><i>.Type</i></span><span style="color: #FF0000;"><b>:</b></span> ]<i><span style="color: #008000;">.Externalization</span></i></p>
+                <p>Where <span style="color: #008000;"><i>.Type</i></span> is 
+ one of the list "<span style="color: #FF0000;"><b>Animal, 
+ Lot, Unknown, QC lot</b></span>". 
+ For person objects, the object type is omitted.</p>
+            </blockquote>
+        </blockquote>
+        <h4><a name="OrderExternalization" id="OrderExternalization"></a><span style="color: #0000FF;">OrderExternalization</span>
+        </h4>
+        <blockquote>
+            <blockquote>
+                <p><i style="font-style: italic;"><span style="color: #0000FF;">ObjectExternalization</span></i><span style="color: #FF0000;"><b><br />Object time:</b></span><span style="color: #008000;"><i>.LowestObjectTime</i></span><span style="color: #FF0000;"><b>, issued by:</b></span><span style="color: #0000FF;"><i>Issuer</i></span><span style="color: #FF0000;"><b>, via:</b></span><span style="color: #0000FF;"><i>Agent</i></span>
+                    <br />[<span style="color: #008000;"><i>.Question</i></span>]<br />[<span style="color: #008000;"><i>.ReportInformation</i></span>]</p>
+                <p style="text-align: left;">Where <span style="color: #0000FF;"><i>Issuer</i></span> and <span style="color: #0000FF;"><i>Agent</i></span> are 
+ correspondents, displayed as <span style="color: #008000;"><i>.Type 
+ .InternalId</i></span> and <span style="color: #008000;"><i>.Type</i></span> is 
+ one of the list "<span style="color: #FF0000;"><b>prsn, 
+ org, hcpr, ward, inst, lab, dept, firm, fund, hoff, cmpn, bnk</b></span>".</p>
+            </blockquote>
+        </blockquote>
+        <h4><a name="SpecimenExternalization" id="SpecimenExternalization"></a><span style="color: #0000FF;">SpecimenExternalization</span>
+        </h4>
+        <blockquote>
+            <blockquote>
+                <p><b style="font-weight: bold;"><span style="color: #FF0000;">Specimen</span></b> <span style="color: #008000;"><i>.InternalId</i></span>[ <span style="color: #FF0000;"><b>[</b></span><span style="color: #0000FF;"><i>SpecimenIdentification</i></span><span style="color: #FF0000;"><b>]</b></span>]<span style="color: #FF0000;"><b>,</b></span><span style="color: #0000FF;"><i>Description</i></span>, 
+ <span style="color: #FF0000;"><b>sampled at </b></span><span style="color: #008000;">.<i>SamplingTime</i></span></p>
+                <p>Where</p>
+                <blockquote>
+                    <p><span style="color: #0000FF; font-style: italic;">SpecimenIdentification</span> is 
+ the <span style="color: #008000; font-style: italic;">SpecimenIdentification.Code</span> for 
+ the specimen, as defined by the current <span style="color: #008000;"><i>SpecimenIdentificationType</i></span>, 
+ if applicable.</p>
+                    <p><span style="color: #0000FF;"><i style="font-style: italic;">Description</i></span> is <span style="color: #008000;"><i>.Size</i></span><span style="color: #008000;"><i>.Material.SizeUnit.Name</i></span> <span style="color: #0000FF;"><i>Material</i></span><span style="color: #0000FF;"><i>MaterialVariables</i></span> and <span style="color: #0000FF;"><i>Material</i></span> is either <span style="color: #008000;"><i>.Material.ShortName</i></span> or <span style="color: #008000;"><i>.Material.Mnemonic</i></span> if 
+ the short name isn’t specified <span style="color: #0000FF;"><i>MaterialVariables</i></span> is <i><span style="color: #008000;">.Choice.Mnemonic</span></i>[ <span style="font-size: x-small;font-family: Arial;color: #FF0000;"><b>(</b></span><span style="color: #008000;"><i>.ExtraInfo</i></span><span style="font-size: x-small;font-family: Arial;color: #FF0000;"><b>)</b></span>]...</p>
+                </blockquote>
+            </blockquote>
+        </blockquote>
+        <h4><a name="MaterialExternalization" id="MaterialExternalization"></a><span style="color: #0000FF;">MaterialExternalization</span>
+        </h4>
+        <blockquote>
+            <blockquote>
+                <p><b style="font-weight: bold;"><span style="color: #FF0000;">Material</span></b> <span style="color: #0000FF; font-style: italic;">Material</span>, <span style="color: #008000; font-style: italic;">.Description</span></p>
+                <p>Where <span style="color: #0000FF; font-style: italic;">Material</span> is either <span style="color: #008000; font-style: italic;">.Material.ShortName</span> or <span style="color: #008000; font-style: italic;">.Material.Mnemonic</span> if 
+ the short name isn't specified.</p>
+            </blockquote>
+        </blockquote>
+        <h4><a name="CorrespondentExternalization" id="CorrespondentExternalization"></a><span style="color: #0000FF;">CorrespondentExternalization</span>
+        </h4>
+        <blockquote>
+            <blockquote>
+                <p>[<span style="color: #008000;"><i>.AddressLine1</i></span><span style="color: #FF0000;"><b>,</b>
+ ][<span style="color: #008000;"><i>.Municipality.PostalCode .Municipality.Name</i></span>][<span style="color: #FF0000;"><b>,</b></span><span style="color: #008000;"><i>.Municipality.Country</i></span>][ 
+ <span style="color: #FF0000;"><b>(Tel.</b></span><span style="color: #0000FF;"><i>PhoneList</i></span><span style="color: #FF0000;"><b>)</b></span>]</span></p>
+                <p>Where <span style="color: #0000FF; font-style: italic;">PhoneList</span> is [<span style="color: #0000FF; font-style: italic;">Phone</span>][<span style="color: #FF0000;"><b>,</b></span><span style="color: #0000FF; font-style: italic;">Phone</span>]... and 
+ phone numbers are displayed in the order <span style="color: #008000; font-style: italic;">.Phone</span>, <span style="color: #008000; font-style: italic;">.Phone2</span>,<span style="color: #008000; font-style: italic;">.MobilePhone</span>.</p>
+            </blockquote>
+        </blockquote>
+    </body>
+</html>

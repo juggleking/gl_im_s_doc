@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.6 - Discontinuing a result via a result code resulted in the action having status Partial (GLIMS-12967)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3767"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.6 - </MadCap:conditionalText>Discontinuing a result via a result code resulted in the action having status Partial (GLIMS-12967)</h1>
+        <h2>Problem description</h2>
+        <p class="fieldlabel">Configuration</p>
+        <ul>
+            <li value="1">A result code exists with <span class="ui_element">Action</span> = <span class="ui_element">Discontinue</span> and <span class="ui_element">Assessed</span> disabled.</li>
+            <li value="2">A procedure exists with a material input and two property outputs. Both properties <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Allow general result codes</span>.</li>
+        </ul>
+        <p class="fieldlabel">Routine</p>
+        <ol>
+            <li value="1">During order entry, both properties are requested.</li>
+            <li value="2">In the result browser of the newly created order, the result code is entered as result value for one of the properties.</li>
+            <li value="3">In the order outline:<ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">The specimen status should be <span class="ui_element">Initial</span>. </li><li xmlns="http://www.w3.org/1999/xhtml" value="2">The action status should be <span class="ui_element">Inputting</span>. </li><li xmlns="http://www.w3.org/1999/xhtml" value="3">The result with the result code should be in status <span class="ui_element">Discontinued</span>. </li><li xmlns="http://www.w3.org/1999/xhtml" value="4">The other result should be in status <span class="ui_element">Initial</span>.</li></ul></li>
+            <li value="4">When entering a result value for the other property of the order, <ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">the specimen status should be <span class="ui_element">Available</span>,</li><li xmlns="http://www.w3.org/1999/xhtml" value="2">the action status should be <span class="ui_element">Realized</span>.</li></ul></li>
+        </ol>
+        <p>In previous versions, entering the result code for one of the properties resulted in an action with status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Partial</span>. This led to a problem when the second result output of the action received a value: the root specimen may not be promoted to status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Available</span>.</p>
+        <h2>Solution</h2>
+        <p>This issue has been corrected.</p>
+    </body>
+</html>

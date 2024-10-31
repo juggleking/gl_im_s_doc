@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Enhancements for export of price related data to CyberLab (GLIMS_CBL-00014)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor720"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Enhancements for export of price related data to CyberLab (GLIMS_CBL-00014)</h1>
+        <p><a href="../../application_management/import_export/export/cyberLab/export_price_data_for_cyberlab/export_prices_cyberlab.htm" xmlns="http://www.w3.org/1999/xhtml">Price related data</a> can be exported from GLIMS to CyberLab. This modification brings corrections and improvements to this function.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #ff0000;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Warning</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p>These changes only apply to the communication between GLIMS 9.6.3 (and higher) and CyberLab 9.12 (and higher).</p>
+                </div>
+            </div>
+        </div>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Export of requestable issuers</h2>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Basic workings</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">In GLIMS, requestables can be linked to a particular issuer:</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_Rqbl_Issuer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="692" data-mc-height="312" src="GLIMS_CBL-00014_Rqbl_Issuer_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">When this is the case, information regarding this issuer is now  also exported to CyberLab.
+More precisely, two fields were added to the csv export file:</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">&lt;RqblIssuer&gt;: this field contains either the <a href="#Addition" xmlns="http://www.w3.org/1999/xhtml">identification or the mnemonic</a> of the requestable issuer.</p>
+            </li>
+        </ul>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">&lt;RqblIssuerType&gt;: this field indicates the <a href="../../configuration/correspondents/correspondents.htm#Correspo" xmlns="http://www.w3.org/1999/xhtml">type</a> of the issuer, which can be any type of the following list:</p>
+                <div class="indented" xmlns="http://www.w3.org/1999/xhtml">1 = Person, 2 = Organization, 3 = HcProvider, 4 = Ward, 5 = Institution, 6=Lab, 7=Department, 8=Firm, 9= Fund, 10 = Health Office, 11=Company, 12=Bank, 13= Study</div>
+            </li>
+        </ul>
+        <h3>Panel requestables</h3>
+        <p>Basically, when a requestable is linked to a particular issuer, then the issuer information is exported together with the requestable information.&#160;The situation becomes more complex when this requestable points to a panel requestable whose members are themselves linked to no or different issuers.</p>
+        <p>In such cases, the following rule applies:</p>
+        <div class="indented">A panel member is exported if 
+        <ul><li value="1">the issuer to which it is linked is identical to the issuer of the panel requestable (more accurately, identical to the issuer of the requestable that points to the panel requestable), or</li><li value="2">this panel member is not linked to any issuer.</li></ul></div>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p>1. </p>
+                    <p>Requestable panel Z  has issuer A and contains three members: M1, M2, M3.</p>
+                    <p>M1 has no issuer</p>
+                    <p>M2 has issuer A</p>
+                    <p>M3 has issuer B</p>
+                    <p>--&gt; If issuer A requests Panel Z, M1 and M2 will be exported, M3 will not be exported (independently of whether M3 is a simple requestable or a panel requestable) because it is specific to issuer B.</p>
+                    <p>Obviously, since Panel Z is specific to issuer A, no issuer but A can request it.</p>
+                    <p>&#160;</p>
+                    <p>2. </p>
+                    <p>Requestable panel Z  has no issuer and contains three members: M1, M2, M3.</p>
+                    <p>M1 has no issuer</p>
+                    <p>M2 has issuer A</p>
+                    <p>M3 has issuer B</p>
+                    <p>--&gt; Like in example 1, if issuer A requests Panel Z, M1 and M2 will be exported, M3 will not.</p>
+                    <p>--&gt;&#160;If issuer B requests Panel Z, M1 and M3 will be exported, M2 will not</p>
+                    <p>--&gt;&#160;If issuer C request Panel Z, only M1 will be exported.</p>
+                </div>
+            </div>
+        </div>
+        <h2>Export of the HC provider identification</h2>
+        <h3><a name="Addition" xmlns="http://www.w3.org/1999/xhtml"></a>Addition of an HC code provider field</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">In the price export function, only the mnemonic of the correspondent (issuer) used to be exported.&#160;The general <a href="../../application_management/import_export/export/cyberLab/export_configuration_data_for_cyberlab/introduction.htm" xmlns="http://www.w3.org/1999/xhtml">CyberLab export</a> function works differently: if an HC code provider is specified, then the identification of the HC provider is exported.&#160;The mnemonic of the HC&#160;provider is only exported if the HC&#160;code provider is not indicated.  In order to align the price export function with the general CyberLab export function, a field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC code provider</span> has been added to the price export window: </p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_hccode_provider.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="343" data-mc-height="181" src="GLIMS_CBL-00014_hccode_provider_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">The system works as follows: </p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC code provider</span> is indicated, GLIMS looks for the HC provider identification: <ul><li xmlns="http://www.w3.org/1999/xhtml" value="1"> if a valid identification is found, it is added to the price export file.&#160;</li><li value="2"><p xmlns="http://www.w3.org/1999/xhtml">if a non-valid identification is found, none of the requestable data is exported and a log entry is created under <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System Management</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Logging</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Logs</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Log type</span> = <span class="ui_element">Export prices for CyberLab</span>.</p><p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_LogEntry_Identification.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="895" data-mc-height="320" src="GLIMS_CBL-00014_LogEntry_Identification_thumb_0_120.png" tabindex="" /></a></p><div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>From this log entry, you can easily get a list of all the identifications assigned to the HC provider:</p><ul><li xmlns="http://www.w3.org/1999/xhtml" value="1">right-click on the log entry -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Open subject</span>.</li><li xmlns="http://www.w3.org/1999/xhtml" value="2">right-click in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer</span> field -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Go to</span> -&gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer</span></li><li xmlns="http://www.w3.org/1999/xhtml" value="3">right-click anywhere in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer</span> editor -&gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identifications</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Assigned to</span>.</li></ul></div></div></div></li></ul></li>
+            <li value="2">If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC code provider</span> field is left empty, the HC&#160;provider mnemonic is exported instead of the identification.<![CDATA[
+            ]]></li>
+        </ul>
+        <h3>HC provider of price list versus HC provider of requestable</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The system just described applies to both HC providers exported in the csv file: the issuer of the price list and the issuer of the requestable. In other words, if the HC code provider is specified, GLIMS looks for the identification,  not the mnemonic, of the price list issuer and  requestable issuer.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml"><a href="GLIMS_CBL-00014_Rqbl_Issuer.png"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_PriceList_Issuer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1160" data-mc-height="737" src="GLIMS_CBL-00014_PriceList_Issuer_thumb_0_120.png" tabindex="" /></a> </a><a href="GLIMS_CBL-00014_Rqbl_Issuer.png"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_Rqbl_Issuer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="692" data-mc-height="312" src="GLIMS_CBL-00014_Rqbl_Issuer_thumb_0_120.png" tabindex="" /></a></a>
+        </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">In order to distinguish the price list issuer from the requestable issuer in the csv file, the former is referred to as &lt;PrclHcProvider&gt;, the latter as &lt;RqblIssuer&gt;.</p>
+        <h2>Export of the  correspondent mnemonic with panel members</h2>
+        <p>When panel members were exported, the mnemonic of the correspondent (issuer) linked to the price list was not always exported.</p>
+        <p>This has been corrected. Additionally, as explained in the previous section, the correspondent's identification   is now exported instead of its mnemonic if the HC&#160;code provider is specified.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Export of all the billing codes of a panel member</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">When exported panel members had several billing code assignments, only their first billing code was exported.&#160;Given that the price of a panel member is the sum of all its billing codes, the price indicated in CyberLab could not be correct.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">This mistake has been corrected: now, when a panel member is exported, all its billing codes are exported as well.</p>
+        <h2>Indication of the billing code in log entry</h2>
+        <p>
+            <p>If a <a href="../../application_management/import_export/export/cyberLab/export_price_data_for_cyberlab/export_prices_cyberlab.htm#Requesta2" xmlns="http://www.w3.org/1999/xhtml">panel requestable</a> member does not have a valid <a href="../../modules/billing/tariffication/configuration/tariffs.htm" xmlns="http://www.w3.org/1999/xhtml">tariff</a> record for a certain price list, a log entry with log type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Export prices for CyberLab</span>is created. In order to ease finding the member in question, the related billing code is now also mentionned in the log.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_CBL-00014_LogEntry_Tariff.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1071" data-mc-height="340" src="GLIMS_CBL-00014_LogEntry_Tariff_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </p>
+    </body>
+</html>

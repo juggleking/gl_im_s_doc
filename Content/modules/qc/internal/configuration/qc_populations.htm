@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Configuration" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\configuration\population.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Configuration: QC populations</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1523"></a>
+            <MadCap:concept term="Quality control" />Quality control -
+ QC populations</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Access_to_QC_populations">Access 
+ to QC populations</a> - <a href="#Fields">Fields</a> 
+ - <a href="#Precision%20check">Precision check</a> - <a href="#Accuracy%20check">Accuracy 
+ check</a> - <a href="#Combined%20check">Combined check</a> - <a href="#Copy">Copy</a> 
+ - <a href="#Activate">Activate/Deactivate</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>As each QC lot might be used for reference assessments of different 
+ properties, the respective results and statistics are gathered in different 
+ QC populations. A population consists of an entire set of results. Each 
+ population is associated with a QC lot and with an assessment method.</p>
+        <p>During the initial QC configuration, you have to create the QC populations 
+ manually using the contextual function <span class="ui_element">QC populations</span> on <span class="ui_element">QC lot</span>.&#160;Later, 
+ when a new QC lot is to be used, you can create a new QC&#160;lot using one of the contextual functions:</p>
+        <ul>
+            <li value="1"><![CDATA[  ]]><a href="../routine/qc_lots_create_new_qc_lot.htm">Create new QC lot</a> on a QC lot (allows to indicate whether to copy all related QC populations or only the active or inactive ones).</li>
+            <li value="2"><a href="../routine/qc_lots_create_new.htm">Create new lot</a> on a QC&#160;lot (automatically copies all related QC populations).</li>
+        </ul>
+        <p>The fields in the <span class="ui_element">Precision</span> and <span class="ui_element">Accuracy</span> sections of the <a href="#Configur">Configuration</a> tab folder allow to directly 
+ define one accuracy and precision check in the QC population, without 
+ having to define separate QC checks.&#160;For multiple <a href="qc_checks.htm">checks</a>, 
+ you will have to define separate QC checks.&#160;&#160;&#160;</p>
+        <p>The figure below illustrates the difference between accuracy and precision.</p>
+        <p style="text-align: center;">
+            <img src="../../accuprec.gif" alt="Accuracy vs. Precision" title="Accuracy vs. Precision" width="557" height="288" border="0" />
+        </p>
+        <h2><a name="Access_to_QC_populations" id="Access_to_QC_populations"></a>Access 
+ to QC populations</h2>
+        <p>QC populations can be accessed by</p>
+        <ol>
+            <li value="1">the <a href="../routine/qc_populations_query_browser.htm">QC population 
+	 query</a></li>
+            <li value="2">using the contextual functions on <span class="ui_element">QC lot</span> or <span class="ui_element">Assessment method</span>.</li>
+            <li value="3">from a result context.&#160;The contextual function <span class="ui_element">QC Populations</span> on <span class="ui_element">Result</span> shows a browser of all active 
+	 QC populations for the assessment method the result is referring to. 
+	 When calling Result.QCpopulations() from one of the confirmation or 
+	 validation browsers, the focus has to be positioned inside a specific 
+	 result value (and not on a property name!).</li>
+        </ol>
+        <h2><a name="Fields" id="Fields"></a>Fields</h2>
+        <h3>Introduction</h3>
+        <p>The sequence of the tab pages can be customized in the <a href="qc_setup_screen.htm">QC 
+ Setup screen</a>.</p>
+        <h3><a name="Main"></a>Main page</h3>
+        <p style="font-weight: bold;">Method station / property</p>
+        <div class="indented">
+            <p>The station and property define the assessment 
+ method for which QC results are stored in this QC population. The method property field will be expanded with the property unit name, if applicable.</p>
+        </div>
+        <p style="font-weight: bold;">Lot</p>
+        <div class="indented">
+            <p>QC lot used for this QC population.</p>
+        </div>
+        <p style="font-weight: bold;">Level</p>
+        <div class="indented">
+            <p>Level of control being used (can be used 
+ to indicate low or high concentration materials).</p>
+        </div>
+        <p style="font-weight: bold;">Active</p>
+        <div class="indented">
+            <p>Marks whether the QC population is active or 
+ not. Closing a QC population <a href="../routine/qc_evaluation_periods.htm">evaluation 
+ period</a> will automatically mark it as inactive.</p>
+        </div>
+        <p style="font-weight: bold;">Auditable</p>
+        <div class="indented">
+            <p>Please check the chapters <a href="../management/qc_audits.htm">QC 
+ audit</a> and <a href="../management/qc_populations_print.htm">QC 
+ Population Print</a>.</p>
+        </div>
+        <p style="font-weight: bold;">Configuration</p>
+        <div class="indented">
+            <p>Quantitative, <a href="qc_qualitative_results.htm">qualitative</a>, 
+ <a href="qc_titer_results.htm">titer</a>. Allows the user to select 
+ the type of configuration to be established. Once the configuration is 
+ chosen and a representative field related to this configuration is filled 
+ in, the configuration field becomes read-only.</p>
+        </div>
+        <p style="font-weight: bold;"><a name="Evaluati"></a>Evaluation status</p>
+        <div class="indented">
+            <p>Indicates whether this QC population is <a href="../routine/qc_evaluation_periods.htm">under evaluation</a> or 
+ not.</p>
+        </div>
+        <p style="font-weight: bold;">Sub type</p>
+        <div class="indented">
+            <p>The sub type of a QC population indicates where 
+ its results originate from:</p>
+            <ul>
+                <ul>
+                    <li class="mips_list_bulleted" value="1">Standard (assessment)</li>
+                    <li class="mips_list_bulleted" value="2"><a href="../management/qc_patient_median.htm">Day 
+		 median</a>
+                    </li>
+                    <li class="mips_list_bulleted" value="3"><a href="../management/qc_patient_moving_average.htm">Moving 
+		 average</a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+        <p style="font-weight: bold;">Total count</p>
+        <div class="indented">
+            <p>The total number of results in this QC population.</p>
+        </div>
+        <p style="font-weight: bold;">Numeric count</p>
+        <div class="indented">
+            <p>The number of numeric results that has been 
+ used to calculate the <span class="ui_element">Mean</span> and <span class="ui_element">Standard deviation</span>.</p>
+        </div>
+        <p style="font-weight: bold;"><a name="Mean"></a>Mean</p>
+        <div class="indented">
+            <p>The calculated mean value of all the numeric 
+ results. &#160;</p>
+            <p><i>Formula: (SUM(Value) 
+ / Count)</i>
+            </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>GLIMS uses the precision settings of the QC population's <a href="../../../../configuration/assessment_methods/assessment_methods.htm#Precisio">assessment method</a> to limit the number of significant digits that are displayed:</p>
+                <ol>
+                    <li value="1">The assessment method's <span class="ui_element">QC precision</span> + 1 determines the number of <b>significant digits</b> that are displayed.</li>
+                    <li value="2">If the <span class="ui_element">QC precision</span> is not specified, the assessment method's <span class="ui_element">Precision</span> + 1 is used to determine the number of <b>significant digits</b>.</li>
+                    <li value="3">If the <span class="ui_element">Precision</span> is not specified, the <span class="ui_element">Reported decimals</span> / <span class="ui_element">Decimal threshold</span> of the <span class="ui_element">Property</span> of the assessment method linked to the QC population is used to determine the number of <b>decimals</b> (i.e. digits after the decimal separator) that are displayed.</li>
+                </ol>
+                <p>To avoid rounding errors, the precision applied is one more (+1) than when it is applied to the result values of the QC population.</p>
+            </div>
+        </div>
+        <p style="font-weight: bold;">Median (Percentile 50) / Percentile 25 / 
+ Percentile 75</p>
+        <div class="indented">
+            <p>In statistics, a percentile is the value 
+ of a variable below which a certain percent of observations fall. In GLIMS, 
+ the observations are the results. As in the GLIMS statistics module, percentile 
+ values are calculated as follows:</p>
+            <p>The pth percentile is obtained by first calculating 
+ the rank (<span style="font-style: italic;">formula: l = p(n+1)/100</span>), rounded to the nearest integer and then taking the value that corresponds 
+ to that rank.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>Take 10 values = 120, 125, 125, 145, 145, 
+ 150, 150, 160, 170, 175</p>
+                <p>Then P25 =&gt; 0.25 * (10 + 1) =&gt; 2.75 
+ =&gt; 3, corresponds with 125</p>
+                <p>Then P75 =&gt; 0.75 * (10 + 1) =&gt; 8.25 
+ =&gt; 8, corresponds with 160</p>
+                <p>Note: Round of 1.5 yields 2</p>
+            </div>
+            <p>The Percentile and Median values are only 
+ calculated when using the QC population function <a href="../management/qc_populations_recalculate_statistics.htm">Recalculate 
+ statistics</a>.</p>
+            <p>To inform the user about outdated (*) percentiles 
+ or median values, a mark is added to the browser (a non-labeled column 
+ at the left shows a '*') and the editor (a '*' mark appears next to the 
+ percentiles and median values).</p>
+            <p>In the browser that is embedded into the 
+ QC population editor, the row with the Tukey values can also display a 
+ '*' mark as these Tukey values are based on the percentile and median 
+ values. Note that the outdated values displayed are the ones stored 
+ in the QC population at the time the last calculation took place.</p>
+            <p>(*) Outdated means that a QC result was added 
+ or discontinued after a calculation took place (or when no calculation 
+ ever took place for a QC population).</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>GLIMS uses the  number of decimals (i.e. digits after the decimal separator) of the QC population's calculated <span class="ui_element">Mean</span> to display the percentile 25, median and percentile 75 values. <a href="#Mean">Click here for more information on how the calculated mean value is formatted</a>.</p>
+            </div>
+            <div class="box_grey">
+                <p><b>Technical notes</b>
+                </p>
+                <ol style="list-style-type: decimal;">
+                    <li value="1">The statistics recalculation 
+			 stores these 3 values (Percentile 25, Percentile 75, Median) 
+			 in the QC population.</li>
+                    <li value="2">Moreover, the recalculation 
+			 also stores the time the calculation took place in the QC 
+			 population field <span class="ui_element">Statistics calculation time</span>.</li>
+                    <li value="3">When 
+			 a QC result is added or removed (discontinued) from a QC population, 
+			 GLIMS will also set the QC population field <span class="ui_element">Last QC result time</span>.</li>
+                </ol>
+            </div>
+        </div>
+        <p style="font-weight: bold;">Standard / Tukey table</p>
+        <div class="indented">
+            <p>This table shows calculated values using 
+ the Standard and Tukey method.</p>
+            <p class="fieldlabel">Standard SD</p>
+            <div class="indented">
+                <p>Calculated standard deviation (SD) of all 
+ numeric results:</p>
+                <p><i>Formula: SD&#160;= SQRT(SUM(Value 
+ - Mean)**2) / (Count - 1))</i>
+                </p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>GLIMS uses the  number of decimals (i.e. digits after the decimal separator) of the QC population's calculated <span class="ui_element">Mean</span> to display the Standard SD value. <a href="#Mean">Click here for more information on how the calculated mean value is formatted</a>.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Tukey SD</p>
+            <div class="indented">
+                <p>The Tukey method is an alternate method for 
+ calculating a standard deviation (and derived fields), which is less vulnerable 
+ for outlier values.</p>
+                <p>The standard deviation according to Tukey 
+ is calculated as follows:</p>
+                <p><i>Formula: SD</i><span style="vertical-align: Sub;font-style: italic;">Tukey</span><i> 
+ = | Percentile75 - Percentile25| / 1.349</i>
+                </p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>GLIMS uses the  number of decimals (i.e. digits after the decimal separator) of the QC population's calculated <span class="ui_element">Mean</span> to display the Tukey SD value. <a href="#Mean">Click here for more information on how the calculated mean value is formatted</a>.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Standard 
+ CV (%)</p>
+            <div class="indented">
+                <p><i>Formula: Standard Deviation / Mean * 
+ 100</i>
+                </p>
+            </div>
+            <p class="fieldlabel">Tukey 
+ CV (%)</p>
+            <div class="indented">
+                <p>The coefficient of variation according to 
+ Tukey, calculated as follows:</p>
+                <p style="font-style: italic;">Formula: CV<span style="vertical-align: Sub;">Tukey</span> 
+ = 100 * (SD<span style="vertical-align: Sub;">Tukey</span> / Median)</p>
+            </div>
+            <p class="fieldlabel">Standard 
+ Bias (%)</p>
+            <div class="indented">
+                <p>The Bias 
+ &#160;or systematical error, calculated as follows:</p>
+                <p><i>Formula: Bias = (|QCPopulation.TargetValue 
+ – Mean| / QCPopulation.TargetValue) * 100</i>
+                </p>
+            </div>
+            <p class="fieldlabel">Tukey 
+ Bias (%)</p>
+            <div class="indented">
+                <p>Same as Standard Bias, but using 
+ the Median:</p>
+                <p><i>Formula: Bias</i><span style="vertical-align: Sub;font-style: italic;">Tukey</span><i> 
+ = (|QCPopulation.TargetValue – Median| / QCPopulation.TargetValue) * 100</i>
+                </p>
+            </div>
+            <p class="fieldlabel">Standard Cpk</p>
+            <div class="indented">
+                <p>Represents the "Process capability" 
+ (ability of a process to produce output within specification limits).</p>
+                <p style="font-style: italic">Formula: (TEa - Bias) 
+ / (3 * CV)</p>
+            </div>
+            <p class="fieldlabel">Tukey Cpk</p>
+            <div class="indented">
+                <p>Same as Standard Cpk, but using the Tukey 
+ values:</p>
+                <p style="font-style: italic;">Formula: Cpk<span style="vertical-align: Sub;">Tukey</span> 
+ = (TEa - Bias<span style="vertical-align: Sub;">Tukey</span>) / (3 * CV<span style="vertical-align: Sub;">Tukey</span>)</p>
+            </div>
+            <p class="fieldlabel">Standard sigma score</p>
+            <div class="indented">
+                <p>The six sigma score is calculated as follows:</p>
+                <p><i>Formula: Sigma score 
+ &#160;= (TEa - Bias) / CV</i>
+                </p>
+                <p><a href="http://en.wikipedia.org/wiki/Six_Sigma" target="_blank">Click 
+ here for more information on six sigma</a>.</p>
+            </div>
+            <p class="fieldlabel">Tukey sigma score</p>
+            <div class="indented">
+                <p>Same as the standard Sigma score, but using 
+ the Tukey values:</p>
+                <p><i>Formula: Sigma score</i><span style="vertical-align: Sub;font-style: italic;">Tukey</span><i> &#160;= (TEa - Bias</i><span style="vertical-align: Sub;font-style: italic;">Tukey</span><i>) / CV</i><span style="vertical-align: Sub;font-style: italic;">Tukey</span>
+                </p>
+                <p><a href="http://en.wikipedia.org/wiki/Six_Sigma" target="_blank">Click 
+ here for more information on six sigma</a>.</p>
+            </div>
+        </div>
+        <h3><a name="Configur"></a>Configuration page</h3>
+        <h4>RMSD</h4>
+        <p>Please check the chapter <a href="../rilibak/qc_rilibak.htm">Quality 
+ control: RiliBÄK 2008</a> (Germany).</p>
+        <h4>Precision</h4>
+        <p class="fieldlabel">Target mean / Target deviation</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Target 
+ mean</span> and the <span class="ui_element">Target 
+ deviation</span> are used to quantify the method's <a href="#Precision%20check">precision</a>.</p>
+            <p>When these precision fields are specified, 
+ a precision check will be imposed <a href="#Precision_check_for_each_individual_QC_result">on 
+ each individual QC result</a>.&#160;This precision check verifies 
+ if the result ranges between the 2S and 3S limits (see <span class="ui_element">Severity 
+ 2S</span> and <span class="ui_element">Severity 3S</span>).</p>
+        </div>
+        <p class="fieldlabel">Limit 1 / severity and Limit 2 / severity</p>
+        <div class="indented">
+            <p>These limits allow defining alternative SD 
+ factors with related severities (in addition to the fixed 2S and 3S limits, 
+ see below).</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>A Maximal SD Factor 1 of 2.3, sets 
+ a limit to 2.3 times the QCPopulation.TargetDeviation.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ol>
+                    <li value="1"><span class="ui_element">Limit 2</span> should be higher 
+	 than <span class="ui_element">Limit 1</span>.</li>
+                    <li value="2">When <span class="ui_element">Limit 1</span> and/or <span class="ui_element">Limit 
+	 2</span> are defined with a severity, these limits are checked upon QC result 
+	 creation or update. They will generate a QC result violation message 
+	 analogue to the <span class="ui_element">Severity 2S</span> and <span class="ui_element">Severity 3S</span>. Obviously, the highest 
+	 severity of the violated precision limits 2S, 3S, Limit 1 and Limit 
+	 2 is considered.</li>
+                    <li value="3">When <span class="ui_element">Limit 1</span> and/or <span class="ui_element">Limit 
+	 2</span> is specified, these custom limits will be used to set the zones 
+	 and labels in the <a href="../management/qc_graphs.htm">Levey-Jennings 
+	 graph</a>.</li>
+                    <li value="4">GLIMS 
+	 first verifies if a <span class="ui_element">Limit 2 severity</span> or <span class="ui_element">Limit 1 
+	 severity</span> is specified. If so, the result value is verified 
+	 against <span class="ui_element">Limit 2</span> and <span class="ui_element">Limit 1</span>. If not, the result 
+	 value is verified against 3SD and 2SD (in that order, and if related 
+	 severity is specified).</li>
+                    <li value="5">The 
+	 QC population editor will make the fields <span class="ui_element">Severity 2S</span> 
+	 and <span class="ui_element">Severity 3S</span> insensitive whenever one of the following 
+	 fields are filled in: <span class="ui_element">Limit 1</span>, <span class="ui_element">Limit 2</span>, <span class="ui_element">Limit 
+	 1 severity</span>, <span class="ui_element">Limit 2 severity</span>. It is an indication 
+	 to the user that those fields will no longer have effect.</li>
+                </ol>
+            </div>
+        </div>
+        <p class="fieldlabel">CV max. (%) / severity</p>
+        <div class="indented">
+            <p>When executing the <a href="../management/qc_populations_print.htm">QCPopulation.Print</a> 
+ function (which also creates the <a href="../management/qc_audits.htm">QC 
+ audits</a>) GLIMS verifies whether the coefficient of variation (CV) does 
+ not exceed the maximal coefficient of variation (CV max).&#160;If 
+ exceeded, the CV max severity 
+ is applied.</p>
+            <p><i>Formulas:</i>
+            </p>
+            <p style="font-style: italic;">CV 
+ = Standard Deviation / Mean * 100</p>
+            <p style="font-style: italic;">Standard Deviation: calculated 
+ standard deviation (SD) of all numeric results:&#160;&#160;= SQRT(SUM(Value 
+ - Mean)**2) / (Count - 1))</p>
+            <p style="font-style: italic;">Mean: calculated mean value of all numeric results: Mean = SUM(Value) / 
+ Count</p>
+        </div>
+        <p class="fieldlabel">Delta SD limit / severity</p>
+        <div class="indented">
+            <p>These fields allow to define the delta deviation 
+ between QC results.</p>
+            <p class="fieldlabel">Delta SD limit</p>
+            <div class="indented">
+                <p>
+ Delta SD factor limit between two subsequent QC results.</p>
+            </div>
+            <p class="fieldlabel">Delta SD limit severity</p>
+            <div class="indented">
+                <p>Severity when delta SD limit is violated.</p>
+            </div>
+            <p>When a new result value 
+ is added to a QC population and these fields are specified, GLIMS will 
+ check if there is a (non discontinued) result available prior to the new 
+ result.</p>
+            <p>If the absolute difference 
+ between the 2 values divided by the QCPopulation.TargetDeviation exceeds 
+ the <span class="ui_element">Delta SD limit</span>, GLIMS will apply the <span class="ui_element">Delta SD limit severity</span> and add 
+ a deviation text to the internal comment.</p>
+        </div>
+        <p class="fieldlabel">Severity 2S / Severity 3S</p>
+        <div class="indented">
+            <p>2S limit: determined by <span class="ui_element">Target mean</span> 
+	 and twice the <span class="ui_element">Target deviation</span>.</p>
+            <p>3S limit: determined by <span class="ui_element">Target mean</span> 
+	 and three times the <span class="ui_element">Target deviation</span>.</p>
+            <p>The 2S and 
+ 3S severity allow assigning a severity to the QC results which do 
+ not comply with the check described above.&#160;See also <a href="../management/qc_deviation_actions.htm">Deviation 
+ actions</a>.</p>
+            <p>The 2S and 
+ 3S limits are not applied when one of the <span class="ui_element">Limit 1 / severity</span> 
+ and <span class="ui_element">Limit 2 / severity</span> are specified (see above).</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Certain instruments can send additional QC population-related data to GLIMS. GLIMS can update the QC population based on the target and  deviation values received from the instrument. For more information, see <a href="../../../../configuration/stations/stations.htm#QC">Stations</a>.</p>
+        </div>
+        <h4>Accuracy</h4>
+        <p class="fieldlabel">Target value</p>
+        <div class="indented">
+            <p> 
+ Used to calculate the accuracy limits (see below).</p>
+        </div>
+        <p class="fieldlabel">Origin</p>
+        <div class="indented">
+            <p> Allows specifying where the target value originates from. 
+ &#160;The <a href="qc_setup_screen.htm">QC Setup screen</a> allows to 
+ specify a list of possible origins.</p>
+        </div>
+        <p class="fieldlabel">Origin info</p>
+        <div class="indented">
+            <p>Allows specifying extra information related to the 
+ target value origin.</p>
+        </div>
+        <p class="fieldlabel">Value type</p>
+        <div class="indented">
+            <p>Method used to obtain the target value. E.g. 
+ based on origin: 'External', 'Internal', ...</p>
+        </div>
+        <p class="fieldlabel">Limit (%) / Low limit / High limit</p>
+        <div class="indented">
+            <p>When specifying a <span class="ui_element">Target 
+ value</span> and an <span class="ui_element">Accuracy 
+ limit</span>, the low limit and high 
+ limit will be calculated automatically.&#160;When entering 
+ a fixed low and high limit, the target value will be calculated as the 
+ mean value of these two limits.&#160;The target value and target 
+ mean can&#160;be obtained via reference method, averaging,...</p>
+            <p>See <a href="#Accuracy_check_for_each_individual_QC_results">Accuracy 
+ check for each individual QC results</a>.</p>
+        </div>
+        <p class="fieldlabel">Acc. severity</p>
+        <div class="indented">
+            <p>Allows assigning a severity to the QC results 
+ which do not comply with the check described above (accuracy limits).&#160;&#160;See 
+ also <a href="../management/qc_deviation_actions.htm">Deviation actions</a>.</p>
+        </div>
+        <p class="fieldlabel">Maximal R</p>
+        <div class="indented">
+            <p>When executing the <a href="../management/qc_populations_print.htm">QCPopulation.Print</a> 
+ function (which also creates the <a href="../management/qc_audits.htm">QC 
+ audits</a>), GLIMS verifies whether the maximal inaccuracy (Maximal R) 
+ is not exceeded.&#160;The inaccuracy 
+ (R) is the difference between the calculated mean and the target value 
+ divided by the target value.</p>
+        </div>
+        <p class="fieldlabel">Pivot</p>
+        <div class="indented">
+            <p>This has been introduced for the German QC 
+ norms.&#160;Its main purpose it to make sure that the allowed deviation 
+ of a result for an accuracy or a combined control does not fall below 
+ a minimum value, even when the target value of the control is very small 
+ (normally, the allowed deviation is expressed as a percentage of the target 
+ value).</p>
+            <p>When the target value of a population is lower than the pivot of the 
+ population, then the allowed single result deviations from the target 
+ value, the allowed imprecision (CV max check) and the allowed inaccuracy 
+ (R max check) of a selected period are interpreted with absolute limits 
+ instead of percentages.&#160;&#160;Fundamentally, for CV-max, R-max and 
+ MaxDev, instead of interpreting these as a percentage, they are interpreted 
+ as absolute values, derived from the percentage value by calculating the 
+ value of the limits on the pivot level instead of the target value level.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <div class="indented">
+                    <p>Unit = nmol/l<br />TargetValue = 40<br />AccuracyLimit = 20%<br />CVMax = 5%<br />RMax = 10%<br />Pivot = 50</p>
+                </div>
+                <p>Then</p>
+                <div class="indented">
+                    <p>the allowed limits for the single results are 30 - 50 nmol/l (and not 
+ 32 - 48!),<br />the maximum allowed SD for a given period is 2.5 nmol/l (and not 2.0 !),<br />the maximum allowed inaccuray Mean - TargetValue for a given period is 
+ 5 nm (and not 4 !)</p>
+                </div>
+            </div>
+            <p>In this case, the QCPopulation.Print() and QCAudit.Print() functions 
+ will show the absolute numbers on the printout and not the relative numbers.</p>
+        </div>
+        <p class="fieldlabel">TEa (%) / Origin</p>
+        <div class="indented">
+            <p class="fieldlabel">TEa</p>
+            <div class="indented">
+                <p> 
+ Allows to specify a value for the "Total 
+ allowable error". This value is used to calculate the Cpk.</p>
+            </div>
+            <p class="fieldlabel">Cpk</p>
+            <div class="indented">
+                <p>Represents the "Process capability". This is a calculated 
+ value which is displayed in the <span class="ui_element">Standard</span> / <span class="ui_element">Tukey</span> table on the main page.</p>
+            </div>
+            <p style="font-style: italic;">Formula: Cpk = TEa / 
+ (3 * CV)</p>
+            <p>Both TEa and CV should be available in order 
+ to have a Cpk.</p>
+            <p class="fieldlabel">TEa origin</p>
+            <div class="indented">
+                <p> 
+ Allows specifying where the TEa originates from. The <a href="qc_setup_screen.htm">QC 
+ Setup screen</a> allows to specify a list of possible origins.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Max. Bias (%)</p>
+        <div class="indented">
+            <p>
+ Allows specifying a limit for the calculated Bias. Currently it is not 
+ used in the QC module (future use).</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Certain instruments can send additional QC population-related data to GLIMS. GLIMS can update the QC population based on the target and  deviation values received from the instrument. For more information, see <a href="../../../../configuration/stations/stations.htm#QC">Stations</a>.</p>
+        </div>
+        <h4>Choice list</h4>
+        <p>Please check the chapter <a href="qc_qualitative_results.htm">QC 
+ for qualitative results</a>.</p>
+        <h4>Titer</h4>
+        <p>Please check the chapter <a href="qc_titer_results.htm">QC 
+ for titer results</a>.</p>
+        <h3>Comment page</h3>
+        <p class="fieldlabel">Comment</p>
+        <div class="indented">
+            <p>Free text comment</p>
+        </div>
+        <h3><a name="More"></a>More page</h3>
+        <p class="fieldlabel">Evaluation period</p>
+        <div class="indented">
+            <p>Indicates for how many days results are needed 
+ to conclude the <a href="../routine/qc_evaluation_periods.htm">evaluation 
+ period</a> of the QC population.</p>
+        </div>
+        <p class="fieldlabel">Allow cross checks</p>
+        <div class="indented">
+            <p>Indicates if this population belongs to a 
+ set of populations for which 'across material' checks are executed.</p>
+        </div>
+        <p class="fieldlabel">Ignored deviation count</p>
+        <div class="indented">
+            <p>Indicates that results outside this range 
+ are not taken into account for statistics.</p>
+        </div>
+        <p class="fieldlabel">Grubbs / Grubbs probability / Grubbs minimal 
+ values</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../management/qc_populations_recalculate_statistics.htm">Recalculate 
+ QC population statistics</a>.</p>
+        </div>
+        <p style="font-weight: bold;">Material</p>
+        <div class="indented">
+            <p>Refers to the basic material for which this 
+ QC population monitors the channel quality.</p>
+            <p>When the same assessment method is used for 
+ different patient materials, it is possible to use distinct QC populations 
+ for the quality assessment of the channel for these different patient 
+ materials. Examples could be: Na in Serum and Na in Blood, both of which 
+ may require specific QC materials.</p>
+            <p>When specified, the material name will be 
+ added to QC reports.</p>
+        </div>
+        <p style="font-weight: bold;">Cluster name</p>
+        <div class="indented">
+            <p>An optional cluster name of the QC population.</p>
+        </div>
+        <p class="fieldlabel"><a name="Unreliab"></a>Unreliable</p>
+        <div class="indented">
+            <p>For more information, see <a href="../management/qc_deviation_actions.htm#Reliabil">Deviation actions</a>.</p>
+        </div>
+        <h3>Log page</h3>
+        <p class="fieldlabel">Statistics start / end time</p>
+        <div class="indented">
+            <p>Only results since/until this date are included 
+ in the statistics. The start/end date can be set via the <a href="../management/qc_populations_recalculate_statistics.htm">Recalculate 
+ QC population statistics</a> function.</p>
+        </div>
+        <h3>Biorad page</h3>
+        <p>Please check the chapter <a href="../../external/biorad/biorad.htm">External 
+ QC: BioRad</a>.</p>
+        <h2><a name="Precision check"></a>Precision check</h2>
+        <p>The precision check can be used instead of defining separate Westgard 
+ checks.&#160;</p>
+        <h3><a name="Precision_check_for_each_individual_QC_result" id="Precision_check_for_each_individual_QC_result"></a>Precision 
+ check for each individual QC result</h3>
+        <p>The <span class="ui_element">Target mean</span> and the <span class="ui_element">Target deviation</span> 
+ are used to quantify the method's <i>precision</i>. They are expressed 
+ in the unit of the property.&#160;The values of the target mean 
+ and target deviation can typically be determined by means of an <a href="../routine/qc_evaluation_periods.htm">evaluation 
+ period</a>.</p>
+        <p>If the standard deviation of the QC results matches the target deviation, 
+ the method is <i>precise</i>: it delivers reproducible values.&#160;</p>
+        <p>When these precision fields are specified, a precision check will be 
+ imposed on each individual QC result.&#160;This precision check 
+ verifies if the result ranges between the 2S and 3S limits.</p>
+        <ul>
+            <li class="kadov-p" value="1">2S limit: determined by <span class="ui_element">Target mean</span> and twice 
+	 the <span class="ui_element">Target deviation</span></li>
+            <li class="kadov-p" value="2">3S limit: determined by <span class="ui_element">Target mean</span> and three 
+	 times the <span class="ui_element">Target deviation</span></li>
+        </ul>
+        <p>The <span class="ui_element">Severity 2S</span> and <span class="ui_element">Severity 3S</span> allow assigning a severity to the QC results 
+ which do not comply with the check described above.&#160;See also <a href="../management/qc_deviation_actions.htm">Deviation actions</a>.</p>
+        <h3><a name="Precision_check_for_a_set_of_QC_results" id="Precision_check_for_a_set_of_QC_results"></a>Precision 
+ check for a set of QC results</h3>
+        <p>In addition to the individual precision QC result checks, GLIMS also 
+ allows to perform a general precision check on a set of QC results.&#160;This 
+ check will be executed when using the <a href="../management/qc_populations_print.htm">QCPopulation.Print</a> 
+ function (which also creates the <a href="../management/qc_audits.htm">QC 
+ audits</a>) and verifies whether the coefficient of variation (CV) does 
+ not exceed the maximal coefficient of variation (<span class="ui_element">CV Max</span>).&#160;The 
+ coefficient of variation is calculated as follows:</p>
+        <div class="indented">
+            <p><i>CV = Standard Deviation / Mean * 100</i>
+            </p>
+            <p class="fieldlabel">Standard Deviation</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 The calculated standard deviation (SD) of all the numeric results:&#160;&#160;= 
+	 <i>SQRT(SUM(Value - Mean)**2) / (Count - 1))</i></p>
+            </div>
+            <p class="fieldlabel">Mean</p>
+            <div class="indented">
+                <p class="kadov-p"> The calculated 
+	 mean value of all the numeric results: <i>Mean = SUM(Value) / Count</i></p>
+            </div>
+            <p><a href="../management/qc_audits.htm">QC audit reports</a> for precision 
+ checks will only mention the CV Max check results.</p>
+        </div>
+        <h2><a name="Accuracy check"></a>Accuracy check</h2>
+        <h3><a name="Accuracy_check_for_each_individual_QC_results" id="Accuracy_check_for_each_individual_QC_results"></a>Accuracy 
+ check for each individual QC result</h3>
+        <p>The accuracy fields allow to define one accuracy check.&#160;When 
+ specifying a <span class="ui_element">Target value</span> and an <span class="ui_element">Accuracy limit</span>, the <span class="ui_element">Accuracy low 
+ limit</span> and <span class="ui_element">Accuracy high limit</span> will be calculated automatically.&#160;When 
+ entering a fixed low and high limit, the target value will be calculated 
+ as the mean value of these two limits.&#160;The target value and 
+ target mean can&#160;&#160;be obtained via reference method, averaging,
+ ...</p>
+        <p>The <span class="ui_element">Accuracy severity</span> field allows assigning a severity to the 
+ QC results which do not comply with the check described above.&#160;See 
+ also <a href="../management/qc_deviation_actions.htm">Deviation actions</a>.</p>
+        <h3><a name="Accuracy_check_for_a_set_of_QC_results" id="Accuracy_check_for_a_set_of_QC_results"></a>Accuracy 
+ check for a set of QC results</h3>
+        <p style="text-align: left;">In addition to the individual accuracy QC 
+ result checks, GLIMS also allows to perform a general accuracy check on 
+ a set of QC results.&#160;This check will be executed when using 
+ the <a href="../management/qc_populations_print.htm">QCPopulation.Print</a> 
+ function (which also creates the <a href="../management/qc_audits.htm">QC 
+ audits</a>) and verifies whether the maximal inaccuracy (<span class="ui_element">Maximal R</span>) 
+ is not exceeded.&#160;The inaccuracy (R) is the difference 
+ between the calculated mean and the target value divided by the target 
+ value.</p>
+        <p style="text-align: left;"><a href="../management/qc_audits.htm">QC audit 
+ reports</a> for accuracy checks will only mention the Maximal R check 
+ results.</p>
+        <h2 style="text-align: left;"><a name="Combined check"></a>Combined check</h2>
+        <p>In addition to the precision and accuracy QC types, GLIMS also supports 
+ 'Combined' QC populations.&#160;A combined population is a population 
+ intended to monitor accuracy and precision simultaneously by introducing 
+ a 'Maximal inaccuracy' next to the already existing 'Maximal CV' which 
+ can be seen as a 'Maximal imprecision'.</p>
+        <p>A combined control is recognized by the fact that it has a target value, 
+ a maximal CV AND a maximal inaccuracy.&#160;The maximal inaccuracy 
+ (Max R) could be interpreted as the link between the precision 
+ and accuracy checks, thereby explaining the term 'Combined'.</p>
+        <p>A classical accuracy control is detected by the fact that it has a target 
+ value or an accuracy limit or an accuracy low or high limit.&#160;A 
+ classical precision control is detected by the fact that it has a target 
+ mean or a target deviation.&#160;A control can be simultaneously 
+ of type precision and accuracy, without being of type combined (i.e. maximal 
+ inaccuracy is not checked).</p>
+        <p>Combined controls are typically used as follows:</p>
+        <ul>
+            <li value="1">Each separate result should fall within the accuracy 
+	 limits.</li>
+            <li value="2">At the end of the month (or any other period including 
+	 at least 15 results), a QC audit is made for the results of that period. 
+	 The 'imprecision' (CV), defined as the coefficient of variation of 
+	 the selected results should not exceed the maximal imprecision (CV Max), 
+	 and the 'inaccuracy' (R), defined as the difference between the calculated 
+	 mean and the target value divided by the target value should not exceed 
+	 the maximal inaccuracy (Rmax).</li>
+        </ul>
+        <p><a href="../management/qc_audits.htm">QC audit reports</a> for combined 
+ checks will mention the Maximal CV check results and the Maximal R check 
+ results.</p>
+        <h2><a name="Copy" id="Copy"></a>Copy</h2>
+        <p>The contextual function <span class="ui_element">Copy</span> on <span class="ui_element">QC population</span> allows copying 
+ one or more QC populations, including their QC checks, while optionally 
+ modifying the QC lot, the station, the property and the evaluation status.&#160;The 
+ new populations are created inactive, unless the <span class="ui_element">Activate new populations</span> 
+ option is set.&#160;The old populations' status is left unchanged, 
+ unless the <span class="ui_element">Deactivate old populations</span> option is set.</p>
+        <h2><a name="Activate" id="Activate"></a>Activate/Deactivate</h2>
+        <p>To activate or deactivate a QC population, two contextual functions are available 
+ on QC population: <span class="ui_element">Activate</span> and <span class="ui_element">Deactivate</span>. These functions 
+ can also be used in a command.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>GLIMS only allows one active QC population per assessment method and 
+ QC lot. Activating one QC population automatically deactivates all other 
+ related QC populations.&#160;</p>
+            <p>This is why the user will be warned when activating multiple related 
+ inactive populations at once. If the user wants to continue, GLIMS will 
+ activate only the most recent inactive population in the set of selected 
+ related populations. This is also is the default behavior when using the 
+ function in a command.</p>
+        </div>
+    </body>
+</html>

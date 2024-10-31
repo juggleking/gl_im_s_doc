@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en" xml:lang="en" data-mc-search-type="Stem" data-mc-help-system-file-name="billing_index.xml" data-mc-path-to-help-system="../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Most common error logs">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>No Policy clause found for Billing item</title>
+        <link href="Resources/Stylesheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>No Policy clause found for Billing item</h1>
+        <h2>Verifying the  log</h2>
+        <p>Information found in the error:</p>
+        <ul>
+            <li value="1">Order set label (1)</li>
+            <li value="2">Object external ID (2)</li>
+            <li value="3">Billing code (3)</li>
+            <li value="4">Lab, Department and Date of request that is linked to the Billing code (4)</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_0.png" />
+        </p>
+        <p>This kind of error can have different causes. Here, we list the most common causes that you can check.</p>
+        <h2>Checking the Order set</h2>
+        <p>First you have to make sure that there isn't a mix of orders with different <span class="ui_element">Encounter types</span> in one <span class="ui_element">Order set</span>.</p>
+        <p>Navigate to the <span class="ui_element">Order set</span> which gives the error by using the query. You can find the label of the <span class="ui_element">Order Set</span> in the error log (1).</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_1.png" />
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_2.png" />
+        </p>
+        <p>This query will give you a list of all the Order sets with this specific label. In this list, you will have to find the specific <span class="ui_element">Order set</span> linked to the <span class="ui_element">Object</span> in the error log (2). You will have to find the external ID of the Object in the Reimbursement party column.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_3.png" />
+        </p>
+        <p>Once you have found the Order set label with the correct external ID of the <span class="ui_element">Object</span> in the error, you can get a list of all the orders that are bundled in this <span class="ui_element">Order set</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_4.png" />
+        </p>
+        <p>Some <span class="ui_element">Order sets</span> will only contain 1 order. In that case, the encounter type doesn't need to be checked.</p>
+        <p>If the <span class="ui_element">Order set</span> contains different <span class="ui_element">Orders</span>, you need to check if all the <span class="ui_element">Orders</span> have the same <span class="ui_element">Encounter type</span> (Ambulatory / Hospitalized). You can't have a mix of different <span class="ui_element">Encounter types</span> in one <span class="ui_element">Order set</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_5.png" />
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_6.png" />
+        </p>
+        <p>If you find a mix of <span class="ui_element">Encounter types</span>, you will need to split them up under 2 different <span class="ui_element">Order Sets</span>.</p>
+        <p>The first thing you can do is a reevaluation of the Order set label:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_8.png" /> <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_9.png" /></p>
+        <p>This should spread the orders among different Order sets with the correct Order set label, depending on the <span class="ui_element">Encounter type</span>.</p>
+        <p>If this action hasn't resolved the issue and the different Encounter types can still be found in the same <span class="ui_element">Order set</span>, you can split them up manually by adjusting the Order set label on the <span class="ui_element">Order</span> with the different <span class="ui_element">Encounter type</span>. This way, the <span class="ui_element">Order</span> with the different <span class="ui_element">Encounter type</span> will be placed in this new <span class="ui_element">Order set</span>.</p>
+        <p><b>Example:</b>
+        </p>
+        <p>If the Order 511-005355 needs to be unlinked from the Order set, the label will need to be adjusted too, for example, 20110629_H_bis.</p>
+        <p>This way, the Order 511-005355 will be linked to this new label. The other Orders will stay linked to the original Order set and will have the original Order set label.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_7.png" />
+        </p>
+        <p><b style="text-decoration: underline;">REMARK</b>
+        </p>
+        <p>An <span class="ui_element">Order</span> gets an Order set label from the moment it is created in&#160;GLIMS. The Order set label linked to the <span class="ui_element">Order</span> is a collection of <span class="ui_element">Orders</span> for one <span class="ui_element">Object</span> and one <span class="ui_element">Encounter type</span> for the same day.</p>
+        <p>This means that when you adjust the <span class="ui_element">Encounter type</span> in one <span class="ui_element">Order</span> of the <span class="ui_element">Order set</span> after an <span class="ui_element">Order</span> has been created, there will be a mix of Encounter types for the Order set label and the <span class="ui_element">Order set</span> will be incorrect. </p>
+        <p>When you adjust the <span class="ui_element">Encounter type</span> on an order you can start the reevaluation of the Order set label manually as described above, but normally you will have a 'TAR0'-task that will do this reevaluation automatically on a daily basis.</p>
+        <p><u>Reevaluation of an Order set label using the Command and linked Task:</u>
+        </p>
+        <p><b>Configuration of the Command:</b>
+        </p>
+        <ul>
+            <li value="1">Table: Order</li>
+            <li value="2">Query: Standard</li>
+            <li value="3">Function: ReEvaluateOrderSetDefaults</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_10.png" />
+        </p>
+        <ul>
+            <li value="1">Query parameter set:</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_11.png" />
+        </p>
+        <ul>
+            <li value="1">Function parameter set:</li>
+        </ul>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_12.png" />
+        </p>
+        <p><b>Configuration of the Task:</b>
+        </p>
+        <p>We recommend to run this task when the workload of the application is at it lowest, during the night.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_13.png" />
+        </p>
+        <p><b>Assigning the Task Scheduler:</b>
+        </p>
+        <p>It's recommended to assign a dedicated <span class="ui_element">Task scheduler</span> to the <span class="ui_element">Command</span>, preferably one that is specifically used for the billing commands. </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_14.png" />
+        </p>
+        <h2>Checking which Clause is missing</h2>
+        <h3>Step 1 - Gathering information</h3>
+        <p>In order to figure out which Clause is missing , you need to gather some information.</p>
+        <p><u style="font-weight: bold; text-decoration: none;">a)  Reimbursement class that is linked to the Billing code in the error</u>
+        </p>
+        <p>You can find this information on the <span class="ui_element">Billing code</span>:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_15.png" />
+        </p>
+        <p><u style="font-weight: bold; text-decoration: none;">b)  Encounter type of the Orders that are linked to the Order Set in the error</u>
+        </p>
+        <p>Navigate to the <span class="ui_element">Order set</span> which gives the error by using the query. You can find the label of the <span class="ui_element">Order Set</span> in the error log (1).</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_1.png" />
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_2.png" />
+        </p>
+        <p>This query will give you a list of all the Order sets with this specific label. In this list you will have to find the specific <span class="ui_element">Order set</span> linked to the <span class="ui_element">Object</span> in the error log (2). You will have to find the external ID of the Object in the Reimbursement party column.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_3.png" />
+        </p>
+        <p>Once you have found the Order set label with the correct external ID of the <span class="ui_element">Object</span> in the error, you can get a list of all the orders that are bundled in this <span class="ui_element">Order set</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_4.png" />
+        </p>
+        <p>For each order in the list you can view the <span class="ui_element">Encounter</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_5.png" />
+        </p>
+        <p>On the <span class="ui_element">Encounter</span> you can find the <span class="ui_element">Encounter type</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_6.png" />
+        </p>
+        <p><u style="font-weight: bold; text-decoration: none;">c) Policy  that is linked to the Order set</u>
+        </p>
+        <p>You can find the <span class="ui_element">Policy name</span> on the <span class="ui_element">Order</span> in the Billing tab:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_16.png" />
+        </p>
+        <p>On the <span class="ui_element">Policy name</span> you can find the <span class="ui_element">Policy</span>:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_19.png" />
+        </p>
+        <p><u style="font-weight: bold; text-decoration: none;">d) Is there subcontracting or not</u>
+        </p>
+        <p>In order for an <span class="ui_element">Order</span> to be registered as subcontracting, the <span class="ui_element">Agent</span> needs to be filled in on the <span class="ui_element">Order</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_17.png" />
+        </p>
+        <p>The <span class="ui_element">Institution</span> that is used should be an external <span class="ui_element">Institution</span>. </p>
+        <p>You can check this on the <span class="ui_element">Institution</span>, 'Internal' shouldn't be checked:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_18.png" />
+        </p>
+        <h3>Step 2 - Getting a list of available Clauses</h3>
+        <p>Once you have this information, you can get a list of clauses that are available. </p>
+        <p>You can get this list starting from the Reimbursement class (a) or starting from the Policy name (c).</p>
+        <p><b style="text-decoration: underline;">Starting from the Policy name</b>
+        </p>
+        <p>First you need to navigate to the Policy linked to the <span class="ui_element">Policy name</span>:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_19.png" />
+        </p>
+        <p>There you can get the list of <span class="ui_element">Clauses</span> linked to the <span class="ui_element">Policy</span>:</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_20.png" />
+        </p>
+        <p>In this list you can see that each <span class="ui_element">Clause</span> is linked to a <span class="ui_element">Reimbursement class</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_21.png" />
+        </p>
+        <p> <b style="text-decoration: underline;">Starting from the Reimbursement class</b></p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_22.png" />
+        </p>
+        <p>In this list you can see that each <span class="ui_element">Clause</span> is linked to a <span class="ui_element">Policy</span>.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_23.png" />
+        </p>
+        <h3>Step 3 - Determining which Clauses are missing </h3>
+        <p>To determine which clause is missing you need the information that you gathered before:</p>
+        <p><u style="font-weight: bold;">Example:</u>
+        </p>
+        <p>a) Reimbursement class: KR</p>
+        <p>b) Encounter type: Hospitalized</p>
+        <p>c) Policy: KGR-ZVK</p>
+        <p>d) Subcontracting yes/no: yes</p>
+        <p>We suggest to get the list of clauses starting from the Policy, as this usually is the most manageable list.</p>
+        <p>In this list, you can find the Reimbursement class, linked to the clause. For this example, only the Clauses linked to KR are interesting. </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_24.png" />
+        </p>
+        <p>Now we need to look at the linked Encounter type of these Clauses. </p>
+        <p>The column 'R.T.' stands for Residence type. This can be A (Ambulatory) or H (Hospitalized). The Label of a Clause can also give you an indication of the Encounter type.</p>
+        <p>The Clauses that have a label with _H, will be clauses that can be used for Encounter types that are 'Hopitalized', these with _A can be used for Encounter types that are 'Ambulant'. </p>
+        <p>You can also check this by opening the clause.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_25.png" />
+        </p>
+        <p> For this example, only the Clause for Residence Type 'Hospitalized' is interesting.</p>
+        <p>The column 'Subc.' stands for Subcontracting. This can be yes or no. You can also check this by opening the clause.</p>
+        <p>On this Clause we now need to check if Subcontracting is checked. This is not the case, so the Clause won't be available for this specific situation.</p>
+        <p><b style="text-decoration: underline;">REMARK:</b>
+        </p>
+        <p>If the correct Clause seems to be present, make sure the 'To charge' toggle is checked on this specific Clause.</p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_32.png" />
+        </p>
+        <h3>Step 4 - Configuring the needed Clauses </h3>
+        <p>By doing an 'INSERT' in the list of Clauses, a new <span class="ui_element">Clause</span> can be added on the <span class="ui_element">Policy</span> or <span class="ui_element">Reimbursement class</span>. Normally, Clauses for 3 kinds of <span class="ui_element">Reimburser types</span>: Fund (invoice for Fund), Object Person (invoice for Patient), Dispatching lab (used for Subcontracting) can be found. Below you can find more information about the configuration listed per Clause. Elements highlighted in yellow are essential elements that need to be respected in the configuration.</p>
+        <p>It's always possible that the configuration is specific to the lab, and that the configuration differs from the norm. In this case, it's best to contact support to do a analysis before adjustments are made.</p>
+        <p><b style="text-decoration: underline;">REMARK:</b>
+        </p>
+        <p>Make sure the 'To charge' toggle is checked on the Clause.</p>
+        <p><b>1) Clause for Encounter type 'Ambulatory', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'No', Reimburser type 'Fund':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_26.png" />
+        </p>
+        <p><b>2) Clause for Encounter type 'Hospitalized', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'No', Reimburser type 'Fund':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_27.png" />
+        </p>
+        <p><b>3) Clause for Encounter type 'Ambulatory', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'No', Reimburser type 'Person':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_28.png" />
+        </p>
+        <p><b>4) Clause for Encounter type 'Hospitalized', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'No', Reimburser type 'Person':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_29.png" />
+        </p>
+        <p><b>5) Clause for Encounter type 'Ambulatory', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'Yes', Reimburser type 'Dispatching Lab':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_30.png" />
+        </p>
+        <p><b>6) Clause for Encounter type 'Hospitalized', Policy 'KGR-MVK', Reimbursement class 'KR', Subcontracting 'Yes', Reimburser type 'Dispatching Lab':</b>
+        </p>
+        <p>
+            <img src="Resources/Images/ERROR_NoPolicyClauseFoundForBillingItem_31.png" />
+        </p>
+    </body>
+</html>

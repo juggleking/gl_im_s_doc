@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="External devices|Optical Mark Reading" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\omr\omr_parameterization.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>parameterization</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor40"></a>
+            <MadCap:concept term="System management" /><a name="kanchor25"></a><a name="Optical mark parameterization"></a>Optical mark parameterization</h1>
+        <p>In GLIMS the optical mark form will be presented as a tree. That tree consists of several types of nodes, which are all a subtype of a special node: the <b>optical mark Control super type node</b>.<br />
+The subtypes are <b>Container, Mark, BarCode</b> and <b>Prompt</b>. Currently, the prompt subtype is not yet supported.</p>
+        <h3>Control super type</h3>
+        <p>Members:</p>
+        <blockquote>
+            <p>Name : unique<br />
+Mandatory : Set if control must return a non-empty value.</p>
+        </blockquote>
+        <h3>Container</h3>
+        <p>A Container can "contain" other Controls (= internal node).<br /><br />
+Members:</p>
+        <dl>
+            <dt><strong>Min child trigger count</strong>
+            </dt>
+            <dd>Minimum amount of children that must return a value to their parent.</dd>
+            <dt><strong>Max child trigger count</strong>
+            </dt>
+            <dd>Maximum amount of children that can return a value to their parent.</dd>
+            <dt><strong>Prefix</strong>
+            </dt>
+            <dd>Prefix before all data returned from the sub-nodes.</dd>
+            <dt><strong>Delimiter</strong>
+            </dt>
+            <dd>Use delimiter character between the values of the reporting children.</dd>
+            <dt><strong>Suffix</strong>
+            </dt>
+            <dd>Append suffix after all returned data from the sub-nodes.</dd>
+            <dt><strong>Value</strong>
+            </dt>
+            <dd>If ’r;?’, the container’s value will contain a string build from all the data of the underlying child nodes who are reporting a value (&lt;&gt; ""). We start with an empty value string. First a prefix is added to it, then the all the values of the reporting nodes are linked and added using the delimiter as separator character (this is called the default behavior). Finally the suffix is appended to the value string.</dd>
+            <dd><strong style="font-weight: bold;">Remark</strong>: the values of the ’r;marked’ marks will be reported to their container in the same order as they were entered in the tree editor.</dd>
+            <dd>
+                <p style="text-align: JUSTIFY;">If <strong>Value</strong> is different from ’r;?’, it represents a MISPL expression returning a <strong>string</strong>. Using a MISPL expression has some advantages. Complex computations can be performed in this case, using and manipulating the data of the underlying child nodes. MISPL however is much slower. Also no buffer navigation may be performed here. Buffer navigation is eg .Order.result. …. .</p>
+            </dd>
+            <dd>How can we refer the value’s of the underlying child nodes:<br />
+e.g.:</dd>
+            <dd>Container: "Node" <strong>Value</strong> MISPL function:</dd>
+            <dd>&#160; <em style="font-style: italic;">RETURN "This is the first:" + .Value("SubNode1") + "This is the second:" + Value("SubNode2");</em></dd>
+            <dd>&#160; Now "SubNode1" and "SubNode2" are two sub-nodes of "Node" named respectively "SubNode1" and "SubNode2".<br />
+Of course, far more complex computations can be performed using MISPL. <strong>But no buffer navigation may be performed.</strong></dd>
+            <dt><strong>Default Value</strong>
+            </dt>
+            <dd>If the above Value() function returns an empty string, then the DefaultValue() MISPL function will be executed instead (if specified).</dd>
+        </dl>
+        <h3>Mark</h3>
+        <p>A Mark represents a form mark at (Side, Clock, Track) (= leaf node).</p>
+        <h3>Barcode</h3>
+        <p>A Barcode represents a barcode at (side, SeqNo) (= leaf node).</p>
+        <h1><a name="aanchor41"></a>
+            <MadCap:concept term="System management" /><a name="Optical mark parsing"></a>Optical mark parsing</h1>
+        <p style="text-align: JUSTIFY;">When marked on the form, the value of the mark at hand will be reported to its parent (control-container). The values of all ’r;marked’ marks will be linked in the same order as they are defined in the tree-editor, into the parent (container) value. This, however, is the default behavior. As mentioned before, MISPL can perform more complex operations on a node’s child node values and save this value in the parent’s Value.</p>
+        <p style="text-align: JUSTIFY;">Now, the incoming form data read by the OM reader will be parsed using the form tree-structure in GLIMS (after the right form is identified, of course, otherwise a form reject will occur).</p>
+        <p>While parsing a message will be created.</p>
+        <h3>Example:</h3>
+        <p>Parent Container Name : IssuerCode</p>
+        <p>Child Marks Names : Mark1, Mark2, Mark3 and Mark4.</p>
+        <p>Say Mark1 and Mark3 are set and there <b>value</b> is resp. "3" and "4".</p>
+        <h4>No MISPL:</h4>
+        <blockquote>
+            <p>IssuerCode.Value will be "34" when no MISPL function is given.</p>
+        </blockquote>
+        <h4>MISPL:</h4>
+        <p>E.g.<span style="font-size: xx-small;"><i><br />
+’r;RETURN .Value("Mark1") + "-" + .Value("Mark2") + "-" + .Value("Mark3") + "-" + .Value("Mark4")’</i></span></p>
+        <blockquote>
+            <p>IssuerCode.Value will "3-4-" instead of the default "34".</p>
+        </blockquote>
+        <p style="text-align: JUSTIFY;">Of course it needs to be said that far more complex computations can be performed in each internal tree container node. But, when possible, default behavior is recommended because of performance and simplicity reasons. A mixture of MISPL and default behavior may be used.</p>
+        <h4>No buffer navigation allowed.</h4>
+        <p style="text-align: JUSTIFY;">The message that will be created using this approach must be of a certain structure. This message will be parsed by another 4GL program, such as <i>OrderEntry</i> and must be completely conform with the specified fixed protocol (see <b>Optical mark protocol)</b>.</p>
+        <h1><a name="aanchor42"></a>
+            <MadCap:concept term="System management" /><a name="Optical mark specific Mispl functions"></a>Optical mark specific Mispl functions</h1>
+        <h2>OM Control table functions</h2>
+        <ol>
+            <li class="kadov-p" value="1"><b style="font-weight: bold;">.Value(ChildControlName)</b>
+                <br />
+Calculates the value of a child control.<br />
+e.g.&#160;&#160;<i>Return "Issuer=(Mnemonic=" + .Value("IssuerMnemonic") + ")";</i><br />
+In this case the IssuerMnemnonic control must be a child of the current control.<br />
+The child control can be of any type (container, barcode or mark).</li>
+            <li class="kadov-p" value="2"><b style="font-weight: bold;">.Info(InfoMessage)</b>
+                <br />
+Adds InfoMessage the the <b>info</b> log (if initialized as a <a href="omr_parameters.html">command line option: '-p'</a>). All generated info messages will be put into the same log entry.<br />
+No return value.<br />
+The parsed message will be imported.</li>
+            <li class="kadov-p" value="3"><b style="font-weight: bold;">.Warning(WarningMessage)</b>
+                <br />
+Adds WarningMessage to the <b>warning</b> log (if initialized as a <a href="omr_parameters.html">command line option: '-p'</a>). All generated warning messages will be put into the same log entry.<br />
+No return value.<br />
+The parsed message will be imported, but the OM sheet read will be put into the bad tray (if there is one on the used OM Reader).<br />
+Caution, if at least one .Error(ErrorMessage) is being used, the message will not be imported.</li>
+            <li class="kadov-p" value="4"><b style="font-weight: bold;">.Error(ErrorMessage)</b>
+                <br />
+Adds ErrorMessage to the <b>error</b> log (if initialized as a <a href="omr_parameters.html">command line option: '-p'</a>). All generated error messages will be put into the same log entry.<br />
+No return value.<br />
+When at least one .Error("...") is called from within MISPL, the program logic assumes the parsed message to be bad !<br />
+No import will be performed here.<br /><a name="kanchor26"></a>
+OMR will receive a 'BAD' message (S) if at least one .Error() call was made.<a href="omr_errorlist.html"><br />
+Translator generated errors</a>, Service import generated errors.<b><br />
+Caution</b>:<i><br />
+Remark 1</i><br />
+When logging is performed to the database, the Log Entries NeedsChecking flag will be set automatically when the Log Entry Severity level is Warning or Error.<i><br />
+Remark 2</i><br />
+The Id of a created/updated record (e.g Order) will be stored a record was created/updated during import. The record can be opened via the log entry when using the <a href="omr_LogVerify.html">Log::Verify()</a> method. <i><br />
+Remark 3</i><br />
+Log priority: First the error log will be put into the log entry, next the warning log and the info log will follow the warning log.</li>
+            <li class="kadov-p" value="5"><b style="font-weight: bold;">.Encode(DataToEncode)</b>
+                <br />
+If a data element is one of the generated protocol encoding characters, this function can be used to 'translate' the encoding character into a non-encoding character. The importer will then translate back.<br />
+Used encoding characters are: '&amp;', '=', ',',&#160;&#160;'(' and ')'. If one of these character is placed into normal text (e.g. a comment), it MUST be encoded.</li>
+            <li class="kadov-p" value="6"><b style="font-weight: bold;">.TranslatorName()</b>
+                <br />
+Returns the name of the processing translator.<a href="omr_start.html#When%20database%20logging%20is%20enabled"><br />
+Must be set as message source when database error logging is initiated.</a><br />
+e.g.&#160;&#160;&#160;&#160;<i>RETURN&#160;&#160;IfKnownString(.TranslatorName()) + "&amp;" + .Value("Method");</i>&#160;<br />
+with Method, a (and only) child of the current node. The result message should something like <i>'Source=datapec&amp;Class=Order&amp;Method=(Mnemonic=Create&amp;ParameterList=(...))'</i>.<br />
+If the Source phrase is not set, all OM error logging will be performed in the same Log.&#160;</li>
+        </ol>
+        <h1><a name="aanchor43"></a>
+            <MadCap:concept term="System management" /><a name="MISPL examples"></a>MISPL examples</h1>
+        <h2>Return current datetime</h2>
+        <ul>
+            <li class="kadov-p" value="1">Control CurrentObjectTime, type container
+<ul><li class="kadov-p" value="1">Prefix:<i><br />
+ObjectTime=</i></li><li class="kadov-p" value="2">Delimiter: None</li><li class="kadov-p" value="3">Suffix: None</li><li class="kadov-p" value="4">Value MISPL:<i><br />
+RETURN DateToString(Today(), "%Y%m%d") + TimeToString(Now(), "%H%M%S");</i></li></ul></li>
+        </ul>
+        <p><i style="font-style: italic;"><b style="font-weight: bold;">Result calculating when parsing</b></i>
+        </p>
+        <blockquote>
+            <p><i style="font-style: italic;">ObjectTime=20000101010101</i>
+            </p>
+        </blockquote>
+        <h2>Return urgency</h2>
+        <ul>
+            <li class="kadov-p" value="1">Control Urgency, type container
+<ul><li class="kadov-p" value="1">Prefix:<i><br />
+Urgency=(</i></li><li class="kadov-p" value="2">Delimiter: None</li><li class="kadov-p" value="3">Suffix:<i><br />
+)</i></li><li class="kadov-p" value="4">Value:<i><br /><br />
+String Urgency;<br /><br />
+Urgency := .Value("Mnemonic");<br />
+if Urgency = ""<br />
+then Urgency := "Normal";<br />
+endif;<br /><br />
+return Urgency;</i></li></ul></li>
+        </ul>
+        <ul>
+            <li class="kadov-p" value="1">Control Mnemonic, type container (child of Urgency control)
+<ul><li class="kadov-p" value="1">Min. Child trigger count:<br />
+0 (No urgency specified on sheet)</li><li class="kadov-p" value="2">Max. Child trigger count:<br />
+1 (at most one urgency may be specified on the sheet)</li><li class="kadov-p" value="3">Prefix:<i><br />
+Mnemonic=</i></li><li class="kadov-p" value="4">Delimiter: None</li><li class="kadov-p" value="5">Suffix: None</li><li class="kadov-p" value="6">Value: None</li></ul></li>
+        </ul>
+        <ul>
+            <li class="kadov-p" value="1">Control Cito, type mark (child of Mnemonic control)
+<ul><li class="kadov-p" value="1">Side, Clock, Track</li><li class="kadov-p" value="2">Value: <i>Cito</i></li></ul></li>
+        </ul>
+        <ul>
+            <li class="kadov-p" value="1">Control Phone, type mark (child of Mnemonic control)
+<ul><li class="kadov-p" value="1">Side, Clock, Track</li><li class="kadov-p" value="2">Value: <i>Phone</i></li></ul></li>
+        </ul>
+        <h3><i style="font-style: italic;">Result calculating when parsing</i>
+        </h3>
+        <ul>
+            <li class="kadov-p" value="1">When the urgency control is being calculated with Cito marked on the sheet, the result will be:<i><br />
+Urgency=(Mnemonic=Cito))</i></li>
+            <li class="kadov-p" value="2">When the urgency control is being calculated with no urgency on the sheet, the result will be:<i><br />
+Urgency=(Mnemonic=Normal))</i></li>
+        </ul>
+        <p>&#160;</p>
+    </body>
+</html>

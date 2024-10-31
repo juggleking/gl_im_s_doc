@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|HLA">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title>genetics</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Genetics (former features)</h1>
+        <h2>Introduction</h2>
+        <p>This page describes the obsolete features in GLIMS that can be used 
+ to support genetics. This features are independent of the new <a href="../genetics/introduction.htm">Genetics module</a>.</p>
+        <h2>Using anatomic pathology configuration and routine screens</h2>
+        <p>When implementing genetics in Glims, you can use the configuration and 
+ routine screens that were originally designed to support anatomic pathology 
+ in Glims.&#160;&#160;<a href="../pathology/index_pathology.htm">For more 
+ information, please check the chapter "Anatomic pathology"</a>.</p>
+        <p>The pathology screen can be used in a more adapted way to genetics labs.&#160;&#160;To 
+ activate this, the user must be logged on in a department for which the 
+ field "Specialty" is set to "Genetics".<br /><br />When this is the case, the pathology screen (now 'genetic work screen') 
+ will behave different in the following ways:</p>
+        <p>In the tree view section, it will show all specimens contained in the 
+ order, even if they are not root specimens (in pathology mode, only root 
+ specimens are shown).</p>
+        <ol>
+            <li class="kadov-p" value="1">When clicking on a sub-specimen (non-root-specimen) 
+	 in the tree view section, the result section will show all results 
+	 that were directly derived form this sub-specimen (also known as 'work 
+	 specimen'). When clicking on the root specimen, these results will 
+	 not be shown there.<br />	&#160;</li>
+            <li class="kadov-p" value="2">The buttons 'Add block(s)' and 'Add slide(s)' are 
+	 not visible, since they are typically used for anatomic pathology.<br />	&#160;</li>
+            <li class="kadov-p" value="3">A button 'Add request(s)' is visible in the screen's 
+	 toolbar. This button performs the method 'Specimen.AddRequest()' on 
+	 the specimen that is currently selected in the tree view section (root 
+	 specimen or sub specimen).<br />	&#160;</li>
+            <li class="kadov-p" value="4">Some buttons that are available in the contextual 
+	 ribbon (at the top of the GLIMS window) are 'inherited' in this screen's 
+	 toolbar. The concerned buttons are:<br />	&#160; 
+	<ul><li class="kadov-p" value="1">buttons that have as base table one of the 
+		 following: Specimen, Procedure, Result, PathologyExam, Property, 
+		 Object, HealthCareProvider, Order.</li><li class="kadov-p" value="2">buttons that have a valid 'image up' icon.</li><li class="kadov-p" value="3">buttons for which the user is privileged.<br />		&#160;</li></ul></li>
+            <li value="5">Results will be grouped by the action of which they are output.</li>
+        </ol>
+        <blockquote>
+            <p>By default results in the pathology screen are displayed in the following 
+ sequence:</p>
+            <ul>
+                <li value="1">first by the sequence number of the procedure (which they are output 
+	 of)</li>
+                <li value="2">then by the sequence number of their procedure output</li>
+                <li value="3">then by creation time</li>
+            </ul>
+            <p>In some cases, e.g. if the same procedure and the same tests are present 
+ multiple times for the same specimen (e.g. in genetics), this may look 
+ confusing.</p>
+            <p>Example (with 2 actions for procedure 'Proc1'):</p>
+            <blockquote><pre>
+Proc1 &#160;- Test1 &#160;&#160;&#160;&#160;&#160;(from Action1)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test1 &#160;&#160;&#160;&#160;&#160;(from Action2)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test2 &#160;&#160;&#160;&#160;&#160;(from Action1)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test2 &#160;&#160;&#160;&#160;&#160;(from Action2)
+Proc2 &#160;- ...</pre>
+            </blockquote>
+            <p>Therefore, when the pathology screen is used as a genetics work screen, 
+ results will be grouped by their 'Action' before grouping by their procedure 
+ output. The example output above would then become:</p>
+            <blockquote><pre>
+Proc1 &#160;- Test1 &#160;&#160;&#160;&#160;&#160;(from Action1)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test2 &#160;&#160;&#160;&#160;&#160;(from Action1)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test1 &#160;&#160;&#160;&#160;&#160;(from Action2)
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;- Test2 &#160;&#160;&#160;&#160;&#160;(from Action2)
+Proc2 &#160;- ...</pre>
+            </blockquote>
+        </blockquote>
+        <h2>Person relations</h2>
+        <h3>Definition in Glims</h3>
+        <p>Glims allow to define person relations.&#160;&#160;<a href="hla_configuration.htm#Person%20relations">Click 
+ here for more information</a>.</p>
+        <h3>Export to Gedcom</h3>
+        <p>Starting from a person, it is possible to <a href="hla_export_person_relation_gedcom.htm">export 
+ all related persons (the person's family) into a file in GEDCOM format</a>.</p>
+        <h2><a name="Genetic_disorders" id="Genetic_disorders"></a>Genetic disorders</h2>
+        <p>Glims allows storing a person's <a href="genetic_disorders.htm">genetic 
+ disorders</a>.</p>
+        <h2>Studies</h2>
+        <p>Glims also support studies for a genetics lab.&#160;&#160;<a href="../../configuration/studies/studies.htm">Please 
+ check the chapter "Studies" for more information</a>.</p>
+        <h2>Foetus</h2>
+        <p>GLIMS allows to mark a person as a 'foetus' (an unborn person). This 
+ is can be useful when tests are being performed on a pregnant mother or 
+ on her foetus.&#160;&#160;When this person has been born (the birth has 
+ taken place) successfully, it is possible to create a new person for this, 
+ which of course will not be marked as 'foetus'.&#160;&#160;In this case 
+ it can be interesting to link this born person to the original 'foetus' 
+ person.&#160;</p>
+        <p><a href="genetics_foetus.htm">Click here for more information on how 
+ to configure this in Glims.</a>
+        </p>
+    </body>
+</html>

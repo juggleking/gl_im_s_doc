@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - Price calculation based on Result.Value (GLIMS_BILL-03249)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">.style1
+{
+	font-weight: bold;
+}
+
+</style>
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4045"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor4046"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>Price calculation based on Result.Value (GLIMS_BILL-03249)</h1>
+        <h2>New functionality</h2>
+        <p>In the configuration editor of a <a href="../../modules/billing/tariffication/configuration/price_formulas.htm">price formula</a>, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Context multiplier</span> field can now also be set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Result</span>. If chosen, the price of the invoice (item) will be calculated as follows:</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Tariff.BaseValue x Result.Value + PriceFormula.FixedAmount</p>
+        </div>
+        <p xmlns="">This way, price calculation can be based on a variable multiplier.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03249.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="569" data-mc-height="525" src="GLIMS_BILL-03249_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ol>
+                <li value="1">The property of which the result is used as multiplier should have data type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Numeric</span>. Moreover, the result should have a numeric value. The value can be 
+				a positive (decimal) value.</li>
+                <li value="2">When the result does not have a value, the ('fixed') PriceFormula.Multiplier will be applied.</li>
+            </ol>
+        </div>
+        <div class="text_box_warnings">
+            <p><span class="style1">Warning</span>
+            </p>
+            <ol>
+                <li value="1">An error will occur when there is no unique linked request of type 
+				Result (e.g. in case of a panel containing 2 properties). 
+				Exactly one linked result is needed.</li>
+            </ol>
+        </div>
+        <div class="text_box_tips" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <ol>
+                <li value="1">Make sure that the result value used as multiplier can be accessed during tariffication (e.g. shielding, privileges,...)</li>
+            </ol>
+        </div>
+        <h2>Functions taking into account Context multiplier = Result</h2>
+        <ol>
+            <li value="1">Export of financial data in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Sibelmed</span> protocol</li>
+            <li value="2">Export of data in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">MAIS</span> protocol (via the Order.ExportToMAIS function or by using the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">FinancialShipment.Send</a> function).</li>
+            <li value="3"><span class="ui_element">Quarter statistics</span> context function on a <span class="ui_element">Firm</span></li>
+        </ol>
+        <h2>Functions not taking into account Context multiplier = Result</h2>
+        <p>For functions using configuration data, the 'fixed' multiplier is used 
+		instead.</p>
+        <ul>
+            <li value="1">gp_Site based function <span class="ui_element">Print price list</span></li>
+            <li value="2">gp_Site based function <span class="ui_element">Generate external examinations csv file</span></li>
+            <li value="3">Billing item editor</li>
+            <li value="4">Budgeting program</li>
+        </ul>
+    </body>
+</html>

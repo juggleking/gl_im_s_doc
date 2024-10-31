@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>            BTM - Printing a blood bag form</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2816"></a>
+            <MadCap:concept term="Blood transfusion" />            BTM - Printing a blood bag form</h1>
+        <h2><a name="Via blood bag"></a>Via blood bag</h2>
+        <h3>Manually</h3>
+        <p class="fieldlabel">BloodBag.PrintTransfusionForm</p>
+        <div class="indented">
+            <p class="fieldlabel">Accessing the function</p>
+            <div class="indented">
+                <p>From each blood bag, you can select the contextual menu / ribbon item <span class="ui_element">Print transfusion form</span>.</p>
+            </div>
+            <p class="fieldlabel">Purpose of the function</p>
+            <div class="indented">
+                <p>This function allows the user to print a GLIMS Report Builder report based on a template and generate the report at different points in a work flow (for instance: if the blood product requires several treatments before it can be administered and a report needs to be generated upon completion of each treatment), even when the blood bag is not (yet) assigned to a receiving patient.</p>
+            </div>
+            <p class="fieldlabel">Using a Jasper template</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">A Jasper example template (.jasper) is available in the <b xmlns="http://www.w3.org/1999/xhtml">templates\examples\BloodBagForm</b> directory. </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Blood bag form printing</span> window allows the user to specify the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Form</span> to be used. The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Form</span> field gives access to a browser of BloodBag-based texts. For the Jasper template to be used, the specified <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Text</span> should reference it.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="transfusion_print_form_template.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="922" data-mc-height="353" src="transfusion_print_form_template_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <h3>Via MISPL</h3>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">BloodBag.GenerateDocument()</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">This function has the following parameters:</p>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">FormMnemonic</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml">For FormType <span class="ui_element">PDF</span>&#160;and <span class="ui_element">XML</span>: reference to a dynamic text that starts with "&lt;?GRB path=".</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">For FormType <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Text</span>: reference to a dynamic text that expands to the text to be printed or saved to file.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">FormType</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>PDF, XML or TEXT.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">DoPrint</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Does the document need to be printed? Possible values: YES/NO.</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <ul>
+                        <li value="1">
+                            <p xmlns="http://www.w3.org/1999/xhtml">If only printing is needed:</p>
+                            <ul xmlns="http://www.w3.org/1999/xhtml">
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="1">DoPrint = YES</li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="2">Directory and FileName should not be specified</li>
+                            </ul>
+                        </li>
+                        <li value="2">
+                            <p xmlns="http://www.w3.org/1999/xhtml">If only saving to file is needed:</p>
+                            <ul xmlns="http://www.w3.org/1999/xhtml">
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="1">DoPrint = NO</li>
+                                <li xmlns="http://www.w3.org/1999/xhtml" value="2">Directory and FileName should be specified</li>
+                            </ul>
+                        </li>
+                        <li value="3">Both printing and saving to file can be accomplished by calling this function only once.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">PrinterName</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Name of the printer. If not specified, the <a href="../../../configuration/printers/set_devices.htm" xmlns="http://www.w3.org/1999/xhtml">transfusion form printer</a> is taken into account. </p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">CopyCount</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Number of copies to print.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Directory</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Should be specified if the document needs to be saved to file. Expansion of the symbols "{TempDir}" and "." is supported.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">FileName</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Should be specified if the document needs to be saved to file. Expansion of the symbols "{Date}" and "{Sequence}"  and of references to blood bag related fields is supported.</p>
+            </div>
+        </div>
+    </body>
+</html>

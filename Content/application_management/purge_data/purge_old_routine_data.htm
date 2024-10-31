@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Delete routine data" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\purging.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Purging routine data</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1472"></a>
+            <MadCap:concept term="System management;Application management" />Purging old routine data</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#main">Test mode</a> - <a href="#Orders">Orders page</a> - <a href="#The_Results_page">Results page</a> - <a href="#Objects">Objects page</a> - <a href="#Reports">Reports page</a> - <a href="#Other">Other page</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>The menu option <span class="ui_element">Purge old routine data</span> (<span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Tools</span>) allows the user to regularly clean old patients, reports, actions and work lists.</p>
+        <p>To perform automatic cleanup actions at regular intervals, the function can be scheduled as a batch task. Use the "Default" query on the gp_Site table, combined with the "PurgeRoutineData" function. We strongly recommend that this cleaning program is run often. It will improve the overall performance of the system and help reduce the growth of the database. Running this program often is better than running it once a month.</p>
+        <p>The <span class="ui_element">time period</span> to be specified:</p>
+        <ul>
+            <li value="1">
+                <p>If left to unknown, no records will be deleted.</p>
+            </li>
+            <li value="2">
+                <p>If a period is specified, only the records within that period will be deleted.</p>
+            </li>
+            <li value="3">
+                <p>If set to '0', all records will be deleted.</p>
+            </li>
+        </ul>
+        <h2><a name="main" id="main"></a>Test mode</h2>
+        <p>On each tab page, a <span class="ui_element">Test mode</span> option is available.</p>
+        <p>When this option is activated, the program logs all actions but does NOT execute them. Logging information is only sent to the screen and not stored in the database. This may be useful to verify what would happen when launching the utility with the current settings.</p>
+        <p>When the option is deselected, all data that meets the specified criteria is permanently and irreversibly erased from the database! A confirmation box appears before cleanup starts. All actions are logged to the screen AND the database (log type "Purge routine data").</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>All the criteria of all tab pages will be taken into account, not just those of the selected page.</p>
+        </div>
+        <h2>The "<a name="Orders" id="Orders"></a>Orders" page</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purge_routine_data_orders.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="479" data-mc-height="372" src="purge_routine_data_orders_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>You can erase orders based on tariffing data or on the order status. The four status criteria options can be combined: complete, closed, discontinued and archived orders.</p>
+        <p>Note that exceptionally, the archive period is to be specified in days, not in months! This allows a smaller gap between archiving and purging the data from the active database. A gap remains necessary for backup reasons.</p>
+        <p>As orders cannot be removed as long as they are referred by any tariffing data, the latter should be purged first. Along with the orders, all microbiology actions and blood selections will be removed too. Specimens remain in the database and can be purge separately (see Other page).</p>
+        <p>Deleted orders are logged to an operating system file, analogous to the patient purge. The file name where the order internal id's are written to, is displayed in the log screen.</p>
+        <h2><a name="The_Results_page" id="The_Results_page"></a>The "Results" page</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purge_routine_data_results.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="481" data-mc-height="372" src="purge_routine_data_results_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>This page allows purging:</p>
+        <ul>
+            <li value="1">
+                <p><b style="font-weight: bold;">Non-available results</b>: these are all results with status "Initial" or "Expected", with an OBJECT time older than the specified number of months ago.</p>
+            </li>
+            <li value="2">
+                <p><b style="font-weight: bold;">Available results</b>: are the results with status "Available", "Confirmed" or "Validated", with an AVAILABILITY time older than the specified number of months ago.</p>
+            </li>
+            <li value="3">
+                <p><b style="font-weight: bold;">Discontinued results</b>: deletes all results with status "Discontinued", with a REJECTION time older than the specified number of months ago.</p>
+            </li>
+        </ul>
+        <p>Next to the status and time restrictions, all results also have to meet the following 2 prerequisites in order to be removed:</p>
+        <ol>
+            <li value="1">
+                <p>They cannot be QC results. QC results are never deleted.<br /></p>
+            </li>
+            <li value="2">
+                <p>Their "Online period" should not be defined or be expired. This can be specified for each individual property in the <a href="../../configuration/properties/properties.htm#Fields">Property.OnlinePeriod</a> field. This field is only taken into account for "Available" results, not for "Non-available" nor "Discontinued" results.<br /></p>
+            </li>
+            <li value="3">
+                <p>The results should be 'independent'. This means that they should not be referred by other relevant data, like e.g. requests. This means that, in order to delete results, the corresponding orders (and hence the Request records) should be deleted first ! This was a conscious decision, for the following reasons:</p>
+                <ul>
+                    <li value="1">
+                        <p>Orders should be purged in their whole, not fragmentary. An old order, which is queried for, should be found intact or not at all.</p>
+                    </li>
+                    <li value="2">
+                        <p>Suppose we would allow purging part of an order, then the purged part would be lost completely when RE-archiving such an order !</p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <p>Just like for some other tables, 2 operating system log-files may be created, unless they would turn out to be empty:</p>
+        <p><b style="font-weight: bold;">DeletedResults_&lt;Date&gt;&lt;##&gt;.log</b>
+        </p>
+        <blockquote>
+            <p>This file contains a summary of all deleted results. Each line has the format:<br /><br />"&lt;Property mnemonic&gt; &lt;Count&gt; &lt;Min status&gt; - &lt;Max status&gt; &lt;Min object time&gt; - &lt;Max object time&gt;"<br /><br />Where:<br /><br />&lt;Count&gt; = The number of results purged for this property<br />&lt;Min status&gt; = The lowest status of all purged results<br />&lt;Max status&gt; = The highest status of all purged results<br />&lt;Min object time&gt; = The lowest object time of all purged results<br />&lt;Max object time&gt; = The highest object time of all purged results<br /><br />Example:<br />"Aldost 68 Ini-Stp 04/06/1998 11:42 - 15/10/2002 16:14"<br /><br />The bottom line shows the grand total of all purged results.<br /><br />Example:<br />"Total 5662 (4914 + 748 predecessors)"<br /><br />When a result passes all checks, it is always deleted along with all its predecessors. This may explain a different result count and status range than expected, and is also the reason why the predecessor total is logged separately.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">FailedResults_&lt;Date&gt;.log</b>
+        </p>
+        <blockquote>
+            <p>Gives an exhaustive list of all results that could not be deleted for one or another unexpected reason.<br /><br />Format: "&lt;Property mnemonic&gt; - &lt;Object time&gt; - &lt;Object externalization&gt;"<br />Example: "WBC - 04/06/1997 12:00 - MAMA, MIA (M), 14/07/1960"</p>
+        </blockquote>
+        <h2>The "<a name="Objects" id="Objects"></a>Objects" page</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purge_routine_data_objects.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="492" data-mc-height="370" src="purge_routine_data_objects_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The options on this page allow erasing patients without orders. Such patients typically arise due to e.g. ADT messages processed by a HL7 communication program. Next to patients without object, patient-objects without orders are also checked. If these objects do not have any related result, specimen, blood selection, microbiology action or pathology examination, they will also be considered as obsolete.</p>
+        <p>You can erase other non-QC objects (lots, animals) which have not been updated since a number of months, as well as exclusively patients without an object link.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <ul>
+                <li value="1">This operation may take a long time to complete as a full table scan of the Object table is required! When running the patient purge in batch, make sure you don't cause an undesired shift of other tasks because this one will take some time to complete.
+                </li>
+                <li value="2">If after imaging is active for your database, and you expect a large amount of records to be deleted by this program, provide enough disk space capacity for your after-image extents or run the program several times with small time slices.
+                </li>
+            </ul>
+        </div>
+        <p>In order to be deleted, these person records should satisfy three additional criteria, based on their encounter information:</p>
+        <ul>
+            <li value="1">No hospitalized encounter can be found with an end time that falls within the specified period (in months). To decide whether or not the encounter is 'hospitalized', the Encounter.Type.ResidenceType is tested. Note that 'open' encounters (i.e. where no end time is specified) will prohibit removal of the person record.</li>
+            <li value="2">The most recent transfer within any ambulatory encounter is outside the specified period (in months). The transfer time is assumed to be the stay start time, or, if no stay can be found, the encounter start time. To decide whether or not the encounter is 'ambulatory', the Encounter.Type.ResidenceType is tested.</li>
+            <li value="3">In absence of encounters, the most recent person record update is older than the specified number of months.</li>
+        </ul>
+        <p>Moreover, <span class="ui_element">Person</span> records which are referenced in the <span class="ui_element">Target</span> field of a <span class="ui_element">Report</span> will not be purged.</p>
+        <p>If the option <span class="ui_element">Prevent purge</span> is set, patients with at least 1 archived order will not be purged.</p>
+        <p>The program may produce 2 log-files on the temporary directory (check 'Help &gt; About' to find out the location of your temporary directory).</p>
+        <p>1. "DeletedPersons_&lt;Date&gt;.log" contains a list of all deleted persons.</p>
+        <p>2. "FailedPersons_&lt;Date&gt;.log" contains a list of all persons that could not be deleted for one or another reason. Errors are logged to the screen and stored in the database (the latter only if 'Test mode' is off).</p>
+        <p>If one of these files turns out to be empty, it is automatically deleted.</p>
+        <h2>The "<a name="Reports" id="Reports"></a>Reports" page</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purge_routine_data_reports.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="481" data-mc-height="375" src="purge_routine_data_reports_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>Reports are divided into two categories: sent and unsent reports. Because of their different nature, they can be purged separately. Unsent reports may be caused by configuration errors. In that case they serve of no purpose and are only a waste of space.</p>
+        <p>The report purge criteria are:</p>
+        <ul>
+            <li value="1">Any 'sent' report can be deleted if its last output time is older than the specified number of months ago.</li>
+            <li value="2">Reports that were never sent and older than the specified number of months (in regard to their creation time) will be deleted.</li>
+        </ul>
+        <p>Along with the report record, other records may be deleted, depending on the report scope:</p>
+        <ul>
+            <li value="1">Period reports are simply deleted up to the ReportGroup, as they are no longer supported.</li>
+            <li value="2">For Order, Day, Specimen and Exclusive scoped reports the ReportPage record is also deleted when the last 'sent' Report referring that page is being deleted.</li>
+            <li value="3">For Object reports, the report is only deleted if it refers a page that is not the last page of the report group. This should avoid erroneous detection that all results on the last page are new when a new order would be added to the object report.</li>
+            <li value="4">For Encounter reports, the complete ReportGroup, together with its ReportPages and Reports is deleted when the encounter end time is outside the period that was specified for report cleanup. Else, only the report record is deleted when the page it refers is not the last page of the group.</li>
+            <li value="5">For Year reports, the complete ReportGroup, together with its ReportPages and Reports is deleted when the year in respect to the specified purge period has passed. Else, only the report record is deleted when the page it refers is not the last page of the group.</li>
+        </ul>
+        <p>Again, some log-files may be created on the temporary directory.</p>
+        <p>1. "DeletedReports_&lt;Date&gt;.log" contains a list of all deleted reports.</p>
+        <p>2. "DeletedUnsentReports_&lt;Date&gt;.log" contains a list of all deleted reports that were never sent.</p>
+        <p>3. "FailedReports_&lt;Date&gt;.log" contains a list of all reports that could not be deleted for one or another reason. Errors are logged to the screen and stored in the database (the latter only if 'Test mode' if off).</p>
+        <p>If one of these files turns out to be empty, it is automatically deleted.</p>
+        <h2>The "<a name="Other" id="Other"></a>Other" page</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purge_routine_data_other.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="487" data-mc-height="340" src="purge_routine_data_other_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Specimens </p>
+        <div class="indented">Specimens can only be deleted if they are no longer linked to an order, if they do not longer have a specimen input and if they are no longer linked to an action. Therefore orders and actions linked to specimens need to be purged first.</div>
+        <p class="fieldlabel">Actions</p>
+        <div class="indented">If a period is specified, <span style="color: #FF0000;">ALL actions within that period will be deleted independently from their status, including those that were not yet completed!</span></div>
+    </body>
+</html>

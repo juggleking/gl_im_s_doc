@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Work lists" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\work lists\worklist10.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Work list selection download</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Work list selection download</h1>
+        <p>It is possible to download a work list selection to an instrument.&#160;This can be achieved by means of the <span class="ui_element">Station</span> fields described 
+ below.&#160;In case of an ALL-query from the analyzer, it is sufficient
+ to enter a value for the fields described below and the work list selection 
+ mechanism will be applied.&#160;However, in case of a sample query (single 
+ sample or sample range),  the <span class="ui_element">Station</span> field <span class="ui_element">Sample 
+ query by work list</span> has to be enabled as well.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="work_list_selection_download.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="765" data-mc-height="531" src="work_list_selection_download_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Active work list name / Active work list creation time</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="work_lists_active.htm">Active 
+ work lists</a>.</p>
+        </div>
+        <p class="fieldlabel">Worklist name pattern</p>
+        <blockquote>
+            <p>The pattern of a work list name can contain wildcard characters: a period (.) in a particular 
+ position indicates that any single character is acceptable in that position; 
+ an asterisk (*) indicates that any group of characters is acceptable, 
+ including a null group of characters.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>hitachi* will result 
+ in all work lists with names beginning with hitachi, such as hitachi747, 
+ hitachi911, ...</p>
+            </div>
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>When a site function is specified in the general option <a href="../../configuration/specificsite/glims_general_options.htm">Worklist name</a> to define how automatically created work list names should look like, the Station field 'Worklist name pattern' must contain an actual pattern. When a fixed value, matching the worklist template name or part of it, is specified as 'Worklist name pattern', GLIMS will not find any work lists.</p>
+                <p>For instance:</p>
+                <ul>
+                    <li value="1">the Station field 'Worklist name pattern' is set to 'MyWorkList'</li>
+                    <li value="2">the work list template name is MyWorkList</li>
+                    <li value="3">
+                        <p>the GLIMS General setting 'Worklist name'  generates a work list name that looks like 'MyWorklist &lt;year-worklist_identifier&gt;'</p>
+                        <p style="font-style: italic;">string InternalId;</p>
+                        <p style="font-style: italic;">InternalId := Identifier("Worklist",  DateToString(Today(),"%Y-"),  5);</p>
+                        <p style="font-style: italic;">RETURN  ifknownstring( .Name ) + " "+ Internalid;</p>
+                        <p>Depending on the year and the identifier, GLIMS then generates the work list name 'MyWorkList 2021-0001'.</p>
+                    </li>
+                </ul>
+                <p>However, with these settings, a work list query for this station will not return any work lists because GLIMS will not find any work lists named 'MyWorkList'. If 'Worklist name pattern' were set to 'MyWorkList<b>*</b>', GLIMS would find the work list named 'MyWorkList 2021-0001'.</p>
+            </div>
+            <p>When using this <span class="ui_element">Worklist name pattern</span>, you MUST also specify a <span class="ui_element">Worklist age</span> (see below).</p>
+        </blockquote>
+        <p class="fieldlabel">Worklist age</p>
+        <blockquote>
+            <p>Maximal age in hours of a work list. Work lists that are older than the given number of hours since the time 
+ of the station inquiry are not selected.</p>
+        </blockquote>
+        <p class="fieldlabel">Worklist versions</p>
+        <div class="indented">
+            <p>Possible values: <span class="ui_element">Latest</span> / <span class="ui_element">All</span>.</p>
+            <p>Allows you to indicate if only the latest version or all versions of a work list (with 
+ the same name) should be selected.</p>
+            <p>The work list download status 
+ field (hidden field) will be updated whenever the work list is selected 
+ by a station.&#160;The contextual function <span class="ui_element">View download status</span>&#160;
+ shows a list with stations or station download groups for which the work 
+ list has been download.</p>
+            <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="wltselected.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="536" data-mc-height="225" src="wltselected_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p>Upon the next station inquiry, the 
+ work list will be selected again, except if the option <span class="ui_element">Check downloaded 
+actions</span> is enabled for the inquiring station.&#160; You can clear the 
+ work list download status using the contextual function <span class="ui_element">Clear download 
+ status</span>.&#160;For more information, please check the chapter <a href="../../communication/analyzers/analyzers_download_status.htm">Analyzer 
+ download status</a>.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>This functionality allows you  to send the same 
+ test selection to two or more identical analyzers.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Exclusive worklist selection</p>
+        <div class="indented">
+            <p>This field allows you to specify that a worklist selection configuration (a worklist selection configuration implies filling in the <span class="ui_element">Station</span> fields <span class="ui_element">Worklist name pattern</span>, <span class="ui_element">Worklist age</span>, <span class="ui_element">Worklist versions</span>) is only applicable to the station being queried for work orders.</p>
+            <p>By default, this field is disabled. If enabled, GLIMS will ignore the worklist selection configuration when:</p>
+            <ul>
+                <li value="1">The querying station is a concentrator and the worklist selection configuration is on a client station of the concentrator.</li>
+                <li value="2">The querying station is a distributor and the worklist selection configuration is on another distributor station in the same download group as the querying station.</li>
+            </ul>
+            <p>Before <span class="ui_element">Exclusive worklist selection</span> was available and work orders needed to be transmitted for a concentrator with a worklist selection configuration on a concentrator client station, GLIMS always selected actions of the client station via the work lists of the selection. However, this is not always the desired behaviour. The worklist selection configuration on the client station could be intended for the download of work orders requested by a translator for the client station only (and not for the concentrator).</p>
+        </div>
+        <div class="indented">
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the configuration described in the example below is in place and you want to make sure that the corresponding action of a work list entry that is scheduled on a station that is not a client station of the concentrator is included in the work order message  sent in reply to the query received by the concentrator, then the work list selection configuration should not be on the concentrator (this means that the fields <span class="ui_element">Worklist name pattern</span> and <span class="ui_element">Worklist age</span> should be set to <span class="ui_element">?</span> and the options <span class="ui_element">Exclusive work list selection</span>, <span class="ui_element">Worklist items</span> and <span class="ui_element">Sample query by worklist</span> should be disabled) but on its client stations. Moreover, <span class="ui_element">Exclusive worklist selection</span> needs to be disabled on the clients stations as well.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p class="fieldlabel">Configuration</p>
+                    <p>A concentrator "conc1" has two client stations "stat1" and "stat2". Another station, "stat3", which is not a client station of "conc1", is in the same download group as "stat1" and "stat2".</p>
+                    <p class="fieldlabel">Routine</p>
+                    <p>An action is scheduled on "stat3" for a property, "testX", which is an entry of a work list that can be selected by "conc1".</p>
+                    <p>Subsequent to an ALL query received by "conc1", the work list in question is selected.</p>
+                    <p>The action of "testX" needs to be included in the work order reply message.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Worklist items</p>
+        <blockquote>
+            <p>This field is interpreted in combination with the above-mentioned work 
+ list selection parameters.</p>
+            <p>If enabled, procedure outputs are selected only if they are defined 
+ as an item on the work list template of the work list being selected. 
+ If disabled, all outputs of a work list entry procedure are selected, 
+ no matter if work list template items are defined.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ol>
+                    <li value="1">If a selected work list has no items, all result output will be 
+ selected, no matter the setting of <span class="ui_element">Worklist items</span>.</li>
+                    <li value="2">The <span class="ui_element">Station</span> field <span class="ui_element">Send complete selection</span> has no effect on work 
+ list selection queries.</li>
+                    <li value="3">
+                        <p>The <span class="ui_element">Station</span> field <span class="ui_element">Check downloaded actions</span> has another effect when used with 
+ work list selection queries:</p>
+                        <ul>
+                            <li value="1"> For regular queries, the <span class="ui_element">Check downloaded actions</span> setting 
+ has effect on the selection of result outputs.</li>
+                            <li value="2">For work list selection queries, the <span class="ui_element">Check downloaded 
+ actions</span> 
+ setting has effect on the work list selection: A work list that is queried 
+ by a station is marked by that station. If <span class="ui_element">Check downloaded actions</span> is set, 
+ only work list that are not marked are candidate for the work list selection.</li>
+                        </ul>
+                    </li>
+                    <li value="4">To activate the work list selection query functionality, you should 
+ fill in at least the fields <span class="ui_element">Worklist name pattern</span> and <span class="ui_element">Worklist 
+ age</span>. Only ALL-queries received from a translator can result in a work 
+ list selection query.</li>
+                </ol>
+            </div>
+        </blockquote>
+        <p class="fieldlabel">Sample query by worklist</p>
+    </body>
+</html>

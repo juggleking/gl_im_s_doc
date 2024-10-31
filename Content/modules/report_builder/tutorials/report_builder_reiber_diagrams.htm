@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Tutorials" data-mc-conditions="Primary.50_translation_exclude_for_FR">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report Builder - Reiber diagrams</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3366"></a>
+            <MadCap:concept term="Report builder" />Report Builder - How to implement the three Reiber diagrams</h1>
+        <h2>The content MISPL definition</h2>
+        <p style="text-align: left;">In order to determine which specific Detail band to trigger, we need a way to differentiate between the three Reiber diagrams: QIgA, QIgM and QIgG.<br />The simplest way is to add it to your XML by adapting your content MISPL to extend the Type attribute of the Graph node:</p>
+        <blockquote><pre style="text-align: left;">
+STRING sGraph;
+sGraph := "?xml version=""1.0""?&gt;";
+sGraph := sGraph + "&lt;Graph Type=""Reiber-QIgA""&gt;";
+sGraph := sGraph + ...
+</pre><pre style="text-align: left;">
+RETURN sGraph;
+</pre>
+        </blockquote>
+        <p>Note that I got rid of the awkward s2Q double quote construct by escaping the " with another " – if you put "" inside a string, it is converted to a single " inside the string.</p>
+        <p>Given that the two dimensions of the Reiber diagram are in fact logarithmic with base 2, make sure to fill the X and Y Axis nodes with the appropriate Min, Max, LogScale and LogBase attributes!<br />In the end, the XML returned by the content MISPL should look something like:</p>
+        <blockquote><pre style="text-align: left;">
+&lt;?xml version="1.0"?&gt;
+&lt;Graph Type="Reiber-QIgA"&gt;
+   &lt;DataSet Name=""&gt;
+      &lt;Points&gt;
+         &lt;Pt X="3" Y="1" /&gt;
+      &lt;/Points&gt;
+      &lt;Axes&gt;
+         &lt;Axis Type="X" Min="1.5" Max="100" LogScale="YES" LogBase="2" /&gt;
+         &lt;Axis Type="Y" Min="0.3" Max="100" LogScale="YES" LogBase="2" /&gt;
+      &lt;/Axes&gt;
+   &lt;/DataSet&gt;
+&lt;/Graph&gt;
+</pre>
+        </blockquote>
+        <p>&#160;</p>
+        <h2>Update the layouts in Jaspersoft Studio</h2>
+        <p>Now that we have a way to differentiate between the three types of Reiber diagrams, we’ll tackle the changes in Jaspersoft Studio. Before you do that, make sure to place the three .gif image files in the same directory as the .jrxml layout files.</p>
+        <p>a. Start by duplicating the file Result_Graph_Reiber_Chart.jrxml in Windows Explorer and name this copy Result_Graph_Reiber_QIgA_Chart.jrxml</p>
+        <p>b. Open Result_Graph_Reiber_QIgA_Chart.jrxml from Jaspersoft Studio, and update the image behind the chart to use Q_IgA.gif instead of Reiber.jpg</p>
+        <p style="margin-left: 40px;margin-top: 6px;margin-bottom: 6px;">i. First we need to fix an error the parameters section</p>
+        <p style="margin-left: 80px;margin-top: 0px;margin-bottom: 0px;">1. Select the parameter IMAGES_DIR.</p>
+        <p style="margin-left: 80px;margin-top: 0px;margin-bottom: 0px;">2. Use the Properties editor to rename it to SUBREPORT_DIR.</p>
+        <p style="margin-left: 80px;margin-top: 0px;margin-bottom: 0px;">3. And set its Default Value Expression to "C:/Layouts/SingleOrderReport/" (or whatever the appropriate location is).</p>
+        <p style="margin-left: 80px;margin-top: 0px;margin-bottom: 0px;">&#160;</p>
+        <p style="margin-left: 40px;margin-top: 6px;margin-bottom: 6px;">ii. Next we use the Report Inspector to select the Background Image, hidden behind the XY Line Chart</p>
+        <p style="margin-left: 80px;margin-top: 0px;margin-bottom: 0;">1. Use the Properties editor to change its Image Expression to $P{SUBREPORT_DIR} + "Q_IgA.gif"</p>
+        <blockquote>
+            <p style="text-align: left;margin-left: 40px;">
+                <img src="report_builder_image_expression.png" style="border: none;" alt="" width="505" height="481" border="0" />
+            </p>
+        </blockquote>
+        <p style="margin-left: 80px;">2. Use the screenshot below for guidance on the end-result:</p>
+        <p style="text-align: left;margin-left: 80px;">
+            <img src="report_builder_image_result_graph.png" style="border: none;" alt="" width="803" height="606" border="0" />
+        </p>
+        <p style="margin-left: 120px;">&#160;</p>
+        <p>c. Repeat the two steps above so we have Result_Graph_Reiber_QIgM_Chart.jrxml and Result_Graph_Reiber_QIgG_Chart.jrxml prepared as well.</p>
+        <p>d. Finally, we turn our attention to Results.jrxml</p>
+        <p style="margin-left: 40px;">i. Add another Detail band just like the two that you had already added – and we’ll have something like this:</p>
+        <p style="text-align: left;margin-left: 40px;">
+            <img src="report_builder_image_result_designer.png" style="border: none;" alt="" width="803" height="605" border="0" />
+        </p>
+        <p style="margin-left: 40px;">&#160;</p>
+        <p style="margin-left: 40px;margin-top: 6px;margin-bottom: 6px;">ii. Now we’ll update them to make sure each detail band and embedded sub-report is triggered only when appropriate.</p>
+        <p style="margin-left: 80px;margin-top: 6px;margin-bottom: 6px;">1. Select the band named ‘Detail 14’ and set its Print when expression as depicted below:</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_detail12.png" style="border: none;" alt="" width="478" height="449" border="0" />
+        </p>
+        <p style="margin-left: 80px;">2. Next we select the sub-report item inside that band and use the Properties Editor to change its Key to ‘Reiber QIgA Diagram’ and its Subreport expression to:</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_subreport_exp.png" style="border: none;" alt="" width="470" height="449" border="0" />
+        </p>
+        <p style="margin-left: 80px;margin-top: 0;margin-bottom: 0;">3. Following the same recipe we update bands ‘Detail 15’ and ‘Detail 16’ and their sub-report items for QIgM and QIgG.</p>
+        <p style="margin-left: 80px;margin-top: 0;margin-bottom: 0;">4. In the end, it should look something like this:</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_report371.png" style="border: none;" alt="" width="805" height="607" border="0" />
+        </p>
+        <p style="margin-left: 80px;">&#160;</p>
+        <p style="margin-left: 80px;">&#160;</p>
+        <h2>Preview and Tweak</h2>
+        <p style="margin-left: 0px;">Click the ‘Compile’ button (the little hammer icon) and Results.jrxml will be compiled, and the sub-reports as well. Now you’re ready to preview the data:</p>
+        <p style="text-align: left;margin-left: 80px;">
+            <img src="report_builder_image_report371_preview.png" style="border: none;" alt="" width="807" height="608" border="0" />
+        </p>
+        <p style="margin-left: 0px;">The problem is that the original background image Reiber.jpg had a slightly different size; so let’s update Result_Graph_Reiber_QIgA_Chart.jrxml once more using Jaspersoft Studio. Now, the new images are all 735 x 750 pixels – which is too big to fit on a page so we’ll use a 1:3 scale to fit it. This means we need to set the width and height of both the background image and the XY Line Chart to 245 x 250. Change the height of the band to 250, while you’re at it.</p>
+        <p style="margin-left: 0px;">Let’s compile the subreport and preview the main report to see the effect of our changes.</p>
+        <p style="text-align: left;margin-left: 80px;">
+            <img src="report_builder_image_report371_preview2.png" style="border: none;" alt="" width="808" height="610" border="0" />
+        </p>
+        <p style="margin-left: 0px;">That’s better, but we still have some tweaking to do. Back in Result_Graph_Reiber_QIgA_Chart.jrxml, select the XY Line Chart and use the Properties Editor to modify the Properties expressions</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_XYLineChart.png" style="border: none;" alt="" width="379" height="361" border="0" />
+        </p>
+        <p style="margin-left: 0px;">Using Jasc Paint Shop Pro, I found out that the inner edges of the Reiber diagram inside our image are: left = 4, top = 40, right = 672 and bottom = 746. Since we’re using a 1:3 scale, we have to change the properties expressions as follows:</p>
+        <ul>
+            <li style="margin-left: -20px;" class="p" value="1">
+                <p style="margin-left: 80px;margin-top: 0pt;margin-bottom: 0.5pt;">be.mips.reports.chart.ImageChartCustomizer.left = 1</p>
+            </li>
+            <li style="margin-left: -20px;" class="p" value="2">
+                <p style="margin-left: 80px;margin-top: 0pt;margin-bottom: 0.5pt;">be.mips.reports.chart.ImageChartCustomizer.top = 13</p>
+            </li>
+            <li style="margin-left: -20px;" class="p" value="3">
+                <p style="margin-left: 80px;margin-top: 0pt;margin-bottom: 0.5pt;">be.mips.reports.chart.ImageChartCustomizer.right = 224</p>
+            </li>
+            <li style="margin-left: -20px;" class="p" value="4">
+                <p style="margin-left: 80px;margin-top: 0pt;margin-bottom: 0.5pt;">be.mips.reports.chart.ImageChartCustomizer.bottom = 248</p>
+            </li>
+        </ul>
+        <p style="margin-left: 0px;">Compile and preview again.</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_report371_preview3.png" style="border: none;" alt="" width="807" height="609" border="0" />
+        </p>
+        <p style="margin-left: 0px;">Close enough, but we may want something other than the cross to display the points of the graph. Back in Result_Graph_Reiber_QIgA_Chart.jrxml, select the XY Line Chart and use the Properties Editor to modify the Properties expressions once more:</p>
+        <ul>
+            <li style="margin-left: -20px;" class="p" value="1">
+                <p style="margin-left: 80px;">be.mips.reports.chart.ImageChartCustomizer.shape = DIAMOND</p>
+            </li>
+        </ul>
+        <p style="margin-left: 0px;">Valid shape settings: CIRCLE, CROSS, DIAMOND, PLUS, SQUARE or TRIANGLE – try a few of these to see which is the right shape for you. With DIAMOND, I got this as preview:</p>
+        <p style="margin-left: 80px;">
+            <img src="report_builder_image_report371_preview4.png" style="border: none;" alt="" width="809" height="609" border="0" />
+        </p>
+        <p style="margin-left: 0px;">Finish up by adapting the other subreport .jrxml layout files to match the particularities of each diagram image, and enjoy your juicy new Report!</p>
+    </body>
+</html>

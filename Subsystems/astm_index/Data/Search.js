@@ -1,0 +1,1 @@
+define({r:0.5,st:'Stem',n:1,t:[0,68],m:[],u:['../Content/Resources/Reusables/warning_tip_note_example.htm'],s:['$','of'],p:[['$',87],['4',46],['beginning',21],['cup',31],['fields',68],['info',82],['match',32],['on',30],['r',30],['second',30],['test',46],['tracking',32]]});

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Requesting tests with a discriminator</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor201"></a>Requesting tests with a discriminator</h1>
+        <p>Contents: </p>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Discriminator_syntax">Discriminator syntax</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Discriminator_definition">Discriminator 
+	 definition</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Optional_property_configuration">Optional 
+	 property configuration</a>
+            </li>
+            <li class="kadov-p" value="5"><a href="#Results_of_requests_with_discriminator">Results 
+	 of requests with discriminator</a>
+            </li>
+            <li class="kadov-p" value="6"><a href="#Procedure_planning_for_dynamic_tests">Procedure 
+	 planning for dynamic tests</a>
+            </li>
+            <li class="kadov-p" value="7"><a href="#Reporting_of_dynamic_tests">Reporting 
+	 of dynamic tests</a>
+            </li>
+            <li class="kadov-p" value="8"><a href="#Accessing%20dynamic%20tests%20via%20MISPL">Accessing 
+	 dynamic tests via MISPL</a>
+            </li>
+            <li class="kadov-p" value="9"><a href="#Variable_norms">Variable norms</a>
+            </li>
+            <li class="kadov-p" value="10"><a href="#Remarks">Remarks</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes how to request <b>dynamic tests</b> and <b>tests 
+ with a discriminator</b> <b>in general</b>.&#160;&#160;GLIMS offers several 
+ ways to request a test with a discriminator.&#160;&#160;This discriminator 
+ can be a time indication (relative or absolute) or any other plain text.</p>
+        <p>When the discriminator contains something like '+30, 20:00, 08:00+1d', 
+ it is interpreted as a "time" discriminator, where the object 
+ time of the request is changed accordingly. When the discriminator contains 
+ a string which can not be interpreted as a time, it is treated as a 'string' 
+ discriminator, allowing to enter requests such as 'Na Before' and 'Na 
+ After'.</p>
+        <h2><a name="Discriminator_syntax"></a>Discriminator syntax</h2>
+        <p>The allowed syntax for a discriminator can be:</p>
+        <div class="indented">
+            <p class="fieldlabel">+/-MM</p>
+            <div class="indented">
+                <p>Indicating a relative dynamic request with a time discriminator of plus 
+ or minus MM minutes relative to the reference time. The value of MM may 
+ be larger than 60. Example: "+120", "+90" or "-10".&#160;&#160;When 
+ the variant "+xd" is added to the discriminator, it denotes 
+ that &lt;x&gt; days should be added to the delta time (e.g. "GLUC 
+ +90+1d")</p>
+            </div>
+            <p class="fieldlabel">+/-HH:MM</p>
+            <blockquote>
+                <p>The same but where the relative time span is given in the format HH:MM. 
+ The value of HH may be larger than 24. Example: "+01:30" or 
+ "+48:00".&#160;&#160;When the variant "+xd" is added 
+ to the discriminator, it denotes that &lt;x&gt; days should be added to 
+ the delta time (e.g. "GLUC +08:00+7d" or "DRUG +0+7d"). 
+ &#160;Note that whichever variant is used for relative times, this discriminator 
+ will be transformed to its standard format "+/-HH:MM".&#160;</p>
+            </blockquote>
+            <p class="fieldlabel">HH:MM</p>
+            <div class="indented">
+                <p>Indicating an absolute dynamic request with an absolute object time 
+ of HH:MM. Example: 09:00.&#160;&#160;When this time lies on a day different 
+ from the reference date (e.g. 07:00 tomorrow), the syntax "HH:MM+xd" 
+ can be used. </p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p xmlns=""> GLUC 07:00+1d.</p>
+                </div>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns=""><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p xmlns="">The day unit used while entering a time discriminator 
+ the order entry screen (e.g. 03:00+1d) can be language dependent. Each 
+ possibility of the site language, the user language, or English is tried. 
+ This way, a French user can enter 'Glyc 03:00+1j'. The discriminator is 
+ immediately translated and stored in the site language, regardless of 
+ the language used during the entry process.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Any other string</p>
+            <blockquote>
+                <p>Will result in a dynamic type 'Discriminator', where the discriminator 
+ is stored in the specimen without having an influence on the request object 
+ time. </p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p xmlns=""> PreDial, PostDial</p>
+                </div>
+            </blockquote>
+        </div>
+        <h2><a name="Discriminator_definition"></a>Discriminator definition </h2>
+        <p>There are several places in GLIMS where you can specify a discriminator:</p>
+        <h3>Order entry screen</h3>
+        <p>In the request browser of the order entry screen, a column with each 
+ request's discriminator is available. This column can be modified by the 
+ user.</p>
+        <p>When modifying this column, the dynamic type and object time of the 
+ request will be changed accordingly, as long as the request is not yet 
+ stored in the database. If the result is already stored, only the Specimen.Discriminator 
+ field will be adapted.&#160;&#160;This allows for the user to request 
+ a test with a relative or absolute dynamic time (or any dynamic discriminator) 
+ without having to use a panel.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns=""> The discriminator is only shown for requests which are actually 
+ marked as 'dynamic'. Since in the current implementation only results 
+ can be 'dynamic', only the discriminator of result requests is shown and 
+ can be modified.</p>
+        </div>
+        <p>In the request page of the order entry screen, a field is available 
+ next to the 'Request list' field in which the user can enter a discriminator 
+ using one of the described formats.&#160;&#160;Subsequently entered requests 
+ will inherit this discriminator and will receive a dynamic type corresponding 
+ with the discriminator format.&#160;&#160;&#160;This can be useful when 
+ several requests with the same dynamic discriminator have to be entered.</p>
+        <p>When entering a request with a discriminator, the program will check 
+ if the same request with the same discriminator is already present in 
+ the order. This way, it is perfectly acceptable to enter a request for 
+ Na with discriminator 'Before', followed by a request for Na with a discriminator 
+ 'After'.</p>
+        <p>In the request list field of the request page of the order entry screen, 
+ a request can be entered using a request definition mnemonic, followed by a space 
+ and a discriminator, using one of the described formats. If so specified, 
+ this discriminator has precedence over the one optionally specified in 
+ the discriminator field, but it is only used for the current request.&#160;</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="">GLUC +00:00, Gluc +90, Gluc 18:00, Na Before, Na After, ...</p>
+        </div>
+        <p>When scheduling the order, an action of result or specimen is only reused 
+ when either the scheduled result has no discriminator, or when the candidate 
+ result or specimen has the same discriminator. Also, results or specimens 
+ of other orders will only be reused when the discriminator matches (or 
+ the requested result or specimen has no discriminator). Also the duplicate 
+ result check programs, which check if the same result was already requested 
+ for the same object time but via another order will take the discriminator 
+ into account.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns=""> The fact that a specimen has a discriminator does not automatically 
+ imply that its results have a dynamic type different from 'None'. The 
+ results have to be requested via a dynamic panel or using a discriminator 
+ in order for their dynamic type to be set to 'Relative', 'Absolute' or 
+ 'Discriminator'. So, changing a specimen's discriminator via the root 
+ specimen browser in the order entry screen or via any specimen browser 
+ does not influence the dynamic type of its results.</p>
+        </div>
+        <h3>Request definition configuration</h3>
+        <p>The request definition field <span class="ui_element">Discriminator</span> also allows the specification of 
+ a discriminator at the request definition level, again offering the same syntax 
+ possibilities. This allows the creation of a single request definition 'Na After' or 
+ 'Gluc +0' without having to create a panel to get the same effect.</p>
+        <h3><a name="Panel"></a>Panel member configuration</h3>
+        <p>The most common way to define dynamic tests is through a panel.&#160;&#160;In 
+ the panel member configuration, you can again specify a discriminator. 
+ This can either contain a time discriminator (+00:30, 20:00, ...) or a 
+ string discriminator. When specified, the discriminator is treated exactly 
+ as in the order entry program.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="">Example configuration: define a request definition of type "Panel".&#160;&#160;As 
+ panel members, add the same property several times, each time with a different 
+ discriminator.</p>
+            <p xmlns="">With absolute time discriminators:</p>
+            <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dynamictest_absolute.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="512" data-mc-height="451" src="dynamictest_absolute_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+            <p xmlns="">With relative time discriminator:</p>
+            <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dynamictest_relative.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="526" data-mc-height="439" src="dynamictest_relative_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+            <p xmlns="">When requesting the Glucose panel request definition during order entry, GLIMS 
+ will create several actions for this procedure, i.e. one for each panel 
+ member, with different object times.</p>
+            <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dynamictest_oe.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="563" data-mc-height="262" src="dynamictest_oe_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <h3>Discriminator priorities</h3>
+        <p>A panel member discriminator supersedes a discriminator defined for 
+ the referred member request definition. Likewise, a discriminator specified in 
+ the request definition of a panel (i.e. the panel request definition itself) supersedes 
+ discriminators specified for the members of this panel. Finally, a discriminator 
+ specified at the order entry level supersedes any discriminator defined 
+ in the database.</p>
+        <p>Exceptions to this rule is the combination of an absolute time discriminator 
+ (e.g. 20:00) at a higher level (e.g. order entry screen), followed by 
+ the specification of a relative time discriminator (e.g. +00:30) at a 
+ lower level (e.g. in the panel member definition). This allows to define 
+ a panel like 'Gluc +30, Gluc +60, Gluc +90' and actually requesting this 
+ panel with 'GlucPanel 20:00', leading to a requested panel like 'Gluc 
+ 20:30,Gluc 21:00,Gluc 21:30'. Note that in such a case, the final requests 
+ will be considered as 'absolute' dynamic.</p>
+        <h2><a name="Optional_property_configuration"></a>Optional property configuration</h2>
+        <p>In the property configuration, an option <span class="ui_element">Dynamic</span> is available.&#160;&#160;&#160;If 
+ set, this option has two consequences:</p>
+        <ol>
+            <li class="kadov-p" value="1">Results obtained in one day are grouped in the 
+	 same column on reports.&#160;&#160;&#160;So, when building a report 
+	 with a column per object time (ReportTemplate.Grouping = ByObjectTime), 
+	 the Result.ReferenceTime is used to determine the column for the result, 
+	 as opposed to using Result.ObjectTime. This has the effect that even 
+	 in such reports, all results of the same dynamic property are put in 
+	 the same column (although they have different object times).<br />	&#160;&#160; </li>
+            <li class="kadov-p" value="2">If a property is requested dynamically and either 
+	 the property is marked as Dynamic=TRUE or more than one result of 
+	 the same property appears in the same column, then the 'dynamic' discriminator 
+	 is added to the property name (this is the discriminator inherent 
+	 to the result and which is also shown in the order entry program or 
+	 the Order.Results() browser). </li>
+        </ol>
+        <h2><a name="Results_of_requests_with_discriminator"></a>Results of requests 
+ with discriminator</h2>
+        <p>The <span class="ui_element">DynamicType</span> field of a result reflects how the request 
+ has been entered.&#160;&#160;The following values are supported for the 
+ Result.DynamicType domain:</p>
+        <div class="indented">
+            <p class="fieldlabel">None</p>
+            <div class="indented">
+                <p class="kadov-p">The result 
+	 has not been requested as 'dynamic'.</p>
+            </div>
+            <p class="fieldlabel">Relative</p>
+            <div class="indented">
+                <p class="kadov-p">The 
+	 result has been requested with a relative dynamic time. The relative 
+	 time difference is stored in Specimen.Discriminator as "+/-HH:MM".
+	 </p>
+            </div>
+            <p class="fieldlabel">Absolute</p>
+            <div class="indented">
+                <p class="kadov-p">The 
+	 result has been requested with an absolute dynamic time. The absolute 
+	 time of the result is stored in Specimen.Discriminator as "HH:MM".
+	 </p>
+            </div>
+            <p class="fieldlabel">Discriminator</p>
+            <div class="indented">
+                <p class="kadov-p">The result has been requested with a discriminator that does not specify 
+	 a relative or absolute time. The discriminator is stored in Specimen.Discriminator. 
+	 </p>
+            </div>
+        </div>
+        <h2><a name="Procedure_planning_for_dynamic_tests"></a>Procedure planning for 
+ dynamic tests</h2>
+        <p>When requesting a dynamic panel in which the same property is requested 
+ several times each time with a different object time, you only need to 
+ configure a single procedure with that property as output.&#160;&#160;When 
+ requesting the dynamic panel request definition during order entry, GLIMS will 
+ create several actions for this procedure, i.e. one for each panel member, 
+ with different object times.</p>
+        <h2><a name="Reporting_of_dynamic_tests"></a>Reporting of dynamic tests</h2>
+        <h3>Configuration</h3>
+        <p>You only need to define the dynamic tests once in the property classification.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dynamictest_prcl.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="624" data-mc-height="376" src="dynamictest_prcl_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>GLIMS will automatically group the dynamic test results on the report 
+ indicating their relative or absolute object times:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="dynamictest_report.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="568" data-mc-height="253" src="dynamictest_report_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3>Displaying a discriminator</h3>
+        <p>A discriminator is added to the property name under the following circumstances:</p>
+        <ul>
+            <li class="kadov-p" value="1">If the property was requested dynamically and either 
+	 the property is marked as Dynamic=TRUE or more than one result of 
+	 the same property appear in the same column, then the 'dynamic' discriminator 
+	 is added to the property name (this is the discriminator inherent 
+	 to the result and which is also shown in the order entry program or 
+	 the Order.Results() browser).	&#160;&#160; </li>
+            <li class="kadov-p" value="2">If more than one result of the same property appears 
+	 in the same column and the result does not have a 'dynamic' discriminator, 
+	 then a discriminator is added showing the time difference between 
+	 the column reference time and the result object time. </li>
+        </ul>
+        <h3>Reporting deviating sampling times for dynamic results</h3>
+        <p>When a result is requested via a 'dynamic' panel, then the 'reference' 
+ time (= base object time of the order) and 'object' time ( as calculated 
+ via the panel member) are stored in the result.&#160;&#160;When this result 
+ is later printed on a text report or shown in a result browser, the difference 
+ between the object and reference time is sometimes used to add a 'discriminator' 
+ to the property name.&#160;&#160;A typical example would be 'Gluc +00:30'.</p>
+        <p>You may want to change this reported discriminator, e.g. when the received 
+ sample does not really meet the object time specification of the used 
+ panel.&#160;&#160;In order to allow this, the order entry program will 
+ now calculate the discriminator string for these tests during the original 
+ order entry.&#160;&#160;The resulting string (e.g. +00:30) is the stored 
+ in the Specimen.Discriminator field of the result's root specimen.&#160;&#160;This 
+ field can be viewed and updated (!) in the root specimen page of the order 
+ entry program, or by zooming in on any specimen.&#160;&#160;During the 
+ reporting phase, the discriminator string for the dynamic result is not 
+ recalculated, but simply taken from Result.Specimen.Discriminator.&#160;&#160;&#160;This 
+ should provide an easy way to change the reported (!) object time of panel 
+ member.</p>
+        <h2><a name="Accessing dynamic tests via MISPL"></a>Accessing dynamic tests 
+ via MISPL</h2>
+        <p>In order to be able to access dynamic test results from within MISPL,&#160;&#160;the 
+ &lt;PropertyMnemonic&gt; parameter in both the Order.Result() and Object.GetResult() 
+ MISPL functions allows for the specification of a so-called 'Discriminator', 
+ using the syntax "&lt;PropertyMnemonic&gt; &lt;Discriminator&gt;".&#160;&#160;This 
+ is the same discriminator that occurs in the order entry program. It can 
+ have the syntax "+/-HH:MM" (specifying a relative dynamic time), 
+ "HH:MM" (specifying an absolute dynamic time), or any string 
+ that may be used in the test requesting in the order entry program.</p>
+        <p>In the Order.Result() function, the special syntax "&lt;PropertyMnemonic&gt; 
+ #n" is interpreted as "the &lt;n&gt;th occurrence of &lt;PropertyMnemonic&gt; 
+ in this order. This allows fetching the results of a specific property 
+ without having to known its discriminator. This syntax is not allowed 
+ in the Object.GetResult() function.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p xmlns="">Order.Result("Gluc -00:10", ?, ?)<br />Order.Result("Gluc 19:00", ?, ?)<br />Order.Result("Na PreOp", ?, ?).<br />Order.Result("Gluc #1", ?, ?).</p>
+        </div>
+        <h2><a name="Variable_norms"></a>Variable norms</h2>
+        <p>GLIMS also allows to define specific norms depending on the discriminator.&#160;&#160;<a href="../../../configuration/norms/norms_variable.htm">Please check 
+ the case study on variable norms for more information</a>.</p>
+        <h2><a name="Remarks"></a>Remarks</h2>
+        <p>The order entry program prohibits requesting a 
+	 test with a discriminator on a root specimen which already has another 
+	 discriminator. </p>
+    </body>
+</html>

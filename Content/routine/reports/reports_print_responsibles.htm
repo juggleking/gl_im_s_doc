@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports|Responsibles" data-mc-ignored-words="validator" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\reporting\other\rprt_validator.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title> How to print the result responsibles on a report ?</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1> How to print the result responsibles on a report ?</h1>
+        <h2>Determination of the result responsible</h2>
+        <p>For each individual result, GLIMS stores a responsible. For more information, please check the chapter <a href="../results/results_responsible.htm">Results: responsible</a>.</p>
+        <h2>How to display the result responsibles on the report</h2>
+        <p>There are several ways to display the result responsibles on the report.</p>
+        <h3>Using a responsible column</h3>
+        <p>Specifying the character <span class="ui_element">B</span> in the field <span class="ui_element">Result section layout</span> of a <span class="ui_element">report template</span> will generate a column with the  initials of the result responsible.</p>
+        <p>In case of cumulative reports (several result value columns), this responsible column will only be displayed for the column with the most recent results.</p>
+        <h3>Using a responsible row</h3>
+        <p>The <span class="ui_element">Report template</span> field <span class="ui_element">ValidatorRowLabel</span> (Rows &gt; Text reports &gt; Row labels &gt; Validator) allows specifying if a responsible row has to be generated at the end of the report.</p>
+        <p>The text specified in this field will be used as row label. As soon as a value is specified, each column of this row will be filled with the initials of the responsible of the results in this column.</p>
+        <h3><a name="Using"></a>Using the MISPL function Order.Attribute</h3>
+        <p>The Order.Attribute MISPL function offers different possibilities to display the responsibles on the report.&#160;&#160;This could for instance be incorporated in the footer text of a report.</p>
+        <p class="fieldlabel">"ValidatorInitialsList"</p>
+        <p class="fielddescription">Returns a comma-separated list of the initials of the responsible of the results  of this order.  Responsibles of both manually and automatically validated results are included.</p>
+        <p class="fieldlabel">"ValidatorSignatureList"</p>
+        <p class="fielddescription">Returns a comma-separated list of the signatures of the responsible of the results  of this order.  Responsibles of both manually and automatically validated results are included.</p>
+        <p class="fieldlabel">"ValidatorInitialsSignatureList"</p>
+        <p class="fielddescription">Returns a comma-separated list of &lt;initials&gt;&lt;signature&gt; of the responsible of the results  of this order.  Responsibles of both manually and automatically validated results are included.</p>
+        <p class="fieldlabel">"ManualValidatorInitialsList"</p>
+        <p class="fielddescription">Returns a comma-separated list of the initials of the responsible of the results  of this order. Only the responsibles of manually validated results are included.</p>
+        <p class="fieldlabel">"ManualValidatorSignatureList"</p>
+        <p class="fielddescription">Returns a comma-separated list of the signatures of the responsible of the results  of this order. Only the responsibles of manually validated results are included.</p>
+        <p class="fieldlabel">"ManualValidatorInitialsSignatureList"</p>
+        <p class="fielddescription">Returns a comma-separated list of &lt;initials&gt;&lt;signature&gt; of the responsible of the results  of this order.  Only the responsibles of manually validated results are included.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>: Trailer text module based on the <i>Report</i> table containing:</p><pre xml:space="preserve">
+{=IfKnownString ("Responsible: " + .Order.Attribute("ValidatorSignatureList"))}
+</pre>
+                </div>
+            </div>
+        </div>
+        <h3>Using variables in the report headers, footers or other dynamic text</h3>
+        <p>Two variables are available during the expansion of report headers, footers or other dynamic text:&#160;</p>
+        <ul>
+            <li class="kadov-p" value="1">ValidatorSignatureList</li>
+            <li class="kadov-p" value="2">ValidatorInitialsList</li>
+        </ul>
+        <p>They are comparable to the Order.Attribute("ValidatorInitialsList") and Order.Attribute("ValidatorSignatureList) MISPL functions as described above but only show the responsibles of the results shown on this report and the first responsible in the list is guaranteed to be the most recent responsible of the results.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>: Example of use in a report header:</p>
+                    <blockquote>
+                        <p>Responsible: {ValidatorSignatureList}</p>
+                    </blockquote>
+                    <p>or, more complex:</p>
+                    <blockquote>
+                        <p>Signature: {&lt; SIG-{= ENTRY(1, "{ValidatorInitialsList}", ",")} }</p>
+                    </blockquote>
+                    <p>where SIG-XX hold the signature of responsible XX, and where XX is the most recent responsible.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

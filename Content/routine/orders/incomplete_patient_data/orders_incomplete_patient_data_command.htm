@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\incomplete patient demography\patient_demo2.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Setting up the appropriate command</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Setting up the appropriate command</h1>
+        <p>Note: For detailed information on commands see the chapter on <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">commands and tasks</a>.</p>
+        <p>Create a command with Base table <span class="ui_element">Order</span>, query <span class="ui_element">Standard</span> and function <span class="ui_element">GenerateDocument</span>.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="demography01.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="484" data-mc-height="235" src="demography01_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h2>The query parameter set</h2>
+        <p>The query parameter set allows to set some criteria in order to select the desired orders.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="demography02.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="473" data-mc-height="353" src="demography02_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">The <span class="ui_element">Filter</span> fields allows to specify a MISPL function to further select the orders. </p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p style="text-align: left;" xmlns="">MISPL function used for this purpose:</p><pre xmlns="">
+Integer I ;
+LOGICAL Industrial medicine;
+</pre><pre xmlns="">
+I := 0 ;
+</pre><pre xmlns="">
+IF INDEX(.OrderSet.LinkedFinance(1).PaymentAgreement.PolicyName.Code, "arbeid") &gt; 0
+THEN Industrial medicine := TRUE;
+ELSE Industrial medicine := FALSE;
+ENDIF;
+</pre><pre xmlns="">
+/* Payment agreement incomplete */
+IF NOT (.Orderset.LinkedFinance(1).PaymentAgreement.Checked = TRUE)
+ then I:=I + 1 ;
+ else I:=I ;
+ endif ;
+</pre><pre xmlns="">
+IF NOT Industrial medicine
+THEN
+  /* Birthdate missing */
+  IF substr(.Object.InternalID,1,6) = "000000" 
+   then I:=1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Sex missing */
+  If EnumeratedTostring("Sex",.Object.person().sex) = ?
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Street Address missing */
+  IF .Object.person().Correspondent.AddressLine1  = ?
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Postal code Address missing */
+  IF .Object.person().Correspondent.Municipality.PostalCode  = ?
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Fund missing */
+  IF .Orderset.LinkedFinance(1).PaymentAgreement.Fund.Mnemonic = ? 
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Matriculation missing */
+  IF .Orderset.LinkedFinance(1).PaymentAgreement.Matriculation = ? 
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+</pre><pre xmlns="">
+/* Kgcode missing */ 
+  IF .Orderset.LinkedFinance(1).PaymentAgreement.PolicyName.Code = ? 
+   then I:=I + 1 ;
+   else I:=I ;
+   endif ;
+ENDIF;
+</pre><pre xmlns="">
+Return If I &gt;= 1 then true else false ;
+</pre>
+        </div>
+        <h2><a name="The"></a>The function parameter set</h2>
+        <p style="text-align: left;">The function parameter set allows, amongst others, to specify the layout of the generated documented.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="demography03.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="262" data-mc-height="297" src="demography03_thumb_0_120.png" alt="" tabindex="" /></a> <map name="FPMap0" id="FPMap0"><area href="orders_incomplete_patient_data_header.htm" shape="rect" coords="69, 30, 252, 44" alt="" /><area href="orders_incomplete_patient_data_body.htm" shape="rect" coords="68, 50, 256, 69" alt="" /><area href="orders_incomplete_patient_data_footer.htm" shape="rect" coords="71, 73, 258, 93" alt="" /></map></p>
+        <p>The document can contain a header, a body and a footer. These can be defined by dynamic texts (on the Order table). These texts can contain <a href="../../reports/pcl5/pcl_00.htm">PCL codes</a>, free text and MISPL functions.</p>
+        <p>The field <span class="ui_element">Page skip</span>, indicates when the printer should take a new page, e.g. for each order)</p>
+    </body>
+</html>

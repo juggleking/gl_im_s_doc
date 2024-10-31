@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific import" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\import-export\import_export4.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Patient import</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1764"></a>
+            <MadCap:concept term="System management;Application management" />Import patients from file</h1>
+        <h2>Prerequisites</h2>
+        <ul>
+            <li value="1">Your site preferences should specify your current 
+ organization. This is the 
+ last field in the More page of the 'Specific 
+ site preference set' editor. The ‘Country’ of the specified organization 
+ will be used as the default country for patient import. Make sure to set 
+ the country’s ‘Address type’ correctly.<br /> </li>
+            <li value="2">
+                <p>The import file should comply with following rules:</p>
+                <ol>
+                    <li value="1">The character used as delimiter between field values 
+ in the file is a space. </li>
+                    <li value="2">All character fields must be enclosed in quotes (" 
+ ") if they contain any delimiter characters (i.e. spaces). </li>
+                    <li value="3">If you want to import any quotes contained in the 
+ data, replace them by two consecutive quotes (""). </li>
+                    <li value="4">If you do not wish to specify a field, you should 
+ put an unquoted question mark (?). </li>
+                    <li value="5">Date fields are interpreted according to the date 
+ format (-d) and century (-yy) start-up parameters of your GLIMS session 
+ (typically "dmy"). However, it is advised to specify years in 
+ a 4 digit format (i.e. including the century).(see session.pf) </li>
+                    <li value="6">Specify numbers with decimal points (no commas). 
+ </li>
+                    <li value="7">The import file must always end with a new line.</li>
+                    <li value="8">Each record must meet the following format:</li>
+                </ol>
+            </li>
+        </ul>
+        <p>
+        </p>
+        <p>
+        </p>
+        <blockquote>
+            <div style="text-align: center;" align="center">
+                <table style="width: 100%;height: 741px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" height="741" width="100%" border="1">
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 16px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="16" align="left" valign="top" width="20%">Name</td>
+                        <td style="text-align: left;width: 10%;height: 16px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="16" align="left" valign="top" width="10%">Mandatory</td>
+                        <td style="text-align: left;width: 70%;height: 16px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="16" align="left" valign="top" width="70%">Contents</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 45px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="45" align="left" valign="top" width="20%">PIN</td>
+                        <td style="text-align: left;width: 10%;height: 45px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="45" align="left" valign="top" width="10%"><span style="font-size: small;font-family: Symbol;">Ö</span>
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 45px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="45" align="left" valign="top" width="70%">Patient identification number assigned by the HIS</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">LastName</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%"><span style="font-size: small;font-family: Symbol;">Ö</span>
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Last name (NL: geboortenaam)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">FirstName</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">First name (NL: roepnaam)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">MiddleName</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Initials (NL: voorletters)</td>
+                    </tr>                    
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">BirthDate</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Date of birth (typically in DD/MM/YYYY format)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">Sex</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Either "M" or "F" (NL: "V")</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">BirthOrder</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Allowed values range between 1 and 9. Used for birth order in case of twins, triplets, etc.</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">SpouseLastName</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Last name of spouse if female (FR: <span class="ui_element">Nom 2</span>)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">FamilyDoctorMnemonic</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">HCProvider mnemonic of family doctor</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">FamilyDoctorCode</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">HCProvider identification code assigned by the HIS</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">StreetName</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Street name</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">HouseNo</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">House number</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">HouseNoAppendix</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">House number appendix</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">StreetName2</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Will be stored in Correspondent.Addressline2</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">HouseNo2</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Will be stored in Correspondent.Addressline2</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">HouseNoAppendix2</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Will be stored in Correspondent.Addressline2</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">PostalCode</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Municipality postal code</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">MunicipalityName</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Municipality name</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">Phone</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Phone number</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 18px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="18" align="left" valign="top" width="20%">Phone2</td>
+                        <td style="text-align: left;width: 10%;height: 18px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="18" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 18px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="18" align="left" valign="top" width="70%">Second phone number</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="20%">FundMnemonic</td>
+                        <td style="text-align: left;width: 10%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 19px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="19" align="left" valign="top" width="70%">Mnemonic of the fund in GLIMS</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">PolicyNameCode</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Code of the policy name in GLIMS</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">Matriculation</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Matriculation code (B: Lidnummer)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">Person language</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">Existing language code</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;width: 20%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="20%">Mother of person</td>
+                        <td style="text-align: left;width: 10%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="10%">
+                        </td>
+                        <td style="text-align: left;width: 70%;height: 30px;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="30" align="left" valign="top" width="70%">PIN of the mother. If a PIN number is added to identify the 
+ mother but the mother is not found, the person record will be rejected. 
+ If you want to import the mother and one of the children in the same import 
+ file, make sure that the mother is listed before the child in the import 
+ file.</td>
+                    </tr>
+                </table>
+            </div>
+        </blockquote>
+        <h2><a name="Activati"></a>Activation</h2>
+        <p>The patient import program is integrated as the ‘ImportPerson’ method 
+ on ‘gp_Site’. Its standard location is <span class="ui_element">System management</span> -&gt; <span class="ui_element">Import</span> 
+ -&gt; <span class="ui_element">Persons</span>. For performance reasons it is strongly recommended to 
+ run the import program using the TTY interface on the server.</p>
+        <h2>Parameters</h2>
+        <p>The patient import user-interface:</p>
+        <p style="text-align: center;" align="center">
+            <img src="../PatientImport.gif" style="width: 464px;height: 163px;border-style: none;border-style: none;" width="464" height="163" border="0" />
+        </p>
+        <h3>Fields</h3>
+        <p>The <b>File name</b> is the name of the patient import file. You can 
+ use the FIND key (TTY) or double-click (PC) to browse through your file 
+ system.</p>
+        <p>The <b>Attribute file name</b> is the name of a separate file which 
+ allows to import person site attributes. This file should be formatted 
+ as follows:</p>
+        <ul>
+            <li value="1">Site attribute name</li>
+            <li value="2">PIN</li>
+            <li value="3">Site attribute value</li>
+        </ul>
+        <p>If the import file <b>character set</b> doesn’t match the GLIMS character 
+ set, you can specify an alternate one. The name that you specify must 
+ be a valid code page available in the $DLC/convmap.cp file (a binary file 
+ that contains all of the tables that Progress uses for character management). 
+ For more information please refer to the Progress ‘System Administration 
+ Guide’ that was provided along with your Progress license.</p>
+        <p>The <b>PIN provider</b> is the correspondent that assigned the PIN (and 
+ family doctor identification codes if applicable) contained in your import 
+ file. Typically this will be the ‘Institution’ 
+ record identifying a hospital. If you have defined an ‘Identification 
+ source’ in your order entry options screen, it will be proposed as default 
+ value.</p>
+        <h2>Output</h2>
+        <p>During import some statistics are issued on the screen indicating the 
+ progress. Also some ‘problem’ files are generated:</p>
+        <div style="text-align: center;" align="center">
+            <table style="width: 534px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;border-spacing: 0px;" cellspacing="0" width="534" border="1">
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">Filename</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">Contents</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">&lt;ImportFileName&gt;.rej</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">All records rejected because the PIN or last name field is 
+ empty or unknown. 
+<p>This file can be used for subsequent import runs after correcting the 
+ reported problems (as only the problem cases are left).</p></td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">&lt;ImportFileName&gt;.mncp</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">PostalCodes/Municipalities that were not found in GLIMS. 
+ The affected persons will have an unknown municipality reference.</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">&lt;ImportFileName&gt;.hcpr</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">HCProvider mnemonics/codes that where not found in GLIMS. 
+ The affected persons will have an unknown FamilyDoctor reference.</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">&lt;ImportFileName&gt;.paya</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">Lists FundMnemonic/PolicyNameCode combinations for which 
+ the fund or the policy name was not found in the GLIMS database. The payment 
+ agreements for that fund and policy name are not created.</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="30%">&lt;ImportFileName&gt;.lng</td>
+                    <td style="width: 70%;padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" valign="top" width="70%">Invalid language codes will be logged in this file.</td>
+                </tr>
+            </table>
+        </div>
+        <p>Records with format errors cannot be processed and will cause an immediate 
+ error message, with the line number on which they occurred. In that case, 
+ the operator has the choice to continue or abort the import.</p>
+        <p>If the problem files are empty after the import phase, they will automatically 
+ be deleted.</p>
+        <h3>Remarks</h3>
+        <h4>Person comparison</h4>
+        <p>A person defined with the same characteristics will be created in the 
+ GLIMS database only once. The comparison of a person is done with the 
+ following fields: LastName, FirstName, MiddleName, BirthDate, PersonSex, 
+ SpouseLastName, PIN. If all those fields have the same value, an existing person 
+ was found and will not be created again. Note that the fact a person record 
+ already exists in the GLIMS database does not imply that the remaining 
+ import data of that person is skipped.</p>
+        <h4>Postal code - municipality</h4>
+        <p>The patient import program requires that any specified municipality 
+ already exists in the GLIMS database. A municipality that is not found 
+ is logged to the ".mncp" diagnostic file.</p>
+        <ul>
+            <li value="1">The program first attempts to find a unique match 
+ for the postal code only. If found, and the name also matches, it is accepted. 
+ If the name doesn't match, but no other municipality with the same name 
+ and different postal code can be found, it is accepted anyhow. This allows 
+ import of misspelled municipality names.</li>
+            <li value="2">If no unique postal code match is found, the combination 
+ of postal code + municipality name is searched, like before.</li>
+        </ul>
+        <p>Belgian examples:</p>
+        <ol>
+            <li value="1">A patient is imported with postal code "9052" 
+ and municipality "Zwynaarde". In GLIMS, the postal code 
+ "9052" is unique, but matches the municipality "Zwijnaarde". 
+ If GLIMS contains no other "Zwijnaarde" with a different postal 
+ code, then the import will be accepted.</li>
+            <li value="2">A patient is imported with postal code "9052" 
+ and municipality"Destelbergen". In GLIMS, the postal 
+ code "9052" is unique, but matches the municipality "Zwijnaarde". 
+ Moreover, "Destelbergen" is also found with code "9070". 
+ The import will be rejected.</li>
+        </ol>
+        <h4>Payment agreements</h4>
+        <p>In order to create a payment agreement for the patient, the fund and 
+ the policy name must exist in the GLIMS database. The import fields 'FundMnemonic' 
+ and 'PolicyNameCode' are fields that are not imported in GLIMS. A payment 
+ that already exists with the same fund, policy name and matriculation 
+ for the current patient will not be duplicated. The 'FundMnemonic' field is to 
+be set '?' when no payment agreement creation is wanted. Newly 
+created payment agreements will get either the patient birth date or 1/1/1970 as 
+start date, whichever is highest. However, if the fund has an 
+identification code with a start date that is more recent than the patient birth 
+date and 1/1/1970, than this date will be used as start date of the payment 
+agreement.</p>
+        <h3>Examples</h3>
+        <p>"9030551" "Degraeve" "Bert" ? 07/12/1926 
+ "M" ? ? "WLLJ" ? "Medialaan" "68" 
+ ? "?" "?" "?" "1040" "Brussel" "02/827.33.58" "075/30.99.04" 
+ "322" "410900" "7191055261068" n "10784102"</p>
+        <p>"9234852" "Dejonckeheere" "Mieke" ? 17/04/1958 
+ "V" ? "Debunne" ? "39423" "Kerkstraat" 
+ "17" "A" "?" "?" "?" "8420" "De Haan" "053/98.23.17" 
+ ? ? ? ? n ?</p>
+    </body>
+</html>

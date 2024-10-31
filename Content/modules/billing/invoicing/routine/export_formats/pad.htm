@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="PAD">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>pad</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4025"></a>
+            <MadCap:concept term="Billing" />PAD</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <span lang="NL-BE"><a href="#Message%20layout">Message layout</a> -</span><a href="#Invoice%20document%20numbering">Invoice document numbering</a> - <a href="#'Begleitzettel'">Begleitzettel</a> - <a href="#GLIMS%20mapping">GLIMS mapping</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>By means of the <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> function, GLIMS supports the billing export 'PrivatAbrechnung mittels Datentraeger' (PAD).&#160;&#160;The FinancialShipment.Send() function with protocol = PAD will create a file named [PV]nnnnnn.DAT and Begleitzettel' [PV]nnnnnn.TXT.</p>
+        <p>Use a file name prefix 'PV' if you want the invoice document numbers to be assigned by the PVS (Privataertzlichen Verrechnungsstellen).</p>
+        <p style="text-align: center;">
+            <img src="pad.gif" style="border: none;" alt="" width="486" height="378" border="0" />
+        </p>
+        <h2><span lang="NL-BE"><a name="Message layout"></a>Message layout</span>
+        </h2>
+        <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">000</span></b>
+        </p>
+        <p class="MsoNormal" style="margin-left: .5in;"><b style="font-weight: bold;"><span lang="NL-BE">200</span></b><span lang="NL-BE"><span>&#160;&#160;</span>Pro Rechnungsenpfenger 1 satz<span>&#160;&#160;</span>pro rechnung (Sammelrechnung)<br />300<br />&#160;&#160;&#160;</span>&#160;&#160;&#160;&#160;&#160;<span lang="NL-BE">[600]<span>&#160;&#160;&#160;&#160;&#160;</span>Pro diagnosis</span><b><span lang="NL-BE"><br />&#160;&#160;&#160;</span></b>&#160;&#160;&#160;&#160;&#160;<span lang="NL-BE"><b>700<span style="font: 7.0pt 'Times New Roman';">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></b></span><span lang="NL-BE">Pro Leistungsziffer (= pro BillingItem)<span><br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>700<span><br />&#160;&#160;&#160;</span>&#160;&#160;&#160;&#160;&#160;<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>…</span></p>
+        <p class="MsoNormal" style="margin-left: .5in;"><span lang="NL-BE">[400]<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>Unfalltag<br />[400]<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span>Unfallort<span>&#160;&#160;&#160;&#160;</span>'UnfallInformationen beim Berufsgenossenschaften<span>&#160;&#160;</span>(Vertragsart=40-49 and Context=IndustrialAccident)<br />800<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></span><b><span lang="NL-BE"><br />900</span></b><span lang="NL-BE"><span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></span>Ende rechnung<span lang="NL-BE">&#160;</span></p>
+        <p class="MsoNormal" style="margin-left: .5in;"><span lang="NL-BE">200<span>&#160;&#160;</span><br />…</span>
+        </p>
+        <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">990</span></b>
+        </p><b style="font-weight: bold;">Bold= Mussatz</b>
+        <h2><b style="font-weight: bold;"><a name="Invoice document numbering"></a>Invoice document numbering (Rechnungsnummerung)</b>
+        </h2>
+        <p class="MsoNormal">If a file name PVnnnnnn.dat (nnnnnn=arztnummer) is used then PVS will assign the Rechnungsnummern.&#160;&#160;If you want Glims to send the document numbers, you should use a filename nnnnnn.dat and make sure that the 'Invoice DocNo' expression generates a document number with format 999999 with leading zero’s and exact 6 characters long.</p>
+        <h2><a name="'Begleitzettel'"></a>Begleitzettel</h2>
+        <p class="MsoNormal">A 'Begleitzettel' file is required in case of floppy disks (not for 'DFU mit Verschlusselung').&#160;&#160;When an export file is created, a 'Begleitzettel' file will automatically be created with the same file name but with extension .txt.</p>
+        <h2><a name="GLIMS mapping"></a>GLIMS mapping</h2>
+        <h3>Datensatz 000</h3>
+        <table style="border: none;border-collapse: separate;" cellspacing="0" width="100%">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">FinancialShipment.Destination.Identification code (with source=Destination)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">See '<a href="#Invoice%20document%20numbering">Invoice document numbering</a>'</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><span lang="NL-BE">=’000000’/’’PV0000’</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><span lang="NL-BE">='000'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Volume-Name</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">FinancialShipment.ExternalId</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">DateiName</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">File name</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Erst.-Datum</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">TODAY</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">7</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Uhrzeit/Erst</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal"><span lang="NL-BE">NOW</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">8</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Version</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">'200308'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">9</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">PraxisComputer</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">'Glims'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">10</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Waehrung</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">'EUR'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">11</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="240">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="105">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3 style="margin-left: 0in;text-indent: 0in;"><span lang="NL-BE">Datensatz 200</span>
+        </h3>
+        <table style="border-width: medium;border-collapse: separate;" cellspacing="0" width="100%">
+            <tr>
+                <td style="vertical-align: top;border: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal"><span lang="NL-BE">PV00001, …<br />or Invoice.DocNo</span>
+                    </p>
+                    <p class="MsoNormal"><span lang="NL-BE">See '<a href="#Invoice%20document%20numbering">Invoice document numbering</a>'</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal"><span lang="NL-BE">'200'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Unterkonto Arzt</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vertragart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal"><span lang="NL-BE">01 (fuer PrivatArzt)</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anlage-KZ</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">7</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anrede-KZ</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">8</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungsempf.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal"><span lang="NL-BE">InvoiceSummary.Payer 'VoreName,Name,Title'</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">9</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Strasse</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal"><span lang="NL-BE">Invoice summay Payer.AddressLine1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">10</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="247">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="115">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3 style="margin-left: 0in;text-indent: 0in;"><span lang="NL-BE">Datensatz 300</span>
+        </h3>
+        <table style="border-width: medium;border-collapse: separate;" cellspacing="0" width="100%">
+            <tr>
+                <td style="vertical-align: top;border: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top: .5pt solid #000000;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">='200'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">LAND PLZ Ort</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">Land PLZ Ort<br />of the Invoice summary Payer</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">Example:<br />D 22767 Hamburg</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Behandelter</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">(Order.)Object.Person FirstName Name</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">Only sent if Object &lt;&gt; Zahler</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Geb.-Dat Patient</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">(Order.)Object Person.BirthDate</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">7</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Aufn.-Datum</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE">(Order.)Encounter.StartDate</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">Therefore an<span>&#160;&#160;</span>InvoiceSummarie should Encounter(Fall) specific.</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">8</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Entl.-Datum</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">9</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Klasse</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">=’0’</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">10</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Text-KZ</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">='0'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">11</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Abzug-KZ</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">12</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Tage</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoHeader">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE">=’0’</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">13</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">RechnungsType</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">V(ersichertenrechnung)/K(assenrechnuung)/Leer<br />We keep it empty</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">=' '</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">14</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">%-Satz</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">15</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Geslechtkennning</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">M/w</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">16</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Waehrung</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Lehr -&gt; Datei Wahrung von Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border-left: .5pt solid #000000;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">17</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="281">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-left-width: medium;border-right: .5pt solid #000000;border-top-width: medium;border-bottom: .5pt solid #000000;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="129">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3><span lang="NL-BE">DatenSatz 400 (Unfalltag)</span>
+        </h3>
+        <p class="MsoNormal"><span lang="NL-BE">Created when Order.Context=IndustrialAccident and vertragsart=40-49 (Berufsgenossenschaft)</span>
+        </p>
+        <p class="MsoNormal"><span lang="NL-BE">Note that the Vertragsart is currently fixed 01 (private), but the existence of an Invoice-based site function with description Send_200_Values with returnvalue ”r;\5=49” allows setting the Vertragsart, leading to the creation of '400' records.</span>
+        </p>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='400'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Unfalltag</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">”r;Unfalltag: ”r; + Order.ContextDate</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3 style="margin-left: 0in;text-indent: 0in;"><span lang="NL-BE">Datensatz 400 (Unfallort)</span>
+        </h3>
+        <p class="MsoNormal"><span lang="NL-BE">Created when Order.Context=IndustrialAccident and Vertragsart=40-49 (Berufsgenossenschaft)</span><span lang="NL-BE">&#160;</span>
+        </p>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='400'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Unfallort</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">”r;Unfallort: ”r; + Object Person.Enoployer,Name, Person.Employer.Adressline, country- municipalityCode municipalityName</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3><span lang="NL-BE"><span style="font: 7.0pt 'Times New Roman';">&#160;</span>Datensatz 600 (Diagnosis) currently skipped !!</span>
+        </h3>
+        <p class="MsoNormal"><span lang="NL-BE">One 600 record for each Order-related diagnosis&#160;</span>
+        </p>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='600'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Unfallort</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Diagnosis Code + ' ' DiagnosisText<span>&#160;</span></span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3><span lang="NL-BE">Datensatz 700</span>
+        </h3>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='200'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Datum</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Positions-Kennzeichen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Leer=arztliche –technische Leistung,<br />H=Honorar (BillingCode.ReimbursementClass.Type=Fee), …</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">Only ' '/H supported</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Leistungs-Ziffer</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Tariff NomenclatureCode</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">7</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anzahl</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">8</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Faktor</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">BillingitemAmount/Tariff BaseValue (-&gt;1 1.15 …)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">9</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzahen Betrag</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">10</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Betrag</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">BillingItem amount</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">11</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzahen Einfachwert</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">12</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Einfachwert</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">13</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzahen Algemeine Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">14</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Algemeine Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">15</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen Besondere Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">16</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Besondere Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">17</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Text</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">18</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3 style="margin-left: 0in;text-indent: 0in;"><span lang="NL-BE">Datensatz 800</span>
+        </h3>
+        <p class="MsoNormal"><span lang="NL-BE">This record is only produced if the TextZeile1/2 contains something (InvoiceSummary.Phrase filled)</span>
+        </p>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='800'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Textzeile 1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">InvoiceSummary.Phrase(1:50)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Textzeile 2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">InvoiceSummary.Phrase (51:)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3 style="margin-left: 0in;text-indent: 0in;"><span lang="NL-BE">Datensatz 900</span>
+        </h3>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 200</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='900'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen Summe Honorar</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Summe Honorar</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Summe betrage Leistungs KZ=’H’onorar</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">7</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Summe Algemeine Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">8</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">9</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Summe Besondere Kosten</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">10</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">11</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anzahlung</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">???</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">12</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Vorzeichen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">13</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Nachlass</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">???</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">14</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anzahl Satze der Rechnung</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">15</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <h3><span lang="NL-BE">Datensatz 990</span>
+        </h3>
+        <table style="border: none;border-collapse: separate;" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Feld Nr</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Inhalt</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Glims</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-left: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><b style="font-weight: bold;"><span lang="NL-BE">Bemerkung</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">1</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Mitglieds-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Idem Satz 000</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">2</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Rechnungs-Nr.</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='999999'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">3</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoHeader"><span lang="NL-BE">Satzart</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal"><span lang="NL-BE">='990'</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height: 31.0pt;">
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" height="41" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">4</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" height="41" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Anzahl Datensaetze in der Datei</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" height="41" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE">Anzahl Satze (excl 000, 990)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" height="41" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">5</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Anzahl Rechnungen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal"><span lang="NL-BE" style="color: #0000ff;">Anzahl Rechnungen</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;border: solid #000000 .5pt;border-top: none;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="43">
+                    <p class="MsoNormal"><span lang="NL-BE">6</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="162">
+                    <p class="MsoNormal"><span lang="NL-BE">Reserve</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="213">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+                <td style="vertical-align: top;border-top: none;border-left: none;border-bottom: solid #000000 .5pt;border-right: solid #000000 .5pt;padding: 0in 5.4pt 0in 5.4pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;" width="114">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <p class="MsoNormal">&#160;</p>
+    </body>
+</html>

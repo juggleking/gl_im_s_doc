@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:o="http://UnknownNamespace.xsd" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Direct communication|Result reporting|Disk reports|Types" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Socrates_disk_reports">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Socrates</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor125"></a>Socrates disk reporting</h1>
+        <p>Contents: <a href="#Message%20layout">Message layout</a> - <a href="#File%20layout">File
+ layout</a></p>
+        <h2><a name="Message layout"></a>Message layout</h2>
+        <h3>FirstPageHeader</h3>
+        <blockquote>
+            <p>None</p>
+        </blockquote>
+        <h3>Header</h3>
+        <blockquote><pre>{="001" + /* Order nr 8 lang */ ifknownstring(substr(.Order.InternalId,1,8))}&amp;ReportLineSeqNo:04d{: Order TheOrder ;
+   Person ThePerson ;    string res ;
+   TheOrder  := .order ;  
+   ThePerson := .Object.Person();</pre><pre>res := "E " +
+/* name of the lab 18 char */ 
+substr(lpad(.Order.Department.Lab.Name,18," "),1,18) +
+/* Name + first name  20 char*/
+substr(lpad(Ifknownstring(ThePerson.LastName) + " " +Ifknownstring(ThePerson.FirstName),20," "),1,20) +
+/* Sexe M/F*/
+IfKnownstring(substr(enumeratedToString("sex",ThePerson.Sex),1,1)) +
+/* date receipt time */
+DateTimeToString(TheOrder.ReceiptTime,"%d%m%y") + 
+/* 12 spaces */
+Fill(" ",12 ) +
+/*  Street 20 char */
+substr(lpad(IfKnownstring(ThePerson.Correspondent.AddressLine1),20," "),1,20) +
+/* Post code */
+substr(lpad(IfKnownstring(ThePerson.Correspondent.Municipality.PostalCode),4," "),1,4)   +
+/* Birth date or If UnKnown 01/01/1901 */
+(IF Theperson.Birthdate &lt;&gt; ? then 
+IfKnownstring(DateTostring(Theperson.Birthdate,"%d%m%Y")) else "01011901");</pre><pre>return lpad(res,91," ") ; }</pre>
+        </blockquote>
+        <h3>Result Body</h3>
+        <blockquote><pre>{:string begin,res,resc,p1,p2,p3,ress  ;
+integer ica,icr ;
+begin  := "001" + substr(.OrderInternalId,1,8)+ "&amp;ReportLineSeqNo:04d" ;
+res    := "" ;</pre><pre>/* totale string 106 - 4 + 20 = 122
+Must be 106 but string &amp;ReportLineSeqNo:04d = len20, is still included - 4 */</pre><pre>if .Type = StringToEnumerated("ObservationalResultType", "Label")
+then 
+       res :=  begin + "RM" + "2585 " + "&gt;" +
+       Replace(IfKnownString(.Value),chr(10)," ")  ;      
+       res := lpad(Res,122," ")  ; 
+endif ; </pre><pre>if .Type = StringToEnumerated("ObservationalResultType", "Result")
+then 
+       res :=  begin + "R3" + 
+             substr(lpad(.Mnemonic,5," "),1,5)  + " " + 
+             /* result 8 char */
+             substr(lpad(Replace(IfKnownString(.Value),chr(10)," "),8," "),1,8) + 
+             /* flag 2 char */
+             .Mark +
+             /* 3 blancs */ 
+              "   " +
+             /* reference 29 char */
+             substr(lpad(IfKnownString(.Reference),29," "),1,29)  ;
+       res:= lpad(res,122," ") ;</pre><pre>/* External Comment are also send , no extra formatting is done                   */
+/* You may renove the following if ... endif  if you do not want Exernal Comments */
+      if .comment &lt;&gt; ? then 
+             resc := "";
+             icr := 0 ;
+             icr :=  NumEntries (IfKnownString(.Comment) , chr(10)) ; /* aantal CR */
+             ica := 0 ;
+             p1 := IfKnownString(.Comment) + chr(10);
+             REPEAT 
+               p2 := substr(p1,1,index(p1,chr(10))-1)   ; /* extract first part */
+               p1 := substr(p1,index(p1,chr(10))+1,-1)  ; /* keep last part */
+               resc := resc + (if ica &gt; 0 then "&lt;BR&gt;"  else ""  )  + 
+                lpad(begin + "RM" +   "2585"  + " " + p2,122," ") ; 
+               ica := ica  + 1 ;
+             UNTIL ica &gt;=  icr ;
+      endif ;
+      res := res + ( if resc &lt;&gt; "" then "&lt;BR&gt;" + resc else "") ;
+endif ;</pre><pre>if .Type = StringToEnumerated("ObservationalResultType", "Isolation")
+then 
+        if .SubId = ? 
+         then 
+            res := begin + "RM" + "2585 " +
+                lpad(IfKnownString(.Isolation.MicroOrganism.Name) + " " +
+                     IfKnownString(.Isolation.Appraisal.Description),35," ") ;
+         else 
+           res := begin + "RM" + "2585 " +
+                lpad(IfKnownString(.Isolation.MicroOrganism.Name) + " " +
+                     IfKnownString(.Isolation.Appraisal.Description),35," ") +
+                     "(" + IntegerToString(.SubId, "%d") + ")";
+         endif;
+         res:= lpad(res,122," ") ;
+endif ;</pre><pre>if .Type = StringToEnumerated("ObservationalResultType", "Antibiotic")
+then 
+        if .SubId = ? 
+          then 
+           res := begin + "RM" + "2585 " + 
+                IfKnownString("Antibiogram") + 
+                IfKnownString(.Value) ;
+            res:= lpad(res,122," ")  ;
+          else 
+            if .SubId = 1
+             then 
+                res := lpad(begin + "RM" + "2585 "  + 
+                       lpad("Antibiogram",35," ") + "(1) (2) (3) (4) (5) ",122," ") + "&lt;BR&gt;" + 
+                lpad(begin  + "RM" + "2585 " +   
+                Lpad(.Mnemonic, 33, " ") + " : " + 
+                IfKnownString(Entry(1, ExtractTag("RIS", .Value, "\"), ",")) + " " + 
+                IfKnownString(Entry(2, ExtractTag("RIS", .Value,"\"), ",")) + " " + 
+                IfKnownString(Entry(3, ExtractTag("RIS", .Value, "\"), ",")),122," ");
+             endif ;
+            if .SubId &gt; 1
+             then 
+             res := lpad(begin + "RM" + "2585 "   +  
+                Lpad(.Mnemonic, 33, " ") + " : " + 
+                IfKnownString(Entry(1, ExtractTag("RIS", .Value, "\"), ",")) + " " + 
+                IfKnownString(Entry(2, ExtractTag("RIS", .Value,"\"), ",")) + " " + 
+                IfKnownString(Entry(3, ExtractTag("RIS", .Value, "\"), ",")),122," ");
+             endif;
+          endif;          
+endif ;
+return res ;}</pre>
+        </blockquote>
+        <h3>Footer</h3>
+        <blockquote><pre>{=lpad("001" + substr(.Order.InternalId,1,8) + "&amp;ReportLineSeqNo:04d"+"P ",122," ")}</pre>
+        </blockquote>
+        <h3>Trailer</h3>
+        <blockquote>
+            <p class="MsoNormal">None</p>
+        </blockquote>
+        <h2><a name="File layout"></a>File layout</h2>
+        <p class="MsoNormal">{<br />
+ &#160;&#160;&#160; Header<br />
+ &#160;&#160;&#160; {<br />
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160; Result Body<br />
+ &#160;&#160;&#160; }
+ </p>
+        <p class="MsoNormal">&#160;&#160;&#160; Footer<br />
+ }</p>
+    </body>
+</html>

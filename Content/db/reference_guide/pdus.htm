@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - ProductUsage</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3468"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+ProductUsage&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Product usage</td>
+                <td>
+pdus</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+A product usage record links a product specification to a work place, and determines the minimum and maximum stock amounts required for the specific work place. If specified and returning a valid number, the fixed amounts may be overruled by a site function, allowing implementation of a dynamic stock.
+<br /><br />For general purpose products, a dummy work place may be created. This is however not required. The data model does not impose a ProductUsage. In that case no quantity requirements nor stock location is available however. Hence, automatic order form generation and ordering will not be possible for these products.
+<br /><br /></p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">ProductUsage</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MaxQuantity"></a>
+        <h3>
+Maximum quantity</h3>
+        <div class="MemberHelp">
+            <p>
+Maximum stock amount required for the specific work place. This amount is expressed in the unit of the product specification and can be overruled by the amount returned by the maximum quantity function.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>MaxQuantity</b></p>
+        </div><a name="F_MaxQuantityCalc"></a>
+        <h3>
+Calculated maximum</h3>
+        <div class="MemberHelp">
+            <p>
+Calculated field that shows the actual maximum quantity that will be applied.</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">PositiveInteger</span>&#160;<b>MaxQuantityCalc</b></p>
+        </div><a name="F_MaxQuantityFunction"></a>
+        <h3>
+Maximum quantity function</h3>
+        <div class="MemberHelp">
+            <p>
+ProductUsage-based, Integer-valued site function. Overrules the fixed maximum quantity amount.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>MaxQuantityFunction</b></p>
+        </div><a name="F_MinQuantity"></a>
+        <h3>
+Minimum quantity</h3>
+        <div class="MemberHelp">
+            <p>
+Minimum stock amount required for the specific work place. This amount is expressed in the unit of the product specification and can be overruled by the amount returned by the minimum quantity function.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>MinQuantity</b></p>
+        </div><a name="F_MinQuantityCalc"></a>
+        <h3>
+Calculated minimum</h3>
+        <div class="MemberHelp">
+            <p>
+Calculated field that shows the actual minimum quantity that will be applied.
+<br /></p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">PositiveInteger</span>&#160;<b>MinQuantityCalc</b></p>
+        </div><a name="F_MinQuantityFunction"></a>
+        <h3>
+Minimum quantity function</h3>
+        <div class="MemberHelp">
+            <p>
+ProductUsage-based, Integer-valued site function. Overrules the fixed minimum quantity amount.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>MinQuantityFunction</b></p>
+        </div><a name="F_ProductSpecification"></a>
+        <h3>
+Product specification</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="pspc.htm">ProductSpecification</a></span>&#160;<b>ProductSpecification</b></p>
+        </div><a name="F_StandardOrderQuantity"></a>
+        <h3>
+Standard order quantity</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+            </p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>StandardOrderQuantity</b></p>
+        </div><a name="F_Stock"></a>
+        <h3>
+Stock</h3>
+        <div class="MemberHelp">
+            <p>
+Storage location. Also used to determine the delivery address for automated order form generation.</p>
+            <p class="Synopsis"><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<b>Stock</b></p>
+        </div><a name="F_Substock"></a>
+        <h3>
+Substock</h3>
+        <div class="MemberHelp">
+            <p>
+Storage location. Also used to determine the delivery address for automated order form generation.</p>
+            <p class="Synopsis"><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<b>Substock</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_WarningQuantityCalc"></a>
+        <h3>
+Calculated threshold</h3>
+        <div class="MemberHelp">
+            <p>
+Calculated field that shows the actual amount for the warning threshold.
+<br /></p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">PositiveInteger</span>&#160;<b>WarningQuantityCalc</b></p>
+        </div><a name="F_WarningThreshold"></a>
+        <h3>
+Warning threshold</h3>
+        <div class="MemberHelp">
+            <p>
+Amount below which a warning will be issued, i.e. the last columns of the product specification browser will be shown with a yellow background. This threshold must be specified as a percentage within the minimum/maximum quantity range. Example: 
+<br /><br />Minimum quantity = 5
+<br /><br />Maximum quantity = 20
+<br /><br />Warning threshold = 10
+<br /><br />Range =&gt; 20 - 5 = 15.
+<br />Threshold =&gt; 10% of 15 = 1.5
+<br />Threshold value = 5 + 1.5 = 6.5 (rounded to 7)    </p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>WarningThreshold</b></p>
+        </div><a name="F_WarnThresholdFunction"></a>
+        <h3>
+Warning threshold function</h3>
+        <div class="MemberHelp">
+            <p>
+ProductUsage-based, Integer-valued site function. Overrules the fixed maximum quantity amount.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>WarnThresholdFunction</b></p>
+        </div><a name="F_WorkPlace"></a>
+        <h3>
+Work place</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<b>WorkPlace</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_OrderProducts"></a>
+        <h3>
+Order products&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>OrderProducts</b> (<span class="Type"><a href="productusagequantityoption.htm">ProductUsageQuantityOption</a></span>&#160;<span class="Parameter">BaseQuantity</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SubtractScheduledProducts</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SubtractOrderedProducts</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SubtractDeliveredProducts</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AppendToExistingOrder</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticApproval</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ProcessFaxForm</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ProcessEmailForm</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ProcessPaperForm</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="productusagequantityoption.htm">ProductUsageQuantityOption</a></span>&#160;<span class="Parameter">BaseQuantity</span></dt>
+                <dd>
+One of: <span class="Parameter">Standard order quantity, Minimal quantity, Threshold quantity, Maximal quantity</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SubtractScheduledProducts</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SubtractOrderedProducts</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SubtractDeliveredProducts</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AppendToExistingOrder</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AutomaticApproval</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ProcessFaxForm</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ProcessEmailForm</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ProcessPaperForm</span></dt>
+            </dl>
+        </div><a name="M_ProductSpecification"></a>
+        <h3>
+Product specification&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ProductSpecification</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_ShowProducts"></a>
+        <h3>
+Show products&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ShowProducts</b> (<span class="Type"><a href="purchaseorderstatus.htm">PurchaseOrderStatus</a></span>&#160;<span class="Parameter">Status</span>, <span class="Type"><a href="pspc.htm">ProductSpecification</a></span>&#160;<span class="Parameter">ProductSpecification</span>, <span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span>, <span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="purchaseorderstatus.htm">PurchaseOrderStatus</a></span>&#160;<span class="Parameter">Status</span></dt>
+                <dd>
+One of: <span class="Parameter">Scheduled, Approved, Sent, Partial, Complete, Checked, Closed, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="pspc.htm">ProductSpecification</a></span>&#160;<span class="Parameter">ProductSpecification</span></dt>
+                <dt><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span></dt>
+                <dt><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span></dt>
+            </dl>
+        </div><a name="M_Stock"></a>
+        <h3>
+Stock&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Stock</b> ()</p>
+        </div><a name="M_Substock"></a>
+        <h3>
+Substock&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Substock</b> ()</p>
+        </div><a name="M_UpdateUsage"></a>
+        <h3>
+Update usage&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>UpdateUsage</b> (<span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span>, <span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Substock</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinQuantity</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">MinQuantityFunction</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinQuantityCalc</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxQuantity</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">MaxQuantityFunction</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxQuantityCalc</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">StandardQuantity</span>, <span class="Type">PositiveFractional</span>&#160;<span class="Parameter">WarningThreshold</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">WarnThresholdFunction</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningQuantityCalc</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span></dt>
+                <dt><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Substock</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinQuantity</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">MinQuantityFunction</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinQuantityCalc</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxQuantity</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">MaxQuantityFunction</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxQuantityCalc</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">StandardQuantity</span></dt>
+                <dt><span class="Type">PositiveFractional</span>&#160;<span class="Parameter">WarningThreshold</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">WarnThresholdFunction</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">WarningQuantityCalc</span></dt>
+            </dl>
+        </div><a name="M_WarnThresholdFunction"></a>
+        <h3>
+Warning threshold function&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WarnThresholdFunction</b> ()</p>
+        </div><a name="M_WorkPlace"></a>
+        <h3>
+Work place&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WorkPlace</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Standard"></a>
+        <h3 />
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="pspc.htm">ProductSpecification</a></span>&#160;<span class="Parameter">ProductSpecification</span>, <span class="Type"><a href="ptp.htm">ProductType</a></span>&#160;<span class="Parameter">ProductType</span>, <span class="Type"><a href="org.htm">Organization</a></span>&#160;<span class="Parameter">Supplier</span>, <span class="Type"><a href="org.htm">Organization</a></span>&#160;<span class="Parameter">Manufacturer</span>, <span class="Type">String</span>&#160;<span class="Parameter">NamePattern</span>, <span class="Type">String</span>&#160;<span class="Parameter">Code</span>, <span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span>, <span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Substock</span>, <span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span>, <span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">Department</span>, <span class="Type"><a href="stockstate.htm">StockState</a></span>&#160;<span class="Parameter">MaximalState</span>, <span class="Type"><a href="stockstate.htm">StockState</a></span>&#160;<span class="Parameter">MaximalOrderedState</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">Filter</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="pspc.htm">ProductSpecification</a></span>&#160;<span class="Parameter">ProductSpecification</span></dt>
+                <dt><span class="Type"><a href="ptp.htm">ProductType</a></span>&#160;<span class="Parameter">ProductType</span></dt>
+                <dt><span class="Type"><a href="org.htm">Organization</a></span>&#160;<span class="Parameter">Supplier</span></dt>
+                <dt><span class="Type"><a href="org.htm">Organization</a></span>&#160;<span class="Parameter">Manufacturer</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">NamePattern</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Code</span></dt>
+                <dt><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Stock</span></dt>
+                <dt><span class="Type"><a href="stck.htm">Stock</a></span>&#160;<span class="Parameter">Substock</span></dt>
+                <dt><span class="Type"><a href="wrkp.htm">WorkPlace</a></span>&#160;<span class="Parameter">WorkPlace</span></dt>
+                <dt><span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">Department</span></dt>
+                <dt><span class="Type"><a href="stockstate.htm">StockState</a></span>&#160;<span class="Parameter">MaximalState</span></dt>
+                <dd>
+One of: <span class="Parameter">Alarm, Low, Normal</span><br /></dd>
+                <dt><span class="Type"><a href="stockstate.htm">StockState</a></span>&#160;<span class="Parameter">MaximalOrderedState</span></dt>
+                <dd>
+One of: <span class="Parameter">Alarm, Low, Normal</span><br /></dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">Filter</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ ProductSpecification + WorkPlace </b>
+            </li>
+            <li value="3"><b>+ MaxQuantityFunction </b>
+            </li>
+            <li value="4"><b>+ MinQuantityFunction </b>
+            </li>
+            <li value="5"><b>+ Stock </b>
+            </li>
+            <li value="6"><b>+ Substock </b>
+            </li>
+            <li value="7"><b>+ WarnThresholdFunction </b>
+            </li>
+            <li value="8"><b>+ WorkPlace + ProductSpecification </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

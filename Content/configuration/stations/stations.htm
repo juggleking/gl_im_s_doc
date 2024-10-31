@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic configuration\stations.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Standard.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>stations</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Stations</h1>
+        <h2>Introduction</h2>
+        <p>A station can either be a place where tests are executed manually, an analyzer, a concentrator, ...</p>
+        <h2>General fields</h2>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>The default visible identification of the station.</p>
+        </div>
+        <p class="fieldlabel">Name</p>
+        <div class="indented">
+            <p>The name of the instrument, place of survey, ...</p>
+        </div>
+        <p class="fieldlabel">Type</p>
+        <div class="indented">
+            <p class="fieldlabel">Analyzer</p>
+            <div class="indented">
+                <p>An analyzer can belong to a download group so that it can download actions scheduled on other stations with the same download group. When the inquiring station queries for actions, the outputs of the action scheduled on the other station should have at least an assessment method with the same property configured on the inquiring station. An analyzer station can be defined as client of a LAS or concentrator.</p>
+            </div>
+            <p class="fieldlabel">Concentrator</p>
+            <div class="indented">
+                <p>A concentrator station serves one or more client stations (stations of type <span class="ui_element">Analyzer</span>). The client stations normally have no translator, as all communication (result upload, patient download…) is handled by the concentrator station. Procedures with in- and outputs are defined on the client stations. GLIMS will use the in- and outbound id's of the client station's assessment methods.</p>
+                <p>Result messages from the concentrator should be received with an accompanying instrument id. GLIMS will try to identify the concentrator client station with that instrument id (station remote id).</p>
+            </div>
+            <p class="fieldlabel">LAS</p>
+            <div class="indented">
+                <p>A LAS station serves one or more client stations but will only download actions to the station.&#160;&#160;Procedures with in- and outputs are defined on the client stations. GLIMS will use the in- and outbound id's of the LAS station to identify the assessment methods.</p>
+                <p>Results are always transmitted via the client station. The client stations must therefore have their own translator.</p>
+            </div>
+            <p class="fieldlabel">Counter</p>
+            <div class="indented">
+                <p>Stations of type <span class="ui_element">Counter</span> are used for the cell counter program in GLIMS.&#160;&#160;A counter station can be recognized by a procedure with a cell count limit greater than zero.&#160;&#160;<a href="../../routine/cell_counter/index_cell_counter.htm">Check the chapter "Cell counter" for more information</a>.</p>
+            </div>
+            <p class="fieldlabel">Scan</p>
+            <div class="indented">
+                <p>Refers to a station for scanning specimens. A scan station does not have a translator nor a procedure.&#160;&#160;Can for instance be used in the <a href="../../modules/lab_archive/routine/lab_archive_store_specimens.htm">specimen archive module</a>.</p>
+            </div>
+            <p class="fieldlabel">Manual</p>
+            <div class="indented">
+                <p>Represent a manual work place.</p>
+            </div>
+            <p class="fieldlabel">Calculator</p>
+            <div class="indented">
+                <p>Station used for calculated results (i.e. results where the PropertyOutput.Value contains a formula AND where the action has at least one input result).&#160;&#160;For calculation procedures, the <span class="ui_element">Value</span> field of the property output should be specified.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Code</p>
+        <div class="indented">
+            <p>The station code (which is shorter than the name).&#160;&#160;The code can be:</p>
+            <ul>
+                <li value="1">Used in the communication programs: download to analyzer</li>
+                <li value="2">Used by the <a href="../../routine/orders/order_entry/order_entry_tab_specimens.htm">Specimen scope</a> functionality</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Workplace</p>
+        <div class="indented">
+            <p>The work place to which the station belongs.&#160;&#160;A laboratory can be divided into different subspecialties called workplaces. For example: Biochemistry, Hematology, Immunology, etc.&#160;&#160;A workplace can contain different stations. &#160;An example could also be a workplace containing all Advia stations.&#160;&#160;Workplaces can, among other, be used in:</p>
+            <ul>
+                <li value="1">Confirm by action: allows to confirm all actions performed in a specified workplace</li>
+                <li value="2">Result statistics: include all results assessed in a specific workplace</li>
+                <li value="3">...</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Download group</p>
+        <div class="indented">
+            <p>Allows grouping multiple stations so that actions of a related station could be downloaded to the inquiring station. Note that download groups are only used for stations of type <span class="ui_element">Analyzer</span>.</p>
+        </div>
+        <p class="fieldlabel"><a name="Scheduli"></a>Scheduling availability</p>
+        <div class="indented">
+            <p>If not enabled, this station will not be taken into account during the scheduling phase of order entry.</p>
+        </div>
+        <h2>Instrument page</h2>
+        <h3>Connections</h3>
+        <p class="fieldlabel">Translator</p>
+        <div class="indented">
+            <p>Refers to the translator that is used to communicate with the instrument.</p>
+        </div>
+        <p class="fieldlabel">LAS&#160;station</p>
+        <div class="indented">
+            <p>Allows linking a client station to a station of type <span class="ui_element">LAS</span>.</p>
+        </div>
+        <p class="fieldlabel">Concentrator</p>
+        <div class="indented">
+            <p>Allows linking a client station to a station of type <span class="ui_element">Concentrator</span>.</p>
+        </div>
+        <p class="fieldlabel">Alternate translator</p>
+        <div class="indented">
+            <p>Not yet supported</p>
+        </div>
+        <p class="fieldlabel">QC check translator</p>
+        <div class="indented">
+            <p>Not yet supported</p>
+        </div>
+        <h3>Instrument specifications</h3>
+        <p class="fieldlabel">Remote id </p>
+        <div class="indented">
+            <p>The remote id can, among other, be used:</p>
+            <ul>
+                <li value="1">to determine which station has executed a test in a concentrator environment</li>
+                <li value="2">a LAS station could query GLIMS for the tests to be executed by a specific analyzer</li>
+                <li value="3">by the <a href="../../routine/orders/order_entry/order_entry_tab_specimens.htm">Specimen scope</a> functionality </li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Serial no</p>
+        <div class="indented">
+            <p>Serial number of the instrument.</p>
+        </div>
+        <p class="fieldlabel">Entering device</p>
+        <div class="indented">
+            <p>Check the chapter <a href="../../routine/orders/order_entry/order_entry_entering_device.htm">Order entry - Entering device</a> for more information.</p>
+        </div>
+        <p class="fieldlabel">Color</p>
+        <div class="indented">
+            <p>Allows either typing in a color in the &lt;backgroundcolor&gt;,&lt;foregroundcolor&gt; syntax, or selecting a color from a color map via ctrl-f or mouse double click.&#160;&#160;Is currently used by the <a href="../../routine/specimens/specimens_scan.htm">specimen scan program</a> (<span class="ui_element">Show stations</span> option).</p>
+        </div>
+        <p class="fieldlabel">Run capacity </p>
+        <div class="indented">
+            <p>The maximum number of samples per run.&#160;&#160;Indicates the number of samples that fit into the instrument's tray.&#160;&#160;Among other, this is used in work list generation: the work list for a station will not contain more entries than the run capacity.</p>
+        </div>
+        <p class="fieldlabel">Data size</p>
+        <div class="indented">
+            <p>Allows the internal service to download name fields (like patient first and last name, patient address, municipality) translated or non translated.&#160;&#160;This functionality has mainly been added for analyzers that do not support special characters.</p>
+            <p>When set to <span class="ui_element">7 bits</span>, the name fields will be downloaded and converted to values with characters in the range a-z, A-Z and 0-9. Characters that are left unchanged are space and the '-' character.&#160;&#160;Characters that have not a meaningful translation (such as ©, ¶, ...) are eliminated.</p>
+            <p>When set to <span class="ui_element">8 bits</span>, name fields are downloaded as they are stored in GLIMS.</p>
+        </div>
+        <h3>Data mapping</h3>
+        <p class="fieldlabel">Coding system</p>
+        <div class="indented">
+            <p>Determines the search flow to find micro-organism and antibiotic codes received from a station (result messages) and the flow for download of isolated micro-organisms codes to a station</p>
+            <p>From station to GLIMS:</p>
+            <div class="indented">
+                <p>Micro-organisms:&#160;&#160;If a coding system is defined, the micro-organism is looked up in the micro-organism code set with a matching code. If no coding system is defined on the station, it is looked up in the Micro-organism table with a matching mnemonic.</p>
+                <p>Antibiotics:&#160;&#160;If a coding system is defined, the antibiotic is looked up in the antibiotic code set with a matching code. If no coding system is defined on the station, it is looked up in the Antibiotic table with a matching mnemonic.</p>
+            </div>
+            <p>From GLIMS to station</p>
+            <div class="indented">
+                <p>Micro-organisms: if a coding system is defined, search for an instance in the micro-organism code set for the given micro-organism and transmit the code value to the station. If no coding system is defined on the station, the micro-organism's mnemonic is sent.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Urgency levels</p>
+        <blockquote>
+            <p>Specifies the mapping of urgency levels with those on the instrument. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>: </p>
+                <p>Example: R,S1,S2,S3,U</p>
+                <p>Urgency level 1 will be transmitted to the translator as 'R', urgency level 2 will be transmitted as 'S1', etc.</p>
+            </div>
+            <p>If the urgency level is not within the list or if no list is specified, the urgency code will be transmitted to the translator as 'R' for level 1 and 'S' for any level above 1.</p>
+        </blockquote>
+        <p class="fieldlabel">Specimen size unit</p>
+        <div class="indented">
+            <p>Not yet supported.</p>
+        </div>
+        <h3>Event handling</h3>
+        <p class="fieldlabel">LAS (dis)connect severity limit</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../communication/las/las_glp_messages_analyzer_test_availability.htm">Connection with GLP-Systems - Analyzer and test availability messages</a>.</p>
+        </div>
+        <p class="fieldlabel">Event evaluation</p>
+        <div class="indented">
+            <p>Not yet supported</p>
+        </div>
+        <h2>Identification page</h2>
+        <h3><a name="Sample"></a>Sample</h3>
+        <p class="fieldlabel">Bar code offset /Bar code length</p>
+        <div class="indented">
+            <p>These fields are combined to determine which part of the barcode received from the analyzer is actually the specimen identification.&#160;&#160;This is used in one specimen queries, specimen range queries and result upload (not for ALL-queries).</p>
+            <p>The bar code received from the analyzer may contain leading zeros, not belonging to the specimen identification. The <span class="ui_element">Bar code offset</span> field indicates the offset at which the actual specimen id starts (no offset = 0).</p>
+            <p>The <span class="ui_element">Bar code length</span> field indicates the actual length of the specimen identification. If unknown, the entire bar code is assumed.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>: </p>
+                <p>Assume that the barcode received from the analyzer is "1234567" and we only want to extract "3456" as specimen identification, the bar code offset would be "3" and the bar code length would be "4".</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Identification type / Use external id / Use internal id / Search via order / Material / Create specimen if necessary / Create order if necessary: </p>
+        <div class="indented">
+            <p>All these fields are used to lookup a specimen in GLIMS when a barcode is received from the instrument.&#160;&#160;For a full description of this topic, please check the chapter <a href="../../routine/specimens/specimens_search_via_barcode.htm">Specimen and order search via barcode</a>.</p>
+        </div>
+        <p class="fieldlabel">Synchronize backward / forward</p>
+        <div class="indented">
+            <p>In GLIMS, it possible to indicate in e.g. the specimen receipt program that the object time of an order and its entire contents (results, specimens, ...) should be synchronized with the current time.</p>
+            <p>To allow this mechanism to be used automatically when a specimen is confirmed via e.g. a LAS, you can use the following fields:</p>
+            <ul>
+                <li value="1"><span class="ui_element">Station.SynchronizeBackward</span> and <span class="ui_element">Station.SynchronizedForward</span> indicate that if a specimen is confirmed via scanning for this station, synchronization is to take place.</li>
+                <li value="2">The field <span class="ui_element">Order.Synchronized</span> indicates if an order has already been synchronized or not.</li>
+                <li value="3">An order can only be synchronized once.</li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>The synchronization options of the specimen scan and specimen receipt programs will have preference over the settings of the selected station in these programs. Please consult the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_scheduling.htm">Mark as synchronized</a> option in the Order entry documentation to disable unwanted backward / forward synchronization and to check the <span class="ui_element">Synchronized</span> flag of the order.</p>
+            </div>
+        </div>
+        <h3>Object</h3>
+        <p class="fieldlabel">Patient identification</p>
+        <div class="indented">
+            <p>Determines how the patient should be identified in analyzer communication.</p>
+            <p class="fieldlabel"><b>Person identification code</b>
+            </p>
+            <div class="indented">
+                <p>PIN provider determined as follows: <span class="ui_element">Station -&gt; Translator -&gt; Service -&gt; Batch user -&gt; User preferences -&gt; Default identification source</span>.</p>
+            </div>
+            <p class="fieldlabel"><b>National number</b>
+            </p>
+            <div class="indented">
+                <p>The national number is sent in the work order message's patient id field (MIPS ASTM P.3.1.1). It also instructs GLIMS to search by national number when a station queries for a patient by id. &#160;GLIMS will also send the national number in the work order message as the patient's universal number (MIPS ASTM P.5.1.1).</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Download QC as patient</p>
+        <div class="indented">
+            <p>Download QC as patient samples to station, meaning that samples in the download message to the station will always be sent as if it were a patient sample.</p>
+        </div>
+        <h3><a name="Specimen"></a>Specimen variables</h3>
+        <p class="fieldlabel">Specimen variables</p>
+        <div class="indented">
+            <p>This option determines which specimen variables should be downloaded to the analyzer.</p>
+            <p class="fieldlabel">Only source body site</p>
+            <div class="indented">
+                <p>Only the specimen variable known as the specimen source body site (E.g.: left arm, left hand, right lung) is downloaded. The source body site variable is identified by the material variable for which the name equals the one specified in the <span class="ui_element">Source body site</span> field (see below).&#160;&#160;In case this field is not specified GLIMS will assume that the body site variable is the one with the lowest sequence number.</p>
+            </div>
+            <p class="fieldlabel">All</p>
+            <div class="indented">
+                <p>All specimen variables are downloaded.&#160;&#160;If the specimen source body site is identified in the <span class="ui_element">Source body site</span> field (see below),&#160;GLIMS will download this specimen variable as source body site.&#160;&#160;All other specimen variables are downloaded as non specimen source body site variables.&#160;&#160;If no specimen source is identified as being the source body site,&#160;&#160;GLIMS assumes there is no source body site and will download all specimen variables as non specimen source body site variables.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Source body site&#160;&#160;</p>
+        <div class="indented">
+            <div class="indented">
+                <p>This field is used to indicate which specimen variable should be considered as the source body site.&#160;&#160;This field is used in combination with the <span class="ui_element">Specimen variables</span> field (see above).</p>
+            </div>
+        </div>
+        <h3>Order</h3>
+        <p class="fieldlabel">Alternate order data function</p>
+        <div class="indented">
+            <p>Allows specifying an order-based MISPL function returning a string value.&#160;&#160;When specified, GLIMS will download tagged values from this string value to the station.&#160;&#160;If no tags are present, GLIMS will download the default values.&#160;&#160;The table below shows the supported tags and the corresponding MIPS ASTM fields:</p>
+            <table style="width: 75%;mc-table-style: url('../../Resources/TableStyles/Standard.css');" class="TableStyle-Standard" cellspacing="0">
+                <col class="TableStyle-Standard-Column-Column1" />
+                <col class="TableStyle-Standard-Column-Column1" />
+                <col class="TableStyle-Standard-Column-Column1" />
+                <thead>
+                    <tr class="TableStyle-Standard-Head-Header1">
+                        <th class="TableStyle-Standard-HeadE-Column1-Header1">Tag</th>
+                        <th class="TableStyle-Standard-HeadE-Column1-Header1">Field</th>
+                        <th class="TableStyle-Standard-HeadD-Column1-Header1">Default when no tag is available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="TableStyle-Standard-Body-Body1">
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">WARD1
+</td>
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">P.26</td>
+                        <td class="TableStyle-Standard-BodyD-Column1-Body1">Order current encounter -&gt; current Stay -&gt; Ward</td>
+                    </tr>
+                    <tr class="TableStyle-Standard-Body-Body1">
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">WARD2</td>
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">O.28.1</td>
+                        <td class="TableStyle-Standard-BodyD-Column1-Body1">
+                            <p>If requested in download query:
+</p>
+                            <p>
+Order.Agent-&gt;Correspondent.InternalId  (if ward) or
+</p>
+                            <p>Order.Issuer-&gt;Correspondent.InternalId (if ward)
+</p>
+                        </td>
+                    </tr>
+                    <tr class="TableStyle-Standard-Body-Body1">
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">WARD3</td>
+                        <td class="TableStyle-Standard-BodyE-Column1-Body1">O.28.2</td>
+                        <td class="TableStyle-Standard-BodyD-Column1-Body1">
+                            <p>If requested in download query:
+
+</p>
+                            <p>Order.Encounter -&gt; current Stay -&gt; Ward
+</p>
+                        </td>
+                    </tr>
+                    <tr class="TableStyle-Standard-Body-Body1">
+                        <td class="TableStyle-Standard-BodyB-Column1-Body1">ISSUER
+</td>
+                        <td class="TableStyle-Standard-BodyB-Column1-Body1">O.17</td>
+                        <td class="TableStyle-Standard-BodyA-Column1-Body1">Order.Issuer-&gt;Correspondent.InternalId
+</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span> </p><pre xml:space="preserve" style="text-align: left;">STRING List;
+STRING IssuerId;
+STRING WardId;
+IssuerId := .Issuer.Identification("ISRPROV");
+WardId := "DEP100"; /* Default ward */
+List := PutTag("Issuer", IssuerId, List, "\");
+List := PutTag("Ward1", WardId, List, "\");
+RETURN List;</pre>
+            </div>
+        </div>
+        <h3>POC</h3>
+        <p class="fieldlabel">Unknown specimen trigger </p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../communication/analyzers/analyzers_poc.htm">POC connections</a>.</p>
+        </div>
+        <h2>Work order page</h2>
+        <h3>General</h3>
+        <h4>Test selection</h4>
+        <p class="fieldlabel">Check downloaded actions</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../communication/analyzers/analyzers_download_status.htm">Analyzer download status</a>.</p>
+        </div>
+        <p class="fieldlabel">Mark actions by download group</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../communication/analyzers/analyzers_download_status.htm">Analyzer download status</a>.</p>
+        </div>
+        <p class="fieldlabel">Send complete selection </p>
+        <div class="indented">
+            <p>If set, the complete test selection will always be sent to the station. When a request is added to an already downloaded specimen, all result outputs (the ones already sent and new ones) are selected for download.</p>
+        </div>
+        <p class="fieldlabel">Maximal result download status</p>
+        <div class="indented">
+            <p>Sets the maximal result status for which results can be selected for download to the station.</p>
+        </div>
+        <p class="fieldlabel"><a name="Minimal"></a>Minimal action status</p>
+        <div class="indented">
+            <p>This option determines the minimal status that actions should have before they will be downloaded in batch (ALL-query).</p>
+            <ul>
+                <li value="1">When set to <span class="ui_element">Inputting</span>, specimens should not be confirmed in order to be downloaded.</li>
+                <li value="2">When set to <span class="ui_element">Pending</span>, specimens should first be confirmed.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Minimal specimen status</p>
+        <div class="indented">
+            <p>This option allows to only select the actions of specimens in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Expected</span> (and <span class="ui_element">Available</span>)  during a batch download (i.e. ALL-query).</p>
+        </div>
+        <div class="indented">
+            <p>This way it can be guaranteed that all the actions a station receives from GLIMS upon reply of an ALL-query are in fact to be actually executed in the near future, when the samples are confirmed available. The default value for this field is <span class="ui_element">Initial</span>, which means that all specimens are taken into account. This option is only editable when the <span class="ui_element">Minimal action status</span> is <span class="ui_element">Inputting</span>.</p>
+        </div>
+        <p class="fieldlabel">Download finished tests</p>
+        <div class="indented">
+            <p>GLIMS is able to download confirmed/validated and/or discontinued tests in a download message. The finished/discontinued tests are downloaded together with new requested tests.&#160;&#160;This functionality is activated if following conditions are met:</p>
+            <ul>
+                <li value="1">To download confirmed/validated tests: the station receives a test selection query with an indication 'FinishedTests' (MIPS ASTM field Q.15.x)</li>
+                <li value="2">To download discontinued tests: the station receives a test selection query with an indication 'CancelledTests' (MIPS ASTM field Q.15.x)</li>
+                <li value="3">The station for which finished tests should be downloaded, should have the field <span class="ui_element">Download finished tests</span> enabled.&#160;&#160;Note that the field has only effect on the requests scheduled for that station.</li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span> </p>
+                <p>When receiving the first ALL query from an analyzer (e.g. after a service restart or a station configuration reload), GLIMS will only search for tests finished / discontinued since the last query for finished / discontinued tests, with a maximum of 24 hours in the past (for performance reasons). GLIMS will keep track of the time when the last query occurred in the hidden <span class="ui_element">Station</span> fields <span class="ui_element">TimeLastAllQryFinTst</span> and <span class="ui_element">TimeLastAllQryCncTst</span>. For each new ALL query, GLIMS will only look back until the previous query to download finished / discontinued tests.</p>
+                <div class="indented">
+                    <p>The following Station-based MISPL expression returns the value of the hidden fields:</p>
+                    <p>RETURN "Last cancelled test query: " + IfKnownString(DateTimeToString(.TimeLastAllQryCncTst,"%d/%m/%Y - %H:%M:%S") )+ "~nLast finished test query: " + IfKnownString(DateTimeToString(.TimeLastAllQryFinTst,"%d/%m/%Y - %H:%M:%S"));</p>
+                </div>
+                <p>When a finished result is downloaded to the analyzer, it is registered in the <a href="../../communication/analyzers/analyzers_download_status.htm">download status</a> of the result output.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Send modification method</p>
+        <div class="indented">
+            <p>If set, GLIMS will download the result repeat or dilute information to the station.</p>
+        </div>
+        <p class="fieldlabel">Past / future object time</p>
+        <div class="indented">
+            <p>These fields have been introduced in order to optimize the performance in work order download in relation to Action.ObjectTime.</p>
+            <ul>
+                <li value="1">Past object time: when specified, GLIMS will not process actions for which the action's object time is older than the past object time limit. The limit is expressed in days.</li>
+                <li value="2">Future object time: when specified, GLIMS will not process actions for which the action's object time is more recent than the future object time limit. The limit is expressed in days.</li>
+            </ul>
+            <p>The optimization mainly has effect for labs which are planning orders in the future which should not be downloaded to an instrument today.&#160;&#160;</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>: </p>
+                <p>Suppose actions scheduled from 48 hours ago until now are to be selected, the fields should be set to "2" for past object time and "0" for future object time.</p>
+            </div>
+        </div>
+        <h4>Patient data</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml">These options allow the user to customize the content of the ASTM work order reply message with regard to the included patient data.</p>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Person last name</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">None (if the analyzer does not need this information)</li>
+            <li value="2">Display last name</li>
+            <li value="3">Last name (default value)</li>
+            <li value="4">Legal name</li>
+            <li value="5">Spouse last name</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This field sets the value of the ASTM field P.6.1.1 (Patient last name). If <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">None</span> is chosen, then P.6.1.1 (Last name), P.6.1.2 (First name), P.6.1.3 (Middle name) and P.6.1.5 (Title) will be empty.</p>
+        </div>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Person alternative name</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">None (if the analyzer does not need this information)</li>
+            <li value="2">Display last name</li>
+            <li value="3">Last name </li>
+            <li value="4">Legal name</li>
+            <li value="5">Spouse last name (default value for backward compatibility)</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This field sets the value of the ASTM field P.7.1.1 (Patient alternative name).</p>
+        </div>
+        <h3>Work list</h3>
+        <p>Allows queries for specific samples or a range of samples on a work list selection.&#160;&#160;For more information, please check the chapter <a href="../../routine/work_lists/work_lists_selection_download.htm">Work list selection download</a>.</p>
+        <h3>Work list report</h3>
+        <p>This mechanism is currently only used for the connection with the "BactAlert" analyzer.&#160;&#160;For more information, please check the "BactAlert" driver documentation.</p>
+        <h2>Result page</h2>
+        <h3>Result comments</h3>
+        <p>The following options allow to control the upload of comments received from analyzers.&#160;&#160;To understand these options, one should know that analyzers can send comments in coded form (keywords), in textual format (one or more full sentences) or in both forms at the same time.</p>
+        <p class="fieldlabel">Comment storage</p>
+        <div class="indented">
+            <p>Determines which types of result comments (coded, textual) received from the station are to be stored.</p>
+            <p class="fieldlabel">Code or text</p>
+            <div class="indented">
+                <p>Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only coded comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Text or code </p>
+            <div class="indented">
+                <p>Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only textual comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Coded only</p>
+            <div class="indented">
+                <p>Only coded comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Text only</p>
+            <div class="indented">
+                <p>Only textual comment is stored.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Comment as text reference</p>
+        <div class="indented">
+            <p>If enabled, result comment codes received from the station are stored as text reference. This means that the code is prefixed with "{&lt;" and suffixed with "}". Note that these text references are not automatically expanded.</p>
+        </div>
+        <p class="fieldlabel">Multiple comment lines</p>
+        <div class="indented">
+            <p>If set, comments are separated with a new line character. If not set, comments are concatenated with 1 blank character</p>
+        </div>
+        <p class="fieldlabel">Store comments as</p>
+        <div class="indented">
+            <p>Determines how GLIMS should store result comments sent by the analyzer: as internal or as external result comment. &#160;Note that the "intern"/"extern" tags specified in the result message have priority.</p>
+        </div>
+        <h3><a name="Runs"></a>Runs</h3>
+        <p class="fieldlabel">Run creation / Run evaluation</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../modules/qc/internal/routine/qc_station_runs.htm">Station runs</a>.</p>
+        </div>
+        <h3>Synchronization</h3>
+        <p>Please check the chapter <a href="../../communication/analyzers/analyzers_stations_result_synchronization.htm">Station result synchronization</a>.</p>
+        <h3><a name="QC"></a>QC</h3>
+        <p>Certain instruments can send additional QC population-related data to GLIMS. GLIMS can update the QC population based on the target and  deviation values received from the instrument. The options on this tab page allow to configure how these incoming values should be interpreted. They can be applied to influence the precision and/or the accuracy of a QC population.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">For precision, it is possible to save the:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">Target mean</li>
+            <li value="2">Target deviation</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">For accuracy, it is possible to:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">Save the target value</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">Calculate the accuracy high and low limit</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">Note</span>
+                    </p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">When using the incoming deviation value for calculating the accuracy limits (high/low) of the QC population, the following formulas are used:</p>
+                    <ol xmlns="http://www.w3.org/1999/xhtml">
+                        <li value="1">Accuracy low limit = TargetValue - &lt;QC Deviation Count&gt; x DeviationValue</li>
+                        <li value="2">Accuracy high limit = TargetValue + &lt;QC Deviation Count&gt; x DeviationValue</li>
+                    </ol>
+                    <p xmlns="http://www.w3.org/1999/xhtml">&lt;QC Deviation Count&gt; = <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">QC norm deviation count</span> of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Assessment method</span> OR <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">QC norm deviation count</span> in the <span class="ui_element">GLIMS QC</span> settings OR default value (= 3).</p>
+                </div>
+            </li>
+        </ol>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">Note</span>
+            </p>
+            <p>When setting the accuracy, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Origin info</span> field of the QC population is updated to "instrument:YYYY-MM-DD hh:mm:ss" to indicate that the instrument is responsible for an updated target value. However, this only happens when there is a change (i.e. the QC population will not be updated again if a result message contains the exact same values as before).</p>
+        </div>
+        <p xmlns="http://www.w3.org/1999/xhtml">The (QC) result value which accompanies the target and  deviation values sent by the instrument can be converted:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">Via a conversion MISPL on the assessment method.</li>
+            <li value="2">Via a unit conversion as the assessment method can have a different unit than the unit of the property.</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #ff0000;" xmlns="http://www.w3.org/1999/xhtml">However, the target and deviation values are not converted.  They should be sent in the unit of the property in GLIMS.</span>
+        </p>
+        <h3>Other</h3>
+        <p class="fieldlabel">Verify uploaded material</p>
+        <div class="indented">
+            <p><b>When the field is disabled</b>, the value in O.16.1.1 will not be used to lookup a matching material in GLIMS. Only the specimen id will be used to identify the matching specimen. This implies that result messages will not be rejected if the specimen could not be found due to a non-matching material.</p>
+            <p><b>When the field is enabled</b>, the value of O.16.1.1 is used for the specimen identification in GLIMS. The material of the specimen in GLIMS must match the material in the result message. If the station of the result message sending translator has a coding system with a code set on <span class="ui_element">Material</span>, then GLIMS will search for a code that matches the field value in O.16.1.1. If no coding system or no code set is defined on <span class="ui_element">Material</span>, GLIMS will search for a material with a mnemonic matching the field value in O.16.1.1. If the material could not be identified, then GLIMS will log a warning message (service log file).</p>
+        </div>
+        <p class="fieldlabel">Store operator id, Store verifier id</p>
+        <div class="indented">
+            <p>Allows to indicate whether the operator/verifier sent in a result message should be stored in GLIMS as <a href="../../communication/analyzers/analyzers_station_users.htm">station user</a>.</p>
+            <p>The operator id will also appear in the result audit trail: e.g. 11/09/03 10:51:54 Downloaded by the-operator-id [10.20].</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When a result is uploaded by an analyzer, and the operator / verifier is specified in the message, this info can be consulted in the result detail screen.</p>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../communication/analyzers/external_users_result_detail.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="632" data-mc-height="606" src="../../communication/analyzers/external_users_result_detail_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <p class="fieldlabel">Operator, Verifier</p>
+                <div class="indented">
+                    <p>Both fields refer to a <span class="ui_element">Station user</span>.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Upload per specimen&#160;</p>
+        <div class="indented">
+            <p>Indicates if the station (or the translator) sends all the results of the same specimen in one action.&#160;&#160;If not set, then the QC result upload will create an action with a result output for each possible QC population for this QC material, in order to make sure that the next QC result of the same control material is stored in the same action (otherwise an action would be created for each separate result of the same control material, leading to problems in the confirmation browser).</p>
+        </div>
+        <p class="fieldlabel">Result update status limit</p>
+        <div class="indented">
+            <p>Allows to limit the status in which results can be updated by an instrument.  This field offers the following options:</p>
+            <p class="fieldlabel">Available (default value)</p>
+            <div class="indented">
+                <p>If the result in GLIMS is confirmed or validated, the update is rejected.  Available results may be updated.</p>
+            </div>
+            <p class="fieldlabel">Confirmed</p>
+            <div class="indented">
+                <p>If the result in GLIMS  is validated, the update is rejected. Available and confirmed results may be updated.</p>
+            </div>
+            <p class="fieldlabel">Validated</p>
+            <div class="indented">
+                <p>The update is always allowed, even for validated results.</p>
+            </div>
+        </div>
+        <h2>Maintenance page</h2>
+        <p class="fieldlabel">Maintenance period / Last maintenance / Calibration period / Last calibration / QC manager</p>
+        <div class="indented">
+            <p>These fields can be used to store maintenance data.</p>
+        </div>
+        <h2>Microbiology page</h2>
+        <p>For a full description of communication with a microbiology analyzer, please check the chapter <a href="../../modules/microbiology/configuration/microbiology_analyzers.htm">Microbiology analyzer configuration</a>.</p>
+        <p class="fieldlabel">Isolation sequence type</p>
+        <div class="indented">
+            <p>Please check the chapter <a href="../../modules/microbiology/configuration/microbiology_analyzers_isolation_sequences.htm">Microbiology analyzers - Isolation sequences</a>.</p>
+        </div>
+        <h3>Results</h3>
+        <p class="fieldlabel">Antibiotic panel mode</p>
+        <div class="indented">
+            <p>GLIMS allows automatic antibiogram creation.&#160;&#160;Possible values:</p>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">None</p>
+            <div class="indented">
+                <p>No panel creation, allow any result. All antibiotic results transmitted by the instrument are stored.</p>
+            </div>
+            <p class="fieldlabel">Reject non members</p>
+            <div class="indented">
+                <p>An antibiogram will be generated automatically at the moment the first result arrives. The results of non antibiotic panel members that are transmitted by the instrument will be rejected.</p>
+            </div>
+            <p class="fieldlabel">Non members not reportable</p>
+            <div class="indented">
+                <p> An antibiogram will be generated automatically at the moment the first result arrives. The results of non antibiotic panel members that are transmitted by the instrument will be set to not reportable.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>When the 2nd or the 3rd option is active, beware that results will also be rejected or will also be set to not reportable when no antibiotic panel is generated for the isolation concerned.&#160;&#160;</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Auto-confirm isolations</p>
+        <div class="indented">
+            <p>If set, isolations uploaded from the instrument will be automatically confirmed</p>
+        </div>
+        <p class="fieldlabel">Auto confirm isolation tests</p>
+        <div class="indented">
+            <p>If enabled, isolation tests uploaded by an instrument will be confirmed automatically.</p>
+        </div>
+        <p class="fieldlabel">Delete antibiotic results</p>
+        <div class="indented">
+            <p>If enabled, and at least one valid antibiotic result is received for an isolation, GLIMS will delete the existing antibiotic results. </p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <ol>
+                    <li value="1">A microbiology analyzer sends a full antibiogram to GLIMS.</li>
+                    <li value="2">Upon a second reading, a number of individual antibiotic results are suppressed on the analyzer or middleware solution.</li>
+                    <li value="3">When the analyzer sends an update to GLIMS, these suppressed antibiotic results are not automatically deleted in GLIMS. </li>
+                    <li value="4">If, in this case, the antibiotic results should be deleted in GLIMS, enable this option.</li>
+                </ol>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">This action is logged in the service log file. </li>
+                    <li value="2">GLIMS tracks the deletion of antibiotic results. This can be consulted in the audit trail of the isolation and microbiology action.</li>
+                    <li value="3">The Station option <span class="ui_element">Isolation update status limit</span> remains valid. If this limit is reached, GLIMS will not accept any updates and therefore not delete existing antibiotic results either.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Auto-confirm antibiotic results</p>
+        <div class="indented">
+            <p>If set, antibiotic results uploaded from the instrument will be automatically confirmed.</p>
+        </div>
+        <p class="fieldlabel"><a name="Check"></a>Check antibiotic result status </p>
+        <div class="indented">
+            <p>Avoids that confirmed antibiotic results are overwritten by new results.</p>
+            <p class="fieldlabel">If the option is enabled</p>
+            <div class="indented">
+                <p>antibiotic results that are already confirmed will not be overwritten by new results received from the station.</p>
+            </div>
+            <p class="fieldlabel">If the option is disabled</p>
+            <div class="indented">
+                <p>confirmed antibiotic results may be overwritten.</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Isolatio"></a>Isolation update status limit</p>
+        <div class="indented">
+            <p>Allows limiting the status in which isolations can be updated by an instrument.&#160;This field offers the following options:</p>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">Available (default value)</p>
+            <div class="indented">
+                <p>If the isolation in GLIMS is confirmed or validated, the update is rejected.&#160;Available isolations may be updated.</p>
+            </div>
+            <p class="fieldlabel">Confirmed</p>
+            <div class="indented">
+                <p>If the isolation&#160;in GLIMS &#160;is validated, the update is rejected. Available and confirmed isolations may be updated.</p>
+            </div>
+            <p class="fieldlabel">Validated</p>
+            <div class="indented">
+                <p>The update is always allowed, even for validated isolations.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>Updates for discontinued isolations are always rejected.</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Isolatio2"></a>Isolation test update status limit</p>
+        <div class="indented">
+            <p>Allows limiting the status in which isolation tests can be updated by an instrument. This field offers the following options:</p>
+        </div>
+        <div class="indented">
+            <p class="fieldlabel">Available (default value)</p>
+            <div class="indented">
+                <p>If the isolation test in GLIMS is confirmed or validated, the update is rejected. Available isolation tests can be updated.</p>
+            </div>
+            <p class="fieldlabel">Confirmed</p>
+            <div class="indented">
+                <p>If the isolation test in GLIMS is validated, the update is rejected. Available and confirmed isolation tests can be updated.</p>
+            </div>
+            <p class="fieldlabel">Validated</p>
+            <div class="indented">
+                <p>The update is always allowed, even for validated isolation tests.</p>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>Updates for discontinued isolation tests are always rejected.</p>
+            </div>
+        </div>
+        <h3>Isolation comments</h3>
+        <p>These fields are similar to the result comment options.</p>
+        <p class="fieldlabel">Isolation comment storage</p>
+        <div class="indented">
+            <p>Determines which types of isolation comments (coded, textual) received from the station are to be stored.</p>
+            <p class="fieldlabel">Code or text </p>
+            <div class="indented">
+                <p>Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only coded comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Text or code</p>
+            <div class="indented">
+                <p>Coded comment or textual comment is stored, dependent of which of the two types are received. If both are received then only textual comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Coded only</p>
+            <div class="indented">
+                <p>Only coded comment is stored.</p>
+            </div>
+            <p class="fieldlabel">Text only</p>
+            <div class="indented">
+                <p>Only textual comment is stored.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Isolation comment as text ref.</p>
+        <div class="indented">
+            <p>If enabled, isolation comment codes received from the station are stored as text reference. This means that the code is prefixed with "{&lt;" and suffixed with "}". Note that these text references are not automatically expanded.</p>
+        </div>
+        <p class="fieldlabel">Isolation multiple comment lines</p>
+        <div class="indented">
+            <p>If set, comments are separated with a new line character. If not set, comments are concatenated with 1 blank character.</p>
+        </div>
+        <p class="fieldlabel">Overwrite comment</p>
+        <div class="indented">
+            <p>Indicates if an internal or external isolation comment should be overwritten by a newly uploaded comment from the analyzer.</p>
+        </div>
+        <p class="fieldlabel">Clear isolation comment</p>
+        <div class="indented">
+            <p> If enabled, previous isolation comments will be cleared if an update message is received which does not contain any isolation comments.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This option can only be set if the existing option <span class="ui_element">Overwrite comment</span> is enabled.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Store comments as </p>
+        <div class="indented">
+            <p>Determines how GLIMS should store isolation comments sent by the analyzer: as internal or as external isolation comment. &#160;</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>: </p>
+                <p>The "intern"/"extern" tags specified in microbiology result message have priority.</p>
+            </div>
+        </div>
+        <h2>Transfusion page</h2>
+        <p class="fieldlabel">Blood bag id</p>
+        <div class="indented">
+            <p>Possible values:</p>
+            <p class="fieldlabel">Internal </p>
+            <div class="indented">
+                <p>Always download the blood bag internal id.</p>
+            </div>
+            <p class="fieldlabel">Barcode or external </p>
+            <div class="indented">
+                <p>Download the blood bag external id as barcode, and if the latter is empty, the blood bag external id (this is backward compatible with the field BloodbagIdExternal).</p>
+            </div>
+            <p class="fieldlabel">External</p>
+            <div class="indented">
+                <p>Always download the blood bag external id.</p>
+            </div>
+            <p class="fieldlabel">Barcode </p>
+            <div class="indented">
+                <p>Always download the blood bag external id as barcode.</p>
+            </div>
+            <p class="fieldlabel">None</p>
+            <div class="indented">
+                <p>This option can be used for performance reasons.&#160;&#160;It prevents GLIMS from searching blood bag crossmatch tests on stations which never perform such tests.</p>
+            </div>
+        </div>
+    </body>
+</html>

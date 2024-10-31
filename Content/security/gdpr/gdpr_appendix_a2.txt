@@ -1,0 +1,61 @@
+{:
+STRING sRetVal;
+STRING ABODeterminationStatus, Separator;
+
+/* Replace the list below by your site-specific values */
+ABODeterminationStatus := "A\B\C\D\E\F\G\H";
+
+Separator := "\";
+sRetVal := """" +
+    IfKnownString(EnumeratedToString("Bloodgroup", .BloodGroup)) + """,""" +
+    IfKnownString(EnumeratedToString("BloodRhesus", .Rhesus)) + """,""" +
+    IfKnownString(DateToString(.DeterminationDate1, "%d/%m/%Y")) + """,""" +
+    IfKnownString(DateToString(.DeterminationDate2, "%d/%m/%Y")) + """,""" +
+    IfKnownString(Entry(.DeterminationStatus , ABODeterminationStatus, Separator)) +
+    """,""";
+
+IF .PositiveScreening <> ?
+THEN
+    IF .PositiveScreening
+    THEN 
+        sRetVal := sRetVal + "True";
+    ELSE
+        sRetVal := sRetVal + "False";
+    ENDIF;
+ELSE
+    sRetVal := sRetVal + "?";
+ENDIF;
+sRetVal := sRetVal + """,""";
+
+sRetVal := sRetVal +
+    IfKnownString(DateTimeToString(.PositiveScreeningTime, "%d/%m/%Y %H:%M")) +
+    """,""";
+
+IF .LastScreeningPositive <> ?
+THEN
+    IF .LastScreeningPositive
+    THEN 
+        sRetVal := sRetVal + "True";
+    ELSE
+        sRetVal := sRetVal + "False";
+    ENDIF;
+ELSE
+    sRetVal := sRetVal + "?";
+ENDIF;
+sRetVal := sRetVal + """,""";
+
+sRetVal := sRetVal +
+    IfKnownString(DateTimeToString(.LastScreeningTime, "%d/%m/%Y %H:%M")) + """,""" +
+    IfKnownString(.TransfusionAdvice) + """,""" +
+    IfKnownString(.TransfusionReaction) + """,""" +
+    IfKnownString(.HLATypeSero) + """,""" +
+    IfKnownString(.HLATypeDNA) + """,""" +
+    IfKnownString(.HLATypeLocusA) + """,""" +
+    IfKnownString(.HLATypeLocusB) + """,""" +
+    IfKnownString(.HLATypeLocusC) + """,""" +
+    IfKnownString(.HLATypeLocusDR) + """,""" +
+    IfKnownString(.HLATypeLocusDQ) + """,""" +
+    IfKnownString(.CrossMatchAdvice) + """";
+
+RETURN sRetVal;
+}

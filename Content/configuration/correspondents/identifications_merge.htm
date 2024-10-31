@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Double patient/encounter administration" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" /><title>Identification merge</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Identification listing/merge </h1>
+        <h2>Introduction</h2>
+        <p>GLIMS allows producing a listing of duplicate person identification 
+ codes by means of the <span class="ui_element">DoubleIdentifications</span> query on the <span class="ui_element">Identification</span> 
+ table. This feature is very similar to the <span class="ui_element">DoubleEncounters</span> 
+ query on the <span class="ui_element">Encounter</span> table or the <span class="ui_element">DoublePersons</span> query on 
+ the <span class="ui_element">Person</span> table.</p>
+        <p>Note that only identifications assigned to <span class="ui_element">Correspondents</span> of type <span class="ui_element">Person</span> are 
+ taken into account.</p>
+        <h2>Double identification browsers</h2>
+        <p>The double identification query is incorporated in two browsers:</p>
+        <ol>
+            <li class="kadov-p" style="text-align: left;" value="1">A main browser, default path <span class="ui_element">Correspondents 
+ &gt; Identifications &gt; Doubles</span>, that allows verifying all identification 
+ records created within a specified period. For each selected identification, 
+ the database is searched for duplicates. If any are found, the selected 
+ identification along with all its duplicates are shown in the browser.	&#160; </li>
+            <li class="kadov-p" style="text-align: left;" value="2">A <span class="ui_element">Doubles</span> child browser of the identification table 
+ that shows all identifications with the same code as the selected one. 
+ Contrary to the usual child browsers, the original identification record 
+ itself is also included in the browser in order to facilitate merging.</li>
+        </ol>
+        <p>Together with the generic <span class="ui_element">Report</span> function, 
+ the query can be used in a batch command to automatically produce listings 
+ at regular intervals.</p>
+        <h3>Detection of duplicate identifications</h3>
+        <p>An identification is considered as a duplicate if:</p>
+        <ol>
+            <li class="kadov-p" style="text-align: left;" value="1">It shares the same <span class="ui_element">Identification.Code</span>. The <span class="ui_element">Common 
+ provider</span> option determines whether or not this code should be issued 
+ by the same provider.	&#160; </li>
+            <li class="kadov-p" style="text-align: left;" value="2">It is assigned to a different person (record) ! It 
+ might well be that the same code is assigned to the same patient by different 
+ providers, which is not considered as an anomaly.	&#160;</li>
+            <li class="kadov-p" style="text-align: left;" value="3">Its validity period overlaps, i.e. identical codes 
+ are not considered to be duplicates when they have distinct non-overlapping 
+ validity periods.</li>
+        </ol>
+        <h2>Query options</h2>
+        <p style="text-align: left;">
+            <img src="identifications_doubles.png" />
+        </p>
+        <p class="fieldlabel"><b style="font-weight: bold;">Common provider</b>
+        </p>
+        <div class="indented">
+            <p>Allows specifying whether or not the identification codes should be assigned by the same identification provider.</p>
+        </div>
+        <p class="fieldlabel"><b style="font-weight: bold;">Created since</b>
+        </p>
+        <div class="indented">
+            <p>Choose an absolute or relative date. </p>
+            <p>For all identification records 
+ with a creation date within this period, the database will be searched 
+ for duplicates. It is advised to start with a small time period to reduce 
+ the initial result list.&#160; For the <span class="ui_element">Doubles</span> function on the <span class="ui_element">Identification</span> 
+ table, this field is disabled because there is only one record to be checked.</p>
+        </div>
+        <p class="fieldlabel"><b style="font-weight: bold;">Ranking</b>
+        </p>
+        <div class="indented">
+            <p>Allows to specify an Identification-based, integer-valued function 
+ that returns the 'level of reliability' of the identification record (e.g. 
+ records created by user "hl7batch" are more reliable than manually 
+ created records). </p>
+            <p>Identical records will be displayed in ranking order 
+ (descending, i.e. highest ranking first), and the record with the highest 
+ ranking will be passed as the 'good' record to the <span class="ui_element">Identification.Merge</span> 
+ function. When no ranking function is specified, or when two records yield 
+ the same ranking, the most recently created record has preference.</p>
+        </div>
+        <h2>Double identification browser</h2>
+        <p class="fieldlabel"><b style="font-weight: bold;">Merge, Skip</b>
+        </p>
+        <div class="indented">
+            <p>Identical identification records are automatically grouped and pre-selected. 
+ The pre-selection starts at the first block of duplicates and continues 
+ one by one until all blocks are processed. </p>
+            <p>This pre-selection is intended 
+ to work together with the two buttons <span class="ui_element">Merge</span> and <span class="ui_element">Skip</span>. 
+ The <span class="ui_element">Merge</span> button passes the group of selected records to the 
+ <a href="persons_merge.htm">Person.Merge function</a>, 
+ while the <span class="ui_element">Skip</span> button simply selects the next block of identical 
+ identifications without any further processing.</p>
+        </div>
+        <p class="fieldlabel"><b style="font-weight: bold;">Alternating background color</b>
+        </p>
+        <div class="indented">
+            <p>Groups of identical records are displayed with an alternating background 
+ color to allow easy distinction. The color is hard-coded 
+ and hence cannot be changed.</p>
+        </div>
+        <p class="fieldlabel"><b style="font-weight: bold;">Progress indicator</b>
+        </p>
+        <div class="indented">
+            <p>As record selection might take some time, a progress indicator is shown. 
+ Instead of using fixed intervals, it is attempted to update the indicator 
+ every 3 seconds. This may yield varying increments.</p>
+        </div>
+        <h2>Merge patients by common PIN assigned by different PIN providers</h2>
+        <p>For certain sites working with a specific environment, a functionality exists to merge patients based on a common PIN, assigned by different PIN providers.</p>
+        <p>The function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Merge double persons by identification</span> can be accessed from <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System management</span> &gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Database</span>.</p>
+        <h3>Fields</h3>
+        <table style="border-collapse: separate;border-collapse: separate;width: 100%;mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0" xmlns="http://www.w3.org/1999/xhtml">
+            <col style="width: 271px;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <col style="width: 174px;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <col style="width: 575px;" class="TableStyle-Alternating-Column-Column1">
+            </col>
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Field</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Data type</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">PIN provider</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Reference to correspondent</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">After merging, a PIN by this provider will be assigned to the final patient.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Skip persons with PIN by specified provider</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Logical</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">If set, then persons with PIN assigned by specified provider will be skipped.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Identification code from</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">String</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">If set, then only identifications with code higher than the specified code will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Minimal creation date</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Extended date</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">If set, only identifications created from this date will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Maximal creation date</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Extended date</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">If set, only identifications created until this date will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Person creation user</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Reference to sc_User</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">If set, only persons created by this user will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Has open encounters</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Logical</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">If set, only persons with open (yes) or no (no)  encounters will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2" style="height: 22px;">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Has object</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Logical</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">If set, only persons with (yes) or without (no) an object will be selected.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Target identification start date</td>
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Extended date</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Start date for the final PIN, can be left blank for no start date.</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">Test mode</td>
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">Logical</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">If set, then persons to be merged will be logged, but no database changes will be performed.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Procedure</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The program first preselects duplicate identifications (with the same code). For each person, the number of orders is counted. This phase is logged as "collecting candidate persons". After this pre-selection, the program loops through the candidate persons per code, starting with the person in possession of the most orders.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">If a duplicate person (same identification code) is found, further criteria for person identification are checked: <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last name</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">First name</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Birth date</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Sex</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Address line 1</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Municipality name</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Postal code</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Country code</span>.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">Only if all the criteria match, the person records will be merged. Merging is done by the standard <a href="persons_merge.htm" xmlns="http://www.w3.org/1999/xhtml">person merge functionality</a>.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">The final person record will get an identification code assigned by the specified provider with the start date <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Target identification start date</span>. The old code will be maintained, but the end date will be set to the merge execution date.</p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Logging</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The program to merge patients by common PIN logs all actions to the screen (interactive) or to the <a href="../generic/services/Services.htm#Service" xmlns="http://www.w3.org/1999/xhtml">service log</a>.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">It will also create two additional log files in the temporary session folder:</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">prsn_mrg.txt:	contains all patients (externalization) that match the criteria for merging (except the additional criteria set by the standard merge program) and will be merged, while not in test mode.</li>
+            <li value="2">prsn_rej.txt:	contains all patients (externalization) that do not match the criteria for merging and will not be merged. </li>
+        </ul>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The log file prsn_rej.txt also contains persons that cannot be merged due to other reasons.</p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\siteattributes_domains.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Site attributes and site domains</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Site attributes and site 
+ domains</h1>
+        <ul>
+            <li value="1"><a href="#Site%20attributes">Site attributes</a>
+            </li>
+            <li value="2"><a href="#Site%20domains" name="kanchor309">Site domains</a>
+            </li>
+        </ul>
+        <h2><a name="Site attributes"></a>Site attributes</h2>
+        <h3>Creation</h3>
+        <p>Site attributes allow adding 
+ user-defined fields of different data types to a specific table. 
+ Choose <span class="ui_element">Start</span> -&gt; <span class="ui_element">System Management</span> -&gt; <span class="ui_element">Scheme</span> -&gt; <span class="ui_element">Tables</span>. 
+ Select the table for which you want to create a site attribute and choose 
+ the contextual menu function <span class="ui_element">Site attributes</span>:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="site_attributes_browser.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1123" data-mc-height="440" src="site_attributes_browser_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The site attribute editor looks as follows:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="site_attributes_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="516" data-mc-height="536" src="site_attributes_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Name</p>
+        <blockquote>
+            <p>It is not allowed to use characters like comma, semicolon, colon, slash,
+ backslash or a space in the name of a site attribute.</p>
+        </blockquote>
+        <p class="fieldlabel">Sequence</p>
+        <div class="indented">Indicate a digit to sort the site attribute among the other site attributes.
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_examples"><p><span style="color: #003366; font-weight: bold;">Example</span></p><p>If you indicate "10" for site attribute A and "20" for site attribute B, site attribute A will be displayed above (or to the left) of site attribute B.</p></div></div></div></div>
+        <p class="fieldlabel">Data type</p>
+        <div class="indented">
+            <p>A site attribute can have <span class="ui_element">Reference</span> as data type (next to integer, 
+fractional, string, ...). This implies that the instances of such a site 
+attribute will contain a reference to another record in the table indicated by 
+the field <span class="ui_element">Target table</span>. </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>Site attributes of data type <span class="ui_element">Reference</span> can refer to theoretically 
+ any record in any table, depending on the SiteAttribute.TargetTable. The 
+ configuration makes it possible to choose any table for SiteAttribute.TargetTable. This 
+ may lead to a situation where the record cannot be properly externalized in 
+ the Code editor. In such cases, the record will either be externalized via its 
+ internal identifier (e.g. StationFlag.Id) or via a special format (e.g. 
+ &lt;Station Mnemonic&gt;/&lt;Property mnemonic&gt; for assessment methods). </p>
+                <p>Although the externalization may be limited, this allows creating site 
+ attribute values referring to any record of any table via dedicated programs.</p>
+                <p>To navigate to this record via MISPL, the &lt;AttributeName&gt; parameter 
+ of the <a href="../mispl_texts/mispl_table_independent/function_miscellaneous.htm">GetSiteAtttribute</a>(&lt;TableName&gt;, 
+ &lt;RecordId&gt;, &lt;AttributeName&gt;) MISPL function can contain the 
+ path to a field of the referred record, using the "AttributeName.FieldName" 
+ syntax.</p>
+                <p>For instance, if "Boss" is the name of a User-based site attribute 
+ referring to another user, the following call would return the initials 
+ of a user's boss:</p>
+                <div class="indented"><pre>
+RETURN GetSiteAttribute("sc_User", .Id, "Boss.Initials")
+</pre>
+                </div>
+                <p>Note that &lt;FieldName&gt; can contain a valid path to any field to 
+ which the program can navigate WITHOUT USING FUNCTIONS. Example:</p>
+                <div class="indented"><pre>
+RETURN GetSiteAttribute("sc_User", .Id, "Boss.Language.Name") would return the name of the language of the user's boss.
+</pre>
+                </div>
+            </div>
+        </div>
+        <p>For a description of each field, please check the 
+ reference guide.</p>
+        <h3>Visualization</h3>
+        <p>In most cases, your site attribute will be displayed in an additional tab 
+folder in the editor of the corresponding table record:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="site_attributes_routine.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="638" data-mc-height="419" src="site_attributes_routine_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p> </p>
+        <p>When viewing the site attribute values via a browser, the menu command 
+ <a href="../../user_interface/user_interface_ribbons_contextual_tools.htm#View">Audit</a> shows the audit stamp of the attribute value.</p>
+        <h3>Related MISPL functions</h3>
+        <p class="fieldlabel">GetSiteAttribute
+ </p>
+        <div class="indented">This function returns the value of a site attribute.
+        <p>string <b>GetSiteAttribute</b>(string Table, integer RecordId, 
+ string AttributeName)</p><p>Example : PersonReligion := GetSiteAttribute("Person", .Person.Id, 
+ "Religion") ;</p></div>
+        <p class="fieldlabel">SetSiteAttibute
+ </p>
+        <div class="indented">This function sets the value of a site attribute.
+        <p>logical <b>SetSiteAttribute</b>(string Table, integer RecordId, 
+ string AttributeName, string Value)</p><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>This MISPL function cannot be used to update site attributes starting 
+with "_". Site attributes whose names start with "_" are considered as 
+"reserved". They are often used to control and implement a function for 
+which otherwise a major upgrade would be necessary. Their values must not be 
+changed from within MISPL.</p></div></div>
+        <h2><a name="Site domains"></a>Site domains</h2>
+        <p>The <span class="ui_element">Site domains</span> browser can be opened via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Scheme</span>.</p>
+        <p>Site domains allow the creation of
+ values for existing GLIMS fields. Currently site domains can only 
+ be used for <b>enumerated</b> fields in order to overrule the default 
+ <b>value list</b>.</p>
+        <p>Examples:</p>
+        <ul>
+            <li value="1"><a href="../../routine/orders/order_entry/order_entry_urgency_duetime.htm">Urgencies</a>
+            </li>
+            <li value="2"><a href="../../modules/billing/tariffication/configuration/billing_marks.htm">Billing 
+ marks</a>
+            </li>
+            <li value="3">Reminder levels</li>
+            <li value="4"><a href="../../routine/orders/order_entry/order_entry_order_identifier_types.htm">Order identifier types</a>
+            </li>
+        </ul>
+    </body>
+</html>

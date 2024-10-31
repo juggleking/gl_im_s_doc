@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry options" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry options\orderentryoptions_04.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order entry options: Scheduling</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order entry options: Scheduling</h1>
+        <p class="fieldlabel">Automatic sample login</p>
+        <div class="indented">
+            <p>Determines whether the sampling actions, required to satisfy the 
+				requests, are scheduled or assumed complete. If activated, all specimens 
+				are assumed to be available : their status <span class="ui_element">Expected</span> will change to
+			<span class="ui_element">Available</span>.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This only applies to root specimens (i.e. specimens that 
+				are output of a sampling procedure). If this option is 
+				set, root specimens are automatically confirmed (status = <span class="ui_element">Available</span>) 
+				and no sampling actions are created. The receipt time of the specimens is set to the current time.</p>
+                <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <div class="text_box_examples">
+                            <p><span style="color: #003366; font-weight: bold;">Example</span>
+                            </p>
+                            <p>A specimen is sampled at 11 am.</p>
+                            <p>The lab receives the specimen and creates an order with this specimen at 2 pm.</p>
+                            <p>--&gt; The sampling time of the specimen in 11 am. Its receipt time is 2 pm.</p>
+                        </div>
+                    </div>
+                </div>
+                <p>If the root specimen 
+				is to be processed into sub-specimens (through a dedicated procedure), 
+				these sub-specimens will NOT  be confirmed automatically. For the sub-specimens to be confirmed automatically,  the option <a href="../../../../configuration/procedure_outputs/procedure_outputs.htm#Material%20page">Auto-login</a> of the 
+				material output (of the processing procedure) must be activated.</p>
+                <p> To sum up, the combination 
+				of <span class="ui_element">Automatic sample login</span> and <span class="ui_element">Auto-login</span> allows a full automatic confirmation of both 
+			root and work specimens.</p>
+            </div>
+            <p>The general setting <a href="../../../../configuration/specificsite/glims_general_options.htm#Triggers">Auto sample login per department</a> allow you to specify that 
+					this automatic sample login (when activated in the order entry options) 
+					should ONLY be done for specimens which are input to at least one 
+			procedure of the user's own department.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When adding requests to an order AFTER the order has been created, the schedule options for AllowSpecimenReuse, AllowResultReuse and AutoSampleLogin are reset to the values during the creation of the order.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Mark order as synchronized</p>
+        <dl>
+            <dd>With this option a site function on the Order table can be defined, which returns a Logical and thus manually updates the <span class="ui_element">Synchronized</span> flag of the order in question to Yes.</dd>
+            <dd>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">MISPL</span>
+                    </p>
+                    <p> RETURN TRUE;</p>
+                </div>
+            </dd>
+            <dd>
+                <p>In this case, any subsequent object time <a href="../../../../configuration/stations/stations.htm#Sample" xmlns="http://www.w3.org/1999/xhtml">forward / backward synchronization</a> will have no further influence on the order, which is useful if no more changes to the sampling time in the order are intended. The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Synchronized</span> value of an order can be checked with the following site function on the Order table, which returns a Logical value:</p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">MISPL</span>
+                    </p>
+                    <p>RETURN .Synchronized;</p>
+                </div>
+                <p>This functionality is also available for the <a href="../../../../general/series_orders_persons.htm" xmlns="http://www.w3.org/1999/xhtml">Create order series</a>  function, via the Order entry User options (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order entry</span> &gt; button <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">User...</span> &gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order activation</span>).</p>
+            </dd>
+        </dl>
+        <p class="fieldlabel">Allow to reuse specimens from previous orders / Allow to reuse results from previous orders</p>
+        <div class="indented">Can be used to enable or disable re-use of existing specimens and 
+				results respectively, regardless of the configured re-usability values 
+			(material's re-usability and property's re-usability).</div>
+        <div class="indented">
+            <ul>
+                <li class="mips_list_bulleted" value="1">GLIMS will only propose to reuse a specimen 
+						if the "Specimen scope" defined for the involved <a href="../../../../configuration/procedures/procedures_configuration.htm">procedures</a> 
+					is identical.</li>
+                <li class="mips_list_bulleted" value="2">For explicitly requested properties and materials:<ul><li class="mips_list_bulleted" value="1">If a re-useable result/specimen exists, a question will appear in manual order entry. In electronic order entry, the result/specimen is automatically reused.</li></ul></li>
+                <li value="3">For implicitly requested properties and materials:<ul><li value="1">If a re-usable result/specimen exists, it is automatically reused.</li></ul></li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The <span class="ui_element">Automatic sample login</span>, <span class="ui_element">Allow specimen re-use</span> 
+				and <span class="ui_element">Allow result re-use</span> settings used during the last manual 
+				update of the order are stored and only when adding requests via MISPL, 
+				these settings are reused, i.e. not when manually adding requests to the 
+			order.</p>
+            </div>
+            <p>Moreover, the action scheduler will not attempt to schedule reused results 
+				or specimens, even when they were never scheduled before. This 
+				is especially important when reusing old imported results or specimens, 
+				for which there is no known material output or property output. Scheduling 
+				these old results or specimens could lead to undesired effects (e.g. executing 
+			a property trigger on a reused blood group).</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When adding requests to an order AFTER the order has been created, the schedule options for AllowSpecimenReuse, AllowResultReuse and AutoSampleLogin are reset to the values during the creation of the order.</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Action"></a>Action scheduling mode / Postscheduling mode / Report scheduling mode</p>
+        <div class="indented">
+            <p>These options allow the user to determine for each phase of the order post-processing if it should be executed locally or on the server.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">GLIMSRemoteCalls</span>
+                </p>
+                <p>The GLIMSRemoteCalls environment variable needs to be set to YES. If GLIMSRemoteCalls is set to NO, then the action scheduling, post scheduling and report scheduling will be executed locally, regardless of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Action scheduling mode</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Postscheduling mode</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Report scheduling mode</span>.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Action scheduling mode</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">This option determines how the action scheduling and the  <a href="#Evaluation3" xmlns="http://www.w3.org/1999/xhtml">evaluation after scheduling</a> are executed. Possible values are:</p>
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Execution on the client. Use this option if interaction with the user is required in the <a href="../../../../configuration/procedures/procedures_configuration.htm#Eligibil" xmlns="http://www.w3.org/1999/xhtml">procedure eligibility</a>, result output or <a href="#Evaluation3" xmlns="http://www.w3.org/1999/xhtml">evaluation after scheduling</a> MISPLs.</p>
+                </div>
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Serversync (default value)</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Use this option</p>
+                    <ul>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1">when no interactive MISPLs are used and</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2">when the user may need to specify material variables for the implicit specimens created during action scheduling or</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="3"> when the post-scheduling or report scheduling phase will be executed locally.</li>
+                    </ul>
+                </div>
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Serverasync</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Use this option when interaction with the user is not necessary during the entire order post-processing. This option is only possible when the post-scheduling and report scheduling phases are executed on the server as well. The entire order post-processing will then be executed asynchronously on the server while the user can continue working in GLIMS.</p>
+                    <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                        <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                        </p>
+                        <ul xmlns="">
+                            <li value="1">Any error messages from action scheduling will not be shown to the user.</li>
+                            <li value="2">Material variables for implicit specimens that have been created during action scheduling cannot be asked for, and the values of auto-prompt results that have been added automatically cannot be asked for.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Postscheduling mode</p>
+            <div class="indented" xmlns="">
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Use this option if interaction with the user is necessary via interactive MISPLs.</p>
+                </div>
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Server (default value)</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Execution on the server which is faster than execution on the client but interaction with the user is not possible.</p>
+                </div>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The post-scheduling phase consists of:</p>
+                    <ul>
+                        <li value="1">Microbiology action post-processing (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Next station</span> MISPL of <a href="../../../../modules/microbiology/configuration/microbiology_procedures.htm" xmlns="http://www.w3.org/1999/xhtml">microbiology procedure</a> and carrier generation) </li>
+                        <li value="2">Genetic exam post-processing (approach plan creation)</li>
+                        <li value="3"> Order set determination</li>
+                        <li value="4">Specimen size calculation </li>
+                        <li value="5">Label printing</li>
+                        <li value="6">Obtaining patient information from external systems</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Report scheduling mode</p>
+            <div class="indented" xmlns="">
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Use this option if interaction with the user is necessary via interactive MISPLs.</p>
+                </div>
+                <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Server (default value)</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Execution on the server which is faster than execution on the client but interaction with the user is not possible.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Evaluation3"></a>Evaluation after scheduling</p>
+        <div class="indented">
+            <p class="MsoNormal">This evaluation is run after the 
+				action scheduling phase (if required) and before the post-scheduling (specimen size 
+			calculation, label printing...) and report scheduling phases.</p>
+            <p class="MsoNormal">When the evaluation after scheduling is executed on the remote 
+				server (see <a href="#Action">Action scheduling mode</a>), any errors resulting from this evaluation are simply 
+				logged but have no influence on the commit process.</p>
+            <p class="MsoNormal">	The evaluation after scheduling can be run on the remote task server for performance reasons. When the evaluation after scheduling is run, the action planning phase has passed. The latter may be important when you 
+			need to inspect the planned actions.</p>
+        </div>
+        <p class="fieldlabel">Scheduler verbosity</p>
+        <div class="indented">
+            <p>Determines the amount of messages sent by the scheduler, upon committing 
+				the order's new requests. Use it to verify your procedure configuration. 
+				Depending on the value entered (1-9) the user is forced to justify 
+			each step in the order procedure (e.g. material, properties, ...).</p>
+        </div>
+    </body>
+</html>

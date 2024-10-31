@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Stock management product discontinuation support (GLIMS_STCK-00616)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2183"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Stock management product discontinuation support (GLIMS_STCK-00616)</h1>
+        <h2>Issue</h2>
+        <p>When a <a href="../../modules/stock_management/routine/product_specifications_in_use.htm" xmlns="http://www.w3.org/1999/xhtml">product</a> was <a href="../../modules/stock_management/routine/product_ordering.htm" xmlns="http://www.w3.org/1999/xhtml">scheduled or ordered</a> in the Stock management module, the related purchase item or the product of this purchase item might not have been deliverable any longer.</p>
+        <p>In previous versions it was not possible to mark these products as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Discontinued</span>.</p>
+        <h2>Improvements</h2>
+        <h3>New function Product.Discontinue()</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00616_disc.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="664" data-mc-height="461" src="GLIMS_STCK-00616_disc_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>A new Product based multi-record function has been introduced to discontinue products via the product context menu. It can be applied on products <a href="../../modules/stock_management/tracing/logging.htm#Products" xmlns="http://www.w3.org/1999/xhtml">in any status</a> except <span class="ui_element">Discontinued</span> and a reason must be specified, which is logged under Product.DiscontinuationReason.</p>
+        <p>When it is applied on products linked to a purchase order in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Scheduled</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Approved</span>, the ordered quantity of the purchase item will decrease for each discontinued <a href="../../modules/stock_management/routine/product_checkout.htm#Package" xmlns="http://www.w3.org/1999/xhtml">package</a>. The discontinuation will be mentioned in the purchase order log akin to any other purchase order changes.</p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">If the function is applied on products linked to a purchase order <a href="../../modules/stock_management/tracing/logging.htm#Purchase" xmlns="http://www.w3.org/1999/xhtml">in status</a> <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Approved</span>, the purchase order will be demoted to status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Scheduled</span>.</li>
+            <li xmlns="" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">If applied to products linked to purchase orders in other statuses, the purchase order (i.e. status, item quantity etc.) will not be modified.</p>
+            </li>
+        </ul>
+        <h3>PurchaseItem.DiscontinueProducts()</h3>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00616_disc2.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="770" data-mc-height="493" src="GLIMS_STCK-00616_disc2_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>A new PurchaseItem based multi-record function has been introduced to discontinue products via the purchase item context menu. Only products in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Scheduled</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ordered</span> will be processed. A reason must be specified, which is logged under Product.DiscontinuationReason.</p>
+        <h3>Check in screen</h3>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_STCK-00616_stat.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="891" data-mc-height="836" src="GLIMS_STCK-00616_stat_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p xmlns="">&#160;</p>
+        <p>In the <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">Product check in screen</a>, the column Avl has been renamed to Avl/Dsc. It contains the number of packages that have been delivered in a previous <a href="../../modules/stock_management/tracing/deliveries.htm" xmlns="http://www.w3.org/1999/xhtml">delivery</a> or discontinued after sending the purchase order.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul>
+                <li value="1">If the discontinuation was performed before sending the purchase order, the ordered quantity will have been decreased accordingly, so there is no need to display the discontinued products. The same logic applies to the product browser, where discontinued products are only included if discontinuation was performed after sending the purchase order.</li>
+                <li value="2">If the purchase order has discontinued products, the status column will display <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Some products</span>/<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Some packages</span>.</li>
+            </ul>
+        </div>
+        <h3>Removal of purchase items in the Product order list</h3>
+        <p>When all purchase items of a purchase order are deleted via the <a href="../../modules/stock_management/routine/product_ordering.htm#product" xmlns="http://www.w3.org/1999/xhtml">product order list</a>, the purchase order will no longer be deleted, but discontinued. This change is related to the requirement to have full logging of all actions on purchase items and purchase orders.</p>
+    </body>
+</html>

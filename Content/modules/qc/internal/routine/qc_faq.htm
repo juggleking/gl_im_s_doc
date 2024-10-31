@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Routine" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\routine\faq.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>FAQ on QC</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor117"></a>
+            <MadCap:concept term="Quality control" /><a name="kanchor13"></a><a href="../../index_qc.htm" name="kanchor14">Quality control</a> -&gt; Frequently asked questions</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Mandatory%20external%20comment" name="kanchor15">Mandatory external comment for failed QC results</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Retrieve%20a%20list">Retrieve a list of QC-lots for which there were abnormal results (severity &gt; 100)</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Norms%20for%20QC%20results">Norms for QC results</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Simultaneous%20status%20change%20of%20multiple%20QC%20populations">Simultaneous status change of multiple QC populations</a>
+            </li>
+        </ul>
+        <h3><a name="Mandatory external comment"></a>Mandatory external comment for failed QC results</h3>
+        <p>Confirmation of QC results with severity &gt; 0 and without specifying an external comment is not allowed, except via the automatic confirmation (Severity &lt;=AssessmentMethod.QCConfirmSeverity).</p>
+        <p>When manually confirming such QC results, a popup screen will allow the user to enter this comment during the confirmation step, if the QC severity is equal to or higher than the <a href="../../../../configuration/assessment_methods/assessment_methods.htm">assessment method</a>'s <span class="ui_element">QC warning severity</span>.</p>
+        <h3><a name="Retrieve a list"></a>Retrieve a list of QC-lots for which there were abnormal results (severity &gt; 100)</h3>
+        <p>This list can be obtained using the <a href="../../../statistics/production/statistics_results.htm">Result Statistics</a> module.</p>
+        <ul>
+            <li class="kadov-p" value="1">In the first screen, use a MISPL function for the row classification: <i>RETURN .QCPopulation.Lot.Externalization;</i></li>
+            <li class="kadov-p" value="2">In the selection screen: QC results = Select, Min. severity = 100</li>
+        </ul>
+        <h3><a name="Norms for QC results"></a>Norms for QC results</h3>
+        <p>Whenever a browser which normally shows the reference values for results shows a QC result, the settings of the QC population will be consulted to determine the 'normal range' for results of this population.</p>
+        <ul>
+            <li class="kadov-p" value="1">For accuracy control populations, the TargetValue and AllowedDeviation will be used.</li>
+            <li class="kadov-p" value="2">For precision control populations, this can be defined in the assessment method field <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">QC norm deviation count</span> or in the <span class="ui_element">QC norm deviation count</span> field of SpecificSite (accessible via <span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; GLIMS</span> - used if the assessment method field is not set).</li>
+        </ul>
+        <h3><a name="Simultaneous status change of multiple QC populations"></a>Simultaneous status change of multiple QC populations</h3>
+        <p>Using the <a href="qc_populations_query_browser.htm">QC population query</a>, you can select all the required QC populations.&#160;&#160;Using the contextual menu function 'Close evaluation period', you can change the status of the selected populations to 'Closed'.&#160;&#160;See also '<a href="qc_evaluation_periods.htm">Evaluation periods</a>'.</p>
+    </body>
+</html>

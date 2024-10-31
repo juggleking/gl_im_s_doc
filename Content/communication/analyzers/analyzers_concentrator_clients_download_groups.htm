@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>download groups on concentrator client stations</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Download groups on concentrator client stations</h1>
+        <h2>Introduction</h2>
+        <p>Glims supports downloads of concentrator client stations that are in the same download group. This offers the lab to have a backup plan when 1 of 2 equivalent concentrators goes out of service, or when a client station (analyzer) goes out of service. It is illustrated with the following example.</p>
+        <h2>Normal situation</h2>
+        <p>In a normal situation, concentrators A and B work independently and no download groups are defined on the client stations. See figure below.</p>
+        <p>
+        </p>
+        <p>
+            <img src="ConcClientsDnlGroup1.gif" style="border: medium none;" alt="" width="948" height="626" border="0" />
+        </p>
+        <h2>Backup situation: concentrator out of service</h2>
+        <p>Suppose concentrator A becomes out of service. In that case, one can define download groups on the client stations of concentrators A and B. The decision of which client station should be in which group depends of the common work one or more stations can perform. In our example, it was decided that A1, A2 and B3 are in one group and A3, A4, B1 and B2 are in a second group.</p>
+        <p>
+            <img src="ConcClientsDnlGroup2.gif" style="border: none;" alt="" width="1023" height="781" border="0" />
+        </p>
+        <p>Once the download groups are defined and the concentrator station's configuration is reloaded, a download to concentrator B will include actions scheduled on the client stations of concentrator A.</p>
+        <p>This is how it works:</p>
+        <p>Suppose station A1 has properties a, b, c and d configured. Glims will try to download actions of A1 since the latter is in the same download group of B3, being a client of concentrator B. Only those result outputs are selected which have the same property configured on an assessment method of station B3 and having a outbound id filled in. The outbound id that is used is the one of the assessment method on station B3, since it is the id being used on that concentrator. Summarized: only result outputs of properties a, b configured on station A1 and property e configured on station A2 are downloaded to concentrator B. The outbound id's used are those of station B3</p>
+        <p>Note that Glims will use the station remote id of the scheduled station, so that in our example, concentrator B could be informed of the instrument on which the tests are scheduled. If this could lead to problems on concentrator B because the remote id not recognized, one should modify the station remote id of stations A1 and A2. But in most of concentrators we know, station remote id is not sent.</p>
+        <p>Another configuration could be that of download group 2, in which scheduled work of stations A3 and A4 will be distributed on stations B1 and B2. Special in this configuration is property h which has ambiguous assessment method's. Glims assumes that the outbound id's of station B1 and B2 are equal for that property, so it is not defined which assessment method will be found first.</p>
+        <h2>Backup situation: analyzer out of service</h2>
+        <p>Suppose station A4 becomes out of service and the work for that instrument is to be taken over by station B2. In that case, the concentrator reference to concentrator A is removed and A4 is placed in a download group with station B2. Once the configuration is reloaded, station B2 will take over the work scheduled on station A4: Each result output of property m scheduled on station A4 will be selected in download to concentrator B. Concentrator B will receive the outbound id of station B2.</p>
+        <p>
+            <img src="ConcClientsDnlGroup3.gif" style="border: none;" alt="" width="1023" height="781" border="0" />
+        </p>
+        <h2>Conditions / restrictions</h2>
+        <ul>
+            <li class="p" value="1">
+                <p>Both concentrators should use same barcode definitions.</p>
+            </li>
+            <li class="p" value="2">
+                <p>Work list selection download is not supported on the foreign concentrator clients.</p>
+            </li>
+        </ul>
+    </body>
+</html>

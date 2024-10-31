@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="BTM_synchronisation_after_upgrade">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM synchronisation after upgrade</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2673"></a>
+            <MadCap:concept term="Application management" />Blood bag / Blood selection export &amp; import</h1>
+        <h2>Introduction</h2>
+        <p>This document describes how you can export blood bags and optionally blood selections from one Glims system and import these data in another Glims system.&#160;&#160;This can be used to synchronize two Glims systems after a major upgrade.</p>
+        <h2>Export blood bags and blood selections</h2>
+        <h3>Introduction</h3>
+        <p>This program exports all blood bags and possibly blood selections into two different files.&#160;&#160;These files can then be imported again in another Glims system.</p>
+        <p>Click Start -&gt; System management -&gt; Database -&gt; Specific export -&gt; Blood bag data</p>
+        <h3>Options</h3>
+        <p>When starting the program, the following options are available:</p>
+        <p style="text-align: center;">
+            <img src="../bloodbag_bloodselection_export.gif" style="border: none;" alt="" width="375" height="188" border="0" />
+        </p>
+        <p style="text-align: left;"><b style="font-weight: bold;">For recipients, export PIN</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Decides whether the PIN should be exported for each blood bag recipient</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">For recipients, export internal id</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Decides whether the person's internal id should be exported for each blood bag recipient.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">Also export orders and blood selections (in separate file)</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Decides whether the orders (containing blood requests) and their blood selections should also exported. If so they are written to a file called "bloodrequests.txt" in the session's temp-directory.&#160;&#160;It was intended for using this program after a version upgrade, for synchronizing the upgraded database with the old database.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">Only bags and blood selections created or updated since</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Blood bags or blood selections created or changed BEFORE this date will not be exported.</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">Only bags and orders received since</b>
+        </p>
+        <blockquote>
+            <p style="text-align: left;">Blood bags or orders received BEFORE this date will not be exported</p>
+        </blockquote>
+        <p style="text-align: left;"><b style="font-weight: bold;">Export typing / blood selections</b>:&#160;&#160;allow to exclude the blood bag typing and blood selections in the export file (typically used when merging data from one GLIMS system into another).</p>
+        <h3 style="text-align: left;">Exported files</h3>
+        <p>The program can generate 2 files in the GLIMS temp-directory</p>
+        <p><b style="font-weight: bold;">1. "bloodbaglist.txt" (always created)</b>
+        </p>
+        <p>This file contains all created or modified blood bags, together with any related blood selection(s) and crossmatch result(s). Each line mentions (field separated by '|'):</p>
+        <blockquote>
+            <p>- the bag internal id<br />- the bag external id<br />- the bag donor<br />- the bag product spec. mnemonic<br />- the bag's department mnemonic<br />- the bag's typing mnemonic<br />- the blood group (readable, untranslated)<br />- the rhesus-D (readable, untranslated)&#160;<br />- the list of present or absent antigens in the format: [+/-]antigenmnemonic , ...&#160;<br />- the bag's production date-time<br />- the bag's receipt date-time<br />- the supplier mnemonic<br />- the expiration date-time<br />- the transfusion date-time<br />- empty field (patient PIN)<br />- the receiving patient's internal id<br />- the transfusion hc provider's mnemonic<br />- the bag's status (readable, untranslated)<br />- the list of non-discontinued blood selections (blood selections and fields separated by ':') with the following fields:</p>
+            <blockquote>
+                <p>* order internal id<br />* Bloodselection status (readable, untranslated)<br />* crossmatch request definition mnemonic (or empty if no crossmatch)<br />* crossmatch result value ('?' if no value yet; empty if no crossmatch)<br />* crossmatch result status (readable, untranslated) (empty if no crossmatch)</p>
+            </blockquote>
+            <p>- on the following lines:</p>
+            <blockquote>
+                <p>if the bag is transfused: the transfusion reactions<br />if the bag is not transfused: the bag's comment field.</p>
+            </blockquote>
+            <p>- on the next line: "---" (to indicate the end of the bag's info)</p>
+        </blockquote>
+        <p>This file should be <b>imported</b> in the other database using 'ap_imbb' or '<a href="../import/import_blood_bags.htm">System management-&gt;Import-&gt;Blood bags</a>'.</p>
+        <p><b style="font-weight: bold;">1. "bloodrequests.txt" (created when the option "</b><b>Also export orders and blood selections (in separate file)</b><b style="font-weight: bold;">" is set)</b>
+        </p>
+        <p>This file contains all orders and the number of blood requests they should contain.&#160;&#160;Each line mentions (field separated by '|'):</p>
+        <blockquote>
+            <p>- order internal id<br />- blood product mnemonic<br />- blood request definition mnemonic<br />- the urgency<br />- the number of requests in this order, for this request definition, with this urgency.</p>
+        </blockquote>
+        <p>This file should be <b>imported</b> in the other database using '<a href="#Import_blood_selections">ap_imbsel</a>' (see below "Import blood requests").</p>
+        <h2><a name="Import_blood_selections" id="Import_blood_selections"></a>Import blood requests</h2>
+        <p>The program is called '<b>ap_imbsel</b>' and should be run from Start -&gt; Development -&gt; Run4GLprocedure.</p>
+        <p>This program reads a file in the format of the "bloodrequests.txt" file generated by ap_exbb.p.&#160;&#160;It searches for the order, checks if there are enough blood selection requests in that order, for that specific request definition, that blood product and that urgency.&#160;&#160;If necessary, it adds blood selections (with status 'initial) to that order.</p>
+    </body>
+</html>

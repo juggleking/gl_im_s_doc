@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.3.0 - Support for order's "entering device" (GLIMS-06158)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2668"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.3.0 - </MadCap:conditionalText>Support for order's "entering device" (GLIMS-06158)</h1>
+        <h2>Introduction</h2>
+        <p>Several changes have been implemented to register the device by which an order was entered (GLIMS-06158, GLIMS-06162, GLIMS-06226, GLIMS_POC-00046, GLIMS_OI-00500).</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #C29D0A;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Tip</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_tips">
+                    <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>: Modification <a href="MATE-02664.htm">MATE-02664</a> introduces a new built-in MISPL function "CurrentDevice" in GLIMS&#160;9.3.</p>
+                </div>
+            </div>
+        </div>
+        <h2>New Order field "Entering device"</h2>
+        <p>A new Order field named "Entering device" has been added. This field identifies the physical device (terminal, PC) used to enter the order. It is not visualized in the order entry screen but can be retrieved via MISPL in reports, statistics, ...</p>
+        <p>There are several mechanisms to register this information:</p>
+        <h3>Manual order entry</h3>
+        <p>Whenever an order is manually created in GLIMS, the entering device will be registered:</p>
+        <ul>
+            <li value="1">Via the <a href="../../routine/orders/order_entry/index_order_entry.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">order entry screen</a></li>
+            <li value="2">When using the <a href="../../application_management/import_export/import/import_results.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">result import program</a></li>
+            <li value="3">When creating an <a href="../../modules/blood_transfusion/routine/blood_bag_verification.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">order for blood bags to be verified</a></li>
+            <li value="4">...</li>
+        </ul>
+        <h3>Electronic order entry</h3>
+        <p>When processing electronic order import messages, GLIMS&#160;can also register the entering device.</p>
+        <div class="text_box_notes">
+            <p><b>Note</b>: in case of electronic order entry, GLIMS depends on the capability of the external system and the driver to transmit this information. The HL7 protocol explicitly supports this information in the field "ORC-18".</p>
+        </div>
+        <h3>POC and instrument communication</h3>
+        <p>In case of point-of-care and other instrument connections, GLIMS also supports the "entering device" when a new order is to be created.</p>
+        <p>A new Station field "Entering device" has been added.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../routine/orders/order_entry/station_entering_device.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="733" data-mc-height="880" src="../../routine/orders/order_entry/station_entering_device_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>When receiving a message from an instrument that leads to the creation of an order, the entering device will be determined as follows:</p>
+        <ol>
+            <li value="1">The entering device as specified in the communication message.</li>
+            <li value="2">If not specified in the message, the "Entering device" as defined in the station configuration.</li>
+            <li value="3">If both are unknown, the session's device is used.</li>
+        </ol>
+        <div class="text_box_notes">
+            <p><b>Note</b>: to support this, the internal GLIMS ASTM&#160;protocol has been extended with a M-segment containing the entering device identifier in field M.4.1.1:</p>
+            <ul>
+                <li value="1">M.1: Fixed 'M'</li>
+                <li value="2">M.2: Segment sequence number</li>
+                <li value="3">M.3: Fixed: 'EnteringDeviceId'</li>
+                <li value="4">M.4: the-entering-device-id</li>
+            </ul>
+            <p>The M-segment follows the message header record.</p>
+        </div>
+        <h3>Specimen barcode scanning</h3>
+        <p>If an order is to be created when scanning specimens (e.g. <a href="../../routine/specimens/specimens_reception_scan.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">specimen reception scan</a>, <a href="../../routine/specimens/specimens_scan.htm" data-mc-exclude-action="unbind" data-mc-conditions="Primary.10_webhelp_only">specimen archive scan</a>), the entering device will be determined as follows:</p>
+        <ol>
+            <li value="1">The "Entering device" as defined in the related station configuration.</li>
+            <li value="2">If unknown, the session's device is used.</li>
+        </ol>
+    </body>
+</html>

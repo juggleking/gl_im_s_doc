@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry|Main fields" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry\orderentry04.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order entry: main fields - Order info</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="Order" xmlns="http://www.w3.org/1999/xhtml"></a>Order entry: main fields - Order info</h1>
+        <p xmlns="">Content: <a href="#General" xmlns="http://www.w3.org/1999/xhtml">General</a> <MadCap:conditionalText data-mc-conditions="Primary.50_translation_exclude_for_FR">- <a href="#Specific" xmlns="http://www.w3.org/1999/xhtml">For Germany</a></MadCap:conditionalText></p>
+        <h2><a name="General" xmlns="http://www.w3.org/1999/xhtml"></a>General</h2>
+        <p class="fieldlabel">Issuer</p>
+        <div class="indented">
+            <p>When an identification provider is known, it is possible to search the issuer via his identification.</p>
+            <p>At order entry, a number of default issuers are proposed by GLIMS:</p>
+            <ol>
+                <li value="1">When entering the encounter external id, the <b>physician of the encounter</b> will be the default issuer.</li>
+                <li value="2">If not available, the <b>family doctor of the person</b> linked to the encounter will be the default issuer.</li>
+                <li value="3">
+                    <p xmlns="http://www.w3.org/1999/xhtml">If not available, GLIMS will check if there already exists an order for this person. If so, the <b>issuer of the person's last order</b> will be the default issuer.</p>
+                    <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>When selecting a patient for which a family doctor is specified (in the person configuration), an extra button will be displayed which allows specifying this family doctor as the order's issuer. When no family doctor is defined for the patient or when the patient's family doctor is already specified as issuer, the button is hidden.</p>
+                    </div>
+                </li>
+            </ol>
+            <p>However, it is also possible to specify the environment variable WardIsDefaultIssuer. If set to Yes, the ward linked to the stay of the encounter (or the ward that was manually entered) will be used as default issuer.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p> When an order form is scanned via the interactive OMR program, and no issuer was detected on the form, the above mentioned default issuers (2) and (3) are not applied.</p>
+                <p>Note that the <a href="../../../../configuration/correspondents/correspondents.htm">general correspondent lookup mechanism</a> is also applied here.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Agent</p>
+        <div class="indented">
+            <p>When an identification provider is known, it is possible to search the agent via his identification.</p>
+            <p>Default agent: by default, the environment variable WardIsDefaultAgent is set to Yes. Therefore, the agent will always be the ward, unless you set WardIsDefaultAgent to No.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The general correspondent lookup mechanism is also applied here.</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Receipt" xmlns="http://www.w3.org/1999/xhtml"></a>Receipt time / Prescription time</p>
+        <p class="fieldlabel"><a name="Sampling" xmlns="http://www.w3.org/1999/xhtml"></a>Sampling location</p>
+        <div class="indented">
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The sampling location will be used in the billing module to determine whether a supplement is to be charged for the sampling process. A default value can be set in the order entry options.</p>
+            </div>
+            <p class="fieldlabel">Central</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The sample has been taken in the same location of the laboratory.</p>
+            </div>
+            <p class="fieldlabel">Decentral</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The sample has been taken in another location.</p>
+            </div>
+            <p class="fieldlabel">Object site</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">The sample has been taken in the patient's home.</p>
+            </div>
+            <p class="fieldlabel">Specific</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">If set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specific</span>, the sampling address is to be specified.</p>
+            </div>
+            <p class="fieldlabel">Series</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml"> This is actually the same as <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specific</span>, but indicates that the rest of the orders created in the same order entry session will also have the same specific sampling address. The value of Order.SamplingLocation after committing the order will automatically be changed from <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Series</span> to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specific</span>. This implies that the actual intention of this value is to facilitate the creation of a number of orders for the same specific sampling address.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Report info</p>
+        <p class="fieldlabel">Object comment</p>
+        <div class="indented">Is a reflection of the comment specified in the Object editor.</div>
+        <h2 data-mc-conditions="Primary.50_translation_exclude_for_FR"><a name="Specific" xmlns="http://www.w3.org/1999/xhtml"></a>For Germany</h2>
+        <h3 data-mc-conditions="Primary.50_translation_exclude_for_FR"><a name="Lebensla" xmlns="http://www.w3.org/1999/xhtml"></a>Lebenslange Arztnummer and Betriebsstättennummer</h3>
+        <p data-mc-conditions="Primary.50_translation_exclude_for_FR"> To allow the specification and lookup of German HC provider identification numbers, the LANRs and BSNRs, the <span class="ui_element">Identification</span> and <span class="ui_element">HCP code fields</span> of <span class="ui_element">Issuers</span> and <span class="ui_element">Agents</span> can be replaced by an <span class="ui_element">LANR</span> and a <span class="ui_element">BSNR</span> field.</p>
+        <p data-mc-conditions="Primary.50_translation_exclude_for_FR"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_entry_tab_main_fields_LANR_BSNR.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="521" data-mc-height="92" src="order_entry_tab_main_fields_LANR_BSNR_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p data-mc-conditions="Primary.50_translation_exclude_for_FR">To this effect,</p>
+        <ul>
+            <li xmlns="" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">the field <a href="../options/order_entry_options_tab_main.htm" xmlns="http://www.w3.org/1999/xhtml">Use LANR and BSNR as issuer identification source</a> in the order entry options should be enabled, and</p>
+            </li>
+            <li value="2" data-mc-conditions="Primary.50_translation_exclude_for_FR">two fields should be filled in under <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System management</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Customize</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">GLIMS General</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identification</span>:<ul><li value="1" data-mc-conditions="Primary.50_translation_exclude_for_FR"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for LANR</span>: this field must be filled in in order for the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LANR</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">BSNR</span> fields to be visible in order entry and <a href="../../../../configuration/correspondents/correspondents.htm#Via" xmlns="http://www.w3.org/1999/xhtml">correspondent search screens</a>.</li><li value="2"><p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for BSNR</span>:  this field must be filled in to make the specification and lookup of BSNRs possible in order entry and correspondent search screens. The provider indicated in this field is the provider of BSNRs for both executing departments (and thus for executing HC providers) and requesting HC providers, i.e. issuers.</p><div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml"><p data-mc-conditions="Primary.50_translation_exclude_for_FR"><span style="color: #616E14; font-weight: bold;">Note</span></p><ul><li value="1"><p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">The provider indicated in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Provider for BSNR</span> need not be identical to the one indicated in <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">HC code provider</span>, which is only used for fund related identifications.</p><p data-mc-conditions="Primary.50_translation_exclude_for_FR"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_entry_tab_main_fields_configuration_BSNR.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="774" data-mc-height="428" src="order_entry_tab_main_fields_configuration_BSNR_thumb_0_120.png" tabindex="" /></a></p></li></ul><ul><li value="1"><p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">When entering an <a href="../../../../configuration/studies/studies.htm#During%20order%20entry" xmlns="http://www.w3.org/1999/xhtml">order study</a>, if the order's patient and the site's default <span class="ui_element">PIN provider</span> have not been indicated,</p><ul><li value="1"><p data-mc-conditions="Primary.50_translation_exclude_for_FR">the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Identification</span> field appears instead of the LANR&#160;and BSNR fields.</p></li><li value="2" data-mc-conditions="Primary.50_translation_exclude_for_FR">double-clicking in this field allows you to search for identifications. The selectable identifications are those provided by the study correspondent, study issuer or the study responsible.</li></ul></li><p data-mc-conditions="Primary.50_translation_exclude_for_FR">In the <a href="../../../../configuration/correspondents/correspondents.htm#Via" xmlns="http://www.w3.org/1999/xhtml">Correspondent search screen</a> the LANR identification field is still displayed.</p></ul></div></li></ul></li>
+        </ul>
+        <p xmlns="" data-mc-conditions="Primary.50_translation_exclude_for_FR">The searched and displayed LANRs and BSNRs are those that are valid on the date of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order lowest object time</span>, if this date is known. If the order lowest object time is not known, the searched and displayed LANRs and BSNRs are the codes that are valid on the day the functionality is being used.</p>
+        <h3 data-mc-conditions="Primary.50_translation_exclude_for_FR"><a name="Automati" xmlns="http://www.w3.org/1999/xhtml"></a>Automatic fill-in of the Issuer field when using Ticket books</h3>
+        <h4 xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Concept</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Certain German labs distribute ticket books to their issuers. These ticket books contain  labels to be stuck on  paper orders. Each label carries a  barcode belonging to a certain number range, called <span class="ui_element">ticket book range</span>.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false" data-mc-conditions="Primary.50_translation_exclude_for_FR"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p data-mc-conditions="Primary.50_translation_exclude_for_FR"><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p data-mc-conditions="Primary.50_translation_exclude_for_FR">Ticket book A contains 500 labels numbered from 0001 to 0500. The ticket book range of ticket book A is 0001-0500.</p>
+                    <p data-mc-conditions="Primary.50_translation_exclude_for_FR">Ticket book B contains 500 labels numbered from 0501 to 1000. The ticket book range of ticket book B is 0501-1000.</p>
+                </div>
+            </div>
+        </div>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Each issuer receives a ticket book. Therefore, a specific ticket book range corresponds to a specific issuer. By looking in which number range a barcode  is situated, it is therefore possible to identify the issuer of the order and thus to fill in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer</span> field of the Order entry screen automatically.</p>
+        <h4 xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Configuration</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Ticket book ranges and issuers must be associated in the database. This is to be done in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ticket book range</span> editor, which can be open in two ways:</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1" data-mc-conditions="Primary.50_translation_exclude_for_FR">From the <span class="ui_element">Ticket book range</span> browser: <span class="ui_element">Start</span> -&gt; <span class="ui_element">Ticket book ranges</span> -&gt; press Insert key.</li>
+            <li value="2" data-mc-conditions="Primary.50_translation_exclude_for_FR">From the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondent</span> browser, select a specific correspondent record, right-click <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show all</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ticket books</span>, and press the Insert key.</li>
+        </ul>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../../../../release_notes/980/GLIMS-08472_ticket_book_range.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="502" data-mc-height="541" src="../../../../release_notes/980/GLIMS-08472_ticket_book_range_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">First number - Last number</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">First and last number of the ticket book range.</div>
+        <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Valid from - Valid until</p>
+        <div class="indented" xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Valid from</span> field is mandatory, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Valid until</span> field is not.<p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">The validity period is checked against the Object date. If the Object date is not yet known, the date of the day is used.</p><p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Once the validity period has expired, the ticket book is not valid anymore and the number range can be reused for another ticket book.</p></div>
+        <h4 xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">Routine</h4>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">The barcodes on the ticket book labels are directly related to the order short IDs.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR">When </p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1" data-mc-conditions="Primary.50_translation_exclude_for_FR">The barcode on the ticket book label:<ul><li value="1" data-mc-conditions="Primary.50_translation_exclude_for_FR"> Is entered manually in GLIMS, or</li></ul><ul><li value="1" data-mc-conditions="Primary.50_translation_exclude_for_FR">Is scanned in the <a href="../../../specimens/specimens_reception_scan.htm">Specimen reception scan</a> program.</li></ul></li>
+            <li value="2" data-mc-conditions="Primary.50_translation_exclude_for_FR">An electronic message containing an order short ID is received,</li>
+        </ul>
+        <p xmlns="http://www.w3.org/1999/xhtml" data-mc-conditions="Primary.50_translation_exclude_for_FR"> the logic of the barcode parser determines the order short ID and identifies the issuer of the order. The issuer is automatically added to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer</span> field of the Order entry screen.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p data-mc-conditions="Primary.50_translation_exclude_for_FR"><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p data-mc-conditions="Primary.50_translation_exclude_for_FR">The issuer information is not updated when  the Object date or Ticket book range is modified.</p>
+        </div>
+    </body>
+</html>

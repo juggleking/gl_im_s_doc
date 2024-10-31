@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - New fields "Display last name" and "Legal name" (GLIMS-11350)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2449"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>New fields "Display last name" and "Legal name" (GLIMS-11350)</h1>
+        <p>Two person-related fields have been introduced: </p>
+        <p class="fieldlabel">Display last name</p>
+        <div class="indented">Last name used by the person</div>
+        <p class="fieldlabel"> Legal name</p>
+        <div class="indented">Person's name as indicated in national registers</div>
+        <h2>Features of the fields</h2>
+        <p>The two new fields</p>
+        <ul>
+            <li value="1">are visible in the Person browsers and in the <a href="../../configuration/correspondents/persons.htm" xmlns="http://www.w3.org/1999/xhtml">Person editor</a>.</li>
+            <li value="2">can be exported and imported (see <a href="GLIMS_PI-00344.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS_PI-00344</a> and <a href="GLIMS_RX-00705.htm" xmlns="http://www.w3.org/1999/xhtml">GLIMS_RX-00705</a>).</li>
+            <li value="3">replace the site attributes "DisplayName" and "_LegalName" on the Person table (see the following section).</li>
+            <li value="4">can be used to search for a person record (see below).</li>
+        </ul>
+        <p>When the value of these fields is modified, the <a href="../../configuration/objects/objects_externalization.htm" xmlns="http://www.w3.org/1999/xhtml">person externalization MISPL</a> is executed.</p>
+        <h2>Manual conversion</h2>
+        <p>If you used at least one of the two sites attributes "DisplayName" and "_LegalName" in your previous GLIMS version, you need to execute a conversion procedure when upgrading to GLIMS&#160;9.9. This conversion will copy the site-attribute values to the new database fields.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If the database fields already contain a value, this value will not be replaced by the value of the site attributes.</p>
+        </div>
+        <h3>Before starting the conversion</h3>
+        <p> Update the <a href="../../configuration/objects/objects_externalization.htm" xmlns="http://www.w3.org/1999/xhtml">person externalization MISPL</a> as well as any other MISPL in which the site attributes were used for these MISPLs to now make use of the new database fields. As the fields could have value “?”, use the MISPL function “IfKnownString()” to prevent the MISPL from returning “?”.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Person records created after the upgrade to GLIMS 9.9, but before the conversion will NOT get a new externalization if the person externalization MISPL was changed in function of the conversion script.</p>
+        </div>
+        <h3>Starting the conversion</h3>
+        <p>The conversion is done manually using the conversion script mcv99_PersonLegalNameDisplayLastName.r (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start</span> -&gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Development</span> -&gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">4GL</span> -&gt;&#160;<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Run procedure</span>).&#160;</p>
+        <h3>During the conversion</h3>
+        <p> Triggers will be run, so MISPL functions may be executed.</p>
+        <h3>At the end of the conversion</h3>
+        <p> Once all the person records have been converted, the script will delete the site attribute values and then the site attributes themselves.</p>
+        <p>Check &lt;GLIMS-TEMP&gt;/ Person_LegalNameDisplayLastName_mcv.log to see if the conversion was successful. If something went wrong, the site-attribute(s) will not have been deleted.</p>
+        <h2>Searching for a person</h2>
+        <p>To search for a person record on the basis of its <span class="ui_element">Display last name</span> and/or <span class="ui_element">Legal name</span>,</p>
+        <ul>
+            <li value="1">add these fields to the person externalization MISPL,</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">use the <a href="../../routine/consultation/consultation_order_consultation.htm" xmlns="http://www.w3.org/1999/xhtml">order consultation query</a>, which can look in the externalization MISPL:</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11350.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="748" data-mc-height="533" src="GLIMS-11350_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+        </ul>
+    </body>
+</html>

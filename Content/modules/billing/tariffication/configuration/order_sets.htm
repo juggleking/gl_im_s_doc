@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Tariffication|Tariffing" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\billing_module\tariffication\billing_ordersets_01.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order sets</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1565"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor129"></a>Order sets</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Order%20set%20default%20and%20order%20set%20determination%20MISPL">Order set defaults and order set determination MISPL</a> - <a href="#Order%20set%20query%20and%20tariffication" name="kanchor130">Order 
+ set query and tariffication</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>It is essential to know that GLIMS tariffs order 
+ sets and not orders.</p>
+        <p>Whenever the tariffication of a request is influenced by the presence 
+ of other requests in other orders and vice versa, it is impossible to 
+ tariff an order on its own. In those cases the related orders should be 
+ tariffed simultaneously. This can be achieved by grouping those orders 
+ in one order set. Hence, an order set is a group of one or more orders, 
+ to be considered as a whole during the tariffication. The label of an 
+ order set is a string, containing a specification for the grouping of 
+ its related orders.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <ul>
+                        <li value="1">According to the Belgian clinical nomenclature, the 
+ calculation of administrative and urgency supplements must be based on 
+ <i>all</i> orders for a given patient on a single day. In this case each 
+ order of a patient on the same day should be part of the same order set. 
+ The order receipt date can be stored in the order set's label. </li>
+                        <li value="2">In commercial environments payment agreements may 
+ span several orders. If these agreements need to be detected automatically, 
+ all the related orders need to be tariffed simultaneously.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h2><a name="Order set default and order set determination MISPL"></a>Order set 
+defaults and order set determination MISPL</h2>
+        <p><a name="kanchor131"></a>In GLIMS one can define an "order set defaults" and an "order 
+ set determination" MISPL. These MISPLs can propose an order 
+ set, payment agreement, etc during order entry. When opening the <a href="../../../../routine/orders/order_entry/order_entry_tab_billing.htm">Billing</a> page 
+ in the order entry screen, for a new order, all relevant fields are filled 
+ with values proposed by the "order set defaults" MISPL. The user 
+ can then accept or change these values. When the order is saved, the "order 
+ set determination" MISPL is run and any fields from the billing page 
+ which are still unknown (?) are replaced with values from that last MISPL.</p>
+        <p>The "order set defaults" and "order set determination" 
+ MISPL can be specified in the specific site preference set (<span class="ui_element">Start</span> -&gt; <span class="ui_element">System 
+ Management</span> -&gt; <span class="ui_element">Customize</span> 
+ -&gt; <span class="ui_element">GLIMS Billing</span>).</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p><a href="order_sets_mispl_examples.htm">Example 
+ of an order set defaults MISPL expression</a>
+            </p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>When creating a new order by using the 'Insert' key in 
+ the <span class="ui_element">Orders of order set</span> browser, the traditional MISPL calculation of 
+ the order set will not be fully reevaluated and the order will automatically 
+ be linked to the concerned order set.</p>
+        </div>
+        <p>The order set defaults are applied when creating an order. They will
+also be recalculated after each significant order change when</p>
+        <ul>
+            <li value="1">The order set defaults were determined automatically (by MISPL) and have not been
+ changed manually. The fact that an order set has been changed manually will be marked by setting
+ the field "Orderset.ManuallyUpdated" to "Yes".</li>
+            <li value="2">The order set is not yet completely tariffed.</li>
+        </ul>
+        <h2><a name="Order set query and tariffication"></a>Order set query and tariffication</h2>
+        <p>As said above, GLIMS tariffs order sets. In order to tariff order sets, you 
+ can use the order set query (<span class="ui_element">Start</span> -&gt;&#160;<span class="ui_element">Billing</span> -&gt; <span class="ui_element">Order sets</span> -&gt;&#160;<span class="ui_element">Query</span>) to select a number of order sets and then 
+ apply the contextual menu function <a href="../routine/order_set_tariffication.htm">'Tariffication</a>'. 
+ Naturally, this process can be automated through <a href="../../../../configuration/generic/commands_tasks/commands_tasks.htm">commands 
+ and tasks</a>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_sets_query.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="601" data-mc-height="453" src="order_sets_query_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Days completed</p>
+        <div class="indented">When specifying the "Days completed", discontinued orders can never be selected (as the latter 
+ do not have a completion time) resulting in an incomplete tariffication. 
+ Therefore, this option is only taken into account for 
+ non-discontinued orders.</div>
+    </body>
+</html>

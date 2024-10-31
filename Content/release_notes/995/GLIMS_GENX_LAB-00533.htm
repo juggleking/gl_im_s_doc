@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.5 - Allow MISPL access from VariantResult to disorder via site attribute (GLIMS_GENX_LAB-00533)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor125"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.5 - </MadCap:conditionalText>Allow MISPL access from VariantResult to disorder via site attribute (GLIMS_GENX_LAB-00533)</h1>
+        <h2>Issue</h2>
+        <p>An issue was reported with the Genetics module, where <a href="../../modules/genetics/config/disorders.htm" xmlns="http://www.w3.org/1999/xhtml">disorders</a> were not displayed on reports, because report texts containing disorder names could not be calculated by MISPL.</p>
+        <p>There was no way for MISPL to calculate the description of a disorder linked to a VariantResult via a <a href="../../modules/genetics/config/results/results_config.htm#Addition2" xmlns="http://www.w3.org/1999/xhtml">list detail type</a> with a  <a href="../../configuration/choice_lists/choice_lists.htm" xmlns="http://www.w3.org/1999/xhtml">choice list</a> of type <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Alternative choice configuration table</span> = Disorder, where the user can select a disorder (the one that is most likely associated with this variant result).</p>
+        <p>In the MISPL generated report text only the disorder <span class="ui_element">Mnemonic</span> was present, but not the <span class="ui_element">Name</span> and the <span class="ui_element">OMIM code</span> of the disorder for each variant result.</p>
+        <h2>Solution</h2>
+        <p>This issue has been fixed: the disorder is from now on stored as a reference on the VariantResult table, but only if a "_Disorder" site attribute exists.</p>
+        <p>Customers have to create this site attribute for the correction to work as intended:</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>String output;</p>
+            <p>Integer TheDisorder;</p>
+            <p>String Name;</p>
+            <p>String Omim;</p>
+            <p>Output:= "Disorder unknown";</p>
+            <p>IF GetSiteAttribute("VariantResult", .Id, "_Disorder.Id") &lt;&gt; ?</p>
+            <p>THEN</p>
+            <div class="indented" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">TheDisorder := StringToInteger(GetSiteAttribute("VariantResult", .Id, ifknownstring("_Disorder.Id")));</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">Name        := GetSiteAttribute("VariantResult", .Id, "_Disorder.Name");</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">output      := "Name: " + Name + "~n";</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">Omim        := GetCode("Disorder", TheDisorder , "OMIM");</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">IF Omim &lt;&gt; ?</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">THEN output := output + "OMIM: " + Omim;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+            </div>
+            <p>endif;</p>
+            <p>RETURN output;</p>
+        </div>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p> The "_Disorder" site attribute will not change when users attempt to update this value via the REST interface.</p>
+            <p>Furthermore, adding results with a choice list linked to an alternative choice configuration table is not yet supported via REST.</p>
+        </div>
+        <p>Additionally, this modification adds the unknown value "?" to the drop down that is shown in case the configured <span class="ui_element">List detail type</span> is linked to a choice list.</p>
+    </body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Routine" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\routine\station_run.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Routine: Station runs</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor992"></a>
+            <MadCap:concept term="Quality control" /><a href="../../index_qc.htm" name="kanchor74">Quality control</a><a name="kanchor75"></a> -&gt; Station runs</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Creating%20a%20run">Creating a run</a> - <a href="#Creating%20a%20run">Starting a run</a> - <a href="#Stopping%20a%20run">Stopping a run</a> - <a href="#Processing%20a%20run">Processing a run</a> - <a href="#RunConfirmation">Run confirmation</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p><a name="kanchor76"></a>A station run is considered to be a collection of QC and patient results which have been assessed in a certain time lapse.</p>
+        <p>Typically, a run starts with one or more QC results (start QCs), followed by a series of patient results, and ends with one ore more QC results (end QCs). A QC run is limited to one single <a href="../configuration/qc_assessment_methods.htm">assessment method</a>, for instance a QC run on Hitachi 747 for Chloride. By means of a run, actions (these are not actions from the Action table!) can be taken on the results of that particular run.</p>
+        <p>A run is defined by its assessment method, the time at which it was started (this can possibly coincide with the first QC result), the time at which it was ended (can be unknown if not all end-QC results are available) and the possible action that was executed on the run.</p>
+        <p>Please also read the chapter <a href="../management/qc_channel_quality_monitoring.htm">Automated channel quality monitoring</a> which discusses the implementation of "runs" in GLIMS.</p>
+        <h2><a name="\"></a>Creating a run</h2>
+        <h3>Automatic creation of station runs</h3>
+        <p>Please check the chapter <a href="../management/qc_channel_quality_monitoring.htm">Automated channel quality monitoring</a>.</p>
+        <h3>Manual creation of station runs</h3>
+        <p>In order to manually create a new station run, select the <span class="ui_element">Station runs</span> function on any assessment method. Press Insert to enter a new station run or F6 to zoom into an existing station run record. Double-clicking a station run record will open a different editor (see figure 10 below).</p>
+        <p>Example of a station run record:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="493" data-mc-height="538" src="qc_station_runs_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p />
+        <p><b style="font-weight: bold;">Figure 1</b>
+        </p>
+        <p>The number of start and end-QCs that a particular run ought to have must be specified in the configuration of the corresponding assessment method. The figure below indicates that the assessment method Ac. GLUTAMIQUE requires 2 start and end-QCs:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_assessment_method.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="666" data-mc-height="629" src="qc_station_runs_assessment_method_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 2</b>
+        </p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>During the creation of QC station runs, informational messages are displayed. If you consider these messages superfluous and would like them not to be displayed, deactivate the option <span class="ui_element">QC station runs show message</span>. This option is available under <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">QC</span> -&gt; <span class="ui_element">Main page</span> tab.</p>
+        </div>
+        <h2><a name="Creating a run"></a>Starting a run</h2>
+        <p>This part describes how you can manually start a station run. For automated station run starts, please check the chapter <a href="../management/qc_channel_quality_monitoring.htm">Automated channel quality monitoring</a>.</p>
+        <p>There are several ways to start a run:</p>
+        <ol>
+            <li value="1">
+                <p>By selecting the <span class="ui_element">Start run</span> contextual menu function on an assessment method:</p>
+                <p>This method will look for the most recent run, starting from the specified <span class="ui_element">Start time</span>. If the most recent run is already closed (end time has been entered), a new run will be started. If the most recent run has not yet been closed but already has at least one result, this run will be closed and again a new run will be started.</p>
+            </li>
+            <li value="2">
+                <p>By selecting the <span class="ui_element">Start runs</span> contextual menu function on a station:</p>
+                <p>The <span class="ui_element">Start run</span> function on assessment method will be executed for all assessment methods of the selected station.</p>
+                <p>When clicking <span class="ui_element">Start runs</span>, a window opens allowing you to set the <span class="ui_element">Start time</span> and (de)activate the following parameters:</p>
+                <ul>
+                    <li value="1"><span class="ui_element">Immediately show ended runs</span>:  to open up the <a href="#RunConfirmation">Run confirmation</a> browser immediately.</li>
+                    <li value="2"><span class="ui_element">Only end runs with enough results</span>: to close runs that have a sufficient number of results, as determined by the corresponding assessment method's <a href="../configuration/qc_assessment_methods.htm#Patient">Median result count</a> limit.</li>
+                </ul>
+            </li>
+            <li value="3">
+                <p>By selecting the <span class="ui_element">Process run</span> contextual menu function on a result:</p>
+                <p>This method will look for the run which contains the selected result. If there should not yet be a station run, it will be created automatically. The run will start with QC samples that were not included in the previous run. The new station run will be displayed in the station run browser.</p>
+            </li>
+            <li value="4">The functions Station.StartRuns and Assessmentmethod.StartRun are batch-enabled, which means that they can be used as function in commands and be executed via the task scheduler.</li>
+        </ol>
+        <h3>1. The "Start run" function on assessment method</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_start_run.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="578" data-mc-height="478" src="qc_station_runs_start_run_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 3</b>
+        </p>
+        <p>It is possible to specify the start time as a parameter for this function. It is also possible to enter a relative date, which allows using this function in batch.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_start_run_time.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="396" data-mc-height="113" src="qc_station_runs_start_run_time_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>2. The "Start runs" function on station</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_start_runs.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="559" data-mc-height="534" src="qc_station_runs_start_runs_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p />
+        <p><b style="font-weight: bold;">Figure 6</b>
+        </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_start_runs_time.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="578" data-mc-height="142" src="qc_station_runs_start_runs_time_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>3. The "Process run" function on result</h3>
+        <p>If you select the <span class="ui_element">Process run</span> contextual menu function on a result, a run record will automatically be created and opened if there is none yet. Note that a new station run record will only be created if the field <a href="../../../../configuration/stations/stations.htm#Runs">Run creation</a> on the station is set to <span class="ui_element">Ad hoc</span> or <span class="ui_element">None</span>. If there is already a run, it will be opened.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_process_run.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="667" data-mc-height="557" src="qc_station_runs_process_run_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 9</b>
+        </p>
+        <p>The results of the run are displayed in the station run browser, which can be opened from a station, assessment method or result:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_run_results.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1099" data-mc-height="758" src="qc_station_runs_run_results_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 10</b>
+        </p>
+        <p>Information regarding result flags is available <a href="../../../../routine/results/results_browsers.htm#Flags">here</a>.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Result browsers can detect that the displayed result value is too wide to fit in its column. This may lead to misinterpretation. Therefore, this is made clear to the user by replacing the last part of the value with the <b>'@'-sign</b>. Such a situation can sometimes quickly be resolved by double-clicking the frame title in order to maximize the browser window.</p>
+        </div>
+        <p>The options button allows to refine the result query for this run:</p>
+        <p>
+            <img src="qc_station_runs_run_results_query.png" />
+        </p>
+        <p><b style="font-weight: bold;">Figure 11</b>
+        </p>
+        <h2><a name="Stopping a run"></a>Stopping a run</h2>
+        <p>When the required end QCs (as defined in the assessment method) have been done, the run will automatically be closed.</p>
+        <p>A run can also be stopped as follows:</p>
+        <ol>
+            <li value="1">
+                <p>By selecting the <span class="ui_element">Stop run</span> contextual menu function on an assessment method.</p>
+                <p>This method will look for the most recent run. The run will be closed by entering an end time. One can prevent an empty run from being closed by enabling the <span class="ui_element">Exclude empty run</span> toggle box. If the <span class="ui_element">Exclude unprocessed run</span> toggle box is activated, runs on which no action has yet been executed will not be closed.</p>
+            </li>
+            <li value="2">
+                <p>By selecting the <span class="ui_element">Stop runs</span> contextual menu function on station.</p>
+                <p>The <span class="ui_element">Stop run</span> function on assessment method will be executed for all assessment methods of the selected station.</p>
+                <p>When clicking <span class="ui_element">Stop runs</span>, a window opens allowing you to set the <span class="ui_element">End time</span> and (de)activate the following parameters:</p>
+                <ul>
+                    <li value="1"><span class="ui_element">Only end runs with enough results</span>: to close runs that have a sufficient number of results, as determined by the corresponding assessment method's <a href="../configuration/qc_assessment_methods.htm#Patient">Median result count</a> limit.</li>
+                    <li value="2"><span class="ui_element">Immediately show ended runs</span>: to open the <a href="#RunConfirmation">Run confirmation</a> browser immediately.</li>
+                </ul>
+            </li>
+            <li value="3">The functions Station.StopRuns and AssessmentMethod.StopRun are batch-enabled, which means that they can be used as function in commands and be executed via the task scheduler.</li>
+        </ol>
+        <h3>The "Stop run" function on assessment method</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_stop_run.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="492" data-mc-height="477" src="qc_station_runs_stop_run_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 12</b>
+        </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_stop_run_time.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="414" data-mc-height="150" src="qc_station_runs_stop_run_time_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 13</b>
+        </p>
+        <h3>The "Stop runs" function on station</h3>
+        <p>
+            <img src="qc_station_runs_stop_runs.png" />
+        </p>
+        <p>
+            <img src="qc_station_runs_stop_runs_time.png" />
+        </p>
+        <h2><a name="Processing a run"></a>Processing a run</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_process_run_action.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1440" data-mc-height="859" src="qc_station_runs_process_run_action_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Figure 16</b>
+        </p>
+        <p>The station run browser, which can be opened from a station, assessment method or result, allows processing a run, i.e. executing a certain action on a run. The 'Forward' and 'Back' arrows allow navigating to the run immediately following or preceding the current run, independently of the context from which the review browser was started.</p>
+        <p>The table below indicates the implications of the available actions:</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Action</b>
+                </td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">QC results</b>
+                </td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Patient results</b>
+                </td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Remarks</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Accept QC - Accept regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Confirm</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Auto-confirm + auto-validate <b>(1)</b></td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Accept QC - Confirm regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Confirm</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">confirm <b>(2)</b></td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Accept QC - Repeat regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Confirm</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Discontinue - repeat</td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Reject QC - Accept regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Discontinue</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Auto-confirm + auto-validate <b>(1)</b></td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Reject QC - Confirm regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Discontinue</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Confirm <b>(2)</b></td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Reject QC - Repeat regular</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Discontinue</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Discontinue - repeat</td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Wait</td>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">No action</td>
+                <td style="width: 27%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">No action</td>
+                <td style="width: 29%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">The motivation is stored along with the run.</td>
+            </tr>
+        </table>
+        <p class="fieldlabel">(1) auto-confirm + auto-validate:</p>
+        <p>General:</p>
+        <ul>
+            <li value="1">result must be available</li>
+            <li value="2">the channel status of the result will be set to reliable</li>
+        </ul>
+        <p>Confirmation if:</p>
+        <ul>
+            <li value="1">the result does not require manual confirmation</li>
+            <li value="2">the auto-confirm severity of the channel is specified (not unknown)</li>
+            <li value="3">the severity of the result does not exceed the auto-confirm severity of the channel</li>
+        </ul>
+        <p>Validation if:</p>
+        <ul>
+            <li value="1">the result does not require manual validation</li>
+            <li value="2">the auto-validate severity of the channel is specified (not unknown)</li>
+            <li value="3">the severity of the result does not exceed the auto-validate severity of the channel</li>
+        </ul>
+        <p class="fieldlabel">(2) confirm:</p>
+        <p>Confirmation if:</p>
+        <ul>
+            <li value="1">the result is available</li>
+        </ul>
+        <p>The result will also be validated if:</p>
+        <ul>
+            <li value="1">the result does not require manual validation</li>
+            <li value="2">the severity of the result does not exceed the auto-validate severity of the channel</li>
+        </ul>
+        <h2><a name="RunConfirmation" id="RunConfirmation"></a>Run confirmation</h2>
+        <h3>Introduction</h3>
+        <p>A contextual menu function on <span class="ui_element">Station</span> records, <span class="ui_element">Runs</span> -&gt; <span class="ui_element">Confirm runs</span> allows processing multiple unprocessed, ended station runs of a station simultaneously.</p>
+        <h3>Browser</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_confirm_runs.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="952" data-mc-height="514" src="qc_station_runs_confirm_runs_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h4>Color usage</h4>
+        <p>The run rows, QC cells and median cells  can have different background colors:</p>
+        <table id="table1" style="mc-table-style: url('../../../../Resources/TableStyles/Alternating.css');width: 100%;" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 89px;" />
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 196px;" />
+            <col class="TableStyle-Alternating-Column-Column1" style="width: 182px;" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">
+                    </th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Green</th>
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Red</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Blue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">QC cell</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">All the QC results of the station run lie within the limits defined under <a href="../configuration/qc_assessment_methods.htm#Patient">Patient day median</a>. In other words, no <a href="../configuration/qc_assessment_methods.htm#Limit">limit severity</a> has been applied to the QC results of the station run period.</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body1">At least one QC result of the station run lies outside the limits defined under <a href="../configuration/qc_assessment_methods.htm#Patient">Patient day median</a>. In other words, there is at least one QC result with a <a href="../configuration/qc_assessment_methods.htm#Limit">limit severity</a>.
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyD-Column1-Body1">At least one QC result of the station run could not be obtained (because of a missing patient result, for instance).       </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">Median cell</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">The median of all the QC results lies within the   limits defined under <a href="../configuration/qc_assessment_methods.htm#Patient">Patient day median</a>. In other words, there is no <a href="../configuration/qc_assessment_methods.htm#Alarm">alarm severity</a> on the global QC result corresponding to the global median.                     </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyE-Column1-Body2">The median of all the QC results lies outside the   limits defined under <a href="../configuration/qc_assessment_methods.htm#Patient">Patient day median</a>. In other words, there is an <a href="../configuration/qc_assessment_methods.htm#Alarm">alarm severity</a> on the global QC result corresponding to the global median.                  </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyD-Column1-Body2">The median of all the QC results could not be calculated (because a QC result is missing for instance).</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">Station run row</td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">
+                        <p bgcolor="#EFEFEF">The <span class="ui_element">QC</span> and <span class="ui_element">Median</span> cells are not red (i.e. either both are green, or both are blue, or one is green and the other is blue).</p>
+                        <p bgcolor="#EFEFEF">If the option <a href="#Options">Preselect runs</a> is activated, the row is preselected.
+                    </p>
+                    </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyB-Column1-Body1">The <span class="ui_element">QC</span> cell and/or the <span class="ui_element">Median</span> cell is red.      </td>
+                    <td style="vertical-align: top;" bgcolor="#EFEFEF" class="TableStyle-Alternating-BodyA-Column1-Body1">n.a.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Columns</h4>
+        <ul>
+            <li value="1"><span class="ui_element">Mnemonic</span>: the station (or client station in case of concentrators)</li>
+            <li value="2"><span class="ui_element">Method</span>: the assessment method of the station run</li>
+            <li value="3"><span class="ui_element">Start/End time</span>: Start/end time of the station run</li>
+            <li value="4"><span class="ui_element">QC</span>: The number of abnormal QC results / Number of QC results in the station run</li>
+            <li value="5"><span class="ui_element">#</span>: The number of normal results in the station run</li>
+            <li value="6"><span class="ui_element">Median</span>: the Median of the normal results in the station run</li>
+            <li value="7"><span class="ui_element">Range</span>: the range this median should be in (as determined by the above mentioned settings on assessment method).</li>
+        </ul>
+        <h3>Run actions</h3>
+        <p>Identical to the <span class="ui_element">Run action</span> functionality for <a href="#Processing%20a%20run">processing station runs</a>.</p>
+        <h3>Navigation</h3>
+        <p>Arrow buttons allow navigating through the assessment method history.</p>
+        <h3><a name="Options"></a>Options</h3>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qc_station_runs_process_runs_settings.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="393" data-mc-height="121" src="qc_station_runs_process_runs_settings_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Preselect runs</p>
+        <div class="indented">Runs will be preselected</div>
+        <p class="fieldlabel">Filter</p>
+        <div class="indented">Logical, AssessmentMethod-based MISPL function to filter the assessment methods that should be shown in the browser.</div>
+        <h3>Remark</h3>
+        <p>When selecting the <span class="ui_element">Confirm runs</span> function on a concentrator/distributor station, the browser will also display all station runs of the client stations.</p>
+    </body>
+</html>

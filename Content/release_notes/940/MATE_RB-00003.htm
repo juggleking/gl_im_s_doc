@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.4.0 - Enhancements for electrophoresis graphs (MATE_RB-00003)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1507"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.4.0 - </MadCap:conditionalText>Enhancements for electrophoresis graphs (MATE_RB-00003)</h1>
+        <h2>Introduction</h2>
+        <p>Report builder has support for the display of electrophoresis graphs on GLIMS result reports since GLIMS 8.5. Enhancement requests were filed by customers to match the 'traditional' look of such electrophoresis charts on their reports.</p>
+        <p>To this end, we have extended the 'custom properties' to allow better control over the output while preserving backward compatibility.</p>
+        <h2>Graph options</h2>
+        <p>MIPS supports the following <a href="../../modules/report_builder/tutorials/report_builder_chart_customizer_properties.htm">ElphoChartCustomizer</a> custom properties:</p>
+        <p class="fieldlabel">be.mips.reports.chart.ElphoChartCustomizer.fractionstotop (boolean, default: true)  [NEW in GLIMS 9.4]</p>
+        <ul>
+            <li value="1">when this is set to <span class="ui_element">true</span>, the fractions are rendered using a vertical line extending to the top of the chart.</li>
+            <li value="2">when this is set to <span class="ui_element">false</span>, the fractions are rendered as a short vertical line extending slightly above the curve.</li>
+        </ul>
+        <p class="fieldlabel">be.mips.reports.chart.ElphoChartCustomizer.paint (grayscale|color, default: color)  [NEW in GLIMS 9.4]</p>
+        <ul>
+            <li value="1">when this is set to <span class="ui_element">grayscale</span>, the complete chart is rendered as monochrome.</li>
+            <li value="2">when this is set to <span class="ui_element">color</span>, the curve and any peaks are rendered in blue.</li>
+        </ul>
+        <p class="fieldlabel">be.mips.reports.chart.ElphoChartCustomizer.peaksasareas (boolean, default: false)  [NEW in GLIMS 9.4]</p>
+        <ul>
+            <li value="1">when this is set to <span class="ui_element">true</span>, any peaks are rendered by filling the area underneath the curve with a lighter shade of the curve colour.</li>
+            <li value="2">when this is set to <span class="ui_element">false</span>, any peaks are rendered by using a rectangular area extending to the top of the chart.</li>
+        </ul>
+        <p class="fieldlabel">be.mips.reports.chart.ElphoChartCustomizer.smooth (boolean, default: true)  [since GLIMS 8.6]</p>
+        <ul>
+            <li value="1">when this is set to <span class="ui_element">true</span>, the curve will be rendered with interpolation between the points to prevent sharp edges.</li>
+            <li value="2">when this is set to <span class="ui_element">false</span>, the curve will be rendered without interpolation between the points.</li>
+        </ul>
+        <p class="fieldlabel">be.mips.reports.chart.ElphoChartCustomizer.showlabels (boolean, default: true)  [since GLIMS 8.8]</p>
+        <ul>
+            <li value="1">when this is set to <span class="ui_element">true</span>, the fraction and peak labels will be displayed near the top of the chart.</li>
+            <li value="2">when this is set to <span class="ui_element">false</span>, the fractions and peak labels will not be displayed on the chart.</li>
+        </ul>
+        <h2>In practice</h2>
+        <p>To achieve the 'traditional' look, take the following steps:</p>
+        <ol>
+            <li value="1">Open JasperSoft Studio and modify report <span class="ui_element">Result_Graph_Elpho_Chart.jrxml</span></li>
+            <li value="2">Select the <span class="ui_element">XY Line Chart</span> element</li>
+            <li value="3">In the property grid, find the line <span class="ui_element">Properties expressions</span> and click on the <span class="ui_element">...</span> button</li>
+            <li value="4">A dialog box appears with a list of custom properties you can use to influence the look of the chart</li>
+            <li value="5">Apply the following values:<ul><li value="1">be.mips.reports.chart.ElphoChartCustomizer.fractionstotop = false</li><li value="2">be.mips.reports.chart.ElphoChartCustomizer.paint = grayscale</li><li value="3">be.mips.reports.chart.ElphoChartCustomizer.peaksasareas = true</li><li value="4">be.mips.reports.chart.ElphoChartCustomizer.smooth = true</li><li value="5">be.mips.reports.chart.ElphoChartCustomizer.showlabels = false</li></ul></li>
+            <li value="6">Finally, save and recompile the .jrxml file in order to test the report</li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - OrderSet</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2949"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+OrderSet&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Order set</td>
+                <td>
+os</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+An order set groups a series of orders which need to be tariffed together</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_CheckInvoicing"></a>
+        <h3>
+Check invoicing</h3>
+        <div class="MemberHelp">
+            <p>
+If this field is not unknown, its value will be copied to the invoice summaries (ToCheck field) of the invoices of this order set.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>CheckInvoicing</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Description"></a>
+        <h3>
+Description</h3>
+        <div class="MemberHelp">
+            <p>
+Optional description of the order set.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Description</b></p>
+        </div><a name="F_DispatchingLab"></a>
+        <h3>
+Dispatching lab</h3>
+        <div class="MemberHelp">
+            <p>
+The dispatching lab is the external lab which issued the related orders. Providing this field with a value triggers the subcontracting mode in the tariffication program.</p>
+            <p class="Synopsis"><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<b>DispatchingLab</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">OrderSet</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_Label"></a>
+        <h3>
+Label</h3>
+        <div class="MemberHelp">
+            <p>
+This field is used during the assignment of orders to order sets. This assignment is based on the uniqueness of the combination of order set label and reimbursement party. Hence, orders of the same reimbursement party (e.g. patient) that need to be tariffed together need to specify the same label. Examples: 
+<br />In Belgium; all orders, prescribed on the same day of an ambulatory patient need to be tariffed simultaneously (for supplement calculation). This can be achieved by spcecifying the presription date as order set label. 
+<br />In commercial environments payment agreements may span several orders. If these agreements need to be detected automatically, all the related orders need to be tariffed simultaneously.
+<br />If order grouping is not required, specify order internal id as order set label.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">String</span>&#160;<b>Label</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_ManuallyUpdated"></a>
+        <h3>
+Manually updated</h3>
+        <div class="MemberHelp">
+            <p>
+If someone updated the orderset manually during order entry or otherwise (force financing, ...), then this field (logical) is set; during following changes, a warning will be displayed to bring this to the user's attention.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>ManuallyUpdated</b></p>
+        </div><a name="F_PartyType"></a>
+        <h3>
+Party type</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the party type of the order set. It is the capacity in which the reimbursement party was assigned as such.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="ordersetpartytype.htm">OrderSetPartyType</a></span>&#160;<b>PartyType</b></p>
+            <p>
+One of: <span class="Parameter">Object person, Issuer, Order agent, Object owner, Object supplier, Institution, Specific, Study</span></p>
+        </div><a name="F_ReceivingLab"></a>
+        <h3>
+Receiving lab</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the (internal) lab that received the order. This field is required by the tariffication program. It must be specified before running the tariffication program unless there is only 1 internal lab.</p>
+            <p class="Synopsis"><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<b>ReceivingLab</b></p>
+        </div><a name="F_ReimbursementParty"></a>
+        <h3>
+Reimbursement party</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the order set's reimbursement party. It is a party that is related (cfr party type) with the associated order(s) and that is principally responsible for the reimbursement of the costs. This does not mean that this party has to pay! The payment agreements applicable for this order(set) are either general payment agreements, or payment agreements of the reimbursement party. Examples:
+<br />In health care environments the reimbursement party is usually the patient. This means that invoices will be sent to the patient's fund or to the patient if the patient is not insured or if his fund fails to pay.
+<br />In commercial envirionments the reimbursement party may be the issuer. For vetrinarian orders, the reimbursement party may be the issuer (the vet) or the animal owner.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>ReimbursementParty</b></p>
+        </div><a name="F_ShipmentId"></a>
+        <h3>
+Shipment id</h3>
+        <div class="MemberHelp">
+            <p>
+Not in use.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ShipmentId</b></p>
+        </div><a name="F_SpecificParty"></a>
+        <h3>
+Specific party</h3>
+        <div class="MemberHelp">
+            <p>
+Correspondent, assigned as specific reimbursement party. This field is only relevant if the order set's party type is set to 'Specific'. This field was introduced to relate a correspondent with the order(set), which is not involved with the order for other reasons. In this way that correspondent's payment agreements can be applied.
+<br />Example: In Germany the 'Rechnungsempfanger' is implemented in this way.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<b>SpecificParty</b></p>
+        </div><a name="F_Spectrum"></a>
+        <h3>
+Spectrum</h3>
+        <div class="MemberHelp">
+            <p>
+Invoicing can be spectrum depandent (see PolicyClause condition)
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="bcg.htm">BillingCodeGroup</a></span>&#160;<b>Spectrum</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+This field represents the tariffication status.
+<br />Initial: No (partial) tariffication has taken place yet. No billing items.
+<br />Partial: At least one billing item is assigned to the order set.
+<br />Complete: The order set is considered as completely tariffed.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="ordersetstatus.htm">OrderSetStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Partial, Complete</span></p>
+        </div><a name="F_TariffTime"></a>
+        <h3>
+Tariff time</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the date and time used to retrieve time depending tariff data during the tariffication.</p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>TariffTime</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_BillingItems"></a>
+        <h3>
+Billing items&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BillingItems</b> ()</p>
+        </div><a name="M_ChangeOrderSetTariffingStatus"></a>
+        <h3>
+Change tariffing status&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function </p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ChangeOrderSetTariffingStatus</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">CompleteOption</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CompleteOption</span></dt>
+                <dd>
+If set to YES, the order set will be marked as completely tariffed. If set to NO, the tariffing status of the order sets will be downgraded to 'partial'.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span></dt>
+                <dd>
+Should the tariffing status of the associated orders and its requests be changed as well ?</dd>
+            </dl>
+        </div><a name="M_ClearOrderSetTariffication"></a>
+        <h3>
+Clear Tariffication&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function tries to delete the tariffication of an order set. All related invoice items, billing items, request charges and invoices are deleted. If the deletion of one of these records fails, then all records will be restored.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ClearOrderSetTariffication</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">ShowErrors</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowErrors</span></dt>
+                <dd>
+Should errors be displayed (YES) or only logged (NO) ?</dd>
+            </dl>
+        </div><a name="M_DispatchingLab"></a>
+        <h3>
+Dispatching lab&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DispatchingLab</b> ()</p>
+        </div><a name="M_Financing"></a>
+        <h3>
+financing&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Financing</b> ()</p>
+        </div><a name="M_ForceFinancing"></a>
+        <h3>
+Force financing&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function replaces an order set's financing records. New financing records will be created for payment agreements that can be specified as function parameters.
+<br />This function is usually executed to replace patient specific payment agreements that are not complete or no longer valid by a general payment agreement which will charge all costs to the patient.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ForceFinancing</b> (<span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement1</span>, <span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement2</span>, <span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement3</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement1</span></dt>
+                <dd>
+First payment agreement to be assciated with the order set.</dd>
+                <dt><span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement2</span></dt>
+                <dd>
+Second payment agreement to be assciated with the order set.</dd>
+                <dt><span class="Type"><a href="paya.htm">PaymentAgreement</a></span>&#160;<span class="Parameter">PaymentAgreement3</span></dt>
+                <dd>
+Third payment agreement to be assciated with the order set.</dd>
+            </dl>
+        </div><a name="M_ForcedClearOrderSetTariffication"></a>
+        <h3>
+Forced clear tarification&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Same as clear tarification, but with deletion of fixed billing documents as well. This function is only available for developers</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ForcedClearOrderSetTariffication</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">ShowErrors</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ShowErrors</span></dt>
+                <dd>
+Should errors be displayed (YES) or only logged (NO) ?</dd>
+            </dl>
+        </div><a name="M_InvoiceItems"></a>
+        <h3>
+Invoice items</h3>
+        <div class="MemberHelp">
+            <p>
+This functions displays all the invoice items of an order set.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceItems</b> ()</p>
+        </div><a name="M_Invoices"></a>
+        <h3>
+Invoices&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Invoices</b> ()</p>
+        </div><a name="M_Orders"></a>
+        <h3>
+Orders&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Orders</b> ()</p>
+        </div><a name="M_OrdersOfOrdersetFSE"></a>
+        <h3>
+Orders of orderset (Billing)&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrdersOfOrdersetFSE</b> ()</p>
+        </div><a name="M_ReceivingLab"></a>
+        <h3>
+Receiving lab&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReceivingLab</b> ()</p>
+        </div><a name="M_ReimbursementParty"></a>
+        <h3>
+Reimbursement party&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReimbursementParty</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SpecifyExecutorsAndBC"></a>
+        <h3>
+Specify/validate executors and billing codes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows to use different billing codes and executors than the standards of the tariffication.
+<br />The screen starts with a temporary tariffication and proposes the default billing code(assignments) and executors(provision).
+<br />The user can confirm these values or choose others.
+<br />Note that the order must be ready for pre-tariffication and that only initial charged items can be modified.
+<br />After confirmation the next tariffication will use these values.
+<br /> </p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SpecifyExecutorsAndBC</b> ()</p>
+        </div><a name="M_Spectrum"></a>
+        <h3>
+Spectrum&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Spectrum</b> ()</p>
+        </div><a name="M_Tariff"></a>
+        <h3>
+Tariffication&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function performs the tariffication of the order set.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Tariff</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">PartialOrderBilling</span>, <span class="Type"><a href="bcat.htm">BillingCategory</a></span>&#160;<span class="Parameter">BillingCategory</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MarkAsComplete</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">InvsPayerTypes</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ForcedTariffTime</span>, <span class="Type"><a href="budgetortariff.htm">BudgetOrTariff</a></span>&#160;<span class="Parameter">BudgetOrTariff</span>, <span class="Type"><a href="afps.htm">bt_ActualFunctionParameterSet</a></span>&#160;<span class="Parameter">ShippingParameterSet</span>, <span class="Type"><a href="tariffloglevel.htm">TariffLogLevel</a></span>&#160;<span class="Parameter">LogLevel</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PartialOrderBilling</span></dt>
+                <dd>
+Partial order billing (only tariffication for specified billing category).</dd>
+                <dt><span class="Type"><a href="bcat.htm">BillingCategory</a></span>&#160;<span class="Parameter">BillingCategory</span></dt>
+                <dd>
+In case of partial order billing : billing category which has to be tariffed.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MarkAsComplete</span></dt>
+                <dd>
+If the tariffication end successfully, can it be marked as completely tariffed ?</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignInvoiceDocNo</span></dt>
+                <dd>
+Should the invoices that are created during this tariffication sesion, be numbered immediately ?</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">InvsPayerTypes</span></dt>
+                <dd>
+Invoices created during this session, for payers of the specified list will immeditely be assigned to an invoice summary. If no payer types are specified, no invoice summaries will be created.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ForcedTariffTime</span></dt>
+                <dd>
+If specified, force the tariffication time to the specified time.</dd>
+                <dt><span class="Type"><a href="budgetortariff.htm">BudgetOrTariff</a></span>&#160;<span class="Parameter">BudgetOrTariff</span></dt>
+                <dd>
+One of: <span class="Parameter">Budget, Tariff, Budget and Tariff</span><br />
+Specifies if only the budgets must be calculated, only the tarification must run, or both.</dd>
+                <dt><span class="Type"><a href="afps.htm">bt_ActualFunctionParameterSet</a></span>&#160;<span class="Parameter">ShippingParameterSet</span></dt>
+                <dd>
+If used then the made or assigned invoice summaries are also placed on a financial shipment. 
+<br />Option makes only sense if the option create invoice summaries is enabled.</dd>
+                <dt><span class="Type"><a href="tariffloglevel.htm">TariffLogLevel</a></span>&#160;<span class="Parameter">LogLevel</span></dt>
+                <dd>
+One of: <span class="Parameter">Standard, Billing code assignments, Billing rule details, Extended logging</span><br />
+Possible logging levels during the Tariffication are:
+<br />1-Standard: produces a brief summary 
+<br />2-billing code assignments: writes billing code assigments information (request-&gt;billing code(s) links) to the tariffication logging.
+<br />3-billing rule details: idem 2 + displays the billing code changes per applied billing rule.
+<br />4-Extended logging: writes a lot of debug mode (to file)
+<br />Notes:
+<br />-A logging level &lt;&gt; standard will slow down the Tariffication
+<br />-Set the minimal log severity=info for the log type "Tariffication"
+<br /></dd>
+            </dl>
+        </div><a name="M_VerifyTariffication"></a>
+        <h3>
+Verify tariffication&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows debugging of the tariffication. It visualize the link between the requests and the applied billing codes and tariffs.
+<br />The BCAS column displays the original billing code assignments.
+<br />The &gt; sign indicates that the effective charged billing code differs from the original billing code assignment because of a billing rule(A&gt;B,A&gt;) or supplement(&gt;A).</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VerifyTariffication</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_BCData"></a>
+        <h3>
+BCData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns billing data (billing codes, base value, amount...) that meet all the selection criteria. This function is used when printing invoices in france ('Feuille de secu').
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BCData</b> (<span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonicList</span>, <span class="Type">String</span>&#160;<span class="Parameter">BaseValueCodeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">WhatToGet</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span></dt>
+                <dd>
+Comma separated list of reimbursement class mnemonics. If specified restrict returned data to those billing codes assigned to the specified reimbursement classes.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span></dt>
+                <dd>
+Comma separated list of reimburser types. If specified, restrict the returned billing data to those reimbursed by the specified types.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonicList</span></dt>
+                <dd>
+Billing code group mnemonic. If specified, restrict billing data for which the billing code belongs to the specified group(s).</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BaseValueCodeList</span></dt>
+                <dd>
+Comma separated list of base value codes (price code). If specified, restrict the returned data to those billing codes with this base value code.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">WhatToGet</span></dt>
+                <dd>
+Indicate what your looking for possible values are : NomenclatureCodes, NomenclatureCodesAndBValues, BaseValueTotal,GrossAmountTotal, NetAmountTotal, Quantity
+<br /></dd>
+            </dl>
+        </div><a name="M_BCIData"></a>
+        <h3>
+BCIData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns data (specified by a dedicated parameter) of billing code instances (BCI) that meet all the selection criteria. Billing code instances are temporary records during a tariffication session that correspond with future billing items. Hence this function is only available during the tariffication program. This function is frequently used for supplement calculation.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BCIData</b> (<span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">UrgencyCodeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">ExecutingLabList</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Accredited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToCharge</span>, <span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span></dt>
+                <dd>
+Comma separated list of reimbursement class mnemonics. If specified restrict billing code instances to those assigned to the specified reimbursement classes.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span></dt>
+                <dd>
+Comma separated list of reimburser types. If specified, restrict the billing code instances to those reimbursed by the specified types.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonic</span></dt>
+                <dd>
+Billing code group mnemonic. If specified, restrict billing code instances for which the billing code belongs to the specified group.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">UrgencyCodeList</span></dt>
+                <dd>
+Comma seperated list of urgency codes. If specified, restrict billing code instances marked with an urgency code of the list.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExecutingLabList</span></dt>
+                <dd>
+Comma seperated list of lab mnemonics. If specified restrict the billing code instances to those executed in one of the specified labs.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Accredited</span></dt>
+                <dd>
+If specified, restrict the billing code instances to those of which the executor is (not) accredited.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToCharge</span></dt>
+                <dd>
+If specified, restrict billing code instances to those that need (not) be charged.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span></dt>
+                <dd>
+Parameter specifying which data needs to be returned of the selected billing code instances:<br />- BaseValueTotal: Total base value.<br />- PriceTotal: The amounts that are summed are the prices calculated by the price formule.<br />- GrossAmountTotal: The amounts that are summed are the gross amounts (exclusive VAT and discount) of the invoice items (billing assessments) of the selected billing code instance.<br />- NetAmountTotal: This is the same as GrossAmountTotal, but this version includes the discounting at invoice item level and the rounding.<br />- BillingCodes: Comma separated list of billing code codes.<br />- MainBillingCode: Billing code code with the highest base value.<br />- Executors: Comma separated list of executor mnemonics.<br />- MainExecutor: Executor mnemonic of the main billing code.<br />- MaximumSpecimenRequisite: Maximum specimen requisite.<br />- NomenclatureCodes: Comma separated list of nomenclature codes.<br />- MainNomenclatureCode: Nomenclature code with the highest base value.<br />- BillingCodePanelOrPropertyDescriptions: returns a list of descriptions (only applicable during the order set tariffication such as in the policy supplement expression). The following descriptions are returned in descending preference: the BillingCode.ExternalDescription, the panel description or the Property / Material / Bloodproduct / MicrobiologyProcedure / Pathologyprocedure description.<br />- ExecutingDepartmentList: Comma seperated list of executing department(s) mnemonic(s)<br />- ExecutingLabList: Comma seperated list of executing lab(s) mnemonic(s)<br /></dd>
+            </dl>
+        </div><a name="M_BCIData2"></a>
+        <h3>
+BCIData2&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns data (specified by a dedicated parameter) of billing code instances (BCI) that meet all the selection criteria. Billing code instances are temporary records during a tariffication session that correspond with future billing items. Hence this function is only available during the tariffication program. This function is frequently used for supplement calculation.<br />Return value idem as BCIData MISPL function but with additional parameter ConventionedExecutor (used in belgium).</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BCIData2</b> (<span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">UrgencyCodeList</span>, <span class="Type">String</span>&#160;<span class="Parameter">ExecutingLabList</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Accredited</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ConventionedExecutor</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">ToCharge</span>, <span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span></dt>
+                <dd>
+Comma separated list of reimbursement class mnemonics. If specified restrict billing code instances to those assigned to the specified reimbursement classes.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbTypeList</span></dt>
+                <dd>
+Comma separated list of reimburser types. If specified, restrict the billing code instances to those reimbursed by the specified types.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BCGroupMnemonic</span></dt>
+                <dd>
+Billing code group mnemonic. If specified, restrict billing code instances for which the billing code belongs to the specified group.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">UrgencyCodeList</span></dt>
+                <dd>
+Comma seperated list of urgency codes. If specified, restrict billing code instances marked with an urgency code of the list.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ExecutingLabList</span></dt>
+                <dd>
+Comma seperated list of lab mnemonics. If specified restrict the billing code instances to those executed in one of the specified labs.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Accredited</span></dt>
+                <dd>
+If specified, restrict the billing code instances to those of which the executor is (not) accredited.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ConventionedExecutor</span></dt>
+                <dd>
+If specified, restrict the billing code instances to those of which a (not)conventioned executor.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">ToCharge</span></dt>
+                <dd>
+If specified, restrict billing code instances to those that need (not) be charged.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span></dt>
+                <dd>
+Parameter specifying which data needs to be returned of the selected billing code instances:<br />- BaseValueTotal: Total base value.<br />- PriceTotal: The amounts that are summed are the prices calculated by the price formule.<br />- GrossAmountTotal: The amounts that are summed are the gross amounts (exclusive VAT and discount) of the invoice items (billing assessments) of the selected billing code instance.<br />- NetAmountTotal: This is the same as GrossAmountTotal, but this version includes the discounting at invoice item level and the rounding.<br />- BillingCodes: Comma separated list of billing code codes.<br />- MainBillingCode: Billing code code with the highest base value.<br />- Executors: Comma separated list of executor mnemonics.<br />- MainExecutor: Executor mnemonic of the main billing code.<br />- MaximumSpecimenRequisite: Maximum specimen requisite.<br />- NomenclatureCodes: Comma separated list of nomenclature codes.<br />- MainNomenclatureCode: Nomenclature code with the highest base value.<br />- BillingCodePanelOrPropertyDescriptions: returns a list of descriptions (only applicable during the order set tariffication such as in the policy supplement expression). The following descriptions are returned in descending preference: the BillingCode.ExternalDescription, the panel description or the Property / Material / Bloodproduct / MicrobiologyProcedure / Pathologyprocedure description.<br />Thois options are identifical whith the BCIData MISPL function</dd>
+            </dl>
+        </div><a name="M_BillingCodesCurrentlyPresent"></a>
+        <h3>
+BillingCodesCurrentlyPresent&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a comma separated list of billing codes that meet the input criteria.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BillingCodesCurrentlyPresent</b> (<span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReimbClassList</span></dt>
+                <dd>
+Comma separated list of reimbursement class mnemonics. If specified restrict billing codes to those assigned to the specified reimbursement classes.</dd>
+            </dl>
+        </div><a name="M_DlvrData"></a>
+        <h3>
+DlvrData</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns data (specified by a dedicated parameter) of deliveries (dlvr) that meet all the selection criteria. Deliveries are temporary records during a tariffication session that correspond with requests. Hence this function is only available during the tariffication program.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>DlvrData</b> (<span class="Type">String</span>&#160;<span class="Parameter">RequestTypeList</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">RootSpecimen</span>, <span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RequestTypeList</span></dt>
+                <dd>
+Comma separated list of request types. If specified restrict deliveries to those of the specified types.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">RootSpecimen</span></dt>
+                <dd>
+This parameter is only taken into account in case of specimen. 
+<br />Yes: process root specimen only.
+<br />No: process derived specimen only.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">WhatToDo</span></dt>
+                <dd>
+Parameter specifying which data needs to be returned of the selected deliveries. Currently there is only 1 value supported:
+<br />SamplingTimes: Return the deliveries' sampling times.</dd>
+            </dl>
+        </div><a name="M_FrenchSupplements"></a>
+        <h3>
+FrenchSupplements&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function calculates the official french supplements 
+<br />('Majorations', 'Prélèvements', 'Déplacements') for labs
+<br />and based on the order information (sampler, distance,...) and charged billing codes (tariffication before evaluation of the supplement expression).
+<br />The return value is a comma seperated list of billing code codes (with each an optional \Reason tag).
+<br />IF no supplements are to be applied, the return value is an empty string ''.
+<br />This function can be used (only) in the Policy.Supplement expression and can reduces the expression to:
+<br />RETURN(.FrenchSupplements(?, ?));
+<br /><br />conventions:
+<br />-The calculated supplements are conform the table 'Tariffs france metropolitaine' (not tariffs Dom-Tom)
+<br />-The format of the returned billing codes is NNNNCle; example 9050K
+<br />  in case of possible ambiguety, the factor is added too; example 9050K[1.5/2]
+<br /> these codes should be available (preconfigurated) - note that most of them are not included in the nabm nomenclature file(import)
+<br />-the 'Prelevements' are based on the Material.SamplingCode:
+<br /> PS = 'Prelevement sanguin (par ponction veineuse directe)' (multiples and babies&lt;5y are automaticly recognized)
+<br /> PGY= 'Prelevements gynecologiques'
+<br /> PPM= 'Prelevements asceptique musqueuses et peau'
+<br /> PIA= 'Ponction Intra Arterielle'
+<br /> PIV= 'Injection Intra Veineuse'
+<br /> PCU= 'Cathererisme Ureal femme'
+<br /> PTG= 'Tubage Gastrique'
+<br />-The 'Nuit', ferier,.. urgencies are based on the Order prescription time (unless explicit specified in the Options parameter)
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>FrenchSupplements</b> (<span class="Type">String</span>&#160;<span class="Parameter">Types</span>, <span class="Type">String</span>&#160;<span class="Parameter">Options</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Types</span></dt>
+                <dd>
+indicate which supplements should be calculated.
+<br />Possible values are:
+<br />? all
+<br />P 'Prélevements' (AMI, TB, KB, PB, K)
+<br />M 'Majorations' (Nuit, Dimanche, B4 sanguin, B5 bacterio)
+<br />D 'Déplacements' (IK,ID)
+<br />or a combination of these values; for instance "P,M"</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Options</span></dt>
+                <dd>
+\UrgencyReferenceTime=ObjectTime|PrescriptionTime
+<br />        Reference date and time used to determe the night, holiday supplement
+<br />        The default behaviour is PrescriptionTime
+<br /></dd>
+            </dl>
+        </div><a name="M_LinkedFinance"></a>
+        <h3>
+LinkedFinance&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL-function returns the reference of the n-th financing record of an order set.</p>
+            <p class="Synopsis"><span class="Type"><a href="fnc.htm">Financing</a></span>&#160;<b>LinkedFinance</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span></dt>
+                <dd>
+This parameter indicates which financing record must be retrieved. 1 = financing with the lowest sequence number, 2 = second, etc.</dd>
+            </dl>
+        </div><a name="M_LinkedOrder"></a>
+        <h3>
+LinkedOrder&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL-function returns the reference of the n-th order record of an order set.</p>
+            <p class="Synopsis"><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>LinkedOrder</b> (<span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span>)</p>
+            <dl>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SeqNo</span></dt>
+                <dd>
+This parameter indicates which order record must be retrieved. 1 = order with lowest receipt time, 2 = second, etc.</dd>
+            </dl>
+        </div><a name="M_OrderData"></a>
+        <h3>
+OrderData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This MISPL functions returns data of orders assigned to an order set. The required data can be specified as a function parameter.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>OrderData</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span>, <span class="Type">String</span>&#160;<span class="Parameter">AmbiguousValue</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span></dt>
+                <dd>
+Parameter specifying which data needs to be returned of the assigned orders:
+<br />- SamplingLocation: Untranslates string value of sampling location
+<br />- OrderStatus: Untranslated string value of order status (e.g. 'initial')
+<br />- TariffingStatus: Untranslated string value of the order tariffing status
+<br />- Description: Order description
+<br />- ExternalId: Order external id
+<br />- InternalId: Order internal id
+<br />- IssuerInternalId: Order's issuer internal id
+<br />- AgentInternalId: Order's agent internal id
+<br />- DepartmentInternalId: Order's department internal id </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AmbiguousValue</span></dt>
+                <dd>
+Value to be returned in case multiple orders are assigned to the order set and the requested value is not the same for these orders.</dd>
+            </dl>
+        </div><a name="M_TariffResult"></a>
+        <h3>
+TariffResult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns a reference to a result which is being tariffed and that meets the criteria specified in the funcion parameters. This function is only available during the execution of the tariffication program. If multiple results meet the criteria, then a reference to one (randomly) of them will be returned.</p>
+            <p class="Synopsis"><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>TariffResult</b> (<span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span>, <span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span></dt>
+                <dd>
+If specified, a result will be selected which is tariffed with the specified billig code.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+If specified, a result will be selected of the specified property.</dd>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Orders of order set</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="ord.htm">Order</a>.<a href="ord.htm#F_OrderSet">OrderSet</a></p>
+        </div>
+        <h3>
+Invoices of order set</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="inv.htm">Invoice</a>.<a href="inv.htm#F_OrderSet">OrderSet</a></p>
+        </div>
+        <h3>
+financing records of order</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="fnc.htm">Financing</a>.<a href="fnc.htm#F_OrderSet">OrderSet</a></p>
+        </div>
+        <h3>
+billing items of order set</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="bit.htm">BillingItem</a>.<a href="bit.htm#F_OrderSet">OrderSet</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Standard"></a>
+        <h3>
+Standard order set query</h3>
+        <div class="MemberHelp">
+            <p>
+The order set query has two types of selection criteria: order set criteria and order criteria. Order criteria can only be specified if the 'HasAssignedOrders' parameter is set to 'yes'. In that case order sets are being selected for which all the assigned orders meet the specified order criteria.
+<br /></p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type">String</span>&#160;<span class="Parameter">fromlabel</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToLabel</span>, <span class="Type"><a href="ordersetstatus.htm">OrderSetStatus</a></span>&#160;<span class="Parameter">FromStatus</span>, <span class="Type"><a href="ordersetstatus.htm">OrderSetStatus</a></span>&#160;<span class="Parameter">ToStatus</span>, <span class="Type"><a href="ordersetpartytype.htm">OrderSetPartyType</a></span>&#160;<span class="Parameter">ReimbursementPartyType</span>, <span class="Type">String</span>&#160;<span class="Parameter">ORDFromInternalId</span>, <span class="Type">String</span>&#160;<span class="Parameter">ORDToInternalId</span>, <span class="Type"><a href="tariffingstatus.htm">TariffingStatus</a></span>&#160;<span class="Parameter">ORDFromTariffingStatus</span>, <span class="Type"><a href="tariffingstatus.htm">TariffingStatus</a></span>&#160;<span class="Parameter">ORDToTariffingStatus</span>, <span class="Type"><a href="orderstatus.htm">OrderStatus</a></span>&#160;<span class="Parameter">FromOrderStatus</span>, <span class="Type"><a href="orderstatus.htm">OrderStatus</a></span>&#160;<span class="Parameter">ToOrderStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">DaysCompleted</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">OrderFilterExpression</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HasAssignedOrders</span>, <span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ReceivingLab</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnReceivingLab</span>, <span class="Type">String</span>&#160;<span class="Parameter">MinimalReceiptTime</span>, <span class="Type">String</span>&#160;<span class="Parameter">MaximalReceiptTime</span>, <span class="Type"><a href="residencetype.htm">ResidenceType</a></span>&#160;<span class="Parameter">ResidenceType</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">fromlabel</span></dt>
+                <dd>
+Limit the selection to order sets with a label that succeeds (alphabetically) the specified label.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToLabel</span></dt>
+                <dd>
+Limit the selection to order sets with a label that preceeds (alphabetically) the specified label.</dd>
+                <dt><span class="Type"><a href="ordersetstatus.htm">OrderSetStatus</a></span>&#160;<span class="Parameter">FromStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Partial, Complete</span><br />
+Limit the selection to order sets with a status higher or equal to the specified value.</dd>
+                <dt><span class="Type"><a href="ordersetstatus.htm">OrderSetStatus</a></span>&#160;<span class="Parameter">ToStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Partial, Complete</span><br />
+Limit the selection to order sets with a status lower or equal to the specified value.</dd>
+                <dt><span class="Type"><a href="ordersetpartytype.htm">OrderSetPartyType</a></span>&#160;<span class="Parameter">ReimbursementPartyType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Order agent, Object owner, Object supplier, Institution, Specific, Study</span><br />
+Limit the selection to order sets of the specified reimbursement party type.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ORDFromInternalId</span></dt>
+                <dd>
+Limit the selection to order sets of orders with an internal id that succeeds (alphabetically) the specified label.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ORDToInternalId</span></dt>
+                <dd>
+Limit the selection to order sets of orders with an internal id that preceeds (alphabetically) the specified label.</dd>
+                <dt><span class="Type"><a href="tariffingstatus.htm">TariffingStatus</a></span>&#160;<span class="Parameter">ORDFromTariffingStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Partial, Complete</span><br />
+Limit the selection to order sets of orders with a tariffing status higher or equal to the specified value.</dd>
+                <dt><span class="Type"><a href="tariffingstatus.htm">TariffingStatus</a></span>&#160;<span class="Parameter">ORDToTariffingStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Partial, Complete</span><br />
+Limit the selection to order sets of orders with a tariffing status lower or equal to the specified value.</dd>
+                <dt><span class="Type"><a href="orderstatus.htm">OrderStatus</a></span>&#160;<span class="Parameter">FromOrderStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Pending, Initial, Partial, Complete, Closed, Discontinued</span><br />
+Limit the selection to order sets of orders with a status higher or equal to the specified value.</dd>
+                <dt><span class="Type"><a href="orderstatus.htm">OrderStatus</a></span>&#160;<span class="Parameter">ToOrderStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Pending, Initial, Partial, Complete, Closed, Discontinued</span><br />
+Limit the selection to order sets of orders with a status lower or equal to the specified value.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">DaysCompleted</span></dt>
+                <dd>
+If it is specified, limit the selection to order sets of orders which have reached the status 'completed' at least &lt;n&gt; days ago. &lt;n&gt; is the number specified in this parameters.
+<br />This parameter can only be set if the minimal order status is not lower than 'complete'.</dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">OrderFilterExpression</span></dt>
+                <dd>
+This parameter is a reference to an order-based, logical valued site function. The return value is interpreted as whether the processed order is selected or not. Returning '?' is considered as not selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HasAssignedOrders</span></dt>
+                <dd>
+Check if order set has order(s) assigned;
+<br />YES: select only order sets with order(s) assigned;
+<br />NO: select only order sets without orders assigned;
+<br />?: means no check;</dd>
+                <dt><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ReceivingLab</span></dt>
+                <dd>
+Select order sets with matching receiving lab, when select on receiving lab is true.
+<br />Remark: Receiving lab=? in combination with select on receiving lab, means selection of order set without a receiving lab.
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnReceivingLab</span></dt>
+                <dd>
+Cfr receiving lab parameter.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MinimalReceiptTime</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MaximalReceiptTime</span></dt>
+                <dt><span class="Type"><a href="residencetype.htm">ResidenceType</a></span>&#160;<span class="Parameter">ResidenceType</span></dt>
+                <dd>
+One of: <span class="Parameter">Hospitalized, Ambulatory</span><br /></dd>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ ReimbursementParty - Label </b>
+            </li>
+            <li value="3"><b>+ DispatchingLab </b>
+            </li>
+            <li value="4"><b>+ Label </b>
+            </li>
+            <li value="5"><b>+ ReceivingLab </b>
+            </li>
+            <li value="6"><b>+ ReimbursementParty - TariffTime </b>
+            </li>
+            <li value="7"><b>- ShipmentId </b>
+            </li>
+            <li value="8"><b>+ SpecificParty </b>
+            </li>
+            <li value="9"><b>+ Spectrum </b>
+            </li>
+            <li value="10"><b>+ Status </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

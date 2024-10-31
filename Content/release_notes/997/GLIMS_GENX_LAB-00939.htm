@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Ask for justification if a validated result is updated with a result code (GLIMS_GENX_LAB-00939)</title>
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor209"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Ask for justification if a validated result is updated with a result code (GLIMS_GENX_LAB-00939)</h1>
+        <h2>Issue</h2>
+        <p>Validated results  could be updated with a result code without any validation, which was a potential risk.</p>
+        <h2>Scenario</h2>
+        <ol>
+            <li value="1">Open a Genetic result screen with one or more validated rich text results.</li>
+            <li value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">Press CTRL+F on the result and select a result code.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">=&gt; The result code was saved, but no justification was asked, and the status of the result was still validated.</p>
+            </li>
+        </ol>
+        <h2>Solution</h2>
+        <p>This issue, which occurred since GLIMS 9.9, has been corrected.</p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">This was an issue for:<ul xmlns="http://www.w3.org/1999/xhtml"><li value="1">Rich text results</li><li value="2">Results that were configured to allow multiple result codes</li></ul></li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The result codes of numeric result properties will never be expanded (existing behaviour).</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">
+                <p xmlns="http://www.w3.org/1999/xhtml">Consult registration: visual change for numeric properties that are configured as strict:</p>
+                <table xmlns="http://www.w3.org/1999/xhtml" style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+                    <col style="width: 33%;" class="TableStyle-Alternating-Column-Column1" />
+                    <col style="width: 33%;" class="TableStyle-Alternating-Column-Column1" />
+                    <col style="width: 33%;" class="TableStyle-Alternating-Column-Column1" />
+                    <thead>
+                        <tr class="TableStyle-Alternating-Head-Header1">
+                            <th class="TableStyle-Alternating-HeadE-Column1-Header1">Strict numeric properties in the consult registration</th>
+                            <th class="TableStyle-Alternating-HeadE-Column1-Header1">Behaviour before</th>
+                            <th class="TableStyle-Alternating-HeadD-Column1-Header1">Behaviour after</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="TableStyle-Alternating-Body-Body1">
+                            <td class="TableStyle-Alternating-BodyE-Column1-Body1">Enter result codes</td>
+                            <td class="TableStyle-Alternating-BodyE-Column1-Body1">
+                                <p xmlns="http://www.w3.org/1999/xhtml">An error is shown.</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00939_error.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="285" data-mc-height="101" src="GLIMS_GENX_LAB-00939_error_thumb_0_120.png" tabindex="" /></a>
+                                </p>
+                            </td>
+                            <td class="TableStyle-Alternating-BodyD-Column1-Body1">
+                                <p xmlns="http://www.w3.org/1999/xhtml">The value is expanded. </p>
+                                <ul>
+                                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">If the expanded value is numeric, the value is inserted.</li>
+                                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">If the expanded value is not numeric, the field is reset to '?' (*)</li>
+                                </ul>
+                                <p xmlns="http://www.w3.org/1999/xhtml">&#160;</p>
+                            </td>
+                        </tr>
+                        <tr class="TableStyle-Alternating-Body-Body2">
+                            <td class="TableStyle-Alternating-BodyB-Column1-Body2">Enter field</td>
+                            <td class="TableStyle-Alternating-BodyB-Column1-Body2">
+                                <p xmlns="http://www.w3.org/1999/xhtml">The expected format is shown.</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00939_formatshown.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="231" data-mc-height="49" src="GLIMS_GENX_LAB-00939_formatshown_thumb_0_120.png" tabindex="" /></a>
+                                </p>
+                            </td>
+                            <td class="TableStyle-Alternating-BodyA-Column1-Body2">
+                                <p xmlns="http://www.w3.org/1999/xhtml">The format is not shown.</p>
+                                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_GENX_LAB-00939_formatnotshown.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="246" data-mc-height="47" src="GLIMS_GENX_LAB-00939_formatnotshown_thumb_0_120.png" tabindex="" /></a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+    </body>
+</html>

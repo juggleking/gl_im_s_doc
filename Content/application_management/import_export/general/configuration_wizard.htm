@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Configuration_wizard">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Configuration wizard</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor312"></a>
+            <MadCap:concept term="System management;Application management" />System manual - Configuration wizard</h1>
+        <p>The configuration wizard can be started from the main menu via <span class="ui_element">Start</span>
+-&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">Configuration
+wizard</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="configuration_wizard.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="283" data-mc-height="241" src="configuration_wizard_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Load printers</p>
+        <div class="indented">This option can only be used if no printers have been defined
+yet in GLIMS. Moreover, it can only be used on Windows systems. If
+these criteria are met, all printers defined in Windows will be imported in
+GLIMS.</div>
+        <p class="fieldlabel">Assign default reports</p>
+        <div class="indented">This option requires that an <span class="ui_element">Own organization</span> be
+ defined in the <a href="../../../configuration/specificsite/glims_general_options.htm">GLIMS General settings</a>. If so all default reports that are not yet
+ assigned to a correspondent will be assigned to the Own
+ organization.</div>
+        <p class="fieldlabel">Create fund identifications</p>
+        <div class="indented">This option requires that an <span class="ui_element">HC code
+provider</span> be specified in the <a href="../../../configuration/specificsite/glims_general_options.htm">GLIMS General settings</a>. For each fund that does not
+yet have an identification for the health care code provider (specified in
+SpecificSite), an identification will be created (with Source=HealthCareCodeProvider
+and Target=Fund).</div>
+        <p class="fieldlabel">Populate default property classification</p>
+        <div class="indented">If no default property classification is available, a new one
+will be created. The newly created or existing default property
+classification will be populated/extended with all properties that are not yet
+used in this classification.</div>
+        <p class="fieldlabel">Set EURO support</p>
+        <div class="indented">A default country (country of the Own organization) must be
+ available. This country must use the Euro as currency. If so, the
+ following <a href="../../../db/reference_guide/ssit.htm">Billing General settings</a> fields will be set:
+        <ul><li value="1"><span class="ui_element">EuroSupport</span>=Yes</li><li value="2"><span class="ui_element">EuroCurrency</span> is set<![CDATA[              ]]></li><li value="3"><span class="ui_element">LocalEuroValue</span> is set</li></ul></div>
+        <p class="fieldlabel">Set billing partner</p>
+        <div class="indented">A default country (country of the Own organization) must be
+available and this country must be <span class="ui_element">The Netherlands</span>. If so, GLIMS will
+check if there is an institution with mnemonic 'ComPartner' and name
+'Communication partner'. If not, it will be created. This institution
+will be set as <span class="ui_element">Billing partner</span> in the <a href="../../../db/reference_guide/ssit.htm">Billing General settings</a>.</div>
+        <p class="fieldlabel">Set health care code providers</p>
+        <div class="indented">Depending on the default country and the site language, GLIMS
+ checks the existence of the following correspondents:
+        <ul><li value="1">
+                    Belgium: RIZIV (NE) or INAMI (FR)</li><li value="2">
+                    Germany: KBV (or IK as alternate HC Code Provider)</li><li value="3">
+                    France: SECURITESOCIAL</li><li value="4">
+                    The Netherlands: VEKTIS</li></ul><p>If available, it will be set as <span class="ui_element">HC code provider</span> in
+the <a href="../../../configuration/specificsite/glims_general_options.htm">GLIMS General settings</a>. It will not be created automatically.</p></div>
+        <p class="fieldlabel">Set firm</p>
+        <div class="indented">This option requires that an <span class="ui_element">Own organization</span> be
+ defined the <a href="../../../configuration/specificsite/glims_general_options.htm">GLIMS General settings</a>. If so, a firm will be searched with the same
+ mnemonic as that organization. If not available, it will be
+ created. Moreover, the option will make sure that this firm has the same
+<span class="ui_element"> Name</span>, <span class="ui_element">Municipality</span> and <span class="ui_element">Address</span> as the Own organization.</div>
+        <p class="fieldlabel">Create employee assignment</p>
+        <div class="indented">If the logged in user is not yet assigned to any department:<![CDATA[        ]]><ul><li value="1"><p>An internal lab is searched. If not available, a new
+ internal lab will be created.</p></li><li value="2"><p>If there is a firm of which the name matches the name of
+ the <span class="ui_element">Own organization</span>, this firm will be linked to the internal lab
+ (<span class="ui_element">Default firm</span> field).</p></li><li value="3"><p>A department within the internal lab is searched. If
+ not available, a department with name "Default" is created.</p></li><li value="4"><p>An employee assignment is created linking the logged in
+ user with the department.</p></li></ul></div>
+    </body>
+</html>

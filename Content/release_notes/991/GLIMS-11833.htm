@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.1 - Do not report a result as abnormal when its value lies within the limits of the reporting norm (GLIMS-11833)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1166"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.1 - </MadCap:conditionalText>Do not report a result as abnormal when its value lies within the limits of the reporting norm (GLIMS-11833)</h1>
+        <h2>Issue</h2>
+        <p>An issue was reported where a result value was marked as abnormal (N) even though it did not exceed the  reference values used for reporting.</p>
+        <h2>Why did this issue occur?</h2>
+        <p> The norms for automatic confirmation and validation can be stricter than the norm for reporting. The norm for reporting can, for instance, only have a high limit while the norm for automatic confirmation and validation may have a low limit as well. A result value lower than the low limit of the norm for automatic confirmation and validation is then marked as abnormal on reports and in the <span class="ui_element">Results</span> browser, even though the reference values used for reporting are not exceeded.</p>
+        <h2>Solution</h2>
+        <p>To ensure that a result is now no longer marked as abnormal if its value lies within the limits of the norm for reporting, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Technical severity</span> field has been added in the <span class="ui_element">Result</span> editor.</p>
+        <ul>
+            <li value="1">When 
+	 the value of a patient result is outside the <a href="../../configuration/norms/norms.htm" xmlns="http://www.w3.org/1999/xhtml">norm range</a>, its <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Technical severity</span> will inherit 
+	 the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Severity</span> defined for the norm if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Norm</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">For severity</span> is enabled.</li>
+            <li value="2">When 
+	 the value of a patient result is outside the <a href="../../configuration/norms/norms.htm" xmlns="http://www.w3.org/1999/xhtml">norm range</a>, its <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Norm severity</span> will inherit 
+	 the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Severity</span> defined for the norm if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Norm</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">For reporting</span> is enabled.</li>
+        </ul>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Technical severity</span> is now taken into account as well when calculating the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Result.Severity</span>, the latter being taken into account for <a href="../../configuration/severities/severities.htm#Severity" xmlns="http://www.w3.org/1999/xhtml">automatic confirmation and validation</a>.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p class="fieldlabel">Configured norms</p>
+            <ul>
+                <li value="1">Norm 1: For reporting, Low limit = 10, High limit = 20, Severity 1</li>
+                <li value="2">Norm 2: For severity,  Low limit = 12, High limit = 30, Severity 5</li>
+            </ul>
+            <p class="fieldlabel">Result values and their severities</p>
+            <ul>
+                <li value="1">Result value 11: Technical severity = 5, Norm severity = 0 (norm for reporting is not violated).</li>
+                <li value="2">Result value  25: Technical severity = 1, Norm severity = 1.</li>
+                <li value="3">Result value 35: Technical severity = 5, Norm severity = 5.</li>
+            </ul>
+        </div>
+    </body>
+</html>

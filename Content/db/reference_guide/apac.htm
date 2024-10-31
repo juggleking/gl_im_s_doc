@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - ApproachActivity</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3753"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+ApproachActivity&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Approach activity</td>
+                <td>
+apac</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This contains a copy of the PlanActivity records of the ApproachPlan, with additionally a status field.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Approach"></a>
+        <h3>
+Approach</h3>
+        <div class="MemberHelp">
+            <p>
+Reference to the containing approach.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="appr.htm">Approach</a></span>&#160;<b>Approach</b></p>
+        </div><a name="F_AwaitActionStatus"></a>
+        <h3>
+Await action status</h3>
+        <div class="MemberHelp">
+            <p>
+The minimal status of the actions to trigger the next activity.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="actionstatus.htm">ActionStatus</a></span>&#160;<b>AwaitActionStatus</b></p>
+            <p>
+One of: <span class="Parameter">Frozen, Connecting, Inputting, Pending, Outputting, Partial, Realized, Ready</span></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DisplayName"></a>
+        <h3>
+Display name</h3>
+        <div class="MemberHelp">
+            <p>
+This name will be displayed to represent the activity.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>DisplayName</b></p>
+        </div><a name="F_Duplicating"></a>
+        <h3>
+Must be duplicated for each specimen</h3>
+        <div class="MemberHelp">
+            <p>
+Signifies if the activity will be duplicated for all found specimens having the same type as specimen input of the linked procedure.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Duplicating</b></p>
+        </div><a name="F_EndTime"></a>
+        <h3>
+End time</h3>
+        <div class="MemberHelp">
+            <p>
+•	Status Pending or Running: <br />Date-time that the activity is expected to finish (based on calculation: StartDateTime + Procedure.TurnaroundTime)<br />Empty if <br />•	Status Finished: <br />Date-time that the activity has finished (status changed to Finished)<br />•	Status Discontinued or Error: <br />empty.<br /></p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>EndTime</b></p>
+        </div><a name="F_ErrorMessage"></a>
+        <h3>
+Error message</h3>
+        <div class="MemberHelp">
+            <p>
+If the activity has status error, more information will be in this field.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ErrorMessage</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">ApproachActivity</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Procedure"></a>
+        <h3>
+Procedure</h3>
+        <div class="MemberHelp">
+            <p>
+Represents the procedure used for this activity. Only has meaning for Procedure type activities.</p>
+            <p class="Synopsis"><span class="Type"><a href="proc.htm">Procedure</a></span>&#160;<b>Procedure</b></p>
+        </div><a name="F_RoutedMaterial"></a>
+        <h3>
+Routed material</h3>
+        <div class="MemberHelp">
+            <p>
+The activity of type Router will only route specimens for this material.</p>
+            <p class="Synopsis"><span class="Type"><a href="mat.htm">Material</a></span>&#160;<b>RoutedMaterial</b></p>
+        </div><a name="F_ScopedSpecimen"></a>
+        <h3>
+Scoped specimen</h3>
+        <div class="MemberHelp">
+            <p>
+References the specimen scoped to this activity which will be used as input specimen when creating actions for this activity (if applicable).</p>
+            <p class="Synopsis"><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<b>ScopedSpecimen</b></p>
+        </div><a name="F_StartTime"></a>
+        <h3>
+Start time</h3>
+        <div class="MemberHelp">
+            <p>
+Status Pending: <br />Date-time that the activity is expected to start (based on calculation)<br />It will hold the expected start date-time, based on calculations. This has to be recalculated each time one of the preceding activities gets another start or end date-time.<br /><br />Other Status values (&gt;Pending): <br />Date-time that the activity has started (status changed to Running)<br />As soon as the status becomes Running, the effective start date-time is entered and then it is no more changed.<br /></p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>StartTime</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status</h3>
+        <div class="MemberHelp">
+            <p>
+An ApproachActivity has a status. <br />This is an enumerated with following values:<br />Pending: 	Activity is not started yet and waits for preceding activities to be finished first.<br />Note that is not always certain that it will ever be executed.<br />Running:	Activity has started and is running (busy), but not finished yet.<br />Finished:	Activity has completely finished.<br />If the type=Procedure, it means that all linked Actions have status Ready, which means that their outputs are all either Confirmed, Validated or Discontinued.<br />Discontinued:	Execution of the activity was aborted, e.g. due to discontinue of the order.<br />Error:	Error occurred when starting or running the activity<br />E.g. the Procedure to be used (or its Station) is disabled.<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="approachactivitystatus.htm">ApproachActivityStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Pending, Running, Error, Finished, Discontinued</span></p>
+        </div><a name="F_TransitionError"></a>
+        <h3>
+Transition error</h3>
+        <div class="MemberHelp">
+            <p>
+If some error occurred while evaluating the outgoing transitions, the execution of the approach has to be put on hold.<br />This field will indicate which type of error has occurred.<br /><br />MISPL failure:	one of the outgoing transitions has a restriction mispl that raised an error.<br />Stuck:	All outgoing transitions have a restriction, but none of them evaluated to TRUE</p>
+            <p class="Synopsis"><span class="Type"><a href="transitionerror.htm">TransitionError</a></span>&#160;<b>TransitionError</b></p>
+            <p>
+One of: <span class="Parameter">MISPL, Stuck</span></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+Represents the type of the activity.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="planactivitytype.htm">PlanActivityType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Procedure, Start, End, Void, Router</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_ShowAllActions"></a>
+        <h3>
+Actions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowAllActions</b> ()</p>
+        </div><a name="M_Approach"></a>
+        <h3>
+Approach&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Approach</b> ()</p>
+        </div><a name="M_Discontinue"></a>
+        <h3>
+Discontinue&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows to discontinue one or several selected approach activities. All the outputs that are not available yet of the related actions will be discontinued.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Discontinue</b> ()</p>
+        </div><a name="M_EvaluateTransitionError"></a>
+        <h3>
+Evaluate transition error&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Reevaluate activity with transition error.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EvaluateTransitionError</b> ()</p>
+        </div><a name="M_ShowAllIncomingTransitions"></a>
+        <h3>
+Incoming transitions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowAllIncomingTransitions</b> ()</p>
+        </div><a name="M_ShowAllOutgoingTransitions"></a>
+        <h3>
+Outgoing transitions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowAllOutgoingTransitions</b> ()</p>
+        </div><a name="M_Procedure"></a>
+        <h3>
+Procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Procedure</b> ()</p>
+        </div><a name="M_RoutedMaterial"></a>
+        <h3>
+Routed material&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RoutedMaterial</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer. This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_ScopedSpecimen"></a>
+        <h3>
+Scoped specimen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ScopedSpecimen</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_GetOutputResult"></a>
+        <h3>
+GetOutputResult</h3>
+        <div class="MemberHelp">
+            <p>
+Returns the result, based on the property mnemonic provided as a parameter</p>
+            <p class="Synopsis"><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>GetOutputResult</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+The property for the result</dd>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Outgoing transitions of activity</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="aprt.htm">ApproachTransition</a>.<a href="aprt.htm#F_FromActivity">FromActivity</a></p>
+        </div>
+        <h3>
+Incoming transitions of activity</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="aprt.htm">ApproachTransition</a>.<a href="aprt.htm#F_ToActivity">ToActivity</a></p>
+        </div>
+        <h3>
+Actions of approach activity</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="apaa.htm">ApproachActivityAction</a>.<a href="apaa.htm#F_ApproachActivity">ApproachActivity</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ Approach + DisplayName </b>
+            </li>
+            <li value="3"><b>+ Approach + Status </b>
+            </li>
+            <li value="4"><b>+ Procedure </b>
+            </li>
+            <li value="5"><b>+ RoutedMaterial </b>
+            </li>
+            <li value="6"><b>+ ScopedSpecimen </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

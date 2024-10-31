@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Statistics|Financial" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Flexkost_statistics">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Flexkost statistics</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4250"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor395"></a>Flexkost statistics</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Classification%20options">Classification 
+ options</a> - <a href="#Combined%20statistics">Combined statistics</a> - 
+ <a href="#Output%20example">Output example</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>Flexkost statistics are an official standard in Germany.&#160; In order 
+ to produce Flexkost statistics with GLIMS you can use combined "Invoice 
+ item" statistics.</p>
+        <h2><a name="Classification options"></a>Classification options</h2>
+        <p>The following classification options of the invoice item statistics 
+ are important:</p>
+        <p><b style="font-weight: bold;">Flexkost row(YYYY|mm|issr|cstl|dept|tmpl)</b>
+        </p>
+        <blockquote>
+            <p><b style="font-weight: bold;">YYYY|mm</b>= year and month of the Order 
+ receipt date</p>
+            <p><b style="font-weight: bold;">Issuer</b> = order issuer correspondent's 
+ internal id (dummy issuer 'Z9999' for supplements)</p>
+            <p><b style="font-weight: bold;">cstl </b>= cost location code</p>
+            <p><b style="font-weight: bold;">dept </b>= executing department (Result.Department.Mnemonic, 
+ MicrobiologyAction.Department.Mnemonic,PathologyExam.department or Order.department)</p>
+            <p><b style="font-weight: bold;">tmpl </b>= template mnemonic (property 
+ mnemonic, material mnemonic, microbiology procedure mnemonic, blood product 
+ mnemonic, pathology procedure mnemonic of the (first) associated request).&#160;&#160;
+For supplements (without 
+ associated request) the billing code's internal description and Höchstwert 
+ codes are used&#160; (Höchstwert billing codes are assumed to contain 
+ 'Höchstwert' or 'Hwert' in their internal description).&#160; The rows are
+only grouped per panel request definition if the billing code was directly assigned to the
+panel.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Flexkost column KK/KE/PP/PE</b>
+        </p>
+        <blockquote>
+            <p><b style="font-weight: bold;">col 1</b>. "KK" if reimburser 
+ type = Fund</p>
+            <p><b style="font-weight: bold;">col 2</b>. "KE" if reimburser 
+ type = Issuer and BillingItem.LinkedChargeRequest(1).Request.BillingMark 
+ = K</p>
+            <p><b style="font-weight: bold;">col 3</b>. "PP" if reimburser 
+ type = Object Person&#160;</p>
+            <p><b style="font-weight: bold;">col 4.</b> "PE" if reimburser 
+ type = Issuer and BillingItem.LinkedChargeRequest(1).Request.BillingMark 
+ &lt;&gt; K.&#160; Other reimbursement types should not occur and if they 
+ do additional column(s) are added per reimbursement class.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Discount amount</b>
+        </p>
+        <blockquote>
+            <p>Returns the total discount for one group which can consist of billing 
+ item discount and invoice summary discount.</p>
+        </blockquote>
+        <h2><a name="Combined statistics"></a>Combined statistics</h2>
+        <p>In order to generate a Flexkost file, you must use the '<a href="../../../statistics/common/statistics_combined.htm">Combined 
+ statistics</a>' functionality in GLIMS.&#160; You must first define three 
+ separate statistic runs which can then combine to generate a single output.</p>
+        <h3>Combined statistics</h3>
+        <p>Open the financial statistics module (Start -&gt; Statistics - Financial) 
+ and click the icon for combined statistics. The following screen will 
+ be shown:</p>
+        <p style="text-align: center;" align="center">
+            <img src="flexkost_combined.gif" style="border: none;width: 458px;height: 306px;float: none;border-style: none;border-style: none;" width="458" height="306" border="0" />
+        </p>
+        <p style="text-align: left;" align="left">Click the 'Add' button and then choose the 'Financial statistics' 
+ button.&#160; You will now have to define three separate actual function 
+ parameter sets.&#160; First click 'Insert' and give the parameter set 
+ a name (e.g. Flexkost: Number per reimburser type).&#160; Then choose 
+ the contextual menu function 'Setup' to configure the options for each statistics 
+ run.&#160; Below the configuration options for each run are described.&#160; 
+ The combined statistics can also be stored in a command. &#160;</p>
+        <p style="text-align: center;" align="center">
+            <img src="flexkost_combined2.gif" style="border: none;width: 458px;height: 306px;float: none;border-style: none;border-style: none;" width="458" height="306" border="0" />
+        </p>
+        <p style="text-align: left;" align="left">The output options are only set for the combined statistics 
+ are not for each individual statistics run.</p>
+        <p style="text-align: center;" align="center">
+            <img src="../../../statistics/combined_output.gif" style="border: none;width: 568px;height: 466px;float: none;border-style: none;border-style: none;" width="568" height="466" border="0" />
+        </p>
+        <ul style="list-style: disc;" type="disc">
+            <li align="left" style="text-align: left;" value="1"><span style="font-weight: bold;">Export 
+ to file</span>: e.g. C:\Temp\flex.txt&#160; <b>Format</b>: CSV</li>
+            <li align="left" style="text-align: left;" value="2"><b style="font-weight: bold;">Headers</b>: 
+ the Flexkost file should not have a header.&#160; As leaving the header 
+ fields blank would generate a default header, you must create a text module 
+ which returns and empty string.&#160; Example: {: return(""); 
+ }</li>
+            <li align="left" style="text-align: left;" value="3"><b style="font-weight: bold;">Format</b>: 
+ separator should be set to "|"</li>
+        </ul>
+        <h3>Number per reimburser type</h3>
+        <h4>Classification options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexkost1_classification.gif" style="border: none;width: 686px;height: 362px;float: none;border-style: none;border-style: none;" width="686" height="362" border="0" />
+        </p>
+        <h4>Query options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexcost1_query.gif" style="border: none;width: 478px;height: 326px;float: none;border-style: none;border-style: none;" width="478" height="326" border="0" />
+        </p>
+        <h3>Amount per reimburser type</h3>
+        <h4>Classification options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexkost2_classification.gif" style="border: none;width: 686px;height: 362px;float: none;border-style: none;border-style: none;" width="686" height="362" border="0" />
+        </p>
+        <h4>Query options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexcost2_query.gif" style="border: none;width: 478px;height: 326px;float: none;border-style: none;border-style: none;" width="478" height="326" border="0" />
+        </p>
+        <h3>Discounts</h3>
+        <h4>Classification options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexkost3_classification.gif" style="border: none;width: 686px;height: 362px;float: none;border-style: none;border-style: none;" width="686" height="362" border="0" />
+        </p>
+        <h4>Query options</h4>
+        <p style="text-align: center;" align="center">
+            <img src="flexcost3_query.gif" style="border: none;width: 478px;height: 326px;float: none;border-style: none;border-style: none;" width="478" height="326" border="0" />
+        </p>
+        <h2><a name="Output example"></a>Output example</h2>
+        <p style="text-align: center;" align="center">
+            <img src="flexcost_outputexample.gif" style="width: 438px;height: 538px;border-left-style: Solid;border-left-width: 1px;border-right-style: Solid;border-right-width: 1px;border-top-style: Solid;border-top-width: 1px;border-bottom-style: Solid;border-bottom-width: 1px;float: none;" width="438" height="538" border="1" />
+        </p>
+    </body>
+</html>

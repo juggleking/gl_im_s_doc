@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BGRhesus property trigger</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2555"></a>
+            <MadCap:concept term="Blood transfusion" />BGRhesus property trigger</h1><pre>Trigger table		: ResultOutput                                              
+Trigger description	: CompareCurToPrevAndFillAttribute    
+Data type			: Logical             [V]                                     
+Definition		: /* Comparison of the current bloodgroup/rhesus-result 
+			to the previous one */
+/* Comparison of the current bloodgroup/rhesus-result to the previous one */
+/* If it failes, a message (=RESULTCOMPAREPREV) is displayed */
+/* BaseTable = ResultOutput */    
+/* */</pre><pre>integer age, MinimumAge;</pre><pre>MinimumAge := 90; /* If person younger then no serum part can be carried out */
+age := Today() - .Result.Object.Person().BirthDate;</pre><pre>if  .Result.PriorAttribute( 1, ?, "VALUE") &lt;&gt; ?        
+            and     
+    .Result.Attribute("VALUE") = .Result.PriorAttribute( 1, ?, "VALUE")
+            and
+    age &gt; MinimumAge
+then /* Current and previous result equal, hence storing in Medical record */
+    Message(" Current and previous blood group results are equal");
+    if  EnumeratedToString("bloodgroup",
+        .Result.Object.Person().GetMedicalRecord().BloodGroup) &lt;&gt; ?
+             and 
+        EnumeratedToString("BloodRhesus",.Result.Object.Person().GetMedicalRecord().Rhesus) &lt;&gt; ?
+    then
+      Message(" Medical record filled already. Nothing to do ");
+    else
+       /* als leeftijd jonger dan 3 maand -&gt; nooit definitief */
+       Message("filling medical record with bloodgroup");
+       .Result.Object.Person()
+         .SetMedicalRecord("BloodGroup",.result.Object.GetResult("BG", ?, 1, ?).Attribute("VALUE"));
+       Message("filling medical record with rhesus");
+       .Result.Object.Person()
+         .SetMedicalRecord("Rhesus",.Result.Object.GetResult("Rhesus", ?, 1, ?).Attribute("VALUE"));
+    endif;
+else
+   if .Result.PriorAttribute(1 , ? , "Value") = ? then
+      Message (" Is first bloodgroup");
+   else /* a previous result is found */
+      if .Result.Attribute("VALUE") = .Result.PriorAttribute( 1, ?, "VALUE") then
+         Message(" Person is a baby. No definite blood group");
+      else
+         Message("inconsistency between current and previous bloodgroup ");
+      endif;
+   endif;
+endif;
+return (true);</pre>
+    </body>
+</html>

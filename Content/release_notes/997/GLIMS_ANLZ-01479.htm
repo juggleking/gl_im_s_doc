@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Check previous sorts to sorting zones instead of sorting targets when trying to move an action (GLIMS_ANLZ-01479)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1344"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Check previous sorts to sorting zones instead of sorting targets when trying to move an action (GLIMS_ANLZ-01479)</h1>
+        <h2>Introduction</h2>
+        <p>This modification fixes the problem where an action was moved incorrectly to another specimen because a previous sort to a certain sorting zone was not recognized.</p>
+        <h2>Problem description</h2>
+        <p>The description of the feature <a href="../../routine/specimens/specimens_move_actions.htm" xmlns="http://www.w3.org/1999/xhtml">Move actions to another specimen</a> mentions the following restriction, in a list of restrictions, that applies when moving actions during a sort query (i.e. distributor systems in slave mode):</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">If the root action delivers results, then the results are moved only if the root specimen was <b>not sorted (*) yet to a zone of that action</b> (action -&gt; procedure -&gt; sorting target -&gt; zone).</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">(*) The definition of 'sorted' is</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">There was a sort result received from the sorter, or there was a sort instruction sent to the sorter for a zone not expecting a sort result.  Sorting to error zones is not considered as actual sort. Sorting to an archive zone for actions delivering results is also not considered as actual sort.</p>
+        </div>
+        <p>However, due to changes applied in GLIMS&#160;9.0, the behaviour of GLIMS was changed unintentionally by not taking into account the zones of an action as described above but rather by taking into account the targets.</p>
+        <p>Because different actions of different procedures cannot have the same sorting target, GLIMS incorrectly concluded that an action could be replaced by an action of another procedure and moved an action even though the targets of both procedures target the same zone whereas the action should not have been moved.</p>
+        <p>Because a new action was created on a specimen, it happened that GLIMS would initiate unnecessary sorting of the specimen.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p class="fieldlabel">Configuration</p>
+            <ul>
+                <li value="1">Procedure PROC_A with the property Test1 as output and the material Mat_X as input<ul xmlns="http://www.w3.org/1999/xhtml"><li value="1">Sorting targets:<ul><li value="1">To routine sorting zone SZ1</li><li value="2">To archive zone ARCHIVE</li></ul></li><li value="2"><span class="ui_element">Allow replacement</span> enabled</li></ul></li>
+                <li value="2">Procedure PROC_B with the property Test2 as output and the material Mat_X as input<ul xmlns="http://www.w3.org/1999/xhtml"><li value="1">Sorting targets:<ul><li value="1">To routine sorting zone SZ2</li><li value="2">To archive zone ARCHIVE</li></ul></li><li value="2"><span class="ui_element">Allow replacement</span> enabled</li></ul></li>
+            </ul>
+            <p class="fieldlabel">Routine</p>
+            <p>When entering an order with the following requests:</p>
+            <ol>
+                <li value="1">Mat_X<ol><li value="1">Test1</li><li value="2">Test2</li></ol></li>
+                <li value="2">Mat_X (without tests)</li>
+            </ol>
+            <p>The order will have two specimens (Spmn1 and Spmn2) with all the tests scheduled on the first specimen Spmn1 and none on Spmn2.</p>
+            <p>When several, three for instance, sort queries take place for Spmn2, the expected outcome is:</p>
+            <ol>
+                <li value="1">GLIMS moves the actions from Spmn1 to Spmn2</li>
+                <li value="2">The outcome of the three sort queries is:<ol><li value="1">Sort to SZ1</li><li value="2">Sort to SZ2</li><li value="3">Sort to ARCHIVE</li></ol></li>
+            </ol>
+            <p xmlns="">When sort queries take place for Spmn1, it should be sorted immediately to the ARCHIVE&#160;zone (there's no work left to be done). However, it happened that GLIMS&#160;would instruct to have Spmn1 sorted to SZ2 instead, which is not correct because the work for SZ1 is done. </p>
+        </div>
+    </body>
+</html>

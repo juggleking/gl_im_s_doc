@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - InvoiceItem</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4015"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+InvoiceItem&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Invoice item</td>
+                <td>
+iit</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Invoice items represent the lines of an invoice. They contain the data (e.g. price, VAT, ...) of a billing item to be payed by a specific payer.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_BillingItem"></a>
+        <h3>
+Billing item</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice item's billing item.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="bit.htm">BillingItem</a></span>&#160;<b>BillingItem</b></p>
+        </div><a name="F_Comment"></a>
+        <h3>
+Comment</h3>
+        <div class="MemberHelp">
+            <p>
+Free comment field. This field is not explicitly used by Glims programs.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Comment</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_CreditNote"></a>
+        <h3>
+Credit note</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice item's credit note.</p>
+            <p class="Synopsis"><span class="Type"><a href="inv.htm">Invoice</a></span>&#160;<b>CreditNote</b></p>
+        </div><a name="F_DiscountRate"></a>
+        <h3>
+Discount rate</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the invoice item's discount rate. It is a percentage that is determined during tariffication by the discount code and discount class system.</p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>DiscountRate</b></p>
+        </div><a name="F_GrossAmount"></a>
+        <h3>
+Gross amount</h3>
+        <div class="MemberHelp">
+            <p>
+This is the invoice item's gross amount (before rounding and discounting).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Fractional</span>&#160;<b>GrossAmount</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">InvoiceItem</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_Invoice"></a>
+        <h3>
+Invoice</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice item's invoice.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="inv.htm">Invoice</a></span>&#160;<b>Invoice</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_NetAmount"></a>
+        <h3>
+Net amount</h3>
+        <div class="MemberHelp">
+            <p>
+This is the invoice item's net amount (After discounting and rounding).</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Fractional</span>&#160;<b>NetAmount</b></p>
+        </div><a name="F_VATRate"></a>
+        <h3>
+VAT rate</h3>
+        <div class="MemberHelp">
+            <p>
+This is the VAT rate which is applicable for this invoice item.</p>
+            <p class="Synopsis"><span class="Properties">Invariant </span><span class="Type"><a href="vatr.htm">VATRate</a></span>&#160;<b>VATRate</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_InvoiceItemChangeAmounts"></a>
+        <h3>
+Adapt Amounts&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function supports updating the gross amount and discount rate of invoice items.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>InvoiceItemChangeAmounts</b> (<span class="Type">Fractional</span>&#160;<span class="Parameter">NewGrossAmount</span>, <span class="Type">PositiveFractional</span>&#160;<span class="Parameter">NewDiscountRate</span>)</p>
+            <dl>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">NewGrossAmount</span></dt>
+                <dd>
+New gross amount</dd>
+                <dt><span class="Type">PositiveFractional</span>&#160;<span class="Parameter">NewDiscountRate</span></dt>
+                <dd>
+New discount rate</dd>
+            </dl>
+        </div><a name="M_BillingItem"></a>
+        <h3>
+Billing item&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BillingItem</b> ()</p>
+        </div><a name="M_CreditNote"></a>
+        <h3>
+Credit note&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CreditNote</b> ()</p>
+        </div><a name="M_InvoiceItemReject"></a>
+        <h3>
+Credit-note creation&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows the user to 'reject' a number of invoice items. Rejecting means crediting those lines by putting them on a new or existing credit note. The related interface is similar to the 'reject invoice' interface.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>InvoiceItemReject</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">RejectionReason</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">CreditOtherParties</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">DowngradeOsStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">AssignDocumentNo</span></dt>
+                <dd>
+If TRUE, newly created invoice summaries are immediately numbered. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RejectionReason</span></dt>
+                <dd>
+Free text, describing the rejection reason. Will be copied to the corresponding field of the credit invoice.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Reuse</span></dt>
+                <dd>
+If TRUE, this method will try to reuse any existing credit invoice (for the same order, firm, payer, ...) that has not yet reached the status fixed.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">CreditOtherParties</span></dt>
+                <dd>
+Should other invoices items (for another payer) of the same billing items be credited as well? </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">DowngradeOsStatus</span></dt>
+                <dd>
+Should the order set status be downgraded also? That way the order can be automatically be selected for a retariffication.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UpdateRequests</span></dt>
+                <dd>
+Should requests status be downgraded as well ?</dd>
+            </dl>
+        </div><a name="M_Invoice"></a>
+        <h3>
+Invoice&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Invoice</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_VATRate"></a>
+        <h3>
+VAT rate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VATRate</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_PanelMembersInfo"></a>
+        <h3>
+PanelMembersInfo&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns panel members information in the following format "NomenclatureCodeOfMember1 Property/MaterialDescriptionOfMember1,NomenclatureCodeOfMember2 Property/MaterialDescriptionOfMember2...."
+<br />Only members that are chargeable (rqbl_ToCharge=YES) are listed.
+<br />The member list is also resticted to the tariffs where:
+<br />-member billing codes have the same prefix as the panel's billing code (first 2 non numeric characters; For instance E_ for EBM, G_ for GOAE in German)
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PanelMembersInfo</b> (<span class="Type">String</span>&#160;<span class="Parameter">PriceListMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PriceListMnemonic</span></dt>
+                <dd>
+Pricelist required to extract the nomenclature code.
+<br />If not specified then the nomenclature codes of the pricelist of the applied tariffs(or extension pricelist) is used.</dd>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_InvoiceItem">InvoiceItem</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_InvoiceItemsOfShipment"></a>
+        <h3>
+Invoice items of shipment</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>InvoiceItemsOfShipment</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span>, <span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span>, <span class="Type"><a href="invoiceitemtype.htm">InvoiceItemType</a></span>&#160;<span class="Parameter">Type</span>, <span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span>, <span class="Type"><a href="crcl.htm">CorrespondentClass</a></span>&#160;<span class="Parameter">PayerGroup</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">FromNetAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">ToNetAmount</span>, <span class="Type"><a href="vatc.htm">VATCode</a></span>&#160;<span class="Parameter">VATCode</span>, <span class="Type"><a href="billingitemconfirmationstatus.htm">BillingItemConfirmationStatus</a></span>&#160;<span class="Parameter">ConfirmationStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnConfirmStatus</span>, <span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ExecutingLab</span>, <span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">TariffingLab</span>, <span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<span class="Parameter">Executor</span>, <span class="Type"><a href="excl.htm">ExecutingClass</a></span>&#160;<span class="Parameter">ExecutingClass</span>, <span class="Type"><a href="prcl.htm">PriceList</a></span>&#160;<span class="Parameter">PriceList</span>, <span class="Type"><a href="bucl.htm">BudgetClass</a></span>&#160;<span class="Parameter">BudgetClass</span>, <span class="Type"><a href="rbcl.htm">ReimbursementClass</a></span>&#160;<span class="Parameter">ReimbursementClass</span>, <span class="Type"><a href="acnt.htm">Account</a></span>&#160;<span class="Parameter">Account</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderReceiptTime</span>, <span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">Shipment</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromInvsExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToInvsExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceCreationDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderLowestObjectTime</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span></dt>
+                <dt><span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span></dt>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br /></dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br /></dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br /></dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br /></dd>
+                <dt><span class="Type"><a href="invoiceitemtype.htm">InvoiceItemType</a></span>&#160;<span class="Parameter">Type</span></dt>
+                <dd>
+One of: <span class="Parameter">Debit, Credit, Net</span><br /></dd>
+                <dt><span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span></dt>
+                <dd>
+One of: <span class="Parameter">Animal, Lot, Person, Unknown, QC lot</span><br /></dd>
+                <dt><span class="Type"><a href="crcl.htm">CorrespondentClass</a></span>&#160;<span class="Parameter">PayerGroup</span></dt>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">FromNetAmount</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">ToNetAmount</span></dt>
+                <dt><span class="Type"><a href="vatc.htm">VATCode</a></span>&#160;<span class="Parameter">VATCode</span></dt>
+                <dt><span class="Type"><a href="billingitemconfirmationstatus.htm">BillingItemConfirmationStatus</a></span>&#160;<span class="Parameter">ConfirmationStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Acknowledged, Not acknowledged, Not required</span><br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnConfirmStatus</span></dt>
+                <dt><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ExecutingLab</span></dt>
+                <dt><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">TariffingLab</span></dt>
+                <dt><span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<span class="Parameter">Executor</span></dt>
+                <dt><span class="Type"><a href="excl.htm">ExecutingClass</a></span>&#160;<span class="Parameter">ExecutingClass</span></dt>
+                <dt><span class="Type"><a href="prcl.htm">PriceList</a></span>&#160;<span class="Parameter">PriceList</span></dt>
+                <dt><span class="Type"><a href="bucl.htm">BudgetClass</a></span>&#160;<span class="Parameter">BudgetClass</span></dt>
+                <dt><span class="Type"><a href="rbcl.htm">ReimbursementClass</a></span>&#160;<span class="Parameter">ReimbursementClass</span></dt>
+                <dt><span class="Type"><a href="acnt.htm">Account</a></span>&#160;<span class="Parameter">Account</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span></dt>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderReceiptTime</span></dt>
+                <dt><span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">Shipment</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromInvsExternalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToInvsExternalDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceExternalDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceCreationDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderLowestObjectTime</span></dt>
+            </dl>
+        </div><a name="Q_Standard"></a>
+        <h3>
+Standard invoice item query</h3>
+        <div class="MemberHelp">
+            <p>
+The standard invoice item query.
+<br />performance note:
+<br />The query is normally opened starting from the Invoice table.
+<br />If an order issuer or a minimal receipt date is specified then it is opened starting from the Order table. 
+<br /></p>
+            <p class="Synopsis"><b>Standard</b> (<span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span>, <span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span>, <span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span>, <span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span>, <span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span>, <span class="Type"><a href="invoiceitemtype.htm">InvoiceItemType</a></span>&#160;<span class="Parameter">Type</span>, <span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">FromNetAmount</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">ToNetAmount</span>, <span class="Type"><a href="vatc.htm">VATCode</a></span>&#160;<span class="Parameter">VATCode</span>, <span class="Type"><a href="billingitemconfirmationstatus.htm">BillingItemConfirmationStatus</a></span>&#160;<span class="Parameter">ConfirmationStatus</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnConfirmStatus</span>, <span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ExecutingLab</span>, <span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">TariffingLab</span>, <span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<span class="Parameter">Executor</span>, <span class="Type"><a href="excl.htm">ExecutingClass</a></span>&#160;<span class="Parameter">ExecutingClass</span>, <span class="Type"><a href="prcl.htm">PriceList</a></span>&#160;<span class="Parameter">PriceList</span>, <span class="Type"><a href="bucl.htm">BudgetClass</a></span>&#160;<span class="Parameter">BudgetClass</span>, <span class="Type"><a href="rbcl.htm">ReimbursementClass</a></span>&#160;<span class="Parameter">ReimbursementClass</span>, <span class="Type"><a href="acnt.htm">Account</a></span>&#160;<span class="Parameter">Account</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span>, <span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderReceiptTime</span>, <span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">Shipment</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span>, <span class="Type">String</span>&#160;<span class="Parameter">FromInvsExternalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">ToInvsExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceExternalDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceCreationDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderLowestObjectTime</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="firm.htm">Firm</a></span>&#160;<span class="Parameter">Firm</span></dt>
+                <dd>
+If specified, only invoices of this firm are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromExternalDate</span></dt>
+                <dd>
+If specified, only invoices with an external date later or equal are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToExternalDate</span></dt>
+                <dd>
+If specified, only invoices with an external date before or equal are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnDocNo</span></dt>
+                <dd>
+Defines if selection on invoice document number must be performed. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromDocNo</span></dt>
+                <dd>
+If selection on document number is requested, then only invoices with a document number higher or equal to the specified value are selected. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToDocNo</span></dt>
+                <dd>
+If selection on document number is requested, then only invoices with a document number blow or equal to the specified value are selected. Note that if both from and to values are left "?", this effectivaly means that only invoices without a document numer are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinPrintOutCount</span></dt>
+                <dd>
+If specified, only invoices with a printout count higher or equal to this value are selected. </dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaxPrintOutCount</span></dt>
+                <dd>
+If specified, only invoices with a printout count lower or equal to this value are selected. </dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">FromPrintTime</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) after this time, are selected. For this 
+<br />selection the BillingDocumentOutPrint table is processed. </dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ToPrintTime</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) before this time, are selected. For this selection the BillingDocumentOutPrint table is processed. </dd>
+                <dt><span class="Type"><a href="bdtp.htm">BillingDocumentTemplate</a></span>&#160;<span class="Parameter">PrintedWithTemplate</span></dt>
+                <dd>
+If specified, only invoices that are printed (with the 'mark' option selected) with this layout (billing document template) are selected. The necessary information is read from the BillingDocumentOutprint table. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceSummary</span></dt>
+                <dd>
+Indicates if selection on invoice summary is needed. </dd>
+                <dt><span class="Type"><a href="invs.htm">InvoiceSummary</a></span>&#160;<span class="Parameter">InvoiceSummary</span></dt>
+                <dd>
+If selection on invoice summary is requested, then only invoices that are part of the specified invoice summary are selected. If this field is left "?" that effectivaly means that only invoices that are not yet on an invoice summary are selected. </dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MinimumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Only invoices with a status higher or equal to this one are selected. </dd>
+                <dt><span class="Type"><a href="billingdocumentstatus.htm">BillingDocumentStatus</a></span>&#160;<span class="Parameter">MaximumStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Numbered, Fixed</span><br />
+Only invoices with a status below or equal to this one are selected. </dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">PayerType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br />
+If specified, only invoices with this payer type are selected. </dd>
+                <dt><span class="Type"><a href="reimbursertype.htm">ReimburserType</a></span>&#160;<span class="Parameter">ReimburserType</span></dt>
+                <dd>
+One of: <span class="Parameter">Object person, Issuer, Fund, Object owner, Object supplier, Order agent, Institution, Not Applicable, Dispatching Lab, Receiving Lab, Reimbursement party, Holder, Site billing partner, Specific instance, Fund 2, Study</span><br />
+If specified, only invoices with this reimburser type are selected. </dd>
+                <dt><span class="Type"><a href="invoiceitemtype.htm">InvoiceItemType</a></span>&#160;<span class="Parameter">Type</span></dt>
+                <dd>
+One of: <span class="Parameter">Debit, Credit, Net</span><br />
+If specified, only invoices with this finance type are selected.</dd>
+                <dt><span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<span class="Parameter">ObjectType</span></dt>
+                <dd>
+One of: <span class="Parameter">Animal, Lot, Person, Unknown, QC lot</span><br />
+If specified, only invoices for orders with an object of this object type are selected. </dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">PayerGroup</span></dt>
+                <dd>
+If specified, only invoices with a payer that is member of this correspondent group, are selected. </dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">ReimburserGroup</span></dt>
+                <dd>
+If specified, only invoices with a reimburser that is member of this correspondent group, are selected. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">HasStay</span></dt>
+                <dd>
+If TRUE, only invoices with an attached stay are selected. </dd>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dd>
+Optional invoice based, logical valued site function. If specified, an invoice is selected only if TRUE is returned. </dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">FromNetAmount</span></dt>
+                <dd>
+If specified, then only invoice items with a net amount higher or equal to the specified value are selected. </dd>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">ToNetAmount</span></dt>
+                <dd>
+If specified, then only invoice items with a net amount lower or equal to the specified value are selected.</dd>
+                <dt><span class="Type"><a href="vatc.htm">VATCode</a></span>&#160;<span class="Parameter">VATCode</span></dt>
+                <dd>
+If specified, then only invoice items with a VAT rate referring to this VAT code are selected.</dd>
+                <dt><span class="Type"><a href="billingitemconfirmationstatus.htm">BillingItemConfirmationStatus</a></span>&#160;<span class="Parameter">ConfirmationStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Acknowledged, Not acknowledged, Not required</span><br />
+If specified, then only billing items with this confirmation status are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnConfirmStatus</span></dt>
+                <dd>
+Defines if selection on confirmation status of billing item must be performed.</dd>
+                <dt><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">ExecutingLab</span></dt>
+                <dd>
+If specified, then only billing items referring to this executing lab are selected.</dd>
+                <dt><span class="Type"><a href="lab.htm">Lab</a></span>&#160;<span class="Parameter">TariffingLab</span></dt>
+                <dd>
+If specified, then only billing items referring to this tariffing lab are selected.</dd>
+                <dt><span class="Type"><a href="hcpr.htm">HCProvider</a></span>&#160;<span class="Parameter">Executor</span></dt>
+                <dd>
+If specified, then only billing items referring to this executor (health care provider) are selected.</dd>
+                <dt><span class="Type"><a href="excl.htm">ExecutingClass</a></span>&#160;<span class="Parameter">ExecutingClass</span></dt>
+                <dd>
+If specified, then only billing items referring to this executing class are selected.</dd>
+                <dt><span class="Type"><a href="prcl.htm">PriceList</a></span>&#160;<span class="Parameter">PriceList</span></dt>
+                <dd>
+If specified, then only billing items with an applied tariff which refers to this pricelist are selected.</dd>
+                <dt><span class="Type"><a href="bucl.htm">BudgetClass</a></span>&#160;<span class="Parameter">BudgetClass</span></dt>
+                <dd>
+If specified, then only billing items with an applied tariff which refers to this budgetclass are selected.</dd>
+                <dt><span class="Type"><a href="rbcl.htm">ReimbursementClass</a></span>&#160;<span class="Parameter">ReimbursementClass</span></dt>
+                <dd>
+If specified, then only billing items with an applied tariff which refers to this reimbursement class (mentionned in billing code of tariff) are selected.</dd>
+                <dt><span class="Type"><a href="acnt.htm">Account</a></span>&#160;<span class="Parameter">Account</span></dt>
+                <dd>
+If specified, then only billing items with an applied tariff which refers to this account are selected.</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Issuer</span></dt>
+                <dd>
+Selection on order issuer</dd>
+                <dt><span class="Type"><a href="crgp.htm">CorrespondentGroup</a></span>&#160;<span class="Parameter">IssuerGroup</span></dt>
+                <dd>
+If specified, only invoices of orders with an issuer that is member of this correspondent group, are selected. </dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderReceiptTime</span></dt>
+                <dt><span class="Type"><a href="fshp.htm">FinancialShipment</a></span>&#160;<span class="Parameter">Shipment</span></dt>
+                <dd>
+Select invoice items of a given financial shipment</dd>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">ShipmentDestination</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FromInvsExternalDate</span></dt>
+                <dd>
+If specified, only invoice summaries with an external date later or equal are selected.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ToInvsExternalDate</span></dt>
+                <dd>
+If specified, only invoice summaries with an external date before or equal are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceExternalDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnInvoiceCreationDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">SelectOnOrderLowestObjectTime</span></dt>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ BillingItem </b>
+            </li>
+            <li value="3"><b>+ CreditNote </b>
+            </li>
+            <li value="4"><b>+ Invoice </b>
+            </li>
+            <li value="5"><b>+ VATRate </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+CreditNote.Firm = Invoice.Firm</li>
+            <li value="2">
+CreditNote.Order = Invoice.Order</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

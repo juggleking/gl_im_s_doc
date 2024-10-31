@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced|MISPL and texts|MISPL" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="ERD usage">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>MISPL - ERD</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>MISPL - ERD</h1>
+        <ul>
+            <li value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li value="2"><a href="#symbols">Symbols</a>
+            </li>
+            <li value="3"><a href="#ERD%20examples">Example</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>ERD stands for Entity Relation Diagram. An ERD gives an overview of 
+ the database structure of GLIMS. It shows the relationships between 
+ the different tables within GLIMS. This structure will be very important 
+ in order to be able to build MISPL functions. </p>
+        <p>An ERD consists of: </p>
+        <ul>
+            <li value="1">Entities (the so-called Tables, e.g. the Order table) </li>
+            <li value="2">Relations (one-to-one, one-to-many,...)</li>
+            <li value="3">Routes</li>
+        </ul>
+        <p>An ERD guides you through the internal structure of GLIMS and offers 
+ a map which allows to obtain the required data. In order to build a correct 
+ MISPL function this route has to be followed, taking into account the 
+ relationships between the different tables (entities).</p>
+        <h2><a name="symbols"></a>Symbols used to represent the relationships:</h2>
+        <table style="border-collapse: separate;" width="100%" border="1">
+            <tr>
+                <td width="39">||</td>
+                <td width="932">1 relation</td>
+            </tr>
+            <tr>
+                <td width="39">0<span style="font-family: 'Times New Roman';">|</span></td>
+                <td width="932"><span style="font-family: 'Times New Roman';">0 
+		 or 1 relation</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="39"><span style="font-family: 'Times New Roman';">0&lt;</span>
+                </td>
+                <td width="932"><span style="font-family: 'Times New Roman';">0 
+		 or several relations</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="39"><span style="font-family: 'Times New Roman';">|&lt;</span>
+                </td>
+                <td width="932"><span style="font-family: 'Times New Roman';">1 
+		 or several relations</span>
+                </td>
+            </tr>
+        </table>
+        <p>E.g. </p>
+        <table width="100%">
+            <tr>
+                <td style="width: 50%;">Every child has 1 mother</td>
+                <td rowspan="2" style="width: 50%;">
+                    <img src="images/erd/misplerd1.gif" alt="misplerd1.gif (2431 bytes)" style="border-width: 1px;border-style: solid;" width="272" height="63" border="1" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">Every mother has 0 or more children</td>
+            </tr>
+        </table>
+        <h2><a name="ERD examples"></a>Example of how to use an ERD to build a MISPL function</h2>
+        <p>How to obtain the name of a Station, starting from the Action table:</p>
+        <table cellspacing="0" width="100%">
+            <tr>
+                <td style="vertical-align: top;text-align: center;width: 25%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b><br />		.Procedure.Station.Name</b>
+                    <p>&#160;</p>
+                </td>
+                <td style="width: 75%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <img src="images/erd/erd_core.gif" alt="erd_core.gif (8930 bytes)" style="border-width: 1px;border-style: solid;" width="574" height="413" border="1" />
+                </td>
+            </tr>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>

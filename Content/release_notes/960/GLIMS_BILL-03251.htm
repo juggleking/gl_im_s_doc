@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - Use result responsible as billing item executor (GLIMS_BILL-03251)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3308"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor3309"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>Use result responsible as billing item executor (GLIMS_BILL-03251)</h1>
+        <h2>Introduction</h2>
+        <p>In GLIMS 9.6, a new concept of <a href="../../routine/results/results_responsible.htm" xmlns="http://www.w3.org/1999/xhtml">result responsible</a> was introduced. With this modification, it is now possible to use that result responsible as executor of the billing item (instead of using the provisions).</p>
+        <h2>New functionality</h2>
+        <h3>Activation</h3>
+        <p>If you want to use the result responsible as executor of the billing items, you can activate this for each individual (executing) lab.</p>
+        <p>In the <span class="ui_element">Lab</span> configuration, enable the option <span class="ui_element">Validator is executor</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_BILL-03251.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="652" data-mc-height="750" src="GLIMS_BILL-03251_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Determination of billing item's executor</h3>
+        <p class="fieldlabel">Billing item is linked to 1 request of type Result</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The result's responsible is used to set the billing item's executor.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The result responsible is only available if the result has been validated. However, it is possible to tariff results that are not yet validated (and that do not yet have a responsible).</p>
+                <p>For that reason: </p>
+                <ul>
+                    <li value="1">The billing item's executor is optional in case of incomplete tariffication. In case of final tariffication (option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Mark as completely tariffed</span> is enabled), the billing item's executor must be set.</li>
+                    <li value="2">When creating an invoice summary, the billing item's executor must be set.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Billing item is linked to a pathology exam</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The responsible of the pathology exam is used to set billing item's executor.</p>
+        </div>
+        <p class="fieldlabel">Billing item is linked to a microbiology action</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The responsible of the result for the <span class="ui_element">Report property</span> (defined in the microbiology procedure) is used to set billing item's executor.</p>
+        </div>
+        <p class="fieldlabel">Billing item is linked to a specimen</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The most frequently used responsible for results linked to the specimen is used to set billing item's executor. If no results are available for the specimen, the most frequently used responsible for results within the order is used.</p>
+        </div>
+        <p class="fieldlabel">Billing item is linked to a request of type 'Blood'</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The responsible of the result for the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Report property</span> (defined in the general settings (specific site)) is used to set billing item's executor.</p>
+        </div>
+        <p class="fieldlabel">Billing item is linked to multiple requests (panel)</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The most frequently used responsible for results within the panel is used.  If no results are available for the panel, the most frequently used responsible for results within the order is used.</p>
+        </div>
+        <p class="fieldlabel">Billing item is not linked to a request (supplements)</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The most frequently used responsible for results within the order (set) is used. Responsibles for tariffed results have priority.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This executor can be replaced by an executor returned by the supplement MISPL expression defined in the policy configuration.</p>
+            </div>
+        </div>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Disallow manually changing the billing item's executor</h2>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order set</span> function <span class="ui_element">Specify executors and billing codes</span> will not allow updates for lines where the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Lab</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validator is executor</span> is enabled.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Billing item confirmation: the option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Confirm billing item executor</span> will be disabled if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Lab</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validator is executor</span> is enabled.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Executor</span> cannot be changed in the billing item configuration screen if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Lab</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Validator is executor</span> is enabled.</li>
+        </ul>
+    </body>
+</html>

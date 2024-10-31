@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Tariffication|Who pays what ?" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\billing_module\tariffication\billing_reimbursement_02.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Who will pay which part of the cost ?</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1648"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor139"></a>Who will pay which part of the cost?</h1>
+        <h2>Introduction</h2>
+        <p>In order to determine who will pay which part of the costs, GLIMS allows defining policies and underlying policy clauses.&#160;&#160;Each policy has a number of policy clauses (at least one for each reimbursement class that occurs in the order). The policy clause specifies <b>who</b> will pay <b>what</b> under <b>which conditions</b>.</p>
+        <p><a name="kanchor140"></a>It is important that each payment agreement (which is linked to the policy via a policy name) covers all reimbursement classes for 100%.&#160;&#160;In general, one payment agreement will correspond to one policy (exception example: third payer agreements in France).&#160;&#160;One policy could for instance have two policy clauses, one for the fund and one for the patient (object person).&#160;&#160;The two policies will determine how much the fund pays and how much the patient pays.</p>
+        <h2><a name="Fields"></a>Policy clause editor</h2>
+        <p>The policy clause editor looks as follows:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="policy_clauses_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="652" data-mc-height="917" src="policy_clauses_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Conditions</h3>
+        <p>The conditions allow specifying <b>when</b> the policy clause is to be applied.</p>
+        <p class="p">
+            <p style="text-align: left;"><b style="font-weight: bold;">Residence type</b>: specifies the required residence type (? = no requirement). The clause is only applicable in case the order's residence type matches the specified value. An order's residence type is the residence type of the encounter type of the order's encounter. Note that orders, not referencing an encounter are considered as 'ambulatory'.</p>
+        </p>
+        <p class="p">
+            <p style="text-align: left;"><b style="font-weight: bold;">Sub contracting</b>: indicates whether the policy clause is applicable in case the delivery (order) was dispatched.</p>
+        </p>
+        <p class="p">
+            <p style="text-align: left;"><b style="font-weight: bold;">Forwarded</b>: this is an optional validity condition of the policy clause.&#160;&#160;</p>
+            <ul>
+                <li style="text-align: left;" value="1"><span class="ui_element">Yes</span>: A lab request is forwarded to another (not the receiver) lab for execution.&#160;&#160;</li>
+                <li style="text-align: left;" value="2"><span class="ui_element">No</span>: A lab request is executed in the receiving lab.</li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">It is possible to use a different interpretation of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Forwarded</span> condition:</p>
+                <ul xmlns="http://www.w3.org/1999/xhtml">
+                    <li xmlns="" value="1">If the condition is set to <span class="ui_element">YES</span>, the policy clause can only be used when the receiving and executing labs do not belong to the same site.</li>
+                    <li xmlns="" value="2">If the condition is set to <span class="ui_element">No</span>, the policy clause can only be used when the receiving and executing labs are identical OR different but belong to the same site ("internal labs").</li>
+                </ul>
+                <p xmlns="http://www.w3.org/1999/xhtml">To use this different interpretation, you need to</p>
+                <ul xmlns="http://www.w3.org/1999/xhtml">
+                    <li value="1">
+                        <p xmlns="http://www.w3.org/1999/xhtml"> create and activate a <a href="../../../../configuration/site_attributes/site_attributes_site_domains.htm" xmlns="http://www.w3.org/1999/xhtml">site attribute</a> based on the SpecificSite table and with datatype Logical, "RelaxedPlccForwarded":</p>
+                        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="policy_clauses_forwarded_site_attribute.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="545" data-mc-height="571" src="policy_clauses_forwarded_site_attribute_thumb_0_120.png" tabindex="" /></a>
+                        </p>
+                    </li>
+                    <li value="2">
+                        <p xmlns="http://www.w3.org/1999/xhtml">activate this site attribute in the Billing general settings (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">System management</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Customize</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">GLIMS billing</span>):</p>
+                        <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="policy_clauses_forwarded_settings.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="658" data-mc-height="501" src="policy_clauses_forwarded_settings_thumb_0_120.png" tabindex="" /></a>
+                        </p>
+                    </li>
+                    <li value="3">close and re-open GLIMS.</li>
+                </ul>
+            </div>
+        </p>
+        <p class="p">
+            <p style="text-align: left;"><b style="font-weight: bold;">Eligibility</b>: site function (order based, logical valued) of the policy clause. The return value indicates whether the policy clause is applicable. Returning '?' is considered as 'no', no site function is considered as 'yes'.&#160;&#160;This field can be used if several policy clause combinations can be valid and a selection has to be made.</p>
+        </p>
+        <p class="p">
+            <p style="text-align: left;"><b style="font-weight: bold;">Valid from - until</b>: validity date range.</p>
+        </p>
+        <h3>Specifications</h3>
+        <p>The specification allow indicating <b>what</b> should happen if the policy clause is applied.</p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;"><b style="font-weight: bold;">Reimburser type</b>: the reimburser type is the one who should normally have to pay the costs.&#160;&#160;For more information on the possible options, please check the chapter '<a href="../routine/tariffication_roles.htm" name="kanchor141">Who is involved in the billing process</a>'.</p>
+            </li>
+            <li class="p" value="2">
+                <p style="text-align: left;"><b style="font-weight: bold;">Payer type</b>: the payer type is the one who will actually pay the costs.&#160;&#160;For more information on the possible options, please check the chapter '<a href="../routine/tariffication_roles.htm">Who is involved in the billing process</a>'.</p>
+            </li>
+            <li class="p" value="3">
+                <p style="text-align: left;"><b style="font-weight: bold;">Specific instance</b>: this correspondent can be used as an invoicing target (e.g. an insurance company which pays a specific set of tests independent from the patient's personal fund).</p>
+            </li>
+            <li class="p" value="4">
+                <p style="text-align: left;"><b style="font-weight: bold;">To charge</b>: if set to 'no', the billing code which is being tariffed will not be charged and no error will be produced.</p>
+            </li>
+            <li class="p" value="5">
+                <p style="text-align: left;"><b style="font-weight: bold;">Multiplier</b>:&#160;&#160;used for the calculation of the amount to be invoiced to the specified payer type. Suppose the price calculated so far = 'Pt'.&#160;&#160;The invoiced amount = Pt * Multiplier + FixedAmount.&#160;&#160;This value is mandatory except for a '3rd payer' policy where the reimbursement part is defined in the '3rd payer payment agreement'.</p>
+            </li>
+            <li class="p" value="6">
+                <p style="text-align: left;"><b style="font-weight: bold;">Fixed amount</b>: used for the calculation of the invoiced amount to the specified payer type.&#160;&#160;In the example above, the fund will pay the entire amount minus 12.37.&#160;&#160;So logically, another policy should be created indicating that the patient has to pay 12.37.&#160;</p>
+            </li>
+            <li class="p" value="7">
+                <p style="text-align: left;"><b>Price list type</b>:</p>
+                <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                    <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Standard</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Price list specified in the payment agreement. If not specified, price list specified in the general billing settings.</p>
+                    </div>
+                    <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Issuer's</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Price list specified in the Correspondent configuration of the issuer.</p>
+                    </div>
+                    <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Specific</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml"><span class="ui_element" xmlns="">Price list</span> specified in the policy clause.</p>
+                    </div>
+                    <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Fund</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">Price list specified in the Correspondent configuration of the fund linked to the policy clause.</p>
+                        <p xmlns="http://www.w3.org/1999/xhtml">If no price list is specified for the fund, an error will be produced during tariffication.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </body>
+</html>

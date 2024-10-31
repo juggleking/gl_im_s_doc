@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Updated product check-in and check-out trigger functionality (GLIMS_STCK-00611)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 xmlns="http://www.w3.org/1999/xhtml"><a name="aanchor2138"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Updated product check-in and check-out trigger functionality (GLIMS_STCK-00611)</h1>
+        <p>This modification amends four elements of the <a href="../../modules/stock_management/index_stock_management.htm" xmlns="http://www.w3.org/1999/xhtml">Stock management</a> module.</p>
+        <h2>Context</h2>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Check-in</h3>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">When expired products were selected (scanned) for <a href="../../modules/stock_management/routine/product_checkin.htm" xmlns="http://www.w3.org/1999/xhtml">check-in</a>, 
+no warning was displayed.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The <a href="../../modules/stock_management/configuration/stock_management_general_options.htm#Check" xmlns="http://www.w3.org/1999/xhtml">check-in trigger</a> was not only executed on products which have been scanned in the current check-in session but also on products in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Delivered</span> and/or for which the scan action had been undone.</li>
+        </ol>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Check-out</h3>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">A message always appeared upon <a href="../../modules/stock_management/routine/product_checkout.htm" xmlns="http://www.w3.org/1999/xhtml">check-out</a> of a product when the stock level of that product was down to a <a href="../../modules/stock_management/configuration/product_usage.htm#Fields" xmlns="http://www.w3.org/1999/xhtml">minimum quantity</a>.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">The <a href="../../modules/stock_management/configuration/stock_management_general_options.htm#Options" xmlns="http://www.w3.org/1999/xhtml">check-out trigger</a> was immediately executed after each product scan.</li>
+        </ol>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Modification</h2>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Check-in</h3>
+        <ol>
+            <li xmlns="" value="1">The <a href="../../modules/stock_management/configuration/stock_management_general_options.htm#Check" xmlns="http://www.w3.org/1999/xhtml">check-in trigger</a> is from now based on the table w_ProductCollection. In addition to the same fields as before, one new field is available: wpcl_ProductionDate (the production date). The configurable function that is defined as a check-in trigger will be automatically updated when upgrading to GLIMS 9.9. </li>
+            <li xmlns="" value="2">When the <span class="ui_element">Expiration date</span> of an entered product lies in the past, the following warning is now displayed: "The scanned in product is expired. Do you want to accept it anyway?"</li>
+            <li xmlns="" value="3">The check-in trigger is now only executed on products which have been scanned in the current check-in session.</li>
+        </ol>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Check-out</h3>
+        <ol>
+            <li value="1">
+                <p>If a check-out trigger is defined, the warning about low/ insufficient product stock is not displayed. This information will remain visible in the <a href="../../modules/stock_management/routine/product_checkout.htm#Processing" xmlns="http://www.w3.org/1999/xhtml">check-out overview</a>.</p>
+                <p>This stock level check can now be performed via the check-out trigger MISPL (see example below):</p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p><pre>Message("Product: " + .Id.InternalId);</pre><pre xml:space="preserve">If .FirstOfSpecification = YES</pre><pre xml:space="preserve">THEN message("First of specification " + .Specification.Name);</pre><pre>ENDIF;</pre><pre xml:space="preserve">If .FirstOfPurchaseItem = YES</pre><pre xml:space="preserve">THEN message ("First of item " + .PurchaseItem.ProductSpecification.Name);</pre><pre xml:space="preserve">ENDIF;</pre><pre xml:space="preserve">If .FirstOfLot = YES</pre><pre xml:space="preserve">THEN message("First of lot " + .Lot.LotNo);</pre><pre xml:space="preserve">ENDIF;</pre><pre xml:space="preserve">If .FirstOfUsage = YES</pre><pre xml:space="preserve">THEN message("Available: " +  IntegerToString(.AvailableCount,"%d")  </pre><pre xml:space="preserve">+ "  Checked out: " +  IntegerToString(.CheckedOutCount,"%d")</pre><pre xml:space="preserve">+ " Warning: " + IntegerToString(.WarningCount,"%d") );</pre><pre xml:space="preserve">If .AvailableCount - .CheckedOutCount &lt; .WarningCount</pre><pre xml:space="preserve">THEN message("Stock below warning level");</pre><pre xml:space="preserve">ENDIF;</pre><pre xml:space="preserve">ENDIF;</pre><pre xml:space="preserve">RETURN YES;</pre>
+                </div>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The check-out trigger base table w_Product has been extended with the following fields:</p>
+                    <ul>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1">wprc_FirstOfSpecification		(logical)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2">wprc_FirstOfPurchaseItem	(logical)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="3">wprc_FirstOfLot	(	logical)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="4">wprc_FirstOfUsage	(logical)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="5">wprc_Usage	(<a href="../../modules/stock_management/configuration/product_usage.htm" xmlns="http://www.w3.org/1999/xhtml">product usage</a> reference)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="6">wprc_AvailableCount	(integer)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="7">wprc_WarningCount			(integer)</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="8">wprc_CheckedOutCount	(integer)</li>
+                    </ul>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The field wprc_LotNo (which was only intended for check-in) has been removed.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The logical "FirstOf" fields can be used to avoid duplicate MISPL actions/checks when checking out multiple products of the same specification, lot, etc.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The wprc_Usage field and the (...)Count fields can be used to check the stock warning or alarm levels.</p>
+                </div>
+            </li>
+            <li value="2">
+            The check-out trigger is now only executed when the user clicks the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check-out</span> button of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Check-out products</span> screen. As the trigger is not executed directly after the check-out of a product, the user has the possibility to cancel the check-out action or perform another action for the checked out product, such as sending an e-mail.
+       </li>
+        </ol>
+    </body>
+</html>

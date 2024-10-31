@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - KVDT export: new optional payment agreement site attributes for "Versichertenstammdatei" (BILX_GKVDT-00406)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor56"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>KVDT export: new optional payment agreement site attributes for "Versichertenstammdatei" (BILX_GKVDT-00406)</h1>
+        <p>For the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">KVDT</a> export, new field values from FK 3010 - FK 3013 of the "Versichertenstammdatei" need to be imported in payment agreements via the LDT translator if they are available.</p>
+        <p>To this end, new optional <a href="../../configuration/site_attributes/site_attributes_site_domains.htm" xmlns="http://www.w3.org/1999/xhtml">site attributes</a> XDT_3010 - XDT_3013 are available on the Payment agreement table.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">The field values of FK 3011 to FK 3013 are only checked when a valid value is provided for XDT_3010.</li>
+                <li value="2">The LDT import will store the values in PaymentAgreement and Person, but the KVDT export only uses the values stored in PaymentAgreement.</li>
+                <li value="3">If certain values for these attributes are not valid according to the KVDT format, GLIMS will recognize this and issue the corresponding warnings.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">XDT_3010 </p>
+        <div class="indentedsmall" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Corresponds to the field FK 3010 (Datum und Uhrzeit der Onlineprüfung):</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Name</span>: XDT_3010</li>
+                <li value="2"><span class="ui_element">Data type</span>: String (format YYYYMMDDhhmmss)</li>
+                <li value="3"><span class="ui_element">Widget</span>: Fill-in</li>
+                <li value="4"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Width</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Max chars</span>: 14</li>
+            </ul>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00406_XDT_3010.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="537" data-mc-height="538" src="BILX_GKVDT-00406_XDT_3010_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <p class="fieldlabel">XDT_3011</p>
+        <div class="indentedsmall" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Corresponds to the field FK 3011 (Ergebnis der Onlineprüfung) and contains values for an enumerated list:</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Name</span>: XDT_3011</li>
+                <li value="2"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Data type</span>: Enumerated</li>
+                <li value="3"><span class="ui_element">Widget</span>: Fill-in</li>
+                <li value="4"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Value list</span> (Example): (1)AktualisieringDurchgefuehrt\1,(2)Keine Aktual_Erforderl\2,(3)Aktual_Unguelt\3,(4)Authentif_Ungueltig\4,(5)TechnischNichtMoegl\5,(6)Aktual_tech_unmoeglich\6</li>
+            </ul>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00406_XDT_3011.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="539" data-mc-height="560" src="BILX_GKVDT-00406_XDT_3011_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <p class="fieldlabel">XDT_3012</p>
+        <div class="indentedsmall" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Corresponds to the field FK 3012 (Error Code):</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Name</span>: XDT_3012</li>
+                <li value="2"><span class="ui_element">Data type</span>: String</li>
+                <li value="3"><span class="ui_element">Widget</span>: Fill-in</li>
+                <li value="4"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Width</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Max chars</span>: 4</li>
+            </ul>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00406_XDT_3012.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="539" data-mc-height="557" src="BILX_GKVDT-00406_XDT_3012_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <p class="fieldlabel">XDT_3013</p>
+        <div class="indentedsmall" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Corresponds to the field FK 3013 (Prüfziffer des Fachdienstes):</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1"><span class="ui_element">Name</span>: XDT_3013</li>
+                <li value="2"><span class="ui_element">Data type</span>: String</li>
+                <li value="3"><span class="ui_element">Widget</span>: Fill-in</li>
+                <li value="4"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Width</span>: 45</li>
+                <li value="5"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Max chars</span>: 88</li>
+            </ul>
+            <div class="indented">
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="BILX_GKVDT-00406_XDT_3013.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="538" data-mc-height="551" src="BILX_GKVDT-00406_XDT_3013_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

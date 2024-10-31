@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:id="Edifact_v1.0_-_medrvri" MadCap:timeEstimate="0" MadCap:priority="0">
+    <head><title>Edifact v1.0 - medvri</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Edifact;Medvri" />Edifact v1.0 - MEDVRI</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS supports electronic reporting according to the Edifact medvri 1.0
+ specifications.&#160; This can be accomplished by using the
+ ReportTemplate.Generator type 'EDIMDV1_0' (Edifact Medvri 1.0).</p>
+        <p>The contents of the TXT segments can be built using the ReportTemplate.Body
+ MISPL expression.&#160; Each generated TXT segment data is max 70 chars long.
+ If the body generates a line larger then 70 chars, it will be put into multiple
+ TXT segments.<br /><br /> E.g. just an example with a simple body MISPL for non-microbiology results and
+ without section labels:</p>
+        <blockquote><pre>{: if .Type = StringToEnumerated("ObservationalResultType", "Result")
+	then return
+ &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Test=" + .Mnemonic +
+ &#160;	 &#160;&#160;&#160;&#160;", Value="	+ ifknownstring(.Value)	+
+ 	 &#160;&#160;&#160;&#160;", Unit=" + ifknownstring(.UnitName)	+
+	 &#160;&#160;&#160;&#160;",Ref=" + ifknownstring(.Reference);
+	endif;
+</pre><pre>return "";
+}
+</pre>
+            <p>UNA:+.? '<br />  UNB+UNOA:1+SendId+FaberMail+021210:1210+20021210-00001'<br />  UNH+20021210-00001+MEDVRI:1'<br />  GGA+Medical Information for P+++Industriepark Zwijnaarde
+ 3A:::Destelbergen:9070::B+?+31(9)220.23.21'<br />  DET+02:12:10+11:00'<br />  PID+1963:12:31+V+VEENHOF::HOOGEBOOM:::MMR'<br />  PAD+Deurningerstraat 48:::Ongekend+0543-4357470'<br />  TXT+Test=Na, Value=follows, Unit=mmol/l, Ref=136-146'<br />  TXT+Test=K, Value=follows, Unit=mmol/l, Ref=120-140'<br />  TXT+Test=CL, Value=90, Unit=mmol/l, Ref=80-100'</p>
+        </blockquote>
+        <h2>Edifact v1.0 MEDVRI Report Layout</h2>
+        <blockquote>
+            <p>{} : Repeatable<br />[ ] : Not mandatory</p>
+            <p><a href="#UNH - Message header">UNH</a> (Message header)<br /><a href="#GGA (Sender data)">GGA</a> (Sender data)<br /><a href="#DET (Creation date/time 'vrij bericht')">DET</a> (Creation date/time
+ 'vrij bericht')<br /><a href="#PID - Patient Identification">PID</a> (Patient identification)<br /><a href="#PAD - Patient Address">PAD</a> (Patient address data)<br />  {<br />  &#160;&#160; <a href="#TXT (Free text)">TXT</a> (Free text)<br />  }<br /><a href="#GGO (Receiver data)">GGO</a> (Receiver data)<br /><a href="#UNT - Message trailer">UNT</a> (Message trailer)</p>
+        </blockquote>
+        <h2>Message segments and mapping details</h2>
+        <h3><a name="UNH - Message header"></a>UNH - Message header</h3>
+        <p>Mandatory segment.</p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p align="left"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p align="left"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="left">Message no</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">14</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p align="left">Order.InternalId</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">2.1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="left">Message type</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">-</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p align="left">"MEDVRI"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">2.2</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="left">Message version</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">-</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p align="left">"1"</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="GGA (Sender data)"></a>GGA (Sender data)</h3>
+        <p>Mandatory segment.</p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p align="left"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p align="left"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+1</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Person name</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">40</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Name</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+4.1</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Street name</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">30</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.AddressLine1</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+4.4</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Municipality</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Municipality</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+4.5</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Postal code</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">9</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.PostalCode</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+4.7</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Country</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.CountryCode</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+5</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Phone</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Phone</td>
+            </tr>
+        </table>
+        <h3><a name="DET (Creation date/time 'vrij bericht')"></a>DET (Creation date/time
+ 'vrij bericht')</h3>
+        <p>Mandatory segment.</p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p align="left"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p align="left"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="left">Date</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">-</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p align="left">Order.LowestObjectTime</p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="PID - Patient Identification"></a>PID - Patient Identification</h3>
+        <p>Mandatory segment. </p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">BirthYear</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">4</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">YEAR of Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.2</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">BirthMonth</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">2</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">MONTH OF Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.3</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">BirthDay</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">2</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">DAY OF Person.BirthDate</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">2</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Sex</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">1</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">"M", "V" or "O"</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">3.1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">LastName</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">30</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">&#160;</td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">if female then Person.SpouseLastName</p>
+                    <p style="text-align: CENTER;" align="center">else Person.LastName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">3.3</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">LastName (fem spouse)</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">30</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">&#160;</td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">if female Person.LastName else ""</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">3.5</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">FirstName</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">12</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">&#160;</td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.FirstName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">3.6</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">MiddleName</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">8</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">&#160;</td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.MiddleName</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="10%">
+                    <p align="left">4</p>
+                </td>
+                <td style="text-align: center;width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="24%">Patient PIN (sender)</td>
+                <td style="text-align: center;width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="13%">12</td>
+                <td style="text-align: center;width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="14%">&#160;</td>
+                <td style="text-align: center;width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="40%">PIN provided by PinProvider correspondent in Report Generation 
+ function screen</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="10%">
+                    <p align="left">5</p>
+                </td>
+                <td style="text-align: center;width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="24%">Patient PIN (receiver)</td>
+                <td style="text-align: center;width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="13%">12</td>
+                <td style="text-align: center;width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="14%">&#160;</td>
+                <td style="text-align: center;width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" align="center" valign="top" width="40%">PIN provided by Receiver correspondent in Report Generation 
+ function screen</td>
+            </tr>
+        </table>
+        <h3><a name="PAD - Patient Address"></a>PAD - Patient Address</h3>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Street</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">30</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.Correspondent.AddressLine1</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.4</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Municipality</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.Correspondent.Municipality.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1.5</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">PostalCode</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">9</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.Correspondent.Municipality.</p>
+                    <p style="text-align: CENTER;" align="center">PostalCode</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">2</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Phone</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Person.Correspondent.Phone</p>
+                </td>
+            </tr>
+        </table>
+        <h3 align="left"><a name="TXT (Free text)"></a>TXT (Free text)</h3>
+        <p align="left">Mandatory segment.</p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p style="text-align: CENTER;" align="center">1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="center">Free text</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">70</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">ReportTemplate.Body MISPL expression.&#160; If the text exceeds
+70 chars, it will be divided into multiple TXT segments</p>
+                </td>
+            </tr>
+        </table>
+        <h3 align="left"><a name="GGO (Receiver data)"></a>GGO (Receiver data)</h3>
+        <p>Mandatory segment.</p>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p align="left"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p align="left"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p align="left"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p align="left">1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p align="left">Identification</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">-</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p align="left">Report.Target</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+2</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Person name</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">40</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Name</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+5.1</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Street name</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">30</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.AddressLine1</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+5.4</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Municipality</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Municipality</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+5.5</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Postal code</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">9</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.PostalCode</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+5.7</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Country</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.CountryCode</td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+6</td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+Phone</td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p align="center">20</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p align="center">N</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+Correspondent.Phone</td>
+            </tr>
+        </table>
+        <h3><a name="UNT - Message trailer"></a>UNT - Message trailer</h3>
+        <table style="width: 50%;" width="50%">
+            <tr>
+                <td style="width: 10%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="10%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Seq</b>
+                    </p>
+                </td>
+                <td style="width: 24%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Name</b>
+                    </p>
+                </td>
+                <td style="width: 13%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Length</b>
+                    </p>
+                </td>
+                <td style="width: 14%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">Mandatory</b>
+                    </p>
+                </td>
+                <td style="width: 40%;background-color: #bfbfbf;" bgcolor="#BFBFBF" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center"><b style="font-weight: bold;">GLIMS</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p style="text-align: CENTER;" align="center">1</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Number of segments (*)</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">6</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Format Integer</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 10%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="10%">
+                    <p style="text-align: CENTER;" align="center">2</p>
+                </td>
+                <td style="width: 24%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="24%">
+                    <p style="text-align: CENTER;" align="center">Message reference nr</p>
+                </td>
+                <td style="width: 13%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="13%">
+                    <p style="text-align: CENTER;" align="center">14</p>
+                </td>
+                <td style="width: 14%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="14%">
+                    <p style="text-align: CENTER;" align="center">Y</p>
+                </td>
+                <td style="width: 40%;background-color: #e8e8e8;" bgcolor="#E8E8E8" valign="top" width="40%">
+                    <p style="text-align: CENTER;" align="center">Order.InternalId</p>
+                </td>
+            </tr>
+        </table>
+        <p>(*) Without UNA, UNB and UNZ.</p>
+    </body>
+</html>

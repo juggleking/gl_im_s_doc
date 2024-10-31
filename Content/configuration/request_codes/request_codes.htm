@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Order entry" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Request_codes">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Request codes</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor376"></a>Request codes</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> - <a href="#Options">Options</a> - <a href="#Link%20request%20definitions">Link request definitions</a> - <a href="#Order%20entry">Order entry</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>Request codes are codes that can be used to request something during order entry.</p>
+        <p>What is actually requested is determined by the <a href="../requestables/requestables.htm">request definitions</a> that are linked to the request code. These request definitions can depend on issuer and time. So a request code can have several request definitions and a request definition always refers to a request code.</p>
+        <p>Request codes are available from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Request definitions</span> -&gt; <span class="ui_element">Request codes</span>.</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>When creating a property, material, etc GLIMS will automatically create a default request definition and corresponding request code.</p>
+        </div>
+        <h2><a name="Fields"></a>Fields</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="request_codes_fields.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="771" data-mc-height="457" src="request_codes_fields_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+            <p>Used to enter the request code during order entry.</p>
+        </div>
+        <p class="fieldlabel"><a name="Name"></a>Name</p>
+        <div class="indented">
+            <p>Full name of the request code. Can refer to the name of the property, material, ... which is requested with this request code.</p>
+        </div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">
+            <p>A request code must be enabled before you can request it during order entry.</p>
+        </div>
+        <p class="fieldlabel"><a name="Explicit"></a>Explicitly requestable</p>
+        <div class="indented">
+            <p>If enabled, the request code can be  requested explicitly, i.e.  added manually, during manual order entry. </p>
+            <p>By disabling this option, you can prevent a specific request code from being requested manually (unless it is part of a manually requested panel). Such a code can still be requested electronically or via MISPL.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When users tamper with a requested panel (i.e. delete one or more members, for instance), the individual panel members are requested but the panel itself is not. In that case, non-explicitly requestable request codes that are members of the tampered panel are nevertheless added to the order.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Electronically explicitly requestable</p>
+        <div class="indented">
+            <p>If enabled, the request code can be requested explicitly during electronic order entry. </p>
+            <p>By disabling this option, you can prevent a specific request code from being requested electronically (unless it is part of an electronically requested panel).</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The value of this field is currently only used during the <a href="../../communication/ihe/ihe.htm" xmlns="">LCSD export</a> so that external systems communicating with GLIMS are aware of the request codes that can be electronically requested. Order entry does currently not check the <span class="ui_element" xmlns="">Electronically explicitly requestable</span> setting of an electronically received request code.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Universal</p>
+        <div class="indented">
+            <p>Automatically set by GLIMS, for internal program use only.</p>
+        </div>
+        <p class="fieldlabel">Definitions</p>
+        <div class="indented">
+            <p>Shows the <a href="../requestables/requestables.htm">request definitions</a> that are linked to this request code.</p>
+        </div>
+        <h2><a name="Options"></a>Query options</h2>
+        <p>The <span class="ui_element">Options</span> button in the <span class="ui_element">Request code</span> browser allows to narrow down the number of request codes by specifying criteria for the request definitions linked to the request codes.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="request_codes_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="377" data-mc-height="284" src="request_codes_options_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Types</p>
+        <div class="indented">
+            <p>Only show request codes which have at least one request definition of this type.</p>
+        </div>
+        <p class="fieldlabel">Name pattern</p>
+        <div class="indented">
+            <p>Only show request codes which have at least one request definition with this name pattern.</p>
+        </div>
+        <p class="fieldlabel">Issuer, Check</p>
+        <div class="indented">
+            <p>GLIMS allows to define issuer-specific request definitions. The <span class="ui_element">Issuer</span> and <span class="ui_element">Check</span> fields allow to take this characteristic into account when looking up a request code.</p>
+            <p>You can specify the issuer and the relation between the issuer and the request definition:</p>
+            <p class="fieldlabel">None</p>
+            <div class="indented">
+                <p>The issuer is not taken into account. All request codes are shown.</p>
+            </div>
+            <p class="fieldlabel">Available</p>
+            <div class="indented">
+                <p>Only the request codes with at least one request definition which can be requested for the specified issuer are shown.</p>
+            </div>
+            <p class="fieldlabel">Specific</p>
+            <div class="indented">
+                <p>Only the request codes  with at least one request definition that explicitly refers to this issuer are shown.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">
+            <p class="fieldlabel">Yes</p>
+            <div class="indented">
+                <p>Only show request codes which are enabled.</p>
+            </div>
+            <p class="fieldlabel">No</p>
+            <div class="indented">
+                <p>Only show request codes which are disabled.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>Disabled request codes are shown in gray.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">?</p>
+            <div class="indented">
+                <p>Show both enabled and disabled request codes.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>Disabled request code are shown in gray.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Explicit</p>
+        <div class="indented">
+            <p class="fieldlabel">Yes</p>
+            <div class="indented">
+                <p>Only show request codes for which the option <span class="ui_element">Explicitly requestable</span> is enabled.</p>
+            </div>
+            <p class="fieldlabel">No</p>
+            <div class="indented">
+                <p>Only show request codes for which the option <span class="ui_element">Explicitly requestable</span> is disabled.</p>
+            </div>
+            <p class="fieldlabel">?</p>
+            <div class="indented">
+                <p>Show all request codes, regardless of the <span class="ui_element">Explicitly requestable</span> setting.</p>
+            </div>
+        </div>
+        <h2><a name="Link request definitions"></a>Link request definitions to the request code</h2>
+        <p>To determine what is actually requested when entering this request code in order entry, you must link <a href="../requestables/requestables.htm">request definitions</a> to the request code.</p>
+        <p>There are several ways to link a request definition to a request code:</p>
+        <ul>
+            <li value="1">When creating a property, material, etc. GLIMS will automatically create a default request definition and corresponding request code.</li>
+            <li value="2">The <span class="ui_element">Request code</span> editor has an embedded request definition browser. Use the <span class="ui_element">Insert</span> key to create a new request definition.</li>
+            <li value="3">Select a <span class="ui_element">Request code</span> and choose the contextual menu / ribbon item <span class="ui_element">Request definitions</span>.</li>
+            <li value="4">Specify the <span class="ui_element">Request code</span> in the <a href="../requestables/requestables.htm">Request definition</a> editor.</li>
+        </ul>
+        <h2><a name="Order entry"></a>Order entry</h2>
+        <p>When entering a request code in order entry, GLIMS will</p>
+        <ul>
+            <li value="1">Check the request definitions linked to the request code.</li>
+            <li value="2">Check whether a request definition exists with an issuer that matches the order's issuer.</li>
+            <li value="3">If this issuer-specific request definition is valid (by checking its start and end date), it will be requested.</li>
+            <li value="4">If no issuer-specific request definition is found or it is not valid, the currently valid general request definition will be requested.</li>
+        </ul>
+    </body>
+</html>

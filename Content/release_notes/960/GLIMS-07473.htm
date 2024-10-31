@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - About sampling times, object times and references times (GLIMS-07473)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1004"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor1005"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>About sampling times, object times and references times (GLIMS-07473)</h1>
+        <h2>Background information</h2>
+        <p>An issue was reported with the synchronization of sampling times, object times and reference times. This modification solves the reported issue and clarifies the definition and usage of the different times.</p>
+        <h2>Definitions</h2>
+        <p class="fieldlabel">Requested code - Reference time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The time at which a request was entered. </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">By default, this is the current time. However, this can be manually changed in the order entry screen.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">
+                <img src="GLIMS-07473_requestedcode_reference_time.png" xmlns="http://www.w3.org/1999/xhtml" />
+            </p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When requesting a paired specimen, the reference time of its requested code will be the time at which it was requested in this order (and not in the initial order in which it was requested for the first time).</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Order" xmlns="http://www.w3.org/1999/xhtml"></a>Order - Lowest object time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The lowest of all references times of all requested codes in the order.</p>
+        </div>
+        <p class="fieldlabel">Specimen - Sampling time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Time at which the specimen was sampled from the patient. </p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">As long as the specimen is not sampled (not yet in status Available), this is the target sampling time. </li>
+                <li value="2">If the specimen option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Sampled</span> is enabled, it means the effective sampling time.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Specimen - Sampled</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">If set, the specimen is effectively sampled from the patient.</p>
+        </div>
+        <p class="fieldlabel">Specimen - Availability time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Time at which the specimen was registered in the lab.</p>
+        </div>
+        <p class="fieldlabel">Result - Reference time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Identical to the reference time of the requested code linked to the result.</p>
+        </div>
+        <p class="fieldlabel">Result - Object time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Is the result's reference time + discriminator.</p>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                </p>
+                <p>A result reference time of 25/03/2016 15:00 with relative discriminator +01:00 will have a result object time of 25/03/2016 16:00.</p>
+                <p>A result reference time of 25/3/2016 15:00 with absolute time discriminator 18:00 will have a result object time of 25/03/2016 18:00.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Action - Object time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Matches the </p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">
+                    <p xmlns="http://www.w3.org/1999/xhtml">object time of the results that are output of the action.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">or</p>
+                </li>
+                <li value="2">
+                    <p xmlns="http://www.w3.org/1999/xhtml">sampling time of the specimens that are output of the action.</p>
+                </li>
+            </ul>
+        </div>
+        <h2><a name="Changing" xmlns="http://www.w3.org/1999/xhtml"></a>Changing the object time</h2>
+        <p class="fieldlabel">Order - Change object time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">For all specimens that are directly linked to the order but that are not yet effectively sampled (<span class="ui_element">Sampled</span> option is not enabled), the sampling time will be updated. </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">The time change will be equal to the difference between the old lowest object time and the new lowest object time.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">The object time of the related actions, results, microbiology actions, pathology exams and blood selections will be updated accordingly.</li>
+                    <li value="2">The reference time of the requested codes will be updated accordingly.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Sample - Change sampling time</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">This function will change the sampling time of the selected specimen(s). If the specimen was responsible for setting the order's lowest object time, GLIMS will behave as if the order function <span class="ui_element">Change object time</span> is executed.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">The <span class="ui_element">Cascade</span> option has been removed. The object time of the related results will always be updated accordingly.</li>
+                </ul>
+            </div>
+        </div>
+        <h2>Synchronization</h2>
+        <p>The following GLIMS programs allow to synchronize the sampling time of a specimen:</p>
+        <ul>
+            <li value="1"><a href="../../routine/specimens/specimens_scan.htm" xmlns="http://www.w3.org/1999/xhtml">Specimen scan</a> with option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Synchronize future object times</span> or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Synchronize past object time</span> enabled.</li>
+            <li value="2">Synchronization after query by a station.</li>
+            <li value="3"><a href="../../routine/specimens/specimens_process_by_number.htm" xmlns="http://www.w3.org/1999/xhtml">Process specimens by number</a>.</li>
+            <li value="4">Specimen confirmation (when it is the first specimen in the order)</li>
+        </ul>
+        <h2>Reporting</h2>
+        <p>On reports, results are accompanied by the order's lowest object time. If the object time of the result does not match with the order's lowest object time, the time is displayed between parentheses.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <ul>
+                <li value="1">&lt;Property&gt; (+01:00)</li>
+                <li value="2">&lt;Property&gt; (09:15)</li>
+            </ul>
+        </div>
+    </body>
+</html>

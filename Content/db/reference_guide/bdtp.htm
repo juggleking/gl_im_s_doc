@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - BillingDocumentTemplate</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3603"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+BillingDocumentTemplate&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Billing document template</td>
+                <td>
+bdtp</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Each billing document template describes how a specific sort of billing documents needs to be printed.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_AddFormFeed"></a>
+        <h3>
+Main &gt; Add form feed</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if a form feed character should be added at the end of the document. This may cause an additionial page skip on some printers.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>AddFormFeed</b></p>
+        </div><a name="F_CalculatedFields"></a>
+        <h3>
+Main &gt; Calculated fields</h3>
+        <div class="MemberHelp">
+            <p>
+This fields provides access to the template's calculated fields site function (w_BillingDocumentLine based, string valued). The return value should be a backslash seperated tagged list. The following tags are supported: 'UserFractional1', 'UserFractional2', 'UserFractional3', 'UserFractional4' and 'UserInteger1'. This site function is evaluated at the lowest printing level of the template. These 4 fractionals and 1 integer numbers are summed continuously during the printing of the document. These numbers can be printed as subtotals and running totals.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>CalculatedFields</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Description"></a>
+        <h3>
+Description</h3>
+        <div class="MemberHelp">
+            <p>
+Optional description of the billing document template.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Description</b></p>
+        </div><a name="F_DiscountTableHeader"></a>
+        <h3>
+Discount &gt; Discount table header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's discount table text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the header of the discount table.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>DiscountTableHeader</b></p>
+        </div><a name="F_DiscountTableLine"></a>
+        <h3>
+Discount &gt; Discount table line</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's discount table line. The referred text must be based on the w_BillingDocumentDiscountL table. The evaluated text is printed for each line in the discount table.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>DiscountTableLine</b></p>
+        </div><a name="F_DocumentType"></a>
+        <h3>
+Document type</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies for which type of billing document, this template was made for.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="billingdocumenttype.htm">BillingDocumentType</a></span>&#160;<b>DocumentType</b></p>
+            <p>
+One of: <span class="Parameter">Not applicable, Invoice, Financial transaction, Financial shipment, Financial shipment list</span></p>
+        </div><a name="F_EmailContent"></a>
+        <h3>
+Texts &gt; Email &gt; Content</h3>
+        <div class="MemberHelp">
+            <p>
+In this field a mispl expression can be used that will be attached as content in the email message<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>EmailContent</b></p>
+        </div><a name="F_EmailFilename"></a>
+        <h3>
+Texts &gt; Email &gt; Filename</h3>
+        <div class="MemberHelp">
+            <p>
+Filename that will be used as attachment in the emailmessage</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>EmailFilename</b></p>
+        </div><a name="F_EmailSubject"></a>
+        <h3>
+Texts &gt; Email &gt; Subject</h3>
+        <div class="MemberHelp">
+            <p>
+In this field a mispl expression can be used that will be attached as subject in the email message</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>EmailSubject</b></p>
+        </div><a name="F_FirstPageFooter"></a>
+        <h3>
+Texts &gt; First page footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's first page footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the footer of the first page. If this field is empty, the footer text is used.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>FirstPageFooter</b></p>
+        </div><a name="F_FirstPageHeader"></a>
+        <h3>
+Texts &gt; First page header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's first page header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the header of the first page. If this field is empty, the header text is used.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>FirstPageHeader</b></p>
+        </div><a name="F_Footer"></a>
+        <h3>
+Texts &gt; Footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the document's footer.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>Footer</b></p>
+        </div><a name="F_FshpFooter"></a>
+        <h3>
+Texts &gt; Shipment footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's financial shipment footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the financial shipment footer. This field is only applicable for templates of type: financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>FshpFooter</b></p>
+        </div><a name="F_FshpHeader"></a>
+        <h3>
+Texts &gt; Shipment header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's financial shipment header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the financial shipment header. This field is only applicable for templates of type: financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>FshpHeader</b></p>
+        </div><a name="F_FshpSorting"></a>
+        <h3>
+Sorting &gt; Shipment sorting function</h3>
+        <div class="MemberHelp">
+            <p>
+The financial shipments in the outprint will be sorted by the function's return value. No sort function causes sorting by shipment internal id.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>FshpSorting</b></p>
+        </div><a name="F_GainSorting"></a>
+        <h3>
+Sorting &gt; Gain sorting</h3>
+        <div class="MemberHelp">
+            <p>
+Site function, returning gain ordering value</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>GainSorting</b></p>
+        </div><a name="F_GainText"></a>
+        <h3>
+Texts &gt; Gain text</h3>
+        <div class="MemberHelp">
+            <p>
+The text must be based on the w_BillingDocumentLine table and is only evaluated when printing lists of gains (transactions) or when printing financial shipments.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>GainText</b></p>
+        </div><a name="F_Header"></a>
+        <h3>
+Texts &gt; Header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the document's header.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>Header</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">BillingDocumentTemplate</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InvoiceFooter"></a>
+        <h3>
+Texts &gt; Invoice footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's invoice footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the invoice footer. This field is only applicable for templates of type: invoice summary, financial shipment and financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>InvoiceFooter</b></p>
+        </div><a name="F_InvoiceHeader"></a>
+        <h3>
+Texts &gt; Invoice header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's invoice header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the invoice header. This field is only applicable for templates of type: invoice summary, financial shipment and financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>InvoiceHeader</b></p>
+        </div><a name="F_InvoiceSorting"></a>
+        <h3>
+Sorting &gt; Invoice sorting function</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice sort site function (invoice based, string valued). The invoices in the outprint will be sorted by the function's return value. The return value '?' is considered as a distinct value, no sort function causes sorting by invoice document number.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>InvoiceSorting</b></p>
+        </div><a name="F_InvoiceSummaryFooter"></a>
+        <h3>
+Texts &gt; Invoice summary footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's invoice summary footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the invoice summary footer. This field is only applicable for templates of type: financial shipment and financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>InvoiceSummaryFooter</b></p>
+        </div><a name="F_InvoiceSummaryHeader"></a>
+        <h3>
+Texts &gt; Invoice summary header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's invoice summary header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the invoice summary header. This field is only applicable for templates of type: financial shipment and financial shipment list.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>InvoiceSummaryHeader</b></p>
+        </div><a name="F_InvoiceSummarySorting"></a>
+        <h3>
+Sorting &gt; Invoice summary sorting</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the invoice summary sort site function (invoice summary based, string valued). The invoice summaries in the outprint will be sorted by the function's return value. The return value '?' is considered as a distinct value, no sort function causes sorting by invoice summary document number.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>InvoiceSummarySorting</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_LineData"></a>
+        <h3>
+Texts &gt; Line data</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's line data text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed for each (cumulated) invoice item of the document. If this text evaluates to the empty string, nothing will be printed, not even a blank line.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>LineData</b></p>
+        </div><a name="F_LineDataCumulation1"></a>
+        <h3>
+Sorting &gt; Line data cumulation 1</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataCumulation1</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataCumulation2"></a>
+        <h3>
+Sorting &gt; Line data cumulation 2</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataCumulation2</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataCumulation3"></a>
+        <h3>
+Sorting &gt; Line data cumulation 3</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataCumulation3</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataCumulation4"></a>
+        <h3>
+Sorting &gt; Line data cumulation 4</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataCumulation4</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataSorting1"></a>
+        <h3>
+Sorting &gt; Line data sorting 1</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataSorting1</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataSorting2"></a>
+        <h3>
+Sorting &gt; Line data sorting 2</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataSorting2</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataSorting3"></a>
+        <h3>
+Sorting &gt; Line data sorting 3</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataSorting3</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineDataSorting4"></a>
+        <h3>
+Sorting &gt; Line data sorting 4</h3>
+        <div class="MemberHelp">
+            <p>
+Print order of billing document detail lines</p>
+            <p class="Synopsis"><span class="Type"><a href="billingdocumentlinesorting.htm">BillingDocumentLineSorting</a></span>&#160;<b>LineDataSorting4</b></p>
+            <p>
+One of: <span class="Parameter">Billing code sort string, Discount rate, Executor mnemonic, Executor name, Gross amount, Material mnemonic, Material description, Nomenclature code, Property mnemonic, Property description, Panel Requestable mnemonic, Tariff, Price code, Base value code, Reimbursement class, Order Issuer InternalId</span></p>
+        </div><a name="F_LineGroupFooter"></a>
+        <h3>
+Texts &gt; Line group footer</h3>
+        <div class="MemberHelp">
+            <p>
+Total amounts (such as .NetAmount and .GrossAmount ) are also available in this footer.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>LineGroupFooter</b></p>
+        </div><a name="F_LineGroupHeader"></a>
+        <h3>
+Texts &gt; Line group header</h3>
+        <div class="MemberHelp">
+            <p>
+Header text printed for the first occurrence of sort criterion 1</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>LineGroupHeader</b></p>
+        </div><a name="F_LoadItemData"></a>
+        <h3>
+Main &gt; Load item data</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+            </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>LoadItemData</b></p>
+        </div><a name="F_Mnemonic"></a>
+        <h3>
+Mnemonic</h3>
+        <div class="MemberHelp">
+            <p>
+Billing document template's mnemonic</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique </span><span class="Type">Mnemonic</span>&#160;<b>Mnemonic</b></p>
+        </div><a name="F_NumberOfColumns"></a>
+        <h3>
+Main &gt; Number of columns</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the number of columns (data line level) that need to be printed.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>NumberOfColumns</b></p>
+        </div><a name="F_OrderFooter"></a>
+        <h3>
+Texts &gt; Order footer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's order footer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the order footer. This field is only applicable in case a line data text is specified.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>OrderFooter</b></p>
+        </div><a name="F_OrderHeader"></a>
+        <h3>
+Texts &gt; Order header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's order header text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed as the order header. This field is only applicable in case a line data text is specified.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>OrderHeader</b></p>
+        </div><a name="F_OrderSorting"></a>
+        <h3>
+Sorting &gt; Order sorting function</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the order sort site function (order based, string valued). The orders in the outprint will be sorted by the function's return value. The return value '?' is considered as a distinct value, no sort function causes sorting by order internal id.</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>OrderSorting</b></p>
+        </div><a name="F_PageLineCount"></a>
+        <h3>
+Main &gt; Page length</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the number of lines that can be printed on 1 page. This line count includes header and footer length and depends on the physical page length and font size. '?' is considered as an endless page. As a result no page breaks are produced.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>PageLineCount</b></p>
+        </div><a name="F_PaymentSorting"></a>
+        <h3>
+Sorting &gt; Payment sorting</h3>
+        <div class="MemberHelp">
+            <p>
+Site function, returning payment ordering value</p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>PaymentSorting</b></p>
+        </div><a name="F_PaymentText"></a>
+        <h3>
+Texts &gt; Payment text</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's payment text. The referred text must be based on the w_BillingDocumentLine table.
+<br />This text is only evaluated when printing lists of payments (transactions) or when printing financial shipments.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>PaymentText</b></p>
+        </div><a name="F_Printer"></a>
+        <h3>
+Main &gt; Printer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the billing document template's printer. It is the default printer to be used when this template is used.</p>
+            <p class="Synopsis"><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<b>Printer</b></p>
+        </div><a name="F_SuppressFormFeeds"></a>
+        <h3>
+Main &gt; Suppress form feeds</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates if the form feed character should be suppressed between pages and at the end of the document.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>SuppressFormFeeds</b></p>
+        </div><a name="F_Trailer"></a>
+        <h3>
+Texts &gt; Trailer</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's trailer text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed at the end of the document after the discount and VAT table.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>Trailer</b></p>
+        </div><a name="F_VatTableHeader"></a>
+        <h3>
+VAT &gt; Vat table header</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's VAT table text. The referred text must be based on the w_BillingDocumentLine table. The evaluated text is printed at the end of the document after the discount table and before the trailer.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>VatTableHeader</b></p>
+        </div><a name="F_VatTableLine"></a>
+        <h3>
+VAT &gt; Vat table line</h3>
+        <div class="MemberHelp">
+            <p>
+This field provides access to the template's VAT Table line text. The referred text must be based on the w_BillingDocumentVATLine table. The evaluated text is printed for each line in the VAT table.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>VatTableLine</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_VerticalOrientation"></a>
+        <h3>
+Main &gt; Vertical</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates how the ordering of data lines in billing documents with more than 1 column is interpreted. Vertical means that the document is filled columnwise, horizontal means rowwise filling.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>VerticalOrientation</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_CalculatedFields"></a>
+        <h3>
+Calculated fields&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CalculatedFields</b> ()</p>
+        </div><a name="M_EmailContent"></a>
+        <h3>
+Content&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EmailContent</b> ()</p>
+        </div><a name="M_CorrespondentsUsingThisLayout"></a>
+        <h3>
+Correspondents using this layout&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CorrespondentsUsingThisLayout</b> ()</p>
+        </div><a name="M_DiscountTableHeader"></a>
+        <h3>
+Discount table header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DiscountTableHeader</b> ()</p>
+        </div><a name="M_DiscountTableLine"></a>
+        <h3>
+Discount table line&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DiscountTableLine</b> ()</p>
+        </div><a name="M_FirstPageFooter"></a>
+        <h3>
+First page footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FirstPageFooter</b> ()</p>
+        </div><a name="M_FirstPageHeader"></a>
+        <h3>
+First page header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FirstPageHeader</b> ()</p>
+        </div><a name="M_Footer"></a>
+        <h3>
+Footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Footer</b> ()</p>
+        </div><a name="M_GainSorting"></a>
+        <h3>
+Gain sorting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GainSorting</b> ()</p>
+        </div><a name="M_GainText"></a>
+        <h3>
+Gain text&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GainText</b> ()</p>
+        </div><a name="M_Header"></a>
+        <h3>
+Header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Header</b> ()</p>
+        </div><a name="M_InvoiceFooter"></a>
+        <h3>
+Invoice footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceFooter</b> ()</p>
+        </div><a name="M_InvoiceHeader"></a>
+        <h3>
+Invoice header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceHeader</b> ()</p>
+        </div><a name="M_InvoiceSorting"></a>
+        <h3>
+Invoice sorting function&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceSorting</b> ()</p>
+        </div><a name="M_InvoiceSummaryFooter"></a>
+        <h3>
+Invoice summary footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceSummaryFooter</b> ()</p>
+        </div><a name="M_InvoiceSummaryHeader"></a>
+        <h3>
+Invoice summary header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceSummaryHeader</b> ()</p>
+        </div><a name="M_InvoiceSummarySorting"></a>
+        <h3>
+Invoice summary sorting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InvoiceSummarySorting</b> ()</p>
+        </div><a name="M_LineData"></a>
+        <h3>
+Line data&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LineData</b> ()</p>
+        </div><a name="M_LineGroupFooter"></a>
+        <h3>
+Line group footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LineGroupFooter</b> ()</p>
+        </div><a name="M_LineGroupHeader"></a>
+        <h3>
+Line group header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LineGroupHeader</b> ()</p>
+        </div><a name="M_OrderFooter"></a>
+        <h3>
+Order footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrderFooter</b> ()</p>
+        </div><a name="M_OrderHeader"></a>
+        <h3>
+Order header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrderHeader</b> ()</p>
+        </div><a name="M_OrderSorting"></a>
+        <h3>
+Order sorting function&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>OrderSorting</b> ()</p>
+        </div><a name="M_PaymentSorting"></a>
+        <h3>
+Payment sorting&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PaymentSorting</b> ()</p>
+        </div><a name="M_PaymentText"></a>
+        <h3>
+Payment text&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PaymentText</b> ()</p>
+        </div><a name="M_Printer"></a>
+        <h3>
+Printer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Printer</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_FshpFooter"></a>
+        <h3>
+Shipment footer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FshpFooter</b> ()</p>
+        </div><a name="M_FshpHeader"></a>
+        <h3>
+Shipment header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FshpHeader</b> ()</p>
+        </div><a name="M_FshpSorting"></a>
+        <h3>
+Shipment sorting function&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>FshpSorting</b> ()</p>
+        </div><a name="M_EmailSubject"></a>
+        <h3>
+Subject&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>EmailSubject</b> ()</p>
+        </div><a name="M_Trailer"></a>
+        <h3>
+Trailer&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Trailer</b> ()</p>
+        </div><a name="M_VatTableHeader"></a>
+        <h3>
+Vat table header&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VatTableHeader</b> ()</p>
+        </div><a name="M_VatTableLine"></a>
+        <h3>
+Vat table line&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VatTableLine</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Correspondents using layout</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="crsp.htm">Correspondent</a>.<a href="crsp.htm#F_InvoiceSummaryLayout">InvoiceSummaryLayout</a></p>
+        </div>
+        <h3>
+Printouts of template</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="bdop.htm">BillingDocumentOutPrint</a>.<a href="bdop.htm#F_BillingDocTemplate">BillingDocTemplate</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Mnemonic </b>
+            </li>
+            <li value="3"><b>+ CalculatedFields </b>
+            </li>
+            <li value="4"><b>+ DiscountTableHeader </b>
+            </li>
+            <li value="5"><b>+ DiscountTableLine </b>
+            </li>
+            <li value="6"><b>+ EmailContent </b>
+            </li>
+            <li value="7"><b>+ EmailSubject </b>
+            </li>
+            <li value="8"><b>+ FirstPageFooter </b>
+            </li>
+            <li value="9"><b>+ FirstPageHeader </b>
+            </li>
+            <li value="10"><b>+ Footer </b>
+            </li>
+            <li value="11"><b>+ FshpFooter </b>
+            </li>
+            <li value="12"><b>+ FshpHeader </b>
+            </li>
+            <li value="13"><b>+ FshpSorting </b>
+            </li>
+            <li value="14"><b>+ GainSorting </b>
+            </li>
+            <li value="15"><b>+ GainText </b>
+            </li>
+            <li value="16"><b>+ Header </b>
+            </li>
+            <li value="17"><b>+ InvoiceFooter </b>
+            </li>
+            <li value="18"><b>+ InvoiceHeader </b>
+            </li>
+            <li value="19"><b>+ InvoiceSorting </b>
+            </li>
+            <li value="20"><b>+ InvoiceSummaryFooter </b>
+            </li>
+            <li value="21"><b>+ InvoiceSummaryHeader </b>
+            </li>
+            <li value="22"><b>+ InvoiceSummarySorting </b>
+            </li>
+            <li value="23"><b>+ LineData </b>
+            </li>
+            <li value="24"><b>+ LineGroupFooter </b>
+            </li>
+            <li value="25"><b>+ LineGroupHeader </b>
+            </li>
+            <li value="26"><b>+ OrderFooter </b>
+            </li>
+            <li value="27"><b>+ OrderHeader </b>
+            </li>
+            <li value="28"><b>+ OrderSorting </b>
+            </li>
+            <li value="29"><b>+ PaymentSorting </b>
+            </li>
+            <li value="30"><b>+ PaymentText </b>
+            </li>
+            <li value="31"><b>+ Printer </b>
+            </li>
+            <li value="32"><b>+ Trailer </b>
+            </li>
+            <li value="33"><b>+ VatTableHeader </b>
+            </li>
+            <li value="34"><b>+ VatTableLine </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

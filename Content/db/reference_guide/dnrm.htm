@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - DeltaNorm</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4164"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+DeltaNorm&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Delta norm</td>
+                <td>
+dnrm</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This table stores norms for delta checks. Delta checking checks the evolution of assessments on a particular object. It subtracts the value of a reference assessment (typically: the previous assessment) from the new assessment, and compares the (absolute or relative) difference with specified norms. The time lapse between reference and new assessment may be significant.  </p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_ChoiceUseBaseLine"></a>
+        <h3>
+Use baseline</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="choiceusebaseline.htm">ChoiceUseBaseLine</a></span>&#160;<b>ChoiceUseBaseLine</b></p>
+            <p>
+One of: <span class="Parameter">No baseline, Preference for baseline, Only baseline</span></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_Discriminator"></a>
+        <h3>
+Discriminator</h3>
+        <div class="MemberHelp">
+            <p>
+If specified, this delta norm will only be applied when the property was requested with the specified discriminator. When Glims evaluates which delta norms are applicable, the following logic is applied: as soon as 1 delta norm for the result's discriminator is found, only delta norms matching the result discriminator will be considered. Other delta norms will no longer be taken into account.
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Discriminator</b></p>
+        </div><a name="F_DiscriminatorRestrict"></a>
+        <h3>
+Discriminator restricted</h3>
+        <div class="MemberHelp">
+            <p>
+Allows specifying that the base result used to compare the new result with, should have the same discriminator as the new result.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>DiscriminatorRestrict</b></p>
+        </div><a name="F_Eligible"></a>
+        <h3>
+Eligibility</h3>
+        <div class="MemberHelp">
+            <p>
+The Eligible spinner references a Result-based, Logical-valued MISPL expression. It is evaluated as a final criterion for each delta norm fitting the result context. If it evaluates to false, the delta norm is not eligible. If it evaluates to true or if the reference is cleared, the delta norm is eligible. When executing the referenced MISPL function, the updated result record is not yet written to the database. This implies that start table methods like .NumericValue() will NOT work! (Since the result method dispatcher will re-read the outdated record from the database). The only Result fields that can be relied upon in these MISPL functions are .RawValue and .AvailabilityUser </p>
+            <p class="Synopsis"><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<b>Eligible</b></p>
+        </div><a name="F_Enabled"></a>
+        <h3>
+Enabled</h3>
+        <div class="MemberHelp">
+            <p>
+When clearing the Enabled toggle-box, the delta norm is disabled for result interpretation and is used only for reporting results obtained at a time it was still enabled.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Enabled</b></p>
+        </div><a name="F_ExternalComment"></a>
+        <h3>
+External comment</h3>
+        <div class="MemberHelp">
+            <p>
+This comment is used for outbound reports. The External comment spinner references Result-based text modules, the value of which will be appended to the respective result comments in the event of delta norm violation.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>ExternalComment</b></p>
+        </div><a name="F_HighLimit"></a>
+        <h3>
+High limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates acceptable value shift since previous result, expressed in percentage. If the value shift exceeds the high limit, the delta norm will will be applied.   
+<br /></p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>HighLimit</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">DeltaNorm</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalComment"></a>
+        <h3>
+Internal comment</h3>
+        <div class="MemberHelp">
+            <p>
+The Internal comment spinner references Result-based text modules, the value of which will be appended to the respective result comments in the event of delta norm violation.</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>InternalComment</b></p>
+        </div><a name="F_LapseDenominator"></a>
+        <h3>
+Lapse denominator</h3>
+        <div class="MemberHelp">
+            <p>
+The Lapse denominator is a fractional day count. If set, the delta norm's limits are multiplied with the number of times this denominator period has elapsed since the previous result. 
+<br /><br />Example in case of a linear delta norm: low limit= -10, high limit= 20 and lapse denominator= 14. After 14 days, the high limit=20%, after 28 days, the high limit=40%, etc. Note: after 7 days, the high limit=10%. The same goes for the low limit. The lapse denominator is valid for both relative (%) and absolute (see pivot) value shifts. </p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>LapseDenominator</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_LowLimit"></a>
+        <h3>
+Low limit</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the acceptable value shift since the previous result, expressed in percentage. If the value shift is lower than the low limit, the delta norm will be applied.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>LowLimit</b></p>
+        </div><a name="F_MaterialRestricted"></a>
+        <h3>
+Material restricted</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates that the delta check is restricted to results of the same material.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>MaterialRestricted</b></p>
+        </div><a name="F_MaximumLapse"></a>
+        <h3>
+Maximum lapse</h3>
+        <div class="MemberHelp">
+            <p>
+The Maximum lapse is a fractional day count. If the time lapse since the previous result exceeds this maximum, the delta norm is not used.
+<br />Typical usage: avoid using previous results which are too old.</p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>MaximumLapse</b></p>
+        </div><a name="F_MinimumLapse"></a>
+        <h3>
+Minimum lapse</h3>
+        <div class="MemberHelp">
+            <p>
+is a fractional day count. If the time lapse since the previous result does not exceed this minimum, the delta norm is not used. Typical usage: avoid using an exponential delta norm when the time difference is too small.
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveFractional</span>&#160;<b>MinimumLapse</b></p>
+        </div><a name="F_ObjectTemplate"></a>
+        <h3>
+Object template</h3>
+        <div class="MemberHelp">
+            <p>
+If set, the delta norm will be used only for results obtained from an object of the corresponding template (e.g. delta norm only applicable for objects of object template 'horse').
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type"><a href="objt.htm">ObjectTemplate</a></span>&#160;<b>ObjectTemplate</b></p>
+        </div><a name="F_Pivot"></a>
+        <h3>
+Pivot</h3>
+        <div class="MemberHelp">
+            <p>
+It is possible that the allowed shift value is calculated by applying the specified limits to the pivot value. This implies that a fixed limit range will be used instead of a relative one. When will this fixed range be applied: 
+<br /><br />- For linear delta norms: if the previous result value is lower than the pivot value 
+<br />- For exponential delta norms: if the time between two assessments is shorter than the pivot value (which in this case is a time indication in fractional days). This prevents the allowed difference from approaching zero when the time difference between the old and the new value becomes too small. 
+<br /><br />Theoretical example of a linear delta norm: Low limit=-20, high limit=10, pivot=15, previous value=prev 
+<br /><br />Previous result equal to or higher than 15 -&gt; relative shift value -&gt; acceptance range : prev -20% - prev +10%
+<br />Previous result lower than 15 -&gt; fixed shift value -&gt; acceptance range: prev -3 - prev +1.5
+<br /><br />The Pivot is a threshold value, expressed in the unit of the property. Below this value, the absolute shift extremes at the pivot point apply. </p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>Pivot</b></p>
+        </div><a name="F_Property"></a>
+        <h3>
+Property</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the property for which the delta norm applies.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="prop.htm">Property</a></span>&#160;<b>Property</b></p>
+        </div><a name="F_Severity"></a>
+        <h3>
+Severity</h3>
+        <div class="MemberHelp">
+            <p>
+In the event of delta norm violation, the Severity is copied to a violating result's delta norm severity.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>Severity</b></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+The delta norm can be linear of exponential. 
+<br /><br />1. Linear
+<br />In this case, we assume that the new result is allowed to deviate from the previous result by the same number PER &lt;lapse denominator&gt;. E.g., when the allowed deviation is 10% per 2 days (lapse denominator), then the allowed deviation after 4 days is 20% of the original value. 
+<br /><br />2. Exponential:
+<br />Here, we assume that the result can deviate by the same percentage per &lt;lapse denominator&gt; and that this is a cumulative process. E.g., when the allowed deviation is -10% per 2 days (lapse denominator) and the original value is 100, then the allowed value value after is 90 after 2 days, 81 after 4 days, 72.9 after 6 days,...
+<br />The formula used is: X = X0 * EXP(1 + &lt;p&gt;/100, &lt;time&gt; / &lt;lapse denominator&gt;), where &lt;p&gt; is expressed in percent and typically is negative.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="deltanormtype.htm">DeltaNormType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Linear, Exponential</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_Eligible"></a>
+        <h3>
+Eligibility&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Eligible</b> ()</p>
+        </div><a name="M_ExternalComment"></a>
+        <h3>
+External comment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ExternalComment</b> ()</p>
+        </div><a name="M_InternalComment"></a>
+        <h3>
+Internal comment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>InternalComment</b> ()</p>
+        </div><a name="M_ObjectTemplate"></a>
+        <h3>
+Object template&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ObjectTemplate</b> ()</p>
+        </div><a name="M_Property"></a>
+        <h3>
+Property&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Property</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Property + Enabled + ObjectTemplate + Discriminator + Severity + Eligible + MaximumLapse </b>
+            </li>
+            <li value="3"><b>+ Eligible </b>
+            </li>
+            <li value="4"><b>+ ExternalComment </b>
+            </li>
+            <li value="5"><b>+ InternalComment </b>
+            </li>
+            <li value="6"><b>+ ObjectTemplate + Property + Severity </b>
+            </li>
+            <li value="7"><b>+ Property + Discriminator + Enabled </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

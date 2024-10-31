@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Correction for BTM encounter numbers in financial shipments (GLIMS_BILL-03331)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor585"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Correction for BTM encounter numbers in financial shipments (GLIMS_BILL-03331)</h1>
+        <h2>Issue</h2>
+        <p>When exporting <a href="../../modules/billing/invoicing/routine/financial_shipments.htm" xmlns="http://www.w3.org/1999/xhtml">financial shipments</a> for orders dealing with a blood bag transfusion, errors sometimes occur: </p>
+        <ul>
+            <li value="1">the export file is not created.</li>
+            <li value="2">the export file is created but does not contain the correct encounter number.</li>
+            <li value="3">the export file is rejected by the receiving external software.&#160;This happens when the blood transfusion date in GLIMS does not lie between the start and end date of the encounter in the external system.</li>
+        </ul>
+        <h2>Cause</h2>
+        <p> When a financial shipment is sent, a site function is automatically run to find the encounter number. Additionally, the billing protocols (Xtenso, Infohos, Medsoc and Ubis) also look for the encounter number. Depending on their internal logics, these two processes do not always return the same encounter number.</p>
+        <h2>Solution</h2>
+        <h3>Improved protocol logic</h3>
+        <p>The protocol logic has been improved and works in the following way:</p>
+        <ol>
+            <li value="1">The transfusion time of the blood bag is retrieved: the starting time of the transfusion is taken, if available. Else, the end time is taken.</li>
+            <li value="2">GLIMS then looks for a matching encounter among the patient's encounters:<ol style="list-style-type: lower-alpha;"><li value="1">Encounters without start time are skipped.</li><li value="2">initially, only encounters with type Hospitalized and with an external id are taken in consideration.</li><li value="3">Only encounters during which the transfusion can have taken place (transfusion time lies between the start and end times of the encounter) are taken in consideration.</li><li value="4">If there is more than one match, the most recent encounter is taken.</li><li value="5">If no encounter with type Hospitalized and an external id matches the transfusion time, GLIMS&#160;looks for encounters with an external id and type Ambulatory. As above, only encounters whose dates match the transfusion time are taken in consideration. If there is more than one match, the most recent encounter is taken.</li></ol></li>
+        </ol>
+        <p>Given that the  logic of the site function overrules the protocol logic, improving the latter does not entirely solve the issue:&#160;even if the protocol logic returns the correct encounter number, it might be overriden by an erroneous number returned by the site function.&#160;The workaround is then to log the discrepancy between the two returned encounter numbers.</p>
+        <h3>Logging the differences between the returned encounter numbers</h3>
+        <h4>New log type</h4>
+        <p>If the Xtenso, Medsoc or Infohos protocol logic and the  logic of the site function return different encounter numbers, this is logged during the export:&#160;upon the first export containing a difference, a <a href="../../application_management/logging/logging.htm" xmlns="http://www.w3.org/1999/xhtml">log type</a> is automatically created.&#160;Afterwards a log entry is  added to this log type every time the same situation comes up.&#160;</p>
+        <p>The name of the log type is "&lt;Protocol name&gt; billing communication encounter diff".</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ul>
+                        <li value="1">The protocol name for Xtenso is  "Triple-P".</li>
+                        <li value="2">This logging does not takes place if the Ubis protocol is used. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p>If the logging reveals that the protocol logic always returns the correct encounter number, the MIPS support or customer services can advise deleting the part of the site function that returns the encounter number.</p>
+        <h4>Properties of the new log type</h4>
+        <p>The logging of the difference occurs during the export of the financial shipment file.</p>
+        <p>The default validity period of the log type is 7 days. We advise increasing this number. When the validity has expired, the log type still exists and its validity period can be extended.</p>
+        <p>The log type can also be disabled.</p>
+        <p>If the log type is deleted, it will be created again automatically the next time the export program is run and a difference between the two returned encounter numbers is observed.</p>
+        <h3>No encounter found</h3>
+        <p>If no encounter at all is found, neither by the protocol logic nor by the logic of the site function, an error message is displayed and the financial export file is not created. </p>
+    </body>
+</html>

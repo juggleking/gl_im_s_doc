@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Tools" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Application_check_up_tool">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Lock monitor</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2321"></a>
+            <MadCap:concept term="System management;Application management" />Lock monitor</h1>
+        <p>The Lock monitor allows you to</p>
+        <ul>
+            <li value="1">detect deadlocks</li>
+            <li value="2">detect long held locks (i.e. a lock remains too long on a record)</li>
+            <li value="3">detect long lock waiting situations (i.e. a process has to wait too long before  being allowed to set a lock on a record)</li>
+            <li value="4">create a report and optionally send it via mail (to system managers, for instance)</li>
+            <li value="5">log the report.</li>
+        </ul>
+        <p>It is available under <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt;<span class="ui_element">Database</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Lock monitor</span>. </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="lock_monitor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="410" data-mc-height="219" src="lock_monitor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>The features and settings of this tool are described below.</p>
+        <h2>Features</h2>
+        <p>The features of the Lock monitor are the following ones:</p>
+        <ul>
+            <li value="1">for Oracle and Progress databases</li>
+            <li value="2">regarding Progress databases: both genrw and glims databases are monitored, and cross-database deadlock situations are detected.</li>
+            <li value="3">intended to work in batch, executed repeatedly as a cron job. The command should preferably be linked to a cron service to which no other task is assigned.</li>
+            <li value="4">can also be run as a one-shot task interactively (similarly to the <a href="check_storage.htm">Check storage</a> tool).</li>
+            <li value="5">intended for diagnostic purposes only. The Lock monitor should only be running when lock contention situations are experienced, seen or reported.</li>
+        </ul>
+        <h2>Settings</h2>
+        <p class="fieldlabel">Minimum lock wait time </p>
+        <div class="indented">Indicates the minimum number of seconds during which a lock request should be queued before being reported via e-mail and logged.</div>
+        <p class="fieldlabel">Minimum lock held time</p>
+        <div class="indented"> Indicates the minimum number of seconds during which a lock should be held before being reported.</div>
+        <p class="fieldlabel">Report deadlocks</p>
+        <div class="indented"> Indicates whether the lock monitor should detect and report deadlock situations.</div>
+        <p class="fieldlabel">Generate trace files</p>
+        <div class="indented">When checked, the lock monitor will attempt to generate ABL stacktraces for blocking and blocked sessions (protrace files, local processes only).</div>
+        <p class="fieldlabel">E-mail system managers </p>
+        <div class="indented">When checked, a report will be sent by e-mail to all users with a 'system manager' role.</div>
+        <p class="fieldlabel">Send e-mail to</p>
+        <div class="indented">Additional list of e-mail addresses to which the report should also be sent. The addresses should be separated  by a semi-colon ';' .</div>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Buttons</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">After setting the parameters described above, you might want to save them for future reuse. If that is the case,  click on <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Store</span> to save your configuration as a function parameter set. In order to reuse a stored configuration, click on <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Load</span>.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Logging</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">The report is logged  in the directory "log/svc/LockMonitor" at the rate of one log file per day. The filename is composed of the following elements:</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">'LockMonitor'-&lt;year9999&gt;&lt;month99&gt;&lt;day99&gt;.log</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">Example: LockMonitor-20170203.log</p>
+    </body>
+</html>

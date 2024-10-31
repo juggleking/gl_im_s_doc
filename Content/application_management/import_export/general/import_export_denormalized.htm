@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\system manual\tools\import-export\import_export16.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Denormalized import - export</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1611"></a>
+            <MadCap:concept term="System management;Application management" />Denormalized import - export</h1>
+        <p>Contents: <a href="#Denormalized%20import">Denormalized import</a> - <a href="#Denormalized%20export">Denormalized export</a> - <a href="#format">Denormalized import/export format</a> - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Denormalized import"></a>Denormalized import</h2>
+        <h3><a name="Introduction" id="Introduction"></a>Introduction</h3>
+        <p>Use this function to import data into the database from text files adhering to the <a href="#format">format for denormalized import and export</a>. Denormalized import can be accessed from <span class="ui_element">Start &gt; System management &gt; Database &gt; Import</span>.</p>
+        <h3><a name="Usage" id="Usage"></a>Usage</h3>
+        <h4>Basic Page</h4>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="denormalized_import_basic.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="567" data-mc-height="339" src="denormalized_import_basic_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Use script</p>
+        <div class="indented">
+            <p>If  checked, <span class="ui_element">Script file</span> is enabled. Else, <span class="ui_element">Data file</span> is enabled.</p>
+        </div>
+        <p class="fieldlabel">Script file</p>
+        <div class="indented">
+            <p>Is a file containing a line for each data file to be imported. Each line contains the data file path (relative to the location of the script file itself), a separating space and a comma-separated list of columns to be imported. If this list is unspecified (as designated by a question mark) or omitted, all columns are imported.</p>
+        </div>
+        <p class="fieldlabel">Data file</p>
+        <div class="indented">
+            <p>Is a text file from which records need to be imported.</p>
+        </div>
+        <p class="fieldlabel">Select columns</p>
+        <div class="indented">
+            <p> If checked, a dialog is shown where you can interactively select the columns to be imported.</p>
+        </div>
+        <p class="fieldlabel">Column selector list</p>
+        <div class="indented">
+            <p>Is a comma-separated list of discriminator tags used to pick one column out of a list of tagged alternatives matching a single field.</p>
+        </div>
+        <p class="fieldlabel">Stop on record rejection</p>
+        <div class="indented">
+            <p>If checked, current csv file importing and script processing are discontinued whenever any record is rejected.</p>
+        </div>
+        <p class="fieldlabel">Create new records</p>
+        <div class="indented">
+            <p>If checked, records found in the text file but not in the database will be created.</p>
+        </div>
+        <p class="fieldlabel">Update existing records</p>
+        <div class="indented">
+            <p> If checked, records found in the text file and also in the database will be updated if the database field contents are different from those in the text file.</p>
+        </div>
+        <p class="fieldlabel">Enforce auto id usage</p>
+        <div class="indented">
+            <p>When set, and no database record can be found by remote id, the procedure will try to find the database record by id.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p>The import file contains a column "Id" and a row with value &lt;Id&gt;.</p>
+                <ol>
+                    <li value="1">The import routine will first try to find a site attribute value for "_RemoteMasterId" of the processed table matching &lt;Id&gt;.</li>
+                    <li value="2">If no matching value can be found, and the option <span class="ui_element">Enforce auto id usage</span> is set, the import program will try to find the record of the processed table with id matching &lt;Id&gt;. This will only work correctly when importing data from a file originally exported from the same database (or a copy).</li>
+                </ol>
+            </div>
+        </div>
+        <h4>Advanced Page</h4>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="denormalized_import_advanced.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="567" data-mc-height="339" src="denormalized_import_advanced_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Character set</p>
+        <div class="indented">
+            <p> Identifies the character set used in the text file. If left unspecified, no character set conversion is applied.</p>
+        </div>
+        <p class="fieldlabel">Languages</p>
+        <div class="indented">
+            <p>Allows you to specify a list of languages (double-clicking in this field will open a browser in which you can select one or more languages). For each of these, translations will be imported for any multilingual fields. Any other translations present in the text file will be ignored.</p>
+        </div>
+        <p class="fieldlabel">Confirm database changes</p>
+        <div class="indented">
+            <p>If checked, a confirmation dialog will appear prior to any record creation or update. Old and new values can be viewed alongside.</p>
+        </div>
+        <p class="fieldlabel">Log database changes</p>
+        <div class="indented">
+            <p>If checked, any record creation or update will be logged to a log file. Else, only rejections will be logged. The log file has the same name as the input file, but with ".csv" appended. The log text appears as an additional column at the far right.</p>
+        </div>
+        <p class="fieldlabel">Simulated</p>
+        <div class="indented">
+            <p>If  checked, no effective changes will be applied to the database.</p>
+        </div>
+        <h3>Support for non-identifiable records</h3>
+        <p>Some tables have no associated human-readable identification for their records. On import, record matching is possible only if a remote master identification column is supplied. This is the auto-generated internal record identifier out of the source database where the data were exported from. These can be matched to the value of a special site attribute called "_RemoteMasterId" (defined in the database in which data is imported). Note that only one remote master identification can be stored per record. It is therefore not possible to import non-identifiable records from multiple source databases. For configuration tables, the site attribute is automatically created. For other tables, it should be created manually in the database in which data is imported. If no matching is possible, import will always create new records.</p>
+        <h2><a name="Denormalized export"></a>Denormalized export</h2>
+        <h3><a name="Introduction"></a>Introduction</h3>
+        <p>This function exports database contents into human-readable text files, one per table. The data are output to "comma separated value" files with name &lt;TableShortName&gt;.csv. These files adhere to the <a href="#format">format for denormalized import and export</a>. They can later be imported (typically into another system) with the matching <a href="#Denormalized%20import">Denormalized Import</a> function.</p>
+        <p>Denormalized export can be accessed via <span class="ui_element">Start &gt; System management &gt; Database &gt; Export</span>  or via the <a href="../../../user_interface/user_interface_ribbons_contextual_tools.htm#Export">Tools</a> tab of the contextual ribbon (in which case it applies only to the selected records).</p>
+        <h3><a name="Usage"></a>Usage</h3>
+        <h4>Basic Page</h4>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_denormalized_basic.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="572" data-mc-height="277" src="export_denormalized_basic_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Use script</p>
+        <div class="indented">
+            <p>If <span class="ui_element">Use script</span> is checked, the <span class="ui_element">Script</span> field is enabled. Else, the <span class="ui_element">Tables</span> field is enabled.</p>
+        </div>
+        <p class="fieldlabel">Script</p>
+        <div class="indented">
+            <p>Is a text file containing a line for each table to be exported. The lines contain two space-separated fields: the table name and a comma-separated list of field paths. If this list is specified, only the listed fields are exported. If it is unspecified (as represented by a question mark) or omitted, a default is applied.</p>
+        </div>
+        <p class="fieldlabel">Tables</p>
+        <div class="indented">
+            <p>Allows you to select, by double-clicking in the field, one or more tables for exporting data from.</p>
+        </div>
+        <p class="fieldlabel">Select fields</p>
+        <div class="indented">
+            <p>If checked, a field selection dialog is shown for each selected table, allowing you to interactively pick the fields you want to export.</p>
+        </div>
+        <p class="fieldlabel">Folder</p>
+        <div class="indented">
+            <p>Is where the output files containing the exported data will be created.</p>
+        </div>
+        <h4>Advanced Page</h4>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_denormalized_advanced.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="572" data-mc-height="277" src="export_denormalized_advanced_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Languages</p>
+        <div class="indented">
+            <p>Allows you to specify the languages for which translations of any multilingual fields should be exported. Double-clicking in this field will open a browser in which you can select one or more languages.</p>
+        </div>
+        <p class="fieldlabel">Separator</p>
+        <div class="indented">
+            <p> Is either <span class="ui_element">Comma</span>, <span class="ui_element">Semicolon</span> or <span class="ui_element">Tab</span>. If you match this with the List separator in your Windows Regional Settings, it will be easier to open the export files with MS Excel. Your latest selection is proposed by default.</p>
+        </div>
+        <p class="fieldlabel">Updated since</p>
+        <div class="indented">
+            <p>If you specify the minimal last update date (and if time stamps are supported in the table to be exported), only records updated since the specified date will be exported.</p>
+        </div>
+        <p class="fieldlabel">File name style</p>
+        <div class="indented">
+            <p>Is either <span class="ui_element">Table short name</span> or <span class="ui_element">Table name</span>. It determines how the output files will be named (for example, the <span class="ui_element">User</span> table could be exported either to "sc_User.csv" or "usr.csv"). Your latest selection is proposed by default.</p>
+        </div>
+        <h3>Support for non-identifiable records</h3>
+        <p>Some tables have no associated human-readable identification for their records. If they are configuration tables, the auto-generated internal identifier will be exported. Subsequent import into another database will match these internal identifiers with earlier imported records from the same source database using a special site attribute called "_RemoteMasterId".</p>
+        <h2><a name="format" id="format"></a>Denormalized import/export format</h2>
+        <h3><a name="Introduction"></a>Introduction</h3>
+        <p>This document describes the format for text files used by Denormalized import and Denormalized export. We will refer to these files as <b>csv files</b>, because their extension is typically ".csv" (for "Comma Separated Values").</p>
+        <p>Each file is scoped to a table in the database. The file consists of a header with general information, and a body. Each line in the body corresponds with a record in the table. Individual fields of the record are separated by a separator character.</p>
+        <p>"Denormalized" means that any "parent" records referenced from a record are identified by a human-readable identification, rather than by a numeric reference into yet another text file (which would be the "Normalized" case).</p>
+        <h3><a name="Header format"></a>Header format</h3>
+        <h4>Introduction</h4>
+        <p>The application supports two alternative header formats: a <b>brief format</b> (better suited for easy csv file editing with Microsoft Excel) and a <b>verbose format</b> (with extra features, such as default value assignment). Denormalized export always exports to the brief format. Denormalized import supports both brief and verbose format.</p>
+        <h4>Verbose header format</h4>
+        <p>The verbose header section is contained between two delimiter lines: one containing the string "%%SH" (Start header) and one containing the string "%%EH" (End header). Between these two are the directive lines:</p>
+        <script language="JavaScript" type="text/javascript">/*<![CDATA[*/
+
+//
+/*]]>*//*<![CDATA[*/
+<!--
+if ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) == 4)) document.write("<\/table><table x-use-null-cells cellspacing='0' width='100%' border='1' bordercolor='black' bordercolorlight='black' bordercolordark='black'>");
+//-->
+///*]]>*//*<![CDATA[*/
+
+
+/*]]>*/</script>
+        <script language="JavaScript" type="text/javascript">/*<![CDATA[*/
+
+//
+/*]]>*//*<![CDATA[*/
+<!--
+if ((navigator.appName == "Netscape") && (parseInt(navigator.appVersion) == 4)) document.write("<\/table><\/table><table>");
+//-->
+///*]]>*//*<![CDATA[*/
+
+
+/*]]>*/</script>
+        <table class="whs1" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <colgroup>
+                <col class="whs2" />
+                <col class="whs3" />
+                <col class="whs4" />
+            </colgroup>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs6" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><b style="font-weight: bold;">Name</b></span>
+                    </p>
+                </td>
+                <td class="whs7" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><b style="font-weight: bold;">Syntax</b></span>
+                    </p>
+                </td>
+                <td class="whs8" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><b style="font-weight: bold;">Comment</b></span>
+                    </p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs9" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">Directive</p>
+                </td>
+                <td class="whs11" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><span style="color: #0000FF;"><i style="font-style: italic;">SeparatorDirective</i></span></span><span style="font-style: italic;"><i>|</i></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>TableNameDirective</i></span></span> | <span style="font-style: italic;"><span style="color: #0000FF;"><i>FieldListDirective</i></span></span> | <span style="font-style: italic;"><span style="color: #0000FF;"><i>DefaultListDirective</i></span></span></p>
+                </td>
+                <td class="whs12" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p />
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">SeparatorDirective</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><span style="color: #FF0000;"><b style="font-weight: bold;">Separator =</b></span></span> ( <span style="font-weight: bold;"><span style="color: #FF0000;"><b>Comma</b></span></span> | <span style="font-weight: bold;"><span style="color: #FF0000;"><b>Semicolon</b></span></span> | <span style="font-weight: bold;"><span style="color: #FF0000;"><b>Space</b></span></span> | <span style="font-weight: bold;"><span style="color: #FF0000;"><b>Tab</b></span></span> )</p>
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p />
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">TableNameDirective</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><span style="color: #FF0000;"><b style="font-weight: bold;">TableName =</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>TableName</i></span></span>
+                    </p>
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p>Mandatory</p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs16" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">FieldListDirective</p>
+                </td>
+                <td class="whs17" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p><span><span style="color: #FF0000;"><b style="font-weight: bold;">FieldList =</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>ColumnIdentifier</i></span></span> { <span style="font-style: italic;"><span style="color: #0000FF;"><i>Separator</i></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>ColumnIdentifier</i></span></span> }</p>
+                </td>
+                <td class="whs18" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19">Mandatory</p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">ColumnIdentifier</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19"><span><span style="color: #0000FF;"><i style="font-style: italic;">FieldName</i></span></span> { <span style="font-weight: bold;"><span style="color: #FF0000;"><b>.</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>FieldName</i></span></span> } [ <span style="font-weight: bold;"><span style="color: #FF0000;"><b>:</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>LanguageCode</i></span></span> ] [ <span style="font-weight: bold;"><span style="color: #FF0000;"><b>#</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>Discriminator</i></span></span> ]</p>
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19" />
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">FieldName</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs20" />
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19">For site attributes, use leading tilde ('~') character. For normal fields, use names as in MISPL (without table short name prefix).</p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">LanguageCode</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs20" />
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19">Used to identify the translation used for multilingual field values.</p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">Discriminator</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs20" />
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19">Any string of characters except delimiters; used to discriminate between alternative columns for the same field.</p>
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs13" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">DefaultListDirective</p>
+                </td>
+                <td class="whs14" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs20"><span><span style="color: #FF0000;">DefaultList =</span></span><span style="font-weight: normal;font-style: italic;"><span style="color: #0000FF;"><i>Assignment</i></span></span> { <span style="font-weight: normal;font-style: italic;"><span style="color: #0000FF;"><i>Separator</i></span></span><span style="font-weight: normal;font-style: italic;"><span style="color: #0000FF;"><i>Assignment</i></span></span> }</p>
+                </td>
+                <td class="whs15" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19" />
+                </td>
+            </tr>
+            <tr class="whs5" style="vertical-align: top;">
+                <td class="whs16" style="width: 23.66%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs10">Assignment</p>
+                </td>
+                <td class="whs17" style="width: 42.99%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19"><span><span style="color: #0000FF;"><i style="font-style: italic;">ColumnIdentifier</i></span></span><span style="font-weight: bold;"><span style="color: #FF0000;"><b>=</b></span></span><span style="font-style: italic;"><span style="color: #0000FF;"><i>FieldValue</i></span></span>
+                    </p>
+                </td>
+                <td class="whs18" style="width: 33.33%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p class="whs19" />
+                </td>
+            </tr>
+        </table>
+        <h4>Brief header format</h4>
+        <p>The brief header consists of a single line containing only column identifiers (with syntax as in the verbose header format) separated by separator characters. The separator is auto-detected. The table is auto-detected from the file name root, which should match either the name or the short name of the table (e.g. sc_User.csv or usr.csv). Default value assignments are not supported in this format.</p>
+        <h3><a name="Body format"></a>Body format</h3>
+        <p>In the body, there should be one line per record to import (except if the record contains fields containing new line characters). The fields should occur in the sequence of the FieldList directive, and should be separated by the separator. If field values happen to contain either a separator character, a double quote character or a new line character, they should be surrounded by double quotes. Embedded double quotes must be escaped with an extra double quote.</p>
+        <p>Enumerated fields must be specified by their string value. For instance, for the 'User.Type' you may write 'Guest'.</p>
+        <p>Date fields must be specified as "YYYY/MM/DD". Time fields must be specified "HH:mm:SS". Date/time fields must be specified as "YYYY/MM/DD HH:mm:SS"</p>
+        <p>Comment lines are preceded by "%%".</p>
+        <h3>Support for CLOB / BLOB fields</h3>
+        <p>Import/export of table fields of datatype "BLOB" or "CLOB" is supported.</p>
+        <h4>Export</h4>
+        <p>When exporting records from a table with "CLOB" or "BLOB" fields, an export file will be created with as CLOB/BLOB field data the name of a CLOB/BLOB file with format</p>
+        <ul>
+            <li value="1">CLOBS: &lt;TableShortName&gt;!&lt;FieldName&gt;!&lt;CodePage&gt;!&lt;Id&gt;.blb</li>
+            <li value="2">BLOBS: &lt;TableShortName&gt;!&lt;FieldName&gt;!&lt;Id&gt;.blb</li>
+        </ul>
+        <p>&lt;CodePage&gt; is the code page used in this session, example "UTF-8". &lt;Id&gt; is the id of the table record.</p>
+        <p>For each exported record, a file with matching name is created in the same folder as the .csv file. This file contains the data from the exported BLOB/CLOB column. In case of CLOB this is in text format, for BLOB it is in binary format. </p>
+        <h4>Import</h4>
+        <p>When importing records from a table with "CLOB" or "BLOB" fields, the import file will be examined. For CLOB/BLOB fields the matching file will be searched in the folder containing the .csv file.  The import will fail if the .blb file is not available.</p>
+        <p>Before attempting to import files, the data in the .blb files will be compared with the data in the database. For CLOB fields this is a "RAW" comparison, for BLOB fields this is a byte to byte comparison, although the import program will apply other, more performant comparison techniques first.</p>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <ol>
+            <li value="1">If you want to import <b>units and dimensions</b>, you should:
+<ul><li value="1">First import the dimensions using only the <span class="ui_element">Name</span> field.</li><li value="2">Then import the units.</li><li value="3">Finally, import the dimensions again, this time including the <span class="ui_element">Base unit</span> field.<br /></li></ul></li>
+            <li value="2">When importing <b>properties or materials</b>, you should exclude the <span class="ui_element">Default request definition</span> field.<br /></li>
+            <li value="3">Due to the fact that inserting new nodes in a <b>property classification</b> may lead to problems when trying to import this modified classification in a target system which already has the rest of the classification. To avoid this problem, we advise either to use the import option only for the initial creation of the property classification and not for later updates, or to completely clear the correspondent classifications before doing an update via the import program.<br /></li>
+            <li value="4">The records of the <b>Code table</b> can be exported and imported providing the records of the coded table can be externalized via a single word (example: the record referred to by a property code can be uniquely identified via the property mnemonic).<br /></li>
+            <li value="5">Importing the <b>um_Option table</b> is currently non possible due to the fact that GLIMS automatically creates a default menu for each table when there is no um_Option for this table.<br /></li>
+            <li value="6">When editing .csv files in MS Excel and then saving your changes, MS Excel will add <b>extra comma's in the header</b> of the file. These must be removed in order to be able to use the file for import.<br /></li>
+            <li value="7"><b style="font-weight: bold;">Columns containing dates</b>: GLIMS always used the year/month/day format, independently of the site configuration. However, when editing .csv files with MS Excel, the latter may interpret these dates differently (using the local date format). When saving the .csv file with MS Excel, these date can either become unacceptable or may have changed (the date is still valid but has changed !!!). So be very careful when editing .csv files containing dates with MS Excel !</li>
+        </ol>
+    </body>
+</html>

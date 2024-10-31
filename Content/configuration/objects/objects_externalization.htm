@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Patients|Objects" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\advanced configuration\object_naming.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Customizable object naming</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Object externalization</h1>
+        <h2>Introduction</h2>
+        <p>The object externalization determines how an object (all its sub-types Person, Animal, Lot, QCLot and UnknownObject) is visualized throughout the application.</p>
+        <p><a name="kanchor102"></a>Object externalizations are fully configurable. So, each customer can choose how its objects should be externalized (= made external, visualized): with or without spouse last name, sex, birth date, etc, ...</p>
+        <h2>Default externalization</h2>
+        <p>The default externalizations are as follows (square brackets indicate optional fields that may be omitted when unknown):</p>
+        <p class="fieldlabel"><a name="Person"></a>Person</p>
+        <div class="indented">
+            <p>"LastName[, MiddleName][, FirstName] (S)[, DD/MM/YYYY]"<br />where<br />S = sex, see possible values <a href="../correspondents/persons.htm#Sex">here</a>.<br />DD/MM/YYYY = birth date with 4-digit year</p>
+        </div>
+        <p class="fieldlabel">Person (foetus)</p>
+        <div class="indented">If the object refers to a <a href="../correspondents/persons.htm#Foetus">foetus Person</a>, the default externalization is built as follows:
+		<p>"LastName[,MiddleName][, FirstName] (abbreviated <a href="../../routine/specimens/specimen_info.htm#Genotypi">genotypic gender</a>)"</p><p>If the first name is unknown, and the foetus discriminator is</p><ul><li value="1"> known, then [,"Foetus-"+foetus discrimator] appears instead of the first name</li><li value="2">unknown, then [,"Foetus"] appears instead of the first name</li></ul><p><img src="objects_externalization_foetus.png" /></p></div>
+        <p class="fieldlabel">Animal</p>
+        <div class="indented">
+            <p>"[OwnerName][, AnimalName] ([T, ]S)[, DD/MM/YYYY]"<br />where<br />T = object template name (e.g. Cat, Dog, ...)<br />S = sex, see possible values <a href="../correspondents/persons.htm#Sex">here</a>.<br />DD/MM/YYYY = birth date</p>
+        </div>
+        <p class="fieldlabel">Lot</p>
+        <div class="indented">
+            <p>"[Supplier][ / ExternalId][, DD/MM/YYYY]"<br />where<br />DD/MM/YYYY = production date</p>
+        </div>
+        <p class="fieldlabel">QCLot</p>
+        <div class="indented">
+            <p>"QCMaterial LotNumber \[Code\]: MaterialDescription[ (LotSupplier)]"<br />where<br />Code = lot or QC material code<br />(square brackets have no special meaning here)</p>
+        </div>
+        <p class="fieldlabel">UnknownObject</p>
+        <div class="indented">
+            <p>"InternalId ([CreationDepartment] CreationTime)"</p>
+        </div>
+        <h2>Custom externalization</h2>
+        <p>In the <a href="../specificsite/glims_general_options.htm#External">general settings</a>, the default externalizations can be replaced by a custom externalization, defined via a site function. For each object type, a site function can be specified that returns the externalization.</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>It is recommended to only use fields of the Object or sub-type class (Person, Animal, Lot, QCLot or UnknownObject) in the custom externalization site function. </p>
+            <p>Only modification of these fields will cause automatic <a href="#Recalculate">recalculation</a> of the externalization. If you include e.g. the patient's matriculation number, you are free to do so, but its externalization will NOT change if you update that number.</p>
+        </div>
+        <p>Click <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS general</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="objects_externalization.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="757" data-mc-height="676" src="objects_externalization_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>As an example, GLIMS automatically provides a sample MISPL function for the Person class. It includes a 'twin' and a 'deceased' indication. It should be adapted by each customer to its individual taste and needs.</p>
+        <p>Sample MISPL:</p>
+        <div class="indented">
+            <div class="box_grey"><pre>String Sex;
+</pre><pre>Sex := Entry(Lookup(EnumeratedToString("Sex", .Sex), "Male,Female,Other,Unknown,Ambiguous,Not applicable", ?),"M,F,O,U,A,N", ?);</pre><pre xml:space="preserve">RETURN
+    ((IF .LastName &lt;&gt; ? THEN .LastName ELSE .SpouseLastName) +
+        (IF .MiddleName &lt;&gt; ? THEN ", " + .MiddleName ELSE "") +
+        (IF .FirstName &lt;&gt; ? THEN ", " + .FirstName ELSE "")) +
+    (IF .HasTwin THEN CHR(178) ELSE "") +
+        /* 178 = iso8859-1 superscript 2 */
+    (IF .DeceaseTime &lt;&gt; ? THEN " " + CHR(177) ELSE "") +
+        /* 177 = iso8859-1 plus-minus sign */
+    (IF Sex &lt;&gt; ? THEN " (" + Sex + ")" ELSE "") +
+    (IF .BirthDate &lt;&gt; ?
+        THEN ", " + .ExtendedBirthDate("%d/%m/%Y") ELSE "");
+</pre>
+            </div>
+        </div>
+        <h2><a name="Recalculate" id="Recalculate"></a>Recalculate externalizations</h2>
+        <p>Whenever an Object or its sub-type is updated, the <span class="ui_element">Externalization</span> field is automatically recalculated. </p>
+        <p>If you modify the custom externalization site function, and you want to make it permanent, you can apply it to all records in your database by means of the <span class="ui_element">Recalculate externalization</span> function. </p>
+        <p>Click <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Tools</span> -&gt; <span class="ui_element">Recalculate externalizations</span>.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p> If you have a large number of records in your database, it is strongly advised to run this program on the server !</p>
+        </div>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="objects_externalization_recalculate.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="254" data-mc-height="199" src="objects_externalization_recalculate_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Object types</p>
+        <div class="indented">
+            <p>Select the object types for which you want to recalculate the externalization.</p>
+        </div>
+        <p class="fieldlabel">From, To</p>
+        <div class="indented">
+            <p>Allows to recalculate externalizations of which the first character lies between the specified range.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">You can specify a single quote (') in these fields. This should allow to process patients whose name starts with a single quote (like e.g. 'T KINDT)</li>
+                    <li value="2">The meaning of the unknown value in the <span class="ui_element">From</span> field means ascii character 0; in the <span class="ui_element">To</span> field, it means ascii character 255. This should allow to process names containing other strange characters.</li>
+                </ul>
+            </div>
+        </div>
+        <h2>Browsers</h2>
+        <p>For each table, a browser <span class="ui_element">By externalization</span> is available. </p>
+        <p>Also, all order browsers contain the object externalization field if the available space allows it.&#160;&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - QCSchedule</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor372"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+QCSchedule&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+QC schedule</td>
+                <td>
+qcs</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+Quality control actions for a given station need to be scheduled on a worklist. This table states: For a given worklist, on some positions in the beginning, middle or end of a generated worklist, some procedures on QC materials must be added. </p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_CycleLength"></a>
+        <h3>
+Cycle length</h3>
+        <div class="MemberHelp">
+            <p>
+The Cycle length field is only applicable for 'Middle' types. The cycle length indicates after how many patient samples you want the second QC to start). Example:
+<br /><br />Two middle QC's:
+<br /><br />QcMat 3 with Cycle start 10 and Cycle length 20 
+<br />QcMat 4 with Cycle start 20 and Cycle length 20 
+<br />would result in:
+<br /><br />10 patients, QcMat3 , 10 patients, QcMat4, 10 patients, QcMat3, 10 patients, QcMat4, 
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>CycleLength</b></p>
+        </div><a name="F_CycleStart"></a>
+        <h3>
+Cycle Start</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates after how many patient samples you want to start a QC. Allows to define a QC schedule where multiple sets of QC materials are scheduled with a different cycle. This allows schedules like:
+<br /><br />QCMat1, QCMat2, 10 patients, QCMat 3, QCMat4, 10 patients, QCMat 5, 10 patients, Qcmat3, QCMat4,...
+<br /><br />Note that in cases where different cycles coincide, the QCSchedule.SeqNo member decides the order in which the materials are scheduled.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>CycleStart</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">QCSchedule</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Material"></a>
+        <h3>
+QC material</h3>
+        <div class="MemberHelp">
+            <p>
+QC material</p>
+            <p class="Synopsis"><span class="Type"><a href="qcmt.htm">QCMaterial</a></span>&#160;<b>Material</b></p>
+        </div><a name="F_Procedure"></a>
+        <h3>
+Procedure</h3>
+        <div class="MemberHelp">
+            <p>
+The Procedure is the procedure to be carried out on the QC material. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="proc.htm">Procedure</a></span>&#160;<b>Procedure</b></p>
+        </div><a name="F_SeqNo"></a>
+        <h3>
+Seq no</h3>
+        <div class="MemberHelp">
+            <p>
+The sequence specifies the relative position of QC material entry on the worklist.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">PositiveInteger</span>&#160;<b>SeqNo</b></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+Position type of QC schedule</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="qcscheduletype.htm">QCScheduleType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Start, Middle, End</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="F_WorkListTemplate"></a>
+        <h3>
+Work list template</h3>
+        <div class="MemberHelp">
+            <p>
+Worklist template</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="wlt.htm">WorkListTemplate</a></span>&#160;<b>WorkListTemplate</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_Procedure"></a>
+        <h3>
+Procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Procedure</b> ()</p>
+        </div><a name="M_Material"></a>
+        <h3>
+QC material&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Material</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_WorkListTemplate"></a>
+        <h3>
+Work list template&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>WorkListTemplate</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ WorkListTemplate + Type + SeqNo </b>
+            </li>
+            <li value="3"><b>+ Material + Procedure </b>
+            </li>
+            <li value="4"><b>+ Procedure + WorkListTemplate + Type + SeqNo </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

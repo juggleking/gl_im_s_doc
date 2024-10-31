@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Symphonie">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>symphonie</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor252"></a>
+            <MadCap:concept term="Billing" />Nemesis de Symphonie</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Identifications">Identifications</a> - <a href="#Urgencies">Urgencies</a> - <a href="#File%20structure">File structure</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Using the <a href="../financial_shipments_send.htm">FinancialShipment.Send</a> function and selecting "Symphonie" as protocol, GLIMS allows creating files conform the "Nemesis de Symphonie" format.&#160;&#160;Before transferring billing data, you must collect all data on a financial shipment.&#160;&#160;Once a shipment is sent, the shipment and its underlying data will be fixed and protected against later modifications. As a result, corrections are collected on a new shipment (version).</p>
+        <p>The Send function will create one file per order (and executing lab combination).</p>
+        <p style="text-align: center;">
+            <img src="symphonie.gif" style="border: none;" alt="" width="480" height="344" border="0" />
+        </p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;"><b style="font-weight: bold;">Protocol</b>: Symphonie</p>
+            </li>
+            <li class="p" value="2">
+                <p style="text-align: left;"><b style="font-weight: bold;">File name</b>: As several files are created, a symbolic file name must be used.&#160;&#160;Example: 'symphonie{#*}.cot'</p>
+            </li>
+            <li class="p" value="3">
+                <p style="text-align: left;"><b style="font-weight: bold;">File check</b>: must be enabled</p>
+            </li>
+            <li class="p" value="4">
+                <p style="text-align: left;"><b style="font-weight: bold;">Mark</b>: must be enabled</p>
+            </li>
+            <li class="p" value="5">
+                <p style="text-align: left;"><b style="font-weight: bold;">Max number of failures</b>: should be set to '0'.&#160;&#160;If this number is exceeded then the transfer&#160;&#160;is stopped.&#160;&#160;The last successfully sent invoice is stored in the shipment.</p>
+            </li>
+        </ul>
+        <h2><a name="Identifications" id="Identifications"></a>Identifications</h2>
+        <p>All transferred correspondents id's (lab, executors, ..) are identification codes assigned by the financial shipment’s destination (= source = id provider). If no identification code is available for the correspondent, the correspondent’s mnemonic is used.</p>
+        <h2><a name="Urgencies" id="Urgencies"></a>Urgencies</h2>
+        <p>The urgency codes (N/W/F/ etc) must be defined in the site domain 'BillingUrgency'.</p>
+        <h2><a name="File structure"></a>File structure</h2>
+        <table width="100%" style="margin-left: 0;margin-right: auto;">
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Attribut</b>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Description</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Glims field</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#BFBFBF"><b style="font-weight: bold;">Comment</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Numéro de séjour</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>(Order) encounter external id</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att2</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code UF exécutant</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>(Billing item) executing lab's identification code provided by the shipment destination correspondent.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att3</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code UF demandeur</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>(billing item) executing lab</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att4</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Date de l'acte</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Tariff date</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>According to internal format: 0=31/12/1967,<br />1=1/1/1968, …</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att5</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code Nuit ou Férie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>N/F/’’ Depending on the billing item urgency</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Attributes multivalue:</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>One subfield per billing item</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att6</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code acte</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Nomenclature code (tariff)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att7</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Acte facturable O/N</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>O</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att8</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Acte privé O/N</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Not used ('')</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att9</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Typ de consultation I/E</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>I/E depending on the encounter (residence ) type</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att10</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code practicien demandeur</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Order issuer</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att11</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code practicien exécutant</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>(billing item) executor</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att12</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Code médicin anestésie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Not used ('')</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att13</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Nombre d'acte</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>1</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att14</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Lettre clé de l'acte</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Price code K,…</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att15</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Coefficient de l'acte</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Tariff base value</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att16</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Kare anestésiste</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Not used ('')</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att17</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Coefficient de l'acte transmit à Némésis</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Tariff base value</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att18</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Kare anestésiste transmis a Némesiste</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>Not used ('')</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 8%;" bgcolor="#E8E8E8">
+                    <p>Att19</p>
+                </td>
+                <td style="vertical-align: TOP;width: 27%;" bgcolor="#E8E8E8">
+                    <p>Nombre de ligne dans le tableau de cotation</p>
+                </td>
+                <td style="vertical-align: TOP;width: 46%;" bgcolor="#E8E8E8">
+                    <p>??</p>
+                </td>
+                <td style="vertical-align: TOP;width: 18%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

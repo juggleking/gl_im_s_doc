@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|Configuration" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Microbiology - Media</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2187"></a>
+            <MadCap:concept term="Microbiology" /><a name="Microbiology_Media"></a>Microbiology - Media</h1>
+        <h2>Introduction</h2>
+        <p>When presence of health threatening germs is suspected, the germs are 
+ transferred to one or more carriers (media) 
+ in order to let them incubate. The nutrients used can depend of many factors 
+ (e.g. the result of the Gram-coloring, the material, the origin of the 
+ material, the patient characteristics,...).</p>
+        <p>A medium can be linked to a microbiology procedure by defining a <a href="medium_usages.htm">medium usage</a>.</p>
+        <p>Media can be accessed from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Microbiology</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Media</span>.</p>
+        <h2>General</h2>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Free text.</p>
+        </div>
+        <p class="fieldlabel">Seq no</p>
+        <div class="indented">
+            <p> Carriers will be created 
+ and sorted according to this sequence number in the <a href="../routine/microbiology_work_screen.htm">microbiology 
+ work screen</a>.</p>
+        </div>
+        <p class="fieldlabel">List of allowed values</p>
+        <div class="indented">
+            <p>Allows to specify  a <a href="../../../configuration/choice_lists/choice_lists.htm">choice list</a>. This choice list contains the choices that are the possible values for 
+ the <span class="ui_element">Comment</span> field of the <span class="ui_element">Carriers</span> (for this type of Medium) in the 
+ microbiology screen. </p>
+            <p>If a choice list has been specified for 
+ the medium, the following features apply:</p>
+            <ul>
+                <li class="kadov-p" value="1">On double-click or CTRL-F, the list of choices 
+ will be opened, in order to select the choice you want to enter.</li>
+                <li class="kadov-p" value="2">If the choice list option <span class="ui_element">Allow free 
+ text</span> is not enabled, entering other text than one of the choices will not be possible 
+ and will result in an error message.</li>
+                <li class="kadov-p" value="3">If the choice list option <span class="ui_element">Allow free 
+ text</span> is enabled, 
+ entering other text than one of the choices will result in a warning message, 
+ asking for confirmation.</li>
+                <li class="kadov-p" value="4">If a choice from the choice list has been entered, 
+ you can view this choice from the carrier's contextual menu/ ribbon item <span class="ui_element">Chosen 
+ value</span>.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">When carrier data changes</p>
+        <div class="indented">
+            <p> Executed when the carrier's <span class="ui_element">Comment</span>, <span class="ui_element">Growth status</span>, <span class="ui_element">Growth result</span> or <span class="ui_element">Grafting result</span> changes. </p>
+            <p>For instance, you could  use the following MISPL functions</p>
+            <ul>
+                <li class="kadov-p" value="1">
+                    <p><a href="../../../db/reference_guide/carr.htm#M_AddIsolation">Carrier.AddIsolation</a> to automatically add a new isolation for the microbiology action.</p>
+                </li>
+                <li value="2">
+                    <p><a href="../../../db/reference_guide/mcra.htm#M_AddCarriers" xmlns="http://www.w3.org/1999/xhtml">MicrobiologyAction.AddCarriers</a> so that new carriers are automatically added to the microbiology action. This can be useful for instance when the comment of a carrier turns to "P" ('positive'). Indeed, in that case, new tests need to be done, for which new carriers need to be requested.</p>
+                </li>
+                <li value="3">
+                    <p><a href="../../../db/reference_guide/carr.htm#M_AddSubCarrier">Carrier.AddSubCarrier</a>: see also <a href="../wasplab/microbiology_wasplab_06_picking.htm">WASPLab connection - Picking</a>.</p>
+                </li>
+                <li value="4">
+                    <p><a href="../../../db/reference_guide/isol.htm#M_AddSubCarrier">Isolation.AddSubCarrier</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <p class="fieldlabel">SOP</p>
+        <div class="indented">
+            <p>Standard Operation Procedure</p>
+        </div>
+        <p class="fieldlabel">Label for printing</p>
+        <div class="indented">
+            <p>Carrier label that can be printed during order entry.</p>
+        </div>
+        <p class="fieldlabel">Disabled</p>
+        <div class="indented">
+            <p>If enabled, this medium can no 
+ longer be used.</p>
+        </div>
+        <h2 align="left">Usage</h2>
+        <p align="left" class="fieldlabel">Type</p>
+        <div class="indented">
+            <p align="left"> </p>
+        </div>
+        <p align="left" class="fieldlabel">Type of slide (staining)</p>
+        <div class="indented">
+            <p align="left">Only 
+ used if <span class="ui_element">Type</span> is set to <span class="ui_element">Slide</span>. For more information, please check the chapter <a href="../../pathology/configuration/pathology_blocks_slides.htm">Blocks 
+ and slides</a>.</p>
+        </div>
+        <p align="left" class="fieldlabel">Automatic creation</p>
+        <div class="indented">
+            <p align="left">Embedded browser showing the 
+ <a href="medium_usages.htm">usages of the medium</a>.</p>
+        </div>
+        <p align="left" class="fieldlabel">Derived media</p>
+        <div class="indented">
+            <p align="left">Used for media of type <a href="../../pathology/configuration/pathology_blocks_slides.htm">"block" 
+ and "slide"</a>. Slides 
+ are derived from blocks.</p>
+        </div>
+        <h2 align="left">Assigned billing codes</h2>
+        <p style="text-align: left;" align="left">Embedded browser showing the <a href="../../billing/tariffication/configuration/billing_codes.htm">billing 
+ codes assigned</a> to this medium.</p>
+    </body>
+</html>

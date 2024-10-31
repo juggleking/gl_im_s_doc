@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>CORRESPONDENT INFO
+</TITLE>
+<LINK REL="stylesheet" HREF="C:\GLIMS9\dat\Data-sheet.css" TYPE="text/css">
+<style type="text/css"> 
+   body ~{
+          color: rgb(0, 0, 0); 
+          background: #FFFFFF; 
+        ~};
+</style>
+</HEAD>
+
+<BODY>
+<H1> Data sheet patient {=.Person().LastName} {=.Person().FirstName} </H1>
+<UL TYPE="Square">
+<H2> Correpondent</H2>
+<LI> <B> Name: </B> {=IfKnownString(.Person().FirstName)} {=IfKnownString(.Person().MiddleName)} {=IfKnownString(.Person().LastName)}<br></LI>
+<LI> <B> Birth date: </B>{=DateToString(.Person().BirthDate,"%d/%m/%y")} {= " (" + FractionalToString(.AgeInYears(Today()),"%3.0f") + " years)"}</LI>
+<LI> <B> Sex: </B>{=IfKnownString(EnumeratedToString("Sex",.Person().Sex))}<br></LI>
+<LI> <B> Address: </B>{=IfKnownString(.Person().Correspondent.AddressLine1)}</LI>
+<LI> <B> Municipality: </B>{=IfKnownString(.Person().Correspondent.Municipality.PostalCode)} {=IfKnownString(.Person().Correspondent.Municipality.Name)}<br></LI>
+<LI> <B> Phone number: </B> {=IfKnownString(.Person().Correspondent.Phone)} </LI>
+<LI> <B> Mobile phone number: </B> {=IfKnownString(.Person().Correspondent.MobilePhone)} </LI>
+<LI> <B> Email address: </B>{=IfKnownString(.Person().Correspondent.Email)}<br></LI>
+
+
+<H2> Identifications</H2>
+<LI> <B> Hospital Identification Number: </B>{=IfKnownString(.PIN("I_MMSJ"))}</LI>
+<LI> <B> National Registry Number: </B>{=IfKnownString(.PIN("O_RRN"))}</LI>
+
+<H2> Payment agreement</H2>
+<LI> <B> Fund: </B>{=IfKnownString(.Person().Correspondent.PaymentAgreement(?, ?).Fund.Mnemonic)} {=IfKnownString(.Person().Correspondent.PaymentAgreement(?, ?).Fund.Name)}</LI>
+<LI> <B> Matriculation: </B>{=IfKnownString(.Person().Correspondent.PaymentAgreement(?, ?).Matriculation)}</LI>
+<LI> <B> Policy: </B>{=IfKnownString(.Person().Correspondent.PaymentAgreement(?, ?).PolicyName.Description)}</LI>
+<LI> <B> Valid </B>{=IfKnownString("from " + DateToString(.Person().Correspondent.PaymentAgreement(?, ?).StartDate,"%d/%m/%y"))} {=IfKnownString(" to " + DateToString(.Person().Correspondent.PaymentAgreement(?, ?).EndDate,"%d/%m/%y"))}</LI>
+</UL>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|About">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report builder service</title>
+        <link href="../../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4139"></a>
+            <MadCap:concept term="Report builder" />Report builder service</h1>
+        <h2>Introduction</h2>
+        <p>Report builder allows to migrate as much of the work as possible to a central <span class="ui_element">Report builder service</span>, tightly integrated in the application.</p>
+        <p>In smaller sites, there will typically be a single Report builder service running on the same server as the database along with the other application services (translator servers, task schedulers, service controllers). </p>
+        <p>In more complex deployment scenarios, there will be a need for multiple Report builder services, spread over multiple application servers as needed (with a mix of operating systems). That's why a system manager can specify a default Report builder service at different levels: </p>
+        <ol>
+            <li value="1">gp_Site </li>
+            <li value="2">Department</li>
+            <li value="3">Printer</li>
+        </ol>
+        <h2>Setting up a Report builder service</h2>
+        <p>The configuration of a <span class="ui_element">Report builder service</span> is analogous to the configuration of a <span class="ui_element">Task Scheduler</span> or <span class="ui_element">Service Controller</span>.</p>
+        <ol>
+            <li value="1">
+                <p>Open the <span class="ui_element">Services</span> browsers and create a new service.</p>
+            </li>
+            <li value="2">
+                <p>Set the <span class="ui_element">Type</span> field to <span class="ui_element">Report builder</span>.</p>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="report_builder_service.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="598" data-mc-height="585" src="report_builder_service_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>A number of options will be preset and some options can no longer be modified. In particular, Report builder services always use XML as internal language, and always log to file instead of database.</p>
+                </div>
+            </li>
+            <li value="3">
+                <p>The <span class="ui_element">Specific options</span> allow system managers to set additional parameters.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Example which tweaks the memory consumption:</p>
+                    <p>-Xms96m -Xmx128m</p>
+                    <p>Example which extends the "class path" with an additional jar file:</p>
+                    <p>-Dmips.classpath.extensions="ms-trebuchet.jar" </p>
+                </div>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Incorrectly configured Jasper report templates may lead to recursion issues where the same page is printed over and over again (e.g. a report header which is too small to print all the data).</p>
+                    <p>It is possible to set maximum number of pages and the maximum generation time for a single report. The following options can be defined:</p>
+                    <div class="indented">
+                        <p>-Dmips.reportbuilder.maxpages=1000</p>
+                        <p>-Dmips.reportbuilder.maxtime=1</p>
+                    </div>
+                    <p>The settings above define that a single report can have a maximum of 1000 pages and should be generated within 1 minute.</p>
+                    <p>Customers that do not yet use a Report builder service can define the following parameters in the progress.ini / .glimsrc file:</p>
+                    <div class="indented">
+                        <p>MA_JVM_MAXREPORTPAGES=1000</p>
+                        <p>MA_JVM_MAXREPORTTIME=1</p>
+                    </div>
+                </div>
+                <p>These additional parameters can be combined in the <span class="ui_element">specific options</span> field.</p>
+            </li>
+            <li value="4">The <span class="ui_element">Report builder services</span> should also be registered as Windows services (if applicable) and respond to <span class="ui_element">Check activity</span> and <span class="ui_element">Stop</span> functions just like the other types of services.</li>
+            <li value="5">
+                <p>Once the <span class="ui_element">Report builder service</span> is created, you can now indicate at which level it should be used:</p>
+                <p class="fieldlabel">gp_Site</p>
+                <div class="indented">
+                    <p>This is the default Report builder service that will be used when no department or printer-specific service is applicable.</p>
+                    <p>Click <span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; MATE</span>.</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="report_builder_service_MATE.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="604" data-mc-height="427" src="report_builder_service_MATE_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                </div>
+                <p class="fieldlabel">Department</p>
+                <div class="indented">
+                    <p>Larger and/or multi-site environments may need the ability to set a default <span class="ui_element">Report builder service</span> at the <span class="ui_element">Department</span> level, in order to cope with network latency, printer locations and general workload for such a service.</p>
+                    <p>When users log into a department, its default Report builder service (if set) overrides the default Report builder service setting at the <span class="ui_element">gp_Site</span> level.</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="report_builder_service_Dept.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="668" data-mc-height="982" src="report_builder_service_Dept_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                </div>
+                <p class="fieldlabel">Printer</p>
+                <div class="indented">
+                    <p>Overrides the default Report builder service setting at the <span class="ui_element">Department</span> and <span class="ui_element">gp_Site</span> level.</p>
+                    <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="report_builder_service_printer.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="564" data-mc-height="734" src="report_builder_service_printer_thumb_0_120.png" tabindex="" /></a>
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>On UNIX, you need to define the following variable in the .glimsrc configuration 
+ file:</p>
+            <p><b>MA_JVM_JAVAPATH</b>
+            </p>
+            <ul>
+                <li value="1">This contains the path to the java binary that is used to spawn the report builder process</li>
+                <li value="2">Example: $DLC/jre/bin/java, if the OpenEdge environment for the 
+	 UNIX platform ships with its own copy of the JRE (Java Runtime 
+	 Environment).</li>
+            </ul>
+        </div>
+        <h2>Limitations</h2>
+        <ol>
+            <li value="1">There is currently no fail-over mechanism. This limitation also applies to other types of services, and will be investigated in the future.</li>
+            <li value="2">There is currently no support for Report builder services in Watchdog. This will be addressed in future releases.</li>
+        </ol>
+        <h2>Example deployment scenarios</h2>
+        <h3>Very small site</h3>
+        <p>We can assume that in very small sites, all services are concentrated on a single server. Under these circumstances we can:</p>
+        <ol>
+            <li value="1">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on the <span class="ui_element">Main</span> server.</li>
+            <li value="2">Assign this as the default Report builder service via menu <span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; MATE</span>.</li>
+        </ol>
+        <table style="mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">MAIN SERVER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Progress or Oracle Database</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Application server</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&lt;N&gt; Services of type Translator server and associated Translators</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">&lt;N&gt; Services of type Task scheduler</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">1 Service of type Service controller</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">1 Service of type Report builder</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Small site</h3>
+        <p>We can assume that in small sites, most services are concentrated on a single server, and that we wish to execute the report building work on a single separate <span class="ui_element">Print</span> <span class="ui_element">server</span>, where all printer queues have been configured. Under these circumstances we could:</p>
+        <ol>
+            <li value="1">Install the client application on the <span class="ui_element">Print server</span>.</li>
+            <li value="2">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on this <span class="ui_element">Print server</span>.</li>
+            <li value="3">Assign this service as the default Report builder service via menu <span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; MATE</span>.</li>
+        </ol>
+        <table style="mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">MAIN SERVER</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">PRINT SERVER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Progress or Oracle database	</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">1 Service of type Report builder</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Application server</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">&lt;N&gt; Services of type Translator server and associated Translators</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">&lt;N&gt; Services of type Task scheduler</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">1 Service of type Service controller</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Medium site</h3>
+        <p>We can assume that in medium sites, most services are concentrated on a single server, and that we wish to execute the report printing work on a single separate <span class="ui_element">Print server</span>, where all printer queues are configured, but distribute the workload by managing a separate default Service that handles report preview and file generation work on the <span class="ui_element">Main server</span>. Under these circumstances we could:</p>
+        <ol>
+            <li value="1">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on the <span class="ui_element">Main server</span>,</li>
+            <li value="2">Assign this service as the default Report builder service via menu <span class="ui_element">Start -&gt; System management -&gt; Customize- &gt; MATE</span>.</li>
+            <li value="3">Install the client application on the <span class="ui_element">Print server</span>.</li>
+            <li value="4">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on this <span class="ui_element">Print server</span>.</li>
+            <li value="5">Assign this service as the <span class="ui_element">Report builder service</span> on all <span class="ui_element">Printer</span> records in the application.</li>
+        </ol>
+        <table style="mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">MAIN SERVER</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">PRINT SERVER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Progress or Oracle database	</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Application server</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1 Service of type Service controller</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">1 Service of type Service controller</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p>1 Service of type Report Builder</p>
+                        <p>(used for preview and file generation)
+</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">
+                        <p>1 Service of type Report builder</p>
+                        <p>(used for all printing tasks)
+</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">&lt;N&gt; Services of type Translator server and associated Translators</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">&lt;N&gt; Services of type Task scheduler</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Large site</h3>
+        <p>We can assume that in large sites, most services are concentrated on a single server, and that we wish to execute the report printing work on a number of separate <span class="ui_element">Print servers</span>, where sets of printer queues are configured, while managing a number of separate default services that handle report preview and file generation work on the <span class="ui_element">Main server</span>. Under these circumstances we could:</p>
+        <ol>
+            <li value="1">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on the <span class="ui_element">Main server</span>.</li>
+            <li value="2">Assign this service as the default Report builder service via menu <span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; MATE</span>.</li>
+            <li value="3">Create and register a number of <span class="ui_element">Services</span> of type <span class="ui_element">Report builder</span> on the <span class="ui_element">Main server</span>.</li>
+            <li value="4">Assign these services as the default Report builder service for specific <span class="ui_element">Departments</span>.</li>
+            <li value="5">Install the client application on the <span class="ui_element">Print server</span>.</li>
+            <li value="6">Create and register a single <span class="ui_element">Service</span> of type <span class="ui_element">Report builder</span> on this <span class="ui_element">Print server</span>.</li>
+            <li value="7">Assign this service as the Report builder service on all <span class="ui_element">Printer</span> records in the application.</li>
+        </ol>
+        <table style="mc-table-style: url('../../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">MAIN SERVER</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">PRINT SERVER 1 .. N</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">Progress or Oracle database	</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">Application server</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">1 Service of type Service controller</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">1 Service of type Service controller</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">
+                        <p>&lt;N&gt; Services of type Report Builder
+</p>
+                        <p>(used for preview and file generation)
+</p>
+                    </td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">
+                        <p>1 Service of type Report builder</p>
+                        <p>(used for all printing tasks on a set of printers)</p>
+                    </td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">&lt;N&gt; Services of type Task scheduler</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">&#160;</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2">&lt;N&gt; Services of type Translator server and associated Translators</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

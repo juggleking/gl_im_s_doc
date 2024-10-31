@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Routine" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\qc_new\internal\routine\evaluation_period.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Routine: Working with an evaluation period</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor894"></a>
+            <MadCap:concept term="Quality control" />Working with an evaluation period</h1>
+        <h2>Introduction</h2>
+        <p>An evaluation QC population is used when a new lot is going to be used.&#160;In 
+ many countries, the lab has to use this lot for at least 20 days next to 
+ the current lot.&#160;After 20 days, the calculated <span class="ui_element">Mean</span> and <span class="ui_element">Standard 
+ deviation</span> obtained during the evaluation period are stored in a new 'control 
+ period' QC population, the old evaluation QC population is closed, and 
+ the new lot is now used instead of the old lot.&#160;So, during 
+ this period, at least 2 active lots exist for the same QC material. The evaluation status helps to distinguish between them, as well as offering 
+ a way to check if certain new lots have completed their evaluation period.</p>
+        <h2>Using an evaluation period</h2>
+        <h3>Setting the evaluation status and evaluation period of a QC population</h3>
+        <p>The <span class="ui_element">Evaluation status</span> and <span class="ui_element">Evaluation period</span> can be specified in the <span class="ui_element">QC population</span>:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="qcp_evaluationperiod.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="920" data-mc-height="812" src="qcp_evaluationperiod_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>During the evaluation period, the QC results 
+ can be used to calculate the target mean for the actual control QC population 
+ (which will follow after having closed the evaluation period).</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>GLIMS will verify the <span class="ui_element">Evaluation status</span> of a QC population when a QC result would set the assessment method's <span class="ui_element">Quality</span> to <span class="ui_element">Unreliable</span>. If this <span class="ui_element">Evaluation status</span> differs from <span class="ui_element">None</span> (i.e. <span class="ui_element">Evaluation</span> or <span class="ui_element">Closed</span>), GLIMS will not set the assessment method's <span class="ui_element">Quality</span> to <span class="ui_element">Unreliable</span>.</p>
+            <p>For more information, see <a href="../management/qc_deviation_actions.htm#Reliabil2">Deviation actions</a>.</p>
+        </div>
+        <h3>When is an evaluation period  complete</h3>
+        <p style="text-align: left;">If you have specified an <span class="ui_element">Evaluation period</span> 
+ (in days) for the QC population, a message will be displayed when you 
+ manually enter a QC result for a completed evaluation period (i.e. there 
+ are valid results from at least QCPopulation.EvaluationPeriod different 
+ shifts).&#160;Additionally, a mail message will be sent to the user 
+ optionally specified in the <span class="ui_element">QC manager</span> field on <span class="ui_element">Station</span>, stating the fact 
+ that the evaluation period for this lot on this channel is full.&#160;Note 
+ that the option <span class="ui_element">Mail method</span> in the <span class="ui_element">User</span> configuration screen can specify whether he prefers to have internal 
+ mail or external mail (to be read via his normal mail program).&#160;The 
+ latter of course requires a valid <span class="ui_element">E-mail address</span> in the <span class="ui_element">User</span> configuration screen.</p>
+        <h2>Closing an evaluation period</h2>
+        <h3>Querying QC populations which can be closed</h3>
+        <p style="text-align: left;">You can query the QC populations which 
+ could be closed (i.e. there are sufficient QC results to close the evaluation 
+ period) by setting the <a href="qc_populations_query_browser.htm">query 
+ option</a> <span class="ui_element">Evaluation status</span> to <span class="ui_element">Complete</span>.</p>
+        <h3>Contextual function "Close evaluation period" on QC population</h3>
+        <p style="text-align: left;">To actually close an evaluation population, 
+ you can use the contextual function <span class="ui_element">Close evaluation period</span> on 
+ the evaluation <span class="ui_element">QC population</span>. When closing the evaluation period, you have 
+ the following options:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="close_evaluation.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="386" data-mc-height="244" src="close_evaluation_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Create control period</p>
+        <div class="indented">
+            <p>If set, an actual control population 
+		 will be created (i.e. a population with <span class="ui_element">Evaluation status</span> set to <span class="ui_element">None</span>).&#160;The 
+		 results of the evaluation population will be used to calculate 
+		 the <span class="ui_element">Target mean</span> and <span class="ui_element">Target deviation</span> of the actual control population.</p>
+        </div>
+        <p class="fieldlabel">Create QC audit</p>
+        <div class="indented">
+            <p>Indicates that a <span class="ui_element">QC audit</span> record should 
+		 be created prior to the closing of the current period. The audit 
+		 record will contain the results used in the calculation of the 
+		 targets for the new period.		</p>
+            <p>2 rules are effective:</p>
+            <ul>
+                <li value="1">A QC audit can only be created for QC populations with 
+			 at least 15 valid results. </li>
+                <li value="2">A QC population in evaluation should have at least 20 results 
+			 in order to be closed.</li>
+            </ul>
+            <p>If these conditions are not met, the QC audit will not be created.</p>
+        </div>
+        <p class="fieldlabel">Recalculate mean / Recalculate SD</p>
+        <div class="indented">
+            <p>Indicates if the <span class="ui_element">Target Mean</span> and <span class="ui_element">Target 
+		 Deviation</span> of the control period should be replaced by the calculated 
+		 <span class="ui_element">Mean</span> and <span class="ui_element">Standard deviation</span> of the evaluation period.</p>
+        </div>
+        <p class="fieldlabel">One result per shift</p>
+        <div class="indented">
+            <p>Indicates that only one result per shift 
+		 (the first) should be used for the new <span class="ui_element">Mean</span>.</p>
+        </div>
+        <p class="fieldlabel">Shift count</p>
+        <div class="indented">
+            <p>Indicates how <a href="../configuration/qc_shifts.htm">many 
+		 results of different shifts</a> have to be taken into account 
+		 (when different from the default in QCPopulation.EvaluationPeriod). 
+		 It allows closing an evaluation period but taking more than QCPopulation.EvaluationPeriod 
+		 shifts into account.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">If you had already pre-configured a 
+	 control population (and <span class="ui_element">Create control period</span> is set when closing 
+	 the evaluation period), GLIMS will try and reuse this population.&#160;If 
+	 you had already assigned QC checks to the control population, these 
+	 will not be overwritten with the checks of the evaluation population.&#160;However, 
+	 the <span class="ui_element">Target mean</span> and <span class="ui_element">Target deviation</span> will be overwritten!</li>
+                <li value="2">The <span class="ui_element">Close evaluation period</span> 
+	 function also takes the <span class="ui_element">Ignored deviation count</span> of the QC population 
+	 into account.</li>
+            </ul>
+        </div>
+    </body>
+</html>

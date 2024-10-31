@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Station result synchronization</title>
+        <style>li.MsoNormal
+{
+	margin-bottom: .0001pt;
+	font-size: 10.0pt;
+	font-family: "Times New Roman";
+	margin-left: 0pt;
+	margin-right: 0pt;
+	margin-top: 0pt;
+}
+
+span.Heading3Char
+{
+	font-family: Arial;
+	font-weight: bold;
+}
+
+h5
+{
+	margin-top: 12.0pt;
+	margin-right: 0pt;
+	margin-bottom: 3.0pt;
+	margin-left: 0pt;
+	font-size: 13.0pt;
+	font-family: "Times New Roman";
+	font-style: italic;
+}
+
+li.mc-h5
+{
+	font-size: 13.0pt;
+	font-family: "Times New Roman";
+	font-style: italic;
+}
+
+</style>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Station result synchronization</h1>
+        <p style="text-align: left;" align="left">Content: <a href="#Introduction">Introduction</a> - <span lang="EN-AU"><a href="#Categories">Categories</a> - <a href="#Station_Event_Handlers">Station 
+ Event Handlers</a> - <a href="#Database_cleanup">Database cleanup</a> 
+ - <a href="#MIPS_internal_ASTM_protocol">MIPS internal ASTM protocol</a></span></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>Glims is able to synchronize results to a station. The goal is to update 
+ the remote system with results that were changed in Glims. Typically the 
+ remote system is a concentrator. The following conditions are to be met 
+ in order to make this work:</p>
+        <ol>
+            <li class="kadov-p" value="1">The translator's device (instrument) should be able 
+ to receive synchronized result tests or values</li>
+            <li class="kadov-p" value="2">The translator should request for synchronized results.</li>
+            <li class="kadov-p" value="3">The Glims station should be configured (See below)</li>
+        </ol>
+        <p>The synchronization only considers result manipulations in Glims not 
+ issued by an instrument. The synchronization only considers changes of 
+ result values, discontinuation of results and confirmation of procedure 
+ data results.</p>
+        <p>The synchronization of the instrument is not done in spontaneously.&#160; 
+ First, Glims will create event records whenever required and at the moment 
+ the result was manipulated. Secondly, the translator queries Glims for 
+ all unprocessed event records. The moment of the query depends on how 
+ the translator is implemented and the fact if the translator is free to 
+ download updates at that moment. Glims will never process events when 
+ the translator is querying for work orders or sending results.</p>
+        <h2><span lang="EN-AU"><a name="Categories"></a>Categories</span>
+        </h2>
+        <p class="MsoNormal"><span lang="EN-AU">&#160;Glims can synchronize two categories 
+ of results: property output results and procedure data results. </span>
+        </p>
+        <ol>
+            <li class="MsoNormal" value="1"><span lang="EN-AU">With 
+ property output results is meant: results being output of a procedure.</span>
+            </li>
+            <li class="MsoNormal" value="2"><span lang="en-au">W</span><span lang="EN-AU">ith procedure data results is meant: results of properties 
+ being configured as procedure data.</span>
+            </li>
+        </ol>
+        <p class="MsoNormal"><span lang="EN-AU">On the station that requires synchronization, 
+ one can select the events (e.g. result discontinuation) that should trigger the 
+creation of event records which will eventually ensure result synchronization.</span>
+        </p>
+        <p class="MsoNormal" style="text-align: center;" align="center"><span lang="EN-AU"><img src="station_resultsync.gif" style="border: none;width: 553px;height: 526px;float: none;" width="553" height="526" border="0" /></span>
+        </p>
+        <p class="MsoNormal"><span lang="EN-AU"><b style="font-weight: bold;">Important:&#160; 
+ in order to activate the station event settings, the Glims client sessions 
+ should be closed and reopened. Translator services that have the station's 
+ translator configured should also be restarted.</b>&#160;</span>
+        </p>
+        <h3><span lang="EN-AU">Property output result events</span>
+        </h3>
+        <p class="MsoNormal"><span lang="EN-AU">Station property output result events 
+ can be enabled for modified or discontinued results. Note that Glims will 
+ only download the result for these events if the action delivering that 
+ event was marked as being downloaded to the station (<a href="analyzers_download_status.htm">see 
+ Action.StationDownloadStatus</a>).</span>
+        </p>
+        <p class="MsoNormal"><span lang="EN-AU">When a previously downloaded result 
+ is repeated and the repeated result gets manually a result (before it 
+ has been downloaded), the latter is not synchronized.</span>
+        </p>
+        <h3><span lang="EN-AU">Concentrators / distributors</span>
+        </h3>
+        <p class="MsoNormal"><span lang="EN-AU">When result synchronization events 
+ are set for a station of type concentrator or distributor, Glims will 
+ take into account the property outputs and procedure data's of the client 
+ stations as well. Please do not enable the event types on the client stations 
+ since it will also create event records that were meant to be processed 
+ for synchronization by the client station, not by the concentrator/distributor 
+ station.</span>
+        </p>
+        <h2><span lang="EN-AU"><a name="Station_Event_Handlers"></a>Station Event Handlers</span>
+        </h2>
+        <p class="MsoNormal"><span lang="EN-AU">Glims will automatically create the 
+ event handlers for a station whenever required. The event handlers have 
+ a dedicated name based on the id of the station and the event category:</span>
+        </p>
+        <blockquote>
+            <p class="MsoNormal"><span lang="EN-AU">'Stn' + category code + '-' + station.id</span>
+            </p>
+        </blockquote>
+        <p class="MsoNormal"><span lang="EN-AU">&#160;Examples are: StnPrcdRslt-67581, 
+ StnPrpoRslt-67581</span>
+        </p>
+        <h2><span lang="EN-AU"><a name="Database_cleanup"></a>Database cleanup</span>
+        </h2>
+        <p class="MsoNormal"><span lang="EN-AU">Station result events are not cleaned 
+ up automatically after they have been processed. Therefore a task should 
+ run that uses the gp_Eventhandler.Purge() method set in a command:</span>
+        </p>
+        <ul>
+            <li class="MsoNormal" value="1"><span lang="EN-AU">Table: 
+ gp_EventHandler</span>
+            </li>
+            <li class="MsoNormal" value="2"><span lang="EN-AU">Query: 
+ Standard</span>
+            </li>
+            <li class="MsoNormal" value="3"><span lang="EN-AU">Function: 
+ Purge</span>
+            </li>
+        </ul>
+        <h2><span lang="EN-AU"><a name="MIPS_internal_ASTM_protocol"></a>MIPS internal 
+ ASTM protocol</span>
+        </h2>
+        <h3><span lang="EN-AU">Result synchronize request</span>
+        </h3>
+        <p class="MsoNormal"><span lang="EN-AU">&#160;The result synchronize request 
+ is an ALL-query message (Q.3.1.2 = 'ALL') with query specific tag named 
+ 'synchronizeResults' (Q.15.n.1)</span>
+        </p>
+        <h3><span lang="EN-AU">Result synchronize request reply</span>
+        </h3>
+        <h4><span lang="EN-AU">Message format</span>
+        </h4>
+        <blockquote>
+            <p class="MsoNormal"><span lang="EN-AU">H<br />
+P | patient info<br />
+O || sample id || ^^^ test id 1 ^^^^^^^ test status ^ informational<br />
+R| result info<br />
+O || sample id || ^^^ test id 2 ^^^^^^^ test status ^ informational<br />
+R| result info<br />
+...<br />
+L</span>
+            </p>
+        </blockquote>
+        <h4><span lang="EN-AU">Test order record</span>
+        </h4>
+        <blockquote>
+            <p><u style="text-decoration: underline;"><span lang="EN-AU">Procedure data results</span></u>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">The O-record has a new field 
+ indicating if it concerns an informational test (procedure data result) 
+ or not: O.5.1.12</span>
+            </p>
+            <p><u style="text-decoration: underline;"><span lang="EN-AU">Test status</span></u>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">The field 'test status' (O.5.1.12) 
+ was already defined in the MIPS ASTM protocol:</span>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1"><span lang="EN-AU">When the specified result is confirmed, 
+ the downloaded field value will be 'T'. </span>
+                </li>
+                <li class="kadov-p" value="2"><span lang="EN-AU">When the result is validated, the 
+ value will be 'V'. </span>
+                </li>
+                <li class="kadov-p" value="3"><span lang="EN-AU">When a test has not been sent to 
+ the station yet (cfr. Action.DownloadStatus), the value will be 'N' </span>
+                </li>
+                <li class="kadov-p" value="4"><span lang="EN-AU">In all other cases, the field is 
+ left empty (or: test was already sent before) </span>
+                </li>
+            </ul>
+            <p class="MsoNormal"><span lang="EN-AU">It will be extended with 2 new values:</span>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1"><span lang="EN-AU">'C':&#160; the result value has 
+ been modified </span>
+                </li>
+                <li class="kadov-p" value="2"><span lang="EN-AU">'X': the result has been cancelled 
+ (= discontinue with no repeat)</span>
+                </li>
+            </ul>
+            <p class="MsoNormal"><span lang="EN-AU">The status code 'C' can be combined 
+ with 'T' or 'V' as follows:</span>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1"><span lang="EN-AU">'CT': modified and confirmed result</span>
+                </li>
+                <li class="kadov-p" value="2"><span lang="EN-AU">'CV': modified and validated result</span>
+                </li>
+            </ul>
+        </blockquote>
+        <h4><span lang="EN-AU">Result record</span>
+        </h4>
+        <blockquote>
+            <p><u style="text-decoration: underline;"><span lang="EN-AU">Procedure data results</span></u>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">The existing record layout remains:</span>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">&#160;R |&#160;| ^^^ PRCD ^ prcd_HistoryIndex 
+ ^ prcd_SeqNo ^ prcd_OutboundId&#160;|&#160;result value | unit |&#160;|&#160;|&#160;|&#160;|&#160;|&#160;| 
+ start time | end time</span>
+            </p>
+            <p><u style="text-decoration: underline;"><span lang="EN-AU">Procedure output results being modified or canceled</span></u>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">R |&#160;| ^^^ amtd_OutboundId |&#160;result 
+ value | unit name |&#160;|&#160;|&#160;|&#160;result status |&#160;|&#160;| 
+ start time | end time</span>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">The existing record layout remains, 
+ except that result status will be added (R.9).</span>
+            </p>
+            <p class="MsoNormal"><span lang="EN-AU">Result status will have the following 
+ values (some are based on ASTM standard):</span>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1"><span lang="EN-AU">'X': cancelled&#160; (= discontinue 
+ with no repeat) &lt;= NEW </span>
+                </li>
+                <li class="kadov-p" value="2"><span lang="EN-AU">'C': modified (ASTM standard: correction) 
+ &lt;= NEW </span>
+                </li>
+                <li class="kadov-p" value="3"><span lang="EN-AU">'T': confirmed </span>
+                </li>
+                <li class="kadov-p" value="4"><span lang="EN-AU">'V': validated (ASTM standard: verified 
+ / approved ) </span>
+                </li>
+            </ul>
+            <p class="MsoNormal"><span lang="EN-AU">The status code 'C' can be combined 
+ with 'T' or 'V' as follows:</span>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1"><span lang="EN-AU">'CT': modified and confirmed result</span>
+                </li>
+                <li class="kadov-p" value="2"><span lang="EN-AU">'CV': modified and validated result</span>
+                </li>
+            </ul>
+        </blockquote>
+    </body>
+</html>

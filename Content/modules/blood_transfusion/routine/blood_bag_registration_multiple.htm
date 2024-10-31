@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Tools &amp; Case studies">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Multiple blood bag registration</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1297"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Multiple blood bag registration</h1>
+        <h2>Introduction</h2>
+        <p>The multiple blood bag registration screen is available from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Transfusion management</span> -&gt; <span class="ui_element">Process multiple bags</span>.</p>
+        <p>This screen allow you to scan multiple bags and to then perform several actions on them. They can be moved from one depot to another, checked out, administered or returned.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="multiple_registration.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="756" data-mc-height="413" src="multiple_registration_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>General browser functionality</h2>
+        <p>Blood bags can be scanned or manually entered. Please also check the chapter <a href="../configuration/blood_bag_isbt.htm">Unique identification of an ISBT blood bag</a>.</p>
+        <p>The entered blood bags will automatically be pre-selected. The <span class="ui_element">Clear screen</span> button allows to remove all bags from the browser. It is also possible to use the DELETE key to remove the currently selected (and not the highlighted!) bags from the browser.</p>
+        <p>If none of the bags are selected, the highlighted record will be processed when hitting one of the available buttons. Bags that were successfully processed are automatically deselected and the bags which could not be processed remain selected (if there was a selection).</p>
+        <h2>Specific functions</h2>
+        <p>
+The buttons at the bottom will be hidden for users that do not have the privilege for the function associated with the button. The privileges that apply to each button are:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Move depot</span>: BloodBag.ChangeDepartment</li>
+            <li value="2"><span class="ui_element">Check out</span>: BloodBag.Checkout</li>
+            <li value="3"><span class="ui_element">Stop reservation</span>: BloodBag.StopSelections</li>
+            <li value="4"><span class="ui_element">Return</span>: BloodBag.BloodBagReturned</li>
+            <li value="5"><span class="ui_element">Administer</span>: BloodBag.Administer</li>
+        </ul>
+        <h3>Move depot</h3>
+        <p>The <span class="ui_element">Move depot</span> button will only be available if at least one of the blood bags in the browser has a status lower than <span class="ui_element">Checked out</span>. The screen allows selecting a new department to which the bag should be moved. Note that you can only select departments of which the option <span class="ui_element">Specialty</span> is set to <span class="ui_element">Blood depot</span>.</p>
+        <p>
+            <img src="registration_movedepot.png" />
+        </p>
+        <h3>Check out</h3>
+        <p>The <span class="ui_element">Check out</span> button will only be available if at least one of the blood bags in the browser has status <span class="ui_element">Checked</span>. Moreover, these blood bags must have exactly 1 blood selection with status lower than <span class="ui_element">Discontinued</span>. For information on the check-out options (<span class="ui_element">Check out comment</span> / <span class="ui_element">Ward</span> / <span class="ui_element">In the past</span> / <span class="ui_element">To person</span>), see <a href="blood_bag_check-out.htm#Check_out_options">Check-out options</a>.</p>
+        <p>
+            <img src="registration_checkout.png" />
+        </p>
+        <h3>Stop reservation</h3>
+        <p>It is possible that a blood bag has been reserved for a patient but -before it is checked out- it is decided that the blood bag is no longer needed by the patient. In that situation you can use this function to cancel the reservation of one or more blood bags (having status <span class="ui_element">Reserved</span> or <span class="ui_element">Checked</span>). If you select this function, a reason will have to be specified. The blood bag status will be reset to <span class="ui_element">Initial</span>. At the same time, each <span class="ui_element">reservation</span> (blood selection) for the blood bag will be discontinued and the blood bag will be available again for another patient.</p>
+        <h3>Return</h3>
+        <p>The <span class="ui_element">Return</span> button will only be available if at least one of the blood bags in the browser has status <span class="ui_element">Checked out</span>. The status of a processed blood bag will be reset to <span class="ui_element">Initial</span> and the blood selection will be discontinued.</p>
+        <p>
+            <img src="registration_return.png" />
+        </p>
+        <h3>Administer</h3>
+        <p>The <span class="ui_element">Administer</span> button will only be available if at least one of the blood bags in the browser has status <span class="ui_element">Checked out</span>. As this blood bag registration screen allows the processing of multiple blood bags simultaneously, some options that are available in the <a href="blood_bag_administration.htm">general administration functions</a> cannot be specified here (the responsible health care provider, transfusion reaction, advice and comment).</p>
+        <p>
+            <img src="registration_administer.png" />
+        </p>
+    </body>
+</html>

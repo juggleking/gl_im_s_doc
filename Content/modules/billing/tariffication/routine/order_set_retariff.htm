@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Tariffication|Tariffing" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\billing_module\tariffication\billing_retariff.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>How to re-tariff an order set</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2629"></a>
+            <MadCap:concept term="Billing" /><a name="kanchor243"></a>How to re-tariff an order set</h1>
+        <p><a name="kanchor244"></a>The way to re-tariff an order set depends on the current tariffication status of the order set, invoice, invoice summary and financial shipment.&#160;&#160;An order set can only be re-tariffed if it has not yet reached the status 'Complete'. Several situations can occur:</p>
+        <h3>1. Order set status = complete AND invoice, invoice summary or financial shipment is not yet fixed (i.e. not yet printed or sent)</h3>
+        <ul>
+            <li class="kadov-p" value="1">Lower the order set status, using the contextual menu function '<b>Change tariffing status</b>' and enabling the '<b>Downgrade option</b>'</li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="../../invoicing/routine/changetariffstatus.gif" alt="" width="296" height="126" border="0" />
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">Re-tariff the order set, using the Order set contextual menu function '<b>Tariffication</b>'</li>
+        </ul>
+        <h3>2. Order set status = complete AND invoice, invoice summary or financial shipment are fixed</h3>
+        <h4>a. The invoice summary or financial shipment has not yet been sent.</h4>
+        <p><a name="kanchor245"></a>The status of an invoice, invoice summary or financial shipment is a protection mechanism which prohibits changing or deleting billing data that has already been charged to a patient or other party.&#160;&#160;However, GLIMS still allows to undo this mechanism by lowering these states.&#160;&#160;In order to do so, take the following steps in chronological order.</p>
+        <ul>
+            <li class="kadov-p" value="1">Lower the order set status, using the contextual menu function '<b>Change tariffing status</b>' and enabling the '<b>Downgrade option</b>'</li>
+            <li class="kadov-p" value="2">If available, first lower the tariffing status of the financial shipment.&#160;&#160;The financial shipment can be reached via:
+<ul><li class="kadov-p" value="1">Invoice (contextual menu of Order set)</li><li class="kadov-p" value="2">Shipment entry (contextual menu of Invoice: Invoice summary -&gt; Transaction -&gt; Shipment entry)</li><li class="kadov-p" value="3">Financial shipment (contextual menu on Shipment entry)</li></ul><p>Now use the contextual menu '<b>Change status</b>' on Financial shipment and <b>downgrade</b> the status.</p></li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="../../invoicing/routine/changefshpstatus.gif" alt="" width="381" height="117" border="0" />
+        </p>
+        <ul>
+            <li class="kadov-p" value="1">If available, now lower the tariffing status of the Invoice summary.&#160;&#160;From the invoice record, select the contextual menu function <b>Invoice summary -&gt; Change status</b> and select the option <b>Downgrade</b>.</li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="../../invoicing/routine/changeinvsstatus.gif" alt="" width="381" height="117" border="0" />
+        </p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;">And finally, lower the status of the Invoice, using the contextual menu function on Invoice '<b>Change status</b>' and selecting the option <b>Downgrade</b>.</p>
+            </li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="../../invoicing/routine/changeinvstatus.gif" alt="" width="381" height="117" border="0" />
+        </p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;">Now that all the necessary states have been lowered, you can delete the tariffication.&#160;&#160;You should only do this if the invoice summary or financial shipment has not yet been sent.&#160;&#160;Deleting the tariffication can be done by the contextual menu function on Order set '<b>Clear tariffication</b>'.</p>
+            </li>
+        </ul>
+        <p style="text-align: center;">
+            <img src="cleartariff.gif" alt="" width="247" height="100" border="0" />
+        </p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;">Now re-tariff the order set, using the Order set contextual menu function '<b>Tariffication</b>'</p>
+            </li>
+        </ul>
+        <h4>b. The invoice summary or financial shipment has already been sent.</h4>
+        <p>If the invoice summary or financial shipment has already been sent, you must not delete nor lower the status of the invoices, invoice summaries or financial shipment.&#160;&#160;Instead, credit notes and new invoices should be created:</p>
+        <ul>
+            <li class="kadov-p" value="1">First lower the order set status, using the contextual menu function '<b>Change tariffing status</b>' and enabling the '<b>Downgrade option</b>'</li>
+            <li class="kadov-p" value="2">Now immediately re-tariff the order set , using the Order set contextual menu function '<b>Tariffication</b>'.&#160;&#160;GLIMS will automatically create credit notes for the previous, fixed invoices and create the necessary new invoices.</li>
+        </ul>
+    </body>
+</html>

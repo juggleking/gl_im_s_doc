@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Reports - Introduction">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Reports - Introduction</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_reports.htm" name="kanchor78">Reports</a> 
+ -&gt; Introduction</h1>
+        <p>The report model has different tables for Report, Report Page, Report 
+ Group, Report Column, Report Template, and Default Report.&#160;&#160;Check 
+ the report ERD model for an overview of all report-related table relations.</p>
+        <p>In essence, a Report Group gathers all reports having the same scope, 
+ Property Classification, column grouping, and columns per page.</p>
+        <p>'Same scope' in this context is interpreted as follows:</p>
+        <ul>
+            <li class="kadov-p" value="1">All Object reports for the same object.</li>
+            <li class="kadov-p" value="2">All Year reports for the same object and the same 
+	 year.</li>
+            <li class="kadov-p" value="3">All Encounter reports for the same encounter.</li>
+            <li class="kadov-p" value="4">All Order reports for the same object.</li>
+            <li class="kadov-p" value="5">All specimen reports for the same object.</li>
+            <li class="kadov-p" value="6">All day reports for the same object.</li>
+        </ul>
+        <p>This way, a Report Group can more or less be interpreted as a 'patient 
+ file' for a given subset of a patient's results (the Property Classification), 
+ organized in a certain way (the column grouping), and with a certain number 
+ of columns per page.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">For order, Specimen and Day reports, the Report Group's 'Columns 
+ per Page' is not filled in, since for these reports, all results of the 
+ same order, specimen or day will be forced on the same page.</p>
+        </div>
+        <p>When an order is created, its results are assigned to Report Columns 
+ of Report Groups, according to the <a href="../../configuration/default_reports/default_reports.htm">DefaultReport</a> 
+ configuration. Following the DefaultReport's and its <a href="../../configuration/report_templates/report_templates.htm">ReportTemplate's 
+ settings</a>, one ore more columns are created (e.g. one per object time, 
+ one per specimen...).</p>
+        <p>Each Report Column refers to its Report Group. According to the Report 
+ Group's Columns per Page setting, these Report Columns are also assigned 
+ to Report Pages, which are simply a way of storing which report columns 
+ should be printed on the same page. A report group has a Scope, refers 
+ to an Object and a <a href="../../configuration/property_classifications/property_classifications.htm">Property 
+ Classification</a>, and has a Grouping and Columns per Page field, both 
+ taken from the Report Template. An encounter reference is filled in for 
+ encounter report groups, while for year reports, the year number is stored.</p>
+        <p>A Report Page refers to a Report Group and has a sequence number, and 
+ optionally refers to an order (for Order and Specimen reports), a specimen 
+ (for Specimen reports), or a date (for Day reports).</p>
+        <p>For Order, Specimen and Day reports, a separate Report Page is created 
+ per order, specimen or day. For all other types of reports, the report 
+ pages are created according to the Report Group's Columns per Page settings.</p>
+        <p>A Report Column refers to its Report Page, its Report Group, has a sequence 
+ number within the Report Page, and an optional reference to an Order (for 
+ column grouping by Order, by Order and Date, and by Specimen), a Specimen 
+ (for column grouping by specimen), or an Object and a Time (for column 
+ grouping by Object Time).</p>
+        <p>For each report copy (including the original!) that actually has to 
+ be sent, a Report record is created to indicate that a certain report 
+ page has to be sent to a specific target, using a specific Report Template 
+ (i.e. the layout), via a specific medium (mail, e-mail...).</p>
+        <p>The Report table itself has a reference to a report page, combining 
+ all reports that are actually different copies of the same information. 
+ This implies that a HL-7 or a normal paper report concerning the same 
+ order, using the same property classification and using the same column 
+ grouping can refer to the same report page.</p>
+        <p>Each physical report page has its own Report Page and related Report 
+ records.&#160;&#160;This allows for an efficient marking and generation 
+ of reports which have new results, and allows for the possibility to reprint 
+ a single page of an existing encounter report. Additionally, the page's 
+ content is determined via the Report Column records. This implies that 
+ the same columns are always printed on the same page, even when an additional 
+ order, which has to be printed on a previous page, is later being inserted. 
+ When this occurs, the correct new column position for the new order is 
+ determined, and the existing columns of the corresponding page are shifted 
+ to the right. When this leads to a report page having more report columns 
+ that allowed by the template's column count setting, an overflow page 
+ will be printed during report printing, to accommodate for those columns 
+ which do not fit on the first page, rather than affecting the following 
+ existing Report Page.</p>
+    </body>
+</html>

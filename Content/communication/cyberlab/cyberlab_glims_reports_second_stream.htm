@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|CyberLab communication|GLIMS -&gt; CyberLab" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="CyberLab_communication:_second,_simultaneous_report_stream">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>CyberLab - Setup a second, simultaneous report stream</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="index_cyberlab_communication.htm" name="kanchor37">CyberLab communication</a><a name="kanchor38"></a> 
+ -&gt;&#160;&#160;Setting up a second, simultaneous reporting mechanism</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> -&#160;&#160;<a href="#Configuration">Configuration</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>When upgrading CyberLab to a newer version, this new version may not 
+ be taken into routine immediately (e.g. for validation purposes).&#160;&#160;So 
+ for a given period the two CyberLab versions will be running side by side.&#160;&#160;In 
+ order to avoid that all orders from within that period have to be sent 
+ to the new CyberLab version in one reporting action, you can setup a second 
+ reporting mechanism in GLIMS to keep the database of the new CyberLab 
+ version up-to-date.</p>
+        <p>This document merely gives a brief description of the necessary configuration 
+ steps.&#160;&#160;&#160;For more details about each configuration editor, 
+ check the chapter '<a href="cyberlab_glims_reports.htm">Result reporting 
+ from GLIMS to CyberLab</a>'</p>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <h4>Report template</h4>
+        <ul>
+            <li value="1">A new report template must be created.&#160;&#160;From the report 
+	 template browser, you can copy the existing CyberLab report template 
+	 with the "Copy" function in the contextual "Tools" 
+	 ribbon tab.&#160;&#160;Give it an appropriate mnemonic (e.g. containing 
+	 the CyberLab version).</li>
+        </ul>
+        <h4>Default report</h4>
+        <ul>
+            <li class="kadov-p" value="1">A new default report must be created.&#160;&#160;From 
+	 the default report browser, you can copy the existing CyberLab default 
+	 report with the "Copy" function in the contextual "Tools" 
+	 ribbon tab..&#160;&#160;</li>
+            <li class="kadov-p" value="2">Enter an appropriate code for this new default 
+	 report (e.g. containing the CyberLab version).</li>
+            <li class="kadov-p" value="3">In the new default report, specify the new report 
+	 template you just created.</li>
+        </ul>
+        <h4>Communication setup</h4>
+        <ul>
+            <li class="kadov-p" value="1">The existing translator server can be reused</li>
+            <li class="kadov-p" value="2">Create a new interface.&#160;&#160;Specify the 
+	 port at which the new CyberLab version listens (as defined in CyberLab 
+	 in ResultDaemon.properties located in %CYBERLABVXX_HOME%\conf).</li>
+            <li class="kadov-p" value="3">Create a new translator referring to the new interface</li>
+        </ul>
+        <h4>Command and task</h4>
+        <ul>
+            <li class="kadov-p" value="1">Report query:&#160; 
+	<ul><li value="1">Make sure that the 'Generator' field is set to 'Online'</li><li value="2">In the 'Report template' field, specify the new report template 
+		 that you created.</li></ul></li>
+        </ul>
+        <h4>What about partial orders ?</h4>
+        <ul>
+            <li class="kadov-p" value="1">Orders for which reports have already been scheduled, 
+	 but which are not yet completed, have to be rescheduled for the new 
+	 CyberLab version.&#160;&#160;</li>
+        </ul>
+        <blockquote>
+            <p>Use the general order query (accessible via Start -&gt; Routine -&gt; 
+ Orders -&gt; Query) to obtain a list of all partial orders (Order status 
+ range should be set from 'Initial' to 'Partial') which are to be reported 
+ to CyberLab (you can use the default report's eligibility MISPL as filter 
+ MISPL if necessary).&#160;&#160;Make sure that the 'Result status range' 
+ is set from 'Initial' to 'Discontinued'.</p>
+            <p>In the order browser, select all record (CTRL-A) and choose the contextual menu function 'Add report'.&#160;&#160;Specify the 'Code' of the new default 
+ report.&#160;&#160;For more information on this functionality, see '<a href="../../routine/reports/reports_add.htm">Adding reports manually 
+ or via MISPL</a>'.</p>
+        </blockquote>
+    </body>
+</html>

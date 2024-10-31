@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry\orderentry02.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Requests</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order entry: Requests</h1>
+        <h2>Introduction</h2>
+        <p>This page contains an embedded browser of requests contained in the 
+ order. The browser has ten columns, showing for each request: the template 
+ type, template mnemonic, root request definition mnemonic, root specimen sequencer, 
+ template description, object date and time, urgency, chargeability and 
+ billing mark. On top of this browser are widgets used for the creation 
+ of new requests.</p>
+        <h2>Request selection</h2>
+        <p class="fieldlabel">Request</p>
+        <p>This field references the root request definition to 
+ be used for request creation. </p>
+        <p class="fieldlabel">Label</p>
+        <p>The <span class="ui_element">label</span> of the request field also 
+ shows how many requests or root requests (See Details option) are currently 
+ in present in the order.&#160;</p>
+        <p>Pressing Ctrl-F activates a browser 
+ where multiple request definition records can be selected. The same search mechanism 
+ can be obtained in the embedded browser of the requests page by hitting 
+ the Insert key.&#160;The request definition browser features an <span class="ui_element">Options</span> 
+ button to narrow down the number of request definitions in the browser.&#160;&#160;The 
+ 'type' settings are remembered per user.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../requestable_query_options.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="346" data-mc-height="291" src="../requestable_query_options_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>A root request definition is any request definition that is actually used for requesting. 
+ If this root request definition is a panel, it will be expanded to its contained 
+ panel members, and the browser will show a line for each panel member. 
+ Because every line shows the root request definition, you are able to see for 
+ each request whether or not it was requested through panel expansion. 
+ Each panel member has a sequence number which allows to specify in which 
+ order the panel should be requested. This can be important when the panel 
+ includes explicit material requests or when the order in the reports depends 
+ on the order in which the requests are entered.</p>
+        <p>The field next to the <span class="ui_element">Request list</span> field allows the user can enter 
+ a discriminator. Subsequently entered requests will inherit this discriminator 
+ and will receive a dynamic type corresponding with the discriminator format.&#160;&#160;&#160;This 
+ can be useful when several requests with the same dynamic discriminator 
+ have to be entered.&#160;For more information, see dynamic test 
+ requesting</p>
+        <h4>Request syntax</h4>
+        <div class="indented">
+            <p>The request syntax allows for instance to:</p>
+            <p>[-]&lt;rqbl&gt;[=&lt;value&gt;][,[-]&lt;rqbl&gt;[=&lt;value&gt;]]...</p>
+            <p>where:</p>
+            <ul>
+                <li value="1">entering a '-' (minus) in front of the request definition 
+	 mnemonic will cause removal of the request definition</li>
+                <li value="2">appending '=&lt;value&gt;' to the request definition mnemonic 
+	 will assign an initial result value to the request definition (e.g. patient 
+	 weight, urinary volume, ...). Note that this kind of result entry 
+	 has some drawbacks:</li>
+            </ul>
+            <div class="indented">
+                <ul>
+                    <li value="1">Although QC-checks are applied, resulting warnings 
+	 will be suppressed.</li>
+                    <li class="p" value="2">
+                        <p style="text-align: left;">The assessment method rejection 
+	 limit check can not always be applied since the result has not yet 
+	 been scheduled and the assessment method is not yet known.<br /><br />	To cope with this, the result is compared with the minimum and maximum 
+	 of the rejection limits of all the enabled assessment methods for 
+	 this property.&#160;&#160;When the result lies above or below all 
+	 these rejection limits, it is rejected.&#160;&#160;</p>
+                        <p style="text-align: left;">Note that no high rejection limit checking 
+	 takes place when one of the high rejection limits is unknown.</p>
+                    </li>
+                </ul>
+            </div>
+            <ul>
+                <li value="1">In case of panel request definitions:&#160;</li>
+            </ul>
+            <div class="indented">
+                <p>Typing Panel=Value results in assigning the value to all properties 
+ request definitions of that panel (e.g. Diff=Not enough sample). The entered 
+ value is not used for material request definitions within the same panel.</p>
+            </div>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Examples</span>
+                </p>
+                <table style="height: 124px;border-collapse: separate;border-collapse: separate;" cellspacing="0" width="524" border="1" xmlns="">
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="119">Na,K,Cl&#160;&#160;</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="387">add Na, 
+			 K and Cl</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="119">-Na&#160;&#160;</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="387">remove Na</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="119">WGHT=27&#160;&#160;</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="387">add WGHT 
+			 with initial value 27</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="119">WGHT=72&#160;&#160;</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="387">update WGHT 
+			 value to 72</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="119">Na,-K,Cl=102&#160;&#160;</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="13" width="387">add Na, 
+			 remove K, assign 102 to Cl</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="119">Serum=1232343</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="387">results 
+			 in Serum specimen with internal id = 1232343</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="119">Diff=NES</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="387">results 
+			 in Mono=NES,Neutro=NES,EOSINO=NES,...</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="119">SerumAnNaPanel=140</td>
+                        <td style="padding-left: 3px;padding-top: 3px;padding-right: 3px;padding-bottom: 3px;" height="11" width="387">results 
+			 in Serum with generated internal id and Na with value 140</td>
+                    </tr>
+                </table>
+            </div>
+            <p>Request are ordered as follows: existing requests are grouped per root 
+ specimen, headed by the root specimen itself; newly typed in requests 
+ are displayed on top.</p>
+            <p>To the right of the request definition spinner are the request <span class="ui_element">object date 
+ and time</span>, <span class="ui_element">urgency</span>, <span class="ui_element">chargeability</span> and <span class="ui_element">billing mark</span> 
+ fields.</p>
+            <p class="fieldlabel">Object date / time</p>
+            <div class="indented">
+                <p>You 
+ can specify a default object date in the <a href="options/order_entry_options_tab_main.htm">order 
+ entry options</a>.&#160;&#160;When no default object time is specified 
+ in the order entry options and when opening the order entry screen, none 
+ of the time and dates are filled in.&#160;GLIMS will then take the 
+ system time (as from the database) at the moment the first request is 
+ added (date or time not filled in by user).<br /><br />So, the object time taken (when none is specified), is the time the first 
+ request for the order is entered. When an order is saved and one enters 
+ the first request for the next new order, the object time is reset and 
+ the time the first request is entered will be used for the object time.&#160;&#160;&#160;The 
+ time displayed in the status bar shows the object time of the current 
+ order. When entering a new order, GLIMS displays the object time as soon 
+ as the first request is entered.</p>
+                <p>When GLIMS considers the <b>specified object time to be improbable</b>, 
+ a confirmation message is shown.&#160;&#160;The date range for an improbable 
+ object time (as compared to the reception time) can be configured in the 
+ <a href="options/order_entry_options_tab_main.htm">order entry options</a>.&#160;&#160;This 
+ confirmation message is displayed if:</p>
+                <ul>
+                    <li value="1">The environment variable "OrderEntryObjectTimeConfirmation" 
+	 is set to "Yes" or,</li>
+                    <li value="2">A HIS connection is detected (as sending an incorrect object time 
+	 from GLIMS to the HIS may result in incorrect admission data sent 
+	 back to GLIMS).</li>
+                </ul>
+                <p>By setting the environment variable "OrderEntryObjectTimeConfirmation" 
+ to "No", the object time confirmation message will be completely 
+ suppressed.</p>
+            </div>
+            <p class="fieldlabel">Detail</p>
+            <div class="indented">
+                <p>If the <span class="ui_element">Detail</span> option is not activated, only the 'root' request definitions are visible. 
+ These are the requests which are actually typed in by the user, without 
+ panel expansion. This may facilitate the process of checking whether everything 
+ on the request form was requested.&#160;&#160;Deleting a root request 
+ via the browser will also delete its dependent requests.</p>
+                <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="oe_requests_nodetail.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="670" data-mc-height="169" src="oe_requests_nodetail_thumb_0_120.png" tabindex="" /></a>
+                </p>
+                <p>If the <span class="ui_element">Detail</span> option is activated, the implicit requests (such as the members of the requested panels, and material requests added by the scheduler) as well as configured urgencies and discriminators are also displayed. Implicit requests (other than panel member requests) can easily be distinguished from other requests: their type is followed by an apostrophe.</p>
+                <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="oe_requests_detail.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="670" data-mc-height="169" src="oe_requests_detail_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+            <p class="fieldlabel">Specimen</p>
+            <div class="indented">
+                <p>The <span class="ui_element">Specimen</span> spinner can reference any specimen request 
+ in the order. The label 
+ of the <span class="ui_element">Specimen</span> field  shows the number of root specimens currently 
+ present in the order.&#160;A root specimen 
+ is a specimen which is not derived from another specimen (no centrifuged 
+ blood, for example).&#160;In practice, first enter a specimen request code 
+ (EDTA) in the 
+ <span class="ui_element">Request</span> field.&#160;From then onwards, all properties 
+ you request will reference the same root specimen.</p>
+            </div>
+        </div>
+        <h3>Dynamic test requesting</h3>
+        <p>GLIMS offers several ways to request dynamic test. Please see the chapter <a href="order_entry_discriminator.htm">Requesting tests 
+ with a discriminator</a>.</p>
+        <h3><a name="Dealing with overlapping panels"></a>Dealing with overlapping 
+ panels</h3>
+        <p>Sometimes, orders contain requests for panels that have common members.&#160;&#160;Requesting 
+ these panels is no problem: GLIMS automatically detects that a request 
+ is already present and will simply ignore the additional panel member 
+ request. However, GLIMS also has to avoid that when deleting 
+ a first panel, the members of this panel are not deleted from the order 
+ if they are also required for another panel.<br /></p>
+        <p>To deal with this situation, the following rules are followed:</p>
+        <ul>
+            <li value="1">During the requesting phase, the program keeps 
+	 track of the fact that a test was requested via different panels. 
+	 This is also visible by the fact that all requesting panel mnemonics 
+	 are shown in the request mnemonic column of the order entry request 
+	 browser. When saving the order, this information is saved in the Request.PanelList 
+	 field.<br /></li>
+            <li value="2">When entering "-X", the program first 
+	 checks if "X" was one of the original request definitions used 
+	 for this order. If so, then all the requests where the root request definition 
+	 mnemonic equals "X" or where "X" appears in the 
+	 panel list are treated.&#160;&#160;Deletion of such a request is done 
+	 by first removing the "X" from its panel list. The request 
+	 will only be removed when its panel list becomes empty.</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">"MONO" + "DIFF", followed by "-DIFF" 
+ will result in an order where MONO is still requested, since it was not 
+ requested via the DIFF mnemonic.&#160;&#160;If "X" was not one 
+ of the original request definitions, then all the requests of tests, specimens, 
+ microbiology action, ... within this panel are removed from the order, 
+ regardless of how they where requested and via how many panels they where 
+ requested.&#160;&#160;&#160;</p>
+            <p xmlns="">This will allow entering requests like "HEMA" + "-RBC", 
+ indicating that the HEMA panel should be requested, except for RBC, or 
+ "HEMA" + "-DIFF", indicating that we want the HEMA 
+ panel without the DIFF members (even though DIFF was not used in the positive 
+ requesting phase). This also implies that entering "-X" where 
+ X is not a panel request definition will always result in the removal of the 
+ requests where the actual property, material, microbiology procedure, 
+ ... corresponds with the one referred to by the "X" request definition.</p>
+        </div>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">Deleting a request by pointing to a request in the order 
+ entry screen's request browser and deleting it via the "&lt;Delete&gt;" 
+ key will result in the removal of the request, regardless of its panel 
+ list.</p>
+            <p xmlns="">In other words, when deleting via a mnemonic that was used in the requesting 
+ phase, only the requests actually requested via this mnemonic are deleted. 
+ When deleting via another mnemonic, all requests corresponding with tests 
+ represented by the mnemonic are removed, regardless of their original 
+ request mnemonic.</p>
+        </div>
+        <h3><a name="Paired"></a><a name="kanchor93"></a>Paired samples</h3>
+        <p>During order entry, you can hit the F9 function key when positioned 
+ in the Request field.&#160;&#160;&#160;</p>
+        <p>This option allows to add a request for a property which has to be assessed 
+ explicitly on an already existing specimen for the same patient (as is 
+ often desired in serology/toxicology labs).&#160;&#160;&#160;Although 
+ the request is added to the CURRENT order, it will refer to the existing 
+ old specimen (which was originally requested for another order).&#160;&#160;&#160;How 
+ this is reflected on paper reports mainly depends on the report parameter 
+ settings (cf. the ReportTemplate.Grouping field with as interesting values 
+ GroupByOrderByDate or GroupByObjectTime).</p>
+        <p>By pressing the F9 function key, a browser is displayed on screen showing 
+ a list of known results/specimens of the current object of the order.&#160;&#160;It 
+ is possible to select the specimen to be reused either from a specimen 
+ or result browser. &#160;Your preference can be set with the order entry 
+ option <a href="options/order_entry_options_tab_main.htm#Method">Method to select paired 
+ specimens</a>.</p>
+        <p>Upon selection of one of these specimens or results, the order entry 
+ program will automatically impose that all subsequent requests for this 
+ order use the selected specimen or the specimen of the selected result 
+ as root specimen, without disturbing the LowestObjectTime of the current 
+ order.</p>
+        <h2>Additional request fields and request browser</h2>
+        <h3>Date and time</h3>
+        <p>The <span class="ui_element">Object date</span> and <span class="ui_element">time</span> denote an 
+ important time to be associated with the result or specimen. We use the 
+ qualifier 'Object' because they indicate at which time in the evolution 
+ of the object (patient) a snapshot was taken, typically by sampling 
+ a specimen from the object. Note the difference between the assessment 
+ time of a result and its object time (sampling time): 
+ the result can be assessed at any time after sampling, but it stores a 
+ property value (RBC count) describing the object at the object time! The 
+ object time has to be provided with the result for interpretation, 
+ whereas the assessment time is mainly used for logging purposes 
+ (GLP accreditation). GLIMS uses the object time of a property assessment 
+ request (Na) to make sure that the assessment will be performed on a specimen 
+ with a correct matching object time.</p>
+        <h3><a name="Urgency"></a>Urgency</h3>
+        <p>The <span class="ui_element">Urgency</span> field allows you to choose one of the <a href="order_entry_urgency_duetime.htm">urgency levels</a> defined in the site 
+ domain <span class="ui_element">Urgency</span>. If no level is defined, GLIMS defaults to a number range 
+ of 1 to 9.</p>
+        <h3>Chargeability</h3>
+        <p>The <span class="ui_element">Chargeability</span> field can contain either <b>Yes</b> = "charge" or <b>No</b> ="don't 
+ charge". It can also be left empty, in which case the <a href="../../../configuration/requestables/requestables.htm">request definition</a>'s 
+ chargeability will be applied.</p>
+        <h3>Billing mark</h3>
+        <p>The <span class="ui_element">Billing 
+ mark</span> field allows you to choose one of the (enumeration) values defined in 
+ the site domain <a href="../../../modules/billing/tariffication/configuration/billing_marks.htm">BillingMarks</a>.&#160;&#160;You can also specify an <span class="ui_element">Order 
+ billing mark (OBM)</span>, i.e. a default billing mark for the entire order. 
+ If the latter is specified, this billing mark is used for each request 
+ where no explicit billing mark is specified (including requests added 
+ later on, e.g. via MISPL). When an order is rewritten and only 1 different 
+ billing mark is used in its requests, then the order inherits this billing 
+ mark.</p>
+        <h3><a name="Request"></a>Request flag</h3>
+        <p>The <span class="ui_element">Request flags</span> field allows to indicate 
+ that a request was added to the order on the initiative of the lab or 
+ on the initiative of the issuer (e.g. ordered by phone). This 
+ may have important billing implications. This field behaves 
+ a lot like the <span class="ui_element">Billing mark</span> field, but the only possible values currently 
+ supported are <b>L</b> to indicate a lab-issued request and <b>I</b>to indicate 
+ an issuer-issued request. These values are stored in the Request.Flags 
+ field.</p>
+        <h3><a name="Request2"></a>Request form</h3>
+        <p>The <span class="ui_element">Request 
+ form</span> button allows the selection of a <a href="../../../configuration/request_forms/request_forms.htm">request form</a> from which requests can be chosen. </p>
+        <h3>contextual menu functions</h3>
+        <p> In the request browser, menu functions can be applied to one or more requests. To this aim, select a request (or several requests using the CTRL key), right-click on the selection and choose one of the following functions:</p>
+        <h4>Internal comment</h4>
+        <div class="indented">
+            <p>This function allows to enter comment used for internal purposes (e.g. 
+ on work lists).&#160;&#160;&#160;When adding internal comment to a request definition, 
+ the request definition type (first column of embedded browser of the request 
+ page) is marked with an asterisk and is recognizable as such on the work 
+ list.&#160;&#160;You can enter free text or use the Insert key to add 
+ a text reference or a text expression.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When choosing the function while more than 1 request is selected, GLIMS 
+ will ask for a single comment which will be applied to all selected requests.&#160;</p>
+            </div>
+        </div>
+        <h4>External comment</h4>
+        <div class="indented">
+            <p>This function allows to enter comment used for external purposes (on 
+ reports). When adding external comment to a request definition, the 
+ request definition type (first column of embedded browser of the request page) 
+ is marked with an asterisk.&#160;&#160;You can enter free text or use 
+ the Insert key to add a text reference or a text expression.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When choosing the function while more than 1 request is selected, GLIMS 
+ will ask for a single comment which will be applied to all selected requests.&#160;</p>
+            </div>
+        </div>
+        <h4><a name="Apply"></a>Apply current request attributes</h4>
+        <div class="indented">
+            <p>This function offers the possibility to apply current request attributes, 
+ i.e. urgency code, to charge(Y/N), to a selected 
+ range of requests.&#160;</p>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p xmlns=""> Enter a billing mark, select a request and choose the contextual menu function Apply current request attributes. The billing mark 
+ will be indicated with the request. In order to remove this billing mark, 
+ just type a blank as billing mark, select the request and choose the same 
+ function. The billing mark will be cleared.</p>
+            </div>
+        </div>
+        <h4>Apply current object time</h4>
+        <div class="indented">
+            <p>This function takes Result.DynamicType into account.&#160;For instance, a relative 
+ dynamic test with object time 08:20 and reference time 08:00 will get 
+ object time 09:20 and reference time 09:00 after changing the object time 
+ from 08:00 to 09:00 using this function.&#160;</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p> The object time (date) can only be changed if the order has 
+ not yet been saved.</p>
+            </div>
+        </div>
+        <h4>Change root specimen</h4>
+        <div class="indented">
+            <p>When directly requesting materials and then assigning requests to these 
+ specimens, we speak about root specimens. The <span class="ui_element">Change root 
+ specimen</span> contextual menu function allows to change the root specimen of 
+ a selected request. Activate this function and a box will appear with 
+ the available root specimens.</p>
+        </div>
+        <h2><a name="Property blocking period"></a>Property blocking period and 
+ property reusability</h2>
+        <h3>Blocking periods</h3>
+        <p class="fieldlabel">Fixed blocking period</p>
+        <div class="indented">
+            <p>It is possible to specify a so-called 'blocking period' for each property. 
+ This is the minimal time span in days that should exist between two requests 
+ for the same property and the same patient. This time span can be specified 
+ in the Property.BlockingPeriod field.&#160;&#160;Note that the property 
+ blocking period check ignores results that were not assessed (i.e. Result.AssessmentCount 
+ = 0). This may occur when a result code is applied (e.g. "NM = No 
+ material received") with ResultCode.Assessed = NO.</p>
+            <div class="indented">
+                <p>The blocking period check is executed against the latest effectively 
+ requested and assessed result, ignoring any already blocked requests in 
+ between.&#160;Therefore it is necessary that a 'blocked' result 
+ can be distinguished from a normal one.&#160;&#160;This has been accomplished 
+ by the .Original field referring the original (assessed) result, while 
+ the .IsDuplicate field is still = NO. This means: it isn't a copy, but 
+ it refers an original result record (that caused the blocking).&#160;</p>
+                <p>This also facilitates putting comments on reports.&#160;The previous 
+ result can be easily accessed via .Original, as in the following example:</p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p xmlns="">DateTimeToString(.Original.ObjectTime, "%x %H:%M")</p>
+                </div>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When an existing result within the blocking period is detected during 
+ order entry:</p>
+                <ol>
+                    <li value="1">For <span class="ui_element">explicitly requested</span> properties, if a blocking period applies,<ul><li value="1">A question will appear in manual order entry (The user is offered the possibility to ignore this and create 
+ a new request, reject the request, or accept the blocking period and create 
+ a result with a message in its value to warn the issuer about this. In 
+ the latter case, the result's value is filled with the text in Property.BlockingPeriodMessage 
+ (or with a fixed text when not specified), and is validated automatically 
+ without being scheduled.&#160;The new request will be created with 
+ ToCharge = NO.). </li><li value="2">In electronic order entry, the result is automatically blocked.</li></ul></li>
+                    <li value="2">For <span class="ui_element">implicitly requested</span> properties, if a blocking period applies,<ul><li value="1">The result is automatically blocked.</li></ul></li>
+                </ol>
+            </div>
+            <p>GLIMS also supports decimal values such as "0.5" (half day) 
+ as blocking period. &#160;</p>
+        </div>
+        <p class="fieldlabel">Calculated blocking period</p>
+        <div class="indented">
+            <p>It is also possible to define a variable blocking period for each property.&#160;&#160;The 
+ blocking period could for instance be different for general practitioners 
+ and specialists.&#160;&#160;To support this, you can use the field "Calculate 
+ blocking period" for properties.&#160;&#160;This field allows
+specifying an Order-based, Integer-valued MISPL expression.&#160;&#160;If 
+ the MISPL expression returns an integer, the latter will be considered 
+ as the blocking period.&#160;&#160;If the MISPL expression returns a "?", 
+ the fixed blocking period will be used (RETURN StringToInteger(?);).</p>
+            <p>GLIMS also supports decimal values such as "0.5" (half day) 
+ as blocking period. &#160;</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>When adding a request to an order, GLIMS will only consider<span class="ui_element">Available</span> specimens when checking if the blocking period is respected.</p>
+            <p>This implies that it is possible to request a request code multiple times for the same object within the defined blocking period, as long as the specimens on which the requests are scheduled are not available yet.</p>
+        </div>
+        <h3>Result reuse</h3>
+        <p class="fieldlabel">Result re-usability<br /></p>
+        <p>When the existing request also lies within the property's re-usability 
+ period, a chance is offered to reuse this existing result. In this case, 
+ a warning about the blocking period is added to the Reuse dialog shown 
+ to the user. In the Reuse dialog, just as in the Blocking Period dialog, 
+ it is also possible to completely cancel the request (except when the 
+ request is automatically added via the scheduling process, e.g. as input 
+ for a calculated result).</p>
+        <p>When a result is reused and the new field Property.ReusabilityComment has 
+ a value, this text will be added to the duplicate result's external comment, 
+ thus allowing to indicate the reuse of an existing result on the report.</p>
+        <p class="fieldlabel">Practical example</p>
+        <div class="indented">
+            <p>PSA cannot be requested again within a time span of 14 days:</p>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                </p><pre><b style="font-weight: bold;">Blocking period</b> = 14<b>
+Blocking period message</b> = (gp_Text) Despite of the new request on {=DateTimeToString(.ObjectTime,"%d-%m-%Y")} 
+(i.e. within {=FractionalToString(.Property.BlockingPeriod,"%2.0f")} days 
+after {=DateTimeToString(.Object.GetResult("PSA", ?, 2, ?).ObjectTime,"%d-%m-%Y")}), 
+{=.Property.Mnemonic} was not determined again.<b style="font-weight: bold;">
+Result on report:</b>
+Property &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| 280301 | 060401 |Unit &#160;&#160;&#160;&#160;&#160;&#160;|Norms
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| 12:14 &#160;| 17:02 &#160;| &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;| &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|
+----------------------------Chemistry-------------------------------
+P.S.A. &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|*8.5 &#160;&#160;&#160;| (1) &#160;&#160;&#160;|ug/l &#160;&#160;&#160;&#160;&#160;&#160;|&lt;2.0 &#160;&#160;&#160;&#160;&#160;&#160;|
+(1) &#160;&#160;Despite of the new request on 06-04-2001 (i.e. within 14 days after 28-03-2001), PSA was not determined again.</pre>
+            </div>
+        </div>
+    </body>
+</html>

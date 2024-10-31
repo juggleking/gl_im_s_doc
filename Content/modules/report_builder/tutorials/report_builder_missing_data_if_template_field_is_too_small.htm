@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Tutorials">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report Builder - Missing data if template field is too small</title>
+        <link rel="StyleSheet" href="../../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1484"></a>
+            <MadCap:concept term="Report builder" />Report Builder - Missing data if template field is too small</h1>
+        <h2>Problem description</h2>
+        <p>When designing Report builder templates using Jaspersoft Studio, you can easily 
+ drag fields onto the layout. It is important to note that the "<span style="font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">Stretch with overflow</span>" option 
+ is turned off by default for all fields that you add to the layout.</p>
+        <p>This has as side-effect that if the field is not large enough to hold 
+ the entire content, the part of the text that does not fit is excluded 
+ from the report output. As a result, essential parts of the data may be 
+ missing - such as the last word of a long description.</p>
+        <p style="color: #ff0000;font-weight: bold;">We strongly advise that customers 
+ review all their .jrxml templates and turn on the "Stretch with overflow" 
+ option on all fields whose content may exceed the provided space.</p>
+        <h2>Solutions</h2>
+        <p>There are different solutions in Jaspersoft Studio to ensure that content is fully 
+ displayed.</p>
+        <h3>1. Enlarge the field</h3>
+        <p>The simplest solution is to enlarge the field, provided you have enough 
+ space on the layout. The field should be able to display the maximum number 
+ of characters.</p>
+        <p>
+            <img src="GLIMS-06319_enlarge_field.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h3>2. Use the option "Stretch with overflow"</h3>
+        <p>If no space is available to enlarge the field or the maximum number 
+ of characters is uncertain, use the option "<span style="font-weight: bold;">Stretch 
+ with overflow</span>" to vertically expand the field. </p>
+        <p>
+            <img src="GLIMS-06319_stretch_overflow_01.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p>Example:</p>
+        <p>
+            <img src="GLIMS-06319_stretch_overflow_02.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p>As you can see in the example above, this may have undesired side effects. 
+ The "stretched" field may overlap elements underneath.</p>
+        <p>To solve this, all elements below the "stretched" elements 
+ must have "Position type" set to "Float", which mean 
+ that they will shift down if the "stretched" field expands vertically.</p>
+        <p>
+            <img src="GLIMS-06319_stretch_overflow_03.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p>As you can see in the example above, the elements below the "stretched" 
+ element now shift down, but the field label (BIRTH DATE) does not (as 
+ it is not positioned below the "stretched" element). Depending 
+ on the actual template, different solutions can be applied:</p>
+        <p style="margin-left: 40px;font-weight: bold;">1. Add an invisible line</p>
+        <p style="margin-left: 40px;">By adding an invisible, floating line (line 
+ element with pen width "0"), ALL elements positioned below that 
+ line will shift down. To ensure that the float mechanism works correctly, 
+ the different elements MUST NOT coincide. Coinciding elements are identified 
+ by green markers.</p>
+        <p style="margin-left: 40px;">
+            <img src="GLIMS-06319_stretch_overflow_04.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p style="margin-left: 40px;font-weight: bold;">2. Span the field label 
+ element</p>
+        <p style="margin-left: 40px;">This solution is typically used in case of 
+ rows each having a field label and corresponding text element. Drag the end point 
+ of the field label element towards the end of the text element. 
+ This has the same effect as adding an invisible line.</p>
+        <p style="margin-left: 40px;">
+            <img src="GLIMS-06319_stretch_overflow_05.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p style="margin-left: 40px;font-weight: bold;">3. Group elements in rectangle</p>
+        <p style="margin-left: 40px;">For each row containing elements that can expand vertically, create a frame element holding  all elements in that row.</p>
+        <p style="margin-left: 40px;">
+            <img src="GLIMS-06319_stretch_overflow_06.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h2>Additional note regarding differences between Windows and UNIX</h2>
+        <p>The Report builder in GLIMS asks the underlying operating system to 
+ calculate the space needed for a block of text, given the font name, style 
+ and size. Unfortunately, there may be a difference between the dimensions 
+ as calculated by Windows, and the dimensions as calculated by UNIX, for 
+ the exact same block of text with the exact same font definition. For 
+ instance, Windows may claim the block of text "This is a test" 
+ needs 80x20 pixels, while UNIX may claim this block of text needs 82x20 
+ pixels.</p>
+        <p>As a result, a block of text that fits into a field when the report 
+ is generated on Windows, may not fit into that same field when the report 
+ is generated on UNIX. If you are planning to generate reports on both 
+ platforms, you need to thoroughly test your templates on both platforms, 
+ and be prepared to modify your templates in order to compensate for these 
+ differences.</p>
+    </body>
+</html>

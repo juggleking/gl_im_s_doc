@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Specimen_and_order_search_via_barcode">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Specimen and order search via barcode</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_specimens.htm">Specimen</a> 
+ -&gt; Specimen and order search via barcode</h1>
+        <p>When searching for a specimen with a given barcode within the context 
+ of a station, the following mechanism is used:</p>
+        <ol>
+            <li value="1">Station.<a href="specimens_ids.htm#Specimen%20identification">SpecimenIdentificationType</a>, 
+	 Station.UseSpecimenExternalId and Station.UseSpecimenInternalId determine 
+	 how to search. If more than 1 option is active, they are tried in 
+	 the mentioned order.</li>
+            <li value="2">
+                <p>When not found and Station.SearchViaOrder is set, 
+	 the program tries to determine the specimen's order by using the site 
+	 function specified in SpecificSite.BarCodeParser.</p>
+                <p>
+                    <p>This 'w_BarCode'-based function receives the barcode in w_BarCode.BarCode 
+ and some program context in w_BarCode.Purpose, w_BarCode.Station, w_BarCode.WorkList. Its 
+ goal is to determine if the scanned barcode is an order barcode or a 
+ specimen barcode, and to return specimen and or order specifications 
+ in the format "\Specimen=~\ExternalId=&lt;external id&gt;\Order=~\ShortId=&lt;short 
+ id&gt;" or variants containing:</p>
+                    <ul>
+                        <li value="1">For the specimen specification, "ExternalId", 
+	 "InternalId" or "IdentificationTypeMnemonic" and 
+	 "IdentificationCode".</li>
+                        <li value="2">And/or for the order specification, "InternalId", 
+	 "ShortId" a combination of "IssuerInternalId" 
+	 and "ExternalId".</li>
+                    </ul>
+                    <p>The program then tries to find the order using this specification. A 
+ typical use would be to take the first &lt;x&gt; digits of the specimen 
+ barcode to determine the order short id or internal id.</p>
+                </p>
+            </li>
+        </ol>
+        <ol>
+            <li value="3">When an order is found via step 2, the 
+	 program searches for a unique specimen of the material (specified 
+	 either in the query/result message or in Station.Material) in this 
+	 order which did not yet receive a barcode. When such a 
+	 specimen is found, it is assigned the barcode. Whether this barcode 
+	 is stored in a specimen identification or the external id of the specimen 
+	 is determined from the Station.IdentificationType and Station.UseExternalId 
+	 settings.</li>
+            <li value="4">When still no specimen is found, the Station.UnknownSpecimenTrigger 
+	 site function is executed to try and find the specimen. This site 
+	 function can even create a new specimen and its order by using the 
+	 <a href="../../communication/analyzers/analyzers_poc.htm">CreateSpecimenOrder() 
+	 MISPL function</a>.</li>
+            <li value="5">
+                <p>When still no specimen is found and Station.CreateSpecimen 
+	 is set and Station.Material is specified, the following steps are 
+	 undertaken:</p>
+                <p>
+                    <ul>
+                        <li value="1">If an order was found in step 2, a new specimen 
+	 is created for the material specified in Station.Material and the 
+	 barcode is assigned to it.</li>
+                        <li value="2">If no order was found in step 2 and Station.CreateOrder 
+	 is set, then the program will even create an order using the specifications 
+	 calculated by the Barcode Parser in step 2.</li>
+                    </ul>
+                </p>
+            </li>
+        </ol>
+        <p>This mechanism is currently used in the following programs:</p>
+        <ul>
+            <li value="1">Specimen query by a station.</li>
+            <li value="2">Result download by a station.</li>
+            <li value="3"><a href="specimens_scan.htm">Specimen scan program</a>.</li>
+            <li value="4"><a href="specimens_reception_scan.htm">Specimen 
+	 reception program</a>.</li>
+            <li value="5"><a href="../work_lists/work_lists_generate.htm">Work 
+	 list generation</a> via specimen scan (no creation allowed, unless 
+	 via Station.UnknownSpecimenTrigger).</li>
+        </ul>
+        <p>A crucial role is played by the Barcode Parser: its goal is to determine 
+ which type of barcode is scanned and to determine the specimen and/or 
+ order specification. More information can be found in the reference manual 
+ of SpecificSite.BarCodeParse. This barcode parser is also 
+ used in the <span class="ui_element">Specimen replace</span> program, where its primary goal 
+ is to determine a specimen specification.</p>
+    </body>
+</html>

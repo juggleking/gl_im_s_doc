@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific import" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Person_relation_import">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Person relation import</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor944"></a>
+            <MadCap:concept term="Application management" />Person relation import</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Import%20formats">Import formats</a> - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This import program allows importing person relations (relations between persons).It can be started via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Import</span> -&gt; <span class="ui_element">Person relations.</span></p>
+        <h2><a name="Import formats"></a>Import formats</h2>
+        <p>The import program supports 2 formats:</p>
+        <h3>Normal list of person relations</h3>
+        <p>In this case the file contains lines with the following fields (all separated by a '|'):</p>
+        <ol>
+            <li value="1">PIN code of person 1</li>
+            <li value="2">PIN code of person 2</li>
+            <li value="3">Relation type: this is an integer number that corresponds to the 'PersonRelationType' field in GLIMS</li>
+            <li value="4">Comment : this is optional</li>
+        </ol>
+        <p>Note: multiple PIN providers are supported. Format to specify the PIN provider: &lt;PIN Provider Internal Id&gt;:&lt;PIN&gt;. If only the PIN is specified, Glims will assume that the PIN has been assigned by the PIN provider specified in the general options (SpecificSite).</p>
+        <h3>List of 'family' members.</h3>
+        <p>In this case the file also contains 'family numbers'. A 'family number' groups all the persons related to a certain patient.The file contains lines with the following fields (all separated by a '|'):</p>
+        <ol>
+            <li value="1">PIN code of person</li>
+            <li value="2">Family number</li>
+            <li value="3">Either '0', which means that the person is the 'patient', i.e. the central person of the 'family' or otherwise an integer number (1-23) that corresponds to the 'PersonRelationType' field in GLIMS (see list above), which means that the person on this line has such a relation with regards to the 'patient' (the central person of the 'family')</li>
+            <li value="4">Comment: this is optional</li>
+        </ol>
+        <p>The family number will also be added (in brackets) to the imported comment. For each 'family number' there must be at least 1 line containing the patient (with field 3 = 0). The order of the lines doesn't matter.</p>
+        <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+        <ul>
+            <li value="1">It is important that the last line of the import file is closed with a 'newline' character, otherwise this line will not be imported.</li>
+            <li value="2">When the relation type 'ChildOfSibling' is used, GLIMS will try to find out the sex of the intermediate person (the patient's sibling that has this child), to determine whether the reverse relation is of type 'SiblingOfFather' of 'SiblingOfMother'. If this cannot be determined automatically, this may raise an interactive question because information is lacking. Press CANCEL in this case and look for these records in the reject file with extension ".rej".</li>
+            <li value="3">When the 'family' format is used, another output file (with extension ".rel") is made that contains the same data but in the 'person relation' format style.</li>
+            <li value="4">The import program can be automated through a command and task. Base table is "gp_Site" and function is "ImportPersonsRelations".</li>
+            <li value="5">The import using PREL.csv requires relations to be imported in the format parent/child. This means that the import file should contain both records in the correct format:</li>
+        </ul>
+        <div class="indented">
+            <p>Example:</p>
+            <div class="indented">
+                <p>Person.Correspondent.InternalId ReverseType OtherPerson.Correspondent.InternalId Type IsGenetic StartDate EndDate Comment Automatic</p>
+                <p>19520229000C62 Parent 19520229000CJ5 Child yes ? ? (Fam. 106) no</p>
+            </div>
+        </div>
+    </body>
+</html>

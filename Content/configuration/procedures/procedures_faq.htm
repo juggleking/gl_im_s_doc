@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Lab procedures|Procedures" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Procedures_-_FAQ">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Procedures - FAQ</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Procedures - FAQ</h1>
+        <h2>Ambiguity issue for multi-material procedures</h2>
+        <p>When a procedure has more than 1 input material, the following ambiguity issues have to be tackled:</p>
+        <ul>
+            <li class="kadov-p" value="1">The Result.Specimen reference can refer to only one of the input specimens</li>
+            <li class="kadov-p" value="2">Printing 'the' input specimen bar code: only a single specimen input is chosen</li>
+            <li class="kadov-p" value="3">Deciding if a result can be derived from a root material: each input material is allowed as root specimen material</li>
+            <li class="kadov-p" value="4">The combination of the latter 2 problem could yield a third problem in a way that the program erroneously decides NOT to reuse existing results or specimens in the same order because the 2 decisions above lead to a different choice of root material</li>
+        </ul>
+        <p>In order to avoid such problems, the following decisions are taken:</p>
+        <ol>
+            <li class="kadov-p" value="1">When searching 'the' input material of a procedure or 'the' input specimen of an action, only the input with the lowest ProcedureInput.SeqNo is considered and the other inputs are ignored. This makes the choice of 'primary' input configurable and predictable.&#160;&#160;&#160;</li>
+            <li class="kadov-p" value="2">When checking if a result can be derived from a specific root material, the program only considers the lowest ProcedureInput.SeqNo inputs in its traversing of the procedure tree (in order to find a road from the material to the property).</li>
+        </ol>
+        <p>Note that this only applies to ambiguous situations in which 1 input material must be selected from several (e.g. by means of MISPL functions that the select 'the' input specimen of an action or 'the' specimen of a result).&#160;&#160;When e.g. printing labels in order entry, all labels will off course be printed.</p>
+    </body>
+</html>

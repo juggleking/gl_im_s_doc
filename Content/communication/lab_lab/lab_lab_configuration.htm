@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Lab - Lab">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Lab_Lab_Configuration</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Lab - Lab communication: Configuration</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Lab_X_configuration">Lab 
+ X configuration</a> - <a href="#Lab_Y_configuration">Lab Y configuration</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This page is an example of how you can setup lab - lab communication.&#160;&#160;The 
+ actual setup can differ according to individual situations.</p>
+        <p>Beside the actual export and import mechanisms, the main configuration 
+ is related to:</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">Order identification</li>
+            <li class="mips_list_bulleted" value="2">Issuer and agent identification</li>
+            <li class="mips_list_bulleted" value="3">Data mapping for tests, materials, units 
+	 etc.</li>
+            <li class="mips_list_bulleted" value="4">Specimen and result status mapping</li>
+        </ul>
+        <h2><a name="Lab_X_configuration"></a>Lab X configuration</h2>
+        <p>This chapter describes the configuration needed in the lab that exports 
+ the tests to lab Y.</p>
+        <h3>Stations and procedures</h3>
+        <p>For each external lab to which tests are exported, a station needs to 
+ be defined with procedures for the tests to be exported.</p>
+        <h3>Coding systems</h3>
+        <p>A coding system needs to be defined with code sets for at least the 
+ following data:</p>
+        <ul>
+            <li class="kadov-p" value="1">Request codes.&#160;&#160;In case of panels, do 
+	 not use the panel request code but the default request definition 
+	 of each panel member.</li>
+            <li class="kadov-p" value="2">Properties</li>
+            <li class="kadov-p" value="3">Materials</li>
+            <li class="kadov-p" value="4">Units (can be filled automatically if the units 
+	 are consistent in all labs)</li>
+        </ul>
+        <p><b style="font-weight: bold;">Important: the name of the coding system 
+ used in lab X and lab Y must be identical.</b>
+        </p>
+        <h3>Test export</h3>
+        <h4>Create a batch user</h4>
+        <p>This user allows to trace how orders have been exported and how results 
+ have been imported.&#160;&#160;The user needs to be assigned to at least 
+ 1 department (required for result import).</p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_user.png" alt="" style="border: none;" width="686" height="336" border="0" />
+            </p>
+        </blockquote>
+        <h4 style="text-align: left;">Install driver homx</h4>
+        <ul>
+            <li style="text-align: left;" value="1">Install the driver 
+	 "homx", configure a translator and service.&#160; </li>
+            <li style="text-align: left;" value="2">In the service, specify 
+	 the user created above.</li>
+            <li class="kadov-p" value="3">Start the service with option –O IdentifyAbleLookupMethod=PriorityAlternate</li>
+            <li class="kadov-p" value="4">Translator options: -k NTE -n 185</li>
+        </ul>
+        <p class="MsoNormal" style="margin-left: 36.0pt;">-k NTE: will export comments</p>
+        <p class="MsoNormal" style="margin-left: 36.0pt;">-n 185: &#160;bit 1 + 
+ 4 + 5 + 6 + 8<br /><br />bit 1: export microbiology requests <br />bit 4: use order department as agent<br />bit 5: do not export copy receivers<br />bit 6: in case of a panel, export panel members<br />bit 8: do not split address line into street and number</p>
+        <h3>Action export command</h3>
+        <p>Define a command with the following configuration:</p>
+        <h4>Command</h4>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_command.png" alt="" style="border: none;" width="615" height="570" border="0" />
+            </p>
+        </blockquote>
+        <h4>Query parameter set</h4>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_command_query.png" alt="" style="border: none;" width="472" height="303" border="0" />
+            </p>
+        </blockquote>
+        <h4>Function parameter set</h4>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_command_function_01.png" alt="" style="border: none;" width="281" height="348" border="0" />
+            </p>
+            <p>For more information, check the chapter "<a href="../../application_management/import_export/export/export_work_orders.htm">Work 
+ order export</a>"</p>
+        </blockquote>
+        <h3 style="text-align: left;">Result import</h3>
+        <h4 style="text-align: left;">Install driver houi</h4>
+        <ul>
+            <li style="text-align: left;" value="1">Install the driver 
+	 "houi", configure a translator and service.&#160; </li>
+            <li style="text-align: left;" value="2">In the service, specify 
+	 the user created above.</li>
+            <li class="kadov-p" value="3">Translator options: </li>
+        </ul>
+        <blockquote>
+            <p style="text-align: left;"><span lang="NL">-s <i>&lt;listen port&gt;</i> -n 266 -r IIRRRX -k NTE(RC) 
+ –e PID,PD1,PV1 -i ORC.3();ORC.12();ORC.13();ORC.17();OBR.3();OBR.4();OBR.24();OBX.3(,<i>&lt;property 
+ coding system&gt;</i>);SPM2.2() -o Correspondent:LookUpByInternalIdAllowed=NO</span>
+                <br />
+                <br />For more info about the driver options, please check the driver documentation.</p>
+        </blockquote>
+        <h2><a name="Lab_Y_configuration"></a>Lab Y configuration</h2>
+        <p>This chapter describes the configuration needed in the lab that executes 
+ the tests and reports the results back to lab X.</p>
+        <h3>Order import</h3>
+        <h4>Coding systems</h4>
+        <p>A coding system needs to be defined with code sets for at least the 
+ following data:</p>
+        <ul>
+            <li class="kadov-p" value="1">Request codes.&#160;&#160;In case of panels, do 
+	 not use the panel request code but the default request definition 
+	 of each panel member.</li>
+            <li class="kadov-p" value="2">Properties</li>
+            <li class="kadov-p" value="3">Materials</li>
+            <li class="kadov-p" value="4">Units (can be filled automatically if the units 
+	 are consistent in all labs)</li>
+        </ul>
+        <blockquote>
+            <p><b style="font-weight: bold;">Important: the name of the coding system 
+ used in lab X and lab Y must be identical.</b>
+            </p>
+        </blockquote>
+        <h4>Create a batch user</h4>
+        <p>This user allows to trace how orders have been imported and how results 
+ have been exported.&#160;&#160;The user needs to be assigned to at least 
+ 1 department.</p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_user.png" alt="" style="border: none;" width="686" height="336" border="0" />
+            </p>
+        </blockquote>
+        <h4>Order entry options</h4>
+        <p>Set the order entry options of the batch user:</p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_orderentry_options_01.png" alt="" style="border: none;" width="603" height="389" border="0" />
+            </p>
+        </blockquote>
+        <p>Click the "User" button and enter the default identification 
+ source:</p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_orderentry_options_02.png" alt="" style="border: none;" width="618" height="347" border="0" />
+            </p>
+        </blockquote>
+        <h4 style="text-align: left;">Order agent</h4>
+        <p style="text-align: left;">In lab Y (executing lab), the order agent 
+ should be the lab X (requesting lab).&#160;&#160;To do so, you must provide 
+ a mapping between the requesting department of the requesting lab and 
+ the external lab of the executing lab.&#160;&#160;This can be accomplished 
+ with identifications assigned by the pin provider of the requesting lab.</p>
+        <h4 style="text-align: left;">Requesting issuer</h4>
+        <p style="text-align: left;">When creating an order, the issuer is mandatory.&#160;&#160;If 
+ new issuers are created in the requesting lab, we want to avoid having 
+ to create them in the executing lab as well.&#160;&#160;To accomplish 
+ this, the requesting issuer in the executing lab will always be the same, 
+ i.e. the responsible health care provider of the requesting lab.&#160;&#160;Therefore, 
+ you need to specify a "Head" in the internal lab of the requesting 
+ lab (a health care provider).&#160;&#160;The same health care provider 
+ must also be available in the executing lab.&#160;&#160;In the executing 
+ lab, assign the identification assigned by the pin provider of the external 
+ lab to that health care provider.</p>
+        <h4 style="text-align: left;">Importing encounter data</h4>
+        <p style="text-align: left;">In order to import encounter data from the 
+ requesting lab, an identification must be assigned to the institution 
+ responsible for the encounters.&#160;&#160;This identification is assigned 
+ by the pin provider of the requesting lab.&#160;&#160;This institution 
+ must also be available in the executing lab and needs to have the same 
+ identification.</p>
+        <h4 style="text-align: left;">Install driver homl</h4>
+        <ul>
+            <li style="text-align: left;" value="1">Install the driver 
+	 "homl", configure a translator and service.&#160; </li>
+            <li style="text-align: left;" value="2">In the service, specify 
+	 the user created above.</li>
+            <li class="kadov-p" value="3">Translator options: </li>
+        </ul>
+        <blockquote>
+            <p style="text-align: left;"><span lang="NL">-s <i>&lt;listen port&gt;</i> 
+ -t OOOX -k NTE -i PID.3(108);PID.21();PV1.3(108);ORC.17();OBR.4(,<i>&lt;coding 
+ system for request codes&gt;</i>);OBR.24();OBX.3(,<i>&lt;coding system 
+ for request codes&gt;</i>) -n 32 –o Correspondent:LookUpByInternalIdAllowed=NO;ErrorListReply=YES</span>
+            </p>
+&#160; 
+<p>For more info about the driver options, please check the driver documentation.</p></blockquote>
+        <h3>Result export</h3>
+        <h4>Report template</h4>
+        <p>Create a report template with:</p>
+        <ul>
+            <li class="kadov-p" value="1">Mnemonic: e.g. Lab Y - Lab X</li>
+            <li class="kadov-p" value="2">Description: e.g. Lab - Lab report for lab X</li>
+            <li class="kadov-p" value="3">Coding system: select the coding system defined 
+	 for lab - lab communication</li>
+            <li class="kadov-p" value="4">Microbiology 
+	<ul><li class="kadov-p" value="1">Show sequence nos: when antibiogram</li><li class="kadov-p" value="2">Renumber sequence numbers on report: enabled</li></ul></li>
+            <li class="kadov-p" value="5">Electronic 
+	<ul><li class="kadov-p" value="1">Structured microbiology: enabled</li></ul></li>
+        </ul>
+        <h4>Default report</h4>
+        <p>Create a default report with:</p>
+        <p>&#160;&#160;&#160;&#160;<b>Main page</b></p>
+        <ul>
+            <li class="kadov-p" value="1">Code: e.g. Lab Y - Lab X</li>
+            <li class="kadov-p" value="2">Scope: Order</li>
+            <li class="kadov-p" value="3">Active: enabled</li>
+            <li class="kadov-p" value="4">Eligible: make sure the default report is only 
+	 valid when the order's agent is the requesting lab.&#160;&#160;MISPL 
+	 example: <span lang="NL">RETURN.Agent.Lab().Mnemonic = "Lab X";</span></li>
+        </ul>
+        <p><span lang="nl">&#160;&#160;&#160;&#160;<b>Settings</b></span>
+        </p>
+        <ul>
+            <li class="kadov-p" value="1"><span lang="nl">Previous results: None</span>
+            </li>
+            <li class="kadov-p" value="2"><span lang="nl">Report medium: Communication</span>
+            </li>
+            <li class="kadov-p" value="3"><span lang="nl">Trigger status: Validated</span>
+            </li>
+            <li class="kadov-p" value="4"><span lang="nl">Minimum result status: Confirmed</span>
+            </li>
+            <li class="kadov-p" value="5"><span lang="nl">Report discontinued results: Enabled</span>
+            </li>
+        </ul>
+        <p><b style="font-weight: bold;">Install driver houl</b>
+        </p>
+        <ul>
+            <li style="text-align: left;" value="1">Install the driver 
+	 "houl", configure a translator and service.&#160; </li>
+            <li style="text-align: left;" value="2">In the service, specify 
+	 the user created above.</li>
+            <li class="kadov-p" value="3">Translator options: </li>
+        </ul>
+        <blockquote>
+            <p><span lang="NL">-v 2.5,R22 -n 14342 -k NTE</span>
+            </p>
+            <p>For more info about the driver options, please check the driver documentation.</p>
+        </blockquote>
+        <h4>Report generation </h4>
+        <p>Create a command with the following configuration:</p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_report_command.png" alt="" style="border: none;" width="615" height="570" border="0" />
+            </p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Query parameter set</b>
+        </p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_report_query.png" alt="" style="border: none;" width="616" height="393" border="0" />
+            </p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Function parameter set</b>
+        </p>
+        <blockquote>
+            <p>
+                <img src="lab_lab_communication_report_function_01.png" alt="" style="border: none;" width="462" height="437" border="0" />
+            </p>
+            <p>
+                <img src="lab_lab_communication_report_function_02.png" alt="" style="border: none;" width="268" height="405" border="0" />
+            </p>
+        </blockquote>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

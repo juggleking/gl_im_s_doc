@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Epidemiology" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\epidemiology\epid_offisol.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Epidemiology - Officially reporting isolations</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2258"></a>
+            <MadCap:concept term="Epidemiology" /><a name="kanchor207"></a>Epidemiology - Officially reporting isolations</h1>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>In some countries, labs are required to send a report to a health office when specific microorganisms are found.</p>
+        <p>GLIMS allows to mark isolations as "To be reported officially" and generate a document for these isolations.</p>
+        <h2>Marking an isolation as "to be reported officially"</h2>
+        <p>When marking an isolation as "To be reported officially", the Isolation field <span class="ui_element">Report officially</span> will be set to <span class="ui_element">Yes</span>. </p>
+        <p>There are different ways to accomplish this:</p>
+        <p class="fieldlabel">Using the Microorganism field "Must be reported officially"</p>
+        <div class="indented">
+            <p>When the <a href="../microbiology/configuration/micro_organisms.htm">Microorganism</a> option <span class="ui_element">Must be reported officially</span> is enabled, Isolations registered for this microorganism will automatically be marked as "To be reported officially".</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="isol_report_officially_morg.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="689" data-mc-height="759" src="isol_report_officially_morg_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel">Using the interactive function "ReportOfficially"</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">An Isolation-based function <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">ReportOfficially</span> is available that can be added to the Isolation-based context menu or ribbon.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">It allows to mark one or several isolations as "To be reported officially".</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="http://www.w3.org/1999/xhtml">By default, the function is not visible in the application.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">You must manually define a <a href="../../user_interface/user_interface_tools.htm" xmlns="http://www.w3.org/1999/xhtml">Tool</a> (Base table: Isolation, Function mnemonic: ReportOfficially) and add this tool to the context menu or ribbon.</p>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="isol_report_officially_tool.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="599" data-mc-height="618" src="isol_report_officially_tool_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+        <p class="fieldlabel">Using the MISPL function "Isolation.SetReportOfficially"</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">An Isolation-based MISPL function <a href="../../db/reference_guide/isol.htm#M_SetReportOfficially" xmlns="http://www.w3.org/1999/xhtml">SetReportOfficially</a> is available.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">This MISPL function can e.g. be used in</p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">The <span class="ui_element">Microorganism</span> field <span class="ui_element">When isolation confirmed</span>.</li>
+                <li value="2">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Microorganism</span> field <span class="ui_element">When antibiogram confirmed</span>.</li>
+            </ul>
+            <p xmlns="http://www.w3.org/1999/xhtml">This MISPL function can overrule the <span class="ui_element">Microorganism</span> option <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Must be reported officially</span>.</p>
+        </div>
+        <h2>Generating a document for isolation that should be officially reported</h2>
+        <p class="fieldlabel">Query</p>
+        <div class="indented">
+            <p>The isolation query allows to search all isolations that should be reported officially by enabling the option <span class="ui_element">Only officially reportable</span>.</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="isol_report_officially_isolation_query.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="767" data-mc-height="621" src="isol_report_officially_isolation_query_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <p class="fieldlabel"><a name="Generate"></a>Generate document</p>
+        <div class="indented">
+            <p>The Isolation-based function <span class="ui_element">Generate document</span> allows to generate a document for isolations that should be reported officially.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <p>This function can be used in a command.</p>
+            </div>
+            <p class="fieldlabel">Generate isolation document screen</p>
+            <div class="indented">
+                <p class="fieldlabel">Target type</p>
+                <div class="indented">
+                    <p>Indicates who should receive the generated document. This option is also used to group the isolations that should be reported in one document.</p>
+                    <p class="fieldlabel">Issuer</p>
+                    <div class="indented">
+                        <p>Issuer of the order.</p>
+                    </div>
+                    <p class="fieldlabel">Health office</p>
+                    <div class="indented">
+                        <p>Health office specified in the <span class="ui_element">Municipality</span> of the issuer of the order.</p>
+                    </div>
+                </div>
+                <p class="fieldlabel">Mark as reported</p>
+                <div class="indented">
+                    <p>If set, the option <span class="ui_element">Report officially</span> of the related isolations will be set to <span class="ui_element">Done</span>.</p>
+                </div>
+                <p class="fieldlabel">Header, Body, Footer</p>
+                <div class="indented">
+                    <p>Allow to specify WorkIsolation-based text modules that define the content and layout of the generated document.</p>
+                    <p>If a <span class="ui_element">Header</span> text module is specified that starts with '&lt;HTML', the generated document will be a '.HTM' file and will be treated as such (previewed and printed using Internet Explorer).</p>
+                </div>
+            </div>
+            <p class="fieldlabel">File specification screen</p>
+            <div class="indented">
+                <p class="fieldlabel">Append</p>
+                <div class="indented">
+                    <p xmlns="http://www.w3.org/1999/xhtml">When  one document is generated (one isolation is selected),</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Append</span> is set,</p>
+                        <ul xmlns="http://www.w3.org/1999/xhtml">
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="1">and there is a pre-existing document of the same name, the new document will append itself to the existing document.</li>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="2">and there is no document of the same name, a new file is created.</li>
+                        </ul>
+                        <p xmlns="http://www.w3.org/1999/xhtml">When <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Append</span> is not set, </p>
+                        <ul>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="1">and there is a pre-existing document of the same name, the new document will overwrite the existing document.</li>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="2">and there is no document of the same name, a new file is created.</li>
+                        </ul>
+                    </div>
+                    <p xmlns="http://www.w3.org/1999/xhtml">When multiple documents are generated (multiple isolations are selected),</p>
+                    <div class="indented">
+                        <p xmlns="http://www.w3.org/1999/xhtml">and the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Append</span> option is set, </p>
+                        <ul xmlns="http://www.w3.org/1999/xhtml">
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="1">and there is a pre-existing document of the same name, the new documents are appended to the existing document.</li>
+                            <li xmlns="http://www.w3.org/1999/xhtml" value="2">and there is no document of the same name, the documents are appended together in one single file.</li>
+                        </ul>
+                        <p xmlns="http://www.w3.org/1999/xhtml">and the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Append</span> option is not set,</p>
+                        <ul xmlns="http://www.w3.org/1999/xhtml">
+                            <li value="1">and there is a pre-existing document of the same name, the new documents will overwrite the existing document.</li>
+                            <li value="2">and there is no document of the same name, individual files are created for each document.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Logging</p>
+        <div class="indented">
+            <p>It might be useful to see if and when a document was printed and by whom.&#160;&#160;When a document has been sent to a printer using this function:</p>
+            <ol>
+                <li class="kadov-p" value="1">
+                    <p>the audit trail of the isolation will mention the fact that a document was sent to a printer, and for which health office or which issuer the document was generated.&#160;&#160;</p>
+                </li>
+                <li class="kadov-p" value="2">
+                    <p>a generic log entry is attached to the Isolation record. Log entries of a record can be viewed by the contextual tool <span class="ui_element">View</span> -&gt; <span class="ui_element">Log entries</span>.</p>
+                    <p>The log entry mentions the printer name and the health office or issuer to whom the document was addressed. </p>
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>On this log entry you can also do a <span class="ui_element">View</span> -&gt; <span class="ui_element">Audit</span> to see the user who did the printing.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

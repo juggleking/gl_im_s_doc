@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Allow the user to show TIFF images with the .NET image viewer  (MATE-07467)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2588"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Allow the user to show TIFF images with the .NET image viewer  (MATE-07467)</h1>
+        <h2>Issue</h2>
+        <p>Recent GLIMS versions tend to crash frequently while using a TIFF viewer during validation. Tests have shown that these crashes disappear when using the .NET image viewer.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">The .NET image viewer will be enabled in the following cases:</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Order -&gt; View order document</span>
+            </li>
+            <li value="2"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Result -&gt; View image</span>
+            </li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>All order / result image types must be images. The following image formats are supported:</p>
+            <ul>
+                <li value="1">.tif</li>
+                <li value="2"> .tiff</li>
+                <li value="3"> .jpg</li>
+                <li value="4"> .png</li>
+                <li value="5"> .bmp</li>
+            </ul>
+        </div>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Orders</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">If the image format is .tiff or .tif:</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create a site attribute 'OrderViewImageUseNewTiffVW' (Logical) on gp_Site.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">In MATE, set the site attribute 'OrderViewImageUseNewTiffVW' = YES.</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">If the image format is not only .tiff or .tif:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create a site attribute 'OrderViewTiffFileExtension' (String) on gp_Site.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">In MATE, set the site attribute 'OrderViewTiffFileExtension' = '.tif,.tiff,&lt;your image format&gt;'.</li>
+        </ol>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Results</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">If the image format is .tiff or .tif:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create a site attribute 'ResultImageUseNewTiffVW' (Logical) on gp_Site.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">In MATE, set the site attribute 'ResultImageUseNewTiffVW' = YES.</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">If the image format is not only .tiff or .tif:</p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create a site attribute 'ResultTiffFileExtension' (String) on gp_Site.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">In MATE, set the site attribute 'ResultTiffFileExtension' = '.tif,.tiff,&lt;your image format&gt;'.</li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\kvdt\billing_02.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Invoice Series</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3735"></a>
+            <MadCap:concept term="Billing" />Invoice Series</h1>
+        <p>Billing of Kassen patient to the KV is performed once a quarter in Germany. Therefore,
+all invoices for the same Kassen are put on 1 InvoiceSummary per Quarter. Not all Invoices
+can be billed using KV-DT: the KV-Specifika file makes exceptions, based on KTAB,
+Scheinuntergruppe and abrechnungsgebiet. Invoices that can not be billed using KV-DT must
+be billed via the 'normal' paper way. Create a 'Invoice Grouping Type' for the Kassen
+Billing, with a 'series' MISPL that create 1 distinct invoicesummary series for KV-DT and
+non-KV-DT billing.</p>
+        <h3>Example series MISPL</h3>
+        <ol>
+            <p>The next MISPL divides invoice summaries into two series: a 'KVDT' series for invoice
+ summaries that can be billed to the KV and a 'manual' series for the others.</p>
+            <p>/************************************************************************* <br />
+  Invoice summary Series determination (Germany):<br />
+  returns a tagged list of the form "...\Series=xxx..."<br />
+  Looks if the invoice summary series is KVDT:<br />
+  this is so when the KTAB, Scheinuntergruppe and Abrechnungsgebiet are available in the
+ KV-specifika-Datei.<br />
+  You can use following MISPL functions,to determe if we have a KV series invs:<br />
+  -AllowedKTABValues(OKVKEnnung, QuarterQYY),<br />
+  which returns a comma seperated list of allowed KTAB (FK 4106) values<br />
+  -AllowedAbrechnungsgebietvalues(KostentraegerGruppe, OKVKennung, Quarter)<br />
+  -AllowedScheinuntergruppeValues(OKVKennung, Quarter)<br />
+  -Order.Referral().AbrechnungsGebiet()<br />
+  -Order.Referral().Scheinuntergruppe()<br />
+  *************************************************************************/<br />
+  STRING Quarter;<br />
+  STRING OKVKennung;<br />
+  STRING Series;<br />
+  STRING Comment;<br />
+  STRING TaggedList;<br />
+  STRING KTAB;<br />
+  STRING AllowedKTABs;<br />
+  STRING PolicyName;<br />
+  STRING Scheinuntergruppe;<br />
+  STRING AllowedScheinuntergruppe;<br />
+  STRING Abrechnungsgebiet;<br />
+  STRING AllowedAbrechnungsgebiet;<br />
+  STRING Month;<br />
+  STRING YearYY;<br />
+  INTEGER KTABPosition;<br />
+  LOGICAL IsValidKTAB;<br />
+  LOGICAL IsValidScheinuntergruppe;<br />
+  LOGICAL IsValidAbrechnungsgebiet;<br />
+  LOGICAL Debug;<br /><br />
+  Debug := YES; /* display subresults */<br /><br /></p>
+            <p>IF .Firm.Mnemonic = "KBVPrufirm"<br />
+  THEN<br />
+  &#160;&#160; OKVKennung := "46";<br />
+  ELSE <br />
+  &#160;&#160; OKVKennung := "20"; /* fixed value depends of client */<br />
+  ENDIF;<br /></p>
+            <p>&#160; /* 'KV Specifika'-file per OKVKennung and quarter */<br /><br />
+  &#160; /*Quarter := DateToString(.ExternalDate, "%q%y");<br />
+  &#160; */<br /><br />
+  Month := DateToString(.ExternalDate, "%m");<br />
+  YearYY := DateToString(.ExternalDate, "%y");<br /><br />
+  IF LOOKUP(Month, "01,02,03", ",") &gt; 0<br />
+  THEN<br />
+  &#160;&#160; Quarter := "1" + YearYY;<br />
+  ELSE <br />
+  &#160;&#160; IF LOOKUP(Month, "04,05,06", ",") &gt; 0<br />
+  &#160;&#160; THEN<br />
+  &#160;&#160;&#160;&#160;&#160; Quarter := "2" + YearYY;<br />
+  &#160;&#160; ELSE<br />
+  &#160;&#160;&#160;&#160;&#160; IF LOOKUP(Month, "07,08,09", ",") &gt;
+ 0 <br />
+  &#160;&#160;&#160;&#160;&#160; THEN<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Quarter := "3" + YearYY;<br />
+  &#160;&#160;&#160;&#160;&#160; ELSE <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; IF LOOKUP(Month, "10,11,12",
+ ",") &gt; 0<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; THEN<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Quarter :=
+ "4" + YearYY; <br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ELSE<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Quarter :=
+ "???";<br />
+  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ENDIF;<br />
+  &#160;&#160;&#160;&#160;&#160; ENDIF;<br />
+  &#160;&#160; ENDIF;<br />
+  ENDIF;<br /></p>
+        </ol>
+        <p>Comment := "Series MISPL for invoice " + IfKnownString(.DocNo) +
+"~n" +<br />
+"KVSP(OKV=" + IfKnownString(OKVKennung) + <br />
+", quarter=" + IfKnownString(Quarter) + ")~n";<br /><br />
+/* check if KTAB is in the list of allowed values for KV (SpecifikaDatei) */<br />
+AllowedKTABs := AllowedKTABValues(OKVKennung, Quarter);<br /><br />
+/* KTAB value is part the policy name mnemonic(code) form = xxx_KT */<br />
+PolicyName := .PaymentAgreement.PolicyName.Code;<br />
+KTAB := Entry(2, PolicyName, "_");<br />
+/*<br />
+KTABPosition := INDEX(PolicyName, "_") + 1;<br />
+IF (LEN(PolicyName) &gt;= KTABPosition + 1)<br />
+THEN<br />
+&#160;&#160; KTAB := SUBSTR(PolicyName, KTABPosition, 2);<br />
+ELSE<br />
+&#160;&#160; KTAB := "";<br />
+ENDIF;<br />
+*/<br />
+IsValidKTAB := (KTAB &lt;&gt; "" AND LOOKUP(KTAB, AllowedKTABs, ",")
+&gt; 0);<br />
+Comment := Comment + "KTAB=" + IfKnownString(KTAB) + <br />
+&#160;&#160; " valid list=" + IfKnownString(AllowedKTABs) + " ;~n";<br /><br />
+/* check Scheinuntergruppe */<br />
+Scheinuntergruppe := .Order.GetReferral().Scheinuntergruppe();<br />
+message(Scheinuntergruppe);<br />
+AllowedScheinuntergruppe := <br />
+&#160;&#160; AllowedScheinuntergruppeValues(OKVKennung, Quarter);<br />
+IsValidScheinuntergruppe := <br />
+&#160;&#160; (Scheinuntergruppe &lt;&gt; ""<br />
+&#160;&#160; AND LOOKUP(Scheinuntergruppe, AllowedScheinuntergruppe, ",") &gt;
+0); <br />
+Comment := Comment + <br />
+&#160;&#160; "Scheinuntergruppe=" + IfknownString(Scheinuntergruppe) +<br />
+&#160;&#160; " valid list=" + IfKnownString(AllowedScheinuntergruppe) +
+"~n";<br />
+/* check Abrechnungsgebiet */<br />
+Abrechnungsgebiet := .Order.GetReferral().AbrechnungsGebiet();<br />
+AllowedAbrechnungsgebiet :=<br />
+&#160;&#160; AllowedAbrechnungsgebietvalues(Scheinuntergruppe, OKVKennung, Quarter);<br />
+Comment := Comment + "Abrechnungsgebiet=" + IfKnownString(Abrechnungsgebiet) +<br />
+&#160;&#160; " valid list=" + IfKnownString(AllowedAbrechnungsgebiet) +
+"~n"; <br />
+IsValidAbrechnungsgebiet := <br />
+&#160;&#160; (Abrechnungsgebiet &lt;&gt; "" <br />
+&#160;&#160; AND LOOKUP(Abrechnungsgebiet, AllowedAbrechnungsgebiet, ",") &gt;
+0);<br /><br />
+/* <br />
+KV series when KTAB, Scheinuntergruppe and Abrechnungsgebiet <br />
+are available in the KV-specifika-Datei of that Quarter and OKVKennung <br />
+*/<br />
+IF IsValidKTAB AND IsValidScheinuntergruppe AND IsValidAbrechnungsgebiet <br />
+THEN<br />
+&#160;&#160; Series := "KVDT";<br />
+ELSE <br />
+&#160;&#160; Series := "manuel";<br />
+ENDIF;<br /><br />
+TaggedList := "\Series=" + Series;<br />
+IF Debug<br />
+THEN<br />
+&#160;&#160; MESSAGE (Comment + "~nreturn value=" + IfKnownString(TaggedList));<br />
+ENDIF;<br />
+RETURN (TaggedList);</p>
+    </body>
+</html>

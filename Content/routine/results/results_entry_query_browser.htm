@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Results" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\results\results.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Result entry, query and browser</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Result entry, query and browser</h1>
+        <p>Contents: <a href="#Result%20entry">Result entry</a> - <a href="#Result%20query">Result 
+ query</a> - <a href="#Extended%20result%20query">Extended result query</a> 
+ - <a href="#Results%20browsers">Result browsers</a></p>
+        <h2><a name="Result entry"></a>Result entry</h2>
+        <p>There are three widespread ways to enter results in GLIMS:</p>
+        <ul>
+            <li class="kadov-p" value="1"><a href="../orders/order_entry/order_entry_tab_requests.htm">Soliciting 
+	 a request definition</a> <b>in order entry</b> and instantly entering a result: 
+	 hb=5, chol=140 etc. This method works very efficiently, but does not 
+	 offer any work list functionality. It might occur, that the length 
+	 and weight is directly entered in the order. If so, it is much easier 
+	 to enter len=165,gew=65.<br /></li>
+            <li class="kadov-p" value="2">On the order table, you can select the popup function 
+	 <span class="ui_element">Edit result &amp; specimens</span>: it is not the fastest way, but 
+	 a good way to enter results, as it gives all work list functionalities, 
+	 such as choices, ... (see <a href="../work_lists/work_lists_open.htm">Editing 
+	 a work list</a>). &#160;Please also see the chapter <a href="../../user_interface/user_interface_grids.htm">User 
+	 interface: grid options</a>.<br /></li>
+            <li class="kadov-p" value="3">Through a <a href="../work_lists/work_lists_introduction.htm">work list</a>.&#160;&#160;The result 
+	 entry function is activated from the main menu (<span class="ui_element">Start -&gt; 
+	 Routine -&gt; Work lists -&gt; Result entry</span>) 
+	 and delivers a work list selection screen.</li>
+        </ul>
+        <p>
+            <img src="results_entry_query_browser.png" />
+        </p>
+        <p class="fieldlabel">Advanced editor</p>
+        <div class="indented">If this option is activated, the <a href="../work_lists/work_lists_advanced_editor.htm">Work list editor</a> opens in the advanced format. If it is not activated, it opens in the classic format.</div>
+        <h3>Entering a value</h3>
+        <p>The value you enter in the result cell is automatically checked against 
+ a number of rules. These rules may prevent the result from being stored, 
+ if it is obviously wrong. They may also automatically set result attributes 
+ such as severity and comments.</p>
+        <p>For numerical results, the expected unit is shown on the status bar 
+ at the bottom of the screen. Unless a unit is explicitly specified, the 
+ expected unit will be assumed. If a different unit is specified by the 
+ user, it will be accepted if a conversion to the expected unit is possible.</p>
+        <p>Unavailable specimens are automatically confirmed upon result entry.</p>
+        <p>The following is an explicit list of actions performed on input values:</p>
+        <ol>
+            <li class="kadov-p" value="1">The quality of the channel (assessment method) 
+	 is checked. If it is Unreliable (QC alarm severity was transgressed 
+	 or manually set to Unreliable), the user is given the choice to either 
+	 abort input until reliability is restored, or to continue input. In 
+	 the case, the result will be marked internally as obtained through 
+	 an unreliable channel.</li>
+            <li class="kadov-p" value="2">The raw input value is lexically converted by the 
+	 method's conversion 
+	 expression, if one is specified.</li>
+            <li class="kadov-p" value="3">The raw input value is parsed into an internal, 
+	 normalized representation. This representation will be stored permanently, 
+	 <i>along with the raw input value</i>.</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li class="kadov-p" value="1">For numerical results, the representation consists 
+	 of a comparator, a mantissa and an exponent, expressing the value 
+	 in the expected property unit, with the expected precision. The parser 
+	 takes care of unit conversion and can deal with scientific notation 
+	 (for example, 1e-3 instead of 0.001).</li>
+                <li class="kadov-p" value="2">For multiple choice results, the representation 
+	 consists of a reference to the selected choice. The parser can deal 
+	 with a viable prefix instead of a complete choice value.</li>
+            </ul>
+        </blockquote>
+        <ol start="4" style="list-style-type: decimal;">
+            <li class="kadov-p" value="4">For numerical results, method specific range checks 
+	 are performed. Range checks may truncate or reject the input, as specified 
+	 in the associated assessment method record.</li>
+            <li class="kadov-p" value="5">For numerical results, norm and delta norm checks 
+	 are performed. These checks set the associated result severity levels.</li>
+            <li class="kadov-p" value="6">Any non-trivial severity levels and generated comments 
+	 are displayed in an alert box. The user is given the option to cancel 
+	 storage of the input value.</li>
+            <li class="kadov-p" value="7">The result is stored. It is also automatically 
+	 confirmed or validated if allowed by the configuration.</li>
+            <li class="kadov-p" value="8">Trigger code, defined at the property level, is 
+	 executed. This code may cause reflex testing (also called <i>cascade 
+	 requesting</i>), as illustrated in the example below.</li>
+        </ol>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="resultentry2.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="474" data-mc-height="338" src="resultentry2_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <h3><a name="Zooming"></a>Zooming to the result editor</h3>
+        <p>In most of the programs, when zooming into a result (F6), not the standard 
+ result editor is shown but the <a href="results_modify.htm">Result.Modify()</a> 
+ screen.&#160;</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="rslt_modifysingle.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="540" data-mc-height="301" src="rslt_modifysingle_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p>The Result.Modify() screen has several advantages in comparison to the 
+ classic result editor:</p>
+        <ul>
+            <li class="kadov-p" value="1">It only contains the most essential information 
+	 and shows this on one page.</li>
+            <li class="kadov-p" value="2">It allows to zoom large (string) result values.</li>
+            <li class="kadov-p" value="3">It allows to expand text modules embedded by means 
+	 of "{&lt; }".</li>
+            <li class="kadov-p" value="4">It provides immediate access to the phone functions.</li>
+        </ul>
+        <p>Users for which access to the Result.Modify() function is denied will 
+ also get this screen, but all widgets will be read-only. The <span class="ui_element">Expand</span> 
+ buttons are always enabled, but users with insufficient privileges will 
+ be unable to save the expansion.&#160;&#160;<a href="results_modify.htm">Click 
+ here for details on privilege handling by this program</a>.&#160;&#160;</p>
+        <p>The standard result editor is available under the <span class="ui_element">Detail</span> 
+ button of the Result.Modify() program:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="resultentry3.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="542" data-mc-height="349" src="resultentry3_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">External comments are displayed on outbound 
+ reports. &#160;Internal comments are for internal use only.</p>
+        <p style="text-align: left;">The <span class="ui_element">Log</span> field 
+ (also available via the Result.ViewLog() method) gives a detailed description 
+ of all important events that took place for this result and its predecessors. 
+ This logging also indicates when a result has been modified, repeated, 
+ selected, .... together with the entered value, the rejection reason etc.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns=""><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p style="text-align: left;" xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="result_log.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="334" data-mc-height="163" src="result_log_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <h2 style="text-align: left;"><a name="Result query"></a>Result query</h2>
+        <p class="fieldlabel">Incomplete results query</p>
+        <div class="indented">
+            <p>The result query is available from the main menu via <span class="ui_element">Start &gt; Routine 
+&gt; Results &gt; Incomplete results</span>.&#160;The 
+ results are first sorted on specimen internal id and then using the default 
+ property classification.</p>
+            <p class="fieldlabel">Status range</p>
+            <div class="indented">
+                <p>The status <span class="ui_element">Validated</span> is deliberately not 
+ added in order to avoid a too large number of results.</p>
+            </div>
+            <p class="fieldlabel">Executing department 
+ (group)</p>
+            <div class="indented">
+                <p>Allows to search for orders that have 
+ at least one action that is executed in the specified executing department 
+ (group). &#160;This is determined by the procedure's department.</p>
+            </div>
+            <p class="fieldlabel">Filter</p>
+            <div class="indented">
+                <p>If the provided query options are still not 
+ sufficient, you can still create a user-defined MISPL filter.</p>
+            </div>
+        </div>
+        <p class="fieldlabel"><a name="Extended result query"></a>Extended result query</p>
+        <div class="indented">
+            <p>To allow querying on validated results and QC results, you can use the 
+ extended result browser.&#160;It supports the same selection criteria 
+ as the <a href="../../modules/statistics/production/statistics_results.htm">result 
+ statistics program</a>.&#160;The results are sorted by specimen 
+ internal id + order id + object time.&#160;This query is available 
+ from the main menu via <span class="ui_element">Start &gt; Routine &gt; Results &gt; Extended 
+ query</span>.</p>
+        </div>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>Result query and browser performance can be improved if you:</p>
+            <ul>
+                <li value="1">exclude discontinued results. The inclusion of discontinued results is likely to significantly increase the number of results considered, and so reduce performance.</li>
+                <li value="2">set as many query options as possible.</li>
+                <li value="3">use small ranges where a <span class="ui_element">From</span> / <span class="ui_element">to</span> value can be entered. For example, reducing the <span class="ui_element">Object date</span> range can help improve performance.</li>
+            </ul>
+        </div>
+        <h2><a name="Results browsers"></a>Result browsers</h2>
+        <p>There are several result browsers in GLIMS: confirmation and validation 
+ screen, result overview etc.</p>
+        <p>For more information, please check the chapter <a href="results_browsers.htm">Result 
+ browsers</a>.</p>
+    </body>
+</html>

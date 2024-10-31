@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - Support for "Kodierregelwerke" (KRW Stammdatei) checks (BILX_GKVDT-00479)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor843"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>Support for "Kodierregelwerke" (KRW Stammdatei) checks (BILX_GKVDT-00479)</h1>
+        <h2>Support of "Kodierregelwerke" checks</h2>
+        <p>From now on the KVDT checks verify the "Kodierregeln" as provided in the KRW Kodierregelwerke SD Stammdatei by the KBV.</p>
+        <p>The "Kodierregeln" contain some restrictions in regards to the ICD codes (diagnosis codes), DS codes (Diagnosesicherheit) and GNR (Gebührennummer).</p>
+        <ol>
+            <li value="1">The check is done per GNR (FK 5001) in the KVDT message and compared with the ICD and GNR of the Order (Behandlungsfall/Uschein)</li>
+            <li value="2">The check runs automatically during the KVDT export or when running the Order.CheckKVDT() MISPL. During the preliminary Order.CheckKVDT() check there are no real GNR yet, but the ICD DS and ICD-ICD checks can already be executed. The first KRW Kodierrregeln check run of the day will generate a log.</li>
+            <li value="3">GLIMS does not perform an automatic correction of the ICD codes (DELETE/ADD), users must replace the erroneous ICD code manually. Detected "Kodierregeln" issues are added (as warning or error depending on the "Kodierregel Fehlerstatus") to the KVDT error/warning list and are logged under log type "KBV KRW kodierregel check".</li>
+            <li value="4">The "Kodierregeln" check is optional, it can be disabled via site attribute XDT_SkipKRW = YES on specific site.</li>
+            <li value="5">The KRW SD file krw*.xml is not stored in a GLIMS table but automatically loaded when necessary (once per session). A recent krw*.xml is expected in the GLIMS BILLDAT directory. Since there is not always a new krw*.xml file for each quarter, the latest file (highest year + quarter  + version but &lt;= current year + quarter) is taken.</li>
+            <li value="6">The KRW checks are not applied for FK 4101 (Keine Prüfung wenn Inhalt FK 4101 (invoice quarter) &lt;&gt; FK 9204 (shipment quarter).</li>
+            <li value="7">This first version only checks for the Windows flavor  in IcdKrwSdHelper.cls.</li>
+        </ol>
+        <h2>Additional improvements</h2>
+        <p>This modification contains other ICD code related changes:</p>
+        <ol>
+            <li value="1">The import of the ICD Stammdatei (not the KRW but the already supported ICD import) has been extended.</li>
+            <li value="2">In the past we only stored the end date (XDT_QuarterEnd), but since users need to be able to skip future ICD Codes, the start date (or quarter) should be stored as well. A new site attribute XDTQuartalStart (YYYYQ) will automatically be added during the import of the new diagnosis code site attribute XDTQuartalStart QYYYY and is based on the start date of the SD ICD file. Please note that this QuarterStart is only specified for new ICD Codes (since the ICD SD does not contain historical values).</li>
+            <li value="3">The ICD code site attribute, previously shown on the order site attribute page is now available in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Referral</span> tab of the order entry as well.</li>
+            <li value="4">Additionally, now there is a find function  (CTRL+F on ICD code) and an add button (+) to add an ICD code.</li>
+        </ol>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">Please note that the label is now more specific (conform to the Pflichtfunktion ICD codes P10-80)</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">Please note that there are Behandlungsdiagnosen (implemented FK 6001 field) and DauerDiagnosen (not used in GLIMS).</p>
+        </div>
+    </body>
+</html>

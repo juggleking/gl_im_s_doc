@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Communication|Translators" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Translators</title>
+        <style>span.hcp4
+{
+	font-weight: bold;
+}
+
+b.hcp5
+{
+	font-weight: bold;
+}
+
+span.hcp1
+{
+	font-style: italic;
+}
+
+span.hcp3
+{
+	font-weight: bold;
+}
+
+</style>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Translators</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> 
+ - <a href="#Beta%20translator%20versions">Beta translator versions</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The translator's job is to translate messages from an external application's 
+ language into the GLIMS internal language, and vice versa. Translators are available from the main menu via <span class="ui_element">Start -&gt; System management -&gt; Services -&gt; Translators</span>. </p>
+        <h2><a name="Fields"></a>Fields</h2>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="translator_editor.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="753" data-mc-height="534" src="translator_editor_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Background and Description Page</h3>
+        <p class="fieldlabel">Name</p>
+        <div class="indented">
+            <p>Should not contain any characters other than letters, 
+ digits and underscores. The first character must be a letter or an underscore.</p>
+        </div>
+        <p class="fieldlabel">Internal language</p>
+        <div class="indented">
+            <p> Should be matched by the internal language of the associated service.
+ For GLIMS, this should always be set to <span class="ui_element">URL</span>.</p>
+        </div>
+        <p class="fieldlabel">Autostart</p>
+        <div class="indented">
+            <p>When enabled, and the <span class="ui_element">Autostart</span> option of the associated <a href="../services/Services.htm">Service</a> is also enabled, the translator will be started by the <a href="../services/gp_site_startup_services.htm">Startup services</a> function.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>On Unix: use the parameter <b>-a</b>: e.g. mam glims start -a -n.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Seq no</p>
+        <div class="indented">
+            <p>Determines 
+ the sequence in which translators are started and stopped by the  <a href="../services/gp_site_startup_services.htm">Startup services</a> and <a href="../services/gp_site_shutdown_services.htm">Shutdown services</a> functions, 
+	 respectively. Shutdown uses the inverted order.</p>
+        </div>
+        <p class="fieldlabel">Time out</p>
+        <div class="indented">
+            <p>The number of seconds that 
+ the associated service is willing to wait for an answer from the translator. 
+ &#160;The service sends a message to the translator and expects the answer within 
+ this amount of seconds.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The translator forwards the translated message to the external 
+ application and expects the answer within a number of seconds as specified by 
+ the <span class="ui_element">External interface time out</span> (see below). If the latter exceeds the translator <span class="ui_element">Time 
+ out</span>, it is possible that when the translator tries to forward the translated 
+ response back to the service, the latter is no longer listening. That is when 
+ the translator logs <span class="ui_element">Invalid I/O message channel index...</span></p>
+            </div>
+        </div>
+        <p class="fieldlabel">Server</p>
+        <div class="indented">
+            <p>Reference to a <a href="../services/Services.htm">Service</a> of type <span class="ui_element">Translator server</span>.</p>
+        </div>
+        <p class="fieldlabel">Driver type</p>
+        <div class="indented">
+            <p>Should be set to <span class="ui_element">Java</span> for Java-based translators. For Java translators, a <span class="ui_element">Communication engine</span> must be specified.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">Contrary to Translators with Classic drivers, Translators with Java drivers cannot be registered as Windows services.</li>
+                    <li value="2">A Java translator inherits the <span class="ui_element">Service group</span> from its <span class="ui_element">Communication engine</span>.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Communication engine</p>
+        <div class="indented">
+            <p>For translators with <span class="ui_element">Driver type</span> set to Java, a <a href="../services/Services.htm">communication engine</a> must be specified.</p>
+        </div>
+        <p class="fieldlabel">Driver</p>
+        <div class="indented">
+            <p>Name of the actual driver used 
+ to communicate with the external application. </p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>The version of the translator's driver can be extracted through MISPL.&#160; </p>
+                <p>Example:&#160; <i>"RETURN .DriverVersion;"</i></p>
+            </div>
+        </div>
+        <p class="fieldlabel">Specific options</p>
+        <div class="indented">
+            <p>A list of options passed to the driver. The format is { 
+ -&lt;Name&gt; [&lt;Value&gt;] }. These driver-specific options are documented in the 
+ driver documentation.</p>
+        </div>
+        <p class="fieldlabel">Restart failure</p>
+        <div class="indented">
+            <p>Not yet supported.</p>
+        </div>
+        <p class="fieldlabel">Service group</p>
+        <div class="indented">
+            <p>The <a href="../service_groups/service_groups.htm">service group</a> to which this translator belongs.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>To easily move multiple <span class="ui_element">Translators</span> from one <span class="ui_element">Service group</span> to another, use the <span class="ui_element">Translator</span>-based function <span class="ui_element">Change service group</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>Free text description.</p>
+        </div>
+        <h3>Logging Page</h3>
+        <p class="fieldlabel">Verbosity</p>
+        <div class="indented">
+            <p>Defines the amount of logging detail.  Info, warning and error messages are 
+ always logged, independent from the log verbosity.</p>
+            <p class="fieldlabel">Low</p>
+            <div class="indented">
+                <p>TCP/IP communication is not logged.</p>
+            </div>
+            <p class="fieldlabel">Medium (recommended)</p>
+            <div class="indented">
+                <p>TCP/IP communication is fully logged.</p>
+            </div>
+            <p class="fieldlabel">High</p>
+            <div class="indented">
+                <p>Byte per byte logging. </p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>Use this for debugging purposes only !</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">File refresh, File refresh unit</p>
+        <div class="indented">
+            <p>Period after which open log files should be 
+ closed and a new log file should be opened.The actual log file names will be different for each new 
+	 version by suffixing them with a creation time stamp.</p>
+        </div>
+        <p class="fieldlabel">File keep, File keep unit</p>
+        <div class="indented">
+            <p>Period after which log files should be 
+ automatically deleted.&#160;If not specified, old log 
+ files have to be deleted manually.&#160; You cannot delete a log file of a running translator. </p>
+        </div>
+        <p class="fieldlabel">File max size</p>
+        <div class="indented">
+            <p>The maximal 
+ size in MB of the log file. </p>
+        </div>
+        <p class="fieldlabel">File refresh on max size</p>
+        <div class="indented">
+            <p>Determines what happens if the <span class="ui_element">File max size</span> is reached. </p>
+            <ul>
+                <li value="1">If enabled, a new 
+ log file is created. </li>
+                <li value="2">If disabled, the translator exits to prevent disk overflow. 
+ In such case, the associated service is informed which alerts all 
+ users having a role with <span class="ui_element">User type</span> set to <span class="ui_element">System manager</span> by email. </li>
+            </ul>
+        </div>
+        <h3>External interface page</h3>
+        <p class="fieldlabel">Host, Port</p>
+        <div class="indented">
+            <p>Informs the translator where to find the external application it needs to
+ communicate with.</p>
+        </div>
+        <p class="fieldlabel">Time out</p>
+        <div class="indented">
+            <p>Expressed
+ in seconds. Can usually be left to its default value.</p>
+        </div>
+        <h3>Status page</h3>
+        <p class="fieldlabel">Host</p>
+        <div class="indented">
+            <p>As specified in the <a href="../service_groups/service_groups.htm">service 
+	 group</a> to which the translator belongs.        </p>
+        </div>
+        <p class="fieldlabel">Port, Process id</p>
+        <div class="indented">
+            <p>Are set automatically 
+	 when the translator is started.</p>
+        </div>
+        <h3>Advanced page</h3>
+        <p class="fieldlabel">Internal options</p>
+        <div class="indented">
+            <p>Stores the option list sent by some translators upon registration (e.g. HOML).</p>
+        </div>
+        <h2>Translator log files</h2>
+        <p>Translator log files are located in automatically created folders. </p>
+        <p class="fieldlabel">Default location / file name</p>
+        <div class="indented">
+            <p>&lt;log root&gt;/trl/&lt;translator name&gt;/&lt;translator name&gt;_&lt;time stamp&gt;.log where <span class="ui_element">&lt;log root&gt;</span> is <span class="ui_element">&lt;application root&gt;/log</span> by default.</p>
+        </div>
+        <p class="fieldlabel">Custom location</p>
+        <div class="indented">
+            <p>
+&lt;log root&gt; is &lt;application root&gt;/log by default, but can be overridden by </p>
+            <ol>
+                <li value="1">the <span class="ui_element">Log directory</span> of the <a href="../service_groups/service_groups.htm">service group</a> to which the service belongs</li>
+                <li value="2">the
+<span class="ui_element">Log folder</span> in the <a href="../../gp_site/options_mate.htm">general options</a> (<span class="ui_element">Start -&gt; System management -&gt; Customize -&gt; MATE</span>).</li>
+            </ol>
+        </div>
+        <p class="fieldlabel">Log file names with time stamp</p>
+        <div class="indented">
+            <p>Due to automatic refreshing, multiple log files may be generated. The actual 
+log file names will be different for each new version by suffixing them with a 
+creation time stamp. </p>
+        </div>
+        <p class="fieldlabel">Log file names without time stamp</p>
+        <div class="indented">
+            <p>There is also a single log file without 
+a time stamp suffix in its name. </p>
+            <p>This file captures any messages generated 
+either before the logging environment of the process is fully set up or by default low-level error handling. </p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>The presence of such a log file may be an 
+indication of unexpected errors. </p>
+            </div>
+        </div>
+        <h2><a name="Beta translator versions"></a>Beta translator versions</h2>
+        <p style="text-align: left;">To allow on-site testing of unreleased communication drivers, the internal 
+ service will allow translators using a non-validated driver version to 
+ register without checking for a valid license. </p>
+        <p style="text-align: left;">In such case:</p>
+        <ul>
+            <li style="text-align: left;" value="1">Users having a role with <span class="ui_element">User type</span> set to 
+ <span class="ui_element">System manager</span> will receive a warning message by mail.&#160;</li>
+            <li style="text-align: left;" value="2">Use of non-validated driver versions is marked in the <span class="ui_element">Translator</span> record 
+ as long as it is running.</li>
+            <li style="text-align: left;" value="3">Use of non-validated driver versions is logged in 
+the <span class="ui_element">Service</span> log.</li>
+        </ul>
+    </body>
+</html>

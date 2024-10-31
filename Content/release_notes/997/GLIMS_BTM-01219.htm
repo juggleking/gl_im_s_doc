@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - It should not be possible to move blood selections in status 'Ready' directly to status 'Discontinued' when a blood bag in status 'Checked out' is checked (GLIMS_BTM-01219)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor31"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>It should not be possible to move blood selections in status 'Ready' directly to status 'Discontinued' when a blood bag in status 'Checked out' is checked (GLIMS_BTM-01219)</h1>
+        <h2>Issue</h2>
+        <p>The logic of blood selection status transitions was changed with GLIMS BTM-00994 (9.8.4) and GLIMS BTM-00995 (9.9.0) so that a blood selection in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ready</span> with a linked  blood bag in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Checked out</span> could be moved to status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Discontinued</span> and the blood bag returned to status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Initial</span>.</p>
+        <p>This logic was undone in GLIMS_BTM-01041 (9.9.0) with the refactoring of the blood bag/selection status transitions, so the behaviour of GLIMS versions lower than 9.8.4 remained in GLIMS 9.9.0.</p>
+        <p>However, the majority of the GLIMS customers do not want this behaviour. The status of a blood bag and the related blood selection should NEVER be changed for a blood bag that has already left the lab in status <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Checked out</span>. The disadvantage of tampering with the status of this blood bag is that the blood bag can no longer be traced.</p>
+        <h2>Solution</h2>
+        <p>This issue, which occurred since GLIMS 9.8.4, has been corrected: it is no longer possible to discontinue a blood selection with a linked blood bag in status <span class="ui_element">Checked out</span>.</p>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">Warning - backward compatibility</span>
+            </p>
+            <p>This modification is NOT compatible with GLIMS versions between 9.8.4 (included) and 9.9.0 (not included). Where it was previously possible to discontinue a blood selection, this will no longer be possible,  and a warning will be displayed.</p>
+        </div>
+    </body>
+</html>

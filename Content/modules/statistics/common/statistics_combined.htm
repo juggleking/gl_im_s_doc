@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Statistics|Common features" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Combined_statistics">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Combined statistics</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1116"></a>
+            <MadCap:concept term="Statistics" /><a name="kanchor97"></a><a href="../index_statistics.htm">Statistics</a> -&gt; Combined statistics</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#How%20does%20it%20work">How 
+ does it work</a> - <a href="#Configuration">Configuration</a> - <a href="#Notes">Notes</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The combined statistics concept can be applied to any type of statistics 
+ in GLIMS.&#160; It is possible to take several pre-defined statistics 
+ and merge (combine) them into 1 single output.</p>
+        <p>These several statistics to be combined can&#160;</p>
+        <ul>
+            <li class="kadov-p" value="1">Show different calculations on the same characteristic 
+ values (e.g. the average + the minimum + the maximum).</li>
+            <li class="kadov-p" value="2">Show different characteristic values (e.g. the number 
+ + the average value).</li>
+            <li class="kadov-p" value="3">Be based on different selections (e.g. orders of 
+ issuer group A last month + orders of issuer group B this month).</li>
+            <li class="kadov-p" value="4">Be based on different base tables (e.g. number of 
+ results and number of orders).</li>
+            <li class="kadov-p" value="5">Be based on information from different statistical 
+ modules (e.g. production statistics and financial statistics).</li>
+        </ul>
+        <p>The only requirement for these combinations is that criterion for the 
+ rows and the criterion for the 'multi-tables' are always identical.&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>You can only use sub-statistics from modules for which the license 
+ has been purchased.</p>
+        </div>
+        <h2><a name="How does it work"></a>How does it work</h2>
+        <p>All sub-statistics will be executed sequentially one after the other, 
+ and their outputs will be combined as followed:</p>
+        <ul>
+            <li class="kadov-p" value="1">If they have rows that appear identically in other 
+ sub-statistics, these rows will be merged and they will appear only once.</li>
+            <li class="kadov-p" value="2">If multi-table output is applicable and they have 
+ tables that appear with the same name in other sub-statistics, these tables 
+ will be merged and will thus appear only once.</li>
+            <li class="kadov-p" value="3">The columns are not merged but they are put one aside 
+ from the other: beginning at the left, each sub-statistic's columns will 
+ be added right from the already existing columns, from left to right.</li>
+        </ul>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <table style="width: 100%;x-border-left: 1px table-solid;x-border-top: 1px table-solid;x-border-right: 1px table-solid;x-border-bottom: 1px table-solid;border-collapse: separate;" width="100%" border="0">
+            <tr>
+                <td style="width: 25px;" valign="top" width="25px">
+                    <img src="../statistics_combined_button.gif" style="border: none;width: 25px;height: 24px;float: none;border-style: none;" width="25" height="24" border="0" />
+                </td>
+                <td valign="top">In the first screen of all statistics modules, a button can 
+ be found at the top for combining statistics. When you hit this button, 
+ the screen is replaced with another screen where you can specify which 
+ sub-statistics you want to&#160; combine, and in which sequence.</td>
+            </tr>
+        </table>
+        <p>The sub-statistics are specified by their function parameter sets.</p>
+        <table border="0" width="100%">
+            <tr>
+                <td valign="top">
+                    <p class="fieldlabel">Add</p>
+                    <div class="indented">
+                        <p>Click the <span class="ui_element">Add</span> button or use the Insert-key to add a sub-statistic: 
+ first you <b> choose from which statistical module</b>, then&#160;you select a <b> parameter set</b> in which the
+ sub-statistic is configured. If 
+ the parameter set does not exist yet, you can create&#160;it with the insert-key.&#160;
+ Give it a name and then use the contextual menu function 'Setup' to
+ predefine the statistics.</p>
+                        <p>         The second column shows the subject (the base table) of each component.&#160;
+ After having used F6, double-click or 'Setup' on a component, the component list
+ is automatically refreshed in order to show the correct contents.</p>
+                    </div>
+                    <p class="fieldlabel">Remove        &#160;&#160;&#160;</p>
+                    <div class="indented">
+                        <p> Click the <span class="ui_element">Remove</span> button or use the Delete-key to remove a 
+ sub-statistic from the list. (note: this does not delete the&#160; function parameter set itself)<br />          &#160;&#160;</p>
+                    </div>
+                    <p class="fieldlabel">Arrows </p>
+                    <div class="indented">
+                        <p>With the  <span class="ui_element">arrow</span> buttons you can  <b>change the sequence</b> of the sub-statistics.         &#160;&#160;&#160;</p>
+                    </div>
+                    <p class="fieldlabel">Setup</p>
+                    <div class="indented">
+                        <p>To <b>change the configuration</b> of a certain sub-statistic: use the
+          <span class="ui_element">Setup</span> 
+ button or double-click on the sub-statistic line. You can also use F6 to zoom into the parameter set.         &#160;&#160;&#160;</p>
+                    </div>
+                    <p class="fieldlabel">Next</p>
+                    <div class="indented">
+                        <p>Once you finished the list, hit <span class="ui_element">Next</span> to go to the output configuration 
+ screen.         &#160;&#160;</p>
+                    </div>
+                    <p class="fieldlabel">Normal</p>
+                    <div class="indented">
+                        <p>The <span class="ui_element">Normal</span> button can be used to switch back to normal (non-combined) statistics.</p>
+                    </div>
+                </td>
+                <td width="471" valign="top"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../statistics_combined_firstscreen.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="536" data-mc-height="332" src="../statistics_combined_firstscreen_thumb_0_120.png" tabindex="" /></a>
+                </td>
+            </tr>
+        </table>
+        <h3>Combine by</h3>
+        <p>When using combined statistics, the global output is built by adding the 
+columns (one or more) of each separate statistic at the right side of the 
+columns of the other parts.<br />In some cases this is not the most useful way. </p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>When combining: </p>
+            <blockquote>
+                <p>a. the number of orders per month (stat 1) and</p>
+            </blockquote><pre>           (1) Number of orders:
+                       | Jul 05 | Aug 05
+               Issuer1 | ...    | ...
+               Issuer2 | ...    | ...</pre>
+            <blockquote>
+                <p>b. the invoiced amount per month (stat 2),</p>
+            </blockquote><pre>           (2) Total amount on invoices:
+                       | Jul 05 | Aug 05
+               Issuer1 | ...    | ...
+               Issuer2 | ...    | ...</pre>
+            <blockquote>
+                <p>then the combination of both would give something like:</p>
+            </blockquote><pre>                       | Number of orders | Number of orders | Invoiced amount  | Invoiced amount
+                       | Jul 05           | Aug 05           | Jul 05           | Aug 05           
+               Issuer1 | ...              | ...              | ...              | ...
+               Issuer2 | ...              | ...              | ...              | ...</pre>
+            <blockquote>
+                <p>In this case it could be nice to have the columns 'merged' by month, which 
+ would look like this:</p>
+            </blockquote><pre>                       |              Jul 05                 |              Aug 05 
+                       | Number of orders | Invoiced amount  | Number of orders | Invoiced amount
+               Issuer1 | ...              | ...              | ...              | ...
+               Issuer2 | ...              | ...              | ...              | ...</pre>
+        </div>
+        <p>To obtain this effect, you can use the option <span class="ui_element">Combine by...</span>.&#160; 
+Its default value is "adding columns at the right side". It adds each separate 
+statistic as one or more columns to the global output.&#160; For merging and 
+grouping the columns by 'month' like the example above, choose the value "adding 
+sub-columns if possible (grouped on column name)".</p>
+        <p>Additionally it is also possible to have the statistics added vertically, 
+i.e. by adding rows. Similarly you can choose between:</p>
+        <blockquote>
+            <p>&#160;"adding rows at the bottom"; this will give something like:</p>
+        </blockquote><pre>                                   | Jul 05 | Aug 05
+        Number of orders | Issuer1 | ...    | ...
+                         | Issuer2 | ...    | ...
+        Invoiced amount  | Issuer1 | ...    | ...
+                         | Issuer2 | ...    | ...</pre>
+        <blockquote>
+            <p>"adding sub-rows if possible (grouped on row name)"; this will give 
+ something like:</p>
+        </blockquote><pre>                                   | Jul 05 | Aug 05
+        Issuer1 | Number of orders | ...    | ...
+                | Invoiced amount  | ...    | ...
+        Issuer2 | Number of orders | ...    | ...
+                | Invoiced amount  | ...    | ...</pre>
+        <h2><a name="Notes"></a>Notes</h2>
+        <ul>
+            <li style="text-align: left;" value="1"> Each sub-statistics can also be run on its own as a normal statistic run. 
+ This can be done by configuring a <span class="ui_element">Command</span> that&#160;refers to that function parameter set.
+ This way each sub-statistics can also be tested separately.    &#160;&#160;</li>
+            <li style="text-align: left;" value="2"> When you want to configure a <span class="ui_element">Command</span> for combined statistics, you can 
+ choose any of the 'Statistics...' functions (e.g. StatisticsProduction) that&#160;are defined on table 'gp_Site'.&#160; It does not matter which at this point.<br /></li>
+            <li style="text-align: left;" value="3"> In case you changed your mind and you want to go back to the regular non-combined 
+ statistics, make the list of sub-statistics&#160;empty and hit NEXT. You will then get back into the normal first screen 
+ (the layout configuration screen).</li>
+        </ul>
+    </body>
+</html>

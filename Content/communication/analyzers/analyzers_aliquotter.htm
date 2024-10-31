@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Aliquotter_station_configuation">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Aliquotter station configuration</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor58"></a>Aliquotter station configuration</h1>
+        <h2>Basic configuration</h2>
+        <p class="MsoNormal">The GLIMS internal service supports primary tube queries 
+ from aliquotter stations. The configuration for an aliquotter 
+ station in GLIMS will be modeled as in the following figure:</p>
+        <p class="MsoNormal" style="text-align: center;">
+            <img src="aliquotter_model.gif" alt="" style="border: none;" width="585" height="492" border="0" />
+        </p>
+        <p class="MsoNormal">As explained in the figure 
+ above, an aliquotter procedure must be configured for the aliquotter station. The 
+ output of the aliquotter procedure consists of the secondary specimens, 
+ which are in turn input of the 'regular' procedures. Note that 
+ the final properties must have assessment methods for both the 'assessment 
+ stations' and the 'aliquotter station'.</p>
+        <p class="MsoNormal">When the aliquotter station 
+ does a query for the primary specimen, GLIMS returns the secondary tubes 
+ in its reply message. In this message, GLIMS will send the 
+ outbound codes as defined in the assessment methods of the aliquotter 
+ station. This allows the latter to determine to which stations 
+ the secondary tubes must be sent.</p>
+        <p class="MsoNormal">Note that GLIMS will reply 
+ with a secondary tube as long as one of the corresponding results has 
+ a status lower than 'Validated'. For archive tubes, the result 
+ status must be 'Validated'.</p>
+        <p class="MsoNormal">Example of an order schedule 
+ and a communication message:</p>
+        <p class="MsoNormal">
+            <img src="alliquotter_schedule.gif" alt="" style="border-width: 1px;border-style: solid;" width="414" height="311" border="1" />
+        </p>
+        <p class="MsoNormal">
+            <img src="alliquotter_message.gif" alt="" style="border-width: 1px;border-style: solid;" width="657" height="297" border="1" />
+        </p>
+        <h2>Relevant fields in internal astm protocol</h2>
+        <h3>Order query</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Pti Field name </b>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Glims </b>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal"><b style="font-weight: bold;">Astm field</b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal"><b style="font-weight: bold;">Comment </b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal">ANLZ_ALIQUOTTER 'ALIQUOTTER' </p>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal">'ALIQUOTTER'</p>
+                    <p class="MsoNormal">Query for specimens that are input of the 
+		 aliquotter procedure and the specimens that are output of that 
+		 procedure </p>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">Q.14.1.9 
+		 </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">-</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal">ANLZ_NEXT_QUERY_SPECIFIC:<br />		ANLZ_QUERY_SPECIFIC_TAG</p>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal">If tag = 'ArchiveData': <br />		Archive result value </p>
+                </td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">Q.15</td>
+                <td style="vertical-align: top;width: 25%;" bgcolor="#EFEFEF">See 
+		 below</td>
+            </tr>
+        </table>
+        <h3>Order query reply (aliquotter-specific)</h3>
+        <table width="100%">
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Pti 
+		 Field name</b>
+                </td>
+                <td style="width: 30%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Glims</b>
+                </td>
+                <td style="width: 11%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Astm 
+		 field</b>
+                </td>
+                <td style="width: 34%;" bgcolor="#EFEFEF"><b style="font-weight: bold;">Comment</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF">ANLZ_SPECIMEN_TUBE_TYPE</td>
+                <td style="width: 30%;" bgcolor="#EFEFEF">Primary/Secundary tube 
+		 material *</td>
+                <td style="width: 11%;" bgcolor="#EFEFEF">O.27.1.2</td>
+                <td style="width: 34%;" bgcolor="#EFEFEF">
+                    <p class="MsoNormal">PT 
+		 = primary tube, ST = secondary tube</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF">ANLZ_COLLECTION_VOLUME</td>
+                <td style="width: 30%;" bgcolor="#EFEFEF">Material.mat_MinimalSize 
+		 * ***</td>
+                <td style="width: 11%;" bgcolor="#EFEFEF">O.10.1.1</td>
+                <td rowspan="2" style="width: 34%;" bgcolor="#EFEFEF">Value can 
+		 be converted to SpecimenSizeUnit **</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF">ANLZ_MAXIMAL_VOLUME</td>
+                <td style="width: 30%;" bgcolor="#EFEFEF">Material.mat_MaximalSize 
+		 * ***</td>
+                <td style="width: 11%;" bgcolor="#EFEFEF">O.10.1.4</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF">ANLZ_COLLECTION_UNIT</td>
+                <td style="width: 30%;" bgcolor="#EFEFEF">Material.mat_SizeUnit 
+		 -&gt; Unit.unit_Name * ***</td>
+                <td style="width: 11%;" bgcolor="#EFEFEF">O.10.1.2</td>
+                <td style="width: 34%;" bgcolor="#EFEFEF">Unit name can be that 
+		 SpecimenSizeUnit **</td>
+            </tr>
+            <tr>
+                <td style="width: 25%;" bgcolor="#EFEFEF">ANLZ_SPECIMEN_MATERIAL_SHORT</td>
+                <td style="width: 30%;" bgcolor="#EFEFEF">Material.mat_ShortName 
+		 ***</td>
+                <td style="width: 11%;" bgcolor="#EFEFEF">O.16.1.5</td>
+                <td style="width: 34%;" bgcolor="#EFEFEF">
+                </td>
+            </tr>
+        </table>
+        <p class="MsoNormal">* Fields only retrieved in case of aliquotter-query<br />** SpecimenSizeUnit: field on table Station (aliquotter station !)<br />*** IF QuerySpecificTag = "SpecimenData"</p>
+        <h2>Download of specimen archive result value to aliquotter station</h2>
+        <h3>Definition</h3>
+        <p class="MsoNormal">Some aliquotter stations want to know if there are 
+ secondary tubes used for specimen archiving. The aliquotter station translator 
+ will in that case transmit the query specific tag 'ArchiveData' to 
+ the internal service to retrieve the archive information.</p>
+        <h3>Configuration</h3>
+        <p class="MsoNormal">What needs to be configured in Glims? The 
+ archive tube is a secondary tube, so the basic configuration as described 
+ above is needed.</p>
+        <p>Moreover, a logical site-attribute must be defined 
+ on the table AssessmentMethod (of the aliquotter station !) with name 
+ "_IsArchive". The value of this site attribute must 
+ be set to true (enabled) on the aliquotter stations' archive assessment 
+ method.</p>
+        <p>When the aliquotter query is received, the internal 
+ service will transmit the archive data as a result to the translator. 
+ The result should be validated. The outbound id of the assessment method 
+ will represent the archive name, the result value will represent the location 
+ of the tube in the archive.</p>
+    </body>
+</html>

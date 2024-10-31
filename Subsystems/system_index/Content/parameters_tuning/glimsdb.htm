@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="system_index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Parameter tuning" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="GLIMSdb.pf">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMSdb.pf</title>
+        <link href="../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor26"></a>
+            <MadCap:concept term="System management" /><a name="kanchor18"></a>System manual -&gt; The parameters in glimsdb.pf, genrwdb.pf and genrodb.pf</h1>
+        <p>The glimsdb.pf, genrwdb.pf and genrodb.pf parameter files are located in the "Dat" directory of your GLIMS installation.&#160;&#160;These parameter files are used when modifying the bi-block size and bi-cluster size:</p>
+        <blockquote>
+            <p>E.g.&#160;&#160;proutil glims -C truncate -pf glimsdb.pf</p>
+        </blockquote>
+        <p>The parameter files contain two parameters:</p>
+        <p><b style="font-weight: bold;">-bi</b>
+        </p>
+        <blockquote>
+            <p>Specifies the size of the cluster in kilobytes. The number must be a multiple of 16 ranging from 16 to 262,128 (16K to 256MB). The default cluster size is 128K. If you use a value that is not a multiple of 16, PROGRESS rounds the value up to next multiple of 16.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">-biblocksize</b>
+        </p>
+        <blockquote>
+            <p>Specifies the size of the BI blocks in each buffer in kilobytes. The valid values are 0, 1, 2, 4, 8, and 16. A value of 0 tells PROGRESS to use the default block size.&#160;&#160;You cannot use a value of 1 on 2K database block size machines, such as Sequent. The block size cannot be smaller than the database block size.</p>
+        </blockquote>
+        <p><b style="font-weight: bold;">Attention:</b>
+        </p>
+        <p>As of version 5.5E, GLIMS forces <a href="default_parameter_settings.htm">default values</a> for these parameters:#</p>
+        <blockquote>
+            <p><b style="font-weight: bold;">&lt;dbname&gt;db.pf</b>
+            </p>
+            <ul>
+                <li class="kadov-p" value="1">Unix: -bi 8192 -biblocksize 8&#160;&#160;-&#160;&#160;Windows -biblocksize 4)</li>
+                <li class="kadov-p" value="2">(-bi 4096 for genrw)</li>
+            </ul>
+        </blockquote>
+    </body>
+</html>

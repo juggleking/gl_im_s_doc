@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - Ranking rules</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3802"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Ranking rules
+		</h1>
+        <ul>
+            <li value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li value="2"><a href="#Configuration">Configuration</a>
+            </li>
+            <li value="3"><a href="#How%20are%20the%20ranking%20rules%20applied">How 
+ are the ranking rules applied?</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>Ranking rules allow the setup of rules and priorities for blood bag selection. In this system one can define:</p>
+        <ol>
+            <li value="1">Which blood bags CAN be taken (and thus the others 
+ CANNOT be taken)?</li>
+            <li value="2">How suitable/compatible is each blood bag for the 
+ patient's situation?</li>
+        </ol>
+        <p>On 2 levels:</p>
+        <ol>
+            <li value="1">The compatibility of ABO blood group and rhesus-D</li>
+            <li value="2">The used blood product: when particular patients 
+ should get rather specific blood products (e.g. not just erythrocytes, 
+ but deleucocyted erythrocytes)</li>
+        </ol>
+        <h2><a name="Configuration"></a>Configuration</h2>
+        <h3>Blood recipient types</h3>
+        <p>This table can be reached via <span class="ui_element">Transfusion management</span> -&gt; <span class="ui_element">Configuration</span> 
+ -&gt; <span class="ui_element">Blood recipient types</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bloodrecipienttype.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="705" data-mc-height="708" src="bloodrecipienttype_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>It defines the 'type' of the PATIENT, referring to the following patient 
+ characteristics:</p>
+        <p class="fieldlabel">Seq.</p>
+        <div class="indented">This sequence number is taken into account during the <a href="#How%20are%20the%20ranking%20rules%20applied">evaluation of
+ the applicable blood recipient types</a>.</div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">This option must be activated in order to be taken into account during the evaluation of the ranking rules.</div>
+        <p class="fieldlabel">Name</p>
+        <div class="indented">Free to choose</div>
+        <p class="fieldlabel">Patient blood group</p>
+        <div class="indented">You can specify the exact blood group or use wildcards in order 
+ to reduce the number of recipient type/donor rule combinations:
+								<ul><li value="1"><span class="ui_element">*</span> : means that all patients -no matter which 
+ blood group- will be considered by this type.</li><li value="2"><span class="ui_element">A*</span> : means that patients with blood group 
+ A or A1 or A2 will be considered by this type.</li><li value="3"><span class="ui_element">A*B</span> : means that patients with blood group 
+ AB or A1B or A2B will be considered by this type.</li><li value="4"><span class="ui_element">N.A.</span> : means that patients without known blood 
+ group will be considered by this type. Patients with known blood 
+ group will NOT be considered by this.</li></ul></div>
+        <p class="fieldlabel">Rhesus</p>
+        <div class="indented">You can specify the exact rhesus or use wildcards in order to 
+ reduce the number of recipient type/donor rule combinations:
+				<ul><li value="1"><span class="ui_element">*</span> : means that all patients -no matter which 
+ rhesus value- will be considered by this type.</li><li value="2"><span class="ui_element">N.A.</span> : means that patients without known rhesus 
+ value will be considered by this type; patients with known rhesus will 
+ NOT be considered by this.</li></ul></div>
+        <p class="fieldlabel">Eligibility</p>
+        <div class="indented">MISPL 
+ function to select patients on any other criteria.
+				<div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p>The blood group and rhesus 
+ are taken from the person medical record. For patients where these are 
+ not available yet, you could for instance specify recipient types with unknown blood group and rhesus, but with an eligibility function that gets the blood 
+ group and rhesus from test results.</p></div></div></div></div>
+        <p class="fieldlabel">Object attribute</p>
+        <div class="indented">To select patients for whom this object attribute is currently active.</div>
+        <h3><a name="Blood"></a>Blood donor rules</h3>
+        <p>For each recipient type, you can configure <span class="ui_element">blood donor rules</span>: 
+ each rule defines a type of blood bag that can be selected for this patient 
+ type.</p>
+        <p>To define a blood donor rule, use the Insert key in the <span class="ui_element">Compatible donor blood</span> list in the <span class="ui_element">Blood recipient type</span> screen.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="blooddonorrule.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1001" data-mc-height="546" src="blooddonorrule_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Compatibility score</p>
+        <div class="indented">Each donor rule must have a <span class="ui_element">compatibility score</span>: 
+ this is a number indicating how well that kind of blood is suitable for 
+ that type of patient.</div>
+        <p class="fieldlabel">Donor blood group</p>
+        <div class="indented">You can specify the exact blood group or use wildcards in 
+ order to reduce the number of recipient type/donor rule combinations:
+				<ul><li value="1"><span class="ui_element">*</span> : means 'each blood group is allowed' 
+ (A, B, ...)</li><li value="2"><span class="ui_element">A*</span> : means 'each A allowed', so blood 
+ bags with blood group A or A1 or A2 are all allowed by the rule.</li><li value="3"><span class="ui_element">A*B</span> : means 'each AB allowed', so blood 
+ bags with blood group AB or A1B or A2B are all allowed by the rule.</li></ul></div>
+        <p class="fieldlabel">Donor rhesus-D
+        </p>
+        <div class="indented">You can specify the exact rhesus or you can use *, which means 'each rhesus value allowed' (pos, neg,...).</div>
+        <p class="fieldlabel">Product
+        </p>
+        <div class="indented">Mandatory field</div>
+        <p class="fieldlabel">Product specification
+        </p>
+        <div class="indented">Optional field which allows you to add a more specific rule.</div>
+        <div class="indented">Say a rule was created (without product specification) for Erythrocytes. Now, you want a different, more specific rule (with a higher compatibility score, for instance) to apply specifically to Deleucocyted Erythrocytes. This field enables you to indicate this more specific rule.</div>
+        <p class="fieldlabel">Comment</p>
+        <p class="fieldlabel">Blood attribute</p>
+        <div class="indented">If specified, the rule will only apply to blood bags having this blood attribute.</div>
+        <h3><a name="Object"></a>Object attribute dependent correction factor</h3>
+        <p>GLIMS allows influencing the compatibility score of a certain blood 
+ bag for a certain patient by defining <span class="ui_element">object attribute rules</span>. This 
+ means that according to the object attributes that are currently active 
+ for the patient, the ranking (score) that comes from the donor rules of 
+ the recipient type will be different from case to case.</p>
+        <p>The table involved is called AttributeTransfusionRules. It can be 
+ accessed via <span class="ui_element">Transfusion management</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Object 
+ attribute rules</span>, or from an object attribute: <span class="ui_element">Correction rules for transfusion</span>, 
+ or from a <span class="ui_element">blood product</span>: -&gt; <span class="ui_element">Attribute rules</span> tab.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="obja_transfusionrules.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="694" data-mc-height="366" src="obja_transfusionrules_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Attribute</p>
+        <div class="indented">The rule only applies to patients where this attribute 
+ is currently active.
+</div>
+        <p class="fieldlabel">Blood product</p>
+        <div class="indented"> The rule only applies to this blood product.</div>
+        <p class="fieldlabel">Product specification</p>
+        <div class="indented">When available, the rule 
+ only applies to blood bags with this product specification; when not available
+ (unknown) the rule applies to all product specifications of the blood 
+ product for which no specific rule exists.</div>
+        <p class="fieldlabel">Score factor</p>
+        <div class="indented"> Score factor in % (0-100) to be applied.       <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Note</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><p> If more than one object attribute for the patient 
+ contains transfusion rules, each correction factor can diminish the ranking 
+ (the total correction is the multiplication of all correction factors). If certain product specifications are not allowed 
+ to be given in case of a certain object attribute, the rule should contain 
+ 0 (zero) %.</p></div></div></div></div>
+        <h2><a name="How are the ranking rules applied"></a>How are the ranking rules 
+ applied?</h2>
+        <p>1. When using the function <span class="ui_element">Select compatible bags</span> on a blood selection, GLIMS looks 
+ for the first recipient type that is valid, i.e.:</p>
+        <ol style="list-style: lower-alpha;">
+            <li value="1">no <span class="ui_element" data-mc-edit-date="2016-10-24T15:32:09.4115776+02:00" data-mc-editor="amelier" data-mc-comment="Shouldn't it be &quot;blood group&quot;? In the blood recipient type screen, the field is now called &quot;PAtient blood group&quot;." data-mc-initials="AM" data-mc-creator="amelier" data-mc-create-date="2016-10-24T15:31:31.2084086+02:00">ABO</span>/<span class="ui_element">rhesus</span> specified, or the same as the patient's</li>
+            <li value="2">no <span class="ui_element">object attribute</span> specified, or currently active 
+ for the patient</li>
+            <li value="3">no <span class="ui_element">eligibility</span> function specified, or it evaluates 
+ to TRUE.</li>
+        </ol>
+        <p>The order in which the search is executed is determined by the sequence number of the blood recipient type. If no valid <span class="ui_element">recipient type</span> 
+ is found, the system aborts.</p>
+        <p>2. Next GLIMS goes through all donor rules for this recipient type, 
+ where the blood product is the product that was requested, by order of 
+ the compatibility score. For each donor rule, GLIMS will find all 
+ blood bags available in stock, i.e. those where:</p>
+        <ol style="list-style: lower-alpha;">
+            <li value="1">the <span class="ui_element">blood product</span> is the same</li>
+            <li value="2"><span class="ui_element">blood group</span> and <span class="ui_element">rhesus</span> are the same</li>
+            <li value="3">if the rule contains a Product specification, 
+ it should be the same.</li>
+        </ol>
+        <p>3. In the blood product configuration, you can specify whether <span class="ui_element">an
+antibody &lt;-&gt; antigen check </span>and/or an <span class="ui_element">antigen &lt;-&gt;
+antigen check</span> must be performed. For each antigen, you can specify a
+<span class="ui_element">score factor</span> (%) for each check. If the check fails, the current ranking
+will be multiplied with this factor.</p>
+        <p>4. Each found blood bag gets the <span class="ui_element">compatibility score</span> as ranking value.</p>
+        <p>5. If any attribute transfusion rule with a <span class="ui_element">score factor</span> is applicable, 
+ it will be applied to the <span class="ui_element">compatibility score</span> of the <span class="ui_element">donor rule</span>.</p>
+        <p>6. If there is also a ranking MISPL (defined for the blood product), 
+ it is executed as well. Within this MISPL, the ranking can be re-calculated 
+ or it can be modified. This can be done because you can get the <span class="ui_element">compatibility 
+ score</span> of the <span class="ui_element">donor rule</span> by doing: rank := PeekInteger( "Score" 
+ );</p>
+    </body>
+</html>

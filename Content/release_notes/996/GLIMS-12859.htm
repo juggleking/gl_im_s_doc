@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.6 - Sequence of specimen internal ID assignment was not always correct (GLIMS-12859)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3919"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.6 - </MadCap:conditionalText>Sequence of specimen internal ID assignment was not always correct (GLIMS-12859)</h1>
+        <p>An issue was reported where, in the following scenario, the sequence in which the specimen internal IDs were assigned was not always correct.</p>
+        <p class="fieldlabel">Configuration</p>
+        <ul>
+            <li value="1">A material mat1 and a property prop1.</li>
+            <li value="2">An informational and <a href="../../configuration/properties/properties.htm#Auto" xmlns="http://www.w3.org/1999/xhtml">auto prompt</a> property prop_info1 (scheduled via a different procedure than that of prop1)</li>
+            <li value="3">
+                <p xmlns="http://www.w3.org/1999/xhtml">A panel containing mat1, prop1 and prop_info1 four times:</p>
+                <ul>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">mat1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">prop1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="3">prop_info1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="4">mat1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="5">prop1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="6">prop_info1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="7">mat1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="8">prop1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="9">prop_info1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="10">mat1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="11">prop1</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="12">prop_info1</li>
+                </ul>
+            </li>
+        </ul>
+        <p class="fieldlabel">Routine</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Open order entry and request the panel.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Add the values 1, 2, 3, 4 for the auto prompt properties.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Save the order.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">Open the order outline: the specimen IDs are now in line with the  values entered for the auto prompt properties.</li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.1 - Order entry options to execute action scheduling, post-scheduling and report scheduling locally or on the server (GLIMS-12125)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3470"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.1 - </MadCap:conditionalText>Order entry options to execute action scheduling, post-scheduling and report scheduling locally or on the server (GLIMS-12125)</h1>
+        <h2>Introduction</h2>
+        <p>Three new options are now available in the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_scheduling.htm" xmlns="http://www.w3.org/1999/xhtml">Scheduling</a> tab of the <a href="../../routine/orders/order_entry/options/index_order_entry_options.htm" xmlns="http://www.w3.org/1999/xhtml">Order entry options</a>. They allow the user to determine for each phase of the order post-processing if it should be executed locally or on the server. A local execution is recommended if, for instance, interaction with the user is necessary via interactive MISPLs.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">GLIMSRemoteCalls</span>
+            </p>
+            <p>The new order entry options are applied if the GLIMSRemoteCalls environment variable is set to YES. If GLIMSRemoteCalls is set to NO, then the action scheduling, post scheduling and report scheduling will be executed locally, regardless of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Action scheduling mode</span>, <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Postscheduling mode</span> and <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Report scheduling mode</span>.</p>
+        </div>
+        <h2>New order entry options</h2>
+        <p class="fieldlabel">Action scheduling mode</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">This option determines how the action scheduling and the  <a href="../../routine/orders/order_entry/options/order_entry_options_tab_scheduling.htm#Evaluation3" xmlns="http://www.w3.org/1999/xhtml">evaluation after scheduling</a> are executed. Possible values are:</p>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Execution on the client. Use this option if interaction with the user is required in the <a href="../../configuration/procedures/procedures_configuration.htm#Eligibil" xmlns="http://www.w3.org/1999/xhtml">procedure eligibility</a>, result output or <a href="../../routine/orders/order_entry/options/order_entry_options_tab_scheduling.htm#Evaluation3" xmlns="http://www.w3.org/1999/xhtml">evaluation after scheduling</a> MISPLs.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Serversync (default value)</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Use this option</p>
+                <ul xmlns="http://www.w3.org/1999/xhtml">
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">when no interactive MISPLs are used and</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">when the user may need to specify material variables for the implicit specimens created during action scheduling or</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="3"> when the post-scheduling or report scheduling phase will be executed locally.</li>
+                </ul>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Serverasync</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Use this option when interaction with the user is not necessary during the entire order post-processing. This option is only possible when the post-scheduling and report scheduling phases are executed on the server as well. The entire order post-processing will then be executed asynchronously on the server while the user can continue working in GLIMS.</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>Material variables for implicit specimens that have been created during action scheduling cannot be asked for, and the values of auto-prompt results that have been added automatically cannot be asked for.</p>
+                </div>
+            </div>
+        </div>
+        <p class="fieldlabel">Postscheduling mode</p>
+        <div class="indented" xmlns="">
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Use this option if interaction with the user is necessary via interactive MISPLs.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Server (default value)</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Execution on the server which is faster than execution on the client but interaction with the user is not possible.</p>
+            </div>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The post-scheduling phase consists of:</p>
+                <ul>
+                    <li value="1">Microbiology action post-processing (<span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Next station</span> MISPL of <a href="../../modules/microbiology/configuration/microbiology_procedures.htm" xmlns="http://www.w3.org/1999/xhtml">microbiology procedure</a> and carrier generation) </li>
+                    <li value="2">Genetic exam post-processing (approach plan creation)</li>
+                    <li value="3"> Order set determination</li>
+                    <li value="4">Specimen size calculation </li>
+                    <li value="5">Label printing</li>
+                    <li value="6">Obtaining patient information from external systems</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Report scheduling mode</p>
+        <div class="indented" xmlns="">
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Local</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Use this option if interaction with the user is necessary via interactive MISPLs.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Server (default value)</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">Execution on the server which is faster than execution on the client but interaction with the user is not possible.</p>
+            </div>
+        </div>
+    </body>
+</html>

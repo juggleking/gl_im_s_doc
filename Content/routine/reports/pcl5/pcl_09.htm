@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Practical example - borders">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Practical example - borders</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>How to create the borders with PCL 5?</h1>
+        <p>This how you can create a border around a heading with PCL 5:</p>
+        <p>&amp;#27;(s3B &amp;#27;(s1p12v0s3b24580T<br />H E M A T O L O G I E<br />&amp;#27;&amp;f0S&amp;#27;%1BPR;PU+1,-1;RR-500,5;&amp;#27;%1A&amp;#27;&amp;f1S &amp;#27;(s0p12h12v0s0b4099T</p>
+        <h3>Detailed explanation</h3>
+        <p>&amp;#27; =&gt; is the escape character</p>
+        <p class="fieldlabel">&amp;#27;(s3B &amp;#27;(s1p12v0s3b24580T </p>
+        <div class="indented">
+            <p class="fieldlabel">&amp;#27;(s3B : Stroke Weight command</p>
+            <div class="indented">
+                <p>The stroke weight command indicates the line thickness used with a partcular font.
+ &#160; The default is 0 but values can range between -7 and 7. In this example we used
+ thickness 3.</p>
+            </div>
+            <p class="fieldlabel">&amp;#27;(s1p : Spacing command</p>
+            <div class="indented">
+                <p>Indicates the type of spacing to be used. 0 is a fixed spacing, 1 is a proportional
+ spacing.</p>
+            </div>
+            <p class="fieldlabel">12V</p>
+            <div class="indented">
+                <p>This command specifies the height of the font (expressed in points). The default is 12
+ and values can range between 0.25 and 999.75.</p>
+            </div>
+            <p class="fieldlabel">3b</p>
+            <div class="indented">
+                <p>indem 3B</p>
+            </div>
+            <p class="fieldlabel">24580T</p>
+            <div class="indented">
+                <p>This command specifies the font type.</p>
+            </div>
+        </div>
+        <hr width="100%" size="0" align="center" />
+        <p class="fieldlabel">&amp;#27;&amp;f0S&amp;#27;%1B</p>
+        <div class="indented">
+            <p>&amp;#27;&amp;f#S : Push/Pop cursor position command</p>
+            <div class="indented">
+                <p>The Push/Pop cursor command allows to save the current position and recall it later on
+ . # can be replaced by a 0 (store cursor positie) or a 1 (recall cursor position)</p>
+            </div>
+            <p>&amp;#27;%1B : Enter HP-HL2 with pen positioned on the PCL cursor position</p>
+        </div>
+        <hr width="100%" size="0" align="center" />
+        <p class="fieldlabel">PR;PU+1,-1;RR-500,5;</p>
+        <div class="indented">
+            <p class="fieldlabel">PR </p>
+            <div class="indented">
+                <p> This command allows the usage of relative plotting.</p>
+            </div>
+            <p class="fieldlabel">PU: Pen up</p>
+            <div class="indented">
+                <p>This command moves the pen towards the specified position without drawing a lign. In
+ this case, 1 millimetre to the right and 1 millimetre to the bottom, i.e. 1 millimetre off
+ the right bottom position of the last character.</p>
+            </div>
+            <p class="fieldlabel">RR-500,5 : Fill rectangle relative</p>
+            <div class="indented">
+                <p>This command allows to define a rectangle using the current position and moving toward
+ another position. In this case, we specify -500 as x co-ordinate, in order to be sure that
+ we can draw borders which reach the left margin. As Y position, we specify 5, which
+ implies that the border thickness will be 5 dots (approximately 1,5 millimetre, depending
+ on the printer dpi)</p>
+            </div>
+        </div>
+        <hr width="100%" size="0" align="center" />
+        <p class="fieldlabel">&amp;#27;%1A&amp;#27;&amp;f1S</p>
+        <div class="indented">
+            <p class="fieldlabel">&amp;#27;%1A : Enter PCL 5 mode</p>
+            <div class="indented">
+                <p>This command indicates that the printer should enter PCL mode. Possible values are 0
+ (previous pcl position) or 1 (current HP/GL/2 pen position).</p>
+            </div>
+        </div>
+    </body>
+</html>

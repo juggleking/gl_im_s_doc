@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Request</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3601"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Request&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Request</td>
+                <td>
+rqst</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+None</td>
+            </tr>
+        </table>
+        <p>
+Request records represent 'requested' specimen or results of an order.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_BillingMark"></a>
+        <h3>
+Billing &gt; Billing mark</h3>
+        <div class="MemberHelp">
+            <p>
+Free character field for MISPL-driven billing purposes</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BillingMark</b></p>
+        </div><a name="F_BloodSelection"></a>
+        <h3>
+Execution &gt; Requested item &gt; Blood request &gt; Blood selection</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="bsel.htm">BloodSelection</a></span>&#160;<b>BloodSelection</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DepartmentToExecute"></a>
+        <h3>
+Prescription &gt; Executing department</h3>
+        <div class="MemberHelp">
+            <p>
+Applicable onlt when the requesting system has imposed the department where it must be executed.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="dept.htm">Department</a></span>&#160;<b>DepartmentToExecute</b></p>
+        </div><a name="F_DetailRequestable"></a>
+        <h3>
+Detail request definition</h3>
+        <div class="MemberHelp">
+            <p>
+Request definition of the item (after expansion of panels)</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="rqbl.htm">Requestable</a></span>&#160;<b>DetailRequestable</b></p>
+        </div><a name="F_Discriminator"></a>
+        <h3>
+Prescription &gt; Discriminator</h3>
+        <div class="MemberHelp">
+            <p>
+This contains the discriminator that has been specified 
+<br />- via order entry (manual or electronic)
+<br />- via the original requestable's defition
+<br />- via the definition of panel members
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Discriminator</b></p>
+        </div><a name="F_DueTime"></a>
+        <h3>
+Execution &gt; Due time</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the date and time when the request is due.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>DueTime</b></p>
+        </div><a name="F_Explicit"></a>
+        <h3>
+Prescription &gt; Explicit</h3>
+        <div class="MemberHelp">
+            <p>
+This toggle box is set if the request is explicitly ordered by the issuer. This field is required for billing and GLP.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">Logical</span>&#160;<b>Explicit</b></p>
+        </div><a name="F_ExternalComment"></a>
+        <h3>
+Prescription &gt; External comment</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains comment for external purposes which will appear on the report. It is provided along with an individual request on order entry.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ExternalComment</b></p>
+        </div><a name="F_ExternalFillerAppl"></a>
+        <h3>
+Execution &gt; Execution by other system &gt; External filler application</h3>
+        <div class="MemberHelp">
+            <p>
+Application that executes (fills) this request</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="exap.htm">ExternalApplication</a></span>&#160;<b>ExternalFillerAppl</b></p>
+        </div><a name="F_ExternalFillerCode"></a>
+        <h3>
+Execution &gt; Execution by other system &gt; External filler code</h3>
+        <div class="MemberHelp">
+            <p>
+Code received for this request by the external system that executes this request</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>ExternalFillerCode</b></p>
+        </div><a name="F_Flags"></a>
+        <h3>
+Billing &gt; Flags</h3>
+        <div class="MemberHelp">
+            <p>
+Flags on the request, used for billing</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Flags</b></p>
+        </div><a name="F_GeneticExam"></a>
+        <h3>
+Execution &gt; Requested item &gt; Genetics &gt; Genetic exam</h3>
+        <div class="MemberHelp">
+            <p>
+References a Genetic Exam record.</p>
+            <p class="Synopsis"><span class="Type"><a href="gnte.htm">GeneticExam</a></span>&#160;<b>GeneticExam</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Request</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_ImposedMaterialRqst"></a>
+        <h3>
+Prescription &gt; Assessable material</h3>
+        <div class="MemberHelp">
+            <p>
+Reference to the request of the root specimen which this should be executed upon.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="#" class="selected">Request</a></span>&#160;<b>ImposedMaterialRqst</b></p>
+        </div><a name="F_InternalComment"></a>
+        <h3>
+Prescription &gt; Internal comment</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains comment for internal purposes which will appear on work lists. It is provided along with an individual request on order entry (e.g. result to be phoned asap to X on beeper no 999).</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>InternalComment</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_MaterialVariables"></a>
+        <h3>
+Prescription &gt; Material variables</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>MaterialVariables</b></p>
+        </div><a name="F_MicrobiologyAction"></a>
+        <h3>
+Execution &gt; Requested item &gt; Microbiology &gt; Microbiology action</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="mcra.htm">MicrobiologyAction</a></span>&#160;<b>MicrobiologyAction</b></p>
+        </div><a name="F_Order"></a>
+        <h3>
+Order</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the order which contains the request.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>Order</b></p>
+        </div><a name="F_Origin"></a>
+        <h3>
+Prescription &gt; Origin</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates where the request comes from</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="requestorigin.htm">RequestOrigin</a></span>&#160;<b>Origin</b></p>
+            <p>
+One of: <span class="Parameter">External system, Manually entered, Added by MISPL, Due to procedure configuration, Auto-prompt procedure output, Historic, Instrument, Conversion, Auto-request procedure output</span></p>
+        </div><a name="F_PanelList"></a>
+        <h3>
+Prescription &gt; Panel list</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>PanelList</b></p>
+        </div><a name="F_PathologyExam"></a>
+        <h3>
+Execution &gt; Requested item &gt; Pathology &gt; Pathology exam</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="ptex.htm">PathologyExam</a></span>&#160;<b>PathologyExam</b></p>
+        </div><a name="F_PendingInfo"></a>
+        <h3>
+Pending info</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>PendingInfo</b></p>
+        </div><a name="F_RemoteId"></a>
+        <h3>
+Prescription &gt; Remote id</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains the Id of the corresponding record in an external system. The availability of this field simplifies the support for data updates received from or sent to an external system, because the request remote identification is considered as constant for both GLIMS and the external system.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>RemoteId</b></p>
+        </div><a name="F_Requestable"></a>
+        <h3>
+Original request definition</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the request definition that was applied during the request creation. Note that this is the top level request definition applied (panels !).</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="rqbl.htm">Requestable</a></span>&#160;<b>Requestable</b></p>
+        </div><a name="F_RequestedCode"></a>
+        <h3>
+Prescription &gt; Requested code</h3>
+        <div class="MemberHelp">
+            <p>
+Requested code for which this request was created</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="rqsc.htm">RequestedCode</a></span>&#160;<b>RequestedCode</b></p>
+        </div><a name="F_Result"></a>
+        <h3>
+Execution &gt; Requested item &gt; Result &gt; Result</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>Result</b></p>
+        </div><a name="F_Specimen"></a>
+        <h3>
+Execution &gt; Requested item &gt; Specimen &gt; Specimen</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="spmn.htm">Specimen</a></span>&#160;<b>Specimen</b></p>
+        </div><a name="F_TariffingStatus"></a>
+        <h3>
+Billing &gt; Tariffing status</h3>
+        <div class="MemberHelp">
+            <p>
+                <br />
+            </p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="tariffingstatus.htm">TariffingStatus</a></span>&#160;<b>TariffingStatus</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Partial, Complete</span></p>
+        </div><a name="F_TemplateMnemonic"></a>
+        <h3>
+Execution &gt; Template</h3>
+        <div class="MemberHelp">
+            <p>
+This calculated field refers the mnemonic of the template of the request. (Property mnemonic, material mnemonic, blood product mnemonic or microbiology procedure mnemonic).</p>
+            <p class="Synopsis"><span class="Type">Calculated </span><span class="Type">Mnemonic</span>&#160;<b>TemplateMnemonic</b></p>
+        </div><a name="F_ToCharge"></a>
+        <h3>
+Billing &gt; To charge</h3>
+        <div class="MemberHelp">
+            <p>
+This field allows the operator to overrule the default behaviour of the billing of this request. If this field is set to YES or NO, billing of this request will respectively be enabled or disabled. If it is left to unknown, the corresponding requestable's to-charge specification will control the billing behaviour.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>ToCharge</b></p>
+        </div><a name="F_ToChargeMarkMethod"></a>
+        <h3>
+Billing &gt; To charge mark method</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates how the request obaitned its current 'To Charge' setting. When this was done automatically during result entry (e.g. via a result code), then the ToCarge field will be reset when the result is repeated or modified.
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="tochargemarkmethod.htm">ToChargeMarkMethod</a></span>&#160;<b>ToChargeMarkMethod</b></p>
+            <p>
+One of: <span class="Parameter">Manual, Result code</span></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+Either result or specimen</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="requesttype.htm">RequestType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Result, Specimen, Blood, Microbiology, Pathology, Genetics</span></p>
+        </div><a name="F_Urgency"></a>
+        <h3>
+Urgency</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the urgency level of the request.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">SiteEnumerated</span>&#160;<b>Urgency</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_ImposedMaterialRqst"></a>
+        <h3>
+Assessable material&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ImposedMaterialRqst</b> ()</p>
+        </div><a name="M_BloodSelection"></a>
+        <h3>
+Blood selection&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BloodSelection</b> ()</p>
+        </div><a name="M_ChargingBillingItems"></a>
+        <h3>
+Charging billing items&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ChargingBillingItems</b> ()</p>
+        </div><a name="M_ChargingBudgetItems"></a>
+        <h3>
+Charging budget items&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ChargingBudgetItems</b> ()</p>
+        </div><a name="M_DetailRequestable"></a>
+        <h3>
+Detail request definition&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DetailRequestable</b> ()</p>
+        </div><a name="M_DepartmentToExecute"></a>
+        <h3>
+Executing department&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DepartmentToExecute</b> ()</p>
+        </div><a name="M_ExternalFillerAppl"></a>
+        <h3>
+External filler application</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ExternalFillerAppl</b> ()</p>
+        </div><a name="M_GeneticExam"></a>
+        <h3>
+Genetic exam&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticExam</b> ()</p>
+        </div><a name="M_MicrobiologyAction"></a>
+        <h3>
+Microbiology action&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyAction</b> ()</p>
+        </div><a name="M_Order"></a>
+        <h3>
+Order&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Order</b> ()</p>
+        </div><a name="M_Requestable"></a>
+        <h3>
+Original request definition&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Requestable</b> ()</p>
+        </div><a name="M_PathologyExam"></a>
+        <h3>
+Pathology exam&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PathologyExam</b> ()</p>
+        </div><a name="M_RequestedCode"></a>
+        <h3>
+Requested code&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RequestedCode</b> ()</p>
+        </div><a name="M_ShowAllRequestsImposedOnThisRootSpecimen"></a>
+        <h3>
+Requests imposed on this root specimen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowAllRequestsImposedOnThisRootSpecimen</b> ()</p>
+        </div><a name="M_Result"></a>
+        <h3>
+Result&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Result</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_Specimen"></a>
+        <h3>
+Specimen&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Specimen</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_DefaultTariff"></a>
+        <h3>
+DefaultTariff&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="tar.htm">Tariff</a></span>&#160;<b>DefaultTariff</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">PricelistMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ValidityDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">PricelistMnemonic</span></dt>
+                <dd>
+Retrieve a Tariff record which is applicable for the request(able) within the specified price list.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ValidityDate</span></dt>
+                <dd>
+Retrieve a Tariff record which is applicable for the request(able) with the specified validity date.</dd>
+            </dl>
+        </div><a name="M_DefaultTariffInfo"></a>
+        <h3>
+DefaultTariffInfo&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>DefaultTariffInfo</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">PriceListMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ValidityDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">PriceListMnemonic</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ValidityDate</span></dt>
+            </dl>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Requests imposed on root specimen request</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="#" class="selected">Request</a>.<a href="#F_ImposedMaterialRqst">ImposedMaterialRqst</a></p>
+        </div>
+        <h3>
+Billing document lines</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="bdln.htm">w_BillingDocumentLine</a>.<a href="bdln.htm#F_Request">Request</a></p>
+        </div>
+        <h3>
+Billing items charging request</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rqch.htm">RequestCharge</a>.<a href="rqch.htm#F_Request">Request</a></p>
+        </div>
+        <h3>
+Budget items charging request</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="buch.htm">BudgetCharge</a>.<a href="buch.htm#F_Request">Request</a></p>
+        </div>
+        <h3>
+Requests</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wrq.htm">w_Request</a>.<a href="wrq.htm#F_Request">Request</a></p>
+        </div>
+        <h3>
+Results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="orsl.htm">w_Result</a>.<a href="orsl.htm#F_Request">Request</a></p>
+        </div>
+        <h3>
+Codes requested on material</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Nullify </span><a href="rqsc.htm">RequestedCode</a>.<a href="rqsc.htm#F_ImposedMaterialRqst">ImposedMaterialRqst</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ DetailRequestable </b>
+            </li>
+            <li value="3"><b>+ BloodSelection </b>
+            </li>
+            <li value="4"><b>+ DepartmentToExecute </b>
+            </li>
+            <li value="5"><b>+ ExternalFillerAppl </b>
+            </li>
+            <li value="6"><b>+ GeneticExam </b>
+            </li>
+            <li value="7"><b>+ ImposedMaterialRqst </b>
+            </li>
+            <li value="8"><b>+ MicrobiologyAction </b>
+            </li>
+            <li value="9"><b>+ Order + Type </b>
+            </li>
+            <li value="10"><b>+ PathologyExam </b>
+            </li>
+            <li value="11"><b>+ Requestable + Order </b>
+            </li>
+            <li value="12"><b>+ RequestedCode </b>
+            </li>
+            <li value="13"><b>+ Result </b>
+            </li>
+            <li value="14"><b>+ Specimen </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+BloodSelection.Object = Order.Object</li>
+            <li value="2">
+MicrobiologyAction.Object = Order.Object</li>
+            <li value="3">
+RequestedCode.Order = Order</li>
+            <li value="4">
+ImposedMaterialRqst.Order = Order</li>
+            <li value="5">
+GeneticExam.Order = Order</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

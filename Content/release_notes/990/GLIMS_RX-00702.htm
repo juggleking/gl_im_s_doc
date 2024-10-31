@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Support for nested LOINC&#160;coding system during result export (GLIMS_RX-00702)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3493"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Support for nested LOINC&#160;coding system during result export (GLIMS_RX-00702)</h1>
+        <h2>Issue</h2>
+        <p>If GLIMS is configured as described below, the LOINC&#160;code of the result of a property which belongs to a nested coding system of type LOINC is not exported when sending out result reports for which the <a href="../../configuration/coding_systems/coding_systems_LOINC.htm" xmlns="http://www.w3.org/1999/xhtml">LOINC code</a> must be exported.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>This issue occurred since GLIMS&#160;9.5.</p>
+        </div>
+        <h3>Configuration (example)</h3>
+        <p class="fieldlabel">Coding systems</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">A <a href="../../configuration/coding_systems/coding_systems.htm" xmlns="http://www.w3.org/1999/xhtml">coding system</a> KWS contains two code sets. No codes are defined for these code sets which refer to another coding system (via their <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Original coding system</span> field).</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">&#160;</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">The LN coding system has its <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">LOINC</span> and refers to a code set containing codes for the Property table.</li>
+                <li value="2">The UCUM coding system has its <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Type</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Default</span> and refers to a code set containing codes for the Unit table.</li>
+            </ol>
+        </div>
+        <p class="fieldlabel">Report template</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">A <a href="../../configuration/report_templates/report_templates.htm" xmlns="http://www.w3.org/1999/xhtml">report template</a> exists which refers to the KWS coding system.</p>
+        </div>
+        <h2>Solution</h2>
+        <p>This has been corrected.</p>
+    </body>
+</html>

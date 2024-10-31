@@ -1,0 +1,106 @@
+<HTML>
+  <style>body, table  ~{ background-color: "{<Verification_COLORS}"; font-size: 8pt; font-family: Verdana, Arial, sans-serif; overflow: auto }
+    H1, H2, H3, H4, H5, P, LI, TD, DT, DD ~{ font-family: Verdana, Arial, sans-serif }
+    h1 ~{ font-size: 13pt; background-color: #FF9966; border-style: inset; border-width: 1; padding: 3 }
+    h2 ~{ font-size: 13pt; color: #FF9966; font-weight: bold; border-bottom-style: solid; border-bottom-width: 2 }
+    h3 ~{ font-size: 12 pt; border-bottom-style: solid; border-bottom-width: 1 ; color: #0033CC}
+    h4 ~{ font-size: 10 pt; text-decoration: underline; font-weight: bold ; color: #0033CC}
+    H5 ~{ font-size: 9 pt }
+    Abn ~{ font-size: 8pt ;color: ##FF0000 }
+    P, LI, TD, DT, DD ~{ font-size: 8pt}
+    DT ~{ font-weight: bold }
+  }
+
+</style>
+
+<BODY BGCOLOR=#F6CEEC>
+  <TABLE WIDTH=100% BORDER=0 CELLPADDING=5>
+    <TR>
+      <TD WIDTH=50% BGCOLOR=#F6CEEC><B>PATIENT</B></TD>
+      <TD WIDTH=50% BGCOLOR=#F6CEEC><B>DOSSIER</B></TD>
+    </TR>
+    <TR BGCOLOR=#F6CEEC>
+      <TD><B>{=IfKnownString(.Order.Object.Person().LastName)}
+       {=IfKnownString(.Order.Object.Person().FirstName)}</B> 
+        <BR><B>{=IfKnownString(DateToString(.Order.Object.Person().BirthDate, "%d/%m/%Y"))} {=IfKnownString("(" + SubStr(EnumeratedToString("Sex", .Order.Object.Person().Sex), 1, 1) + ")")}</B>
+          <BR>{=IfKnownString(.Order.Object.Person().Correspondent.AddressLine1)}
+            <BR>{=IfKnownString(.Order.Object.Person().Correspondent.Municipality.PostalCode + " " + .Order.Object.Person().Correspondent.Municipality.Name)}
+              <HR>
+                <B>Ward:</B> {=IFKnownString(.Order.Object.Person().Stay(?).Ward.Name)}&nbsp;
+                {: String sOutput;
+                sOutput := "";
+                IF .Order.Agent.Type = 11 AND Substr(.Order.Agent.InternalId,1,4) = "ASS_" THEN
+                sOutput := "<HR>" + "<BR>" + "<B>" + "Insurance : " +  "</B>" + .Order.Agent.Name + "<BR>" + IfKnownString(.Order.Agent.AddressLine1) + IfKnownString("<BR>" + .Order.Agent.Municipality.PostalCode)
+                + IfKnownString(" " + .Order.Agent.Municipality.Name);
+                ENDIF;
+
+                RETURN sOutput;}
+              </TD>
+              <TD>
+               <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>  
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><B>Order:</B></TD>
+                   <TD>{=.Order.InternalId}</TD>
+                 </TR>
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><B>Ext. Ref.:</B></TD>
+                   <TD>{=IfKnownString(.Order.ShortId)}</TD>
+                 </TR>
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><HR><B>Object time:</B></TD>
+                   <TD><HR>{=DateTimeToString(.Order.LowestObjectTime, "%d/%m/%Y %H:%M")}</TD>
+                 </TR>
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><B>Receipt time:</B></TD>
+                   <TD>{=DateTimeToString(.Order.ReceiptTime, "%d/%m/%Y %H:%M")}</TD>
+                 </TR>
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><HR><B>Issuer</B></TD>
+                   <TD><HR>{=IfKnownString(.Order.Issuer.Name)}&nbsp;</TD>
+                 </TR>
+                 <TR BGCOLOR=#F6CEEC>
+                   <TD><HR><B>Status:</B></TD>
+                   <TD><HR>{=EnumeratedToString("Orderstatus",.Order.Status)}&nbsp;</TD>
+                 </TR>
+               </TABLE>
+             </TR>
+           </TABLE>
+           <HR>
+            <PRE>
+              {: String Ass,ET, LIB;
+              Ass := "";
+              ET := "";
+              LIB := "";
+              IF .Order.Agent.Type = 11 AND Substr(.Order.Agent.InternalId,1,4) = "ASS_"  THEN
+              Ass :=  + "<BR>" + "<B>" + "Insurance : " +  "</B>" + .Order.Agent.Name;
+              ELSE;
+              IF .Order.Agent.Type = 2  AND Substr(.Order.Agent.Organization().Mnemonic,1,3) = "ET_" THEN
+              ET := "<BR>" + "<B>" + "Study : " +  "</B>" + .Order.Agent.Name ;
+              ELSE
+              IF .Order.Description <> ? THEN
+              LIB :=  "<BR>" + "<B>" + "Info : " +  "</B>" ;
+              ENDIF;
+              ENDIF;
+              ENDIF;
+
+              IF (.Order.Agent.Type = 11 AND Substr(.Order.Agent.InternalId,1,4) = "ASS_" ) OR
+              ( .Order.Agent.Type = 2  AND Substr(.Order.Agent.Organization().Mnemonic,1,3) = "ET_")  OR .Order.Description <> ? THEN
+              RETURN "<TABLE WIDTH=100% BORDER=0 CELLPADDING=5>" + 
+              "<TR>" + 
+              "<TD WIDTH=50% BGCOLOR=#58FAF4>" + "<B>" + "REFERENCE" + "</B>" + "</TD>" +
+              "<TD WIDTH=50% BGCOLOR=#58FAF4>" + "<B>" + "DESCRIPTION" + "</B>" + "</TD>" + 
+              "</TR>"  + " <TR BGCOLOR=#58FAF4>" + 
+              "<TD>" + Ass + Et + LIB + "</TD>" + 
+              "<TD>" +IfKnownString(.Order.Description) + "</TD>" + 
+              "</TR>" + "</TABLE>" +  + "<PRE>" 
+              ;
+              ENDIF;}
+              <TR BGCOLOR=#D9E2FF>
+                <H4><B>Issuer data</H4> </TR>
+                {<Verification_ISSUER \n=0}
+                <TR BGCOLOR=#D9E2FF>
+                  <H4><B>REPORT COPIE</H4> </TR>
+                  {<Verification_COPIES \n=0}
+                  <TR BGCOLOR=#D9E2FF>
+                    <H4><B>Requested tests</H4> </TR>
+                    {<Verification_PROPERTIES \n=0}

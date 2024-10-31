@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Issuer info supports dynamic text references (GLIMS-11046)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1270"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Issuer info supports dynamic text references (GLIMS-11046)</h1>
+        <h2>Context</h2>
+        <p>When the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer info</span> of a <a href="../../configuration/correspondents/correspondents.htm" xmlns="http://www.w3.org/1999/xhtml">Correspondent</a> is filled in, it will be displayed when creating an order where this correspondent is the issuer.</p>
+        <h2>Support for dynamic text references</h2>
+        <p>The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer info</span> field in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondent</span> editor now supports using dynamic text references.</p>
+        <p class="fieldlabel">Configuration</p>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">
+                <p xmlns="http://www.w3.org/1999/xhtml">Create a Correspondent-scoped <a href="../../configuration/mispl_texts/texts_syntax_grammar.htm" xmlns="http://www.w3.org/1999/xhtml">Text</a>.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11046_text.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="504" data-mc-height="522" src="GLIMS-11046_text_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">
+                <p xmlns="http://www.w3.org/1999/xhtml">In the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer info</span> field of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Correspondent</span> (for whom the issuer info needs to be displayed during order entry upon selection of this correspondent as the issuer of the order), include a reference to the newly created text using the syntax {&lt;TextMnemonic}.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11046.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="643" data-mc-height="695" src="GLIMS-11046_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+        </ol>
+        <p class="fieldlabel">Routine</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">During order entry, when this correspondent is selected as the issuer, the contents of the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Issuer info</span> field will be displayed and the dynamic text will be expanded.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11046_order_entry.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="825" data-mc-height="325" src="GLIMS-11046_order_entry_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the return value of the text is empty, the pop-up dialog will be suppressed.</p>
+            </div>
+        </div>
+    </body>
+</html>

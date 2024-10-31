@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|General" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Generate_document1">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Generate document</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Generate document</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Options">Options</a> - <a href="#Example">Example</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>In addition to the <a href="../../routine/orders/orders_generate_document.htm">Order.GenerateDocument</a> and <a href="../correspondents/correspondents_generate_document.htm">Correspondent.GenerateDocument</a> functions, GLIMS also offers a general document generation tool.&#160;&#160;</p>
+        <p>It is available from the main menu via <span class="ui_element">Start -&gt; Routine -&gt; Generate document</span>.</p>
+        <h2><a name="Options" id="Options"></a>Parameters</h2>
+        <p class="fieldlabel">Base table</p>
+        <div class="indented">
+            <p>The selected base table (Site, Correspondent, CorrespondentGroup and Tour) determines:</p>
+            <ul>
+                <li class="kadov-p" value="1">for which type of record the document can be generated (see <span class="ui_element">Record</span> parameter).</li>
+                <li class="kadov-p" value="2">the dynamic text table for title page, first page header, page header and footer.</li>
+                <li class="kadov-p" value="3">the dynamic text table of the body is <span class="ui_element">gp_Site</span> if <span class="ui_element">Site</span> is selected, <span class="ui_element">Correspondent</span> in&#160;all other cases.</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Record</p>
+        <div class="indented">
+            <p>For which record should the document be generated ?</p>
+        </div>
+        <p class="fieldlabel">Title page, First page header, Page header</p>
+        <div class="indented">
+            <p>Dynamic text based on the base table you selected.</p>
+        </div>
+        <p class="fieldlabel">Body</p>
+        <div class="indented">
+            <p>Dynamic text based on table </p>
+            <ul>
+                <li value="1"><span class="ui_element">gp_Site</span> if <span class="ui_element">Base table</span> is set to <span class="ui_element">Site</span></li>
+                <li value="2"><span class="ui_element">Correspondent</span> if&#160;<span class="ui_element">Base&#160;table</span> is set to <span class="ui_element">Correspondent, CorrespondentGroup</span> or <span class="ui_element">Tour</span></li>
+            </ul>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">The body is repeated as many times as determined by the range <span class="ui_element">From seq no</span> / <span class="ui_element">To seq no</span>.</li>
+                    <li value="2">The current seq no is passed to the body text as variable <span class="ui_element">{SeqNo}</span>.</li>
+                </ul>
+            </div>&#160;</div>
+        <p class="fieldlabel">From seq no, To seq no, Extra parameter</p>
+        <div class="indented">
+            <p>These options are passed to all dynamic texts (title page, first page header, etc...) and can be displayed in reports by using the following variables: <span class="ui_element">{FromSeqNo}</span>, <span class="ui_element">{ToSeqNo}</span>, <span class="ui_element">{ExtraParameter}</span> (see example below).</p>
+        </div>
+        <p class="fieldlabel">Footer</p>
+        <div class="indented">
+            <p>Dynamic text based on the base table you selected.</p>
+        </div>
+        <p class="fieldlabel">Language</p>
+        <blockquote>
+            <p>An explicit language can be chosen. If not specified, the report language is set to:</p>
+            <ul>
+                <li class="kadov-p" value="1">The correspondent's language if <span class="ui_element">Base table</span> is set to <span class="ui_element">Correspondent</span> (otherwise user/site language)</li>
+                <li class="kadov-p" value="2">User language or site language, if user language not set.</li>
+            </ul>
+        </blockquote>
+        <p class="fieldlabel">Other options</p>
+        <div class="indented">
+            <p>The other options are self-explaining.&#160;</p>
+        </div>
+        <h2><a name="Example" id="Example"></a>Example</h2>
+        <p>The example below show a body text (<span class="ui_element">Base table</span> = <span class="ui_element">Correspondent</span>) which uses the variables <span class="ui_element">{SeqNo</span>} and <span class="ui_element">{ExtraParameter}</span>.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="generatedoc_text.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="402" data-mc-height="337" src="generatedoc_text_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">The body is repeated as many times as determined by the range <span class="ui_element">From seq no</span> / <span class="ui_element">To seq no</span>.</p>
+        <p style="text-align: left;">The <span class="ui_element">{ExtraParameter}</span> variable is replaced by the text specified in the <span class="ui_element">Extra parameter</span> field of the generate document function.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="generatedoc_output.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="716" data-mc-height="303" src="generatedoc_output_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;"><a class="MCHelpControl MCHelpControl-Concept conceptLink conceptLinkconceptLink_1" data-mc-concepts="" href="javascript:void(0);" data-mc-display-type="popup"><span class="MCHelpControl-ConceptHotSpot_ MCHelpControl-ConceptHotSpot_conceptLink_1"><img class="MCHelpControl_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="16" width="16" alt="Concept Link Icon" />See Also</span></a>
+        </p>
+    </body>
+</html>

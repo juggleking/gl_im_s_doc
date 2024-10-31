@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Stock management|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Stock management: Product usage</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1663"></a>
+            <MadCap:concept term="Stock management" />Stock management: Product usage</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Fields">Fields</a> 
+ - <a href="#Set_usage">Set usage</a> - <a href="#Remarks">Remark</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p class="MsoNormal" style="margin-bottom: .0001pt;page-break-after: avoid;">A 
+ product usage record links a <a href="product_specifications.htm">product 
+ specification</a> to a work place, and determines the minimum and maximum 
+ stock amounts required for the specific work place. If specified and returning 
+ a valid number, the fixed amounts may be overruled by a site function, 
+ allowing implementation of a dynamic stock.</p>
+        <p class="MsoNormal" style="margin-bottom: .0001pt;page-break-after: avoid;">For 
+ general purpose products, a dummy work place may be created. This is however 
+ not required. The data model does not impose a ProductUsage. In that case 
+ no quantity requirements nor stock location is available however. Hence, 
+ automatic order form generation and ordering will not be possible for 
+ these products.</p>
+        <h2><a name="Fields" id="Fields"></a>Fields</h2>
+        <p>The product usage editor can be opened from the contextual menu of a product 
+ specification:</p>
+        <p class="fieldlabel">Work 
+	 place</p>
+        <div class="indented">
+            <p class="p">Work place that uses this product.</p>
+        </div>
+        <p class="fieldlabel">Stock</p>
+        <div class="indented">
+            <p class="p">Stock in which this product is stored.</p>
+        </div>
+        <p class="fieldlabel">Minimum 
+	 quantity</p>
+        <div class="indented">
+            <p class="p">Minimum stock amount required for the specific work 
+	 place.&#160;&#160;This amount is expressed in the unit of the product 
+	 specification and can be overruled by the amount returned by the minimum 
+	 quantity function.</p>
+        </div>
+        <p class="fieldlabel">Minimum 
+	 quantity function</p>
+        <div class="indented">
+            <p class="p">ProductUsage-based, Integer-valued site function. 
+	 Overrules the fixed minimum quantity amount.</p>
+        </div>
+        <p class="fieldlabel">Calculated 
+	 minimum</p>
+        <div class="indented">
+            <p class="p">Calculated field that shows the actual minimum quantity 
+	 that will be applied.</p>
+        </div>
+        <p class="fieldlabel">Maximum 
+	 quantity</p>
+        <div class="indented">
+            <p class="p">Maximum stock amount required for the specific work 
+	 place. This amount is expressed in the unit of the product specification 
+	 and can be overruled by the amount returned by the maximum quantity 
+	 function.</p>
+        </div>
+        <p class="fieldlabel">Maximum 
+	 quantity function</p>
+        <div class="indented">
+            <p class="p"> ProductUsage-based, Integer-valued site function. 
+	 Overrules the fixed maximum quantity amount.</p>
+        </div>
+        <p class="fieldlabel">Calculated 
+	 maximum</p>
+        <div class="indented">
+            <p class="p">Calculated field that shows the actual maximum quantity 
+	 that will be applied.</p>
+        </div>
+        <p class="fieldlabel">Standard 
+	 order quantity</p>
+        <div class="indented">
+            <p class="p">When creating a new purchase order, articles 
+	 are added with the standard order quantity by default.</p>
+        </div>
+        <p class="fieldlabel">Warning 
+	 threshold</p>
+        <div class="indented">
+            <p style="text-align: left;">Amount below which a warning will be issued, i.e. the 
+	 last columns of the <a href="product_specifications.htm">product specification 
+	 browser</a> will be shown with a yellow background.&#160;&#160;This 
+	 threshold must be specified as a percentage within the minimum/maximum 
+	 quantity range.&#160;&#160;Example:</p>
+            <ul>
+                <li class="p" value="1">
+                    <p style="text-align: left;">Minimum quantity = 5</p>
+                </li>
+                <li class="p" value="2">
+                    <p style="text-align: left;">Maximum quantity = 20</p>
+                </li>
+                <li class="p" value="3">
+                    <p style="text-align: left;">Warning threshold = 
+		 10</p>
+                </li>
+            </ul>
+            <p style="text-align: left;">Range =&gt; 20 - 5 = 15.<br />Threshold =&gt; 10% of 15 = 1.5<br />Threshold value = 5 + 1.5 = 6.5 (rounded to 7)&#160;&#160;&#160;</p>
+        </div>
+        <p class="fieldlabel">Warning 
+	 threshold function</p>
+        <div class="indented">
+            <p class="p">ProductUsage-based, 
+	 Integer-valued site function. Overrules the fixed warning threshold. 
+	 &#160;If specified, the evaluated value of this function 
+	 is used to calculate the warning threshold. &#160;If not specified, 
+	 the fixed formula applied to the specified "Waning threshold" 
+	 is used (see above).</p>
+        </div>
+        <p class="fieldlabel">Calculated 
+	 threshold</p>
+        <div class="indented">
+            <p class="p">Calculated field that shows the actual amount for the 
+	 warning threshold.</p>
+        </div>
+        <h2><a name="Set_usage" id="Set_usage"></a>Set usage</h2>
+        <p>In order to be able to configure the product usage of multiple product 
+ specifications simultaneously, a function <span class="ui_element">Set usage</span> is available 
+ in the product specification contextual menu.</p>
+        <ol>
+            <li value="1">Both the work place and stock are mandatory.</li>
+            <li value="2">Calculated fields are not shown in this screen.</li>
+            <li value="3">Existing product usage records (for the specified work place) will 
+	 only be updated if the option <span class="ui_element">Update existing</span> is enabled.</li>
+        </ol>
+        <h2><a name="Remarks" id="Remarks"></a>Remark</h2>
+        <p>The product specification contextual menu <span class="ui_element">Set usage</span> also 
+	 allows creating a new product usage or update an existing product 
+	 usage (enable the option <span class="ui_element">Update existing</span>).</p>
+    </body>
+</html>

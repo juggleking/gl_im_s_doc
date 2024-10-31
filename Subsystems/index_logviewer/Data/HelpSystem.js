@@ -1,0 +1,9 @@
+var xmlHelpSystemData = "";
+xmlHelpSystemData += '<?xml version=\"1.0\" encoding=\"utf-8\"?>';
+xmlHelpSystemData += '<WebHelpSystem DefaultUrl=\"Content/LogViewer/Log_viewer.htm\" Toc=\"Data/Tocs/Log_viewer.js\" Index=\"Data/Index.js\" Concepts=\"Data/Concepts.js\" BrowseSequence=\"Data/BrowseSequences/Log_viewer.js\" SearchDatabase=\"Data/Search.js\" Alias=\"Data/Alias.xml\" Synonyms=\"Data/Synonyms.xml\" PathToScriptsFolder=\"Resources/Scripts/\" SkinName=\"HTML5\" SkinID=\"HTML5\" Multilingual=\"false\" Skins=\"HTML5\" BuildTime=\"3/27/2020 11:34:20 AM\" BuildVersion=\"15.1.7283.32587\" TargetType=\"WebHelp2\" SkinTemplateFolder=\"Skin/\" InPreviewMode=\"false\" TopNavTocPath=\"true\" MoveOutputContentToRoot=\"false\" ReplaceReservedCharacters=\"false\" MakeFileLowerCase=\"false\" UseCustomTopicFileExtension=\"false\" PreventExternalUrls=\"false\" EnableResponsiveOutput=\"false\" IncludeGlossarySearchResults=\"true\" ResultsPerPage=\"20\" xml:lang=\"en-us\" LanguageName=\"English\" SearchEngine=\"MadCapSearch\" IncludeCSHRuntime=\"true\" DebugMode=\"false\" ShowMadCapBacklink=\"false\">';
+xmlHelpSystemData += '    <!-- saved from url=(0016)http://localhost -->';
+xmlHelpSystemData += '    <CatapultSkin Version=\"1\" SkinType=\"WebHelp2\" Comment=\"HTML5 skin\" Anchors=\"Width,Height\" Width=\"800\" Height=\"600\" Top=\"0\" Left=\"0\" Bottom=\"0\" Right=\"0\" Tabs=\"TOC\" DefaultTab=\"TOC\" UseBrowserDefaultSize=\"True\" UseDefaultBrowserSetup=\"True\" Name=\"HTML5\" SkinID=\"HTML5\" SkinClass=\"_Skins_HTML5\" HideNavOnStartup=\"False\" LogoUrl=\"\">';
+xmlHelpSystemData += '        <Toc LinesBetweenItems=\"false\" LinesFromRoot=\"false\" SingleClick=\"true\" PlusMinusSquares=\"false\" AlwaysShowSelection=\"false\" UseFolderIcons=\"false\" ImageListWidth=\"16\" />';
+xmlHelpSystemData += '    </CatapultSkin>';
+xmlHelpSystemData += '</WebHelpSystem>';
+MadCap.Utilities.Xhr._FilePathToXmlStringMap.Add('HelpSystem', xmlHelpSystemData);

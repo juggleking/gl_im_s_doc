@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\order entry\orderentry03.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Specimens</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order entry - Specimens</h1>
+        <p>In this page, all root specimens of the order are shown via their internal 
+ id, external id, material mnemonic, together with a material variable, 
+ an Info field and the fields Specimen.HasSibling, Specimen.Status and Specimen.Discriminator.</p>
+        <p>The first column contains a sequence number.&#160;&#160; This specimen 
+ sequence number is also repeated in the Request page, indicating which 
+ request is associated with which root specimen.&#160; Existing requests 
+ are grouped per root specimen, headed by the root specimen itself; newly 
+ typed in requests are displayed on top. </p>
+        <p>The specimen page is especially useful for labs which immediately receive 
+ the specimens together with the order, and who explicitly want to confirm 
+ these specimens and connect them to a number of property requests.</p>
+        <p>To this effect, the Specimen page has a fill-in allowing to enter (or 
+ scan) a specimen bar code. Once a new bar code has been entered, a new 
+ specimen is added in the specimen browser, displaying the scanned bar 
+ code and a default material (as specified by the material request definition 
+ having "Defaultmaterial" as mnemonic). The material mnemonic, 
+ HasSibling and Discriminator members in the browser can be modified manually.</p>
+        <p>The bar code will later be stored in the InternalId member.</p>
+        <p>When specimens have been entered this way, or when the RequestByRootSpecimen 
+ option in the Order Entry Options screen has been set, the following happens 
+ when a new property request is added in the Request page: </p>
+        <ul>
+            <li class="kadov-p" value="1">First the program checks whether it can find a procedure 
+ chain in the Procedure class which connects one of the scanned root specimen 
+ materials to the requested property. If so, the request is accepted and 
+ automatically connected to the corresponding root specimen. If no such 
+ specimen is found, the program issues a warning and the request is not 
+ accepted. Note that the rejection of the request is not done when the 
+ property request immediately receives a result via the ‘Request=Value’ 
+ syntax. </li>
+            <li class="kadov-p" value="2">After a request has been accepted, its root specimen 
+ can be modified by using the right-hand mouse button in the request browser. 
+ </li>
+        </ul>
+        <p>It is also possible to manually change the internal id of a root specimen 
+ by use of the contextual menu function <i>Change internal id</i> while the 
+ focus is on the root specimen browser. The newly entered internal id is 
+ checked for uniqueness.</p>
+        <h2><a name="Variable"></a>Variable and Info cells</h2>
+        <p>The <span class="ui_element">Variable</span> and <span class="ui_element">Info</span> cells can be filled in directly in the grid. The entered data is registered in the database when the order is saved.</p>
+        <p>Note that only the first material variable can be entered directly in the <span class="ui_element">Variable</span> cell. If there are more variables, they must be specified using the <span class="ui_element">Specimen variable</span> editor. To open this editor, use the contextual menu function <span class="ui_element">Specimen variables</span> on the corresponding specimen.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>The data specified in the editor and that entered directly in the grid are not synchronized. Changes made in the grid will override changes made in the editor if the later have not been saved (via click on <span class="ui_element">OK</span> in the editor and then in the order entry screen).</p>
+            <p>To avoid mistakes and thus wrong results, please enter material variables and information using either the grid or the editor but not both.</p>
+        </div>
+        <h2><a name="Specimen"></a>Specimen scope</h2>
+        <p>When requesting several tests that can be executed on the same specimen, you
+can choose whether the action
+scheduler should create a new specimen record rather than reusing another
+specimen of the same order (but which for instance will be used on another
+station).</p>
+        <p>The following fields are used to implement this "specimen scope
+concept":</p>
+        <div class="indented">
+            <p class="fieldlabel">Procedure.SpecimenScope</p>
+            <div class="indented">
+                <p>Each procedure explicitly defines its own specimen
+ scope.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>It is not recommended that procedures with an isolation test as output have a specimen scope. If they do and the Procedure.SpecimenScope differs from the Specimen.Scope, the procedure will never be scheduled.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">MicrobiologyProcedure.SpecimenScope</p>
+            <div class="indented">
+                <p> Each procedure explicitly defines its own specimen
+ scope.<br /></p>
+            </div>
+            <p class="fieldlabel">PathologyProcedure.SpecimenScope</p>
+            <div class="indented">
+                <p>Each procedure explicitly defines its own specimen
+ scope.   &#160;&#160;</p>
+            </div>
+            <p class="fieldlabel">Specimen.Scope</p>
+            <div class="indented">
+                <p>When a procedure requires a specimen, the newly created specimen
+ inherits the procedure's scope. Another procedure requiring the same material can
+ only reuse this specimen when Procedure.SpecimenScope and Specimen.Scope match.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>A procedure can reuse a specimen even though Procedure.SpecimenScope and Specimen.Scope do not match provided that no procedure exists with an empty specimen scope or with the same scope as the specimen.</p>
+                </div>
+            </div>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <ul>
+                    <li value="1">If you do not want to reuse a specimen if it is to be used on
+several stations, you should define a different specimen scope for each
+procedure that uses a different station.</li>
+                    <li value="2">If you request two microbiology/pathology procedures (or a combination of regular 
+procedures and microbiology/pathology procedures) which would normally be able to use the 
+same specimen, you can indicate that each procedure requires its own specimen by 
+defining a different specimen scope for each procedure.</li>
+                </ul>
+            </div>
+        </div>
+        <p>When this mechanism is used, an order can easily contain several specimen
+requests of the same material. The field ProcedureOutput.Shareable may be of
+help to indicate that a specimen sampling or specimen distribution procedure can
+produce several specimens of the same material (otherwise there will as many
+sampling actions as there are root specimen requests).</p>
+    </body>
+</html>

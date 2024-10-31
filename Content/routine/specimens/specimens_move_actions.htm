@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Specimens">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Move actions to another specimen</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Move actions to another specimen</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS allows to move actions from one specimen to another. &#160;This 
+ can happen when:</p>
+        <p class="fieldlabel">Aa specimen is queried by an instrument</p>
+        <div class="indented">
+            <p>When receiving a query for a specimen for which no single action is 
+	 scheduled on the querying station, GLIMS will try to move actions 
+	 from related specimens to the one being queried.&#160;&#160;The service 
+	 log file will log the fact that an action of a procedure has been 
+	 moved from one specimen to another.<br /></p>
+        </div>
+        <p class="fieldlabel">A specimen is scanned in the specimen 
+	 scan program</p>
+        <div class="indented">
+            <p>The <a href="specimens_scan.htm">specimen scan program</a> will move 
+	 actions to the scanned&#160;specimen whenever required and possible. 
+	 </p>
+        </div>
+        <p>Specimens can also be moved manually using the <a href="specimens_replace.htm">Specimen.Replace</a> 
+ function. This function only allows replacement of actions of the same procedure (and therefore the same material).</p>
+        <h2>Conditions for moving actions</h2>
+        <p>The movement of actions only takes place when the following conditions 
+ are met:</p>
+        <ol>
+            <li class="mips_list_numbered" value="1">The specimen is for the same order, 
+	 same material, same object, same sampling time and same discriminator.</li>
+            <li class="mips_list_numbered" value="2">The specimen is not discontinued.</li>
+            <li class="mips_list_numbered" value="3">If the queried/scanned specimen is a 
+	 root specimen, the related specimen should also be a root specimen 
+	 (see also <a href="#Root_and_sub_specimens">Root and sub specimens</a>).</li>
+            <li class="mips_list_numbered" value="4">If the queried/scanned specimen is a 
+	 sub specimen, the related specimen should also be a sub specimen (see 
+	 also <a href="#Root_and_sub_specimens">Root and sub specimens</a>).</li>
+            <li class="mips_list_numbered" value="5">The action's procedure must allow replacement 
+	 (Procedure field <span class="ui_element">Allow replacement</span> must be enabled).</li>
+            <li class="mips_list_numbered" value="6">The action's procedure must be configured 
+	 on the inquiring/scanning station (or related station (*)). 
+	 &#160;If at least one property output of the procedure should 
+	 be configured, enable the option <span class="ui_element">MoveIfKnownOutboundId</span> 
+	 on the station.</li>
+            <li class="mips_list_numbered" value="7">The action should not yet be realized.</li>
+            <li class="mips_list_numbered" value="8">If the action is an action with 
+	 results as outputs, then the action should not have been transmitted 
+	 earlier (**).</li>
+            <li class="mips_list_numbered" value="9">If the action is an action with 
+	 specimens as output, then none of these specimens should have an action 
+	 which is transmitted earlier (**).</li>
+            <li class="mips_list_numbered" value="10">GLIMS will not move work 
+	 from an action to a specimen being queried/scanned if the specimen 
+	 from which outputs are being moved from was scanned earlier by the 
+	 inquiring/scanning station. GLIMS recognizes the "source" 
+	 specimen as being scanned when a scan event for the station is available 
+	 in the specimen audit trail. &#160;One can disable the check on the 
+	 scan event by enabling the logical Station field <span class="ui_element">Move work of 
+	 scanned specimen</span> (by default it is disabled).</li>
+        </ol>
+        <p class="fieldlabel">(*) Related station </p>
+        <div class="indented">
+            <p>A station is related to the querying/scanning station 
+ if the querying/scanning station is a concentrator and the related station 
+ is a client of the concentrator OR the querying/scanning station is a 
+ regular station (no concentrator, nor distributor) having a download group 
+ to which the related station belongs.&#160;&#160;A related station can 
+ also be a station related to a distributor station.</p>
+        </div>
+        <p class="fieldlabel">(**) With a not transmitted action is meant</p>
+        <div class="indented">
+            <p>Not marked yet as queried by a station (Action.QueriedByStation is not 
+ set), nor marked as downloaded to the inquiring station (Action.DownloadStatus 
+ not set for that station, visible when doing Action -&gt; View download 
+ status).</p>
+        </div>
+        <h2>Move actions between specimens of different material</h2>
+        <p>GLIMS also allows to move the outputs of an action from a queried/scanned 
+ specimen to a another specimen, on condition that:</p>
+        <ol>
+            <li class="mips_list_numbered" value="1">Materials are from the same group (fill 
+	 in a value in the field <span class="ui_element">Group</span> on material).</li>
+            <li class="mips_list_numbered" value="2">The procedure of the queried/scanned 
+	 specimen's actions and the procedure of the related specimen should 
+	 belong to the same group (fill in a value in the field <span class="ui_element">Group</span> 
+	 on procedure).</li>
+        </ol>
+        <p>It is even possible to set the compatibility of two specimen at run 
+ time, for instance in the order entry triggers. One can assign a value 
+ to the field "ReplacementGroup" on a specimen. This value overrules 
+ the group field value of the specimen's material.&#160;&#160;</p>
+        <p>When GLIMS has found a specimen related to the queried/scanned specimen 
+ (because of same material group or specimen replacement group), it will 
+ verify if the related specimen’s material has a compatible procedure configured. 
+ A procedure is compatible when it belongs to the same group and when ALL 
+ the outputs of the action on the queried/scanned specimen can be moved 
+ to that procedure. If for instance the action of the queried/scanned specimen 
+ has the results for properties RBC and WBC, then the compatible procedure 
+ should at least have the same property outputs. Of course, the compatible 
+ procedure should relate to the inquired station.</p>
+        <p>GLIMS also assumes there will only be one compatible procedure. If more 
+ than one procedure meets the conditions, GLIMS will take the one of the 
+ same department as the action’s procedure of the queried/scanned specimen. 
+ If still ambiguous, the move will not take place.</p>
+        <h3><a name="Root_and_sub_specimens" id="Root_and_sub_specimens"></a>Root and 
+ sub specimens</h3>
+        <p>The restrictions already described above:</p>
+        <ol>
+            <li value="1">If the queried/scanned specimen is a root specimen, the related 
+	 specimen should also be a root specimen.</li>
+            <li value="2">If the queried/scanned specimen is a sub specimen, the related 
+	 specimen should also be a sub specimen.</li>
+        </ol>
+        <p>This will be overruled when the material of the specimen has a "group" 
+ or when the queried/scanned specimen has a "replacement group'.</p>
+        <h2>Moving actions after sort query</h2>
+        <p>GLIMS allows to move actions between root specimens when being queried 
+ by a distributor in slave mode (sort query). The conditions for moving 
+ actions in case of a sort query are:</p>
+        <p class="hcp1">Restrictions on the specimen being queried:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>It is a root specimen.</p>
+            </li>
+            <li class="p" value="2">
+                <p>It should have no meaningful outputs, i.e. no actions 
+	 with status less than ready and no actions having specimen outputs 
+	 (sub specimens).</p>
+            </li>
+            <li class="p" value="3">
+                <p>The specimen from which work could be moved from, 
+	 may have been used for moving work before (note that the specimen 
+	 audit trail logs a move event).</p>
+            </li>
+        </ol>
+        <p class="hcp1">Restrictions on the specimen from which work could be moved 
+ from:</p>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>It is a root specimen.</p>
+            </li>
+            <li class="p" value="2">
+                <p>If the root action delivers results, then the results 
+	 are moved only if the root specimen was not sorted (*) yet to a zone 
+	 of that action (<span class="ui_element">action -&gt; procedure -&gt; sorting target -&gt; 
+	 zone</span>).</p>
+            </li>
+            <li class="p" value="3">
+                <p>If the root action delivers sub specimens, then the 
+	 sub specimens should not have been sorted (*) yet.</p>
+            </li>
+        </ol>
+        <p class="fieldlabel">(*) The definition of 'sorted' is</p>
+        <div class="indented">
+            <p> There was a sort result received 
+ from the sorter, or there was a sort instruction sent to the sorter for 
+ a zone not expecting a sort result. &#160;Sorting to error zones is not 
+ considered as actual sort. Sorting to an archive zone for actions delivering 
+ results is also not considered as actual sort.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-ignored-words="SpecificSite">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.5.0 - Specific norms for phone list, reports, severities (GLIMS-06665)</title>
+        <link rel="StyleSheet" href="../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1522"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.5.0 - </MadCap:conditionalText>Specific norms for phone list, reports, severities (GLIMS-06665)</h1>
+        <h2>Case description</h2>
+        <p>In previous versions, it was not easy to indicate that a specific <a href="../../configuration/norms/norms.htm">norm</a> should be used to:</p>
+        <ol>
+            <li value="1">display reference values on a report (only norms with severity "1" could be printed as reference values).</li>
+            <li value="2">calculate the norm severity of a result (to enable/disable automatic confirmation and validation).</li>
+            <li value="3">calculate the phone severity of a result (to mark a result as "To be phoned").</li>
+        </ol>
+        <h2>Solution</h2>
+        <p>Three new options have been added to define the specific purpose of a <a href="../../configuration/norms/norms.htm">norm</a>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-06665.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="676" data-mc-height="688" src="GLIMS-06665_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">For severity</p>
+        <div class="indented">
+            <p>If enabled, the <span class="ui_element">Severity</span> defined in the norm configuration will be used to set the <span class="ui_element">result's norm severity</span> and can hence influence the <a href="../../configuration/severities/severities.htm">final severity</a> of the result.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The <span class="ui_element">Auto-confirm severity</span> and <span class="ui_element">Auto-validate severity</span> defined in the <span class="ui_element">Assessment method</span> are compared with the result's final severity to decide whether the result can be automatically confirmed / validated.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">For phone list</p>
+        <div class="indented">
+            <p>If enabled,  the <span class="ui_element">Severity</span> defined in the norm configuration will be used to set the <span class="ui_element">result's phone list severity</span> (new field Result.PhoneListSeverity) .</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>The <span class="ui_element">Phone severity</span>  defined in the <span class="ui_element">Assessment method</span> is compared with the maximum of the result's phone list severity, delta norm severity and manual severity to decide whether the result should be marked as <span class="ui_element">To be phoned</span>.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">For reporting</p>
+        <div class="indented">
+            <p>If enabled, the norm's low and high <span class="ui_element">limits</span> can be printed as reference values on reports.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When upgrading to GLIMS&#160;9.5, this option will be enabled for all norms with <span class="ui_element">Severity</span> set to <span class="ui_element">1</span>. This ensures backward-compatibility.</p>
+            </div>
+        </div>
+    </body>
+</html>

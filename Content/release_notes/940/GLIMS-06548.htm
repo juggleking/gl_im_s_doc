@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.4.0 - Use caching for action scheduling (GLIMS-06548)</title>
+        <link rel="StyleSheet" href="../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3730"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.4.0 - </MadCap:conditionalText>Use caching for action scheduling (GLIMS-06548)</h1>
+        <h2>Introduction</h2>
+        <p>When <a href="../../routine/orders/order_entry/order_entry_action_scheduling.htm">actions must be scheduled</a> for a new order, GLIMS must get the necessary information: </p>
+        <ul>
+            <li value="1">which properties can be delivered by which procedures. </li>
+            <li value="2">which procedures need which input.</li>
+            <li value="3">...</li>
+        </ul>
+        <p>This configuration data is rather static. It does not change often, except during the configuration phase of a project.</p>
+        <p>Therefore, this data is now cached in the memory of the GLIMS session. This has a significant positive impact on the execution time of the action scheduling phase.</p>
+        <h2>About configuration updates</h2>
+        <p>In order to cope with the problem of procedures being changed (e.g. during configuration and testing phase), a special mechanism ensures that all running sessions are immediately informed about the configuration change(s). </p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>Running sessions can be interactive client sessions, but also batch sessions like services for electronic order entry, or AppServer agent sessions used by interactive client sessions.</p>
+        </div>
+        <p>Each time a running session needs data, it first checks if the configuration was changed. If so, it clears its memory and starts reloading the new data. </p>
+        <p> The check for configuration changes is not performed when it was done very recently, within a certain period of time. This period of time can be configured in the general settings (<span class="ui_element">Start -&gt; System Management -&gt; Customize -&gt; GLIMS</span>, tab page <span class="ui_element">More</span>) .</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-06548.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="759" data-mc-height="622" src="GLIMS-06548_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Caching update interval</p>
+        <ul>
+            <li value="1">For GLIMS systems in routine, this is set by default to 1 hour (longer is better for performance).</li>
+            <li value="2">For GLIMS systems in configuration or testing phase, it is advisable to set this to a low value like e.g. 10s.</li>
+        </ul>
+    </body>
+</html>

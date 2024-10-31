@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Confirmable request definitions of type Panel remain selected in request forms (GLIMS-11204)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2011"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Confirmable request definitions of type Panel remain selected in request forms (GLIMS-11204)</h1>
+        <h2>Background</h2>
+        <h3>Panel request definitions</h3>
+        <p><a href="../../configuration/requestables/requestables.htm#Panel" xmlns="http://www.w3.org/1999/xhtml">Request definitions of type Panel</a> (henceforth "panel request definitions") allow to group a number of request definitions.  When a panel request definition is requested during  order entry, all the request definitions it contains are requested by default. It is however possible to allow users to request only some of the panel members instead of all. To this aim, the option <a href="../../configuration/requestables/requestables.htm#Panel" xmlns="http://www.w3.org/1999/xhtml">Confirm</a> in the editor of the panel request definition must be enabled.</p>
+        <p>When users request a "confirmable" panel request definition in order entry (1),
+ GLIMS displays a confirmation screen with all the members of that panel (2). Users can then deselect the members that should not be requested (3).</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11204_confirmable_panel.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1031" data-mc-height="357" src="GLIMS-11204_confirmable_panel_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>Request forms</h3>
+        <p><a href="../../configuration/request_forms/request_forms.htm" xmlns="http://www.w3.org/1999/xhtml">Request forms</a> can be created to group several (panel) request definitions. The grouped request definitions can then be added during order entry using the <a href="../../routine/orders/order_entry/order_entry_tab_requests.htm#Request2" xmlns="http://www.w3.org/1999/xhtml">Request form button</a> (1). As above, if a confirmable panel request definition is selected (2), it is possible to deselect some of its members (3).</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11204_confirmable_panel_request_forms.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="656" data-mc-height="390" src="GLIMS-11204_confirmable_panel_request_forms_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Issue</h2>
+        <p>Once a confirmable panel request definition had been selected in a request form, the corresponding checkbox in the request form was not ticked. Users could therefore not see if this panel request definition had already been selected or not. This obviously lead them to think that the confirmable panel request definition had not been selected yet and thus to request it a second time.</p>
+        <h2>Solution</h2>
+        <p>The behaviour of confirmable panel request definitions in request forms has been improved:</p>
+        <ul>
+            <li value="1">When a confirmable panel request definition is selected in a request form, the corresponding checkbox remains ticked.</li>
+            <li value="2">Once a confirmable panel request definition is selected in a request form, it is displayed in italics and cannot be deselected (1).</li>
+            <li value="3">The only way to undo the selection of this request definition is to delete all its members  in the request list of the order entry screen (2).</li>
+        </ul>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS-11204_confirmable_panel_delete.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="665" data-mc-height="196" src="GLIMS-11204_confirmable_panel_delete_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2>Additional correction</h2>
+        <p>In the following scenario,</p>
+        <ul>
+            <li value="1">open the <a href="../../routine/orders/orders_verify.htm" xmlns="http://www.w3.org/1999/xhtml">Order verification tool</a>,</li>
+            <li value="2">from the <span class="ui_element">Order verification</span> screen, open the <span class="ui_element">Request form</span> screen,</li>
+            <li value="3">add requests,</li>
+        </ul>
+        <p>an error message was displayed.</p>
+        <p>The error has been corrected.</p>
+    </body>
+</html>

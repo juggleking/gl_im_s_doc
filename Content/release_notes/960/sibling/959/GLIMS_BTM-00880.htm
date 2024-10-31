@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.6.0 - DGTI Germany: support for barcodes with additional identifier "!" (GLIMS_BTM-00880)</title>
+        <link rel="StyleSheet" href="../../../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script type="text/javascript" src="../../../../Resources/hyperlink_target.js">
+        </script>
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2954"></a>
+            <MadCap:concept term="Release notes" /><a name="aanchor2955"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.6.0 - </MadCap:conditionalText>DGTI Germany: support for barcodes with additional identifier "!" (GLIMS_BTM-00880)</h1>
+        <h2>Background information</h2>
+        <p>When a blood bag import file is delivered in a non-ISBT format like <span class="ui_element">DGTI (Germany)</span>, the blood bags are listed in the blood bag import browser. For the blood bags to be saved in the database, each blood bag external id needs to be scanned.</p>
+        <h2>Problem description</h2>
+        <p>When scanning the blood bag, the blood bag external id has an extra identifier "!", whereas the blood bag external id in the import file does not have the additional identifier. As a result, no match is found and the blood bag is not imported.</p>
+        <h2>Solution</h2>
+        <p>We recommend using the following MISPL in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Bloodbag external id</span> field of the <a href="../../../../modules/blood_transfusion/configuration/blood_transfusion_general_options.htm" xmlns="http://www.w3.org/1999/xhtml">general settings</a>.</p>
+        <div class="box_grey" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">String Hersteller, Result;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">&#160;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">/* Strip off the leading ! when using ExternalIdAsBarcode */</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">IF LEN(.ExternalIdAsBarcode) &gt; 1</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">THEN</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">IF SUBSTR(.ExternalIdAsBarcode,1,1) = "!"</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">THEN Result := SUBSTR(.ExternalIdAsBarcode,2,-1) ;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">ELSE Result := .ExternalIdAsBarcode;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+            </div>
+            <p xmlns="http://www.w3.org/1999/xhtml">ELSE Result := .ExternalId;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">&#160;</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">RETURN Result;</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Results|Functions" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="result_modify">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Modify</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor316"></a><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_results.htm">Results</a> 
+ -&gt; Result update</h1>
+        <p>Contents: <a href="#Result.Modify%20function" name="kanchor317">Result.Modify 
+ function</a> - <a href="#validated%20results">Modifying 
+ confirmed/validated results</a> - <a href="#Modifying%20QC%20results">Modifying 
+ QC results</a> - <a href="#Privilege%20checks">Privilege checks</a> - <a href="#Comments%20of%20modified%20results" name="kanchor318">Comments of modified results</a></p>
+        <h2><a name="Result.Modify function"></a>Result.Modify function</h2>
+        <h3>Modifying a single result</h3>
+        <p>From each non-discontinued result record (e.g. in work lists, confirmation and validation 
+ browser), you can use the contextual menu function <span class="ui_element">Modify</span>:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="rslt_modifysingle.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="540" data-mc-height="301" src="rslt_modifysingle_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Value</p>
+        <div class="indented"> If a numeric value is entered, the <a href="../../configuration/units/units_dimensions.htm">unit</a> is added automatically, and converted if need be. You can also press CTRL+F to open a choice list with <a href="../../configuration/result_codes/result_codes.htm">result codes</a>.</div>
+        <p>This screen also allows you to <span style="font-weight: bold;">change the 
+ assessment method</span> by which a result is (to be) measured:</p>
+        <p style="margin-left: 40px;font-weight: bold;">Introduction</p>
+        <p style="margin-left: 40px;">The <span class="ui_element">Station</span> 
+ field will become active when GLIMS detects that alternate assessment 
+ methods (procedure outputs) are available on which the result can be assessed.</p>
+        <p style="margin-left: 40px;text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_result_modify_change_assessment_method.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="538" data-mc-height="300" src="RN_result_modify_change_assessment_method_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="margin-left: 40px;">Clicking an enabled <span class="ui_element">Station</span> field 
+ (or using keyboard actions up/down/CTRL+f) will result in a popup screen 
+ showing the current (as first) and the alternative procedure outputs.</p>
+        <p style="margin-left: 40px;">The lines shown in the popup screen contain 
+ the following information:</p>
+        <ul>
+            <li style="margin-left: 40px;" value="1">The station mnemonic.</li>
+            <li style="margin-left: 40px;" value="2">The procedure name and the procedure's department mnemonic (between parenthesis).</li>
+        </ul>
+        <p style="margin-left: 40px;">The output which was selected previously 
+ is prefixed with a ‘&gt;’. &#160;Initially, the prefix is set on the first 
+ line, indicating the original output of the result.</p>
+        <h4 style="margin-left: 40px;">Which alternate outputs are shown ?</h4>
+        <p style="margin-left: 40px;">The following are the restrictions:</p>
+        <ul>
+            <li style="margin-left: 40px;" value="1">The assessment method of the procedure output must be for the same property as the original result.</li>
+            <li style="margin-left: 40px;" value="2">The assessment method must be enabled.</li>
+            <li style="margin-left: 40px;" value="3">The procedure output of the assessment method must be enabled.</li>
+            <li style="margin-left: 40px;" value="4">The procedure delivering the output should be available.</li>
+            <li style="margin-left: 40px;" value="5">The procedure delivering the output should have the same material as input as the original result's specimen.</li>
+        </ul>
+        <h4 style="margin-left: 40px;">What happens when selecting another assessment 
+ method ?</h4>
+        <ol style="list-style-type: decimal;">
+            <ul>
+                <li value="1">
+                    <p>GLIMS will first verify if an existing action 
+		 on that specimen can receive this result (the action should not 
+		 have reached the status outputting yet).</p>
+                </li>
+                <li value="2">
+                    <p>If such an action does not exist, a new action 
+		 is created for the selected output.</p>
+                </li>
+                <li value="3">
+                    <p>The result is moved to the existing or new action.</p>
+                </li>
+                <li value="4">
+                    <p>An entry is added to the log of the result (event 
+		 "changed property output" with comment "from procedure 
+		 X -&gt; to procedure Y).</p>
+                </li>
+                <li value="5">
+                    <p>The modified result will be evaluated against 
+		 the settings of the target assessment method (norms, limits etc.).</p>
+                </li>
+                <li value="6">When the original result was confirmed 
+		 or validated and only the assessment method is changed, the function 
+		 will discontinue the original result, create a new one and assign 
+		 it the original result value.</li>
+            </ul>
+        </ol>
+        <h4 style="margin-left: 40px;">Notes</h4>
+        <ol style="list-style-type: decimal;">
+            <ul>
+                <li value="1">
+                    <p>This feature is not applicable to QC results.</p>
+                </li>
+                <li value="2">
+                    <p>One may select an alternate output without modifying 
+		 anything else about the result.</p>
+                </li>
+                <li value="3">
+                    <p>GLIMS will ask for a justification when an alternative 
+		 output is selected for a result in status confirmed or validated 
+		 (as if the result value was modified).</p>
+                </li>
+            </ul>
+        </ol>
+        <h3><a name="Modifyin"></a>Modifying several results</h3>
+        <p style="text-align: left;">When selecting several results and then applying 
+ the <span class="ui_element">Modify</span> function, the following screen will be displayed:</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="rslt_modifymulti.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="570" data-mc-height="329" src="rslt_modifymulti_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p style="text-align: left;">This allows you to change the value, <a href="../../configuration/severities/severities.htm">manual 
+ severity</a>, internal and external comment.&#160;&#160;You can indicate 
+ that the entered comment should be added to any existing comment (external 
+ or internal), unless when it is already present in the existing comment.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">When changing a value that is used as 
+ input of a calculation, the calculation propagates to all levels, not 
+ just the first. So, if other calculations follow, all depending results 
+ will be recalculated up to the last in the procedure chain.&#160;&#160;The 
+ prerequisite that a calculation only proceeds if all inputs are confirmed 
+ remains valid. If the .Modify() causes a result status lower than 'Confirmed', 
+ explicit confirmation is required before the recalculation will take place.</p>
+        </div>
+        <h2><a name="validated results"></a>Modifying confirmed/validated results</h2>
+        <p>A confirmed result can only be modified if:</p>
+        <ul>
+            <li class="kadov-p" value="1">Result.Confirm() is NOT protected by a privilege, 
+	 which is very unlikely.</li>
+            <li class="kadov-p" value="2">Result.Confirm() is protected by a privilege that 
+	 is granted to the user (in other words: the user is allowed to confirm 
+	 results).</li>
+            <li class="kadov-p" value="3">The result was confirmed automatically.</li>
+        </ul>
+        <p>For validated results, similar rules apply:</p>
+        <ul>
+            <li class="kadov-p" value="1">Result.Validate() nor Result.Confirm() are protected 
+	 by a privilege, which again is very unlikely.</li>
+            <li class="kadov-p" value="2">Result.Validate() is protected by a privilege that 
+	 is granted to the user (in other words: the user is allowed to validate 
+	 results).</li>
+            <li class="kadov-p" value="3">The result was validated automatically, but also 
+	 confirmed automatically or the user owns the confirmation privilege.</li>
+        </ul>
+        <p>This restriction is introduced in:</p>
+        <ul>
+            <li class="kadov-p" value="1">Result.Modify(): In case of a single result, the 
+	 dialog is opened in read-only mode. When multiple result records are 
+	 selected, a warning message is generated for each protected result.</li>
+            <li class="kadov-p" value="2">Result.Discontinue(): A warning message pops up 
+	 for each protected result.</li>
+            <li class="kadov-p" value="3">ConfirmByAction() and OrderReview(): Protected 
+	 results can not be updated in-line. They are grayed out to indicate 
+	 this.</li>
+        </ul>
+        <p>On modification of a result, GLIMS will behave as if the result is re-entered. 
+ Norm checks, status auto-promotion, property triggers, etc... will be 
+ re-applied. Only when the result value is modified in-line in the validation 
+ program, the original result status will be preserved.</p>
+        <h2 style="text-align: left;"><a name="Modifying QC results"></a>Modifying 
+ QC results</h2>
+        <p style="text-align: left;">The behavior of the Result.Modify() screen 
+ is slightly different for QC result than for normal results:</p>
+        <ul>
+            <li class="p" value="1">
+                <p style="text-align: left;">The phone fields are not 
+	 shown.</p>
+            </li>
+            <li class="p" value="2">
+                <p style="text-align: left;">When changing the value, 
+	 the Internal comment is cleared.</p>
+            </li>
+            <li class="p" value="3">
+                <p style="text-align: left;">When committing the screen 
+	 after a value change, a contextual menu allows the user to choose whether 
+	 he actually wants to replace the current result, or whether he wants 
+	 to store this value as a new result, while leaving the original result 
+	 as it is.&#160;&#160;In the latter case, the modification justification 
+	 entered in the confirmation screen will be added to the external comment 
+	 of the original result.&#160;&#160;This mode can be helpful for entering 
+	 a new QC result after recalibration, without discontinuing and replacing 
+	 the original result.</p>
+            </li>
+        </ul>
+        <div class="indented">
+            <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="Modify QC result.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="254" data-mc-height="145" src="Modify QC result_thumb_0_120.png" alt="" tabindex="" /></a>
+            </p>
+        </div>
+        <h2 style="text-align: left;"><a name="Privilege checks"></a>Privilege checks</h2>
+        <p style="text-align: left;">In several places in GLIMS, the standard result 
+ editor is replaced by the Result.Modify() screen.&#160;&#160;That screen 
+ contains only the most essential information and is more user-friendly 
+ (e.g. it allows expanding embedded text modules).&#160;&#160;In order 
+ to avoid any security holes with respect to changing a result, a number 
+ of built-in rules apply.</p>
+        <p style="text-align: left;">Next to the conventions that exist for update 
+ of <a href="#validated%20results">confirmed and validated 
+ results</a> extra protections are built in. The editor can be activated, 
+ but all or some fields will be read-only, depending on the privilege settings.</p>
+        <p style="text-align: left;">If access to the Result.Modify() function 
+ is not granted, or update of the Result table is denied, no updates are 
+ allowed. All widgets, except for the expansion buttons are read-only. 
+ So, the user may expand embedded text modules in the result value or comment 
+ fields, but will not be able to save his changes.</p>
+        <p style="text-align: left;">If neither the function nor the table is protected, 
+ or the required privileges are granted to the user, the following result 
+ field protections are checked:</p>
+        <table width="60%" style="margin-left: 0;margin-right: auto;">
+            <tr>
+                <td style="width: 50%;"><b style="font-weight: bold;">Result field&#160;</b>
+                </td>
+                <td style="width: 50%;"><b style="font-weight: bold;">Protected 
+		 widgets</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">rslt_RawValue</td>
+                <td style="width: 50%;">Result string</td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">rslt_ManualSeverity</td>
+                <td style="width: 50%;">Manual severity</td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">rslt_PhoneStatus</td>
+                <td style="width: 50%;">Phone status + button</td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">rslt_ExternalComment</td>
+                <td style="width: 50%;">External comment</td>
+            </tr>
+            <tr>
+                <td style="width: 50%;">rslt_InternalComment</td>
+                <td style="width: 50%;">Internal comment</td>
+            </tr>
+        </table>
+        <h2 style="text-align: left;"><a name="Comments of modified results"></a>Comments 
+ of modified results</h2>
+        <p>When updating a result VALUE, all automatic comments will be re-determined, 
+ regardless of the method used.&#160;&#160;The work list program, the Result.Modify() 
+ function and in-line update in the confirmation and validation programs 
+ all use the same scheme:</p>
+        <ul>
+            <li value="1">When a result VALUE is entered or updated, any 
+	 existing comment is considered as being related to the previous value 
+	 and no longer valid. Hence it is cleared.</li>
+        </ul>
+        <div class="indented">
+            <div class="text_box_warnings">
+                <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                </p>
+                <p>Beware for the functionality of the Result.Modify() 
+ function, which does not work "WYSIWYG"!&#160;&#160;&#160;What 
+ you see on the screen will be passed to the database along with the result, 
+ but any auto-generated comments will be added. If the original result 
+ record already contained auto-generated comment (from the previous value) 
+ that no longer applies to the new value, it is to be cleared manually 
+!</p>
+            </div>
+        </div>
+        <ul>
+            <li value="2">Any comment that is passed along with 
+	 the result is added to the result record when stored in the database. 
+	 Such comments are: internal/external comment specified in the Result.Modify() 
+	 screen and external comment added in the "Modify result justification" 
+	 screen (appears on modification of a confirmed or validated result).	&#160;</li>
+            <li value="3">After the result is stored in the database, the 
+	 property trigger is executed and any AddInternalComment() or AddExternalComment() 
+	 MISPL function called from within this trigger will append or replace 
+	 the requested comment.</li>
+        </ul>
+        <p>If the property trigger causes the (possibly manually entered) comment 
+ to be overwritten (e.g. by means of a .AddExternalComment(..., NO) call), 
+ the user is warned and prompted whether or not he wants to revert to the 
+ original comment.&#160;&#160;The AddInternalComment() and AddExternalComment() 
+ MISPL functions are protected against double comments. If the new comment 
+ text is already included, it will not be added a second time.</p>
+        <p>Analogous to the comment fields, expert system flags are also reset 
+ on a result value change. Any new value should be re-evaluated.</p>
+    </body>
+</html>

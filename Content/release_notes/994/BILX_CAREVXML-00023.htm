@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.50_translation_exclude_for_GER,Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.4 - No more rejection of MyCareNet shipment file because of invalid characters (BILX_CAREVXML-00023)</title>
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4079"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.4 - </MadCap:conditionalText>No more rejection of MyCareNet shipment file because of invalid characters (BILX_CAREVXML-00023)</h1>
+        <p>Exporting financial data in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">RIZIV</span> format (MyCareNet) via the <a href="../../modules/billing/invoicing/routine/financial_shipments_send.htm" xmlns="http://www.w3.org/1999/xhtml">Send function on Financial shipment</a> could result in the shipment file being rejected when it contained characters such as é, è, ç, à (originating from the property description, billing code description or other character fields) in the field 44 of recordtype 50 (this field is only filled for nomenclature codes starting with 960).</p>
+        <p>In order to avoid errors and the rejection of the shipment file, the following characters will now be replaced as follows.</p>
+        <table style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');" xmlns="http://www.w3.org/1999/xhtml" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">é, è, ê, ë</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">e</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">à, â, ä, á</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">a</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">î, ï</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">i</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">	û, ü, ù, ú</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">u</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">ô</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">o</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">ç</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">c</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body1">ß</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body1">ss</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Other  characters that are not allowed by the export format will be removed.</p>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #ff0000; font-weight: bold;">Warnings</span>
+            </p>
+            <ul>
+                <li value="1">Customers having implemented a workaround (using a MISPL function to replace the characters that are not allowed) can now remove this workaround.</li>
+                <li value="2">The ß character needs to be replaced as it is not allowed. However, the maximum field length might be exceeded when "ss" is used instead of ß.</li>
+            </ul>
+        </div>
+    </body>
+</html>

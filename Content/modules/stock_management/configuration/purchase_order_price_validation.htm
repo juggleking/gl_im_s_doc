@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Stock management|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Stock management: purchase order - price validation</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2467"></a>
+            <MadCap:concept term="Stock management" />Stock management: purchase order - price validation</h1>
+        <h2>Setting supplier minimal, maximal purchase order price and validation 
+ MISPL</h2>
+        <p>For each supplier (organization), it is possible to specify a minimal 
+ and maximal purchase order price as well as a PurchaseOrder-based validation 
+ MISPL, returning a logical.</p>
+        <h2>Optional display of minimal and maximal price in purchase order entry 
+ screen</h2>
+        <p class="MsoNormal" style="margin-left: 0px;">In the purchase order entry 
+ screen, there is a button next to the total price, which can be used to 
+ set price display options (which are remembered in a user preference).</p>
+        <p class="MsoNormal" style="margin-left: 0px;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="purchase_order_price_validation.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="902" data-mc-height="553" src="purchase_order_price_validation_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Display minimal price</p>
+        <div class="indented">
+            <p>If set, the minimal price is displayed next 
+ to the total price.</p>
+        </div>
+        <p class="fieldlabel">Display maximal price</p>
+        <div class="indented">
+            <p>If set, the maximal price is displayed next 
+ to the total price (can be&#160;combined 
+ with minimal price).</p>
+        </div>
+        <p class="fieldlabel">Mark too low prices</p>
+        <div class="indented">
+            <p>If set, the total price will be colored in 
+ red color.</p>
+        </div>
+        <p class="fieldlabel">Mark too high prices</p>
+        <div class="indented">
+            <p>If set, the total price will be colored in 
+ yellow color.</p>
+        </div>
+        <h2>Total price validation during approval</h2>
+        <p>When the purchase order is approved, the purchase order total price 
+ is validated against the minimal and maximal price defined for the supplier.</p>
+        <ul>
+            <li class="mips_list_bulleted" value="1">If a validation MISPL is set, then it 
+	 will be executed. &#160;If the condition is not satisfied, purchase 
+	 order approval will be disallowed.</li>
+            <li class="mips_list_bulleted" value="2">If no validation MISPL is set, a default 
+	 validation will be applied: if the purchase order total price (*) 
+	 is lower than the minimal price or higher than the maximal price, 
+	 then a warning will be issued, but you will be allowed to proceed 
+	 with the approval. &#160;<br /><br />	(*) with discount, but without VAT (cfr. MISPL function .TotalPrice(YES, 
+	 NO))</li>
+        </ul>
+    </body>
+</html>

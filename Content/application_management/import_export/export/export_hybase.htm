@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Import &amp; Export|Specific export" data-mc-conditions="Primary.50_translation_exclude_for_FR" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="HyBase_export">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>HyBase export</title>
+        <meta name="ProgId" content="FrontPage.Editor.Document" />
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4054"></a>
+            <MadCap:concept term="Application management" /> HyBase export</h1>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>GLIMS supports the HyBase protocol to export microbiology and epidemiology data.</p>
+        <p>The HyBase export program is to be configured as a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command</a>, which can be run interactively (via the menu/ribbon item <span class="ui_element">Do</span>) or in batch. </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_hybase_do_command.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="788" data-mc-height="231" src="export_hybase_do_command_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>This chapter describes</p>
+        <ul>
+            <li value="1"><a href="#Command">how to configure the command</a>
+            </li>
+            <li value="2"><a href="#Exported">which data is exported</a>
+            </li>
+            <li value="3"><a href="#(non-culture)_test_results">the export of (non-culture) test results</a>.</li>
+        </ul>
+        <h2><a name="Command"></a>Command editor</h2>
+        <p>First create a new command and fill in the following fields in the <span class="ui_element">Command</span> editor:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Table</span>: Specimen</li>
+            <li value="2"><span class="ui_element">Description</span>: HyBase export</li>
+            <li value="3"><span class="ui_element">Query</span>: HyBase</li>
+            <li value="4"><span class="ui_element">Function</span>: HyBaseExport</li>
+        </ul>
+        <p>Then configure the query and function parameter sets as described in the following sections.</p>
+        <h3><a name="Query parameter set"></a>Query parameter set</h3>
+        <p>Create a query parameter set with the following parameters:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Minimal sampling date</span>: specimen sampled before this date will not be selected; if left empty, the first day of the previous month is assumed.</li>
+            <li value="2"><span class="ui_element">Validated days ago</span>: only specimens for which a report has been validated at most this number of days ago will be selected; if left empty, the program will go back till the minimal sampling date.</li>
+            <li value="3"><span class="ui_element">Filter</span>: optional, specimen-based MISPL filter to define further which specimens 
+	should be included in the HyBase export.</li>
+        </ul>
+        <p>In routine, the configured parameters will allow users to filter the data that should be exported:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_hybase_query_parameter_set.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="455" data-mc-height="154" src="export_hybase_query_parameter_set_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>For the first run, to select all, you should choose:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Minimal sampling date</span> = e.g. 01/01/1970</li>
+            <li value="2"><span class="ui_element">Validated days ago</span> = ?</li>
+        </ul>
+        <p>For frequent, such as daily, execution of the command you should  for instance choose:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Minimal sampling date</span> = ?</li>
+            <li value="2"><span class="ui_element">Validated days ago</span> = 2</li>
+        </ul>
+        <h3><a name="Function parameter set"></a>Function parameter set</h3>
+        <p>Create a function parameter set with the following parameters:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Directory</span>: indicates in which directory the output files created when the command is executed should be saved; if left empty, the session's temporary directory is
+ assumed.</li>
+            <li value="2"><span class="ui_element">Version</span>: Choose <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Extended</span> to use the new version (export of basic and extended data) or <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Basic</span> to use the former version (export of basic data only).</li>
+            <li value="3"><span class="ui_element">Dump configuration</span>: if enabled, the configuration data (antibiotics, materials,
+material variables, microorganisms) will  be written into .LAB files and saved in the chosen directory. This should be done at least the first time, or whenever something is added/changed to these
+ items in GLIMS.</li>
+            <li value="4"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Export isolation tests</span>: this option is only relevant in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Extended</span> version.</li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_hybase_function_parameter_set.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1203" data-mc-height="655" src="export_hybase_function_parameter_set_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2><a name="Exported"></a>Exported data</h2>
+        <p>Which data is exported</p>
+        <ul>
+            <li value="1">can be seen in a GLIMS.ini file. This file is produced when the command is executed. It is stored together with the other output files in the chosen <a href="#Function%20parameter%20set">directory</a>.</li>
+            <li value="2">
+                <p>partly depends on the HyBase version chosen in the <span class="ui_element">HyBase export</span> setup screen: <span class="ui_element">Basic</span> or <span class="ui_element">Extended</span>.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>In both cases, </p>
+                    <ul>
+                        <li value="1">only one specimen variable is exported. If there is more than one specimen variable, only the first one is exported.</li>
+                        <li value="2"><a href="../../../modules/microbiology/configuration/micro_organism_tests.htm#Reportab">Non-reportable isolations</a> are not exported.</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <h3>HyBase version = Basic</h3>
+        <p>When the <span class="ui_element">HyBase version</span> field is set to <span class="ui_element">Basic</span>, the following data is exported for each specimen:</p>
+        <ul>
+            <li value="1">
+                <p>1 = Patient related data: </p>
+                <ol>
+                    <li value="1">Patient id = Object internal id</li>
+                    <li value="2">Encounter id = Encounter external id</li>
+                    <li value="3">Last name = Person's last name</li>
+                    <li value="4">First name = Person's first name</li>
+                    <li value="5">Birth date = Person's birth date</li>
+                    <li value="6">Issuer = Issuer internal id</li>
+                    <li value="7">Specialism = Internal id of the correspondent indicated in the editor of the <a href="../../../configuration/specialisms/specialisms.htm#Correspo">Specialism</a> of the person's stay<a href="../../../configuration/specialisms/specialisms.htm"></a>.</li>
+                    <li value="8">Entry date = Start date of the encounter</li>
+                    <li value="9"><a href="../../../configuration/correspondents/persons.htm#Main">Sex</a>
+                    </li>
+                </ol>
+            </li>
+            <li value="2">
+                <p>2 = Specimen related data:</p>
+                <ol>
+                    <li value="1">Specimen id = Specimen internal id</li>
+                    <li value="2">Status = <a href="../../../modules/microbiology/routine/microbiology_actions_status_overview.htm">Status of microbiology action</a>: Open or Closed</li>
+                    <li value="3">Lab = Lab mnemonic</li>
+                    <li value="4">Material = Material mnemonic</li>
+                    <li value="5">Material specification = Mnemonic of material variable choice</li>
+                    <li value="6">Sampling date = Sampling time of the specimen</li>
+                </ol>
+            </li>
+            <li value="3">
+                <p>3 = Microorganism related data:</p>
+                <ol>
+                    <li value="1">Microorganism = Mnemonic of microorganism</li>
+                    <li value="2">Appraisal = Description of <a href="../../../modules/microbiology/configuration/isolation_appraisals.htm">isolation appraisal</a></li>
+                    <li value="3">Pos/Neg = Isolation appraisal is <a href="../../../modules/microbiology/configuration/isolation_appraisals.htm#Positive">positive</a>: "1", isolation appraisal is negative: "2"</li>
+                    <li value="4">#Antibiotics = Number of antibiotics</li>
+                    <li value="5">Antibiotic = Mnemonic of antibiotic</li>
+                    <li value="6">
+                        <p>R/I/S = <a href="../../../modules/microbiology/routine/microbiology_work_screen_antibiogram.htm#Report">Report value</a> of antibiotic result</p>
+                        <p>Fields 5 and 6 are repeated for each antibiotic.</p>
+                    </li>
+                </ol>
+            </li>
+            <li value="4">
+                <p>3 = <a href="#(non-culture)_test_results">Property (non-culture) related data</a></p>
+                <ol>
+                    <li value="1">Property  short name (or mnemonic, if the property short name is not set)</li>
+                    <li value="2"><a href="../../../configuration/result_codes/result_codes.htm">Expanded value</a> of the test result</li>
+                    <li value="3">Evaluated value of the test result: value returned by the Result-based site function indicated in the field <a href="../../../configuration/properties/properties.htm#Should">Interpreted value for 'HyBase' export</a> in the editor of the property to which the result is linked. This value can be used by the HyBase program to make a distinction between 
+ positive and negative results, for instance.</li>
+                </ol>
+            </li>
+        </ul>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span> </p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_hybase_exported_data_basic.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1327" data-mc-height="413" src="export_hybase_exported_data_basic_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <h3>HyBase version = Extended</h3>
+        <p>When the <span class="ui_element">HyBase version</span> field is set to <span class="ui_element">Extended</span>, the following data is exported :</p>
+        <ul>
+            <li value="1">
+                <p>1 = Patient data: </p>
+                <ol>
+                    <li value="1">Record type = 1</li>
+                    <li value="2">Patient id = Object internal id</li>
+                    <li value="3">Encounter id = Encounter external id</li>
+                    <li value="4">Hospital id = encounter institution mnemonic</li>
+                    <li value="5">Last name = Person's last name</li>
+                    <li value="6">First name = Person's first name</li>
+                    <li value="7">Birth date = Person's birth date</li>
+                    <li value="8">Issuer = Issuer correspondent internal id</li>
+                    <li value="9">Issuer correspondent name</li>
+                    <li value="10">Specialism code = Stay specialism mnemonic (or issuer correspondent class name)</li>
+                    <li value="11">Specialism description = Stay specialism name (or issuer correspondent class description)</li>
+                    <li value="12">Entry date = Start date of the encounter</li>
+                    <li value="13"><a href="../../../configuration/correspondents/persons.htm#Main">Sex</a> (translated short label)</li>
+                </ol>
+            </li>
+            <li value="2">
+                <p>2 = Specimen data:</p>
+                <ol>
+                    <li value="1">
+                        <p>Record type = 2</p>
+                    </li>
+                    <li value="2">Specimen id = Specimen internal id</li>
+                    <li value="3">Status = <a href="../../../modules/microbiology/routine/microbiology_actions_status_overview.htm">Status of microbiology action</a>: Open or Closed</li>
+                    <li value="4">Lab = order department lab mnemonic</li>
+                    <li value="5">Material = Material mnemonic</li>
+                    <li value="6">Material long description</li>
+                    <li value="7"> Mnemonic of material variable choice</li>
+                    <li value="8">Description of material variable choice</li>
+                    <li value="9">Specimen extra info = Content of the <span class="ui_element">Extra info</span> field in the Specimen variable editor</li>
+                    <li value="10">Current date (Befunddatum)</li>
+                    <li value="11">Receipt date</li>
+                    <li value="12">Sampling date = Sampling time of the specimen</li>
+                    <li value="13">Not filled in (Zeitpunkt der Messung am Gerät)</li>
+                    <li value="14">
+                        <p>If there are, for instance, 3 microbiology actions, we get:</p>
+                        <p>requested_code_of_MB_action1;description_of_MB_action1;requested_code_of_MB_action2;description_of_MB_action2;requested_code_of_MB_action3;description_of_MB_action3;</p>
+                    </li>
+                    <li value="15">
+                        <p>If there are, for instance, 3 results with HyBase set to Yes, we get:</p>
+                        <p>requested_code_of_result1;description_of_result1;requested_code_of_result2;description_of_result2;requested_code_of_result3;description_of_result3;</p>
+                    </li>
+                </ol>
+            </li>
+            <li value="3">
+                <p>3 = Isolation data:</p>
+                <ol>
+                    <li value="1">Record type 3 = 3</li>
+                    <li value="2">Microorganism = Mnemonic of microorganism</li>
+                    <li value="3">Description = (long) description of the microorganism, or its name if no description is available</li>
+                    <li value="4">Appraisal = Description of <a href="../../../modules/microbiology/configuration/isolation_appraisals.htm">isolation appraisal</a></li>
+                    <li value="5">Pos/Neg = Isolation appraisal is <a href="../../../modules/microbiology/configuration/isolation_appraisals.htm#Positive">positive</a>: "1", isolation appraisal is negative: "2"</li>
+                    <li value="6">
+                        <p> Not filled in (Erregentype)</p>
+                    </li>
+                    <li value="7">
+                        <p>Not filled in (Info)</p>
+                    </li>
+                    <li value="8">
+                        <p>Not filled in (Nachweismethode)</p>
+                    </li>
+                    <li value="9">
+                        <p>Not filled in (Nachweismethodebezeichnung)</p>
+                    </li>
+                    <li value="10">
+                        <p>#Antibiotics = Number of antibiotics (e.g. "3")</p>
+                    </li>
+                    <li value="11">First antibiotic: antibiotic data: antibiotic mnemonic + “;” + antibiotic name + “;” + report value (RIS) + ‘;’ + MIC value</li>
+                    <li value="12">Second antibiotic: antibiotic data: antibiotic mnemonic + “;” + antibiotic name + “;” + report value (RIS) + ‘;’ + MIC value</li>
+                    <li value="13">Third antibiotic: antibiotic data: antibiotic mnemonic + “;” + antibiotic name + “;” + report value (RIS) + ‘;’ + MIC value</li>
+                    <li value="14">Number of isolation tests (e.g. "2") (optional)</li>
+                    <li value="15">First isolation test: Isolation template mnemonic; isolation template description; result value; (optional)</li>
+                    <li value="16">Second isolation test: Isolation template mnemonic; isolation template description; result value; (optional)</li>
+                </ol>
+            </li>
+            <li value="4">
+                <p>3 = <a href="#(non-culture)_test_results">Property (non-culture) related data</a></p>
+                <ol>
+                    <li value="1">
+                        <p>Record type = 3</p>
+                    </li>
+                    <li value="2">
+                        <p>Property short name</p>
+                    </li>
+                    <li value="3">
+                        <p>Property long description</p>
+                    </li>
+                    <li value="4">
+                        <p>Result value</p>
+                    </li>
+                    <li value="5">
+                        <p>Result evaluated value</p>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="export_hybase_exported_data_extended.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1498" data-mc-height="396" src="export_hybase_exported_data_extended_thumb_0_120.png" tabindex="" /></a>
+            </p>
+        </div>
+        <h2>Export of other <a name="(non-culture)_test_results"></a>(non-culture) test 
+results</h2>
+        <p>The HyBase export program can also export analysis results which are not 
+results of a culture. Examples (in German) are: CDA-Antigen/Wurmeier/Adenoviren/Noroviren/Rotaviren.</p>
+        <p>There is some limitation on the results that are exported:</p>
+        <ul>
+            <li value="1">Only test results that have been performed on a specimen for which also 
+ one or more cultures (microbiology procedure) have been done are exported.</li>
+            <li value="2">Tests of <a href="../../../configuration/properties/properties.htm#Main">data type</a> <span class="ui_element">Culture</span>, <span class="ui_element">Antibiogram</span>, <span class="ui_element">Graph</span> or Image are not 
+ exported.</li>
+            <li value="3">For a result to be exported, the field <a href="../../../configuration/properties/properties.htm#Should">Should be included in 'HyBase' export</a>, in the editor of the property to which the result is linked, should be activated.</li>
+        </ul>
+    </body>
+</html>

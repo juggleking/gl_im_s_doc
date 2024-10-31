@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced|MISPL and texts|Texts" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Texts">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Texts: introduction and grammar</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Texts: introduction and grammar</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Text%20browser">Text 
+ browser</a> - <a href="#Text%20fields">Text fields</a> - <a href="#Menu_functions">Menu 
+ functions</a> - <a href="#Expansion_of_dynamic_texts">Expansion of dynamic 
+ texts</a> - <a href="#Grammar">Grammar</a> - <a href="#History">History</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Text records allow defining reusable text modules that may include 
+ variable components, such as references to other text modules or <a href="index_mispl_texts.htm">MISPL 
+ expressions</a>.</p>
+        <p>Because text records may contain MISPL expressions, which are always 
+ scoped to some table in the database scheme, the text records are scoped to some 
+ table as well: this allows the validation of a new or modified text record 
+ to include a MISPL syntax check. Inside the table they belong to, text 
+ records are uniquely identified by a mnemonic.</p>
+        <p>The actual text value can be stored in multiple languages.</p>
+        <h2><a name="Text browser"></a>Text browser</h2>
+        <p>The gp_Text table is accessible from the main menu via <span class="ui_element">Start 
+ -&gt; System Management -&gt; Texts</span>.</p>
+        <p class="fieldlabel">Search box</p>
+        <div class="indented">
+            <p>Only show texts containing these words</p>
+        </div>
+        <h3>Query options</h3>
+        <p>The icon at the top left allows to narrow 
+ down the number of texts displayed: </p>
+        <p class="fieldlabel">Table</p>
+        <div class="indented">
+            <p>Only show texts based on the specified table.</p>
+        </div>
+        <p class="fieldlabel">Class</p>
+        <div class="indented">
+            <p>Filter pattern for classification string (wildcards *.). See 
+	 below for more information about the <span class="ui_element">Class</span> field.</p>
+        </div>
+        <p class="fieldlabel">Valid on</p>
+        <div class="indented">
+            <p>Only show texts valid on the specified date.</p>
+        </div>
+        <h2><a name="Text fields"></a>Text fields</h2>
+        <p class="fieldlabel">Mnemonic</p>
+        <div class="indented">
+            <p>Short, unique identifier. Cannot contain spaces, quotes nor backward slashes.</p>
+        </div>
+        <p class="fieldlabel">Class</p>
+        <div class="indented">
+            <p>Free classification string that can be used for filtering (e.g. label, 
+	 report header, etc.).</p>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">
+            <p>
+	 Free-to-choose description.</p>
+        </div>
+        <p class="fieldlabel">Table</p>
+        <div class="indented">
+            <p>Start table for any MISPL expressions used in the text module.</p>
+        </div>
+        <p class="fieldlabel"><a name="Text"></a>Text</p>
+        <div class="indented">
+            <p>Multilingual text field. It is possible to:</p>
+            <ul>
+                <li value="1">
+                    <p>Double-click to enter a  text in one or more languages and, if necessary, to open the <a href="../properties/properties.htm#Purpose">rich text editor</a>. If the text is provided in languages other than the user's language, the flag on the left of the field turns to red. </p>
+                    <div class="text_box_notes">
+                        <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                        </p>
+                        <p>The <a href="../properties/properties.htm#Purpose">rich text editor</a> is accessible from the multilingual text editor by clicking on the <img src="texts_icon_rich_text.png" /> icon. When clicking <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">OK</span> in the rich text editor, the HTML code - exported by the rich text editor - is copied to the multilingual text editor.</p>
+                    </div>
+                </li>
+                <li value="2">Use the <span class="ui_element">Insert</span> key to include another text or define a MISPL expression 
+	 (the <a href="mispl_expression_builder.htm">MISPL builder</a> opens automatically).</li>
+            </ul>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tips</span>
+                </p>
+                <p><b style="font-weight: bold;">~n</b>: Allows adding a newline.</p>
+                <p><b style="font-weight: bold;">~f</b>: Allows adding a form feed.</p>
+                <p>Additionally, when using this text for document 
+ generation (in result 
+ reports, the <span class="ui_element">Report</span> function in the contextual <span class="ui_element">Tools</span> 
+ ribbon tab, the <span class="ui_element">Generate 
+ document</span> function in GLIMS, etc...), GLIMS will split 
+ the paragraph in two and insert a page footer and page header when required, 
+ except when the paragraph line count was explicitly set to 0 (e.g. via 
+ the <span class="ui_element">PropertyClassificationNode.PhysicalLineCount</span> field in a GLIMS result 
+ report).</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Start date, End date</p>
+        <div class="indented">
+            <p> Allows defining a period during which this 
+	 text is valid. These fields indicate that this text should 
+	 expand to the empty string outside this date range. The 
+	 date validity of texts will be checked against the <span class="ui_element">document date</span>. 
+	 </p>
+            <ul>
+                <li value="1">For reports, this corresponds with the end date of the report (and 
+	 thus with the object time of the order in case of an order report).</li>
+                <li value="2">
+	 For billing documents, the <span class="ui_element">External date</span> is used as document date.</li>
+            </ul>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p> It is not allowed to delete nor modify 
+ the mnemonic or base table of a text module that is referred from another 
+ text by means of the "{&lt;" syntax. As scanning 
+ all references may take some time, the message <span class="ui_element">Checking for occurrences 
+ in other text modules...</span> appears when necessary.</p>
+        </div>
+        <h2><a name="Menu_functions" id="Menu_functions"></a>Menu functions</h2>
+        <p class="fieldlabel">Preview</p>
+        <div class="indented">
+            <p>Shows an expanded preview of the text module in the large rich text editor.</p>
+        </div>
+        <p class="fieldlabel">Usage</p>
+        <div class="indented">
+            <p>Allows to check where a text module is used. This should 
+ make it easier to estimate the impact of changing a dynamic text.</p>
+        </div>
+        <h2><a name="Expansion_of_dynamic_texts" id="Expansion_of_dynamic_texts"></a>Expansion 
+ of dynamic texts</h2>
+        <p>Many text fields in GLIMS can contain a reference to dynamic text. GLIMS 
+ offers two methods to expand a dynamic text.</p>
+        <h3>Standard text expansion</h3>
+        <p>A dynamic text is typically a string containing something of the form 
+ "{&lt; TextMnemonic}", "{= MISPL expression}" or "{: 
+ MISPL program}".</p>
+        <p>In many places, the user has the possibility to hit an <span class="ui_element">Expand</span> button 
+ the see the expansion of the dynamic text.</p>
+        <p>Whenever possible, the original record is passed to the expansion function, 
+ to allow expansion of dynamic text which requires data from that record 
+ (typically when the dynamic text either directly or indirectly contains 
+ MISPL code). For instance, a dynamic text module in the Order.Description 
+ field using order-related fields can be fully expanded.</p>
+        <p>Examples of places that offer an <span class="ui_element">Expand</span> button:</p>
+        <ol>
+            <li value="1">The conclusion result in result validation screen</li>
+            <li value="2">The result value and comments in the Result.Modify() screen, ...)</li>
+            <li value="3">The order entry screen: the Order.Question, Order.ReportInformation, 
+	 Object.Comment and Order.Description fields</li>
+            <li value="4">The microbiology screen: most comment and value fields</li>
+            <li value="5">The 'zoomed editor' which can be obtained when hitting F6 on most 
+	 editor fields in the application. When the calling program allows 
+	 it, the zoomed editor also offers an expansion button. Examples of 
+	 such cases are: the conclusion in the result validation browsers, 
+	 the comment and value fields in the microbiology screen,...</li>
+        </ol>
+        <h3>Fast text expansion</h3>
+        <p>GLIMS also supports fast text expansion in some dynamic text fields 
+ (typically a text balloon is shown to the right of those fields).</p>
+        <ol>
+            <li value="1">When typing a predefined <span class="ui_element">expansion character</span> followed by the 
+	 mnemonic of a text module, followed by " " (space bar), 
+	 the application will attempt to immediately expand the text (abbreviation) 
+	 to its expansion.</li>
+            <li value="2">
+                <p>The expansion character is defined via <span class="ui_element">Start -&gt; 
+	 System management -&gt; Customize -&gt; GLIMS general</span>. In the tab page <span class="ui_element">Result</span> 
+, use the option <span class="ui_element">Expansion sign for result codes</span>.</p>
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>If the expansion sign is "/" and text mnemonic 
+	 "044" , then /044 followed by space bar would expand to 
+	 the content of the text (evaluated dynamic text).</p>
+                </div>
+            </li>
+        </ol>
+        <h2><a name="Grammar" id="Grammar"></a>Grammar</h2>
+        <p>To embed a (string-valued!) MISPL expression, use the following syntax:</p>
+        <blockquote><pre>
+text ... more text ... <span style="color: #FF0000;">{=</span><span style="color: #800000;">&lt;MISPL expression&gt;</span><span style="color: #FF0000;">}</span> ... more text ...
+</pre>
+        </blockquote>
+        <p>To embed a reference to another text module, use the following syntax:</p>
+        <blockquote><pre>
+text ... more text ... <span style="color: #FF0000;">{&lt;</span><span style="color: #800000;">&lt;Text mnemonic&gt;</span><span style="color: #FF0000;">}</span> ... more text ...
+</pre>
+        </blockquote>
+        <p>As an example, consider the following Specimen-scoped text, which might 
+ be used in a report header:</p>
+        <blockquote><pre>
+Dear {= .Physician.Title } {= .Physician.LastName }, ...</pre>
+        </blockquote>
+        <p>If the Sample-scoped text PhysicianStuff were to contain</p>
+        <blockquote><pre>
+{= .Physician.Title } {= .Physician.LastName }</pre>
+        </blockquote>
+        <p>... then the previous example could be rewritten as:</p>
+        <blockquote><pre xml:space="preserve">
+Dear {&lt; PhysicianStuff }, ...</pre>
+        </blockquote>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>To escape the '{' sign in a 
+ text module (e.g. in a label), use the '~' sign (e.g. ~{0,29,44,..})</p>
+        </div>
+        <h2><a name="History"></a>History </h2>
+        <p>To view all previous versions of a <span class="ui_element">Text</span>:</p>
+        <ol>
+            <li value="1">Select a text and use F6</li>
+            <li value="2">Choose the <span class="ui_element">Field 
+ history</span> function in the contextual <a href="../../user_interface/user_interface_ribbons_contextual_tools.htm">Tools</a> ribbon tab.&#160;&#160;</li>
+        </ol>
+        <p>Old values can be reactivated by pressing the <span class="ui_element">Restore</span> button or using the contextual menu / ribbon item <span class="ui_element">Restore field history</span>.</p>
+    </body>
+</html>

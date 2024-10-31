@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Microbiology - Incubation period</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Microbiology - Incubation period</h1>
+        <h2>Introduction</h2>
+        <p>The incubation period is the maximum number of days the incubation procedure takes (some germs grow slower or show up later than others). This chapter explains </p>
+        <ul>
+            <li value="1">how to specify the incubation period for a microbiology procedure.</li>
+            <li value="2">how the incubation period is used to automatically set the end of incubation time for a microbiology action.</li>
+            <li value="3">in which queries the incubation period serves as a search criterion.</li>
+            <li value="4">how to use the incubation period to automatically close negative microbiology actions.</li>
+        </ul>
+        <h2>Configuration</h2>
+        <p>The incubation period  can be specified  in the<![CDATA[  ]]><span class="ui_element">Negative</span> tab page of the <a href="../configuration/microbiology_procedures.htm">microbiology procedure editor</a>.</p>
+        <h2><a name="Usage"></a>End of incubation time</h2>
+        <p>Once specified, the  incubation period is used to automatically set the end of the incubation time (shown in the <span class="ui_element">End</span> field of the <a href="microbiology_work_screen_comment_conclusion.htm">microbiology workscreen</a>). The following subsections describe when and how this automatic calculation takes place.</p>
+        <h3>Upon creation of a microbiology action in order entry</h3>
+        <p>When a microbiology action is created in order entry, the end of incubation time is automatically calculated as follows:</p>
+        <div class="indented">end of incubation time = object time specified during order entry + incubation period</div>
+        <p>Or more precisely:</p>
+        <div class="indented">MicrobiologyAction.EndOfIncubationTime = MicrobiologyAction.ObjectTime + MicrobiologyProcedure.IncubationPeriod.</div>
+        <h3><a name="Upon"></a>When the microbiology action status is manually changed to Reading</h3>
+        <p>When the <a href="microbiology_actions_status_overview.htm">status</a> of the microbiology action is manually set to <span class="ui_element">Reading</span>, the end of incubation time is automatically recalculated as follows:</p>
+        <div class="indented">end of incubation time = actual time + incubation period</div>
+        <p>Or more precisely:</p>
+        <div class="indented">MicrobiologyAction.EndOfIncubationTime = actual time + MicrobiologyProcedure.IncubationPeriod</div>
+        <p>Otherwise, the end of incubation is never recalculated. In particular, when isolations are <a href="microbiology_work_screen_isolation_isolation_tests.htm">inserted</a>, the status of the microbiology action automatically switches to <span class="ui_element">Reading</span> if it was lower&#160;but the end of incubation time is NOT recalculated.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p> The automatically calculated end of incubation time can be modified manually using the field <span class="ui_element">Close at last on</span> under the tab page <span class="ui_element">Negative</span> of the microbiology action editor (which can be opened using the F6 key on a microbiology action).</p>
+            <p>Manual and automatic modifications of the end of incubation time have the same "weight". In other words, the end of incubation time indicated in the microbiology workscreen is always that of the last update, independently of whether the date was manually set or automatically (re-)calculated.</p>
+        </div>
+        <h2><a name="Query_criterion"></a>Query criterion</h2>
+        <p>The <span class="ui_element">incubation period</span> is one of the search criteria in queries for <a href="microbiology_actions_query_browser.htm">microbiology actions</a> and <a href="../../statistics/microbiology/statistics_examinations.htm">examination statistics</a>. Two choices are available:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Inside</span>: the end of incubation time lies in the future, after the present day.</li>
+            <li value="2"><span class="ui_element">Outside</span>: the end of incubation time has past or is on the present day.</li>
+        </ul>
+        <h2>Use case: closing negative actions after incubation period</h2>
+        <p>Using the microbiology action query and the <span class="ui_element">SetStatus</span> functions, it is possible to automatically select all negative microbiology actions of which the incubation period has elapsed and have them confirmed / validated.</p>
+        <p class="fieldlabel">Create a new command</p>
+        <div class="indented">
+            <p class="fieldlabel">Table</p>
+            <div class="indented">
+                <p>MicrobiologyAction</p>
+            </div>
+            <p class="fieldlabel">Query</p>
+            <div class="indented">
+                <p>Overview</p>
+            </div>
+            <p class="fieldlabel">Query parameter set</p>
+            <div class="indented">
+                <p>Choose or create a parameter set to query all negative microbiology actions for which the incubation period has elapsed. For this, in the <span class="ui_element">Setup</span> screen of the parameter set,</p>
+                <ul>
+                    <li value="1">the field <span class="ui_element">Pos/Neg</span> must be set to <span class="ui_element">Negative</span>.</li>
+                    <li value="2">the field <span class="ui_element">Incubation period</span>  must be set to <span class="ui_element">Outside</span>.</li>
+                </ul>
+                <p style="text-align: left;">The <span class="ui_element">Status from/to</span> fields as well as other fields allow you to fine-tune your selection.</p>
+            </div>
+            <p class="fieldlabel">Function</p>
+            <div class="indented">
+                <p>Several functions are available to set the status of the selected microbiology actions:</p>
+                <ul>
+                    <li value="1">SetStatusClosed</li>
+                    <li value="2">SetStatusReadValidated</li>
+                    <li value="3">SetStatusReady</li>
+                    <li value="4">SetStatusReadConfirmed</li>
+                    <li value="5">....</li>
+                </ul>
+                <p>Selecting the function <span class="ui_element">SetStatusClosed</span> will validate the selected microbiology actions. As a consequence, the corresponding negative answer will automatically be  printed on the report.</p>
+            </div>
+        </div>
+    </body>
+</html>

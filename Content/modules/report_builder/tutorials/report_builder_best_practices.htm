@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" xml:lang="en-us" lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Tutorials">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report builder - best practices</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1915"></a>
+            <MadCap:concept term="Report builder" />Report builder - best practices</h1>
+        <p>This document contains guidelines for creating and maintaining Jasper templates for <a href="../report_builder_index.htm">Report builder</a>.</p>
+        <h2>SUBREPORT_DIR parameter</h2>
+        <h3>Value</h3>
+        <p>On each report, make sure to have a parameter <b>SUBREPORT_DIR</b> holding the value "./" (including the double quotes). By default,  will use a static path which may cause problems.</p>
+        <p>
+            <img src="best_practices/03000001_223x119.png" style="visibility: visible;mso-wrap-style: square;width: 223;height: 119;" />
+        </p>
+        <h3>Usage</h3>
+        <p>Make use of the SUBREPORT_DIR parameter when:</p>
+        <ul style="list-style-type: square;margin-left: 36pt;">
+            <li value="1">defining report specific images </li>
+        </ul>
+        <p>
+            <img src="best_practices/03000002.png" style="visibility: visible;mso-wrap-style: square;width: 405px;height: 72px;" />
+        </p>
+        <ul style="list-style-type: square;margin-left: 36pt;">
+            <li value="1">defining sub-reports</li>
+        </ul>
+        <p>
+            <img src="best_practices/03000003.png" style="visibility: visible;mso-wrap-style: square;width: 414px;height: 75px;" />
+            <br />
+        </p>
+        <ul style="list-style-type: square;margin-left: 36pt;">
+            <li value="1">…</li>
+        </ul>
+        <h2><a name="_Ref361402545"></a>Storage of images</h2>
+        <h3>Shared images</h3>
+        <p>Store all common images (e.g. the company logo) on a shared directory. If the image gets an update, the changes are automatically reflected in the reports as well.</p>
+        <p>
+            <img src="best_practices/03000004.png" style="visibility: visible;mso-wrap-style: square;width: 464px;height: 79px;" />
+        </p>
+        <p><i>Image: Common images should be placed in a shared directory and are referenced starting from the SUBREPORT_DIR.</i>
+        </p>
+        <h3>Report specific</h3>
+        <p>Store all report specific images in a separate image directory.</p>
+        <p>
+            <img src="best_practices/03000002.png" style="visibility: visible;mso-wrap-style: square;width: 405px;height: 72px;" />
+        </p>
+        <p><i>Image: report-specific images should be placed in a sub-directory of the SUBREPORT_DIR.</i>
+        </p>
+        <h2>Report language: Java</h2>
+        <p>By default Jaspersoft Studio creates templates with Groovy as internal programming language. Groovy is not supported by MIPS and should be changed to Java. This can be done within the properties of a report.</p>
+        <p>
+            <img src="best_practices/03000005_574x213.png" style="visibility: visible;mso-wrap-style: square;width: 574;height: 213;" />
+        </p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>: The language can also be set as a default option (tools &gt; options &gt; General &gt; Report defaults) in Jaspersoft Studio but is unfortunately not always taken into account (bug Jaspersoft Studio).</p>
+                </div>
+            </div>
+        </div>
+        <h2>Sub-report element width</h2>
+        <p>Make sure that the element width of a sub-report corresponds with the page width of the report. If the element size is smaller than the called sub-report, one might use more space during the design-phase than is actually available.</p>
+        <p>
+            <img src="best_practices/03000006_602x114.png" style="visibility: visible;mso-wrap-style: square;width: 602;height: 114;" />
+        </p>
+        <p><i>Image: the size of the sub-report element equals the size of the page width of the sub-report. </i>
+        </p>
+        <h2>Creation of fields: define report query</h2>
+        <p>The easiest way to create fields is by means of the report query. First define the element to be iterated (query text), next drag and drop the required fields. Having a correct report query defined also allows you to preview each report individually. Further the entire structure of the used datasource (XML file) is visualized.</p>
+        <p>
+            <img src="best_practices/03000007_468x389.png" style="visibility: visible;mso-wrap-style: square;width: 468;height: 389;" />
+        </p>
+        <p><i>Image: defining the report query makes it easy to create field.</i>
+        </p>
+        <h2>Avoid absolute paths in XPath</h2>
+        <p>Try to define fields as a relative path as of the report query (datasource). Even though in the example below both “/HolidayReport/Header/CreationDate” and “./Header/CreationDate” are correct field definitions, “./Header/CreationDate” has preference as this is a relative path.</p>
+        <p>
+            <img src="best_practices/03000008_667x303.png" style="visibility: visible;mso-wrap-style: square;width: 667;height: 303;" />
+        </p>
+        <p><i>Image: When possible, define a relative path (starting from the report query).</i>
+        </p>
+        <h2>Remove unneeded bands</h2>
+        <p>By default, each newly created report holds almost all available bands. As typically only few bands are needed to achieve a certain goal, it is recommended to clean up the report by removing unneeded bands.</p>
+        <p>
+            <img src="best_practices/03000009_159x170.png" style="visibility: visible;mso-wrap-style: square;width: 159;height: 170;" />
+        </p>
+        <p><i>Image: Remove unneeded bands by performing a RMC on the band &gt; Delete band</i>
+        </p>
+        <h2>Avoid overlapping elements</h2>
+        <p>Depending on the context, different (static/dynamic) content may need to be displayed on the report. When this is the case, do not place these elements on each other with “print-when-conditions” but use one single element with conditional content.</p>
+        <p>Alternatively - in case the element is positioned on a detail band - one can opt do add another detail band and define "print-when-conditions" on the bands themselves.</p>
+        <p>Either way, this improves readability and maintainability.</p>
+        <h3>Conditional content</h3>
+        <p>
+            <img src="best_practices/0300000A_283x118.png" style="visibility: visible;mso-wrap-style: square;width: 283;height: 118;" />
+        </p>
+        <p><i>Image: Depending on the outcome of the condition, either field X or field Y is displayed.</i>
+        </p>
+        <h3>Conditional detail band</h3>
+        <p>
+            <img src="best_practices/0300000B_380x85.png" style="visibility: visible;mso-wrap-style: square;width: 380;height: 85;" />
+        </p>
+        <p><i>Image: Multiple detail bands are created. Depending on the outcome of the "print-when-condition" of each detail band, one of them will be displayed.</i>
+        </p>
+        <h2>Creation of variables</h2>
+        <p>If a certain expression is used multiple times in a report, it can be useful to store the expression in a variable. If an expression is only used once, put the expression directly in the required component (e.g. text field).</p>
+        <p>
+            <img src="best_practices/0300000C_343x29.png" style="visibility: visible;mso-wrap-style: square;width: 343;height: 29;" />
+        </p>
+        <p><i>Image: expression directly inserted within a text field.</i>
+        </p>
+        <p>
+            <img src="best_practices/0300000D_317x190.png" style="visibility: visible;mso-wrap-style: square;width: 317;height: 190;" />
+        </p>
+        <p><i>Image: expression which is used multiple times on a report should be stored as a variable. </i>
+        </p>
+        <h2>Avoid displaying null values</h2>
+        <p>Empty text fields (holding Java null values) are represented by default using the text "null". To avoid displaying the string "null" when no value is available, always make sure the "blank when null" option is enabled.</p>
+        <p>
+            <img src="best_practices/0300000E.png" style="visibility: visible;mso-wrap-style: square;width: 273px;height: 109px;" />
+        </p>
+        <p><i>Image: blank when null should always be checked but is not checked by default upon creation.</i>
+        </p>
+        <h2>Displaying of images</h2>
+        <p>By default, if an image could not be found at generation time, the report generator will crash and possibly block further generation of other reports. If this behavior is not acceptable, one might opt to change the property "On error type" to "blank" or "Icon".</p>
+        <p>
+            <img src="best_practices/0300000F_282x165.png" style="visibility: visible;mso-wrap-style: square;width: 282;height: 165;" />
+        </p>
+        <h2>Passing data to sub-report, list, table or cross-table</h2>
+        <p>If the datasource expression (holding the XPath query) is not passed correctly, no data (or only part of the data) will be displayed on the final report. Mind the following:</p>
+        <ol style="list-style-type: decimal;margin-left: 36pt;" start="1">
+            <li value="1">Always use a </li>
+        </ol>
+        <ol style="list-style-type: lower-alpha;margin-left: 72pt;" start="1">
+            <li value="1">Datasource expression (not Connection)</li>
+            <li value="2">Type: JRXmlDataSource expression (not JREmptyDataSource)</li>
+        </ol>
+        <ol style="list-style-type: decimal;margin-left: 36pt;" start="2">
+            <li value="2">Respect the XPath syntax</li>
+        </ol>
+        <p>
+            <img src="best_practices/03000010_602x102.png" style="visibility: visible;mso-wrap-style: square;width: 602;height: 102;" />
+        </p>
+        <h2>Element size</h2>
+        <p>Ensure the element used has sufficient space to be displayed. Text elements holding strings which take up almost all the available space might be displayed correctly on one platform, but maybe not an another (due to differences in font settings).</p>
+        <p>&#160;</p>
+        <p>
+            <img src="best_practices/03000011_602x125.png" style="visibility: visible;mso-wrap-style: square;width: 602;height: 125;" />
+        </p>
+        <p>Image: sometimes an element is visualized well on platform x, while on another the size is not sufficient. See also "<a href="report_builder_missing_data_if_template_field_is_too_small.htm">Report Builder - Missing data if template field is too small</a>".</p>
+        <h2>Condition order</h2>
+        <p>When creating conditional Java expressions you need to make sure to put the static part on the left-hand side of the expression to avoid null pointer exceptions in Java.</p>
+        <p>Good:</p>
+        <p>
+            <img src="best_practices/03000012.png" style="visibility: visible;mso-wrap-style: square;width: 342px;height: 21px;" />
+        </p>
+        <p>Better</p>
+        <p>
+            <img src="best_practices/03000013.png" style="visibility: visible;mso-wrap-style: square;width: 340px;height: 19px;" />
+        </p>
+        <h2>Format expression where needed</h2>
+        <p>To improve readability, use indention in expressions.</p>
+        <p>
+            <img src="best_practices/03000014_246x64.png" style="visibility: visible;mso-wrap-style: square;width: 246;height: 64;" />
+        </p>
+        <h2>Usage of frames</h2>
+        <p>Use the frame element instead of the rectangle element. Except for some parts of the visualization (e.g. rounding of corners) both are the same, but…</p>
+        <ul style="list-style-type: square;margin-left: 36pt;">
+            <li value="1">frames grow automatically when content is defined inside them</li>
+            <li value="2">frames allow the grouping of elements (e.g. when applying a "print-when-condition" on the frame, all elements inside the frame will automatically inherit the behavior and will be displayed conditionally).</li>
+        </ul>
+        <h2>Sort fields in the report inspector</h2>
+        <p>To easily find fields created, it is advised to sort them. This can be done via a right mouse click on the "field" node &gt; Alphabetical sort.</p>
+        <p>
+            <img src="best_practices/03000015_445x135.png" style="visibility: visible;mso-wrap-style: square;width: 445;height: 135;" />
+        </p>
+        <h2>Font selection</h2>
+        <p>To ensure templates can be visualized on each and every platform, make sure to select one of the following fonts. Depending on the target system, the selected font will be mapped to Arial, Helvetica…</p>
+        <ul style="list-style-type: square;margin-left: 36pt;">
+            <li value="1">Monospaced</li>
+            <li value="2">Sans serif</li>
+            <li value="3">Serif</li>
+        </ul>
+        <p>
+            <img src="best_practices/03000016_259x98.png" style="visibility: visible;mso-wrap-style: square;width: 259;height: 98;" />
+        </p>
+        <h2>Concatenation within fields</h2>
+        <p>Use concatenation of fields when two fields belong together, certainly when the width of each element is hard to predict. </p>
+        <p>
+            <img src="best_practices/03000017_602x38.png" style="visibility: visible;mso-wrap-style: square;width: 602;height: 38;" />
+        </p>
+        <p><i>Image: example of a concatenated field/variable. Note that this basic expression does not check for null values.</i>
+        </p>
+        <h2>Resource bundles</h2>
+        <p>Resource bundles (*.properties) should be stored centrally. </p>
+        <h2>Mind java expressions</h2>
+        <p>There are different ways to achieve the same goal, but one solution might perform slightly better as another.</p>
+        <p>
+            <img src="best_practices/03000018_532x65.png" style="visibility: visible;mso-wrap-style: square;width: 532;height: 65;" />
+        </p>
+        <p><i>Image: example of a concatenated field/variable which could be improved regarding performance.</i>
+        </p>
+        <h2>Sub-report parameters</h2>
+        <p>By default the following parameters should be passed to every sub-report to ensure data is interpreted and represented correctly.</p>
+        <table>
+            <tr>
+                <td style="font-weight: bold;">
+                    <p>Parameter</p>
+                </td>
+                <td style="font-weight: bold;">
+                    <p>Description</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>SUBREPORT_DIR</p>
+                </td>
+                <td>
+                    <p>Holding the path towards the sub-reports (typically report template root directory (“./”)</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>XML_DATE_PATTERN</p>
+                </td>
+                <td>
+                    <p>Holding the default date pattern (e.g. yyyyMMdd)</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>XML_NUMBER_PATTERN</p>
+                </td>
+                <td>
+                    <p>Holding the default number pattern (e.g. point as decimal sign).</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>XML_LOCALE</p>
+                </td>
+                <td>
+                    <p>Defines the locale (e.g. nl_BE)</p>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <img src="best_practices/03000019_500x141.png" style="visibility: visible;mso-wrap-style: square;width: 500;height: 141;" />
+        </p>
+        <p><i>Image: Pass parameters from one report to another.</i>
+        </p>
+        <h2>MISPL or Java</h2>
+        <p>When in doubt to perform certain operations via GLIMS (MISPL) or in Jaspersoft Studio (Java): database related actions shall be executed using MISPL, while visualization related actions should be performed within Jaspersoft Studio.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples" style="width: 668px;height: 236px;">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>: For billing documents generated with Report builder, one is responsible for the creation of the entire XML. Casting a person’s sex is available as a MISPL function on the database field “Person.Sex”. Therefore this has preference over a Java mapping.</p>
+                    <p>
+                        <img src="best_practices/0300001A_500x68.png" style="visibility: visible;mso-wrap-style: square;width: 500;height: 68;">
+                        </img>
+                    </p>
+                    <p>
+                        <img src="best_practices/0300001B_357x66.png" style="visibility: visible;mso-wrap-style: square;width: 357;height: 66;">
+                        </img>
+                    </p>
+                    <p style="font-style: italic;">Image: twice the same result, but database related actions should happen on the database side (when possible).</p>
+                </div>
+            </div>
+        </div>
+        <h2>Naming conventions</h2>
+        <h3>Report name / Report file name</h3>
+        <p>The report file name should hold the name of the type of report or an abbreviation (e.g. single order report (SOR), Blood transfusion form (BTF)… Sub-reports should start with the parent report name and end with the report context.</p>
+        <p>E.g. Culture.jrxml &gt; Culture_Isolation.jrmxl.</p>
+        <p>Further make sure the report name is correct: it should always be similar to the report template file name (*.jrxml).</p>
+        <p>
+            <img src="best_practices/0300001C.png" style="visibility: visible;mso-wrap-style: square;width: 164px;height: 42px;" />
+        </p>
+        <p><i>Image: Mind the report name (report property "Report name")</i>
+        </p>
+        <h3>Fields</h3>
+        <p>Fields should be created with a naming which represents the MISPL notation.</p>
+        <p>E.g. Object.Person.FirstName</p>
+        <p>
+            <img src="best_practices/0300001D_214x93.png" style="visibility: visible;mso-wrap-style: square;width: 214;height: 93;" />
+        </p>
+        <h2>Page dimensions</h2>
+        <p>Make sure to have at least 10mm margins on each side. This ensures that all commonly used printers are able to print the document.</p>
+        <p>
+            <img src="best_practices/0300001E_269x74.png" style="visibility: visible;mso-wrap-style: square;width: 269;height: 74;" />
+        </p>
+        <h2>Add sources to Jaspersoft Studio class path</h2>
+        <p>A set of classes has been created to add custom functionality within Report builder. These classes are stored in $GLIMS/jar/cls. During the generation of a report that uses such a class, GLIMS will search for the required files in the directories specified in the variable MA_JVM_CLASSPATH in progress.ini. When running from within Jaspersoft Studio, theses sources need to be added to the class path as well.</p>
+        <p>
+            <img src="best_practices/0300001F_489x320.png" style="visibility: visible;mso-wrap-style: square;width: 489;height: 320;" />
+        </p>
+        <p style="font-style: italic;">Image: Always make sure to add the $GLIMS/jar/cls directory to the class path of Jaspersoft Studio: Tools &gt; Options &gt; Classpath</p>
+        <p>If you forget to do so, one might get errors such as "java.lang.NoClassDefFoundError"</p>
+        <p>
+            <img src="best_practices/03000020_513x46.png" style="visibility: visible;mso-wrap-style: square;width: 513;height: 46;" />
+        </p>
+        <p><i>Image: Error occurring if the custom class could not be found.</i>
+        </p>
+    </body>
+</html>

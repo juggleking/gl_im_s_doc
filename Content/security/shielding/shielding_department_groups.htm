@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Security|Shielding">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Shielding - Department groups</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor57"></a>Shielding - Department groups</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Configuration</a> - <a href="#Activation">Activation</a> - <a href="#Result_shielding">Result shielding</a> - <a href="#Order_shielding">Order shielding</a> - <a href="#Person">Person shielding</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This chapter describes the <a href="shielding.htm">shielding</a> of result, order and person data based on department groups. </p>
+        <p>The purpose of the department group shielding is to allow or prevent users logged in department A from seeing, using or updating results, orders, persons, object attributes, ... created or entered by department B.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>GLIMS also offers a more flexible <a href="shielding_access_profiles.htm">shielding mechanism via access profiles</a>.</p>
+        </div>
+        <h2><a name="Configuration" id="Configuration"></a>Configuration</h2>
+        <p>The first step in implementing shielding via department group is to define department groups and their members (individual departments). This can be done via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Correspondents</span> -&gt; <span class="ui_element">Department groups</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="shielding_department_groups_configuration.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="453" data-mc-height="577" src="shielding_department_groups_configuration_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3>General fields
+        </h3>
+        <p class="fieldlabel">Mnemonic - Name</p>
+        <div class="indented">Free to choose</div>
+        <h3>Shielding</h3>
+        <h4><a name="Departme"></a>Departments of this group</h4>
+        <p>These options determine the access rights (for results, orders, persons,...) between <b>members of the same group</b>. Enabling an access right means that the user is allowed this type of operation:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Create</span>: user is allowed to create orders, results, persons of other departments in this group.</li>
+            <li value="2"><span class="ui_element">Read</span>: user is allowed to see that order, result, person records of other departments in this group exist (they will for instance appear in browsers). However, the user does not have access to the details of these records (it is not possible to open their editors, result values are replaced by "XXX", etc).</li>
+            <li value="3"><span class="ui_element">View</span>: user is allowed to see that order, result, person records of other departments in this group exist AND has access to the details these records (s/he can open the corresponding editors, see results values, etc).</li>
+            <li value="4"><span class="ui_element">Modify</span>: user is allowed to modify orders, results, persons of other departments in this group.</li>
+            <li value="5"><span class="ui_element">Confirm</span>: user is allowed to confirm results of other departments in this group.</li>
+            <li value="6"><span class="ui_element">Validate</span>: user is allowed to validate results of other departments in this group.</li>
+            <li value="7"><span class="ui_element">Discontinue</span>: user is allowed to discontinue results and orders of other departments in this group.</li>
+        </ul>
+        <p>When saving the department group, the program automatically makes the shielding settings consistent. For instance, the <span class="ui_element">Validate</span> access right also requires the <span class="ui_element">View</span> and <span class="ui_element">Read</span> access rights.</p>
+        <h4>Departments in another group</h4>
+        <p>Determines the shield level (for results, orders, persons,...) for <b>members of other department groups</b>. The options are identical to the ones described in the previous section "Departments of this group".</p>
+        <h4>Departments in no group</h4>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>If a department does not belong to any group, no shielding is applied: all users have access the records created in this department.</p>
+        </div>
+        <h3>Members</h3>
+        <p>Choose the contextual menu/ribbon item <span class="ui_element">Members</span> to add departments to the department group.</p>
+        <h2><a name="Activation" id="Activation"></a>Activation</h2>
+        <p>The general option <span class="ui_element">Shielding method</span> (accessible from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS shielding</span>) must be set to <span class="ui_element">Department group</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="shielding_department_groups_shielding_method.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="581" data-mc-height="251" src="shielding_department_groups_shielding_method_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel"><a name="Order"></a>Order shielding</p>
+        <div class="indented">The configured shielding is only be applied to orders if this option is activated. If this option is not set, only results (and persons) are shielded.</div>
+        <p class="fieldlabel"><a name="Person2"></a>Person shielding</p>
+        <div class="indented">The configured  shielding is only be applied to persons if this option is activated. If this option is not set, only results (and orders) are shielded.</div>
+        <p>If order and person shieldings are deactivated, </p>
+        <ul>
+            <li value="1">this is 
+ indicated in the information box at the bottom of the access list screen,</li>
+            <li value="2">only results are shielded.</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If you were already using department group based shielding in a GLIMS version lower than version 8:</p>
+            <ul>
+                <li value="1">The shielding activation for results, orders and persons was based on environment variables in .glimsrc on unix or Progress.ini on Windows: "MA_Shielding" for results, "MA_OrderShielding" for orders and "MA_PersonShielding" for persons.</li>
+                <li value="2">We strongly suggest removing the MA_Shielding variables, since they may conflict with the new general options documented above. However, when using the department group shielding mechanism, these MA_Shielding variables still have precedence (backward compatibility).</li>
+            </ul>
+        </div>
+        <h2><a name="Result_shielding" id="Result_shielding"></a>Result shielding</h2>
+        <h3>Activation</h3>
+        <p>Result shielding is active as soon as the general option <span class="ui_element">Shielding method</span> is set to <span class="ui_element">Department groups</span> (see above).</p>
+        <h3>Determination of a result's department</h3>
+        <p>The link between a result and its department is made via the Result.PropertyOutput.Procedure.Department reference. This implies that </p>
+        <ul>
+            <li value="1">only scheduled results can belong to a department. </li>
+            <li value="2">results which cannot be attributed to a specific department and results of a department which does not belong to a department group are accessible to everyone.</li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14;font-weight: bold;">Note</span>
+            </p>
+            <p>The option <a href="../../routine/work_lists/work_lists_query_browser.htm#Query">Updatable</a> 
+ of the work list query makes is possible to only select work list for which you have an access right.</p>
+        </div>
+        <h2><a name="Order_shielding" id="Order_shielding"></a>Order shielding</h2>
+        <h3>Activation</h3>
+        <p>Order shielding is only active if the  option <a href="#Order">Order shielding</a> is enabled.</p>
+        <h3>Determination of an order's department</h3>
+        <p>The link between an order and its department is based on the Order.Department reference.</p>
+        <h3>Usage</h3>
+        <p>The different order queries (e.g. the order validation query) ignore orders referring to a department which is <a href="#Departme">Read</a>-shielded from the current user department, thus providing additional protection and improved performance.</p>
+        <h2><a name="Person"></a>Person shielding</h2>
+        <h3>Activation</h3>
+        <p>Person shielding is only active if the option <a href="#Person2">Person shielding</a> is enabled.</p>
+        <h3>Determination of a person's department</h3>
+        <p>The person is assigned to a department by filling the current user's department in the <a href="../../configuration/correspondents/persons.htm#Departme">Department</a> field of the <span class="ui_element">Person</span> editor.</p>
+        <h3>Usage</h3>
+        <p>Once the Person shielding is activated, the shielding mechanism is consulted by the person, object, encounter and correspondent browsers, their respective reference controls (allowing to choose a person, object, encounter or correspondent), the person update check program and the person editor.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Using this option may have a negative effect on the performance of the person, object, encounter and correspondent browsers.</p>
+        </div>
+    </body>
+</html>

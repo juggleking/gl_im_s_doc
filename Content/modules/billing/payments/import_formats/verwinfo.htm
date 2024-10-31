@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Payments|Import formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="verwinfo">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>verwinfo</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1844"></a>
+            <MadCap:concept term="Billing" /><a href="../payments_import.htm" name="kanchor161">Payment import</a><a name="kanchor162"></a> -&gt; Verwinfo</h1>
+        <p>Inhoud: <a href="#Introduction">Inleiding</a> - <a href="#Beperkingen">Beperkingen</a> - <a href="#Financi%C3%ABle%20zending">Financiële zending</a> - <a href="#Mapping">Mapping</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Inleiding</h2>
+        <p>Via het <a href="../payments_import.htm">betalingsimport programma</a> laat GLIMS toe om betalingsbestanden conform het "VerwInfo 4.1" formaat te importeren.&#160;&#160;&#160;BGC-VerwInfo is een standard formaat voor elektronische betalingen in Nederland.&#160;&#160;Als referentie werd het document ’r;VerwInfo 4.1’ uitgave: Interpay Nederland B.V., Utrecht, mei 1999, BGC 5.2050 gebruikt.</p>
+        <p>Deze functie zal een betalingsbestand inlezen en betalingsrecords aanmaken.&#160;&#160;Indien mogelijk zullen de betalingen gebalanceerd worden met bestaande verzamelfacturen op basis van het betalingskenmerk.&#160;&#160;De aangemaakte betalingen worden gegroepeerd op een nieuwe financiele zending.</p>
+        <p style="text-align: center;">
+            <img src="../../invoicing/routine/export_formats/verwinfo.gif" style="border: none;" alt="" width="439" height="349" border="0" />
+        </p>
+        <h2><a name="Beperkingen" id="Beperkingen"></a>Beperkingen</h2>
+        <ul>
+            <li class="kadov-p" value="1"><b style="font-weight: bold;">Enkel ASCII Formaat</b>: enkel ascii bestanden worden door GLIMS ingelezen.&#160;&#160;De records zijn hier 50 bytes lang en de lijnen moeten eindigen op CR+LF. Bestanden met korte lijnen kunnen wel ingelezen worden als de optie ’r;Flexibele bestandstructuur ondersteunen’ geactiveerd is.&#160;&#160;Hierbij worden ingelezen lijnen automatisch aangevuld met spaties.<br />
+&#160;</li>
+            <li class="kadov-p" value="2"><b style="font-weight: bold;">Enkel batchsoort C</b> (bijboekingen acceptgiro en of betalingen).<br />
+&#160;</li>
+            <li class="kadov-p" value="3"><b style="font-weight: bold;">Vervolgbestanden niet automatisch ingelezen</b>: de aanwezigheid van een vervolgbestand wordt enkel in de logging opgenomen.</li>
+        </ul>
+        <h2><a name="Financiële zending"></a>Financiële zending</h2>
+        <p>Voor ieder succesvol ingelezen betalingsbestand wordt een financiële zending aangemaakt.&#160;&#160;De financiële zending bevat algemene betalingsgegevens zoals het rekeningnummer, de datum, het bedrag, enz.&#160;&#160;Het commentaarveld bevat een lijst van gegevens.&#160;&#160;Een voorbeeld:</p>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" bgcolor="#E0E0E0" border="1" bordercolor="#000000">
+            <tr>
+                <td style="width: 100%;padding-left: 4px;padding-top: 4px;padding-right: 4px;padding-bottom: 4px;">\Filename=P:/External/Bgc-VerwInfo/Examples/fancd_try2.txt<br />
+\Firmname=\Identification=VERWINFOA4.1-0001-01<br />
+\BankAccount=0123456789\Amount=31.76\Count=1</td>
+            </tr>
+        </table>
+        <h2><a name="Mapping" id="Mapping"></a>Mapping</h2>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Record type</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">BGC-VerwInfo veld</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">Glims</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#BFBFBF">
+                    <p><b style="font-weight: bold;">opmerking</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>010</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Bestandvoorlooprecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Aanmaakdatum</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Externe datum van financiële verzending en externe datum van betaling.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Bestandsnaam,<br />
+Indelingscode bestand,<br />
+Indelingsversie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Moeten respectievelijk VERWINFO, A en 4.1 zijn !<br />
+zoniet wordt de import niet uitgevoerd.</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Reknr eindbestemming</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Bankrekening nr in betalingsinfo (linker kolom in betalingseditor)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Uitvoervolgnr,<br />
+Bestandsvolgnur</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Wordt informatief bewaard in het verzendingscommentaar; nl. de external id tag. Waarde=VERWINFOA4.1-'Uitvoervolgnr'-bestandsvolgnr</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>050</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Batchvoorlooprecord (1)</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Reknr client</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Indien meerdere batchen voorkomen binnen eenzelfde bestand moeten deze allen hetzelfde rekeningnummer (=zelfde firma) hebben</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Testcode</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>0=productie, 1=test</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Batchsoort</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Enkel waarde ’r;C’ is toegelaten!<br />
+C= bijboekingen acceptgiro en of betalingen</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>051</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Batchvoorlooprecord (2)</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Muntsoort</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Moet overeenstemmen met de gekozen munt in de interface anders volgt foutmelding PMNTIMP$WrongCurrency .</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>100</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Postrecord(1)</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Reknr betaler</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Bankrekening betaler in betalersrecord.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>101</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Eurorecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Bedrag NLG<br />
+Bedrag EUR</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Payment.Amount</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>105</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Postrecord (2)</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Betalingskenmerk</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Betalingsreferentie (in payment info record)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Indien de betaling niet gebalanceerd is (met verzamelfacturen) wordt deze tijdelijk opgeslaan in de payment info ’r;payment reference’</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">&#160;</td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>bonnavraagnummer</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Bank reference (in payment info record)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Tijdelijk opgeslagen in payment info ’r;bankreference’</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>[110]</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Omschrijvingsrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Genegeerd.</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>500</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Igrecord(1)</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8" height="28">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8" height="28">
+                    <p>Vereveningsdatum</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8" height="28">
+                    <p>Payment date</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8" height="28">
+                    <p>Indien de ’r;vereveningsdatum’ leeg is gebruik dan de ’r;aanmaak datum’ uit het bestandsvoorlooprecord als betalingsdatum</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>[505]</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Naamrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>naam</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Wordt opgeslaan bij de betalingsinformatie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>[510]</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Adresrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>adres</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Wordt opgeslaan bij de betalingsinformatie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>[515]</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Woonplaatsrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>woonplaats</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Wordt opgeslaan bij de betalingsinformatie</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>[600]</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Igrecord (2)</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>Genegeerd</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>950</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Batchssluitrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>990</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p><b style="font-weight: bold;">Bestandssluitrecord</b>
+                    </p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Vervolg bestandsnr</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>Indien er nog een vervolgbestand is wordt dit informatief gelogged.</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: TOP;width: 10%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 21%;" bgcolor="#E8E8E8">
+                    <p>Aantal batches</p>
+                </td>
+                <td style="vertical-align: TOP;width: 38%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+                <td style="vertical-align: TOP;width: 30%;" bgcolor="#E8E8E8">
+                    <p>&#160;</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

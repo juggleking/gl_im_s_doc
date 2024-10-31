@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Lab procedures|Norms and severities" data-mc-file-tags="Status.CheckedContent,Status.Restyled">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>severities</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Severities</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Patient_results">Patient 
+ results</a> - <a href="#QC_results">QC results</a> - <a href="#Isolations">Isolations</a> 
+ - <a href="#Configuration_tips">Configuration tips</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>In GLIMS, patient results, QC results and isolations can receive 
+ a severity.&#160;The chapters below describe how these severities 
+ can be assigned and explain the possible consequences of such a severity.</p>
+        <h2><a name="Patient_results" id="Patient_results"></a>Patient results</h2>
+        <h3>Severity assignment</h3>
+        <p>A patient result can have different types of severities. The final severity - <span class="ui_element">Result.Severity</span> - of a patient result 
+ is calculated as the maximum of <span class="ui_element">Result.NormSeverity</span>, <span class="ui_element">Result.TechnicalSeverity</span>, <span class="ui_element">Result.DeltanormSeverity</span>, <span class="ui_element">Result.StationSeverity</span>, <span class="ui_element">Result.QCSeverity</span> and <span class="ui_element">Result.ManualSeverity</span>.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The Result.PhoneSeverity is NOT considered when calculating the final Result.Severity ! Please check <a href="#Severity">Severity-based actions</a> for more information.</p>
+        </div>
+        <p class="fieldlabel"><a name="Technica"></a>Technical severity / Norm severity</p>
+        <div class="indented">
+            <p>When 
+	 the value of a patient result is outside the <a href="../norms/norms.htm">norm range</a>, its <span class="ui_element">Technical severity</span> will inherit 
+	 the <span class="ui_element">Severity</span> defined for the norm if the <span class="ui_element">Norm</span> option <span class="ui_element">For severity</span> is enabled.</p>
+            <p>When 
+	 the value of a patient result is outside the <a href="../norms/norms.htm">norm range</a>, its norm severity will inherit 
+	 the <span class="ui_element">Severity</span> defined for the norm if the <span class="ui_element">Norm</span> option <span class="ui_element">For reporting</span> is enabled.</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">The <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Norm severity</span> of a <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Result</span> is </p>
+            <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">set to 0 when the result value lies within the reference range of the reporting norm,</li>
+                <li value="2">equal to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Technical severity</span> when the result value is outside the reference range of the reporting norm.</li>
+            </ul>
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #003366; font-weight: bold;">Example</span>
+                </p>
+                <p class="fieldlabel">Configured norms</p>
+                <ul>
+                    <li value="1">Norm 1: For reporting, Low limit = 10, High limit = 20, Severity 1</li>
+                    <li value="2">Norm 2: For severity,  Low limit = 12, High limit = 30, Severity 5</li>
+                </ul>
+                <p class="fieldlabel">Result values and their severities</p>
+                <ul>
+                    <li value="1">Result value 11: Technical severity = 5, Norm severity = 0 (norm for reporting is not violated).</li>
+                    <li value="2">Result value  25: Technical severity = 1, Norm severity = 1.</li>
+                    <li value="3">Result value 35: Technical severity = 5, Norm severity = 5.</li>
+                </ul>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">If the patient result is entered through a <b>choice</b>, the severity defined in the <a href="../choice_lists/choice_lists.htm#Severity2">choice 
+	 configuration</a> is applied as the result's norm severity.</li>
+                    <li value="2">If the patient result is entered through a <b>result 
+	 code</b>, the severity defined in the <a href="../result_codes/result_codes.htm">result 
+	 code configuration</a> is applied as the result's norm severity.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">Delta norm severity</p>
+        <div class="indented">
+            <p>When a delta check fails, the patient result 
+ will inherit the <span class="ui_element">Severity</span> defined for the <a href="../delta_norms/delta_norms.htm">delta norm</a>.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>In the <a href="../assessment_methods/assessment_methods.htm">assessment 
+ method</a>, there is an option <b>Delta norm has precedence</b>.&#160;</p>
+                <p>If set, and a delta check is performed, then the delta norm severity overrules 
+ the norm severity for the auto-confirm/validate decisions (see below).&#160;&#160;So, 
+ a result that is pathological (norm severity &gt; 0), and that normally 
+ wouldn't be auto-validated, might still be auto-validated because it's 
+ similar to the previous result of the same patient.</p>
+                <p>The actual severity that is compared against the auto-confirm and auto-validate 
+ levels, will then be the final result severity (Result.Severity) without 
+ the norm severity component (Result.NormSeverity). So, it is calculated 
+ as the maximum of the absolute values of all severities, EXCEPT the norm 
+ severity.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Station severity</p>
+        <div class="indented">
+            <p>A result sent by an analyzer can be accompanied by a flag. The <b style="font-weight: normal;"><a href="../station_flags/station_flags.htm">station 
+ flag configuration</a></b> in GLIMS allows to define a <span class="ui_element">Severity</span> for each flag.&#160;</p>
+            <p>The result will inherit the <span class="ui_element">Severity</span> of the station flag.</p>
+        </div>
+        <p class="fieldlabel"><a name="Manual"></a>Manual severity</p>
+        <div class="indented">
+            <p>The manual severity of a result can be set:</p>
+            <ol>
+                <li value="1">By zooming into the result detail screen and entering 
+	 a value in the <span class="ui_element">Manual severity</span> field.</li>
+                <li value="2">By entering a <span class="ui_element">Manual severity</span> in <a href="../../routine/results/results_modify.htm">the Result Modify</a> screen.</li>
+                <li value="3">By using the Result-based MISPL function <span class="ui_element">SetManualSeverity</span></li>
+            </ol>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>This MISPL function allows to set the manual severity for a result to 
+ any value.&#160;&#160;When specifying a manual severity in the Result.Modify screen, it will have precedence over the value that could possibly be 
+ set by the Property trigger MISPL. When specifying an unknown manual severity, 
+ the MISPL value will be preserved.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Phone list severity</p>
+        <div class="indented">
+            <p>A result can also have a phone list severity which is used to decide whether a result should be marked as <a href="../../routine/phone_list/phone_list_mark_results.htm">To be phoned</a>.</p>
+            <p>When 
+	 the value of a patient result is outside the <a href="../norms/norms.htm">norm range</a>, its phone list severity will inherit 
+	 the <span class="ui_element">Severity</span> defined for the norm if the <span class="ui_element">Norm</span> option <span class="ui_element">For phone list</span> is enabled.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <ul>
+                    <li value="1">If the patient result is entered through a <b>choice</b>, the severity defined in the <a href="../choice_lists/choice_lists.htm">choice 
+	 configuration</a> is applied as the result's phone list severity.</li>
+                    <li value="2">If the patient result is entered through a <b>result 
+	 code</b>, the severity defined in the <a href="../result_codes/result_codes.htm">result 
+	 code configuration</a> is applied as the result's phone list severity.</li>
+                </ul>
+            </div>
+        </div>
+        <h3>Consulting the severities of a patient result</h3>
+        <ol>
+            <li class="kadov-p" value="1">
+                <p>All patient result severities can be consulted 
+	 in the detail screen of a result.</p>
+                <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="severities_result_details.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="633" data-mc-height="607" src="severities_result_details_thumb_0_120.png" tabindex="" /></a>
+                </p>
+            </li>
+        </ol>
+        <ol>
+            <li value="2" class="kadov-p">In many result browsers (<a href="../../routine/confirmation_validation/confirmation_validation_order_review.htm">order 
+	 review</a>, <a href="../../routine/confirmation_validation/confirmation_validation_confirm_by_action.htm">confirmation 
+	 browser</a>, <a href="../../routine/phone_list/phone_list_phone_results.htm">phone 
+	 list browser</a>), a <a href="../../routine/results/results_browsers.htm">result 
+	 flag column</a> shows the highest severity.	&#160;</li>
+            <li class="kadov-p" value="3">In work lists, results with a severity greater 
+	 than zero are automatically highlighted.</li>
+        </ol>
+        <h3><a name="Severity"></a>Severity-based actions</h3>
+        <p class="fieldlabel">Automatic confirmation and validation</p>
+        <div class="indented">
+            <p>In the <a href="../assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define the highest severity allowed for auto-confirmation and auto-validation.</p>
+            <p>If the <span class="ui_element">Result.Severity</span> (calculated as the maximum of <span class="ui_element">Result.NormSeverity</span>, <span class="ui_element">Result.TechnicalSeverity</span>, <span class="ui_element">Result.DeltaNormSeverity</span>, <span class="ui_element">Result.StationSeverity</span>, <span class="ui_element">Result.QCSeverity</span> and <span class="ui_element">Result.ManualSeverity</span>) exceeds these limits, the result will not be auto-confirmed/validated.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If the <span class="ui_element">Auto-confirm if manual</span> option is NOT checked, 
+ manually entered results will NOT be subjected to the automatic confirmation 
+ rules (i.e. they are immediately marked as <span class="ui_element">Result.NeedsManualConfirm</span> = 
+ <span class="ui_element">YES</span>).</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Warnings</p>
+        <blockquote>
+            <p>In the <a href="../assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define a warning severity.</p>
+            <p>If the <span class="ui_element">Result.Severity</span> (calculated as the maximum of <span class="ui_element">Result.NormSeverity</span>, <span class="ui_element">Result.TechnicalSeverity</span>, <span class="ui_element">Result.DeltaNormSeverity</span>, <span class="ui_element">Result.StationSeverity</span>, <span class="ui_element">Result.QCSeverity</span> and <span class="ui_element">Result.ManualSeverity</span>) exceeds this limit, a warning will be shown on screen when entering a result.</p>
+        </blockquote>
+        <p class="fieldlabel">Marking a result as "to be phoned"</p>
+        <div class="indented">
+            <p>In the <a href="../assessment_methods/assessment_methods.htm">assessment 
+ method configuration</a>, you can define a phone severity.</p>
+            <p>The <span class="ui_element">Phone severity</span>  defined in the <span class="ui_element">Assessment method</span> is compared with the maximum of the result's phone list severity, delta norm severity and manual severity to decide whether the result should be marked as <span class="ui_element">To be phoned</span>.</p>
+        </div>
+        <p class="fieldlabel">Other actions</p>
+        <blockquote>
+            <p>In addition to the fixed severity-based actions described above, you can also 
+ access the severity of a patient result be means of MISPL and take appropriate 
+ measures.&#160;</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                </p>
+                <ul>
+                    <li value="1">You can add a mark next to a result 
+	 value on printed reports if the result has a given severity (by using 
+	 the result mark / mask fields in the <a href="../report_templates/report_templates.htm">report 
+	 template</a>).</li>
+                    <li value="2">The <a href="../../user_interface/user_interface_browsers_colors.htm">color 
+	 manager</a> allows to display patient results in different 
+	 colors depending on their severity/status</li>
+                </ul>
+            </div>
+        </blockquote>
+        <h2><a name="QC_results" id="QC_results"></a>QC results</h2>
+        <p>For more information  on how a QC result severity is assigned and on the possible influences of a QC result severity, see <a href="../../modules/qc/internal/management/qc_deviation_actions.htm">Deviation actions</a>.</p>
+        <h2><a name="Isolations" id="Isolations"></a>Isolations</h2>
+        <p>The concept of severities also exists in the microbiology module 
+ of GLIMS.</p>
+        <h3>Severity formula</h3>
+        <p>Severities can be assigned to isolations using 
+ a site function in the field <span class="ui_element">Formula to calculate the severity</span> of the <a href="../../modules/microbiology/configuration/micro_organisms.htm">micro-organism</a> 
+ configuration. This field allows to specify an Isolation-based, integer-valued MISPL 
+ function. The severity of a micro-organism can depend on the isolation 
+ appraisal, material, material variable, etc. If an isolation is 
+ given a positive appraisal, the severity is calculated with this formula.&#160;The formula site function is executed each time an <a href="../../modules/microbiology/routine/microbiology_work_screen_isolation_isolation_tests.htm#Fourth">isolation appraisal</a> is entered, an antibiotic result's <span class="ui_element">RIS report value</span> changes (e.g. when confirming the <a href="../../modules/microbiology/routine/microbiology_work_screen_antibiogram.htm">antibiogram</a>) or an isolation test is <a href="../../modules/microbiology/routine/microbiology_work_screen_isolation_isolation_tests.htm#Adding">added</a> or <a href="../../modules/microbiology/routine/microbiology_work_screen_isolation_isolation_tests.htm#Isolatio">confirmed</a> for the isolation.</p>
+        <p>The 
+ formula is an inherited field, i.e. if the formula is not specified, the 
+ system searches for the next higher parent's severity formula.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>IF .Specimen.Material.Mnemonic = "M_Urine"<br />THEN<br />IF .Appraisal.Mnemonic = "+++" THEN RETURN 3; ENDIF;<br />IF .Appraisal.Mnemonic = "++" THEN RETURN 2; ENDIF;<br />RETURN 1;<br />ENDIF;<br />RETURN 0; /* normal */</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The <b>severity of a microbiology action, infection and hospital infection</b> 
+ is the highest severity of all its isolations.</p>
+        </div>
+        <h3>Manual isolation severity</h3>
+        <p>GLIMS allows to assign a manual severity to an isolation. &#160;Select 
+ an <span class="ui_element">Isolation</span> and use the contextual menu/ribbon item <span class="ui_element">Set 
+ manual severity</span>.</p>
+        <p>When changing the manual severity, the severity formula mentioned above 
+ will be executed and can take the manual severity into account in order 
+ to calculate the final isolation severity.</p>
+        <h2><a name="Configuration_tips" id="Configuration_tips"></a>Configuration 
+ tips</h2>
+        <p class="kadov-p">In order to allow fine-tuning your severities later 
+	 on, we recommend to <b>leave some room in between the severity values</b>.&#160;&#160;</p>
+        <p class="kadov-p">If 
+	 you would define 3 different norms for a property and assign the severities 
+	 1, 2 and 3, you may have difficulties later on when you want to add 
+	 a new norm in between the existing norms.&#160;&#160;</p>
+        <p class="kadov-p">A better choice 
+	 for the severities would be 10, 20 and 30 (so you can add a new norm 
+	 with severity 15 or 25 later on, without having to change the severity 
+	 of an existing norm).</p>
+    </body>
+</html>

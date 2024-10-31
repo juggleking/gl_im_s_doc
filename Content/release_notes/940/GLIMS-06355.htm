@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../Resources/TableStyles/Alternating.css" rel="stylesheet" data-mc-stylesheet-type="table" /><title>Release notes 9.4.0 - Support new values for Patient.Sex (GLIMS-06355)</title>
+        <link rel="StyleSheet" href="../../Resources/StyleSheets/shared.css" type="text/css" />
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2310"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.4.0 - </MadCap:conditionalText>Support new values for Patient.Sex (GLIMS-06355)</h1>
+        <p>GLIMS now supports the following values for the <span class="ui_element">Patient</span> field <span class="ui_element">Sex</span>:</p>
+        <table style="mc-table-style: url('../../Resources/TableStyles/Alternating.css');" class="TableStyle-Alternating" cellspacing="0">
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <col class="TableStyle-Alternating-Column-Column1" />
+            <thead>
+                <tr class="TableStyle-Alternating-Head-Header1">
+                    <th class="TableStyle-Alternating-HeadE-Column1-Header1">Short value</th>
+                    <th class="TableStyle-Alternating-HeadD-Column1-Header1">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1">M</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1">Male</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2">F</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2">Female</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1" style="font-weight: bold;">O</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1" style="font-weight: bold;">Other</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body2" style="font-weight: bold;">U</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body2" style="font-weight: bold;">Unknown</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body1">
+                    <td class="TableStyle-Alternating-BodyE-Column1-Body1" style="font-weight: bold;">A</td>
+                    <td class="TableStyle-Alternating-BodyD-Column1-Body1" style="font-weight: bold;">Ambiguous</td>
+                </tr>
+                <tr class="TableStyle-Alternating-Body-Body2">
+                    <td class="TableStyle-Alternating-BodyB-Column1-Body2" style="font-weight: bold;">N</td>
+                    <td class="TableStyle-Alternating-BodyA-Column1-Body2" style="font-weight: bold;">Not applicable</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>These new values may not be supported by drivers and/or external software.</p>
+        </div>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Customers may have site functions with IF ... THEN ... constructs that only check if the value is Male and that consider that the ELSE part is applied to the Female value.</p>
+            <p>Example:</p>
+            <div class="indented">
+                <p>IF Sex = "M" THEN <i>&lt;Male logic&gt;</i>;<br />ELSE <i>&lt;Female logic&gt;</i>;<br />ENDIF;</p>
+            </div>
+            <p>This should be replaced with:</p>
+            <div class="indented">
+                <p>IF Sex = "M" THEN <i>&lt;Male logic&gt;</i>;<br />ELSE IF Sex = "F" THEN <i>&lt;Female logic&gt;</i>;<br />ELSE <i>&lt;new enumeration logic&gt;</i>;<br />ENDIF;</p>
+            </div>
+        </div>
+    </body>
+</html>

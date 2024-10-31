@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Quality control|Reagents|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Reagent info from instrument</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3752"></a>
+            <MadCap:concept term="Quality control" />Reagent info from instrument</h1>
+        <h2>Introduction</h2>
+        <p>An instrument can send reagent information to GLIMS.&#160;This 
+ information can be sent in two different ways:</p>
+        <p class="fieldlabel">Instrument channel related</p>
+        <div class="indented">
+            <p class="MsoList">In this case, GLIMS receives a message from the instrument 
+ (typically in an initial phase). The reagent information is related to 
+ instrument channels (tests).&#160;Later on, when result messages 
+ arrive, the LIS is responsible for making the link between the result and 
+ the reagent information on the result's channel.</p>
+        </div>
+        <p class="fieldlabel">Result related</p>
+        <div class="indented">
+            <p class="MsoList">In this case, GLIMS receives reagent information in 
+ a result message. One or more tests and result entities are accompanied 
+ with reagent information.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>A test can be assessed with one or more reagent 
+ lots.&#160;The difficulty is that it is not always clear what a 
+ number of codes received from the instrument stands for. Currently the 
+ MIPS translators divide the numbers in 2 categories: lot numbers and serial 
+ numbers.</p>
+        </div>
+        <h2>Storing reagent information received from an instrument in GLIMS</h2>
+        <h3>Storage of lot number and serial number</h3>
+        <p class="Body">When reagent data (lot number and serial number) is received 
+ from an instrument, GLIMS will try to store this information in <span class="ui_element">Reagent 
+ lot</span> and <span class="ui_element">Reagent usage</span> records.</p>
+        <ol>
+            <li class="p-Body" value="1">
+                <p class="Body">The lot number received from the 
+	 instrument is stored in the reagent lot's <span class="ui_element">Lot number</span> field.</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">The serial number received from 
+	 the instrument is stored in the reagent lot usage and result reagent usage <span class="ui_element">Serial number</span> 
+	 field.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>In order to allow storing different serial numbers per reagent lot, <span class="ui_element">Reagent lot usage</span> records are created per serial number for a reagent lot. The reagent lot's <span class="ui_element">Last serial number</span> field is updated with the serial number which was last used for this reagent lot. The <span class="ui_element">Result reagent usage</span> records that will be created also refer to the serial number.</p>
+                </div>
+            </li>
+        </ol>
+        <h3>Automatic creation of reagent</h3>
+        <p class="Body">Since a reagent lot in GLIMS requires a reagent record, 
+ GLIMS will automatically create a reagent record with auto generated 
+ name and code (prefix "REAG-" followed by a sequence number). 
+ The creation of the reagents can be influenced by the <span class="ui_element">Reagent lot solver</span> 
+ function (see below).&#160;It is recommended to use this function, 
+ in order to reduce the number of created reagents.</p>
+        <h3>Reagent lot solver function</h3>
+        <p class="Body">A <span class="ui_element">Station</span> field called <span class="ui_element">Reagent lot solver</span> 
+ allows to define a site function (MISPL expression) based on the ReagentLot table, returning a string. This function helps GLIMS to identify or 
+ create the reagent lot and reagent. The reagent lot record available in 
+ the MISPL contains the received lot number in the field LotNumber. The <span class="ui_element">Comment</span> field 
+ contains other related information which can be useful:</p>
+        <ol>
+            <li class="p-Body" value="1">
+                <p class="Body">Property.Mnemonic</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">AssessmentMethod.InboundId</p>
+            </li>
+            <li class="p-Body" value="3">
+                <p class="Body">Station.Mnemonic</p>
+            </li>
+        </ol>
+        <p class="Body">The information is available as a tagged list in the Comment 
+ field (tag separator is a '\'). Use the tags "Property", "InboundId" 
+ and "Station" to retrieve the information. The following MISPL 
+ code extracts the property mnemonic:</p>
+        <blockquote><pre>
+STRING TestId;
+TestId := ExtractTag("Property", .Comment, "\");</pre>
+        </blockquote>
+        <p class="Body">As return value of the MISPL, GLIMS expects a tagged list 
+ (tag separator is a "\"). The tags GLIMS recognizes are:</p>
+        <ol>
+            <li class="p-Body" value="1">
+                <p class="Body">ReagentName</p>
+            </li>
+            <li class="p-MsoList" value="2">
+                <p class="MsoList">ReagentCode</p>
+            </li>
+            <li class="p-MsoList" value="3">
+                <p class="MsoList">ReagentSupplier</p>
+            </li>
+            <li class="p-MsoList" value="4">
+                <p class="MsoList">LotNumber</p>
+            </li>
+            <li class="p-MsoList" value="5">
+                <p class="MsoList">SerialNumber</p>
+            </li>
+            <li class="p-MsoList" value="6">
+                <p class="MsoList">ProductionDate</p>
+            </li>
+            <li class="p-MsoList" value="7">
+                <p class="MsoList">ExpirationDate</p>
+            </li>
+        </ol>
+        <p class="MsoList">With the "ReagentName", "ReagentCode" 
+ and "ReagentSupplier", GLIMS can find an existing <span class="ui_element">Reagent</span> record 
+ or create a new one. The minimal data required for the creation of the 
+ <span class="ui_element">Reagent</span> is the value of tags "ReagentName" or "ReagentCode". 
+ The value of the "ReagentSupplier" tag is optional, it should 
+ represent the mnemonic of an existing <span class="ui_element">Organization</span> in GLIMS. The values 
+ in the tags "ProductionDate" and "ExpirationDate" 
+ are also optional, the value should be string representation of a date 
+ in the format d/m/y.</p>
+        <p class="MsoList">Example of a reagent lot solve function:</p>
+        <blockquote><pre>
+STRING ReturnValue;
+STRING TestId;</pre><pre>
+TestId := ExtractTag("Property", .Comment, "\");</pre><pre>
+ReturnValue := PutTag("ReagentName", "ABC-XYZ123", ReturnValue, "\");
+ReturnValue := PutTag("ReagentCode", "RC-123", ReturnValue, "\");
+ReturnValue := PutTag("ReagentSupplier", "BIORAD", ReturnValue, "\");
+ReturnValue := PutTag("LotNumber", &#160;.LotNumber + "-x-" + IfKnownString(TestId), ReturnValue, "\");
+ReturnValue := PutTag("ProductionDate", &#160;"01/10/2008", ReturnValue, "\");
+ReturnValue := PutTag("ExpirationDate", &#160;"31/12/2012", ReturnValue, "\");</pre><pre>
+RETURN ReturnValue;</pre>
+        </blockquote>
+        <p class="Body">&#160;Note that the tags "LotNumber" and "SerialNumber" 
+ are available as well. This allows to convert the lot number and serial 
+ number received from the instrument.</p>
+        <h3>Automatic creation of reagent lot usage</h3>
+        <p class="Body">Once the <span class="ui_element">Reagent lot</span> and <span class="ui_element">Reagent</span> are determined, GLIMS 
+ is able to create reagent lot usage records.</p>
+        <ol>
+            <li class="p-Body" value="1">
+                <p class="Body">Each reagent lot usage will refer to 
+	 the reagent lot.</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">The reagent lot usage start time will 
+	 be the time of creation.</p>
+            </li>
+        </ol>
+        <p class="Body">If a reagent lot usage exists with a matching reagent lot, 
+ and for which the end time is unknown or in the past, GLIMS will create 
+ a new record. If the existing reagent lot usage is valid in time, GLIMS will 
+ also verify if the reagent lot is currently valid (valid production date 
+ and expiration date).</p>
+        <p class="Body">In case the reagent information is sent in an initial phase 
+ (instrument channel related, not result related), GLIMS assumes that the 
+ open reagent lot usage records that are started in the past for the given 
+ channel (assessment method) are to be ended (end time filled in). Obviously, 
+ GLIMS will not close a reagent lot usage when it matches with the received 
+ reagent information (in case the instrument is resending the same reagent 
+ information).</p>
+        <p class="Body">In order to deal with old reagent lot usage records that were 
+ not closed automatically, GLIMS offers a method on reagent lot usage allowing 
+ to end reagent lot usage records manually.&#160;See below for more information.&#160;</p>
+        <h3>Automatic creation of result reagent usage</h3>
+        <p class="Body" style="background-color: Transparent;">When a result is 
+ received from an instrument, GLIMS can create ResultReagentUsage records 
+ for the reagent lots identified with the information in the result message 
+ received. If no reagent lot information is received in the message, GLIMS 
+ will create ResultReagentUsage records for the reagent lot usage records which 
+ are not marked as manual.</p>
+        <p class="Body" style="background-color: Transparent;">These ResultReagentUsage 
+ records will only be created automatically when the option <span class="ui_element">Synchronize lot on upload</span> 
+ is enabled on  <span class="ui_element">Station</span>. Note: the help on this field says "Link 
+ results with reagent lot created with a previous result message". 
+ The default value of this field is disabled.</p>
+        <p class="Body" style="background-color: Transparent;">In case the reagent 
+ information is sent in an initial phase (instrument channel related, not 
+ result related), the reagent information should have been stored in reagent 
+ lot usage records (see above). After the results are stored,&#160;GLIMS will 
+ search for the most recent reagent lot usage records currently valid for the 
+ result’s used channel. For each found reagent lot usage, a result reagent 
+ usage is created. The &#160;reagent lot reference is copied.</p>
+        <p class="Body">When a result is being updated with a new value received 
+ from a station, we will remove the existing result reagent usage records.</p>
+        <h3>Ending a reagent lot usage</h3>
+        <p class="Body">The contextual function <span class="ui_element">End usage</span> is available 
+ for reagent lot usages.&#160;It has two parameters:</p>
+        <ol>
+            <li class="p-Body" value="1">
+                <p class="Body">End 
+	 time: if not specified, current time is assumed.</p>
+            </li>
+            <li class="p-Body" value="2">
+                <p class="Body">Comment: 
+	 optional and will be added to the reagent lot usage comment field.</p>
+            </li>
+        </ol>
+        <h3>Cleanup tool for automatically created reagents</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">GLIMS offers a tool to clean up the reagent lots, reagent usage and result reagent usage records of the reagents (with prefix "REAG-") that have been created automatically (the reagent itself is eventually deleted as well). </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">The tool can be executed via  <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; Development &gt; 4GL &gt; Run procedure</span> with <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">File name</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">rgt_Cleanup</span>. A date range can be set that will be taken into account to select the reagents to be deleted.</p>
+        <p xmlns="http://www.w3.org/1999/xhtml">
+            <img src="reagent_info_from_instrument_cleanup.png" xmlns="http://www.w3.org/1999/xhtml" />
+        </p>
+    </body>
+</html>

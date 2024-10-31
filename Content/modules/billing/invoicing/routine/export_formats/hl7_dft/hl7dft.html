@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Invoicing|Financial shipments|Export formats" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\his\hl7\hl7dft.html">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="Microsoft Border" content="none, default" /><title>DFT</title>
+        <link href="../../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>HL7 DFT</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Online%20communication%20(via%20sockets)">Online communication</a> - <a href="#Message%20Layout">Message layout</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+GLIMS supports HL7 DFT ’r;P03’ (post financial transaction) events.&#160;&#160;Currently HL7 version 2.2 and version 2.4 can be used.&#160;&#160;Using the <a href="../../financial_shipments_send.htm">FinancialShipment.Send</a> function and selecting "HL7" as protocol, GLIMS allows creating files conform the HL7 DFT protocol.&#160; &#160; When selecting the 2.4 version:<br /><ol style="list-style-type: decimal;"><li value="1">The version number will be 2.4 in the header (MSH.11)</li><li value="2">ALL patient identifications are sent</li><li value="3">The DBC Number (Order.TreatmentId) is put in the ZDB.1 'DBC_trajectvolgnummer'</li></ol>
+Other features
+<ul><li class="kadov-p" value="1"><b style="font-weight: bold;">Maximum number of failures</b>: maximum number of failures expressed in number of orders for which the program marks the shipment as completely sent. If this number is exceeded, then the program stops and stores the last successfully sent invoice in the financial shipment (the last action is only done for output type on-line).&#160;&#160;The remaining part can be sent later with the option 'OnlySendRemainingPart'.&#160;&#160;A value ? means that the number of errors is unlimited.&#160;&#160;This parameter is useful for sending HL7 financial on-line.<br />
+&#160;&#160;</li><li class="kadov-p" value="2"><b style="font-weight: bold;">Optional segments</b>: Some of the HL7 DFT segments are optional and can be added/removed by enabling/disabling the appropriate toggle boxes.</li></ul><blockquote><p>You can also override the default contents of the PV1, PID, ZFU and ZPR segments.&#160;&#160;This can be done by defining a site function which must have a fixed name:</p><ul><li class="kadov-p" value="1">HL7_PV1_Values: a site function with this name allows to define the contents of the PV1 segment fields (Base table 'Order', data type 'String)</li><li class="kadov-p" value="2">HL7_ZFU_Values: a site function with this name allows to define the contents of the ZFU segment fields (Base table 'BillingItem', data type 'String)</li><li class="kadov-p" value="3">HL7_ZPR_Values: a site function with this name allows to define the contents of the ZPR segment fields (Base table 'Request', data type 'String)</li><li class="kadov-p" value="4">HL7_PID_Values: a site function with this name allows to define the contents of the ZPR segment fields (Base table 'Correspondent', data type 'String)</li></ul><p>The <b>syntax</b> for those HL7_*_Values (where *=PID,PV1,ZFU,ZPR)site functions is:</p><blockquote><pre>
+Return value = "[SEGMENT ID.]&lt;Field No&gt;[.&lt;repeatNo&gt;.&lt;subFieldNo&gt;]=&lt;new value&gt;[\Field2=value2]"
+</pre><pre>
+Examples: 
+    -return "5=xxx"             setting a field's value
+    -return "5=xxx\6=yyy"       setting more fields
+    -return "5.1.2=xxx"         sub-repeat fields
+    -return "PID.5.1.2=xxx"     set another segment's field (here the persons first name)
+</pre></blockquote><p>Practical <b>example</b>:</p><blockquote><pre>
+----  Site function:
+ Table: Correspondent
+ Description: HL7_PID_Values
+ Definition:
+</pre><pre>
+STRING RetValue; 
+</pre><pre>
+RetValue := "";
+IF .Person().RealIdentity &lt;&gt; ?
+THEN
+  RetValue:= "\5.1.1=Wally\5.1.2=Eddie" 
+ENDIF;
+RETURN (RetValue);
+------------------------
+</pre></blockquote><p><b style="font-weight: bold;">Remark</b>:</p><p>In order to override the value of PID segment fields, you can also use the syntax as shown in the example below.&#160;&#160;You can use this syntax in any of the three other site function mentioned above.</p><p>Example of how such a site function could be defined:</p><blockquote><pre>
+|          Table: Order                                                        
+|    Description: HL7_PV1_Values                                               
+|      Data type: String              [V]                                      
+|     Definition: RETURN                                                      
+                 ("\5=vijf"  /* PV1 fields */ 
+                 + "\PID.18=" + IfKnownString(.Encounter.ExternalInfo) );    
+</pre></blockquote></blockquote><ul><li class="kadov-p" value="1"><b style="font-weight: bold;">Send fees</b>: if disabled, all billing codes belonging to a reimbursement class of type 'Fee' (Honorarium) will be skipped.<br />
+&#160;&#160;</li><li class="kadov-p" value="2"><b style="font-weight: bold;">Batch level</b>: allows to group the export data per financial shipment instead of per order.&#160;&#160;Depending on the setting of this field 1 batch (BHS/BTS segment) will be created per order or per financial shipment.&#160;&#160;Since these so-called batches can contain multiple messages, the 'batch message count' is also included in the BTS segment.<br />
+&#160;&#160;</li><li class="kadov-p" value="3">By default, the FT1 transaction Id is the InvoiceItem.Id.&#160;&#160;However, you can enable the option '<b>FT1 transaction Id = Order external id</b>'.&#160;&#160;In the latter case, you do risk that the transaction id is not unique.</li></ul><h2><a name="Online communication (via sockets)"></a>Online communication (via sockets)</h2><p style="text-align: JUSTIFY;">Normally, HL7 financial communication is done via a file.&#160;&#160;However, since version 5.4D, GLIMS also supports communication via sockets.</p><p>In order to do so, the user must specify a translator with an external interface of the type network. The destination host and port of the HL7 partner must be specified in the external interface of the translator.&#160;&#160;&#160;Before sending the financial shipment, make sure that the translator is running.</p><h2><a name="Message Layout"></a>Message layout</h2><blockquote><p><u style="text-decoration: underline;">Financial message</u></p><p><a href="hl7fhs.html">FHS</a> File Header Segment<br />
+{<br />
+&#160;&#160;&#160;&#160;[ <a href="hl7bhs.html">BHS</a> ] Batch Header Segment<br />
+&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="hl7msh.html">MSH</a> Message Header<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="hl7evn.html">EVN</a> Event Type<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="hl7pid.html">PID</a> Patient Identification<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7pv1.html">PV1</a> ] Patient Visit<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="hl7ft1.html">FT1</a> Financial Transaction<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7zf1.html">ZF1</a> ] Financial Transaction Continued<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7zft.html">ZFT</a> ] Additional Financial Transaction<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7zfu.html">ZFU</a> ] Additional Financial Data<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7gt1.html">GT1</a> ]&#160;<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7pr1.html">PR1</a> ]<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7zpr.html">ZPR</a> ]<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7in1.html">IN1</a> ] Insurance<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ <a href="hl7in2.html">IN2</a> ] Additional Insurance<br />
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;}<br />
+&#160;&#160;&#160;&#160;[ <a href="hl7bts.html">BTS</a> ] Batch Trailer Segment<br />
+}<a href="hl7fts.html"><br />
+FTS</a> File Trailer Segment</p></blockquote><p>Where [] is optional and {} can occur several times. FHS, FTS, BHS and BTS segments are only applicable for file transfer.</p><blockquote><p style="text-align: left;"><u style="text-decoration: underline;">Acknowledge Message</u></p><p style="text-align: left;"><a href="hl7msh.html">MSH</a> Message Header <a href="hl7msa.html"><br />
+MSA</a> Message Acknowledgment</p></blockquote></body>
+</html>

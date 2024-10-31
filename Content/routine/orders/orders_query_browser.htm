@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Orders" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\extra tools\orderquery\orderquery.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Basic routine -&gt; Orders -&gt; Order browsers</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="kanchor94"></a><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_orders.htm">Orders</a> -&gt; Order browsers</h1>
+        <p>Contents: <a href="#Order%20query">Order query</a> - <a href="#Orders%20by%20internal%20id%20/%20receipt%20time">Orders by internal id/receipt time/short id</a> - <a href="#Orders">Orders by order identifier</a></p>
+        <h2><a name="Order query"></a>Order query</h2>
+        <p>The general order query (accessible via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Routine</span> -&gt; <span class="ui_element">Orders</span> -&gt; <span class="ui_element">Query</span>) allows to specify a set of criteria to select orders and hence do something with the selected orders. Order queries are typically used for soliciting incomplete orders or for order validation (menu item <span class="ui_element">Order review</span>).</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="order_query_standard.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="548" data-mc-height="485" src="order_query_standard_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Issuer</p>
+        <p class="fieldlabel">Agent</p>
+        <p class="fieldlabel">Department</p>
+        <div class="indented">
+            <p>Allows the user to search for orders of a specific department.</p>
+            <p>The order department is set as follows:</p>
+            <p class="fieldlabel">Manual order entry</p>
+            <div class="indented">
+                <p> The department of the logged in user that created the order.</p>
+            </div>
+            <p class="fieldlabel">Electronic order entry</p>
+            <div class="indented">
+                <p> The department of the batch user linked to the service that processes the order messages. This department can be overruled if a department is specified in the order message.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Executing department (group)</p>
+        <div class="indented">
+            <p>Allows the user to search for orders that have at least one action that is executed in the specified executing department (group). This is determined by the procedure's department.</p>
+        </div>
+        <p class="fieldlabel">Study</p>
+        <div class="indented">
+            <p> A query for all orders related to a study. Due to performance reasons, the sequence in which the orders are shown depends on the other query options.</p>
+        </div>
+        <p class="fieldlabel">Classification</p>
+        <div class="indented">
+            <p>If a <span class="ui_element">property classification</span> is specified, only orders containing results of properties within this classification will be selected. Moreover, by default, this classification will also be used for displaying the results in the validation browser (selection and ordering).</p>
+        </div>
+        <p class="fieldlabel">Internal id prefix - Use default prefix</p>
+        <div class="indented">
+            <p>See below for more information on these fields:</p>
+            <p class="fieldlabel">Internal id from-to</p>
+            <div class="indented">
+                <p>Allows for the specification of an order internal id range.</p>
+            </div>
+            <p class="fieldlabel">Order status from-to</p>
+            <div class="indented">
+                <p> Allows for the specification of an order status range.</p>
+            </div>
+            <p class="fieldlabel">Result status from-to</p>
+            <div class="indented">
+                <p>Only orders with results within this status range will be included. A full range indicates that the result status is of no interest. Hence, also orders without results will be shown.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Specimen status</p>
+        <div class="indented">
+            <p class="fieldlabel">"At least one missing"</p>
+            <div class="indented">
+                <p> This indicates that there should at least be one specimen with status lower than <span class="ui_element">Available</span>.</p>
+            </div>
+            <p class="fieldlabel">"Nothing received"</p>
+            <div class="indented">
+                <p> This means that the order should contain: no specimens at all; only discontinued specimens; only specimens with status lower than <span class="ui_element">Available</span>; or a combination of the latter two. This implies that discontinued specimens are treated as 'not received' in this context.</p>
+            </div>
+            <p class="fieldlabel">"At least one without requests"</p>
+            <div class="indented">
+                <p> This selects an order when it has at least one non-discontinued root specimen which does not have a non-discontinued result, microbiology action or pathology exam request referring to this root specimen. In other words, it makes it possible to search for orders for which either the order entry process was not completed or where the issuer sent in more samples than required.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Tariffing status from-to</p>
+        <div class="indented">
+            <p>Allows for the specification of an order tariffing status range.</p>
+        </div>
+        <p class="fieldlabel">Minimal urgency</p>
+        <div class="indented">
+            <p>The order should have at least this urgency level.</p>
+        </div>
+        <p class="fieldlabel">Verified</p>
+        <p>When an order is verified via the <a href="orders_verify.htm">order verification program</a>, this is marked in the order by setting Order.Verified = YES.</p>
+        <div class="indented">
+            <p class="fieldlabel">Include</p>
+            <div class="indented">
+                <p> Also show orders that have been verified.</p>
+            </div>
+            <p class="fieldlabel">Exclude</p>
+            <div class="indented">
+                <p> Do not show orders that have been verified.</p>
+            </div>
+            <p class="fieldlabel">Select</p>
+            <div class="indented">
+                <p> Only show orders that have been verified.</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Received/sampled from-to</p>
+        <div class="indented">
+            <p> Allows for the selection of orders received or sampled within a specified time range. Both a fixed or relative date can be specified.</p>
+        </div>
+        <p class="fieldlabel">Last updated since-until</p>
+        <div class="indented">
+            <p>Allows for the selection of orders updated within a specified time range. Both a fixed or relative date can be specified.</p>
+        </div>
+        <p class="fieldlabel">Empty orders</p>
+        <div class="indented">
+            <p> Select only empty orders. An "empty" order is interpreted as an order without actual work-requests. An order with a specimen, but no linked requests is also considered as empty, as nobody told GLIMS what to do with the specimen. Orders that only contain discontinued results are also considered to be "empty orders".</p>
+        </div>
+        <p class="fieldlabel"><a name="Filter:"></a>Filter </p>
+        <div class="indented">
+            <p>References an Order-based MISPL method returning a logical value to the query. After the evaluation of an order for the given query selections, the filter program is run for that order. The order may be rejected if the MISPL program returns FALSE, or accepted if the program returns TRUE.
+            </p>
+        </div>
+        <p class="fieldlabel">Performance</p>
+        <div class="indented">
+            <p>To make efficient use of the available indexes on the order table, it is advised to specify at least one of the following options: receipt time range, internal id range, order status lower than <span class="ui_element">Complete</span> or tariffing status lower than <span class="ui_element">Complete</span>. Failing to specify any of these criteria will yield a slow query.</p>
+        </div>
+        <p class="fieldlabel">Order browser</p>
+        <div class="indented">
+            <p>The <span class="ui_element">Orders</span> browser will contain all orders that meet the specified criteria. For each order, it displays the internal id, object, issuer, object time, urgency and status. The <span class="ui_element">Options</span> button allows you to refine your selection criteria.</p>
+        </div>
+        <h2><a name="Orders2"></a><a name="Orders by internal id / receipt time"></a>Orders by internal id/receipt time/short id
+        </h2>
+        <p>Via the main menu (<span class="ui_element">Start</span> -&gt; <span class="ui_element">Routine</span> -&gt; <span class="ui_element">Orders</span> -&gt; ...), GLIMS offers three order browsers: sorted by internal, by receipt time or by short id. The first column shows the classification criterion (internal id, receipt time or short id). The other columns show the object, issuer, object time, urgency and status.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="../consultation/images/order_browser_options.gif" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="664" data-mc-height="330" src="../consultation/images/order_browser_options_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p><a name="Each"></a>Each browser also features an <span class="ui_element">Options</span> button:
+        </p>
+        <div class="indented">
+            <p class="fieldlabel">Internal id prefix</p>
+            <div class="indented">
+                <p>If specified, only orders with an internal id beginning with this prefix will be shown.</p>
+                <p>There are 2 major uses for this functionality:</p>
+                <ul>
+                    <li value="1">Limit the number of orders show to, for instance, the orders of today.</li>
+                    <li value="2">Increase the speed of the browsers for those customers who use order shielding and where the orders of the 'other' departments all have an internal id beginning with a letter other than yours. In this case, the <span class="ui_element">Orders by internal id</span> browser would have to skip an enormous amount of records until it meets the first order of your department.</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Use default prefix</p>
+            <div class="indented">
+                <p>If enabled, the program searches for the existence of a gp_Site-based, string-valued site function with the name 'OrderInternalIdPrefix'. When such a site function is found, it is executed in order to calculate the prefix in function of the current user, the current date, etc...<br /></p>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p><pre>RETURN (IF CurrentDepartment() = "DEPN" THEN "N" ELSE "Z") + DateToString(TODAY(), "%Y%m%d");</pre>
+                    <p>This MISPL program is only executed at start-up of the program, or when activating the <span class="ui_element" xmlns="">Use default prefix</span> option. This should avoid having multiple executions of the function (once for the actual query and once for the title description of the browser), thus making life easier for the user in case the MISPL program asks for a confirmation of the calculated prefix or even allows the user to change the default prefix).</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Use prefix as positioner</p>
+            <div class="indented">
+                <p>This option is only available in the <span class="ui_element">Orders by internal id</span> browser.</p>
+                <p>If activated, the current prefix will automatically be used as prefix when you start searching for an order by typing its internal id in the browser (the so-called fast-positioning). As soon as a letter is typed, the browser searches for the order with internal id matching the current prefix + your entered character(s). This avoids having to type this prefix altogether while fast-positioning.</p>
+            </div>
+        </div>
+        <h2><a name="Orders"></a>Orders by order identifier</h2>
+        <p>This browser displays orders sorted by identifier and creation time. It is accessible via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Routine</span> -&gt; <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Orders</span>. A query window allows filtering on identifier prefix (similar to <a href="#Each" xmlns="http://www.w3.org/1999/xhtml">internal ID prefix</a>), <a href="../../db/reference_guide/orderidentifiertype.htm">identifier type</a>, order creation date, or select a customized <a href="#Filter:" xmlns="http://www.w3.org/1999/xhtml">filter</a>.</p>
+        <p>Click <a href="order_entry/order_entry_order_identifier_types.htm">here</a> for more information on order identifier types.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="orders_query_browser_order_identifier.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="557" data-mc-height="461" src="orders_query_browser_order_identifier_thumb_0_120.png" tabindex="" /></a>
+        </p>
+    </body>
+</html>

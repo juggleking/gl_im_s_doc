@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order entry" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\basic routine\request form\requestform.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Request form</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Request form</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Configuration</a> - <a href="#Usage%20in%20order%20entry">Usage in order entry</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p><a href="../../routine/orders/order_entry/order_entry_tab_requests.htm">During order entry</a>, it is possible to use request forms to add requests to an order.&#160;The chapters below explain how you can configure these request forms and what functionality they offer in the order entry screen.</p>
+        <h2><a name="Configuration" id="Configuration"></a>Configuration</h2>
+        <p>Request forms can be created by clicking <span class="ui_element">Start</span> &gt; <span class="ui_element">Configuration</span> &gt; <span class="ui_element">Request definitions</span> &gt; <span class="ui_element">Request forms</span>.&#160;A browser will be displayed in which you can create new forms.</p>
+        <p style="text-align: left;">The content of the created request form can be defined by selecting <span class="ui_element">Edit</span> in the contextual menu / ribbon.</p>
+        <p style="text-align: left;">The <a href="../../user_interface/user_interface_tree_views.htm">tree editor</a> allows to create tab folders (parent nodes without request definition) and underlying request definitions.&#160;When adding or changing a request form, the lookup browser for the request definition (called via Ctrl-F or Double-Click) has an options button which allows searching via the description of the request definition (e.g. the property name for property request definitions). In this search you can use wildcard (e.g. *blood* to see every request definition where the word "Blood" appears in the description)</p>
+        <p style="text-align: left;">You can copy request forms by selecting the contextual menu function <span class="ui_element">Copy</span> on the request form browser.&#160;&#160;The copy function uses the standard Windows naming for copied records:</p>
+        <blockquote>
+            <p>"Copy of ..."<br />"Copy (1) of ..."<br />"Copy (2) of ..."<br />...</p>
+        </blockquote>
+        <h3>Support for <a name="issuer" id="issuer"></a>issuer-specific request definitions in request forms</h3>
+        <p>The request form user interface for order entry supports the issuer-specific request definitions (where Requestable.Issuer has been filled in). To cope with this, the communication between the order entry program and the request form takes place entirely via the request definition mnemonic.</p>
+        <p>This implies that, even when a non-specific request definition is present in the request form definition, the issuer-specific request definition with the same mnemonic will be requested when this request definition is selected in the request form.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>To avoid confusing situations, we strongly recommend NOT to put issuer-specific request definitions in the request form definition. Use the non-specific request definition instead.</p>
+        </div>
+        <h2><a name="Usage in order entry"></a>Usage in order entry</h2>
+        <h3><a name="Selectin"></a>Selecting the request form</h3>
+        <table width="100%">
+            <tr>
+                <td style="vertical-align: top;" width="24">
+                    <img src="oe_requestform.gif" style="border: none;" alt="" width="24" height="24" border="0" />
+                </td>
+                <td style="vertical-align: top;">On the <span class="ui_element">Request</span> page of the order entry screen, you can click the request form button.&#160;&#160;A new window will be displayed in which you can select the request form that you would like to use.&#160;&#160;By default, the request form specified in the <a href="../../routine/orders/order_entry/options/order_entry_options_tab_main.htm#Request">Request form</a> field of the order entry options  will be shown.&#160;&#160;If no request form is defined in the order entry options, the request form specified in the department of the current user will be used.&#160;&#160;Moreover, if the option "Req. form is fixed" is enabled in the department, the user will only be able to use the request form specified in the department and no other.&#160;&#160;Other defined request forms will not be selectable.&#160;&#160;If this option is not enabled, the last used request form will be shown when order entry is called again.</td>
+            </tr>
+        </table>
+        <h3>Selecting a specimen in the request form</h3>
+        <p>The <span class="ui_element">Specimen</span> spinner  allows the user to:</p>
+        <ul>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">always know which specimen requests apply to without having to look back at the order entry screen.</li>
+            <li value="2">cycle through the requested specimens using the up and down arrow keys.</li>
+            <li value="3">filter the request form contents, to show the requests referencing the selected specimen.</li>
+        </ul>
+        <p xmlns="http://www.w3.org/1999/xhtml">This  field mirrors the <span class="ui_element">Specimen</span> field in the order entry screen: selecting a specimen in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Request form</span> will select the same specimen in the order entry screen as well.</p>
+        <h3 style="text-align: left;">Selecting tests in the request form</h3>
+        <p style="text-align: left;">The tab pages of the request form contain toggle boxes for every test. To select or deselect a request, simply use the selection mouse button.&#160;Clicking a request definition in the request form automatically updates the request definition in the embedded browser of the request page. This window synchronization does not only allow creation of request definitions, but assigns the object date and time, urgency request attribute (<i>cito, phone, ...</i>) and billing mark too, if any are specified.</p>
+        <h3>Ignoring the current specimen selection</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The  <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ignore</span> option forces the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Specimen</span> field to be set to "?" so that the currently selected specimen is ignored. Activating <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ignore</span> has the effect that no duplicate materials can be selected and requests are not requested onto a material,  meaning the <a href="../../routine/orders/order_entry/order_entry_action_scheduling.htm" xmlns="http://www.w3.org/1999/xhtml">scheduler</a> will choose the specimen.</p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Scenario A</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li value="1">Request properties by ticking property or panel checkboxes.</li>
+                <li value="2">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Request a material by ticking a material checkbox.</p>
+                    <ul>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1"><span class="ui_element" xmlns="">Ignore current specimen selection</span> enabled: all previously selected items remain selected.</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ignore current specimen selection</span> disabled: all previously selected items become deselected.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Scenario B</p>
+            <ol xmlns="http://www.w3.org/1999/xhtml">
+                <li xmlns="http://www.w3.org/1999/xhtml" value="1">Request a material by ticking a material checkbox.</li>
+                <li xmlns="http://www.w3.org/1999/xhtml" value="2">
+                    <p xmlns="http://www.w3.org/1999/xhtml">Request another material by ticking another material checkbox.</p>
+                    <ul>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="1"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ignore current specimen selection</span> enabled: the first selected material remains selected.</li>
+                        <li xmlns="http://www.w3.org/1999/xhtml" value="2"><span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Ignore current specimen selection</span> disabled: the first selected material becomes deselected.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        <div class="text_box_warnings" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">Enable the option before adding any requests. Adding a request, enabling the option and then adding or removing a request is not supported.</p>
+        </div>
+        <h3>Selecting a confirmable panel request definition</h3>
+        <p>If the selected request definition is a <a href="../requestables/requestables.htm#Panel">request definition of type Panel</a> whose <span class="ui_element">Confirm</span> option is activated,</p>
+        <ul>
+            <li value="1"> It is displayed in italics and cannot be deselected in the request form (1). </li>
+            <li value="2">The only way to undo the selection of this request definition is to delete all its members  in the request list of the order entry screen (2).</li>
+        </ul>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="request_forms_confirmable_panel_delete.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="665" data-mc-height="196" src="request_forms_confirmable_panel_delete_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h3 style="text-align: left;">Selecting tests with a specific urgency</h3>
+        <p style="text-align: left;">If you have <a href="../../routine/orders/order_entry/order_entry_urgency_duetime.htm">defined urgencies</a>, you can request a test with a given urgency.&#160;&#160;There are several ways to specify the urgency of a request:</p>
+        <ol>
+            <li class="p" value="1">
+                <p style="text-align: left;">One can first change the urgency field at the top of the screen and then click the request definition.&#160;&#160;<br /></p>
+            </li>
+            <li class="p" value="2">
+                <p style="text-align: left;">You can use the right-button mouse and select the urgency from the main menu.&#160;&#160;This can be used to directly add a request with a specific urgency or to change the urgency of a request.<br /></p>
+            </li>
+            <li class="p" value="3">
+                <p style="text-align: left;">When you select an urgency at the top of the screen and then click the <span class="ui_element">Apply</span> button, the selected urgency will be applied to all currently selected request definitions.</p>
+            </li>
+        </ol>
+        <p style="text-align: left;">The urgency short name will be displayed in front of the request definition name and the request definition name will be displayed in red.&#160;</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p style="text-align: left;">For each request definition, you can define a minimal and maximal urgency.&#160;&#160;If a minimal urgency is specified for a request definition and you add this request definition using the request form, the minimal urgency level will automatically be applied.</p>
+        </div>
+    </body>
+</html>

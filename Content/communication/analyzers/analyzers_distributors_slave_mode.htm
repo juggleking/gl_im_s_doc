@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections" data-mc-ignored-words="STN$UnknownEvent">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Distributor systems in slave mode</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Distributor systems in slave mode</h1>
+        <p>Content:</p>
+        <ul>
+            <li value="1"><a href="#Introduction">Introduction</a>
+            </li>
+            <li value="2"><a href="#Sorting_zones_and_targets">Sorting zones 
+	 and targets</a>
+            </li>
+            <li value="3"><a href="#Station">Station event codes</a>
+            </li>
+            <li value="4"><a href="#Specimen_sort_process">Specimen sort 
+	 process</a>
+                <ul>
+                    <li value="1"><a href="#Check_container">Check container</a> (1)</li>
+                    <li value="2"><a href="#Find_specimen">Find specimen</a> (2)</li>
+                    <li value="3"><a href="#Store_specimen_location_and_characteristics">Store 
+		 specimen location and characteristics</a> (3)</li>
+                    <li value="4"><a href="#Collect_specimen_sort_history">Collect sort history</a> 
+		 (4)</li>
+                    <li value="5"><a href="#Prepare_sort">Sort specimen</a> (5)</li>
+                </ul>
+            </li>
+            <li value="5"><a href="#Sorting_information_stored_in_the_specimen_audit_trail">Sorting 
+	 information stored in the specimen audit trail</a>
+            </li>
+            <li value="6"><a href="#Specimens_inspected_by_the_distributor_system">Specimens 
+	 inspected by the distributor system</a>
+            </li>
+            <li value="7"><a href="#Evaluation_in_Glims">Evaluation in GLIMS</a>
+            </li>
+            <li value="8"><a href="#Automatic_specimen_confirmation">Automatic 
+	 specimen confirmation</a>
+            </li>
+            <li value="9"><a href="#Sorting_result_reported_by_the_distributor_system">Sorting 
+	 result reported by the distributor system</a>
+            </li>
+            <li value="10"><a href="#Sorting_related_fields_on_specimen">Sorting 
+	 related fields on specimen</a>
+            </li>
+            <li value="11"><a href="#Specimen_browsers">Specimen browsers</a>
+            </li>
+        </ul>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>This document describes the functionality in GLIMS for supporting specimen 
+ distributor systems working in slave mode. "Slave mode" means 
+ that GLIMS is the master in controlling a specimen distributor system 
+ which has less 'intelligence' compared to others already connected to 
+ GLIMS today.</p>
+        <p>The mechanism that GLIMS uses to control the distributor system is:</p>
+        <ol>
+            <li value="1">The distributor system scans specimen bar codes 
+	 and queries GLIMS for information. GLIMS will send sorting targets 
+	 in reply of the queried specimen. If the specimen is a root specimen, 
+	 sub specimens and sub specimen targets might be sent along.</li>
+            <li value="2">The distributor system might send sorting results 
+	 to GLIMS (information about the sorting actions the system performed). 
+	 GLIMS will use this information to update the sort status of a specimen</li>
+        </ol>
+        <p>The action scheduler in GLIMS has the role of planning work for a specimen. 
+ Linking the action's procedure to sorting targets allows GLIMS to find 
+ the sorting target for the queried specimen.<br /><br />Notes:</p>
+        <ol>
+            <li value="1">Only query by single specimen is supported (no 
+	 batch download, range or work list queries).</li>
+            <li value="2">There is an important difference with classic distributor 
+	 connections: they are based on download of test and specimen material 
+	 information to the distributor.</li>
+        </ol>
+        <h2><a name="Sorting_zones_and_targets" id="Sorting_zones_and_targets"></a>Sorting 
+ zones and targets</h2>
+        <p>
+            <img src="distributor_sorting_system.gif" alt="" width="660" height="698" border="0" />
+        </p>
+        <h3>Sorting zone</h3>
+        <p>A sorting zone defines the physical location on a sorting (output) area 
+ of a distributor. Typically this is a square area on which trays are placed 
+ holding specimen carriers. The codes of a sorting zone can 
+ be used in communication with distributors, enabling GLIMS to control 
+ the position where specimen should be sorted or aliquotted, and storing 
+ information about the specimen's sorting result.</p>
+        <p>The type of sorting zone indicates what the usage of the zone is.</p>
+        <blockquote>
+            <p>
+                <img src="distributor_sorting_zone.gif" alt="" width="417" height="339" border="0" />
+            </p>
+        </blockquote>
+        <p>Most of the zones will be used for routine work, i.e. with <b>Type</b> 
+ "routine". Others types are:</p>
+        <ul>
+            <li value="1">Error - in case sorting failed</li>
+            <li value="2">Archive - work for specimen is finished and can 
+	 be stored in an archive</li>
+            <li value="3">External - for work to be carried out outside the 
+	 lab</li>
+            <li value="4">Urgent - for urgent specimens</li>
+        </ul>
+        <p>The <b>code</b> of a sorting zone is used in communication with the 
+ distributor system.</p>
+        <p>Sorting zones can be disabled by toggling the enabled check box.</p>
+        <h3>Sorting target</h3>
+        <p>This table links procedures with sorting zones of a distributor. It 
+ allows defining the possible targets on which a specimen can be sorted, 
+ depending on: the definitions of the procedure itself (input and outputs), 
+ the urgency of the specimen, the need of archiving a specimen ...</p>
+        <blockquote>
+            <img src="specimen_sorting_target.png" alt="" style="border: none;" border="0" />
+        </blockquote>
+        <h4>General</h4>
+        <p>Sorting targets can be disabled by toggling the <b>enabled</b> check 
+ box.</p>
+        <h4>Selection</h4>
+        <p>When <b>explicit query only</b> is enabled, then a specimen 
+ is sorted to this target only when it was queried by the distributor system. 
+ </p>
+        <p>If a sorting target is set as <b>exclusive</b> and the target is the 
+ first in the sequence found in the sort process, then GLIMS will ignore 
+ in his sort process, all the other targets that are next in the list. 
+ Once the exclusive target is finished, a next sort query will result in 
+ the next available targets. See also the chapter of <a href="#Automati">automatic 
+ sort</a> process.<br /><br />When the sorting target is configured for a sorting zone of type urgent, 
+ one can specify a <b>minimal urgency</b> value on that target. When set, 
+ GLIMS will select this target in his sorting process if the urgent specimen 
+ action has an urgency level which is higher or equal the target's minimal 
+ urgency.</p>
+        <p>With <b>work done definition</b>, one can define when GLIMS decides 
+ if the work for an action is finished. Possible values are:</p>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">None</b> (default)<br /><br />	When set to 'None', GLIMS will not verify the action status of the 
+	 queried specimen. GLIMS will sort to the next available target.<br /></li>
+            <li value="2"><b style="font-weight: bold;">Action realized</b>
+                <br />
+                <br />	When set to 'Action realized', GLIMS assumes the work for the target 
+	 is finished when the action has reached the status 'Realized'. The 
+	 field <b>Unfinished work action</b> determines the action GLIMS should 
+	 perform for this target in case the action is not realized yet.<br /></li>
+            <li value="3"><b style="font-weight: bold;">Action ready</b>
+                <br />
+                <br />	When set to 'Action ready', GLIMS assumes the work for the target is 
+	 finished when the action has reached the status 'Ready'. The field 
+	 <b>Unfinished work action</b> determines the action GLIMS should perform 
+	 for this target in case the action is not ready yet.</li>
+        </ul>
+        <p>Note:</p>
+        <ul>
+            <li value="1">Work done definition applies to targets for specimens being queried 
+	 by the sorting system.</li>
+            <li value="2">The definition does not apply for target zones of type error or 
+	 archive</li>
+        </ul>
+        <p>The field <b>Unfinished work action</b> allows to specify which action 
+ GLIMS should perform in case the work for a target is not finished yet. 
+ The field is only enabled when <b>Work done definition</b> is set (different 
+ from 'None'). Following actions are possible</p>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">Repeat sort</b> (default)<br /><br />	When set to 'Repeat sort', GLIMS will sort again to this target.<br /></li>
+            <li value="2"><b style="font-weight: bold;">Raise error<br /><br /></b> When set to 'Raise error', GLIMS will raise error event <b>'STN$ActnUnfinished'</b>. 
+	 The event is handled in the <a href="#Specimen_sort_process">sort specimen 
+	 process</a>.</li>
+        </ul>
+        <h4>Volume handling</h4>
+        <p class="fieldlabel">Needs volume</p>
+        <p class="fielddescription">Set if specimen volume is required when sorting 
+ to this zone. The needs volume field is used by GLIMS in the sorting process 
+ of a queried specimen for which the distributor system reports the amount 
+ of available volume.</p>
+        <p class="fieldlabel">Wasted volume</p>
+        <p class="fielddescription">when receiving a sort query for a root specimen, 
+ GLIMS replies with the required volumes for the aliquots (child specimens). 
+ The "required volume" means "the volume needed to 
+ perform the measurements on the instrument to which the sub specimen will 
+ be distributed".</p>
+        <p class="fielddescription">In the sort query, the sorting system transmits 
+ the usable volume available in the container. Typically this is 
+ the plasma, without the cells at the bottom of the container.</p>
+        <p class="fielddescription">
+            <img src="GLIMS_ANLZ-00991_plasma.png" alt="" style="border: none;" border="0" />
+        </p>
+        <p style="margin-left: 40px;">The option "Wasted volume" allows 
+ to ensure that the remaining volume (of the plasma) is not wasted after 
+ the distribution. This is particularly important for e.g. blood received 
+ from babies.</p>
+        <p class="fielddescription">The solution is to distribute the remaining 
+ volume as well to the sub specimens. This will happen proportionally 
+ according to the required volumes of the sub specimens. That is, 
+ the specimen with the highest required size will receive the highest remaining 
+ volume.</p>
+        <p class="fielddescription" style="font-weight: bold;">Example</p>
+        <p class="fielddescription">Suppose we have a measured volume of 450 ml 
+ (volume of the plasma) that is to be distributed to 3 sub specimens with 
+ each a theoretical required size needed to perform measurements on the 
+ instruments. Then we calculate the effective sizes as follows:</p>
+        <ol style="list-style-type: decimal;">
+            <li value="1">
+                <p style="margin-left: 40px;">Total measured size: 450 ml</p>
+            </li>
+            <li value="2">
+                <p style="margin-left: 40px;">Total required size: 25 ml + 50 ml 
+	 +75 ml = 150 ml</p>
+            </li>
+            <li value="3">
+                <p style="margin-left: 40px;">Remaining size = Total measured size 
+	 – Total required size = 450 ml – 150 ml = 300 ml.</p>
+            </li>
+        </ol>
+        <table class="AlternateColors" cellspacing="0">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <tr class="t1st">
+                <td>Sub specimen</td>
+                <td>Required size</td>
+                <td>Ratio</td>
+                <td>Added size</td>
+                <td>Effective size</td>
+            </tr>
+            <tr class="t2Row">
+                <td>1</td>
+                <td>25 ml</td>
+                <td>150 ml / 25 ml = 6</td>
+                <td>300 ml / 6 = 50 ml</td>
+                <td>25 ml + 50 ml = 75 ml</td>
+            </tr>
+            <tr class="t1Row">
+                <td>2</td>
+                <td>50 ml</td>
+                <td>150 ml / 50 ml = 3</td>
+                <td>300 ml / 3 = 100 ml</td>
+                <td>50 ml + 100 ml = 150 ml</td>
+            </tr>
+            <tr class="t2Row">
+                <td>3</td>
+                <td>75 ml</td>
+                <td>150 ml / 75 ml = 2</td>
+                <td>300 ml / 2 = 150 ml</td>
+                <td>75 ml + 150 ml = 225 ml</td>
+            </tr>
+        </table>
+        <p class="fielddescription" style="font-weight: bold;">Implementation in 
+ GLIMS</p>
+        <p class="fielddescription">If the option "Wasted volume" is 
+ set to "Proportionally" (on the targets to which a sub specimen 
+ should be sorted), GLIMS will try to distribute the remaining volume proportionally 
+ on the sub specimens as follows:</p>
+        <p class="fielddescription" style="margin-left: 85px;">Remaining size = 
+ Measured size root specimen – Required size of the root specimen - Total 
+ required size of the sub specimens.</p>
+        <p class="fielddescription">For each of the sub specimens:</p>
+        <p class="fielddescription" style="margin-left: 85px;">Ratio sub specimen 
+ = Remaining size / Required size of the sub specimen.</p>
+        <p class="fielddescription" style="margin-left: 85px;">Added size sub specimen 
+ = ROUND(Remaining size / Ratio, 3)</p>
+        <p class="fielddescription">Because of the rounding, the total added size 
+ can be less than the remaining size. That difference will be added to 
+ the specimen with the highest required size.</p>
+        <p class="fielddescription">Once the added sizes are calculated, GLIMS 
+ will check if this does not cause an overflow (exceeds the Material.MaximalSize). 
+ The algorithm is: correct the added value and add the volume exceeded 
+ to a "new" remaining volume that is still to be distributed 
+ to the sub specimens for which the container is not full yet. </p>
+        <p class="fielddescription">In the message replied to the sort query, GLIMS 
+ will transmit both the effective size and the added size.</p>
+        <h4>Operations</h4>
+        <p>Several types of <b>operations</b> that should be carried out on the 
+ distributor system (for this sorting zone) can be defined on a specimen 
+ sorting target:</p>
+        <ul>
+            <li value="1">Open container: Set enabled when container cap is to be removed</li>
+            <li value="2">Close container: Set enabled when container is to be closed</li>
+            <li value="3">Closing cap: The cap to be used for closing the specimen's 
+	 container (used when 'Close container' is enabled)</li>
+            <li value="4">Centrifuge: Set enabled when specimen is to be centrifuged</li>
+            <li value="5">Store remaining volume: Set enabled when specimen's remaining volume 
+	 is to be stored when the specimen are being sorted to this target</li>
+            <li value="6">Dilution: Dilution that should take place when sorting to this 
+	 zone. This field refers to a dilution code defined on the distributor 
+	 station.</li>
+        </ul>
+        <p>Restrictions on sending open- and close container operations.</p>
+        <p>In some cases, GLIMS will ignore the open- or close container operations 
+ specified on the sorting target used with a root specimen. The cases are:</p>
+        <ol>
+            <li value="1">The sort query message hasn't sent container cap information with 
+	 the specimen<br /><br />	Open container operation on the root specimen is ignored<br /></li>
+            <li value="2">The sort query message has sent a (valid) container cap with the 
+	 specimen, and GLIMS doesn't instruct aliquotion<br /><br />	Close container operation on the root specimen is ignored<br /></li>
+            <li value="3">The sort query message has sent a (valid) container cap with the 
+	 specimen, and GLIMS instructs aliquotion<br /><br />	GLIMS will send a container open operation, regardless the target setting.</li>
+        </ol>
+        <p>Note that these restrictions can be omitted if the translator is sending 
+ this explicitly in the sort query message to GLIMS (see GLIMS ASTM documentation).</p>
+        <h4>Specimen confirmation</h4>
+        <p>The <b>auto confirm severity</b> is the highest severity level for which 
+ specimens can be confirmed automatically upon an event communicated by 
+ the distributor system for this sorting zone. So the station 
+ event severity is compared with this auto confirm severity.</p>
+        <h2><a name="Station"></a>Station event codes</h2>
+        <p>Station event codes are used to identify events which occur during the sort process. Based on the origin, events can be divided in 2 groups:</p>
+        <div class="indented">
+            <p class="fieldlabel">The group of events occurring on the sorter system</p>
+            <div class="indented">
+                <p>Typically, they occur when a specimen is being scanned and the specimen container is being characterized. The code of the event is available in the message transmitted by the sorter system and received by GLIMS. For instance: a code identified as '102' could mean that the sorter system was not able to measure the amount of volume in the container.</p>
+            </div>
+            <p class="fieldlabel">The group of generic events being raised by GLIMS during the sort process.</p>
+            <div class="indented">
+                <p>These events have a fixed prefix 'STN$'. For instance: When GLIMS detects a volume measured by the sorter system being lower than the volume calculated in GLIMS, a generic station event with code 'STN$SpmnVolTooLow' is raised.</p>
+                <p>Generic events are auto-created in the database. One is free to change the settings of these generic events.</p>
+            </div>
+        </div>
+        <p>The severity level on a station event code is used to set the priority of events occurring during a sort process. It is also used when confirming the specimen being scanned by the sorter system.</p>
+        <p>One can define three sorting zones on a station event code. GLIMS uses these zones to sort specimens in case the event occurs and is being identified as the event with the highest priority. The zones on the station event code are labeled: <span class="ui_element">Sorting zone</span>, <span class="ui_element">Sorting zone sub specimens</span> and <span class="ui_element">Sorting zone skipped sub specimens</span>. See <a href="#Specimen_sort_process">specimen sort process</a> for more details.</p>
+        <p>Station sorting events are by default defined as blocking events. Blocking means that GLIMS will limit the sort process to the zones defined on the station event code. GLIMS will not try to sort specimens based on the specimen sorting targets, also called <a href="#Automati">automatic specimen sorting</a>.</p>
+        <h2><a name="Specimen_sort_process" id="Specimen_sort_process"></a>Specimen 
+ sort process</h2>
+        <p>The following flow chart illustrates how a specimen queried by a sorting 
+ distributor system is processed:</p>
+        <p>
+            <img src="specimen_sort_process.png" />
+        </p>
+        <h3><a name="Check_container" id="Check_container"></a>Check container data
+ (1)</h3>
+        <p>A specimen query message received from the distributor system might 
+ contain additional information related to the specimen's container (see 
+ also '<a href="#Specimens_inspected_by_the_distributor_system">Specimens 
+ inspected by the distributor system</a>' and '<a href="../../configuration/specimen_containers/specimen_containers.htm">Specimen 
+ container information</a>'). In this sort sub process, GLIMS will verify 
+ if the container information is valid.</p>
+        <blockquote>
+            <p>
+                <img src="distributor_sort_query_container_check_flow.gif" alt="" width="700" height="605" border="0" />
+            </p>
+        </blockquote>
+        <p>GLIMS verifies the following container data:</p>
+        <ul>
+            <li value="1">
+                <p><b style="font-weight: bold;">Specimen material code</b>
+                    <br />
+                    <br />GLIMS will search for a material with mnemonic matching the code, or 
+	 if the distributor station's coding system contains a code set on 
+	 material, a matching code in the code set.</p>
+                <p>An undefined material code raises the 'STN$SpmnMatNotFound' event.<br /> </p>
+            </li>
+            <li value="2"><b style="font-weight: bold;">Container type code</b>
+                <p>GLIMS will search for a specimen container type with a name matching 
+	 the code. GLIMS allows to map the container type code by 
+	 defining a code set for the specimen container type table on the station's 
+	 coding system. If the code set is available but the container type 
+	 code is not defined, the specimen container type is considered as 
+	 unknown.<br /><br /><a href="../../configuration/specimen_containers/specimen_containers.htm">Click 
+	 here for more details on specimen container types.</a></p>
+                <p>An undefined container type code raises the 'STN$SpctNotFound' event.</p>
+            </li>
+            <li value="3">
+                <p><b style="font-weight: bold;">A specimen container cap code</b>
+                </p>
+                <p>GLIMS will search for a specimen container cap with a name matching 
+	 the code. GLIMS allows to map the container cap code by defining a 
+	 code set for the specimen container cap table on the station's coding 
+	 system. If the code set is available but the container cap code is 
+	 not defined, the specimen container cap is considered as unknown.<br /><br /><a href="../../configuration/specimen_containers/specimen_containers.htm">Click 
+	 here for more details on specimen container caps.</a></p>
+                <p>An undefined container cap code raises the 'STN$SpccNotFound' event.</p>
+            </li>
+        </ul>
+        <h3><a name="Find_specimen" id="Find_specimen"></a>Find specimen (2)</h3>
+        <p>After the container information is identified, GLIMS will find the specimen 
+ in his database.</p>
+        <p>The specimen find or create sub process is similar as if the specimen 
+ was queried by a regular analyzer. See the chapter 'Specimen and order 
+ search via barcode' for details on this matter.</p>
+        <p><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">When the specimen 
+ is found, its material is compared with the container data being verified 
+ earlier (if any, see also '</span><a href="../../configuration/specimen_containers/specimen_containers.htm">Specimen 
+ container information</a><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">'). Check the chapter on</span><span class="Apple-converted-space"></span><a href="../../configuration/specimen_containers/specimen_containers.htm">specimen 
+ container definitions</a><span class="Apple-converted-space"></span><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">to see how material container usage can be defined.</span>
+        </p>
+        <p><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">If the specimen 
+ find or container match fails, GLIMS will raise one of the following error 
+ events:</span>
+        </p>
+        <blockquote>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" border="1">
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Specimen 
+		 find error event</b>
+                    </td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><b style="font-weight: bold;">Description</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$NoSpmnCreateByIntId</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen or order creation only allowed 
+		 via external id or specimen identifications</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnCreateViaOrder</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Option specimen create on station requires 
+		 search via order</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$NoSpmnInOrder</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">No not-scanned specimen found in the 
+		 order</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$NoSpmnOfMatInOrder</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">No not-scanned specimen found in the 
+		 order for a given material</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$OrderCreateFailed</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Order could not be created</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnCreateOldOrder</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Order is too old for automatic specimen 
+		 creation</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$UnknownSpmn</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen was not found</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">STN$SpmnMatInvalid 
+		 (*)</span>
+                    </td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;"><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">Existing specimen 
+		 has other material than the one received</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnInvSpcd (*) </td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen material has no container definition 
+		 matching the one received </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnNotRoot</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen found is not a root specimen</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnNotSub</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen found is not a sub specimen</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnDiscontinued</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen found has status discontinued</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnAmbiguous</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">More than one specimen for a given material 
+		 found in an order</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpidExists</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen has already an identification 
+		 assigned</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">STN$SpmnExtIdExists</td>
+                    <td style="padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Specimen has already an external id</td>
+                </tr>
+            </table>
+        </blockquote>
+        <p style="margin-left: 40px;"><span style="font-size: 11px;line-height: normal;orphans: 2;widows: 2;-webkit-text-size-adjust: auto;-webkit-text-stroke-width: 0px;display: inline !important;float: none;">(*) Container match 
+ errors</span>
+        </p>
+        <h3><a name="Store_specimen_location_and_characteristics" id="Store_specimen_location_and_characteristics"></a>Store 
+ specimen location and characteristics (3)</h3>
+        <p>As for regular analyzer connections, GLIMS will store the received location 
+ and position information in the Specimen.HomeLocation and Specimen.LastLocation 
+ fields.</p>
+        <p>Some distributor systems are capable of sending characteristics of the 
+ specimen (see also '<a href="#Specimens_inspected_by_the_distributor_system">Specimens 
+ inspected by the distributor system</a>').The information 
+ GLIMS can receive is:</p>
+        <ul>
+            <li value="1">
+                <p>Specimen quality information (like good, haemolytic, 
+	 lipaemic, icteric, ...)</p>
+                <p>This information is stored in GLIMS as free text in the Specimen.QualityInfo 
+	 field.<br /> </p>
+            </li>
+            <li value="2">
+                <p>Measured volume size and unit</p>
+                <p>	The measured volume is stored in the Specimen.MeasuredSize field.</p>
+                <p>	If a size unit is received, GLIMS will search for a unit with a name 
+	 matching the received code. If a coding set is defined for the unit 
+	 table on the distributor station's coding system, the received unit 
+	 code must be defined in the code set. GLIMS will ignore the measured 
+	 volume if the received unit is not identified.</p>
+                <p>If the received unit is known, GLIMS will convert the measured volume 
+	 size to the size unit of the specimen's material. If no size unit 
+	 is received, the measured volume is assumed to be measured in the 
+	 size unit of the material and will be stored as such.</p>
+            </li>
+        </ul>
+        <h3><a name="Collect_specimen_sort_history" id="Collect_specimen_sort_history"></a>Collect 
+ specimen sort history (4)</h3>
+        <p>Once the specimen has been identified and the received specimen related 
+ data is stored in the database, GLIMS collects the sort history from the 
+ identified specimen and all the sub specimens (if any). The <a href="#Sorting_information_stored_in_the_specimen_audit_trail">sort 
+ history information</a> is based on the audit trail of a specimen, especially 
+ the specimen audit entries of type 'scan' and 'sort'.</p>
+        <h3><a name="Prepare_sort" id="Prepare_sort"></a>Sort specimen (5)</h3>
+        <p>The next step in the sorting process is the actual sort of the specimen:</p>
+        <p>
+            <img src="specimen_sort.png" />
+        </p>
+        <h4>Calculate specimen size</h4>
+        <p>First, GLIMS recalculates the size of the specimen (and sub specimens), since 
+ the size could have been changed due to the following:</p>
+        <ul>
+            <li value="1">A (sub) specimen result has become available, so the result's property 
+	 output consumption is to be ignored</li>
+            <li value="2">A sub specimen was already aliquoted and therefore its size should 
+	 not be taken into account when calculating the root specimen size</li>
+            <li value="3">A sub specimen's initial scan event is from a station other than 
+	 the distributor station. GLIMS assumes the sub specimen will not be 
+	 sorted by the distributor, the sub specimen size is to be ignored 
+	 in the calculation of the root specimen size</li>
+        </ul>
+        <p>With the new specimen size being calculated, GLIMS will compare the 
+ size with the measured volume (if received from the distributor system). The 
+ comparison (<span class="ui_element">STN$SpmnVolTooLow</span> event) will be used later on in 
+ the sorting process.</p>
+        <h4>Collect pending specimen sorting targets</h4>
+        <p>In the next step, GLIMS collects the sorting targets 
+ that are pending. The pending targets are all the specimen sorting targets 
+ related to the specimen and sub specimens which are not used before. In 
+ other words: the targets which are not in the collected sort history.</p>
+        <p>There are some special cases in the collecting of pending targets:</p>
+        <ul>
+            <li value="1">If an action was created since the last sort query, then GLIMS 
+	 will consider the sorting targets of that action as pending ones.</li>
+            <li value="2">When a sorting zone has the field <span class="ui_element">Expects sort result</span> enabled, 
+	 GLIMS will consider the sorting targets of that zone as pending as 
+	 long as no sort result was received from the sorting system. By default, 
+	 the sort result should be for the same zone as the one that was sent 
+	 to the system. The sorting zone field <span class="ui_element">Sort result zone match</span> 
+	 allows to overrule this default behavior. Setting this field to disabled 
+	 allows the sort result to be for a different zone as the one that 
+	 was sent.</li>
+            <li value="3">
+                <p>The fields <span class="ui_element">Work done definition</span> and <span class="ui_element">Unfinished work action</span> on the specimen sorting target allow to take appropriate actions for targets on which the work is not finished yet. The action is either to repeat a sort of the queried specimen to a target, or to raise the event <span class="ui_element">STN$ActnUnfinished</span> in case the work for a target on the queried specimen is not finished yet.</p>
+            </li>
+        </ul>
+        <h4>Determine highest priority pre-sort event</h4>
+        <p>When all pending targets are collected, GLIMS will determine which is the event with the highest priority among the events which took place prior to the actual sort process. These pre-sort events are:</p>
+        <ul>
+            <li value="1">An event received from the sorter system.</li>
+            <li value="2">Generic events that are raised when verifying the queried specimen, which is either one of following events:<ul><li value="1">Events related to the characteristics of the specimen container codes (E.g.: an unknown container cap code raises the event <span class="ui_element">STN$SpccNotFound</span>)</li><li value="2">Events related to the search of the specimen in the database (E.g.: a container cap mismatch, raises the event ‘STN$SpmnInvSpcd’)</li></ul></li>
+            <li value="3">The generic event <span class="ui_element">STN$SpmnVolTooLow</span>: GLIMS detected a too low volume on the specimen compared to the volume measured by the sorting system.</li>
+            <li value="4">The generic event ‘STN$ActnUnfinished’: GLIMS detected that the specimen is queried again while work on actions of the specimen are not finished yet.</li>
+        </ul>
+        <p>Among the events collected in the pre-sort stage, GLIMS will search for the one with the highest priority. By default, the priority is based on the moment they took place in the pre-sort stage. The list above is represented in that order.</p>
+        <p>However, one can influence this order by assigning severities on the station event codes. A higher severity implies a higher priority. There is one exception for which the severity has no influence: when the event received from the sorter system is not defined in GLIMS, then the generic event <span class="ui_element">STN$UnknownEvent</span> is raised. This event will then have the highest priority.</p>
+        <h4>Station event evaluation</h4>
+        <p>If an event evaluation function is defined on the sorter station, and the highest priority event is determined, then the function is executed on that event.</p>
+        <p>The return string of the evaluation function is used to control the sort process.</p>
+        <p>First, GLIMS extracts possible sort instructions from the return value (see <a href="#Evaluation_in_Glims">Evaluation in GLIMS</a> for a list of possible instructions).</p>
+        <p>If no sort instruction is present, then GLIMS verifies if the return string contains a known event code (tag ‘SortEvent’). If so, then this event will from then on be considered as the event with the highest priority.</p>
+        <h4>Sort specimen by instruction</h4>
+        <p>These are the possible instructions returned by the event evaluation function GLIMS will process:</p>
+        <ul>
+            <li value="1">
+                <p><b style="font-weight: bold;">Sort to next zone</b>
+                    <br />
+                    <br />The sort instruction of this method is 'next', meaning that GLIMS will 
+	 search in the list of pending sorting targets in sequential order.<br /><br />The list is searched in ascending order of SpecimenSortingTarget.SeqNo, 
+	 SortingZone.SeqNo and SortingZone.Code. An unknown SeqNo value is 
+	 considered as the highest possible SeqNo value.<br /> </p>
+            </li>
+            <li value="2"><b style="font-weight: bold;">Sort to zone of type 'X'</b>
+                <br />
+                <br />	The sort instruction value of this method is a SortingZone.Type, being 
+	 one of: Routine, Error, Archive, External or Urgent 
+	<p>GLIMS will first search for a zone of the given type in the list 
+	 of pending sorting targets, in sequential order. The search order 
+	 is the same as for 'Sort to next zone'.</p><p>If no pending target is found, GLIMS will search for any sorting 
+	 zone of that type configured on the distributor station, in ascending 
+	 order of SortingZone.SeqNo and SortingZone.Code.<br /> </p></li>
+            <li value="3">
+                <p><b style="font-weight: bold;">Sort to zone with code 'X'</b>
+                    <br />
+                    <br />The sort instruction value of this method is a SortingZone.Code.<br /><br />GLIMS will first search for a zone with that code in the list of pending 
+	 sorting targets, in sequential order. The search order is the same 
+	 as for 'Sort to next zone'.<br /><br />If no pending target is found, GLIMS will search for the sorting zone 
+	 with that code configured on the distributor station. Note that a 
+	 SortingZone.Code is unique on a distributor station.<br /> </p>
+            </li>
+        </ul>
+        <h4>Sort specimen by blocking event</h4>
+        <p>When no event evaluation function is defined or when the event evaluation function is not returning sort instructions, then GLIMS will verify if the event with the highest priority is a blocking event.</p>
+        <p>If the event is defined as blocking, then an explicit sort is carried out:</p>
+        <ul>
+            <li value="1">The queried specimen is sorted to the zone defined as <span class="ui_element">Sorting zone</span> on the station event code.</li>
+            <li value="2">Sub specimens of the queried specimen are sorted to the zone defined as <span class="ui_element">Sorting zone sub specimens</span> on the station event code.</li>
+        </ul>
+        <h4><a name="Automati"></a>Automatic specimen sort</h4>
+        <p>An automatic specimen sort is the process in which GLIMS searches the next zone for the queried specimen and sub specimens. This is the normal routine when:</p>
+        <ul>
+            <li value="1">The highest priority event (if any) is not blocking</li>
+            <li value="2">The event evaluation function is not defined or it did not deliver sort instructions</li>
+        </ul>
+        <p>
+            <img src="specimen_sort_automatic.png" />
+        </p>
+        <p>The automatic sort method is in its simplest form the same as the sort to a next pending zone. However, each pending zone can be skipped for several reasons:</p>
+        <p>
+            <img src="process_pending_zone.png" />
+        </p>
+        <ul>
+            <li value="1">
+                <p>The target is for explicit query only</p>
+                <p>When the field 'explicit query only' is set on a sorting target (SpecimenSortingTarget.ExplicitQueryOnly), then GLIMS will not sort to this target when the specimen that is to be sorted was not the one being queried by the distributor system. For instance, suppose an aliquote is to be sorted to the archive only when the aliquot is (re)placed on the distributor system, and not when his root specimen is placed. In that case we should enable the field on the archive target of the aliquote specimen procedure.</p>
+            </li>
+            <li value="2">
+                <p>The maximum number of distributed sub specimens is reached</p>
+                <p>GLIMS can take into account a maximum of sub specimen to be sorted for a root specimen being queried by a distributor system.</p>
+                <p>The maximum number of specimens is instructed in the query message received from the translator's driver (see MIPS ASTM internal protocol - query message - for more details about the message).</p>
+                <p>When GLIMS is collecting the sorting targets of a root specimen and the maximal specimen distribution count is reached (=number of aliquots), then all pending zones are skipped and the <span class="ui_element">STN$SpmnTooManyDistr</span> event is raised.</p>
+            </li>
+            <li value="3">
+                <p>The available volume left for sorting is not enough</p>
+                <p>Suppose the measured size is too low compared to the specimen’s size. GLIMS will send as much specimens for which the total size of the targets isn’t exceeding the measured size, in order of ascending target sequence number.</p>
+                <p>Since not all zones where specimens are to be sorted to are requiring specimen volume (like for instance an archive zone), the logical field SortingTarget.NeedsVolume will be used in the selection of next sorting targets with volume.</p>
+            </li>
+            <li value="4">
+                <p>The work to be carried out on the target is finished</p>
+                <p>If a queried specimen was measured with enough volume, then GLIMS will ignore targets requiring volume if work is done on the target (required size calculated for that target is 0 or unknown).</p>
+            </li>
+            <li value="5">
+                <p>The sorting target level is exceeded</p>
+                <p>In the search of candidate targets for which the specimen size is acceptable, a mechanism is required to avoid targets being skipped (for instance, a specimen may never be processed by instrument A before it has been processed by instrument B first). The mechanism is based on the field SortingTarget.Level. When a candidate target is being skipped, GLIMS will not go to a next target if that target has a higher level value. An unknown level value is considered as the lowest level value. In other words: A level allows categorizing a sorting target to a level of importance. A level is used in the sorting process to decide if a target can be skipped: The rule is that a target cannot be skipped when the next target has a higher level.</p>
+            </li>
+        </ul>
+        <p>At the end of the automatic sort process  (when all pending zones have been processed), GLIMS verifies if sorting was incomplete. If so, GLIMS attempts to sort specimens based on the event with the highest priority. If no events were raised yet, then the generic event <span class="ui_element">STN$IncompleteSort</span> becomes the highest priority event.</p>
+        <p>If the event is a blocking one, then all successful sorts in the automatic sort process are undone and no single specimen is sorted anymore.</p>
+        <p>These are the cases in which the zones of the event are used:</p>
+        <ul>
+            <li value="1">No single specimen is sorted.<ul><li value="1">The queried specimen is sorted to the zone defined as <span class="ui_element">Sorting zone</span> on the station event code.</li><li value="2">The sub specimens of the queried specimen are sorted to the zone defined as <span class="ui_element">Sorting zone sub specimens</span> on the station event code.</li></ul></li>
+            <li value="2">At least the queried specimen or one of the sub specimens is sorted.<ul><li value="1">If the queried specimen was not sorted, then it is sorted to the zone defined as <span class="ui_element">Sorting zone</span> on the station event code.</li><li value="2">Each sub specimen that is not sorted will be sorted to the zone defined as <span class="ui_element">Sorting zone skipped sub specimens</span> on the station event code.</li></ul></li>
+        </ul>
+        <p>Note about sorting of sub  specimens:</p>
+        <ol>
+            <li class="p-MsoNormal" value="1">
+                <p class="MsoNormal">Sub 
+	 specimens that are scanned by another station than the distributor 
+	 will not be sorted. GLIMS assumes the sub specimen is already physically 
+	 available and is not to be created by the distributor system. The 
+	 scan event is retrieved from the specimen audit trail.</p>
+            </li>
+            <li class="p-MsoNormal" value="2">
+                <p class="MsoNormal">The 
+	  rule above is not valid for targets of archive zones.</p>
+            </li>
+        </ol>
+        <p class="MsoNormal">Note about sorting targets 
+ of procedures delivering sub specimens (aliquoting procedures):</p>
+        <ol>
+            <li class="p-MsoNormal" value="1">
+                <p class="MsoNormal">If, during the selection process of a possible target,
+	 the first specimen that is attributed a target is a parent specimen and the target is not 
+	 for the aliquoting procedure, then each sub specimen that could result 
+	 in sorting of the root specimen to the aliquoting target (for a non-archive 
+	 zone) is ignored.</p>
+            </li>
+            <li class="p-MsoNormal" value="2">
+                <p class="MsoNormal">If, during the selection process of a possible target, 
+	 the first specimen that is attributed a target is a child specimen and the aliquoting procedure 
+	 that produces it has a target for a non-archive zone, the parent specimen 
+	 will be sorted to that target and other parent specimen targets are 
+	 ignored.<br /><br /><img src="distributor_sort_auto_aliq_procedure.gif" alt="" width="603" height="541" border="0" /></p>
+            </li>
+        </ol>
+        <p>Notes about "multi-level aliquoting" use cases (i.e. specimen preparation consisting of more than 2 steps: primary tube - secondary tube - tertiary tube):</p>
+        <div class="indented">
+            <p xmlns="http://www.w3.org/1999/xhtml">The configuration could be as follows:</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="analyzers_distributors_slave_mode_multi_level_aliquoting_1.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="897" data-mc-height="507" src="analyzers_distributors_slave_mode_multi_level_aliquoting_1_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">A scenario where no tests are scheduled on the secondary specimen but where tests are scheduled on the tertiary specimen is also supported:</p>
+            <p xmlns="http://www.w3.org/1999/xhtml"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="analyzers_distributors_slave_mode_multi_level_aliquoting_2.png" xmlns=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="897" data-mc-height="507" src="analyzers_distributors_slave_mode_multi_level_aliquoting_2_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p xmlns="http://www.w3.org/1999/xhtml">In order for GLIMS to know where the secondary specimen (blue specimen) should be sorted to, you can configure a sorting target to an archive zone on the aliquoting procedure or revert to the event evaluation function of the LAS in slave mode functionality. Otherwise, the sort query for the secondary specimen will result in an incomplete sort.</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>When using multiple LAS systems in this context:</p>
+                <ul>
+                    <li value="1">The LAS systems should be in the same <span class="ui_element">Download group</span>.</li>
+                    <li value="2">If you want to guarantee target selection of a "testing" procedure for the primary specimen (PT) and target selection for the secondary specimen (ST) in the first sort reply, an aliquoting procedure should not (unless deemed necessary) have a sorting target for a sorting zone of the   LAS processing the input specimen of the aliquoting procedure. E.g. in the image above, the "aliquot_red_to_blue" procedure does not target a red zone of the red LAS and the "aliquot_blue_to_green" procedure does not target a blue zone of the blue LAS.</li>
+                    <li value="3">Via the sequence number of the sorting zones and/or sorting targets, it is possible to "prioritize"  sorting zones (and/or targets). Sorting zones (and/or targets) with a lower sequence number are taken into account first. E.g. if a target defined for a "testing procedure" of a sub specimen is selected first, before a target of the queried specimen is selected, then aliquoting will be done first.</li>
+                </ul>
+            </div>
+        </div>
+        <h4>Audit and confirm specimens</h4>
+        <p>The final step of the specimen sort process is <a href="#Sorting_information_stored_in_the_specimen_audit_trail">storing 
+ the sort information</a> in the audit trail of the specimen and the attempt 
+ to <a href="#Automatic_specimen_confirmation">confirm the specimen</a>.</p>
+        <h2><a name="Sorting_information_stored_in_the_specimen_audit_trail" id="Sorting_information_stored_in_the_specimen_audit_trail"></a>Sorting 
+ information stored in the specimen sort audit trail</h2>
+        <p>This section describes the information stored after a specimen has been 
+ sorted. The information is stored in the sort audit trail of a specimen. 
+ <span lang="EN-US">A Specimen Sort Audit 
+ record is always accompanied by a Specimen Audit record with event type 
+ "Sort".</span></p>
+        <p>From a specimen, right-click "Log -&gt; Sort audit trail".</p>
+        <p>
+            <img src="specimen_sort_audit.png" alt="" style="border: none;" border="0" />
+        </p>
+        <h2><a name="Specimens_inspected_by_the_distributor_system" id="Specimens_inspected_by_the_distributor_system"></a>Specimens 
+ inspected by the distributor system</h2>
+        <h3>Information received</h3>
+        <p>Some distributor systems are capable of sending characteristics of the 
+ specimen. The information GLIMS can receive is:</p>
+        <ul>
+            <li value="1">the specimen container (type, dimensions)</li>
+            <li value="2">the specimen container cap (colour code)</li>
+            <li value="3">specimen quality information (like good, haemolytic, 
+	 lipaemic, icteric, ...)</li>
+            <li value="4">measured volume size</li>
+        </ul>
+        <p>Quality info and measured size are stored in GLIMS with the specimen 
+ record. The distributor system may send an event code along 
+ with these characteristics. The event code can be configured in GLIMS 
+ and have a severity level.</p>
+        <blockquote>
+            <p>
+                <img src="distributor_event_codes.gif" alt="" width="663" height="415" border="0" />
+            </p>
+        </blockquote>
+        <h2><a name="Evaluation_in_Glims" id="Evaluation_in_Glims"></a>Evaluation in 
+ GLIMS</h2>
+        <p>GLIMS can evaluate the event with the specimen characteristics by means 
+ of the station's <b>event evaluation</b> site function. The purpose of 
+ this function is to influence the search of the specimen's (next) sorting 
+ target. For instance: a specimen being evaluated as not good could result 
+ in an error sorting target (see below: Evaluation return value).</p>
+        <p>The evaluation function may also return an event code, which can be 
+ used to inform the distributor system (if the latter supports this) about 
+ the evaluation GLIMS has done. The event code severity is stored in GLIMS 
+ with a specimen audit record.</p>
+        <h3>Information available for evaluation</h3>
+        <p>The event evaluation site function has a temporary table record as base 
+ table (<b>w_StationEvent</b>) which gives access to all information in 
+ the context of the event that occurred. Available fields:</p>
+        <ul>
+            <li value="1">Context: A string naming the context in which the 
+	 event occurred. Possible contexts are: 'SortRequest' and 'SortResult'</li>
+            <li value="2">Event: The station event that took place (reference 
+	 to StationEventCode record)</li>
+            <li value="3">Info: String field with additional information 
+	 about the station event</li>
+            <li value="4">LastSortingSeverity: Severity that was set when 
+	 last sorting of the specimen to the distributor sorting zone took 
+	 place</li>
+            <li value="5">LastSortingTime: Time when last sorting of the 
+	 specimen to the distributor sorting zone took place</li>
+            <li value="6">LastSortingZone: Last distributor sorting zone 
+	 to which specimen was sorted</li>
+            <li value="7">QCLot: Reference to a QCLot record, the QC Lot 
+	 for which the event took place (if QC lot related)</li>
+            <li value="8">Specimen: Reference to a Specimen record, the specimen 
+	 for which the event took place (if specimen related)</li>
+            <li value="9">Station: Reference to a Station record, the station 
+	 on which the event occurred</li>
+            <li value="10">
+                <p>EventCodes: A comma separated list of event codes collected prior to the run of the event evaluation function. They are listed in order of priority.</p>
+            </li>
+        </ul>
+        <p>About the <b>Info</b> field:</p>
+        <p class="MsoNormal"><span lang="EN-AU">The specimen event 
+ info accessible in the event evaluation function contains data received 
+ with a sort query or sort result message. In both cases, it is a tagged 
+ list with values. The tag separator is a '\' (backslash).</span>
+        </p>
+        <p class="MsoNormal"><span lang="EN-AU">Tags available 
+ in the sort query message:</span>
+        </p>
+        <blockquote>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" border="1">
+                <tr>
+                    <td><span style="font-size: 9pt;font-weight: 700;font-family: Verdana;"><span lang="EN-AU">Tag 
+		 name</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-weight: 700;font-family: Verdana;"><span lang="EN-AU">Description</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-weight: 700;font-family: Verdana;"><span lang="EN-AU">Data 
+		 type</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ProcessingTime</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The time 
+		 a specimen was processed</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">DateTime 
+		 decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerType.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Code 
+		 of the container type in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerType.Name</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Name 
+		 of the container type in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerCap.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Code 
+		 of the container cap in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerCap.Name</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Name 
+		 of the container cap in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerHeight.Value</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Height 
+		 of the container in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerHeight.Unit</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Height 
+		 unit of the container in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerWidth.Value</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Width 
+		 of the container in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ContainerWidth.Unit</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Width 
+		 unit of the container in the query message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">MeasuredVolume.Value</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Measured volume of the queried specimen</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">MeasuredVolume.Unit</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Measured volume unit of the queried specimen</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Quality.Count</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The number of quality codes received</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Integer</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">QualityN.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">N'th Quality code received</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">QualityN.Name</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">N'th Quality name received</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The event code received in the query message</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Text</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The event text received in the query message</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Time</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The time of the event received in the query 
+		 message</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">DateTime 
+		 decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Material.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The material code received in the query message</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+            </table>
+        </blockquote>
+        <p>Tags <span lang="EN-AU">available in the sort result 
+ message:</span></p>
+        <blockquote>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" border="1">
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Tag name</span></b></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Description</span></b></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Data type</span></b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">ProcessingTime</span></span>
+                        </p>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The time 
+		 a specimen was processed</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">DateTime 
+		 decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">SortingZone</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The zone 
+		 code where the specimen was sorted to</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">RemainingVolume.Value</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The remaining 
+		 volume for this specimen</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Decimal</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">RemainingVolume.Unit</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The remaining 
+		 volume unit for this specimen</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Aliquoted</span></span>
+                        </p>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Has the 
+		 specimen been aliquotted into sub specimens?</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Logical</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Decapped</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Has the 
+		 specimen been decapped?</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Logical</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Recapped</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Has the 
+		 specimen been recapped?</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Logical</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Centrifuged</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Has the 
+		 specimen been centrifuged?</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Logical</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Diluted.Factor</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Dilution 
+		 factor (code on the distributor system) when specimen has been 
+		 diluted</span></span>
+                    </td>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Diluted.Condition</span></span>
+                        </p>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Dilution 
+		 condition (code on the distributor system) when specimen has been 
+		 diluted</span></span>
+                    </td>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Code</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The event 
+		 code received in the sort result message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Text</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The event 
+		 text received in the sort result message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">String</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Event.Time</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The time 
+		 of the event received in the sort result message</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">DateTime 
+		 decimal</span></span>
+                    </td>
+                </tr>
+            </table>
+        </blockquote>
+        <h3>Generic event codes</h3>
+        <p>Some event codes are generic and will be created automatically when 
+ they occur. By default they have neither a type nor severity. If wanted, 
+ one can create the event code and/or set the severity manually.</p>
+        <blockquote>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" border="1">
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Event code</span></b></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Description</span></b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$UnknownEvent</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The event 
+		 code GLIMS received in the query message from the sorter is not 
+		 defined.</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnMatNotFound</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">A material 
+		 code received in the query message is not defined in GLIMS</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$IdNotFound</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Specimen 
+		 id code (barcode) received in query message is not found</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpctNotFound</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The specimen 
+		 container type code received in the query message is not defined 
+		 in GLIMS</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpccNotFound</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The specimen 
+		 container cap code received in the query message is not defined 
+		 in GLIMS</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SortResultError</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">The event 
+		 code GLIMS received in a sort result message is not defined.</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$NoSpmnCreateByIntId</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen or order creation only allowed via external id or specimen 
+		 identifications</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnCreateViaOrder</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Option specimen create on station requires search via order</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$NoSpmnInOrder</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		No unscanned specimen found in the order</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$NoSpmnOfMatInOrder</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		No unscanned specimen found in the order for a given material</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$OrderCreateFailed</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Order could not be created</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnCreateOldOrder</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Order is too old for automatic specimen creation</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnMatInvalid</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Existing specimen has other material than the one received</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnInvSpcd</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;">Error in finding a specimen id 
+		 code</span>:<br /><span style="font-family: Verdana;font-size: 9pt;">Specimen material 
+		 has no container definition matching the one received </span></td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnNotRoot</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen found is not a root specimen</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnNotSub</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen found is not a sub specimen</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnDiscontinued</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen found has status discontinued</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnAmbiguous</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		More than one specimen for a given material found in an order</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpidExists</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen has already an identification assigned</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">STN$SpmnExtIdExists</span></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><span lang="EN-AU">Error 
+		 in finding a specimen id code:<br />		Specimen has already an external id</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">STN$UnknownEvent</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The event code GLIMS received in the query 
+		 message from the sorter is not defined.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">STN$IdNotFound</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Specimen id code (barcode) received in query 
+		 message is not found</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">STN$SortResultError</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">The event code GLIMS received in a sort result 
+		 message is not defined.</span>
+                    </td>
+                </tr>
+            </table>
+        </blockquote>
+        <h3><span lang="EN-AU"><a name="Evaluation_return_value" id="Evaluation_return_value"></a>Evaluation 
+ return value</span>
+        </h3>
+        <p class="MsoNormal"><span lang="EN-AU">The evaluation 
+ function expects a return value of type string. The string should contain 
+ a tagged list. The tag delimiter should be a backslash ("\"). 
+ The tags GLIMS will recognize are shown in the table below:</span>
+        </p>
+        <blockquote>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" border="1">
+                <tr>
+                    <td>
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Tag</span></b></span>
+                        </p>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Value</span></b></span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;"><b style="font-weight: bold;"><span lang="EN-AU">Description</span></b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="6">
+                        <p class="MsoNormal"><span style="font-size: 9pt;font-family: Verdana;">Sort</span>
+                        </p>
+                        <p>
+                        </p>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'None'</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Do not sort (root) specimen</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Next'</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Sort the (root) specimen to the next target 
+		 zone</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Error'</span>
+                    </td>
+                    <td rowspan="4"><span style="font-size: 9pt;font-family: Verdana;">Sort the (root) 
+		 specimen to a zone of that type</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Archive'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Urgent'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'External'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">SortTo</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">SpecimenSortingZone.Code</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Sort the (root) specimen explicitly to a 
+		 zone with that code</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="6"><span style="font-size: 9pt;font-family: Verdana;">SortSub</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'None'</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Do not sort sub specimens</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Next'</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Sort the sub specimens to the next target 
+		 zone</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Error'</span>
+                    </td>
+                    <td rowspan="4"><span style="font-size: 9pt;font-family: Verdana;">Sort the sub specimens 
+		 to a zone of that type</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Archive'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Urgent'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'External'</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">SortSubTo</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">SpecimenSortingZone.Code</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Sort the sub specimens explicitly to a zone 
+		 with that code</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">SortEvent</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">StationEventCode.Code</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Report a sort event to the distributor</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Aliquoted</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">'Yes'</span>
+                    </td>
+                    <td><span style="font-size: 9pt;font-family: Verdana;">Mark the sub specimen as aliquoted</span>
+                    </td>
+                </tr>
+            </table>
+        </blockquote>
+        <p>Example:</p>
+        <blockquote>
+            <p>
+                <img src="distributor_evaluation_function.gif" alt="" style="border: none;" width="484" height="294" border="0" />
+            </p>
+        </blockquote>
+        <h3>Processing the list of event codes in the event evaluation function</h3>
+        <p>The <span class="ui_element">EventCodes</span> field on <span class="ui_element">w_StationEvent</span> contains a comma separated list of event codes collected prior to the run of the event evaluation function. They are listed in order of priority.</p>
+        <p>A MISPL function <span class="ui_element">GetStationEvent</span> on station allows to fetch a station event record based on the code and optional type, and defined on the station. The following station event evaluation function example illustrates it:</p>
+        <p>
+        </p>
+        <p>/* Gets the 2nd code listed in w_StationEvent.EventCodes and instruct Glims to sort to ‘ERRORZONE_2” <br />when the severity of this event is higher than 10. */</p>
+        <div class="indented">
+            <p>STRING ReturnValue;<br />STRING EventCode;<br />STATIONEVENTCODE MyStationEventCode;</p>
+            <p>IF NumEntries(.EventCodes, ?) &gt; 1<br />THEN<br /> EventCode := Entry(1, .EventCodes, ?);<br /> MyStationEventCode := .Station.GetStationEventCode(EventCode, ?);</p>
+            <p>IF MyStationEventCode.severity &gt; 10<br />THEN<br /> ReturnValue := PutTag ("SortTo", "ERRORZONE_2", ReturnValue, "\");</p>
+            <p>ENDIF;<br />ENDIF;</p>
+            <p>RETURN ReturnValue;</p>
+        </div>
+        <h2><a name="Automatic_specimen_confirmation" id="Automatic_specimen_confirmation"></a>Automatic 
+ specimen confirmation</h2>
+        <p>Specimens being queried by a distributor system are confirmed as being 
+ available by default. This behavior can be influenced by </p>
+        <ul>
+            <li value="1">
+                <p>setting an auto 
+ confirmation severity on the sorting target or on the station. The station 
+ severity is the default for all sorting targets. Specimens with a severity 
+ up to the level of the sorting target (or the station) will be confirmed.</p>
+                <p>The current confirmation severity of a specimen is retrieved from event 
+ code severity. If no event code is specified, or if the event code severity 
+ is unknown, a severity of 0 (zero) is assumed. The severity is stored 
+ in a specimen audit.</p>
+            </li>
+            <li value="2">
+                <p>setting the trigger <a href="../../configuration/specificsite/glims_general_options.htm#Confirm">Confirm specimen on scan</a> to <span class="ui_element">Per user department</span> or <span class="ui_element">Per user laboratory site</span>.</p>
+            </li>
+        </ul>
+        <h2><a name="Sorting_result_reported_by_the_distributor_system" id="Sorting_result_reported_by_the_distributor_system"></a>Sorting 
+ result reported by the distributor system</h2>
+        <p>Distributor systems may report information when specimens have been 
+ processed (sorted). The information GLIMS can receive is:</p>
+        <ul>
+            <li value="1">the effective sorting zone</li>
+            <li value="2">the sorting time</li>
+            <li value="3">the remaining volume (root specimens only)</li>
+            <li value="4">has the specimen been aliquoted? Yes or no.</li>
+            <li value="5">has the specimen been decapped, recapped, centrifuged? 
+	 Yes or no.</li>
+            <li value="6">a dilution code when the specimen has been diluted</li>
+        </ul>
+        <p>The sort result information is logged in the audit trail of the specimen. 
+ The remaining volume is stored in Specimen.RemainingSize.</p>
+        <p>The distributor system may send an event code along with the sort result. 
+ This can be useful to decide what should happen when the sort process 
+ failed. GLIMS can evaluate the event code with the sort information by 
+ means of the station event evaluation site function. The result of the 
+ evaluation could be an error sorting target.</p>
+        <h2><a name="Sorting_related_fields_on_specimen" id="Sorting_related_fields_on_specimen"></a>Sorting 
+ related fields on specimen</h2>
+        <ul>
+            <li value="1"><b style="font-weight: bold;">RemainingSize</b>: 
+	 Specimen's remaining size after it has been aliquotted (reported by 
+	 distributor system).</li>
+            <li value="2"><b style="font-weight: bold;">MeasuredSize</b>: 
+	 Specimen's size measured by the distributor system.</li>
+            <li value="3"><b style="font-weight: bold;">QualityInfo</b>: 
+	 Information about the quality of the specimen (string)</li>
+            <li value="4"><b style="font-weight: bold;">LastSortingLocation</b>: 
+	 Last known sorting location of specimen (string)</li>
+            <li value="5"><b style="font-weight: bold;">Specimen audit</b>: 
+	 Every sorting event of a specimen is logged. An audit event type 'sort' 
+	 is available for that purpose. A specimen audit will also contain 
+	 a severity value.</li>
+        </ul>
+        <h2><a name="Specimen_browsers" id="Specimen_browsers"></a>Specimen browsers</h2>
+        <p>Following specimen browsers also have the 'last sorting location' in 
+ the cycle column with the last location, home location, ...:</p>
+        <ul>
+            <li value="1">Specimens of order</li>
+            <li value="2">Specimen query</li>
+            <li value="3">Specimen replace</li>
+            <li value="4">Specimen review</li>
+        </ul>
+    </body>
+</html>

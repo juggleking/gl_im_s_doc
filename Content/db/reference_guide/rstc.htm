@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - ResultCode</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor201"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+ResultCode&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Result code</td>
+                <td>
+rstc</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This table stores result codes and their meaning which can be used as pseudo results (e.g. tube broken, unmeasurable, out of limits,...)</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Action"></a>
+        <h3>
+Action</h3>
+        <div class="MemberHelp">
+            <p>
+Specifies the action to be taken for the result. On discontinuation, the expansion becomes the rejection reason. 
+<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="resultaction.htm">ResultAction</a></span>&#160;<b>Action</b></p>
+            <p>
+One of: <span class="Parameter">None, Confirm, Validate, Repeat, Dilute, Discontinue</span></p>
+        </div><a name="F_Assessed"></a>
+        <h3>
+Assessed</h3>
+        <div class="MemberHelp">
+            <p>
+Specifies whether the assessment actually took place. This is used for statistical purposes. </p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>Assessed</b></p>
+        </div><a name="F_Code"></a>
+        <h3>
+Code</h3>
+        <div class="MemberHelp">
+            <p>
+Easy-to-remember result replacing code. It cannot be a mnemonic as this may contain all kind of characters (e.g. "+++", "#", ...). Spaces are not allowed in the code as they cannot be distinguished from a space used to separate two codes for properties with "Allow multiple result codes" = YES. Warning the code is case insensitive.<br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">String</span>&#160;<b>Code</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DiscontinueSpecimen"></a>
+        <h3>
+Discontinue specimen</h3>
+        <div class="MemberHelp">
+            <p>
+If this option is set, the program behaves as if the Specimen.Discontinue() function was called for the root specimen of the result with "Cascade = YES" and "Result code = &lt;the entered code&gt;". This will cause the root specimen (Result.Specimen) and any sub-specimen to be discontinued, and the entered result code to be applied to all results derived from any of the discontinued specimens.  
+<br /><br />A question will appear if an available result is found during processing. The discontinuation reason of the specimen(s) is hard-coded to: "Discontinued via '&lt;PropertyMnemonic&gt;' result (result code &lt;ResultCode&gt;)".
+<br /><br />This functionality was primarily introduced to facilitate "No material received" situations. By entering one single code for one single result, the complete situation can be 'cleaned up'.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>DiscontinueSpecimen</b></p>
+        </div><a name="F_Expansion"></a>
+        <h3>
+Expansion</h3>
+        <div class="MemberHelp">
+            <p>
+Multilingual result-based text to which the code should be expanded.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>Expansion</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Property"></a>
+        <h3>
+Property</h3>
+        <div class="MemberHelp">
+            <p>
+If specified, the result code will only be applied to this property.</p>
+            <p class="Synopsis"><span class="Type"><a href="prop.htm">Property</a></span>&#160;<b>Property</b></p>
+        </div><a name="F_QCComment"></a>
+        <h3>
+QC comment</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains result-based internal comment about this result code</p>
+            <p class="Synopsis"><span class="Type"><a href="txt.htm">gp_Text</a></span>&#160;<b>QCComment</b></p>
+        </div><a name="F_QCSeverity"></a>
+        <h3>
+QC severity</h3>
+        <div class="MemberHelp">
+            <p>
+Optional QC severity to be imposed by this code.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>QCSeverity</b></p>
+        </div><a name="F_Severity"></a>
+        <h3>
+Severity</h3>
+        <div class="MemberHelp">
+            <p>
+Optional severity to be imposed by this code. If omitted, the usual norm checks will be applied.</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>Severity</b></p>
+        </div><a name="F_ToCharge"></a>
+        <h3>
+To charge</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates the imposed billing status (? = no change). When entering a result code with ResultCode.ToCharge=NO, the result's request is changed to ToCharge=NO. </p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>ToCharge</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_Expansion"></a>
+        <h3>
+Expansion&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Expansion</b> ()</p>
+        </div><a name="M_Property"></a>
+        <h3>
+Property&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Property</b> ()</p>
+        </div><a name="M_QCComment"></a>
+        <h3>
+QC comment&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>QCComment</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="Children"></a>
+        <h2>
+Children</h2><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ Property + Code </b>
+            </li>
+            <li value="3"><b>+ Code </b>
+            </li>
+            <li value="4"><b>+ Expansion </b>
+            </li>
+            <li value="5"><b>+ QCComment </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

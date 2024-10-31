@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Report Builder|Tutorials">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Report Builder - How to add fonts in PDF reports</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor978"></a>
+            <MadCap:concept term="Report builder" />Report Builder - How to add fonts in PDF reports</h1>
+        <h2>Introduction</h2>
+        <p>PDF fonts have always been a challenge in JasperReports, as it cannot directly load the TrueType fonts installed on your Windows computer for use in PDF documents. Instead, we have to prepackage them in .jar files and put those on the ‘classpath’ of the Java runtime that creates the PDF documents.</p>
+        <p>Unfortunately, the way to create the necessary .jar files has changed between iReport and JasperSoft Studio, plus the way to load these font .jar files differs between the embedded JavaVM on Windows, the MipsJvmDaemon and the ReportBuilder service.</p>
+        <p>The chapters below explain it all…</p>
+        <h2>STEP 1: Preparation</h2>
+        <p>Let's say that the entire report layout must be standardized on Microsoft Arial.</p>
+        <p>Open your Windows Explorer and go to the directory C:\Windows\Fonts</p>
+        <p>
+            <img src="report_builder_fonts_01.png" />
+        </p>
+        <p>Select the 'Arial' font and copy it to your C: \Temp directory</p>
+        <p>
+            <img src="report_builder_fonts_02.png" />
+        </p>
+        <p>You'll see that this unwraps into multiple .ttf files. We're only going to need the following files:</p>
+        <p>-	arial.ttf</p>
+        <p>-	arialbd.ttf</p>
+        <p>-	arialbi.ttf</p>
+        <p>-	ariali.ttf</p>
+        <p>(these are the regular, bold, bold+italic, and italic variants of the Arial font, respectively)</p>
+        <h2>STEP 2: Create the necessary .JAR file</h2>
+        <h3>Create .JAR using iReport</h3>
+        <p>Open iReport and in the main menu bar, go to menu "Tools" and pick item "Options". Stay on main tab 'iReport' but switch to sub-tab 'Fonts'. You should end up in a dialog box that looks like this:</p>
+        <p>
+            <img src="report_builder_fonts_03.png" />
+        </p>
+        <p>Click the 'Install Font' button to open the 'Font Installation' wizard. Use the 'Browse…' button to select the regular font file for Arial – i.e. C:\Temp\arial.ttf</p>
+        <p>
+            <img src="report_builder_fonts_04.png" />
+        </p>
+        <p>Hit the 'Next' button and in the following step:</p>
+        <ul>
+            <li value="1">Select the files for the bold, italic and bold+italic variants</li>
+            <li value="2">Choose CP-1252 as PDF Encoding</li>
+            <li value="3">Tick the box 'Embed the font in the PDF document'</li>
+        </ul>
+        <p>
+            <img src="report_builder_fonts_05.png" />
+        </p>
+        <p>You can skip the steps for 'Locales' and 'Font mappings' and click the 'Finish' button right away.</p>
+        <p>If you see the unpleasant error message below</p>
+        <p>
+            <img src="report_builder_fonts_06.png" />
+        </p>
+        <p>Then you're going to have to start over again, after opening iReport with elevated privileges in 'Run as administrator' mode.</p>
+        <p>Otherwise, you should see another entry 'Arial' in the Fonts list.</p>
+        <p>
+            <img src="report_builder_fonts_07.png" />
+        </p>
+        <p>Select it and click the 'Export as extension' button to save it as C:\Temp\arial.jar</p>
+        <p>
+            <img src="report_builder_fonts_08.png" />
+        </p>
+        <p>Once you've saved it, you can move on to step 3: <a href="#STEP">add the file to the classpath</a>.</p>
+        <h3>Create .JAR using JASPERSOFT STUDIO</h3>
+        <p>Open JasperSoft Studio and in the main menu bar, go to menu 'Window' and pick item 'Preferences'. In the tree on the left-hand side of the dialog, expand node 'Jaspersoft Studio' and select item 'Fonts'.</p>
+        <p>
+            <img src="report_builder_fonts_09.png" />
+        </p>
+        <p>Click on the 'Add' button to configure the new Font Family for Arial</p>
+        <p>
+            <img src="report_builder_fonts_10.png" />
+        </p>
+        <p>Don't forget to select the .ttf files for each of the tabs and click the 'Finish' button since we don't want to fiddle with Font Mappings or Locales.</p>
+        <p>You should now have a line 'Arial' in the fonts list.</p>
+        <p>
+            <img src="report_builder_fonts_11.png" />
+        </p>
+        <p>Select the entry and hit the 'Export' button to save it as C:\Temp\arial.jar</p>
+        <p>
+            <img src="report_builder_fonts_12.png" />
+        </p>
+        <p>Once you've saved it, you can move on to step 3: <a href="#STEP">add the file to the classpath</a>.</p>
+        <h2><a name="STEP"></a>STEP 3: Add the .JAR file to the classpath</h2>
+        <p>Now you can either copy the arial.jar file to all computers, or cut down on the deployment issues and copy the font .jar file to a central location in a read-only shared folder – e.g. \\glimsserver\share\arial.jar</p>
+        <p>To add the jar to the classpath, there are three methods, depending on the way you use GLIMS Report Builder.</p>
+        <h3>When using an embedded JavaVM (Windows only)</h3>
+        <p>With GLIMS 8.5, GLIMS Report Builder was only available on Windows via an embedded JavaVM. To configure the necessary environment variables, you’ll need to modify the progress.ini file</p>
+        <p>In the [MA Section] add a line for the following variable:</p>
+        <div class="indented">
+            <p>MA_JVM_PDFFONTS=\\glimsserver\share\arial.jar</p>
+        </div>
+        <p>When GLIMS first loads the embedded JavaVM, it combines the content of environment variables MA_JVM_CLASSPATH and MA_JVM_PDFFONTS into a single classpath as it loads the JavaVM.</p>
+        <p>Note that the environment variable MA_JVM_CLASSPATH is 'volatile' and can be overwritten when you install a new GLIMS version. That's why you should always put your font .jar files in the MA_JVM_PDFFONTS environment variable as we don't touch that during an upgrade.</p>
+        <h3>When using a MipsJvmDaemon process (UNIX)</h3>
+        <p>Given that UNIX servers can seldom access shared folders on Windows machines, you'll need to copy the arial.jar file to a good location on your UNIX server – e.g. /mips/glims/jar/arial.jar</p>
+        <p>With GLIMS 8.6, GLIMS Report Builder added support for UNIX servers by means of a MipsJvmDaemon background process. To configure the necessary environment variables, you’ll need to edit the .glimsrc file</p>
+        <p>Since there are no [MA Section] delimiters here, look for the line MA_JVM_JAVAPATH and add:</p>
+        <div class="indented">
+            <p>MA_JVM_PDFFONTS=/mips/glims/jar/arial.jar</p>
+        </div>
+        <p>When GLIMS first spawns the MipsJvmDaemon background process, it combines the content of environment variables MA_JVM_CLASSPATH and MA_JVM_PDFFONTS into a single classpath as it spawns the process.</p>
+        <p>Note that the MipsJvmDaemon service on Windows, introduced with GLIMS 8.10, was only ever used for printing reports to a physical printer, never for creating PDF files, so there's no need to reconfigure that service.</p>
+        <h3>When using a Report Builder service</h3>
+        <p>Introduced in GLIMS 9.4, we wholeheartedly recommend that you switch to using Report Builder services, as they are easier to configure, maintain and monitor using WatchDog 5.6 or later – and make your life a lot easier, especially in mixed Windows/UNIX environments.</p>
+        <p>Just add the following snippet to the service’s specific options:</p>
+        <div class="indented">
+            <p>-Dmips.classpath.extensions="\\glimsserver\share\arial.jar"</p>
+        </div>
+        <p>Restart the Report Builder service, and it will automatically load the font .jar file and make it available for use in PDF reports.</p>
+        <p>
+            <img src="report_builder_fonts_13.png" />
+        </p>
+        <h2>STEP 4: Using the PDF font in your layout</h2>
+        <p>Finally, with all the building blocks in place, we need to ensure that the PDF font that we put into a .jar file and added to the classpath, is actually used in the PDF files generated from our layouts.</p>
+        <h3>Font settings using iReport</h3>
+        <p>Select your labels and text fields in iReport, and use the Properties inspector to select the right font settings:</p>
+        <ul>
+            <li value="1">Font name: Arial</li>
+            <li value="2">Pdf Font name: &lt;Default&gt;</li>
+        </ul>
+        <p>Note that you can select the 'Pdf Font name' line in the grid and right-click to reach the contextual menu and pick option 'Restore Default Value' to get rid of old invalid settings.</p>
+        <p>
+            <img src="report_builder_fonts_14.png" />
+        </p>
+        <p>This should do the trick, ensuring that Arial is embedded into the PDF document, and applied to the texts both for on-screen preview, paper output on the printer, and file output as PDF document.</p>
+        <h3>Font settings using JasperSoft Studio</h3>
+        <p>Select your labels and text fields in Jaspersoft Studio, and use the Properties inspector to select the right font settings in the grid on the 'Advanced' page:</p>
+        <ul>
+            <li value="1">Font name: Arial</li>
+            <li value="2">Pdf Font name: &lt;INHERITED&gt;</li>
+        </ul>
+        <p>Note that you can select the 'Pdf Font name' line in the grid and right-click to reach the contextual menu and pick option 'Restore Default Value' to get rid of old invalid settings.</p>
+        <p>
+            <img src="report_builder_fonts_15.png" />
+        </p>
+        <p>This should do the trick, ensuring that Arial is embedded into the PDF document, and applied to the texts both for on-screen preview, paper output on the printer, and file output as PDF document.</p>
+    </body>
+</html>

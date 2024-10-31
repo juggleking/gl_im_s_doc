@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Orthocard GLIMS configuration</title>
+        <link href="../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2553"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Orthocard: GLIMS
+configuration</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Property%20classification">Property
+classification</a> - <a href="#Report%20template">Report template</a> - <a href="#Default%20report">Default
+report</a> - <a href="#File%20generation">File generation</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>This document describes how to print blood group cards from GLIMS using third
+party software Orthocard. In order to do so, you should use the general
+reporting program in GLIMS. The sections below describe the necessary
+configuration for the "report" generation. The reported files
+are to be processed by the Orthocard software.</p>
+        <h2><a name="Property classification"></a>Property classification</h2>
+        <p>The property classification specified in the report template must only
+contain 1 property, i.e. the property that is always requested in all
+transfusion orders (e.g. the blood group). If the property classification
+contains more than 1 property, several blood group card will be printed for the
+same patient.</p>
+        <h2><a name="Report template"></a>Report template</h2>
+        <p>In the <a href="../../../../configuration/report_templates/report_templates.htm">Report template</a> field <span class="ui_element">Body</span>, specify a dynamic text such as the following one:</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <table border="1" width="100%" cellspacing="0" cellpadding="4">
+                        <tr>
+                            <td width="100%"><pre>{:
+ string sex, anti_D, bloedgroep, Rhesus_C, Rhesus_c_klein, Rhesus_E, Rhesus_e_klein, DU;
+ Person ThePerson;
+ ThePerson := .order.object.Person();</pre><pre>anti_D := Entry(2, .Order.Result("abo", "confirmed", "validated").attribute("value")," ");
+bloedgroep := Entry(1, .Order.Result("abo","confirmed","validated").attribute("value")," ");</pre><pre>IF (ThePerson.GetAntigen("Rh_C") = TRUE)
+THEN
+  Rhesus_C := "pos";
+ELSE
+ IF (ThePerson.GetAntigen("Rh_C") = FALSE)
+ THEN
+  Rhesus_c_klein := "neg";
+ ELSE
+  Rhesus_c_klein := "?";
+ ENDIF;
+ENDIF;</pre><pre>IF (ThePerson.GetAntigen("Rh_c_klein") = TRUE)
+THEN
+ Rhesus_c_klein := "pos";
+ELSE
+ IF (ThePerson.GetAntigen("Rh_c_klein") = FALSE)
+ THEN
+  Rhesus_c_klein := "neg";
+ ELSE
+  Rhesus_c_klein := "?";
+ ENDIF;
+ENDIF;</pre><pre>IF (ThePerson.GetAntigen("Rh_E") = TRUE)
+THEN
+ Rhesus_E := "pos";
+ELSE
+ IF (ThePerson.GetAntigen("Rh_E") = FALSE)
+ THEN
+  Rhesus_E := "neg";
+ ELSE
+  Rhesus_E := "?";
+ ENDIF;
+ENDIF;</pre><pre>IF (ThePerson.GetAntigen("Rh_e_klein") = TRUE)
+THEN
+ Rhesus_e_klein := "pos";
+ELSE
+ IF (ThePerson.GetAntigen("Rh_e_klein") = FALSE)
+ THEN
+  Rhesus_e_klein := "neg";
+ ELSE
+  Rhesus_e_klein := "?";
+ ENDIF;
+ENDIF;</pre><pre>IF (ThePerson.GetAntigen("Du") = TRUE)
+THEN
+ DU := "pos";
+ELSE
+ IF (ThePerson.GetAntigen("DU") = FALSE)
+ THEN
+  DU := "neg";
+ ELSE
+  DU := "U";
+ ENDIF;
+ENDIF;</pre><pre>if EnumeratedToString("sex", ThePerson.sex) = "Female"
+then
+ sex := "F";
+else
+ if EnumeratedToString("sex", ThePerson.sex) = "Male"
+ then
+  sex := "M";
+   else
+     sex := "U";
+ endif;
+endif;
+ </pre><pre>RETURN 
+IfKnownString(.Order.Object.PIN("MIPSN")) + "|" 
++ IfKnownString(Substr(ThePerson.LastName,1,40)) + "|" 
++ IfKnownString(ThePerson.FirstName) + "|" 
++ "|" 
++ "|" 
++ "|" 
++ "|" 
++ "|" 
++ IfKnownString(DateToString(ThePerson.BirthDate,"%Y%m%d")) 
++ "|" + "|" + sex + "|" + .order.Issuer.HCProvider().Mnemonic + "|" 
++ IfKnownString(.order.Issuer.HCProvider().LastName + " ")  + 
+IfKnownString(.order.Issuer.HCProvider().FirstName) + "|" + "|" + "|" + "|" + "|" + "|" + "|" + 
+.Order.InternalId + "|" + "|" +  DateTimeToString(.Order.LowestObjectTime,"%x") + "|" + "|" + 
+IfKnownString(.Order.Result("blgrp", "confirmed", "validated").Attribute("Value")) + "|" + 
+IfKnownString(.Order.Result("anti-D", "confirmed", "validated").Attribute("Value")) + "|" + "|" + 
+IfKnownString(.Order.Result("anti-grC", "confirmed", "validated").Attribute("Value")) + "|" + 
+IfKnownString(.Order.Result("anti-c", "confirmed", "validated").Attribute("Value")) + "|" + 
+IfKnownString(.Order.Result("anti-grE", "confirmed", "validated").Attribute("Value")) + "|" + 
+IfKnownString(.Order.Result("anti-e", "confirmed", "validated").Attribute("Value")) + "|" + "|" 
++ "|" + "|" + "|" + "|" + "|" + "|";}</pre>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p>Set the Report template field <span class="ui_element">Generator</span>
+ to <span class="ui_element">VariableText</span>.</p>
+        <h2><a name="Default report"></a>Default report</h2>
+        <p>Set the <a href="../../../../configuration/default_reports/default_reports.htm">Default report</a> field <span class="ui_element">TargetType</span> to
+  <span class="ui_element">Explicit </span>and specify your organization (as defined in the field <span class="ui_element">Own organization</span> in the <a href="../../../../configuration/specificsite/glims_general_options.htm">GLIMS general settings</a>) as <span class="ui_element">Explicit target</span>.</p>
+        <h2><a name="File generation"></a>File generation</h2>
+        <p>Create a new command (<span class="ui_element">Start</span> -&gt; <span class="ui_element">System Management</span> -&gt; <span class="ui_element">Commands</span> -&gt; <span class="ui_element">By
+description</span>):</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/blgp_cmnd.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="647" data-mc-height="855" src="images/blgp_cmnd_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Table</p>
+        <div class="indented"><span class="ui_element">Report</span>
+        </div>
+        <p class="fieldlabel">Description</p>
+        <div class="indented">Enter an arbitrary description</div>
+        <p class="fieldlabel">Query</p>
+        <div class="indented"><span class="ui_element">Generation</span>
+        </div>
+        <p class="fieldlabel">Query parameter set</p>
+        <div class="indented"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/blgp_qps.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="705" data-mc-height="524" src="images/blgp_qps_thumb_0_120.png" tabindex="" /></a>
+            <p class="fieldlabel">Generator</p>
+            <div class="indented"><span class="ui_element">VariableText</span>
+            </div>
+            <p class="fieldlabel">Target type</p>
+            <div class="indented"><span class="ui_element">Explicit</span>
+            </div>
+            <p class="fieldlabel">Target</p>
+            <div class="indented">Your organization (as defined in the field <span class="ui_element">Own organization</span> in the <a href="../../../../configuration/specificsite/glims_general_options.htm">GLIMS general settings</a>)</div>
+            <p class="fieldlabel">Template</p>
+            <div class="indented">The template as configured above</div>
+            <p class="fieldlabel">Filter</p>
+            <div class="indented"> You can add an optional MISPL filter if necessary</div>
+        </div>
+        <p class="fieldlabel">Function</p>
+        <div class="indented"><span class="ui_element">Generate</span>
+        </div>
+        <p class="fieldlabel"><b>Function parameter set</b>
+        </p>
+        <div class="indented"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="images/blgp_ortho_fps.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="560" data-mc-height="471" src="images/blgp_ortho_fps_thumb_0_120.png" tabindex="" /></a>
+            <p class="fieldlabel">Mark output</p>
+            <div class="indented">Enabled</div>
+            <p class="fieldlabel">Output to file</p>
+            <div class="indented">Enabled</div>
+            <p class="fieldlabel">New results</p>
+            <div class="indented">New results required</div>
+            <p class="fieldlabel">Output buffering</p>
+            <div class="indented">By Target</div>
+            <p class="fieldlabel">Destination type</p>
+            <div class="indented">Directory</div>
+            <p class="fieldlabel">Path</p>
+            <div class="indented">Directory where the files should be generated and where the Orthocard
+ software will read from.</div>
+            <p class="fieldlabel">File extension</p>
+            <div class="indented">dns</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Allow creation of delivery reports for individual delivered products (GLIMS_STCK-00587)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor186"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Allow creation of delivery reports for individual delivered products (GLIMS_STCK-00587)</h1>
+        <h2>Background</h2>
+        <p>In previous versions, there was no way to get information about individual delivered <a href="../../modules/stock_management/configuration/product_specifications.htm" xmlns="http://www.w3.org/1999/xhtml">products</a>, since multiple products are all linked to one product <a href="../../modules/stock_management/tracing/deliveries.htm" xmlns="http://www.w3.org/1999/xhtml">delivery</a>.</p>
+        <p>It is now possible to generate a delivery report based on individual delivered products. This report can be printed per delivery and it contains all delivered products along with their quantity. This can be used as a product receipt confirmation.</p>
+        <h2>New MISPL function</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">To generate  a delivery report containing the delivered products, a new MISPL&#160;function ProductDelivery.ProductByNumber(Index) can be implemented. It returns specific (indexed) products of a product delivery.</p>
+        <p>The index indicates which product needs to be retrieved, based on the internal id in ascending order. Specify 1 for the first product, 2 for the second, etc.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">MISPL function to get the first product of a product delivery</span>
+            </p>
+            <p>STRING FirstProductOfDelivery;</p>
+            <p>FirstProductOfDelivery := .ProductByNumber(1).InternalId;</p>
+            <p>RETURN FirstProductOfDelivery;</p>
+        </div>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;" xmlns="http://www.w3.org/1999/xhtml">MISPL function to get the complete product list of a product delivery</span>
+            </p>
+            <p>/* Build product list */</p>
+            <p>String ProductList, ProductInternalId;</p>
+            <p>Integer ProductCount;</p>
+            <p>Logical GoOn;</p>
+            <p>ProductList := "";</p>
+            <p>ProductCount := 1;</p>
+            <p>GoOn := TRUE;</p>
+            <p>WHILE GoOn</p>
+            <p>DO</p>
+            <div class="indentedsmall" xmlns="">
+                <p xmlns="http://www.w3.org/1999/xhtml">ProductInternalId := .ProductByNumber(ProductCount).InternalId;</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">IF ProductInternalId = ?</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">THEN</p>
+                <div class="indentedsmall">
+                    <p xmlns="http://www.w3.org/1999/xhtml">GoOn := FALSE;</p>
+                </div>
+                <p xmlns="http://www.w3.org/1999/xhtml">ELSE</p>
+                <div class="indentedsmall">
+                    <p xmlns="http://www.w3.org/1999/xhtml">ProductList := ProductList + ProductInternalId + ",";</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">ProductCount := ProductCount + 1;</p>
+                </div>
+                <p xmlns="http://www.w3.org/1999/xhtml">ENDIF;</p>
+            </div>
+            <p>DONE;</p>
+            <p>RETURN ProductList;</p>
+        </div>
+        <h2>Procedure</h2>
+        <p>1.	Navigate to <span class="ui_element">Start</span> &gt; <span class="ui_element">Stock management</span> &gt; <span class="ui_element">Deliveries</span></p>
+        <p>2.	Fill in the query (date range)</p>
+        <p>3.	Select a delivery</p>
+        <p>4.	Select <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Delivered articles</span></p>
+        <p>5.	Select a product specification</p>
+        <p>6.	In the tab <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Tools</span>, select <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Run MISPL</span></p>
+        <p>8.	Enter the description (e.g vs_ProductDelivery_id) or select via F6</p>
+        <p>9.	Press <span class="ui_element">Run</span></p>
+    </body>
+</html>

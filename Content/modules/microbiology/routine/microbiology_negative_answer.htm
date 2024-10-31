@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Microbiology|Routine" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\microbiology\microbiology_07.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>
+            Microbiology - Negative answer when no growth is detected</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3664"></a>
+            <MadCap:concept term="Microbiology" />
+            Microbiology - Negative answer when no growth is detected</h1>
+        <h2>Introduction</h2>
+        <p>When no growth is detected (no reportable isolations are registered), GLIMS allows to store and report a so-called "negative answer".</p>
+        <h2>Default negative answer</h2>
+        <p>In the <a href="../configuration/microbiology_procedures.htm">microbiology procedure</a>, a <span class="ui_element">Preliminary negative answer</span> and <span class="ui_element">Final negative answer</span> can be defined.  Both fields allow specifying 
+ a MicrobiologyAction-based text module.</p>
+        <p class="fieldlabel">Preliminary</p>
+        <div class="indented">
+            <p>Will be printed when the microbiology 
+ action reaches status <span class="ui_element">Read-Confirmed</span> or <span class="ui_element">Read-Validated</span>.</p>
+        </div>
+        <p class="fieldlabel">Final</p>
+        <div class="indented">
+            <p>Will be printed when the microbiology actions reached 
+ status <span class="ui_element">Confirmed</span> or <span class="ui_element">Validated</span>.</p>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The negative answer  is re-calculated when</p>
+            <ul>
+                <li value="1">going from Reading/Re-Reading (or lower) to ReadConfirmed 
+ or ReadValidated (preliminary answer)</li>
+                <li value="2">going from ReadConfirmed or ReadValidated to Ready 
+ or Closed (final answer)</li>
+                <li value="3">going back from Ready to ReadConfirmed (or lower) 
+ (preliminary answer)</li>
+                <li value="4">when a report is generated (paper report, electronic 
+ report or screen report). This ensures that negative answers defined 
+ as multi-lingual text modules are expanded in the language required for 
+ the generated report.</li>
+            </ul>
+            <p>The negative answer is NOT re-calculated when</p>
+            <ul>
+                <li value="1">going from ReadConfirmed to ReadValidated</li>
+                <li value="2">going from Ready to Closed</li>
+                <li value="3">whenever the status is not changed.</li>
+            </ul>
+        </div>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ul>
+                <li value="1">The negative answer is not displayed (in browser, on report,...) if 
+ the action status is not yet 'ReadConfirmed' or higher.</li>
+                <li value="2">If the negative 
+ answer is displayed in a separate window of the <a href="microbiology_actions_query_browser.htm">action 
+ browser</a>, all "\t" and "~n" are replaced by blanks 
+ and the answer is stripped from leading and trailing blanks.</li>
+                <li value="3">The negative 
+ answer is also displayed in the microbiology screen (isolation window).</li>
+            </ul>
+        </div>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <p>How to give a different negative answer, depending on the 
+ fact that the <a href="microbiology_incubation_period.htm">incubation period</a> has expired or not.</p>
+            <div class="indented"><pre>
+{=FitText(
+IF DateTimeToDate(.EndOfIncubationTime) &gt; Today()
+THEN "up to now no Adeno-virus found"
+ELSE "no Adeno-virus found",
+40, "\t", "\t", ?)}
+</pre>
+            </div>
+        </div>
+        <h2>Explicit negative answer</h2>
+        <p>If you do not want to use the default negative answer (as described above), you can also specify an "explicit negative answer".</p>
+        <div class="text_box_tips">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p>An explicit negative answer has priority over the default negative answer.</p>
+        </div>
+        <p class="fieldlabel">Configuration</p>
+        <div class="indented">
+            <p>In the <a href="../configuration/microbiology_general_options.htm">general microbiology settings</a>, the option <span class="ui_element">List of explicit negative answers</span> allows to specify a <a href="../../../configuration/choice_lists/choice_lists.htm">choice list</a>. The choices of the specified choice list represent the possible values of the explicit negative answer.</p>
+            <p>The <span class="ui_element">Description</span> of the choice will be used for reporting (see below).</p>
+        </div>
+        <p class="fieldlabel">Microbiology work screen</p>
+        <div class="indented">
+            <p>For microbiology actions that do not have any reportable isolations (no growth has been detected), the user can choose the explicit negative answer in the <a href="microbiology_work_screen_general_info_options.htm">microbiology work screen</a>.</p>
+            <p>The selection list contains the mnemonic of the choices linked to the choice list specified in the general microbiology setting <span class="ui_element">List of explicit negative answers</span>.</p>
+            <p>
+                <img src="mb_work_screen_negative_answer.png" />
+            </p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ul>
+                    <li value="1">The <span class="ui_element">Neg. answer</span> option will only be visible if there are no reportable isolations for the microbiology action.</li>
+                    <li value="2">The chosen value will be stored in the microbiology action field <span class="ui_element">Explicit negative answer</span>.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="fieldlabel">WASPLab</p>
+        <div class="indented">
+            <p>The explicit negative answer can also be set during communication with <a href="../wasplab/microbiology_wasplab_01_introduction.htm">WASPLab</a>.</p>
+            <p>The <a href="../wasplab/microbiology_wasplab_04_incubation_communication.htm">growth messages</a> sent by WASPLab to GLIMS can contain an explicit negative answer if the growth is negative.</p>
+            <div class="text_box_tips">
+                <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+                </p>
+                <p>The code (of the explicit negative answer) sent by WASPLab must match the mnemonic of a choice  linked to the choice list specified in the general microbiology setting <span class="ui_element">List of explicit negative answers</span>. </p>
+                <p>In case of mismatch, the negative answer will be rejected. </p>
+                <p>If required, a code set (for the <span class="ui_element">Choice</span> table) can be used to provide a mapping. This code set must be defined for the station's coding system.</p>
+            </div>
+        </div>
+        <h2>Reporting</h2>
+        <p>A <span class="ui_element">Report property</span> can be defined in the microbiology procedure to <a href="../reporting/microbiology_reporting_configuration_basic.htm">report microbiology results</a> (isolations). If there are no reportable isolations, this property will report the negative answer.</p>
+        <ol>
+            <li value="1">
+                <p>If the microbiology action field <span class="ui_element">Explicit negative answer</span> contains a value, this will be reported.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>The value of the field <span class="ui_element">Explicit negative answer</span> matches the mnemonic of a choice   linked to the choice list specified in the general microbiology setting <span class="ui_element">List of explicit negative answers</span>. </p>
+                    <p>It is the <span class="ui_element">Description</span> (multilingual text) of that choice that will be reported.</p>
+                </div>
+            </li>
+            <li value="2">
+                <p>If the microbiology action field <span class="ui_element">Explicit negative answer</span> is unknown, the default negative answer (see above) will be reported.</p>
+            </li>
+        </ol>
+    </body>
+</html>

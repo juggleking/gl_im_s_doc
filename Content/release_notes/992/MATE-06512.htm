@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.2 - Support for automatically upgrading GLIMS clients (MATE-06512)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1110"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.2 - </MadCap:conditionalText>Support for automatically upgrading GLIMS clients (MATE-06512)</h1>
+        <h2>Introduction</h2>
+        <p>GLIMS clients and AppServer need to be on the same GLIMS version. To facilitate the process of upgrading the clients, GLIMS now supports upgrading GLIMS Windows clients automatically.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The required Windows service, Red Carpet, is installed automatically when upgrading to GLIMS 9.9.2. Customers can use this new functionality for future corrective versions.</p>
+        </div>
+        <h2>Requirements</h2>
+        <p class="fieldlabel">Red Carpet Windows service</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">A dedicated Red Carpet Windows service should run on each GLIMS Windows client to establish communication with the server. Red Carpet is installed automatically via the GLIMS installer.</p>
+        </div>
+        <p class="fieldlabel">Free disk space</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">At least 10 Gb of free hard disk space should be available on the GLIMS client and more specifically on the hard disk where GLIMS is installed.</p>
+        </div>
+        <p class="fieldlabel">AppServer</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The AppServer should be running.</p>
+        </div>
+        <h2>Process for automatically upgrading clients</h2>
+        <h3><a name="1." xmlns="http://www.w3.org/1999/xhtml"></a>1. Downloading the corrective service pack</h3>
+        <ol>
+            <li value="1">Login to the <a href="https://www.mips.be/servicecenter/login.cfm?lang=en" xmlns="http://www.w3.org/1999/xhtml" target="_blank">MIPS support website</a> and download the corrective GLIMS service pack.</li>
+            <li value="2"> Store the .zip file on a shared network location.</li>
+            <li value="3"> Create a domain account (if none is available) that has access to the file.</li>
+        </ol>
+        <h3><a name="2." xmlns="http://www.w3.org/1999/xhtml"></a>2. Changing the Red Carpet request interval (optional)</h3>
+        <p>By default, the Red Carpet service checks every 3600 seconds if there is an active and applicable upgrade plan on the server. Changing the request interval can be done via <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Customize &gt; MATE &gt; General tab &gt; RC request interval</span>.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>As soon as the <a href="#4." xmlns="http://www.w3.org/1999/xhtml">upgrade plan is activated</a>,  Red Carpet automatically applies a request interval of 30 seconds.</p>
+        </div>
+        <h3>3. Creating an upgrade plan</h3>
+        <p>Open the GLIMS application on the server and select <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Auto upgrade &gt; Create upgrade plan for corrective version</span>.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="MATE-06512.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="713" data-mc-height="356" src="MATE-06512_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Name</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Name of the upgrade plan.</p>
+        </div>
+        <p class="fieldlabel">Applicable version</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The GLIMS client version this upgrade plan applies to. This updateable field is automatically filled with the current GLIMS version. If the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Applicable version</span> does not match the GLIMS client version, then no upgrade will take place.</p>
+        </div>
+        <p class="fieldlabel">New version</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The GLIMS version to which the server (manually) and clients (automatically) will be upgraded.</p>
+        </div>
+        <p class="fieldlabel">Upgrade file</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The path to the .zip file that was downloaded and stored in <a href="#1." xmlns="http://www.w3.org/1999/xhtml">step 1</a>. GLIMS checks  the validity of the specified path.</p>
+        </div>
+        <p class="fieldlabel">Account to use to access the upgrade file</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The domain account that has access to the upgrade file. GLIMS checks if the specified domain account has access to the specified upgrade file.</p>
+        </div>
+        <h3><a name="4." xmlns="http://www.w3.org/1999/xhtml"></a>4. Activating the upgrade plan</h3>
+        <p>If the upgrade plan is created successfully, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plans</span> browser will open, containing the newly created upgrade plan.  Double-click on the upgrade plan to open the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> editor.</p>
+        <p xmlns=""><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="MATE-06512_upgrade_plan.png" xmlns="http://www.w3.org/1999/xhtml"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="568" data-mc-height="500" src="MATE-06512_upgrade_plan_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>The <span class="ui_element">Upgrade plans</span> browser can also be opened by choosing <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Start &gt; System management &gt; Auto upgrade &gt; Upgrade plan &gt; Upgrade plans</span>.</p>
+        </div>
+        <p class="fieldlabel" xmlns="">Active</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Check this checkbox to activate the upgrade plan.</p>
+        </div>
+        <p xmlns="" class="fieldlabel">Allowed machines | Denied machines | Eligibility</p>
+        <div class="indented" xmlns="">
+            <p xmlns="">By default, the upgrade plan applies to all registered devices (the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Registered devices</span> browser can be opened from the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> via the contextual menu item <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show all... &gt; Registered devices</span>). Narrowing down the list of allowed devices can be done in three ways:</p>
+            <p xmlns="" class="fieldlabel">Allowed machines</p>
+            <div class="indented">
+                <p xmlns="">The upgrade plan will only apply to the specified devices (comma-separated list).</p>
+            </div>
+            <p xmlns="" class="fieldlabel"> Denied machines</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">The upgrade plan will not apply to the specified devices (comma-separated list).</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Eligibility</p>
+            <div class="indented">
+                <p xmlns="http://www.w3.org/1999/xhtml">A gp_SessionDevice-based site function to filter the allowed devices.</p>
+            </div>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>If two or more of the fields above have a value, they will be used cumulatively.</p>
+            </div>
+        </div>
+        <p xmlns="" class="fieldlabel">Type</p>
+        <div class="indented" xmlns="">
+            <p xmlns="">Should be set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Corrective</span>.</p>
+        </div>
+        <p class="fieldlabel" xmlns="">Target client</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">Should be set to <span class="ui_element">GLIMS</span>.</p>
+        </div>
+        <p class="fieldlabel">Domain</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">For future use.</p>
+        </div>
+        <h3><a name="5." xmlns="http://www.w3.org/1999/xhtml"></a>5. Monitoring the progress of the upgrade process</h3>
+        <p>As soon as the upgrade plan is active, the upgrade process will start.  For now, users can continue to work with GLIMS on the clients.</p>
+        <p class="fieldlabel">Registered devices browser</p>
+        <div class="indented" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">The progress of the upgrade process can be monitored via the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Registered devices</span> browser which lists all devices that have ever connected to the AppServer. To open the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Registered devices</span> browser, go to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> and select the contextual menu item <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Show all... &gt; Registered devices</span>. </p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>Please note that the browser needs to be refreshed manually via F5.</p>
+            </div>
+            <p xmlns="http://www.w3.org/1999/xhtml">The following columns provide information on the upgrade progress:</p>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Current step status</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>One of <span class="ui_element">Busy</span>, <span class="ui_element">Success</span> or <span class="ui_element">Failed</span>. This column indicates the status of the current step the name of which is displayed in the <span class="ui_element">Current step name</span> column.</p>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Current step name</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>Each of the devices will go through the following steps:</p>
+                <ol>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="1">CheckRequirements</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="2">DownloadFiles</li>
+                    <li xmlns="http://www.w3.org/1999/xhtml" value="3">PrepareNewVersion</li>
+                </ol>
+            </div>
+            <p class="fieldlabel" xmlns="http://www.w3.org/1999/xhtml">Last update time</p>
+            <div class="indented" xmlns="http://www.w3.org/1999/xhtml">
+                <p>The last time Red Carpet communicated with the server.</p>
+            </div>
+        </div>
+        <p>If, for all devices, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Current step name</span> is <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">PrepareNewVersion</span> and the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Current step status</span> is <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Success</span> or if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last update time</span> is more than <a href="#2." xmlns="http://www.w3.org/1999/xhtml">RC request interval</a> seconds ago, then proceed to the following step.</p>
+        <h3>6. Preparing the deployment</h3>
+        <p>Go to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> and select the contextual menu item <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Prepare deploy begin</span>. </p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If GLIMS is being used on the clients, the users will be asked to stop working and close the application. Opening GLIMS on the clients will no longer be possible.</p>
+        </div>
+        <p>Monitor the progress of the current upgrade step in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Prepare deploy begin</span> browser that opens automatically: If, for all devices, the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Current step name</span> is <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">WaitAllClientApplicationQuit</span> and the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Current step status</span> is <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Success</span> or if the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last update time</span> is more than <a href="#2." xmlns="http://www.w3.org/1999/xhtml">RC request interval</a> seconds ago, then stop and upgrade the AppServer, manually upgrade GLIMS on the server, start the AppServer and proceed to the next step.</p>
+        <h3>7. Switching to the new version</h3>
+        <p>Go to the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> and select the contextual menu item <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Switch to new version</span>. All clients will then switch to the new GLIMS version (this can be monitored in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Switch to new version</span> browser that opens automatically). If the switch is successful, the new GLIMS version will be accessible to users.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>If certain folders are locked by another process, the client machine will be forced to reboot.</p>
+        </div>
+        <h3>8. Deactivating the upgrade plan</h3>
+        <p>When all clients have been upgraded, deactivate the upgrade plan by unchecking the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Active</span> checkbox in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Upgrade plan</span> editor or delete the upgrade plan.</p>
+        <div class="text_box_tips" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #C29D0A; font-weight: bold;">Tip</span>
+            </p>
+            <p xmlns="">If the <a href="#2." xmlns="http://www.w3.org/1999/xhtml">RC request interval</a> was changed manually at the beginning of the upgrade process, it can now be reset to, for instance, its default value of 3600 seconds.</p>
+        </div>
+        <h3>9. Manually upgrading the remaining clients</h3>
+        <p>Manually upgrade the clients for which the automatic upgrade failed.</p>
+        <h2>Logging</h2>
+        <p>Logging is available </p>
+        <ol>
+            <li value="1">on the clients in the Red Carpet installation folder </li>
+            <li value="2">in GLIMS in the <a href="../../application_management/logging/logging.htm#Log" xmlns="http://www.w3.org/1999/xhtml">log type</a> named "Auto client upgrade_&lt;name of client&gt;"</li>
+        </ol>
+    </body>
+</html>

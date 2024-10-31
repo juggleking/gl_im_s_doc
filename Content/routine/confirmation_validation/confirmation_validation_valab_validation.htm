@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Confirmation and validation" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\communication\onlines\analyzer_specific\valab.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title>VALAB connection</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a href="../index_routine.htm">Basic routine</a> -&gt; <a href="index_confirmation_validation.htm">Confirmation 
+ and validation</a> -&gt; VALAB connection</h1>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Preliminary%20configuration">Preliminary 
+	 configuration</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#The%20Valab%20program%20in%20GLIMS">The Valab 
+	 program in GLIMS</a>
+            </li>
+            <li class="kadov-p" value="3"><a href="#Storing%20Valab%20flags">Storing Valab flags</a>
+            </li>
+            <li class="kadov-p" value="4"><a href="#Logging">Logging</a>
+            </li>
+            <li class="kadov-p" value="5"><a href="#Integration%20in%20Order%20review%20program">Integration 
+	 in Order review program</a>
+            </li>
+            <li class="kadov-p" value="6"><a href="#Important%20considerations">Remarks</a>
+            </li>
+            <li class="kadov-p" value="7"><a href="#Supported%20software%20versions">Supported 
+	 software versions</a>
+            </li>
+            <li class="kadov-p" value="8"><a href="#External%20documentation">External documentation</a>
+            </li>
+        </ul>
+        <h2><a name="Preliminary configuration"></a>Preliminary configuration</h2>
+        <p>The GLIMS-VALAB connection requires a <a href="../../application_management/licenses/licenses.htm">license 
+ key</a>.&#160;&#160;There is an evaluation period of 30 days.&#160;&#160;Before 
+ you can use the Valab functionality in GLIMS, the Valab interface should 
+ first be defined (as a regular analyzer connection).&#160;&#160;The translator 
+ must use the "valb" driver.&#160;&#160;Before the Valab program 
+ is started in GLIMS, the translator should be running.</p>
+        <p>In order to map the properties in GLIMS with the codes used by Valab, 
+ you must define a <a href="../../configuration/coding_systems/coding_systems.htm">coding 
+ system</a> with a property code set that will be selected for validation 
+ on VALAB (A-tests), or as extra informational tests (E.g. C-test).&#160;&#160;&#160;You 
+ can specify the coding system to be used in the <a href="#The%20Valab%20program%20in%20GLIMS">function 
+ setup</a>. &#160;If multiple properties should be sent with the same Valab 
+ code, you should use different discriminators in this coding system.</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="67%" border="1" xmlns="">
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Property</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Code</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">K</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">A4</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Cl</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">A8</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Info-C1</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">C</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Info-C1</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">C</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">Info2</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">O</td>
+                </tr>
+                <tr>
+                    <td style="width: 17%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">&#160;</td>
+                    <td style="width: 83%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">|_ First character obliged. Indicates 
+		 type of Valab test</td>
+                </tr>
+            </table>
+        </div>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">Test mapping may not be realistic in this example.</p>
+        </div>
+        <p>Validation of multiple results having the same test code in Valab: The 
+ GLIMS Valab program supports validation of results of an order that have 
+ the same test code on Valab. This is typically an issue for morphology 
+ results. In Valab, morphology is represented as one test, named 'A57'. 
+ In GlIMS however, morphology might be stored in several results. GLIMS 
+ sends multiple result values for the test 'A57' (as Valab expects it to 
+ be). Valab interprets the results but will send only one validation flag 
+ back.&#160;&#160;The GLIMS Valab program is able to store the validation 
+ flag for all results of 'A57' of that order.&#160;&#160;To activate this, 
+ one should adapt the Valab codes defined for the properties in GLIMS: 
+ Add the '*' (asterisk) character at the end of <b>ALL</b> A57 codes.</p>
+        <h3>Station specific property codes for Valab validation</h3>
+        <p>The GLIMS Valab validation program also supports the station-specific 
+ property codes defined through an AssessmentMethod-based code set.&#160;In 
+ the Valab coding system, you can add a new code set for the AssessmentMethod 
+ table.&#160;Enter the assessment method record as station-mnemonic/property 
+ and the code value representing the Valab test.&#160;The codes in 
+ the assessment method code set have priority over the ones defined in 
+ the property code set.</p>
+        <div class="text_box_warnings">
+            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+            </p>
+            <p>Each alternate code should have also a code in the Property 
+ code set.</p>
+        </div>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+            </p>
+            <table id="table2" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="67%" border="1" xmlns="">
+                <tr>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 17%;padding-top: 2px;">Record</td>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 83%;padding-top: 2px;">Value (Code)</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 17%;padding-top: 2px;">Hit917/K</td>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 83%;padding-top: 2px;">A4</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 17%;padding-top: 2px;">Hit912/K</td>
+                    <td style="padding-right: 2px;padding-left: 2px;padding-bottom: 2px;width: 83%;padding-top: 2px;">A5</td>
+                </tr>
+            </table>
+        </div>
+        <h2><a name="The Valab program in GLIMS"></a>The Valab program in GLIMS</h2>
+        <p>The Valab program can be started manually by choosing the contextual menu 
+ function 'Valab validation' from an Order record or via a <a href="../../configuration/generic/commands_tasks/commands_tasks.htm">command</a>:</p>
+        <ul>
+            <li class="kadov-p" value="1"><span class="ui_element">Table</span>: Order</li>
+            <li class="kadov-p" value="2"><span class="ui_element">Query</span>: Review</li>
+            <li class="kadov-p" value="3"><span class="ui_element">Function</span>: ValabValidation</li>
+        </ul>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p xmlns="">When running the Valab program via a command, make sure that 'Login 
+ user' of the service which serves this command (via a task scheduler) 
+ has at least 1 employee assignment.</p>
+        </div>
+        <p>The Valab parameters are passed via the Valab method interface.&#160;</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="Valab_parameters.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="381" data-mc-height="445" src="Valab_parameters_thumb_0_120.png" alt="" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Translator</p>
+        <div class="indented">
+            <p>Select the translator that will 
+	 be used for the Valab communication.&#160;&#160;In sites where several 
+	 Valab connections are used, you can define a separate translator for 
+	 each communication channel.&#160;</p>
+            <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p xmlns="">You must use the 
+	 driver "valab".</p>
+            </div>
+        </div>
+        <p class="fieldlabel">Coding system</p>
+        <div class="indented">
+            <p>Coding system to be used 
+	 for communication with Valab.</p>
+        </div>
+        <p class="fieldlabel">Classification</p>
+        <div class="indented">
+            <p>In some cases, Valab requires a group of results to perform a correct 
+	 validation. GLIMS allows to group results before sending them to Valab. 
+	 <br /></p>
+            <p>The option <span class="ui_element">Classification</span> allows to select a property classification. 
+	 A <span class="ui_element">group</span> is defined as a property classification node with 
+	 <span class="ui_element">Reportable</span> set to <span class="ui_element">When complete</span>, having child 
+	 nodes for properties. Of course, only properties available in the 
+	 property code set of the Valab validation coding system are considered.</p>
+        </div>
+        <p class="fieldlabel">Mode</p>
+        <div class="indented">
+            <p class="fieldlabel">Translator &#160;</p>
+            <p class="fieldlabel">Coding system &#160;</p>
+            <p class="fieldlabel">Classification
+	 <br /></p>
+            <p class="fieldlabel">Mode</p>
+            <div class="indented">
+                <p class="fieldlabel">Default	&#160; 
+		</p>
+                <ul>
+                    <li class="kadov-p" value="1">This mode is only used for backward compatibility.</li>
+                    <li class="kadov-p" value="2">GLIMS will only send confirmed results 
+			 to the Valab system.</li>
+                    <li class="kadov-p" value="3">Results in GLIMS can be validated after 
+			 validation by the Valab system.</li>
+                    <li class="kadov-p" value="4">Object attributes and specimen variables 
+			 are never sent to the Valab system.</li>
+                    <li class="kadov-p" value="5">Options 'Store validation flag' (by default 
+			 not set) and 'Alternate codes' are ignored.<br />			&#160;</li>
+                </ul>
+                <p class="fieldlabel">Extended		&#160; 
+		</p>
+                <ul>
+                    <li class="kadov-p" value="1">When the Valab - GLIMS connection is used 
+			 in a production environment.</li>
+                    <li class="kadov-p" value="2">Results in GLIMS can be validated after 
+			 validation by the Valab system.</li>
+                    <li class="kadov-p" value="3">GLIMS will send all confirmed and validated 
+			 results of an order to Valab if the order has at least one 
+			 confirmed result (of type A) which was not already rejected 
+			 (or validated) by the Valab system.&#160;The validated results 
+			 of the order are sent along as information for the Valab system.<br />			&#160;</li>
+                </ul>
+                <p class="fieldlabel">Evaluation	&#160; 
+		</p>
+                <ul>
+                    <li class="kadov-p" value="1">When the Valab - GLIMS connection is used 
+			 in a testing environment.</li>
+                    <li class="kadov-p" value="2">Results in GLIMS will NOT be validated 
+			 after validation by the Valab system. This enables the user 
+			 to consult Valab validation flags (raw flags) in GLIMS' Order 
+			 review programme without results having already been validated.</li>
+                    <li class="kadov-p" value="3">Any result that is confirmed or validated 
+			 will be sent to Valab, whether or not the result has already 
+			 been sent to Valab.<br />			&#160;</li>
+                </ul>
+            </div>
+            <p class="fieldlabel">Not confirmed results</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 If set, the minimal result status for sending results to Valab is 
+	 'Available'. If not set, results should have at least the status 'confirmed'.&#160;&#160;This 
+	 parameter only has effect in modes 'Extended' and 'Evaluation', not 
+	 in mode 'Default'.</p>
+            </div>
+            <p class="fieldlabel">Hide issuers</p>
+            <div class="indented">
+                <p class="kadov-p">	 If set, issuers will not be sent to Valab.</p>
+            </div>
+            <p class="fieldlabel">Hide object attributes</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 If set, object attributes will not be sent to Valab.</p>
+            </div>
+            <p class="fieldlabel">Hide specimen variables</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 If set, specimen variables will not be sent to Valab.</p>
+            </div>
+            <p class="fieldlabel">Strict numeric values</p>
+            <div class="indented">
+                <p class="kadov-p">If 
+	 set, results for Valab codes beginning with an 'A' will be sent to 
+	 Valab as strictly numerical. This means that alphanumeric comments 
+	 added to the numeric result will be truncated. If not set, numeric 
+	 values with comment appended will be sent to Valab.</p>
+            </div>
+            <p class="fieldlabel">Expand result values</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 Allows to indicate that result values should be expanded when transmitted 
+	 to the Valab expert system.<br /><br /></p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p xmlns="">When <span class="ui_element">Expand result values</span> is disabled, GLIMS will 
+	 remove the leading '{&lt;' and trailing '}' from the result value 
+	 being transmitted to the Valab expert system.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Store validation 
+	 flag</p>
+            <div class="indented">
+                <p class="kadov-p">Allows to store the validation flag ({&lt;VALAB-V&gt;}) 
+	 in the internal comment of the result when Valab validated it.&#160;&#160;</p>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p class="kadov-p" xmlns="">The validation flag is never stored in 'default' mode.&#160;&#160;This 
+	 option cannot be used in combination with the 'Use raw Valab flags'.</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Allow partial validation</p>
+            <div class="indented">
+                <p class="kadov-p"> 
+	 By default, results will only be marked in GLIMS as 'Validated' when 
+	 both the Valab order validation flag and result validation flag are 
+	 set to 'Y'.&#160;&#160;If the 'Allows partial validation' option is 
+	 set, only the Valab result validation flag will be taken into account.&#160;&#160;This 
+	 implies that individual results of an order can then be validated 
+	 in GLIMS even if the Valab order validation flag is not set to 'Y'.</p>
+            </div>
+            <p class="fieldlabel">Use raw Valab flags </p>
+            <div class="indented">
+                <p class="kadov-p"> If set, GLIMS will store the flags received from the Valab system.&#160;Check 
+	 the chapter <a href="#Using%20Raw%20expert%20system%20flags">Raw expert 
+	 system flags</a> for more information.</p>
+            </div>
+            <p class="fieldlabel">Alternate codes</p>
+            <div class="indented">
+                <p class="kadov-p">This refers 
+	 to an Order-based MISPL expression returning a string.&#160;This 
+	 field allows providing alternate codes to be transmitted to the Valab 
+	 system.<br />Alternate codes can be provided for the order's issuer and ward.&#160;&#160;Pass 
+	 the alternate codes by putting them in a tagged list. The tagged list 
+	 is the return string of the function.</p>
+                <ul>
+                    <li class="kadov-p" value="1">To pass the alternate issuer code, use the tag 
+	 'issuer' as in: CodeList : = PutTag("Issuer", IssuerCode, 
+	 CodeList, "\");</li>
+                    <li class="kadov-p" value="2">To pass the alternate ward code, use the tag 'ward' 
+	 as in: CodeList : = PutTag("Ward", WardCode, CodeList, "\");</li>
+                </ul>
+                <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <ul>
+                        <li class="kadov-p" value="1">Both issuer and ward tags can be put in the same 
+	 tagged list.</li>
+                        <li class="kadov-p" value="2">The list should have the '\' delimiter in order 
+	 to work properly</li>
+                    </ul>
+                </div>
+                <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                    <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>/* returns as alternate issuer code the last 3 characters of the RIZIV 
+ identification code assigned to the issuer */<br />STRING CodeList;<br />STRING IssuerCode;<br />STRING RizivNr;<br />RizivNr := .Issuer.Identification("RIZIV");<br />IssuerCode := Substr(RizivNr, Len(RizivNr) - 2, 3);<br />CodeList := PutTag("Issuer", IssuerCode, CodeList, "\");<br />RETURN CodeList;</p>
+                </div>
+            </div>
+            <p class="fieldlabel">Validator</p>
+            <div class="indented">
+                <p> When specified, the 
+	 results will be marked as validated by the specified user. If not 
+	 specified, the validator is the user who started the Valab validation. 
+	 The validator can typically be used for Valab validations executed 
+	 by a command.</p>
+            </div>
+        </div>
+        <h3>Object and patient data</h3>
+        <p>GLIMS also sends object attributes and specimen variables information 
+ to Valab. The information is only sent if the Valab validation mode in 
+ GlIMS is NOT set to 'Default'.</p>
+        <p class="fieldlabel">Object attributes</p>
+        <div class="indented">
+            <p> 
+	 Only attributes with a history before the current date are sent.&#160;&#160;The 
+	 object attribute mnemonic is sent in a C record to Valab.</p>
+        </div>
+        <p class="fieldlabel">Specimen variables</p>
+        <div class="indented">
+            <p>Only specimen variables for specimens having selected results (for 
+	 sending to Valab) are sent to Valab. The information is sent in a 
+	 C record to Valab in the following format:&#160;&#160;Material variable 
+	 + ':' + Specimen variable choice mnemonic.</p>
+        </div>
+        <p class="fieldlabel">Ward mnemonic </p>
+        <div class="indented">
+            <p>The mnemonic of the order encounter stay ward is transmitted to Valab 
+	 in a O record.</p>
+        </div>
+        <p class="fieldlabel">Order issuer internal id</p>
+        <div class="indented">
+            <p>The order issuer internal Id is transmitted to Valab in a 
+	 O record. This can be disabled by setting the GLIMS Valab parameter 
+	 'Hide Issuers'.</p>
+        </div>
+        <h2><a name="Storing Valab flags"></a>Storing Valab flags</h2>
+        <p>There are two ways to store the Valab flags in GLIMS.&#160;&#160;</p>
+        <ul>
+            <li class="kadov-p" value="1"><a href="#Using%20Raw%20expert%20system%20flags">Using 
+	 the raw expert system flags</a>
+            </li>
+            <li class="kadov-p" value="2"><a href="#Storing%20the%20flags%20in%20the%20result%20internal%20comment">Storing 
+	 the flags in the result internal comment</a>
+            </li>
+        </ul>
+        <h3><a name="Using Raw expert system flags"></a>Using Raw expert system flags</h3>
+        <p>If the parameter <span class="ui_element">Use raw Valab flags</span> is enabled, GLIMS will store 
+ the flags received from the Valab system in GLIMS.&#160;&#160;As the parameter 
+ <span class="ui_element">Use raw Valab flags</span> is passed to the valb translator, the correct version 
+ of the translator is required.&#160;&#160;&#160;In that way, the translator 
+ will know it has to transmit the raw values of the Valab validation flags 
+ to GLIMS.&#160;&#160;Contact MIPS for an up-to-date version of the translator.</p>
+        <h4>Valab flags vs. GLIMS expert flags</h4>
+        <p>The following table shows the relation between the Valab system 'raw' 
+ flags and the GLIMS Expert System flags:</p>
+        <table class="MsoNormalTable" id="table1" style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td colspan="6" style="vertical-align: top;width: 100.0%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span lang="EN-AU" style="font-size: 8.0pt;font-family: Verdana;">Valab/GLIMS 
+		 flags</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="vertical-align: top;width: 50.18%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span lang="EN-AU" style="font-size: 8.0pt;font-family: Verdana;">Valab 
+		 System</span></b>
+                    </p>
+                </td>
+                <td colspan="3" style="vertical-align: top;width: 49.82%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span lang="EN-AU" style="font-size: 8.0pt;font-family: Verdana;">GLIMS</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 21.88%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Field</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Values</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Description</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 26.4%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Field</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Values</span></b>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><b style="font-weight: bold;"><span style="font-size: 8.0pt;font-family: Verdana;">Description</span></b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="3" style="vertical-align: top;width: 21.88%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Report 
+		 validation</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">-</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">-</span>
+                    </p>
+                </td>
+                <td rowspan="3" style="vertical-align: top;width: 26.4%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Order.ExpertSystemFlags</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">?</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">Not treated yet</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">Y</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Report 
+		 validated</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">Blank<br />		*</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Approved<br />		Approved but needs re-evaluation</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">N</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Report 
+		 hold</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">N<br />		*N</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Rejected<br />		Rejected and needs re-evaluation</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="15" style="vertical-align: top;width: 21.88%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Analysis 
+		 validation flag</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">-</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">-</span>
+                    </p>
+                </td>
+                <td rowspan="15" style="vertical-align: top;width: 26.4%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Result.ExpertSystemFlags</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">-</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Not 
+		 treated yet</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">V</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Validated</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">Blank</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Simple 
+		 anteriority</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Upper 
+		 anteriority with negative rule( s)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">a&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Upper 
+		 anteriority without negative rule</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">a&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Lower 
+		 anteriority with negative rules( s)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">A&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">a&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Lower 
+		 anteriority without negative rule</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">a&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Simple 
+		 panic values</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Upper 
+		 panic value</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Lower 
+		 panic value</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">B&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Simple 
+		 correlation</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Upper 
+		 correlation with negative rule( s)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">c&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Upper 
+		 correlation without negative rule</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">c&gt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Lower 
+		 correlation with negative rule( s)</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">C&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;width: 8.26%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">c&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 20.04%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal"><span style="font-size: 8.0pt;font-family: Verdana;">Lower 
+		 correlation without negative rule</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 8.46%;padding: 1.1pt 1.1pt 1.1pt 1.1pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal" style="text-align: center;"><span style="font-size: 8.0pt;font-family: Verdana;">c&lt;</span>
+                    </p>
+                </td>
+                <td style="vertical-align: top;width: 14.96%;padding: .75pt .75pt .75pt .75pt;padding-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;">
+                    <p class="MsoNormal">&#160;</p>
+                </td>
+            </tr>
+        </table>
+        <p class="MsoNormal">Analogous to the result severity and comment fields, 
+ expert system flags are also reset on a result value change. Any new value 
+ should be re-evaluated.&#160;&#160;Also, when a result is being re-used, 
+ the cloned result will NOT inherit the expert system flags of its original. 
+ The original result was evaluated by the expert system in its order context, 
+ which is different for the duplicate.</p>
+        <p>The storage of order expert system flags allows easy detection of orders 
+ which have been treated by Valab (via the order query).&#160;&#160;Possible 
+ values are described in the Valab/GLIMS flags relation table above.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <ol xmlns="">
+                <li class="kadov-p" value="1">When a request for a property within the VALAB 
+	 Property Coding System is added to an order which already had an expert 
+	 system flag, this expert system flags field is marked with the 'needs 
+	 re-evaluation' flag (the asterisk character *).&#160;&#160;The same 
+	 happens when an unsolicited result is added to an order.&#160;&#160;When 
+	 the value of a result which already has an expert system flag is changed, 
+	 the result's expert&#160;&#160;system flag is cleared and the order 
+	 expert system flags are marked with the 'needs re-evaluation' flag.&#160;&#160;The 
+	 goal is to make sure these orders are selected again by the VALAB 
+	 query, which typically does a selection via this order expert system 
+	 flag.<br />	&#160;</li>
+                <li class="kadov-p" value="2">'Pending' results: when transmitting an order to 
+	 Valab, GLIMS will set the '...' value in the expert system flag field 
+	 of the result in case the result is pending. Pending means the result 
+	 was not transmitted to Valab. This can happen for instance when no 
+	 result value was available yet at transmission time. Results are only 
+	 marked as pending when:<br />	&#160;&#160; 
+	<ol><li class="kadov-p" value="1">GLIMS found at least one result that can be 
+		 transmitted</li><li class="kadov-p" value="2">The result property has a Valab code starting 
+		 with 'A'</li><li class="kadov-p" value="3">The Valab mode was set to 'Evaluation' or 'Extended'</li></ol></li>
+            </ol>
+        </div>
+        <h3><a name="Storing the flags in the result internal comment"></a>Storing 
+ the flags in the result internal comment</h3>
+        <p>If the parameter <span class="ui_element">Use raw Valab flags</span> is not set, the Valab 
+ flags can be stored in the result internal comment.&#160;&#160;The 'V' 
+ flag (which indicates that a result has been validated) will only be stored 
+ if the parameter 'Store validation flag' is enabled.&#160;&#160;Valab 
+ also sends flags when a result has NOT been validated.&#160;&#160;In order 
+ to store them in the result internal comment, define texts modules with 
+ mnemonics like:</p>
+        <blockquote>
+            <p>'VALAB' + '-' + Code</p>
+        </blockquote>
+        <p>Where Code corresponds with the flag defined in Valab.</p>
+        <p>Each Valab code is interpreted as one character. A flag consisting of 
+ several characters is split into different GLIMS text mnemonics. Small 
+ letters are distinguished from capital letters by the prefixed character 
+ 'S'.<br /><br />Examples:</p>
+        <table style="height: 91px;border-collapse: separate;border-collapse: separate;" cellspacing="0" width="60%" border="1">
+            <tr>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">Valab code</td>
+                <td style="width: 34%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">GLIMS text mnemonic</td>
+                <td style="width: 47%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">Text Description</td>
+            </tr>
+            <tr>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="9">A</td>
+                <td style="width: 34%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="9">VALAB-A</td>
+                <td style="width: 47%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="9">....</td>
+            </tr>
+            <tr>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">a</td>
+                <td style="width: 34%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">VALAB-SA</td>
+                <td style="width: 47%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">....</td>
+            </tr>
+            <tr>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">&gt;</td>
+                <td style="width: 34%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">VALAB-GT</td>
+                <td style="width: 47%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">....</td>
+            </tr>
+            <tr>
+                <td style="width: 19%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">&lt;</td>
+                <td style="width: 34%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">VALAB-LT</td>
+                <td style="width: 47%;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;" height="13">....</td>
+            </tr>
+        </table>
+        <p>Since GLIMS Valab verifies the result internal comment for Valab flags 
+ to determine if a result has already been sent to Valab, one should manually 
+ remove the Valab flags from the internal comment when modifying the result. 
+ Valab flags have a syntax like {&lt;VALAB-...}.</p>
+        <h2><a name="Logging" id="Logging"></a>Logging</h2>
+        <p class="MsoNormal">The GLIMS-Valab connection adds logging to results 
+ and orders referring to the flags (results) or approval (Rejected/Approved) 
+ received from the Valab expert system.&#160;&#160;The logging will have 
+ the format as in the following examples:</p>
+        <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+            <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p class="MsoNormal" xmlns="">Order log example:<br></br>------------------<br></br>23/07/03 10:49:58 Evaluated by BIO [Valab: 'Rejected']<br></br>23/07/03 10:51:22 Evaluated by BIO [Valab: 'Approved']&#160;</p>
+            <p class="MsoNormal" xmlns="">Result log example:<br></br>-------------------<br></br>23/07/03 10:51:06 Modified by BIO [5]<br></br>23/07/03 10:51:14 Confirmed by BIO<br></br>23/07/03 10:51:22 Ext. evaluated by BIO [Valab: '']<br></br>23/07/03 10:51:21 Ext. validated by BIO&#160;</p>
+            <p class="MsoNormal" xmlns="">Predecessor:<br></br>23/07/03 10:48:30 Modified by BIO [6]<br></br>23/07/03 10:48:39 Confirmed by BIO<br></br>23/07/03 10:49:58 Ext. evaluated by BIO [Valab: 'A&gt;']<br></br>23/07/03 10:51:05 Replaced by BIO [Bad result, replace it]</p>
+            <p class="MsoNormal" xmlns="">The empty flag ('') in the result log on 10:51:22 
+ implies that Valab did not reject the result value and that the result 
+ in GLIMS may be validated. The GLIMS Valab interface must receive an approval 
+ for the whole order in order to validate a result in GLIMS. There is one 
+ exception: if the parameter option 'allow partial validation' in the GLIMS 
+ valab interface is set, single results may be validated in GLIMS, independent 
+ if the order is still not approved by valab.</p>
+            <p xmlns="">The Valab validation program also generates general logging: Start-&gt;System 
+ Management-&gt;Logging-&gt;Log Types-&gt;VALAB</p>
+        </div>
+        <h2><a name="Integration in Order review program"></a>Integration in Order 
+ review program</h2>
+        <p>In order to integrate the Valab validation in the <a href="confirmation_validation_order_review.htm">order 
+ review program</a>, you must identify the external expert system in specific 
+ site (System management &gt; Customize &gt; GLIMS).&#160;&#160;The <span class="ui_element">Expert 
+ system</span> field has three possible values:&#160;&#160;Valab, Other, or ?.&#160;&#160;Specifying 
+ anything different from the unknown value will activate expert system 
+ support in the order review program.&#160;&#160;</p>
+        <p>This implies that an "Expert system flags" column will appear 
+ in the order review program, next to the standard "Flags" column.&#160;&#160;The 
+ column displays the Result.ExpertSystemFlags field, i.e. the result's 
+ appraisal sent by the expert system.&#160;&#160;</p>
+        <p>Moreover, the order review query will allow querying on the appraisal 
+ of an external expert system ('Valab status' field).</p>
+        <h2><a name="Important considerations"></a>Remarks</h2>
+        <ul>
+            <li class="kadov-p" value="1">The validation method of results validated by Valab 
+	 is automatically set to 'external'.</li>
+            <li class="kadov-p" value="2">Dynamic results are sent more than once to Valab, 
+	 since there is only one property (and thus Valab code) for dynamic 
+	 tests.</li>
+            <li class="kadov-p" value="3">It might be necessary to split an order when it 
+	 contains multiple instances of the same property, because GLIMS Valab 
+	 will send them both as the same Valab test.</li>
+        </ul>
+        <h2><a name="Supported software versions"></a>Supported software versions</h2>
+        <p>Valab-Expert 7.01 - Automate 4.00<br />P/N 51001-31 - Rev.01.0 - January 2001</p>
+        <h2><a name="External documentation"></a>External documentation</h2>
+        <ul>
+            <li class="kadov-p" value="1"><a href="valab1.pdf">Connection manual</a> (PDF 
+	 725K)</li>
+            <li class="kadov-p" value="2"><a href="valab2.pdf">User express</a> (PDF 1,2MB)</li>
+        </ul>
+    </body>
+</html>

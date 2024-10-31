@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Order documents" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Generate_document">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Order documents - Create CD</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Order documents - Create CD</h1>
+        <h2>Description</h2>
+        <p>GLIMS allows to scan order forms while creating or updating an order 
+ and store them as images. &#160;For more information, please check the 
+ chapters <a href="orders_documents_twain_scanning.htm">Order/Patient 
+ documents - Twain scanning</a> and <a href="orders_documents_electronic_order_entry.htm">Order 
+ documents - Electronic order entry</a>.</p>
+        <p>In some countries (e.g. French private labs using FSE), it is required 
+ to regularly provide a CD that contains a copy of all originally scanned 
+ order forms. &#160;</p>
+        <p>This chapter describes how GLIMS can prepare this CD.</p>
+        <h2>License</h2>
+        <p>This feature requires a separate license 
+ "CD Financial Export".</p>
+        <h2>Preparing the image CD</h2>
+        <h3>Introduction</h3>
+        <p>To gather all scanned order form images in a directory, the popup function 
+ <span class="ui_element">Prepare FSE prescriptions CD</span> 
+ on a set of <b>financial shipments</b> 
+ must be used. &#160;In GLIMS version 8, this function must be added manually 
+ using the <span class="ui_element">RunProcedure</span> 
+ mechanism.</p>
+        <h3>Select a set of financial shipments</h3>
+        <ol style="list-style-type: decimal;">
+            <li class="p" value="1">
+                <p>Click <span class="ui_element">Start -&gt; Billing -&gt; Financial shipments 
+	 -&gt; Query</span>.</p>
+            </li>
+            <li class="p" value="2">
+                <p>Select a <span class="ui_element">date range (external date)</span>, <span class="ui_element">status range 
+	 (fixed-fixed)</span>.</p>
+            </li>
+            <li class="p" value="3">
+                <p>You can now either create a CD for a single destination 
+	 or use a MISPL filter to create a CD for multiple destinations.&#160;</p>
+                <ol style="list-style-type: decimal;">
+                    <li class="p" value="1">
+                        <p>Example for a single destination<br /><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_fshp_query_cd_single_destination.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="483" data-mc-height="232" src="RN_fshp_query_cd_single_destination_thumb_0_120.png" alt="" tabindex="" /></a>	&#160;</p>
+                    </li>
+                    <li class="p" value="2">
+                        <p>Example for several destinations (e.g. CPAM regime)<br /><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_fshp_query_cd_multiple_destinations.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="469" data-mc-height="227" src="RN_fshp_query_cd_multiple_destinations_thumb_0_120.png" alt="" tabindex="" /></a></p>
+                        <p>MISPL filter example:<br />		&#160;<br />		IF .SendStatus&gt;= SendStatus["Sent"] /* FSE must be 
+		 sent */ AND<br />		&#160;.Destination.Fund().DefaultPolicyName.Code = "01" 
+		 /* CPAM */&#160;&#160;THEN<br />		&#160;&#160;RETURN(YES);<br />		ELSE<br />		&#160;&#160;RETURN (NO);<br />		ENDIF;s<br />		&#160;</p>
+                    </li>
+                    <li value="3">Select all financial shipments and use the contextual menu function 
+		 <span class="ui_element">Prepare FSE prescriptions CD</span>.
+		<p class="fieldlabel"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_fshp_prepare_FSE_prescription_CD.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="498" data-mc-height="124" src="RN_fshp_prepare_FSE_prescription_CD_thumb_0_120.png" alt="" tabindex="" /></a><br /></p><div class="indented"><p class="fieldlabel">Target root directory</p><div class="indented"><p> Root directory in which the image 
+		 copies will stored (see below).</p></div><p class="fieldlabel">		Detail text</p><div class="indented"><p> Text that can be used to determine the context 
+		 of the index file (see below).</p></div></div></li>
+                </ol>
+            </li>
+        </ol>
+        <h3>Storage of image file and index file</h3>
+        <p style="font-weight: bold;">Images</p>
+        <div class="indented">
+            <ol style="list-style-type: decimal;">
+                <li class="p" value="1">
+                    <p>The image copy has the following <span class="ui_element">file name</span>: 
+	 "order internal id" + "original extension" (independent 
+	 of the Order.Image file name). &#160;The order is retrieved as follows: 
+	 Financial shipment -&gt; Invoice summaries -&gt; Invoice -&gt; Order.</p>
+                </li>
+                <li class="p" value="2">
+                    <p>The images are stored in the specified <span class="ui_element">Target 
+	 root directory</span> and are grouped in the following <span class="ui_element">sub-structure</span>:<br /></p>
+                    <div class="indented">
+                        <p>	[Lab nr/] &#160;Destinataire / Year /Month /Day / LotNr<br /></p>
+                        <p>	Lab nr: lab identification code or mnemonic. &#160;If several labs 
+	 (shipment -&gt; firm -&gt; lab) are involved, additional subdirectories 
+	 will be created.&#160;</p>
+                    </div>
+                </li>
+                <li class="p" value="3">
+                    <p>If the destination has more than 2000 orders, a separate 
+	 CD (sub directory and index.htm) is created directory name "LotNo" 
+	 + "_CDn"where n=2".<br /><br />	The <span class="ui_element">maximum number of order images</span> 
+	 and <span class="ui_element">CD size</span> can optionally 
+	 be configured in the lab (of firm) site attributes _FSE_MaxOrdersPerCD 
+	 and _FSE_MaxCDSize (expressed in bytes).</p>
+                </li>
+                <li class="p" value="4">
+                    <p>When the <b>order image</b> 
+	 is missing, this is indicated in the index.html file (see below) 
+	 and a warning is logged (LogType "FSE Prescriptions CD").</p>
+                </li>
+            </ol>
+        </div>
+        <p style="font-weight: bold;">Index file</p>
+        <div class="indented">
+            <p>GLIMS also generates an overview in HTML format with the order details 
+ and links to the images.</p>
+            <ol style="list-style-type: decimal;">
+                <li class="p" value="1">
+                    <p>An index file is generated for <span style="font-weight: bold;">each destination</span>.</p>
+                </li>
+                <li class="p" value="2">
+                    <p>The <span style="font-weight: bold;">order details</span> 
+	 can be customized by specifying a text module (base table "Invoice") 
+	 in the field "Detail text" (see above).<br /></p>
+                    <div class="text_box_examples">
+                        <p><span style="color: #003366; font-weight: bold;">Example of text expression</span>
+                        </p><pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Numéro de lot: {=TRIM(.InvoiceSummary.FinancialTransaction.MostRecentShipment(?, ?, NO).ExternalId, "PX")}
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Numéro de facture: {=TRIM(.DocNo, "PXC") /* remove pyxbio extension */}
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Date d'exécution des actes: {=DateToString(.ExternalDate, "%d/%m/%Y")}
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Bénéficiaire: {=.Order.Object.Externalization }
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Numérod'immatriculationassuré: {=.PaymentAgreement.Matriculation}&#160;&#160;&#160;&#160;&#160;&#160;&#160;</pre>
+                    </div>
+                </li>
+                <li class="p" value="3">
+                    <p>An <span style="font-weight: bold;">HTML preview</span> 
+	 is shown at the end of the process (only if a single CD is created) 
+	 .</p>
+                </li>
+            </ol>
+            <div class="indented">
+                <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_fshp_query_cd_index_file.png" data-mc-popup-alt=""><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="689" data-mc-height="387" src="RN_fshp_query_cd_index_file_thumb_0_120.png" alt="" tabindex="" /></a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

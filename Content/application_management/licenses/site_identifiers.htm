@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Application management|Licenses" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Site_identifiers">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Site identifiers</title>
+        <style>li.MsoNormal
+{
+	margin-bottom: .0001pt;
+	font-size: 10.0pt;
+	font-family: "Times New Roman";
+	margin-left: 0pt;
+	margin-right: 0pt;
+	margin-top: 0pt;
+}
+
+</style>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor672"></a>
+            <MadCap:concept term="System management;Application management" />Site identifiers</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#COMPAQ_TRU_64">
+COMPAQ TRU 64</a> - <a href="#LINUX">LINUX</a> - <a href="#WINDOWS_32">WINDOWS 
+32</a> - <a href="#AIX_">AIX</a> - <a href="#SUN_SOLARIS,_HP-UX">SUN SOLARIS, 
+HP-UX</a> - <a href="#UNIXWARE">UNIXWARE</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>The <a href="licenses.htm">license checks</a> in GLIMS are based on the 
+ unique system identifier (Server Identifier). When 
+ this system identifier changes, you may need new license keys ! This document 
+ describes how this unique system identifier is obtained for the different 
+ operating systems. </p>
+        <h2><a name="COMPAQ_TRU_64"></a>COMPAQ TRU 64</h2>
+        <p>Network card Mac Address (DLPI, first 
+ card returned by OS). Changing, removing, adding or switching network 
+ cards may cause the server identifier to change</p>
+        <h2><a name="LINUX"></a>LINUX</h2>
+        <p>Network card Mac Address (SYS, first 
+ card returned by OS). Changing, removing, adding or switching network 
+ cards may cause the server identifier to change</p>
+        <h2><a name="WINDOWS_32"></a>WINDOWS 32</h2>
+        <p>Network card Mac address (MacAddress.dll 
+ ; card for which license already exists taken with priority)</p>
+        <h2><a name="AIX_"></a>AIX </h2>
+        <p>uname.machine : a unique identifier supplied 
+ by the vendor. No 2 ibm machines will return the same value. </p>
+        <blockquote><pre>The machine ID number contains 12 characters in the following digit format:
+xxyyyyyymmss. The xx positions indicate the system and is always 00. The yyyyyy
+positions contain the unique ID number for the entire system. The mm position
+represents the model ID. The ss position is the submodel number and is always
+00. The model ID describes the ID of the CPU Planar, not the model of the System
+as a whole.
+(…)</pre>
+        </blockquote>
+        <p><b>IMPORTANT:</b>
+        </p>
+        <p>The machine identifier value returned by the uname command may change 
+ when new operating system software levels are installed. This change affects 
+ applications using this value to access licensed programs. To view this identifier, 
+ enter the uname -m command.
+Installing new os-levels on AIX may cause the server identifier to change.</p>
+        <h2><a name="SUN_SOLARIS,_HP-UX"></a>SUN SOLARIS, HP-UX</h2>
+        <p>The value returned by 
+ hostid; very likely to be a CPU serial number. <br />	On hp-ux “hostid” is the value shown by “uname –i” ; <br />	“man hostid” on solaris returns:</p>
+        <blockquote><pre>DESCRIPTION
+     The hostid  command prints the  identifier  of  the  current
+     host  in hexadecimal. This numeric value is likely to differ
+     when hostid  is run on a different machine.</pre><pre><a href="http://blogs.sun.com/ambiguous/20050620">http://blogs.sun.com/ambiguous/20050620</a></pre>
+        </blockquote>
+        <p>gethostid() on solaris returns the same value; “man gethostid” says:</p>
+        <blockquote><pre>DESCRIPTION
+     The gethostid() function returns the 32-bit  identifier  for
+     the  current  host, which should be unique across all hosts.
+     This number is usually taken from the CPU board's ID PROM.</pre>
+        </blockquote>
+        <p>Changing, adding, switching or removing the CPU board is likely to cause 
+ the
+server identifier to change.</p>
+        <h2><a name="UNIXWARE"></a>UNIXWARE</h2>
+        <p>hostid (unixware/sco unix will become 
+ obsolete).</p>
+    </body>
+</html>

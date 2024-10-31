@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Communication|Analyzer connections">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Download specimen label info</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Download specimen label info</h1>
+        <h2>Introduction</h2>
+        <p>Glims is capable of downloading specimen label information to a station. The label definition should return a tagged list of label lines: line1, line2, ..., line10, ... The tag list delimiter is a '\' (backslash).</p>
+        <p>One could define 2 label definitions in one label text: one for printing via Glims and one for the transmission to the station. The choice of the definition could be based on the current user (for instance the service batch user for the station label info).</p>
+        <h2>Remarks</h2>
+        <ul>
+            <li class="kadov-p" value="1">For each specimen that Glims will download to a station, only "own labels" are considered, "Sub labels" are ignored.&#160;&#160;Glims downloads only one label per specimen, even if printing would generate more than one label.&#160;&#160;<br />
+&#160;&#160;</li>
+            <li class="kadov-p" value="2">Although the first remark states that sub labels are ignored, Glims could download label information of a sub specimen if the station is querying for sub specimens. Glims will then act as if the 'own labels' of the sub specimen are printed.<br />
+&#160;</li>
+            <li class="kadov-p" value="3">Glims will not mark the specimens (or specimen inputs) that labels have been printed when label information is gathered for a station.</li>
+        </ul>
+        <h2>Practical example</h2><pre>
+----
+{:
+STRING Label;
+STRING UserName;
+</pre><pre>
+UserName := CurrentUser();
+</pre><pre>
+IF UserName = "ServiceBatch1"
+THEN
+  Label := PutTag("line1", "Primary tube", Label, "\");
+  Label := PutTag("line2", .Object.Externalization, Label, "\");
+  Label := PutTag("line3", .InternalId, Label, "\");
+ELSE
+  /* Print labels via label printer in Glims
+  ...
+  ...
+  */
+ENDIF;
+</pre><pre>
+RETURN Label;
+}
+---
+</pre>
+        <h2>MIPS ASTM protocol</h2>
+        <h4>Syntax</h4>
+        <p>The information is downloaded in M-segments following the O-segment (O-segment contains the specimen), one M-segment per line:</p>
+        <blockquote>
+            <p>M.3.1.1 = 'SLBL'<br />
+M.3.1.2 = 'SampleLabel'<br />
+M.4.1.1 = the line count<br />
+M.5.1.1 = the line data</p>
+        </blockquote>
+        <p>The label information is sent if the query specific tag 'LabelInfo' is sent in Q.15.n.1 of the ASTM Query message</p>
+        <h4>Example</h4>
+        <p>Example message of 1 primary sample with label info and 1 related secondary sample with label info:</p><pre>
+H|\^&amp;||||||||||P|1
+P|1||19620401REBC02||REBELO PINTO^CLEMENCE MARIE EMMA||19620401|F||59114 RUE GAMBETTA|||||||||||||||E1^1234
+O|1|070423-0000504||^^^P1_D1\^^^P2_D1\^^^P1_D2\^^^P2_D2\^^^P1_D3\^^^P2_D3\^^^P1_D4^^^^^^PTT\^^^P2_D4^^^^^^PTT|R|20070423123800|20070423123800||||N||||091|||20070423-00005|||||||Q|^PT
+M|1|slbl^SampleLabel|1|Rel_Distributor_Mat_Label
+M|2|slbl^SampleLabel|2|REBELO PINTO, CLEMENCE MARIE EMMA (F), 01/04/1962
+M|3|slbl^SampleLabel|3|070423-0000504
+O|2|070423-0000501||^^^P1_D1\^^^P2_D1|R|20070423123800|20070423123800||||N||||091|||20070423-00005||||||^RDIS|Q|^ST
+M|1|slbl^SampleLabel|1|Release_Analyzer_D1_Mat_Lbl
+M|2|slbl^SampleLabel|2|REBELO PINTO, CLEMENCE MARIE EMMA (F), 01/04/1962
+M|3|slbl^SampleLabel|3|070423-0000501
+O|3|070423-0000502||^^^P1_D2\^^^P2_D2|R|20070423123800|20070423123800||||N|||||||20070423-00005||||||^RDIS|Q|^ST
+O|4|070423-0000503||^^^P1_D3\^^^P2_D3|R|20070423123800|20070423123800||||N|||||||20070423-00005||||||^RDIS|Q|^ST
+L|1|F
+</pre>
+    </body>
+</html>

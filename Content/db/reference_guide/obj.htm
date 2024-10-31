@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - Object</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4136"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+Object&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Object</td>
+                <td>
+obj</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+The term 'Object' is used in GLIMS as a common denominator for everything the laboratory assesses properties of. Typical objects for clinical laboratories are patients. Types of objects include animals, persons, lots, QC lots or unknown objects.</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_Comment"></a>
+        <h3>
+Comment</h3>
+        <div class="MemberHelp">
+            <p>
+This field contains object comment, and is for instance used to store patient clinical remarks.
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Comment</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_ExternalInfoAvailable"></a>
+        <h3>
+External info available</h3>
+        <div class="MemberHelp">
+            <p>
+Indicates whether any information is available in the External Information System which has been indicated in the 'Specific Site' settings.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory </span><span class="Type">Logical</span>&#160;<b>ExternalInfoAvailable</b></p>
+        </div><a name="F_Externalization"></a>
+        <h3>
+Externalization</h3>
+        <div class="MemberHelp">
+            <p>
+Copied from the sub-type externalization field (person, lot, QC lot, animal).</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>Externalization</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">Object</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_InternalId"></a>
+        <h3>
+Internal id</h3>
+        <div class="MemberHelp">
+            <p>
+The internal id has a format which is determined by SpecificSite.ObjectInternalId
+<br /><br />Note that this ID does not provide a unique identification when used for communication with external applications. We are are currently working on a solution for this issue.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type">String</span>&#160;<b>InternalId</b></p>
+        </div><a name="F_LastArchiveTime"></a>
+        <h3>
+Last archive</h3>
+        <div class="MemberHelp">
+            <p>
+Date and time the last order of this object was sent to the archives.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastArchiveTime</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_ObjectTemplate"></a>
+        <h3>
+Template</h3>
+        <div class="MemberHelp">
+            <p>
+Object template</p>
+            <p class="Synopsis"><span class="Type"><a href="objt.htm">ObjectTemplate</a></span>&#160;<b>ObjectTemplate</b></p>
+        </div><a name="F_Type"></a>
+        <h3>
+Type</h3>
+        <div class="MemberHelp">
+            <p>
+Kind of object</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<b>Type</b></p>
+            <p>
+One of: <span class="Parameter">Animal, Lot, Person, Unknown, QC lot</span></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_Actions"></a>
+        <h3>
+Actions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Actions</b> ()</p>
+        </div><a name="M_MicrobiologyActions"></a>
+        <h3>
+Actions&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyActions</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_BloodBagAdminister"></a>
+        <h3>
+Administer blood bags&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BloodBagAdminister</b> ()</p>
+        </div><a name="M_AsAnimal"></a>
+        <h3>
+Animal&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsAnimal</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_PersonAntigensAntibodies"></a>
+        <h3>
+Antigens-antibodies of person&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PersonAntigensAntibodies</b> ()</p>
+        </div><a name="M_ArchivedOrders"></a>
+        <h3>
+Archived orders&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Show a list of archived orders.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ArchivedOrders</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AssignInternalId"></a>
+        <h3>
+Assign internal id&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>AssignInternalId</b> ()</p>
+        </div><a name="M_AttributeHistory"></a>
+        <h3>
+Attribute history&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AttributeHistory</b> ()</p>
+        </div><a name="M_TransfusionBloodBagSelections"></a>
+        <h3>
+Blood bag selections&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>TransfusionBloodBagSelections</b> ()</p>
+        </div><a name="M_Diagnoses"></a>
+        <h3>
+Browse&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Diagnoses</b> ()</p>
+        </div><a name="M_BrowseResults"></a>
+        <h3>
+Browse results&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BrowseResults</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_IsolationseriesOfObjectByFirstSamplingTime"></a>
+        <h3>
+By First detection&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>IsolationseriesOfObjectByFirstSamplingTime</b> ()</p>
+        </div><a name="M_MicrobiologyIsolations"></a>
+        <h3>
+By Sampled&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyIsolations</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_Specimens"></a>
+        <h3>
+By Sampling time&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Specimens</b> ()</p>
+        </div><a name="M_BloodBagFetch"></a>
+        <h3>
+Checkout blood bags&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BloodBagFetch</b> ()</p>
+        </div><a name="M_ObjectConsults"></a>
+        <h3>
+Consults</h3>
+        <div class="MemberHelp">
+            <p>
+Show all consults for this object</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ObjectConsults</b> ()</p>
+        </div><a name="M_DataSheet"></a>
+        <h3>
+Data sheet&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DataSheet</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">TextMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">TextMnemonic</span></dt>
+                <dd>
+This is the mnemonic of the text module that will be used to construct the information on the data sheet. The default value is 'DataView'.</dd>
+            </dl>
+        </div><a name="M_GeneticExams"></a>
+        <h3>
+Genetic exams&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>GeneticExams</b> ()</p>
+        </div><a name="M_HistoryGraph"></a>
+        <h3>
+History graph&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+History graph produces a view expander (automatically synchronized with browser), containing a graph and a property spinner. Use the property spinner to determine which property is graphed. Color coding is used to show reference ranges (background), delta check violations (lines) and QC violations (dots).</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>HistoryGraph</b> (<span class="Type">String</span>&#160;<span class="Parameter">PropertyList</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">LogScale</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">ReferenceLine1Value</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReferenceLine1Label</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">ReferenceLine2Value</span>, <span class="Type">String</span>&#160;<span class="Parameter">ReferenceLine2Label</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinYValue</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaxYValue</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PropertyList</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">LogScale</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">ReferenceLine1Value</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReferenceLine1Label</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">ReferenceLine2Value</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ReferenceLine2Label</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinYValue</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaxYValue</span></dt>
+            </dl>
+        </div><a name="M_HTMLHistoryGraph"></a>
+        <h3>
+HTML History graph&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+HTML History graph produces a html document, containing a graph and a result table for one or several properties for the same object.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>HTMLHistoryGraph</b> (<span class="Type">Date</span>&#160;<span class="Parameter">MinDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">MaxDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">PropertyList</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">LogScale</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">RefLine1Value</span>, <span class="Type">String</span>&#160;<span class="Parameter">RefLine1Label</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">RefLine2Value</span>, <span class="Type">String</span>&#160;<span class="Parameter">RefLine2Label</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MinYValue</span>, <span class="Type">Fractional</span>&#160;<span class="Parameter">MaxYValue</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">MinDate</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">MaxDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PropertyList</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">LogScale</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">Printer</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">RefLine1Value</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RefLine1Label</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">RefLine2Value</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RefLine2Label</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MinYValue</span></dt>
+                <dt><span class="Type">Fractional</span>&#160;<span class="Parameter">MaxYValue</span></dt>
+            </dl>
+        </div><a name="M_Invoices"></a>
+        <h3>
+Invoices of object&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Invoices</b> ()</p>
+        </div><a name="M_MicrobiologyIsolationSeries"></a>
+        <h3>
+Isolation series'&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>MicrobiologyIsolationSeries</b> ()</p>
+        </div><a name="M_LocusResults"></a>
+        <h3>
+Locus results&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>LocusResults</b> ()</p>
+        </div><a name="M_AsLot"></a>
+        <h3>
+Lot&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsLot</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AsPerson"></a>
+        <h3>
+Object&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsPerson</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_Orders"></a>
+        <h3>
+Orders&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Orders</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_DiagnosisOutline"></a>
+        <h3>
+Outline&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>DiagnosisOutline</b> ()</p>
+        </div><a name="M_PathologyExaminations"></a>
+        <h3>
+Pathology examinations&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PathologyExaminations</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_PersonMedicalRecord"></a>
+        <h3>
+Person medical record&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PersonMedicalRecord</b> ()</p>
+        </div><a name="M_PhoneLog"></a>
+        <h3>
+Phone log&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>PhoneLog</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_AsQCLot"></a>
+        <h3>
+QC lot&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsQCLot</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_ReEvaluateResults"></a>
+        <h3>
+Re-evaluate results&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>ReEvaluateResults</b> ()</p>
+        </div><a name="M_RegisterConsult"></a>
+        <h3>
+Register consult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function allows registering a consult order for the object. A consult request indicates that a lab biologist has conferred with the patient's health care provider.  </p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>RegisterConsult</b> (<span class="Type"><a href="cnst.htm">ConsultType</a></span>&#160;<span class="Parameter">ConsultType</span>, <span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Target</span>, <span class="Type"><a href="symbolicconsulttarget.htm">SymbolicConsultTarget</a></span>&#160;<span class="Parameter">SymbolicTarget</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="cnst.htm">ConsultType</a></span>&#160;<span class="Parameter">ConsultType</span></dt>
+                <dt><span class="Type"><a href="crsp.htm">Correspondent</a></span>&#160;<span class="Parameter">Target</span></dt>
+                <dt><span class="Type"><a href="symbolicconsulttarget.htm">SymbolicConsultTarget</a></span>&#160;<span class="Parameter">SymbolicTarget</span></dt>
+                <dd>
+One of: <span class="Parameter">Issuer, Patient, Agent, Specific</span><br /></dd>
+            </dl>
+        </div><a name="M_ReportGroups"></a>
+        <h3>
+Report groups&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReportGroups</b> ()</p>
+        </div><a name="M_Reports"></a>
+        <h3>
+Reports&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Reports</b> ()</p>
+        </div><a name="M_ResultOverview"></a>
+        <h3>
+Result overview&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ResultOverview</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_ShowExternalInfo"></a>
+        <h3>
+Show External Info&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Show the information available in the external info system.</p>
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ShowExternalInfo</b> (<span class="Type">String</span>&#160;<span class="Parameter">Param1</span>, <span class="Type">String</span>&#160;<span class="Parameter">Param2</span>, <span class="Type">String</span>&#160;<span class="Parameter">Param3</span>, <span class="Type">String</span>&#160;<span class="Parameter">Param4</span>, <span class="Type">String</span>&#160;<span class="Parameter">Param5</span>, <span class="Type">String</span>&#160;<span class="Parameter">Param6</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param1</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param2</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param3</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param4</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param5</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Param6</span></dt>
+            </dl>
+        </div><a name="M_CarrierStoragesOfSpecimensOfObject"></a>
+        <h3>
+Stored carriers&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CarrierStoragesOfSpecimensOfObject</b> ()</p>
+        </div><a name="M_StoredIsolationsOfObject"></a>
+        <h3>
+Stored isolations&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StoredIsolationsOfObject</b> ()</p>
+        </div><a name="M_SpecimenStoragesOfSpecimensOfObject"></a>
+        <h3>
+Stored specimens&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>SpecimenStoragesOfSpecimensOfObject</b> ()</p>
+        </div><a name="M_Studies"></a>
+        <h3>
+Studies where this object is focused&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Studies</b> ()</p>
+        </div><a name="M_StudiesStudies"></a>
+        <h3>
+Studies where this object was involved&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>StudiesStudies</b> ()</p>
+        </div><a name="M_ObjectTemplate"></a>
+        <h3>
+Template&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ObjectTemplate</b> ()</p>
+        </div><a name="M_AsUnknownObject"></a>
+        <h3>
+Unknown object&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>AsUnknownObject</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="M_VariantResults"></a>
+        <h3>
+Variant results&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>VariantResults</b> ()</p>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_Age"></a>
+        <h3>
+Age&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's age as a string. The output format varies depending on the age itself. <br />Note: if the person is deceased (Person.DeceaseTime &lt;&gt; ?) and ReferenceDate &gt; Person.DeceaseTime, then the Person.DeceaseTime will be used as ReferenceDate.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>Age</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+            </dl>
+        </div><a name="M_AgeInDays"></a>
+        <h3>
+AgeInDays&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's age in days. Although the return data type is fractional, the returned value will always be rounded to an integer.<br />Note: if the person is deceased (Person.DeceaseTime &lt;&gt; ?) and ReferenceDate &gt; Person.DeceaseTime, then the Person.DeceaseTime will be used as ReferenceDate.</p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>AgeInDays</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+            </dl>
+        </div><a name="M_AgeInMonths"></a>
+        <h3>
+AgeInMonths&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's age in months. The number of days remaining in the last incomplete month is divided by 30.5.<br />Note: if the person is deceased (Person.DeceaseTime &lt;&gt; ?) and ReferenceDate &gt; Person.DeceaseTime, then the Person.DeceaseTime will be used as ReferenceDate.</p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>AgeInMonths</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+            </dl>
+        </div><a name="M_AgeInYears"></a>
+        <h3>
+AgeInYears&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's age in years. The number of days remaining in the last incomplete year is divided by 365.25.<br />Note: if the person is deceased (Person.DeceaseTime &lt;&gt; ?) and ReferenceDate &gt; Person.DeceaseTime, then the Person.DeceaseTime will be used as ReferenceDate.</p>
+            <p class="Synopsis"><span class="Type">Fractional</span>&#160;<b>AgeInYears</b> (<span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+            </dl>
+        </div><a name="M_Animal"></a>
+        <h3>
+Animal&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="anml.htm">Animal</a></span>&#160;<b>Animal</b> ()</p>
+        </div><a name="M_AttributeList"></a>
+        <h3>
+AttributeList&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a delimited list of object attributes active on the specified reference time. The attribute mnemonics or names are followed by an indication of how long the attribute is active.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>AttributeList</b> (<span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span>, <span class="Type">String</span>&#160;<span class="Parameter">FlagList</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">FlagsOnly</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">UseMnemonics</span>, <span class="Type">String</span>&#160;<span class="Parameter">Delimiter</span>)</p>
+            <dl>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span></dt>
+                <dd>
+The date and time on which the attribute must be active. If not specified, the current date is used. </dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FlagList</span></dt>
+                <dd>
+An optional comma-separted list of object attribute flags.
+<br />When specified, the object attributes must have a flag in this list before they are selected.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dd>
+An optional minimal severity.
+<br />When specified, the object attributes must have a flag severity equal to or higher than this severity before they are selected.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">FlagsOnly</span></dt>
+                <dd>
+If set, then only a list of object attribute flags will be returned, without period indication</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">UseMnemonics</span></dt>
+                <dd>
+If set, the attributes will be shown via their mnemonic.
+<br />If not set, the attribute names (or mnemonics when empty) will be used</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Delimiter</span></dt>
+                <dd>
+An optional delimiter which will be used when FlagsOnly is not set. The default delimiter is a command followed by a space.</dd>
+            </dl>
+        </div><a name="M_AttributePeriod"></a>
+        <h3>
+AttributePeriod&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns the number of days the attribute is/was applicable for the specified object, at the specified reference date.<br />If no date is specified, the current date (today) is assumed.<br />If there is no attribute in the object's history that matches the specified date, 0 is returned.<br />If the attribute is not defined in the configuration, or if it is shielded, then an error will appear.<br />Example:<br /> IF .AttributePeriod("Pregnancy", Today()) &gt; 21<br /> THEN .Person().SendMail("Congratulations");</p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>AttributePeriod</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+            </dl>
+        </div><a name="M_BirthDate"></a>
+        <h3>
+BirthDate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's birth date, regardless whether it is a person, animal, or unknown object with preliminary type 'person' or 'animal'. For objects of other types, a value of "?" is returned.</p>
+            <p class="Synopsis"><span class="Type">Date</span>&#160;<b>BirthDate</b> ()</p>
+        </div><a name="M_BloodSelectionByNumber"></a>
+        <h3>
+BloodSelectionByNumber&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="bsel.htm">BloodSelection</a></span>&#160;<b>BloodSelectionByNumber</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">ProductMnemonic</span>, <span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Number</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">ProductMnemonic</span></dt>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Number</span></dt>
+            </dl>
+        </div><a name="M_BuildHistoryGraph"></a>
+        <h3>
+BuildHistoryGraph&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function generates a history graph of previous results of the current object in XML format. This XML string can be used to show history graphs on word reports.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>BuildHistoryGraph</b> (<span class="Type">String</span>&#160;<span class="Parameter">TaggedParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TaggedParameterList</span></dt>
+                <dd>
+The parameters for this function have to be put into a tagged parameter list. They are:
+<br /><br />Property: list of property mnemonics
+<br />StartDate: starting date for the history graph
+<br />TimeInterval (in days): number of days to go back, starting from StartDate
+<br />MaxResults: Maximum number of historical results
+<br />MinResults: Minimum number of historical results. Default is "2"
+<br />ShowNorms: Yes/No
+<br />ShowLegend: Yes/No
+<br />ShowLabels: Yes/No
+<br />ShowTitle: Yes/No
+<br />Smoothed: Yes/No
+<br />EquidistantPoints: Yes/No. If set to YES, each data point has its own label and each label corresponds to a data point. &#160;The distance between the labels will be equal regardless of the interval between the dates.
+<br />Width: percentage of the available width
+<br />Height: percentage of the available height
+<br />MinValue (of the Y-axis)
+<br />MaxValue (of the Y-axis)
+<br />LogScale: Yes/No. Aapply logarithmic scaling or not
+<br />Refline1Value, Refline1Label, Refline2Value, Refline2Label: allows to draw two reference lines on the graph.&#160;&#160;Specify a label and a value.
+<br />AddTable (shows all graph data in a table below the actual graph).</dd>
+            </dl>
+        </div><a name="M_CheckDiagnosisCodeCompatibility"></a>
+        <h3>
+CheckDiagnosisCodeCompatibility&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Checks if the specified diagnosis code is compatible (german KBV attributes Sex, Age, ...) with the object.
+<br />returns empty string when oke else an error text.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>CheckDiagnosisCodeCompatibility</b> (<span class="Type"><a href="dgc.htm">DiagnosisCode</a></span>&#160;<span class="Parameter">DiagnosisCode</span>, <span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">MustbeBillable</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="dgc.htm">DiagnosisCode</a></span>&#160;<span class="Parameter">DiagnosisCode</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">ReferenceDate</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">MustbeBillable</span></dt>
+            </dl>
+        </div><a name="M_ClearAttribute"></a>
+        <h3>
+ClearAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function does not actually clear the object attribute but allows specifying an end date (second parameter).</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>ClearAttribute</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span></dt>
+            </dl>
+        </div><a name="M_DeclaredType"></a>
+        <h3>
+DeclaredType&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+For "UnknownObject", this function will return the value as stored in uobj_PreliminaryType.
+<br />For regular object records, this function returns the value stored in Object.Type.
+<br />A value of {&amp;ObjectTypeUnknown} is never returned. For unknown object records with an unspecified value preliminary type, "?" is returned.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type"><a href="objecttype.htm">ObjectType</a></span>&#160;<b>DeclaredType</b> ()</p>
+            <p>
+One of: <span class="Parameter">Animal, Lot, Person, Unknown, QC lot</span></p>
+        </div><a name="M_DeleteAttribute"></a>
+        <h3>
+DeleteAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function should be used with extreme care as it actually deletes the object attribute !!
+<br />This function deletes any attribute history for a given object attribute that was active on the specified "EndDate".
+<br />It treats the "EndDate" as an inclusive boundary (meaning any attributes that STARTED or ENDED exactly on the specified date are also deleted)
+<br /><br />Use the MISPL function .ClearAttribute() if you want to just specify an end date without deleting the attribute.
+<br /><br /></p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>DeleteAttribute</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span></dt>
+            </dl>
+        </div><a name="M_FindMostRecentBilledBillingCode"></a>
+        <h3>
+FindMostRecentBilledBillingCode&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method returns the billing item record that corresponds whit the most recent time that the specified billing code was billed for this object. </p>
+            <p class="Synopsis"><span class="Type"><a href="bit.htm">BillingItem</a></span>&#160;<b>FindMostRecentBilledBillingCode</b> (<span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span>, <span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span></dt>
+                <dd>
+The code of the billing code that must be located. </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span></dt>
+                <dd>
+Start date of the period in which the billing code must be located.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span></dt>
+                <dd>
+End date of the period in which the billing code must be located.</dd>
+            </dl>
+        </div><a name="M_GetBloodBag"></a>
+        <h3>
+GetBloodBag&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Blood transfusion history is information about blood bags formerly transfused to the patient. This information can for instance be added to the 'datasheet'. The previous transfusions are important while processing the request of the irregular screening. 
+<br /><br />This method fetches the current blood bag associated to the object. At success, the record id of the current blood bag is returned. Else, unknown. Remark: this method should be used in combination with blood bag fields in order to get blood bag-related information.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="bbag.htm">BloodBag</a></span>&#160;<b>GetBloodBag</b> (<span class="Type">String</span>&#160;<span class="Parameter">BloodProductMnemonic</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">HistoryIndex</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">MinimalBackwardsTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">MaximalBackwardsTime</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BloodProductMnemonic</span></dt>
+                <dd>
+Mnemonic of blood product. Mandatory</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">HistoryIndex</span></dt>
+                <dd>
+Mandatory. Number of blood bags to skip. If equal to 0, the administer time is the minimal-reference-time, as defined in the MinimalBackwardsTime. </dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">MinimalBackwardsTime</span></dt>
+                <dd>
+Reference time defining the start time of the search backwards in time. If unknown, start time is current time.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">MaximalBackwardsTime</span></dt>
+                <dd>
+Reference time defining the end time of the search backwards in time. If unknown, end time is unlimited.  </dd>
+            </dl>
+        </div><a name="M_GetCheckedOutBag"></a>
+        <h3>
+GetCheckedOutBag&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+After some time you might be interested in the blood bags checked out but not administered yet. This information can for instance be added to the 'datasheet'. The previous checked out blood bags can be important while processing the request of the irregular screening. 
+<br /><br />This method fetches the current blood bag associated to the object. At success, the record id of the current blood bag is returned. Else, unknown. Remark: this method should be used in combination with blood bag fields in order to get blood bag-related information.
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="bbag.htm">BloodBag</a></span>&#160;<b>GetCheckedOutBag</b> (<span class="Type">String</span>&#160;<span class="Parameter">BloodProductMnemonic</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">HistoryIndex</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">MinimalBackwardsTime</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">MaximalBackwardsTime</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BloodProductMnemonic</span></dt>
+                <dd>
+Mnemonic of blood product. Mandatory.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">HistoryIndex</span></dt>
+                <dd>
+Mandatory. Number of blood bags to skip. If equal to 0, the administer time is the minimal-reference-time, as defined in the MinimalBackwardsTime.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">MinimalBackwardsTime</span></dt>
+                <dd>
+Reference time defining the start time of the search backwards in time. If unknown, start time is current time.  </dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">MaximalBackwardsTime</span></dt>
+                <dd>
+Reference time defining the end time of the search backwards in time. If unknown, end time is unlimited. </dd>
+            </dl>
+        </div><a name="M_GetData"></a>
+        <h3>
+GetData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a comma-separated list of the requested object attributes.
+<br /></p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>GetData</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span></dt>
+                <dd>
+Attribute list. Supported values are "BirthDate" "Sex", and for person objects all attributes of Object.PersonData()</dd>
+            </dl>
+        </div><a name="M_GetDiagnosis"></a>
+        <h3>
+GetDiagnosis&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Gets the next diagnosis referring to the current object. The most recent diagnosis is returned first. </p>
+            <p class="Synopsis"><span class="Type"><a href="diag.htm">Diagnosis</a></span>&#160;<b>GetDiagnosis</b> (<span class="Type"><a href="diag.htm">Diagnosis</a></span>&#160;<span class="Parameter">Previous</span>, <span class="Type">String</span>&#160;<span class="Parameter">Code</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="diag.htm">Diagnosis</a></span>&#160;<span class="Parameter">Previous</span></dt>
+                <dd>
+Previous diagnosis that was fetched. When unknown, the most recent one will be returned. Use this parameter to loop through all log entries.
+<br /><br />Diagnosis Current;
+<br /><br />Current := GetDiagnosis(?, ?);
+<br />WHILE Current &lt;&gt; ?
+<br />DO
+<br />    /* Processing code */
+<br />    Current := GetDiagnosis(Current, ?);
+<br />DONE;</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Code</span></dt>
+                <dd>
+If specified, only diagnoses with this code are considered</dd>
+            </dl>
+        </div><a name="M_GetLastBillingItemByReceiptDate"></a>
+        <h3>
+GetLastBillingItemByReceiptDate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method returns the billing item record that corresponds with the most recent (tariffication time=invoice external date) date that the specified billing code was billed for this object and within the given receipt date range.</p>
+            <p class="Synopsis"><span class="Type"><a href="bit.htm">BillingItem</a></span>&#160;<b>GetLastBillingItemByReceiptDate</b> (<span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span>, <span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span></dt>
+                <dd>
+Start of receipt date range.</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span></dt>
+                <dd>
+End of receipt date range.</dd>
+            </dl>
+        </div><a name="M_GetLocusResult"></a>
+        <h3>
+GetLocusResult</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a reference to a specific locus result of the order</p>
+            <p class="Synopsis"><span class="Type"><a href="lcsr.htm">LocusResult</a></span>&#160;<b>GetLocusResult</b> (<span class="Type">String</span>&#160;<span class="Parameter">LocusName</span>, <span class="Type"><a href="locusresultstatus.htm">LocusResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">Index</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">LocusName</span></dt>
+                <dd>
+Only LocusResults will be selected where LocusResult.Locus.Name = LocusName if &lt;&gt; ?, otherwise the LocusName is not taken into account</dd>
+                <dt><span class="Type"><a href="locusresultstatus.htm">LocusResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Expected, Available, Confirmed, Validated, Discontinued</span><br />Only LocusResults will be selected where LocusResult.Status is at least this status; if not specified, LocusResultStatus["Expected"] is assumed. Previously this was LocusResultStatus["Validated"]. This means that users that depend on the old behavior by specifying ? must explicitly state LocusResultStatus["Validated"] in their current MISPL.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dd>
+Only LocusResults will be selected where LocusResult.Severity &gt;= minimal Severity</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+This is the only mandatory parameter which must be &lt;&gt; 0. This is a loop counter variable: <br />- when 1, the first locus result is returned (in sequence of field availability time)<br />- when 2, second result etc <br />- ... until the return value becomes unknown.<br />- when -1, the last locus result is returned (in sequence of field availability time)<br />- when -2, the one but last result is returned etc <br />- ... until the return value becomes unknown.</dd>
+            </dl>
+        </div><a name="M_GetPhoneLog"></a>
+        <h3>
+GetPhoneLog&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+The Object.GetPhoneLog MISPL function allows to retrieve the phone log records of an object. </p>
+            <p class="Synopsis"><span class="Type"><a href="phlg.htm">PhoneLog</a></span>&#160;<b>GetPhoneLog</b> (<span class="Type"><a href="phlg.htm">PhoneLog</a></span>&#160;<span class="Parameter">Previous</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Phoned</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="phlg.htm">PhoneLog</a></span>&#160;<span class="Parameter">Previous</span></dt>
+                <dd>
+Previous phone log that was fetched. When unknown, the most recent one will be returned. Use this parameter to loop through all log entries:
+<br /><br />PhoneLog CurrentLog;
+<br /><br />CurrentLog := GetPhoneLog(?, YES);
+<br />WHILE CurrentLog &lt;&gt; ?
+<br />DO
+<br />    /* Processing code */
+<br />    CurrentLog := GetPhoneLog(CurrentLog, YES);
+<br />DONE;
+<br /></dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Phoned</span></dt>
+                <dd>
+TRUE = only return successful communications
+<br />FALSE = only return failed communications
+<br />? = don't care, return both</dd>
+            </dl>
+        </div><a name="M_GetResult"></a>
+        <h3>
+GetResult&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Searches a specific result of an object, matching the specified criteria. Only validated results are taken into account, all others are ignored.</p>
+            <p class="Synopsis"><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>GetResult</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">ImposedResult</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+Mandatory property mnemonic, as defined in the property table.
+<br /><br />A discriminator of the form "HH:MM" or "+/-HH:MM" can be added to the property mnemonic to specifically search for results which where dynamically requested using the same discriminator (example: GLUC +00:30).</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ImposedResult</span></dt>
+                <dd>
+Only results matching this value will be taken into account.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+Indicates how many results are to be skipped. When equal to zero, the result object time should exactly match the specified reference time.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span></dt>
+                <dd>
+Reference time from where the search should start backwards in time. If unknown, the current time is assumed.</dd>
+            </dl>
+        </div><a name="M_GetVariantResult"></a>
+        <h3>
+GetVariantResult</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a reference to a specific variant result of the order</p>
+            <p class="Synopsis"><span class="Type"><a href="vrnr.htm">VariantResult</a></span>&#160;<b>GetVariantResult</b> (<span class="Type">String</span>&#160;<span class="Parameter">VariantName</span>, <span class="Type"><a href="variantresultstatus.htm">VariantResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">MinimalClassification</span>, <span class="Type"><a href="variantreteststatus.htm">VariantRetestStatus</a></span>&#160;<span class="Parameter">RetestStatus</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">Index</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">VariantName</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Variant.Name = VariantName if &lt;&gt; ?, otherwise the VariantName is not taken into account.<br></br></dd>
+                <dt><span class="Type"><a href="variantresultstatus.htm">VariantResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Available, Confirmed, Validated, Discontinued</span><br></br>Only VariantResults will be selected where VariantResult.Status is at least this status; if not specified, VariantResultStatus["Available"] is assumed. Previously this was VariantResultStatus["Validated"]. This means that customers that depend on the old behavior by specifying ?, must explicitly state VariantResultStatus ["Validated"] in their current MISPL.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Severity &gt;= minimal Severity.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">MinimalClassification</span></dt>
+                <dd>
+Only VariantResults will be selected where VariantResult.Classification &gt;= minimal classification; when empty, 1 is assumed.</dd>
+                <dt><span class="Type"><a href="variantreteststatus.htm">VariantRetestStatus</a></span>&#160;<span class="Parameter">RetestStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Not requested, To do, Success, Failed</span><br></br>Only return variant results which have the same retest status. If unknown is provided then this filter is ignored.</dd>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+This is the only mandatory parameter which must be &lt;&gt; 0. This is a loop counter variable: <br />- when 1, the first variant result is returned (in sequence of field availability time)<br />  when 2, second result etc <br />  ... until the return value becomes unknown.<br />- when -1, the last variant result is returned (in sequence of field availability time)<br />  when -2, the one but last result is returned etc <br />  ... until the return value becomes unknown.</dd>
+            </dl>
+        </div><a name="M_HasExternalInfo"></a>
+        <h3>
+HasExternalInfo&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Retrieves wether external info is available in the indicated external info system</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>HasExternalInfo</b> ()</p>
+        </div><a name="M_Lot"></a>
+        <h3>
+Lot&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="lot.htm">Lot</a></span>&#160;<b>Lot</b> ()</p>
+        </div><a name="M_MicrobiologicHistory"></a>
+        <h3>
+MicrobiologicHistory&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+For a detailed description of this MISPL function, please check the manual (Modules &gt; Microbiology &gt; MISPL functions).</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>MicrobiologicHistory</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">SpecimenLayout</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumDaysAgo</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SkipCount</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumCount</span>, <span class="Type">String</span>&#160;<span class="Parameter">MaterialMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">ProcedureMnemonic</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">PositiveOnly</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span>, <span class="Type">String</span>&#160;<span class="Parameter">ViewFormat</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">SpecimenLayout</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumDaysAgo</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">SkipCount</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MaximumCount</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MaterialMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ProcedureMnemonic</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">PositiveOnly</span></dt>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">MinimalSeverity</span></dt>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ViewFormat</span></dt>
+            </dl>
+        </div><a name="M_NumberOfBilledBillingCodes"></a>
+        <h3>
+NumberOfBilledBillingCodes&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This method returns the number of times a billing code was billed for an object, corresponding the mentionned billing code and during the given period. 
+<br /></p>
+            <p class="Synopsis"><span class="Type">PositiveInteger</span>&#160;<b>NumberOfBilledBillingCodes</b> (<span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span>, <span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span>, <span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">BillingCode</span></dt>
+                <dd>
+The code of the billing code that must be located and counted</dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span></dt>
+                <dd>
+Start date of the period in which the billing code must be located and counted. </dd>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">EndDate</span></dt>
+                <dd>
+End date of the period in which the billing code must be located and counted. </dd>
+            </dl>
+        </div><a name="M_PatientData"></a>
+        <h3>
+PatientData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a comma-separated list of the requested patient attributes.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PatientData</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span></dt>
+                <dd>
+Comma-separated list of the requested attributes. Supported attributes are (alphabetically):
+<br /><br />"EncounterEndDate"
+<br />"EncounterExternalId"
+<br />"EncounterExternalInfo"
+<br />"EncounterStartDate"
+<br />"ExternalId" (the patient's PIN assigned by the institution of its current location)
+<br />"InstitutionMnemonic"
+<br />"InstitutionName"
+<br />"StayEndDate"
+<br />"StayRoom"
+<br />"StayStartDate"
+<br />"StayWardMnemonic" 
+<br />"StayWardName" 
+<br />"StayWardName" 
+<br />"StayWardVisitSequence"
+<br /><br /></dd>
+            </dl>
+        </div><a name="M_Person"></a>
+        <h3>
+Person&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="prsn.htm">Person</a></span>&#160;<b>Person</b> ()</p>
+        </div><a name="M_PersonData"></a>
+        <h3>
+PersonData&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Returns a comma-separated list of the requested person attributes.
+<br />Deprecated. All attributes are available through the .Person() method now.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PersonData</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeList</span></dt>
+                <dd>
+Comma-separated list of the requested attributes. Supported attributes are (alphabetically): "AddressLine1", "AddressLine2", "BirthDate", "CorrespondentId", "CountryCode", "CountryName", "ExternalId", "FirstName", "InternalId", "LastName", "MiddleName", "MunicipalityName", "Phone", "PostalCode", "Sex", "SpouseLastName" and "Title".
+<br /></dd>
+            </dl>
+        </div><a name="M_PIN"></a>
+        <h3>
+PIN&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>PIN</b> (<span class="Type">String</span>&#160;<span class="Parameter">SourceMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">SourceMnemonic</span></dt>
+            </dl>
+        </div><a name="M_QCLot"></a>
+        <h3>
+QCLot&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+The Object.QCLot MISPL function allows to access the QCLot record associated with an object of type QCLot.</p>
+            <p class="Synopsis"><span class="Type"><a href="qcl.htm">QCLot</a></span>&#160;<b>QCLot</b> ()</p>
+        </div><a name="M_Result"></a>
+        <h3>
+Result&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Searches a specific result of an object, matching the specified criteria. Contrary to the .GetResult() method, this function allows specifying the minimum result status.</p>
+            <p class="Synopsis"><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>Result</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span>, <span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+Mandatory property mnemonic, as defined in the property table. Supports the "&lt;PropertyMnemonic&gt; &lt;Discriminator&gt;" syntax for dynamic tests. </dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+Indicates how many results are to be skipped. When equal to zero, the result object time should exactly match the specified reference time.</dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span></dt>
+                <dd>
+Reference time from where the search should start backwards in time. If unknown, the current time is assumed.</dd>
+                <dt><span class="Type"><a href="resultstatus.htm">ResultStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Expected, Available, Confirmed, Validated, Discontinued</span><br />Minimal status of the result in order to be selected. When unknown, ResultStatus["Initial"] is assumed. The maximal allowed status is ResultStatus["Validated"].</dd>
+            </dl>
+        </div><a name="M_ResultAttribute"></a>
+        <h3>
+ResultAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+A search (starting from this object) for a result record of this object is carried out. 
+<br /><br />The result value of the method is a string. At success, the method returns the value of the specified attribute, else an unknown value is returned.
+<br /><br />Note: When specifying the external/internal comment as attribute name, GLIMS will not be able to expand possible text modules (due to incompatible start table). However, the example below shows how you can avoid this problem and just display the mnemonic of the text module. The {} are replaced by other signs using the Replace function:
+<br /><br />{= Replace(Replace(.ResultAttribute("Natr",?,1,?,"ExternalComment"), chr(123), "["), chr(125), "]")}</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>ResultAttribute</b> (<span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span>, <span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span>, <span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span>, <span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PropertyMnemonic</span></dt>
+                <dd>
+Mnemonic of a property as defined in the property table.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">ImposedResultValue</span></dt>
+                <dd>
+Value the property should have.</dd>
+                <dt><span class="Type">PositiveInteger</span>&#160;<span class="Parameter">Index</span></dt>
+                <dd>
+Number of result records sampled earlier than the reference time to skip. If equal to zero, the current result record is checked. </dd>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">ReferenceTime</span></dt>
+                <dd>
+It specifies the start time of the search backwards in time. If unknown, the reference time is current time. Each result record of the object of the specified property sampled after this reference time, is skipped.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span></dt>
+                <dd>
+Attribute to get. Supported values are: "Value", "ExpandedValue", "AvailabilityUser", "ExternalComment", "InternalComment", "ObjectTime", "EncounterInfo" and "ReferenceValue".</dd>
+            </dl>
+        </div><a name="M_SetAttribute"></a>
+        <h3>
+SetAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetAttribute</b> (<span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span>, <span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span>)</p>
+            <dl>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">AttributeMnemonic</span></dt>
+                <dt><span class="Type">Date</span>&#160;<span class="Parameter">StartDate</span></dt>
+            </dl>
+        </div><a name="M_Sex"></a>
+        <h3>
+Sex&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function returns the object's sex, regardless whether it is a person, animal, or unknown object with preliminary type 'person' or 'animal'. For objects of other types, a value of "?" is returned.</p>
+            <p class="Synopsis"><span class="Type"><a href="sex.htm">Sex</a></span>&#160;<b>Sex</b> ()</p>
+            <p>
+One of: <span class="Parameter">Male, Female, Other, Unknown, Ambiguous, Not applicable</span></p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Object of person</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="prsn.htm">Person</a>.<a href="prsn.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Reports of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rprt.htm">Report</a>.<a href="rprt.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Specimens of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="spmn.htm">Specimen</a>.<a href="spmn.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Actions of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="actn.htm">Action</a>.<a href="actn.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Results of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rslt.htm">Result</a>.<a href="rslt.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Lot</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="lot.htm">Lot</a>.<a href="lot.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Animal</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="anml.htm">Animal</a>.<a href="anml.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Orders</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="ord.htm">Order</a>.<a href="ord.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Blood bag selections for object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="bsel.htm">BloodSelection</a>.<a href="bsel.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Microorganism isolations of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="isol.htm">Isolation</a>.<a href="isol.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Unknown object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="uobj.htm">UnknownObject</a>.<a href="uobj.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Attribute history of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="obah.htm">ObjectAttributeHistory</a>.<a href="obah.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Microbiology actions of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="mcra.htm">MicrobiologyAction</a>.<a href="mcra.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+QC lot</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Cascade </span><a href="qcl.htm">QCLot</a>.<a href="qcl.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Patients</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="pat.htm">w_Patient</a>.<a href="pat.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Report columns</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rprc.htm">ReportColumn</a>.<a href="rprc.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Report groups of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rprg.htm">ReportGroup</a>.<a href="rprg.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Isolation series'</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="ifc.htm">Infection</a>.<a href="ifc.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Pathology examinations</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="ptex.htm">PathologyExam</a>.<a href="ptex.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Diagnoses</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="diag.htm">Diagnosis</a>.<a href="diag.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Studies</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stdy.htm">Study</a>.<a href="stdy.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Study objects</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="stdo.htm">StudyObject</a>.<a href="stdo.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Phone log of object</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="phlg.htm">PhoneLog</a>.<a href="phlg.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Extended results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="were.htm">w_ExtendedResult</a>.<a href="were.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Genetic exams</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="gnte.htm">GeneticExam</a>.<a href="gnte.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Locus results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="lcsr.htm">LocusResult</a>.<a href="lcsr.htm#F_Object">Object</a></p>
+        </div>
+        <h3>
+Variant results</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Restrict </span><a href="vrnr.htm">VariantResult</a>.<a href="vrnr.htm#F_Object">Object</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Unique Externalization </span><b>+ InternalId </b>
+            </li>
+            <li value="3"><b>+ Externalization </b>
+            </li>
+            <li value="4"><b>+ ObjectTemplate + InternalId </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />All rights reserved.</p>
+    </body>
+</html>

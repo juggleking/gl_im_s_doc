@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Electronic Order Scheduler">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Electronic order scheduler - General options</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor884"></a>
+            <MadCap:concept term="EOS" />Electronic order scheduler - General options</h1>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p> The Electronic order scheduler module can be tailored to the needs of a site using general settings available under <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS electronic order scheduler</span>. These general settings are presented below.</p>
+        <h2>Order creation</h2>
+        <p class="fieldlabel">When is a new order created as 'Pending'? On electronic order entry / On manual order entry</p>
+        <div class="indented">Please check the chapter <a href="eos_creation.htm">Creation of pending orders</a>.</div>
+        <h2>Order activation</h2>
+        <p>For information on the following three options, please check the chapter <a href="eos_activation.htm">Activation of pending orders</a>.</p>
+        <p class="fieldlabel">Order internal id on activation</p>
+        <p class="fieldlabel">Order activation header</p>
+        <p class="fieldlabel">Object time calculation</p>
+        <h2>Order update</h2>
+        <p class="fieldlabel">On pending electronic order upd.</p>
+        <div class="indented">
+            <p>This Order-based MISPL function (Logical) is evaluated upon electronic pending order update. If it returns TRUE, the evaluation of the <a href="eos_creation.htm">On electronic order entry</a> MISPL&#160;function is triggered. If the requirements defined in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">On electronic order entry</span> MISPL function are no longer met, the pending order is activated automatically. </p>
+            <p><span style="color: #ff0000;" xmlns="http://www.w3.org/1999/xhtml">This functionality is intended exclusively for the improvement of the communication between GLIMS and CyberLab and can therefore not be used with other third party Order Entry solutions.</span>
+            </p>
+        </div>
+        <h2>Site attributes</h2>
+        <p class="fieldlabel">Check panel member derivability from material</p>
+        <div class="indented">
+            <p>During manual order entry, when the user tries to explicitly request a panel on a specimen/material and one of the panel members cannot be derived from that specimen/material, a warning message appears. The user can then decide to cancel or to request the panel separately (meaning: not on the specimen/material).</p>
+            <p>The option <span class="ui_element">Check panel member derivability from material</span> allows the user to enable the additional check on panel member derivability for electronic order entry as well. By default, the option is disabled.</p>
+            <p>Enabling this option will have GLIMS execute an additional check on the derivability of all panel members from the material of the specimen when requesting a panel on a specific specimen. GLIMS will only schedule the member requests on the specimen when all panel members can be derived from the material of the specimen.</p>
+        </div>
+        <p class="fieldlabel">Run person comparator when found by PIN</p>
+        <div class="indented">
+            <p>When new Person records are imported via URL messages being sent to a GLIMS service, GLIMS first verifies if the patient already exists in the database, in order to avoid that more than one Person record is created for the same patient. The criteria used to determine whether or not Person records are identical are customer-specific. These criteria can therefore be defined in the <span class="ui_element">Person comparator</span> MISPL function (<span class="ui_element">Start &gt; System management &gt; Customize &gt; GLIMS General &gt; Main page &gt; Persons</span>). The outcome of the MISPL function determines whether or not the existing Person record can be used.</p>
+            <p>Enabling the option <span class="ui_element">Run person comparator when found by PIN</span> will have GLIMS execute an additional check on the (best matching target) person record (found via the provided identifications) by running the <span class="ui_element">Person comparator</span> MISPL function to ensure that the correct person was found. By default, the option is disabled.</p>
+        </div>
+    </body>
+</html>

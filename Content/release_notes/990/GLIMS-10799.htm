@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="" data-mc-conditions="Primary.30_sibling">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.0 - Correction for request of paired specimen appearing in order of another patient (GLIMS-10799)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1144"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.0 - </MadCap:conditionalText>Correction for request of paired specimen appearing in order of another patient (GLIMS-10799)</h1>
+        <h2>Background</h2>
+        <p>Pressing the F9 key when being positioned in the order entry <span class="ui_element">Request</span> field allows selecting a <a href="../../routine/orders/order_entry/order_entry_tab_requests.htm#Paired">paired specimen</a>, i.e. an existing specimen from a former order, to request that a new test be done on it.</p>
+        <h2>Issue</h2>
+        <p>In the following order entry scenario, </p>
+        <ol>
+            <li value="1">Patient P1 is indicated as <a href="../../routine/orders/order_entry/order_entry_tab_object.htm">Object</a>.</li>
+            <li value="2">F9 is used in the <span class="ui_element">Request</span> field and a paired specimen is chosen.</li>
+            <li value="3">A test is requested on this paired specimen.</li>
+            <li value="4">F8 is used in the <span class="ui_element">Request</span> field and a new test is requested.</li>
+            <li value="5">A new patient P2 is indicated as Object.</li>
+            <li value="6">The order is saved.</li>
+        </ol>
+        <p>the paired specimen requested for patient P1 appeared in the order for patient P2.</p>
+        <h2>Solution</h2>
+        <p>This problem occurred since GLIMS 8. It has been solved: the paired specimen is removed from the order when a new object is indicated. The order for patient P2 is now created with a new scheduled specimen.</p>
+    </body>
+</html>

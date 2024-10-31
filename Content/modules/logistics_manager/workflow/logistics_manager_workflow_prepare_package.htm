@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Logistics manager|Workflow">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Logistics manager - Prepare package</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2269"></a>
+            <MadCap:concept term="Logistics manager" />Logistics manager - Prepare package</h1>
+        <p>The <b>first step</b> in the logistics workflow is the preparation of a package. The <span class="ui_element">Prepare package</span> screen guides you through this step. To open it, go to <span class="ui_element">Start</span> -&gt; <span class="ui_element">Logistics manager</span> -&gt; <span class="ui_element">Prepare box</span>.</p>
+        <p>The following illustration of the <span class="ui_element">Prepare package</span> screen shows how to proceed:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="logistics_manager_workflow_prepare_package.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="863" data-mc-height="616" src="logistics_manager_workflow_prepare_package_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <ol>
+            <li value="1"><a href="#Scan">Scan a box number</a>.</li>
+            <li value="2">
+                <p><a href="#Register_the_specimens">Register the specimens</a> that will go into the box.</p>
+            </li>
+            <li value="3">The information related to the registered specimens is then shown in the <a href="#Specimen">specimen table</a>.</li>
+            <li value="4">Afterwards, you can also</li>
+            <ul>
+                <li value="1"><a href="#Print">print an overview</a> of the displayed data.</li>
+                <li value="2"><a href="#Empty">empty the package</a>.</li>
+                <li value="3"><a href="#Prepare">prepare the next package</a>.</li>
+                <li value="4"><a href="#Re-open">re-open a prepared package</a>.</li>
+            </ul>
+        </ol>
+        <h2><a name="Scan"></a>Scan a box number</h2>
+        <p>The box number is the (case-sensitive) barcode that identifies the box that will be used for the package. Scanning it is mandatory: if the window is closed before scanning a box number, the entire <span class="ui_element">Prepare package</span> screen closes. This ensures that a box is always identified before being filled with specimens.</p>
+        <p>When a box number is scanned, a record is automatically created in the GLIMS database. No configuration is thus required beforehand.</p>
+        <h2><a name="Register_the_specimens"></a>Register the specimens
+        </h2>
+        <h3>Scanning or adding from a route</h3>
+        <p>Once the box number is scanned, the specimens that will go into this box need to be registered. There are two ways to do so:</p>
+        <ul>
+            <li value="1">
+                <p>Scan the (case-sensitive) barcode of each specimen individually:</p>
+                <p>When a specimen is scanned, GLIMS tries to identify it  by looking  for a matching identification in the SpecimenIdentification table. If it does not find any, it looks for a matching internal id in the Specimen table. And if there is no matching internal id, GLIMS looks for a matching external id in the Specimen table. If GLIMS cannot identify the barcode at all, the corresponding specimen is not added to the list.</p>
+            </li>
+            <li value="2">
+                <p>Add specimens from a route:</p>
+                <p>The button <span class="ui_element">Add specimens from route</span> on the right-hand side enables you to register in one go all the specimens <a href="../route_configuration/logistics_manager_route_configuration.htm">linked with a specific route</a> and whose status is inferior or equal to <span class="ui_element">Available</span>.</p>
+                <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #ff0000;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Warning</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <div class="text_box_warnings">
+                            <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                            </p>
+                            <p>It is possible to add specimens from several routes. However we advise you not to do so: different routes may have different destinations and maximum transport durations. Adding specimen from several routes might thus lead to specimens being delivered to a wrong department and/or too late.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <p>When a specimen is added to a package, the  location in which the package preparation is taking place is displayed together with the box number in the <span class="ui_element">Last location</span> field of the specimen editor. If a specimen is deleted after having been added to the package, the location and box number remain displayed in the <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Last location</span> field.</p>
+        <h3> Determining the package destination</h3>
+        <p>While the specimens are being registered, GLIMS determines the destination of the package. GLIMS does this in the following way:</p>
+        <p>When a specimen is registered, i.e. scanned or added from a route, GLIMS looks of which procedures this specimen is an <a href="../../../configuration/procedure_inputs/procedure_inputs.htm">input</a>. GLIMS then draws a list of the departments of these procedures. As soon as a list only contains a single department, GLIMS takes this department as the destination of the package being prepared. In other words, the destination of the package is the department of the first registered specimen that serves as procedure input in a single department.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Examples</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Examples</span>
+                    </p>
+                    <p>Situation 1:</p>
+                    <p>A package is being prepared. First, Specimen A is registered and placed into the box, followed by Specimen B and specimen C.</p>
+                    <p>Specimen A is the input of two procedures: procedure P, which is to be executed in department P', and procedure Q, which is to be executed in department Q'.</p>
+                    <p>Specimen B is the input of two procedures: procedure R and procedure T, which are both to be executed in department R'.</p>
+                    <p>Specimen C is the input of a single procedure: procedure U, with department U'.</p>
+                    <p>--&gt; Specimen B is the first registered  specimen which will serve as procedure input in a single department. Hence the destination of the package will be department R'.</p>
+                    <p>Situation  2: </p>
+                    <p>Same as use case 1 but Specimen C is registered before Specimen B.</p>
+                    <p>--&gt; Specimen C is the first registered specimen which will serve as procedure input in a single department. Hence the destination of the package will be department U'.</p>
+                    <p>Situation  3:</p>
+                    <p>Every registered specimen is input of several procedures which are to be executed in different departments.</p>
+                    <p>--&gt; None of the specimens is a procedure input for a single department, so the package will not get any destination.</p>
+                </div>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #ff0000;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Warning</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_warnings">
+                    <p><span style="color: #ff0000; font-weight: bold;">Warning</span>
+                    </p>
+                    <p> Once the destination of a package is determined, it is not possible to change it anymore.</p>
+                </div>
+            </div>
+        </div>
+        <h3>Overview of package information</h3>
+        <p>While the specimens are being registered, the <span class="ui_element">Scan a specimen</span> area automatically displays the following elements:</p>
+        <ul>
+            <li value="1">the box number</li>
+            <li value="2">the number of specimens that have been registered until now (and thus placed inside the box)</li>
+            <li value="3">
+                <p>the mnemonic of the destination of the package (once the destination has been determined).</p>
+            </li>
+        </ul>
+        <h2><a name="Specimen"></a>Specimen  table</h2>
+        <p>Once a specimen is registered, the following information is displayed in the overview table:</p>
+        <ul>
+            <li value="1"><span class="ui_element">Specimen</span>: barcode of the scanned specimen OR internal id in case of a specimen added via a route.</li>
+            <li value="2"><span class="ui_element">Material</span>: mnemonic of the material of the registered specimen.</li>
+            <li value="3">
+                <p><span class="ui_element">Info</span>: if a registered specimen is not a procedure input in the destination department of the package being prepared, this column will indicate that <i>the destination(s) of the specimen do(es) not match the destination of the package</i>. In that case, the specimen in question will probably need to go to a different department, and does not need to be placed into this box. Note that this piece of information is not logged.</p>
+                <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+                    <div class="MCDropDownBody dropDownBody">
+                        <div class="text_box_examples">
+                            <p><span style="color: #003366; font-weight: bold;">Example</span>
+                            </p>
+                            <p>Let's go back to Situation 1 described above. In this case, the following message will be displayed in the <span class="ui_element">Info</span> cell of Specimen C:</p>
+                            <p><i>The destination of the specimen, U', does not match the destination of the package, R'.</i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <p>To delete a specimen in the table, and thus take it out of the package, select it and press the Delete key. To delete several specimens at once, press the Ctrl key while selecting the specimens.</p>
+        <h2>Further actions</h2>
+        <p>Once the specimens are registered, you can use the buttons on the right-hand side of the screen to execute the actions described below.</p>
+        <h3><a name="Print"></a>Print an overview</h3>
+        <p>Click the button <span class="ui_element">Print document</span> to launch the <a href="../print_functionality/logistics_manager_print_functionality.htm">print functionality</a> of the Logistics manager and print an overview of the data displayed on the screen. The printer used to print the overview is that of the department where the <span class="ui_element">Prepare package</span> step is being executed.</p>
+        <h3><a name="Empty"></a>Empty the package</h3>
+        <p>Click the button <span class="ui_element">Empty this package</span> to remove all the specimens from the specimen table. The destination of the package will also be reset.</p>
+        <h3><a name="Prepare"></a>Prepare next package</h3>
+        <p>Click the button <span class="ui_element">Prepare next package</span> to end the preparation of the package and open a new <span class="ui_element">Prepare package</span> screen.</p>
+        <h3><a name="Re-open"></a>Re-open a prepared package</h3>
+        <p>Prepared packages can be re-opened, as long as they have not been collected by a courier. To re-open a package, re-scan the number of its box. All the specimens contained in the box then appear in the specimen table and the <span class="ui_element">Prepare package</span> screen can be used normally.</p>
+    </body>
+</html>

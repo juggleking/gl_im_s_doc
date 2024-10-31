@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Reports|Report types|Electronic reporting">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Error threshold for online reports</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Error threshold for online reports</h1>
+        <p>Content: <a href="#Introduction">Introduction</a> - <a href="#Configuration">Configuration</a> 
+ - <a href="#Report_generation">Report generation</a> - <a href="#Error_types">Error 
+ types</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>GLIMS allows defining an <b>error threshold</b> for <b>online reports</b>.&#160;&#160;This 
+ feature can be used to prevent that GLIMS continuously keeps exporting 
+ rejected online reports.</p>
+        <h2><a name="Configuration" id="Configuration"></a>Configuration</h2>
+        <p class="fieldlabel">Error threshold</p>
+        <div class="indented">
+            <p>The <b>default report field</b> <span class="ui_element">Error threshold</span> allows 
+ defining the maximum number of errors allowed for an online report that 
+ is based on that default report.&#160;&#160;</p>
+            <p>For each report generated with this default report, the error threshold 
+ will be stored in the report field <span class="ui_element">Error threshold</span>.&#160;&#160;</p>
+            <p>The actual <b>number of times that an error occurred</b> during generation 
+ is stored in the report field <span class="ui_element">Error count</span>.</p>
+        </div>
+        <h2><a name="Report_generation" id="Report_generation"></a>Report generation</h2>
+        <p>If the report's error threshold is &gt;= 0, then the following actions 
+ are taken:</p>
+        <p class="fieldlabel">Successful generation</p>
+        <div class="indented">
+            <p>When the generation of an online report is successful and the <span class="ui_element">Mark 
+ output</span> option is enabled, then:</p>
+            <ul>
+                <li value="1">The Report flag "Needs checking" will be disabled if 
+	 it was enabled.&#160;&#160;This will ensure that the same report is 
+	 not exported again.</li>
+                <li value="2">The <span class="ui_element">Error count</span> will be reset to "0".</li>
+            </ul>
+        </div>
+        <p class="fieldlabel">Failed generation</p>
+        <div class="indented">
+            <p>When GLIMS receives an application error during the generation of an 
+ online report and the <span class="ui_element">Mark output</span> option is enabled and the 
+ report's error threshold is &gt;= 0, then:</p>
+            <ul>
+                <li value="1">GLIMS will increment the report's error count.</li>
+                <li value="2">The Report flag <span class="ui_element">Needs checking</span> will NOT be disabled 
+	 if it was enabled.</li>
+            </ul>
+            <p>When the report's error count exceeds the report's error threshold, 
+ then:</p>
+            <ul>
+                <li value="1">The Report flag <span class="ui_element">Needs checking</span> will be disabled. This 
+	 will ensure that the same report is not exported again until another 
+	 action enables this flag.</li>
+                <li value="2">The report's error count will be reset to "0".</li>
+            </ul>
+            <p>When GLIMS receives a non-application error during the generation of 
+ an online report and the <span class="ui_element">Mark output</span> option is enabled, then:</p>
+            <ul>
+                <li value="1">The report's error count is not modified.</li>
+                <li value="2">The Report flag <span class="ui_element">Needs checking</span> will NOT be disabled 
+	 if it was enabled.</li>
+            </ul>
+        </div>
+        <h2><a name="Error_types" id="Error_types"></a>Error types</h2>
+        <p class="fieldlabel">Non-Application errors</p>
+        <ul>
+            <li value="1">The translator is not active.</li>
+            <li value="2">The translator cannot connect to the external application via its 
+	 external interface.</li>
+            <li value="3">The external application closes the connection after receiving 
+	 an initiating message from GLIMS.</li>
+            <li value="4">The external application does not respond within the configured 
+	 external interface time out.</li>
+            <li value="5">Application interface gets a time-out.</li>
+            <li value="6">The external application is a MIPS translator which has lost its 
+	 connection with its internal service.</li>
+            <li value="7">The translator reports an internal application error (Stops with 
+	 a non kill(-9) signal).</li>
+        </ul>
+        <p class="fieldlabel">Application errors</p>
+        <ul>
+            <li value="1">The external application responds with an Application Reject or 
+	 Error Message (e.g. HL7 MSA.2 = "AR").</li>
+        </ul>
+    </body>
+</html>

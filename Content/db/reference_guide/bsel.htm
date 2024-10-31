@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>GLIMS reference guide - BloodSelection</title>
+        <link rel="stylesheet" href="RefGuide.css" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor3320"></a>
+            <MadCap:concept term="Database manual" />
+            <table width="99%">
+                <tr>
+                    <td class="Title">
+BloodSelection&#160;
+</td>
+                    <td class="NavigationBar"><a href="RefHelp.htm">Help</a> | <a href="#Fields">Fields</a> | <a href="#MenuFunctions">Menu functions</a> | <a href="#MISPLFunctions">MISPL functions</a> | <a href="#Children">Children</a> | <a href="#Queries">Queries</a></td>
+                </tr>
+            </table>
+        </h1>
+        <table class="ClassInfo">
+            <tr>
+                <th align="Left">
+Name</th>
+                <th align="Left">
+Short name</th>
+                <th align="Left">
+Database</th>
+                <th align="Left">
+Creation logging</th>
+                <th align="Left">
+Update logging</th>
+                <th align="Left">
+Extended logging</th>
+            </tr>
+            <tr>
+                <td>
+Blood selection</td>
+                <td>
+bsel</td>
+                <td>
+glims</td>
+                <td>
+yes</td>
+                <td>
+yes</td>
+                <td>
+Normal</td>
+            </tr>
+        </table>
+        <p>
+This table stores the fact that a blood bag was selected to fulfill a blood request</p><a name="Fields"></a>
+        <h2>
+Fields</h2><a name="F_BloodBag"></a>
+        <h3>
+Blood bag</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the selected blood bag.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="bbag.htm">BloodBag</a></span>&#160;<b>BloodBag</b></p>
+        </div><a name="F_BloodProduct"></a>
+        <h3>
+Blood product</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the blood product.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="blpr.htm">BloodProduct</a></span>&#160;<b>BloodProduct</b></p>
+        </div><a name="F_CheckResult"></a>
+        <h3>
+Status details &gt; Cross match &gt; Crossmatch</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the result of the compatibilty-check for the bloodproduct, if any were performed.</p>
+            <p class="Synopsis"><span class="Properties">Unique Automatic </span><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>CheckResult</b></p>
+        </div><a name="F_CheckTime"></a>
+        <h3>
+Status details &gt; Cross match &gt; Checked at</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the date and time of the compatibility check.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>CheckTime</b></p>
+        </div><a name="F_CheckUser"></a>
+        <h3>
+Status details &gt; Cross match &gt; Checked by</h3>
+        <div class="MemberHelp">
+            <p>
+This is the user who made the compatibility result available.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CheckUser</b></p>
+        </div><a name="F_CompatibilityScore"></a>
+        <h3>
+Status details &gt; Selected &gt; Compatibility score</h3>
+        <div class="MemberHelp">
+            <p>
+Compatibility score when the blood bag was selected
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>CompatibilityScore</b></p>
+        </div><a name="F_CompatibilityWarning"></a>
+        <h3>
+Status details &gt; Selected &gt; Compatibility warning(s)</h3>
+        <div class="MemberHelp">
+            <p>
+If the ranking score is 1, the system warns the user with the reason(s) why the score is 1 and asks if it should continue. 
+<br />For traceability this message is also stored in this field, so it can be viewed or used afterwards.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">String</span>&#160;<b>CompatibilityWarning</b></p>
+        </div><a name="F_CreationTime"></a>
+        <h3>
+Creation time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">DateTime</span>&#160;<b>CreationTime</b></p>
+        </div><a name="F_CreationUser"></a>
+        <h3>
+Creation user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>CreationUser</b></p>
+        </div><a name="F_DiscontinuationReason"></a>
+        <h3>
+Status details &gt; Discontinued &gt; Discontinuation reason</h3>
+        <div class="MemberHelp">
+            <p>
+This field gives some comment in order to explain the dicontinuation.</p>
+            <p class="Synopsis"><span class="Type">String</span>&#160;<b>DiscontinuationReason</b></p>
+        </div><a name="F_DiscontinuationTime"></a>
+        <h3>
+Status details &gt; Discontinued &gt; Discontinued at</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the date and time of the discontinuation.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>DiscontinuationTime</b></p>
+        </div><a name="F_DiscontinuationUser"></a>
+        <h3>
+Status details &gt; Discontinued &gt; Discontinued by</h3>
+        <div class="MemberHelp">
+            <p>
+This field references the user who discontinued the bloodselection.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>DiscontinuationUser</b></p>
+        </div><a name="F_Id"></a>
+        <h3>
+Id</h3>
+        <div class="MemberHelp">
+            <p>
+Primary key. Automatically generated identifier whose value uniquely identifies each record.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Unique Automatic </span><span class="Type"><a href="#" class="selected">BloodSelection</a></span>&#160;<b>Id</b></p>
+        </div><a name="F_LastUpdateTime"></a>
+        <h3>
+Last update time</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>LastUpdateTime</b></p>
+        </div><a name="F_LastUpdateUser"></a>
+        <h3>
+Last update user</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>LastUpdateUser</b></p>
+        </div><a name="F_Object"></a>
+        <h3>
+Object</h3>
+        <div class="MemberHelp">
+            <p>
+Object</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Invariant </span><span class="Type"><a href="obj.htm">Object</a></span>&#160;<b>Object</b></p>
+        </div><a name="F_Order"></a>
+        <h3>
+Order</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="ord.htm">Order</a></span>&#160;<b>Order</b></p>
+        </div><a name="F_Predecessor"></a>
+        <h3>
+Predecessor &gt; Predecessor</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the previous, discontinued bloodselection.</p>
+            <p class="Synopsis"><span class="Properties">Unique Automatic </span><span class="Type"><a href="#" class="selected">BloodSelection</a></span>&#160;<b>Predecessor</b></p>
+        </div><a name="F_ReadyTime"></a>
+        <h3>
+Status details &gt; Ready &gt; Ready at</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the date and time of the checkout of the corresponding bloodbag.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>ReadyTime</b></p>
+        </div><a name="F_ReadyUser"></a>
+        <h3>
+Status details &gt; Ready &gt; Ready by</h3>
+        <div class="MemberHelp">
+            <p>
+User who completed the blood selection by checking out the matching blood bag.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>ReadyUser</b></p>
+        </div><a name="F_ReportResult"></a>
+        <h3>
+Report &gt; Report result</h3>
+        <div class="MemberHelp">
+            <p>
+Result used to report the blood request
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Unique Automatic </span><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>ReportResult</b></p>
+        </div><a name="F_SelectionTime"></a>
+        <h3>
+Status details &gt; Selected &gt; Selected at</h3>
+        <div class="MemberHelp">
+            <p>
+This field specifies the date and time of the selection.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">DateTime</span>&#160;<b>SelectionTime</b></p>
+        </div><a name="F_SelectionUser"></a>
+        <h3>
+Status details &gt; Selected &gt; Selected by</h3>
+        <div class="MemberHelp">
+            <p>
+This is the user who carried out the bloodselection.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type"><a href="usr.htm">sc_User</a></span>&#160;<b>SelectionUser</b></p>
+        </div><a name="F_SeqNo"></a>
+        <h3>
+No</h3>
+        <div class="MemberHelp">
+            <p>
+Internal sequencer used for sorting and unique identification within the order
+<br /><br /></p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>SeqNo</b></p>
+        </div><a name="F_Status"></a>
+        <h3>
+Status details &gt; Status</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the status of the blood selection.</p>
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<b>Status</b></p>
+            <p>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span></p>
+        </div><a name="F_Urgency"></a>
+        <h3>
+Urgency</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Mandatory Automatic </span><span class="Type">SiteEnumerated</span>&#160;<b>Urgency</b></p>
+        </div><a name="F_UtmostTransfusionTime"></a>
+        <h3>
+Utmost transf.time</h3>
+        <div class="MemberHelp">
+            <p>
+This field indicates the date and time of the utmost transfusion allowance.</p>
+            <p class="Synopsis"><span class="Type">DateTime</span>&#160;<b>UtmostTransfusionTime</b></p>
+        </div><a name="F_Version"></a>
+        <h3>
+Version</h3>
+        <div class="MemberHelp">
+            <p>
+Record version number. Automatically incremented each time the contents of a record changes.</p>
+            <p class="Synopsis"><span class="Properties">Automatic </span><span class="Type">PositiveInteger</span>&#160;<b>Version</b></p>
+        </div><a name="MenuFunctions"></a>
+        <h2>
+Menu functions</h2><a name="M_BloodBag"></a>
+        <h3>
+Blood bag&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BloodBag</b> ()</p>
+        </div><a name="M_BloodProduct"></a>
+        <h3>
+Blood product&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>BloodProduct</b> ()</p>
+        </div><a name="M_CheckOutBag"></a>
+        <h3>
+Check out bag&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This multi-record procedure allows you to check out a blood bag starting from the blood selection for which the bag was reserved. 
+<br />Select one or more blood selections, than run the function 'Check out bag'. You can fill in a check out comment that will be the same for all blood selections. The function will check out the reserved bags and change the status of blood selection and blood bag. Its use lies in the idea that one should not always start from the patient to check out blood bags, but can start directly from the bloodselections.
+<br />(E.g. Use the query on blood selections with status checked, select all of them in the browser, then check out their blood bags all together).</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>CheckOutBag</b> ()</p>
+        </div><a name="M_CheckResult"></a>
+        <h3>
+Crossmatch&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>CheckResult</b> ()</p>
+        </div><a name="M_Discontinuation"></a>
+        <h3>
+Discontinue&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>Discontinuation</b> ()</p>
+        </div><a name="M_Object"></a>
+        <h3>
+Object&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Object</b> ()</p>
+        </div><a name="M_Order"></a>
+        <h3>
+Order&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Order</b> ()</p>
+        </div><a name="M_Predecessor"></a>
+        <h3>
+Predecessor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Predecessor</b> ()</p>
+        </div><a name="M_PrintTransfusionLabel"></a>
+        <h3>
+Print label&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+For each selected BloodSelection record, prints the label -as defined in its blood product- to the printer configured as blood label printer. 
+<br />This printer is searched by following order:
+<br />1. take the blood label printer selected by the user via 'Tools &gt; Set transfusion printer'; if this is not specified:
+<br />2. take the blood label printer configured in the department in which the user is currently working; if this is not specified:
+<br />3. take the printer defined as transfusion printer in the 'GLIMS transfusion module' general settings; if this is not specified:
+<br />4 take the printer defined as the default printer for the system, in the generic setttings (MATE).</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Logical</span>&#160;<b>PrintTransfusionLabel</b> ()</p>
+        </div><a name="M_PrintTransfusionForm"></a>
+        <h3>
+Print transfusion form&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function shows a user-interface first to prompt for its parameters.
+<br />For each selected BloodSelection record, it prints the specified text module - or if not specified: the standard transfusion form as defined in its blood product- to the specified file or printer - or if not specified, the printer configured as your transfusion form printer. 
+<br />This printer is searched by following order:
+<br />1. take the transfusion form printer selected by the user via 'Tools &gt; Set transfusion printer'; if this is not specified:
+<br />2. take the transfusion form printer configured in the department in which the user is currently working; if this is not specified:
+<br />3. take the printer defined as transfusion printer in the 'GLIMS transfusion module' general settings; if this is not specified:
+<br />4 take the printer defined as the default printer for the system, in the generic setttings (MATE).
+<br /></p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>PrintTransfusionForm</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">DoPrint</span>, <span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">OutputToFile</span>, <span class="Type">String</span>&#160;<span class="Parameter">TheDirectory</span>, <span class="Type">String</span>&#160;<span class="Parameter">TheFileName</span>, <span class="Type">String</span>&#160;<span class="Parameter">TheFormat</span>, <span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span>, <span class="Type">Integer</span>&#160;<span class="Parameter">CopyCount</span>, <span class="Type">Mnemonic</span>&#160;<span class="Parameter">FormMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FormatStringListItems</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">DoPrint</span></dt>
+                <dt><span class="Type"><a href="rpp.htm">rp_Printer</a></span>&#160;<span class="Parameter">PrinterId</span></dt>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">OutputToFile</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TheDirectory</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TheFileName</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TheFormat</span></dt>
+                <dd>
+If ON, a page skip will be inserted between each printed blood selection.</dd>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Preview</span></dt>
+                <dt><span class="Type">Integer</span>&#160;<span class="Parameter">CopyCount</span></dt>
+                <dt><span class="Type">Mnemonic</span>&#160;<span class="Parameter">FormMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FormatStringListItems</span></dt>
+            </dl>
+        </div><a name="M_DiscontinueRepeat"></a>
+        <h3>
+Repeat&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Among the states a bloodbag can attain during a transfusionscheme it
+<br />can be subject to, the states RESERVATION and CHECKED, which occur during
+<br />the selectionprocedure, are special because these are highly provisional.
+<br />Indeed, as long as a bloodbag is not CHECKEDOUT, i.e. taken away from
+<br />the laboratory to a ward, the selectionprocedure
+<br />can be undone because the selection of the particular bloodbags
+<br />for a patient, is no longer required. Hence, one must be able to
+<br />discontinue bloodselections.
+<br />In some cases, one would like to generate immediately after discontinuation
+<br />a new blood selection. To that end, the discontinuation is followed
+<br />automatically by a repeat.
+<br />Notice that a bloodbag can be selected by more
+<br />than one patient. As long as more than one patient refers the bloodbag,
+<br />the bloodbag remains unaltered. If however only one patient pointed
+<br />to the bloodbag, the bloodselections can be discontinued and
+<br />the bloodbag itself can be demoted down to INITIAL.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>DiscontinueRepeat</b> (<span class="Type">String</span>&#160;<span class="Parameter">Reason</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Reason</span></dt>
+            </dl>
+        </div><a name="M_ReportResult"></a>
+        <h3>
+Report result&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ReportResult</b> ()</p>
+        </div><a name="M_Requests"></a>
+        <h3>
+Requests&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>Requests</b> ()</p>
+        </div><a name="M_RunProcedure"></a>
+        <h3>
+Run procedure&#160;</h3>
+        <div class="MemberHelp">
+            <p>
+Runs an external procedure supplied by your software dealer.
+<br />This function will not be added automatically to the menu.</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>RunProcedure</b> (<span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionMnemonic</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">FunctionParameters</span></dt>
+                <dd>
+The parameters required for the external procedure</dd>
+            </dl>
+        </div><a name="M_SelectBloodBagManually"></a>
+        <h3>
+Select blood bag manually&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectBloodBagManually</b> ()</p>
+        </div><a name="M_SelectBloodBagManuallyAndCheckout"></a>
+        <h3>
+Select blood bag manually + Check out&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectBloodBagManuallyAndCheckout</b> ()</p>
+        </div><a name="M_SelectMultiCompatibleBags"></a>
+        <h3>
+Select compatible bags&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectMultiCompatibleBags</b> ()</p>
+        </div><a name="M_SelectCompatibleBagsAndCheckout"></a>
+        <h3>
+Select compatible bags + Check out&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Void</span>&#160;<b>SelectCompatibleBagsAndCheckout</b> ()</p>
+        </div><a name="M_ToSuccessor"></a>
+        <h3>
+Successor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type">Void</span>&#160;<b>ToSuccessor</b> (<span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">QueryParameterList</span></dt>
+            </dl>
+        </div><a name="MISPLFunctions"></a>
+        <h2>
+MISPL functions</h2><a name="M_CompatibilityCascade"></a>
+        <h3>
+CompatibilityCascade&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Purpose: Add (cascade) compatibility check starting from existing bloodselection
+<br /><br />Function result value: At success, the function returns either a positive integer which is the record id of the result record created for the imposed requestable or zero, indicating that no cascade is required. At failure, the unknown value is returned. 
+<br /><br />Description: This function distinguishes between blood products which require a compatibility-check or not. IF required THEN this function must be defined in the field 'Check' of blood product. This action then automatically checks the existence of the requestable AND the need of the compatibility. 
+<br /><br />Example: 
+<br />    /* Mispl-expression that generates a cascade of the so-called X-test */  
+<br />    /* At success, the Id of the created result record is returned */       
+<br />    /* If zero, then no compatibility check required for the blood product */  
+<br />    /* At failure, unknown is returned */
+<br />RETURN .CompatibilityCascade("XCompatibility");   
+<br /></p>
+            <p class="Synopsis"><span class="Type"><a href="rslt.htm">Result</a></span>&#160;<b>CompatibilityCascade</b> (<span class="Type">String</span>&#160;<span class="Parameter">RequestableMnemonic</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">RequestableMnemonic</span></dt>
+            </dl>
+        </div><a name="M_LastRequest"></a>
+        <h3>
+LastRequest&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="rqst.htm">Request</a></span>&#160;<b>LastRequest</b> (<span class="Type">Logical</span>&#160;<span class="Parameter">Explicit</span>)</p>
+            <dl>
+                <dt><span class="Type">Logical</span>&#160;<span class="Parameter">Explicit</span></dt>
+            </dl>
+        </div><a name="M_PrintForm"></a>
+        <h3>
+PrintForm&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function is used any time one wants to print a transfusion form automatically without user interface. The printer used by GLIMS will be the printer that was last used by the logged in user during manual printing of a transfusion form starting from a blood selection (using the contextual menu function 'Print transfusion form').</p>
+            <p class="Synopsis"><span class="Properties">MultiRecord </span><span class="Type">Logical</span>&#160;<b>PrintForm</b> (<span class="Type">String</span>&#160;<span class="Parameter">TextMnemonic</span>, <span class="Type">String</span>&#160;<span class="Parameter">PrinterName</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">TextMnemonic</span></dt>
+                <dd>
+Mnemonic of text module to be used.</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">PrinterName</span></dt>
+                <dd>
+optional name of a configured Printer to be used for this.</dd>
+            </dl>
+        </div><a name="M_Promotion"></a>
+        <h3>
+Promotion&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+This function can be used in the trigger of the property that describes the compatibility check of a bloodproduct. To distinguish between blood selections that still need to be evaluated in the sense of a compatibility check and those who were evaluated
+<br />already, two states, namely Reserved and Checked are defined.
+<br /><br />The availability of the compatibility result triggers a status transition of the blood selection refering to the incoming result 
+<br /><br />Example:
+<br /><br />      RETURN
+<br />        (
+<br />         if .result.attribute("VALUE") = "neg" then
+<br />            .result.GetBloodSelection().Promotion
+<br />         else false
+<br />        );
+<br /><br />will promote the blood selection as soon as the compatibility result is negative.
+<br /><br />Remark: Since a trigger of any property is activated as soon as the result value is AVAILABLE, the promotion of the blood selection will take place even when the compatibility-check is not yet VALIDATED. However, the checkout of the related blood bag is prohibited as long as the compatibility result is not yet validated.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>Promotion</b> ()</p>
+        </div><a name="M_SetAttribute"></a>
+        <h3>
+SetAttribute&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Return : logical. If successful true, else false.
+<br /><br />This function can be used to calculate the utmost transfusion time based on the '48/72h' rule during blood bag selection. The blood selection's utmost transfusion time is updated.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetAttribute</b> (<span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span>, <span class="Type">String</span>&#160;<span class="Parameter">AttributeValue</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeName</span></dt>
+                <dd>
+Mandatory. Values=UtmostTransfusionTime</dd>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">AttributeValue</span></dt>
+                <dd>
+Mandatory</dd>
+            </dl>
+        </div><a name="M_SetCertificate"></a>
+        <h3>
+SetCertificate&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Set the certificate field</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetCertificate</b> (<span class="Type">String</span>&#160;<span class="Parameter">Value</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">Value</span></dt>
+            </dl>
+        </div><a name="M_SetUtmostTransfusionTime"></a>
+        <h3>
+SetUtmostTransfusionTime&#160;
+</h3>
+        <div class="MemberHelp">
+            <p>
+Sets the utmost transfusion time to the decimal (date-time) value specified.</p>
+            <p class="Synopsis"><span class="Type">Logical</span>&#160;<b>SetUtmostTransfusionTime</b> (<span class="Type">DateTime</span>&#160;<span class="Parameter">Value</span>)</p>
+            <dl>
+                <dt><span class="Type">DateTime</span>&#160;<span class="Parameter">Value</span></dt>
+            </dl>
+        </div><a name="M_Successor"></a>
+        <h3>
+Successor&#160;
+</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Type"><a href="#" class="selected">BloodSelection</a></span>&#160;<b>Successor</b> ()</p>
+        </div><a name="Children"></a>
+        <h2>
+Children</h2>
+        <h3>
+Requests</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="rqst.htm">Request</a>.<a href="rqst.htm#F_BloodSelection">BloodSelection</a></p>
+        </div>
+        <h3>
+Deliveries</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="dlvr.htm">w_Delivery</a>.<a href="dlvr.htm#F_BloodSelection">BloodSelection</a></p>
+        </div>
+        <h3>
+Successor of blood selection</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Private Nullify </span><a href="#" class="selected">BloodSelection</a>.<a href="#F_Predecessor">Predecessor</a></p>
+        </div>
+        <h3>
+Blood selections</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><span class="Properties">Shareable Cascade </span><a href="wbls.htm">w_BloodSelection</a>.<a href="wbls.htm#F_BloodSelection">BloodSelection</a></p>
+        </div><a name="Queries"></a>
+        <h2>
+Queries</h2><a name="Q_Standard"></a>
+        <h3>
+Standard blood selection query</h3>
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>Standard</b> (<span class="Type">String</span>&#160;<span class="Parameter">MinimalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">MaximalDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">MinimalExpirationDate</span>, <span class="Type">String</span>&#160;<span class="Parameter">MaximalExpirationDate</span>, <span class="Type"><a href="blpr.htm">BloodProduct</a></span>&#160;<span class="Parameter">BloodProduct</span>, <span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>, <span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span>, <span class="Type"><a href="obj.htm">Object</a></span>&#160;<span class="Parameter">Object</span>, <span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">Department</span>, <span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span>, <span class="Type">String</span>&#160;<span class="Parameter">CurrentFocus</span>)</p>
+            <dl>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MinimalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MaximalDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MinimalExpirationDate</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">MaximalExpirationDate</span></dt>
+                <dt><span class="Type"><a href="blpr.htm">BloodProduct</a></span>&#160;<span class="Parameter">BloodProduct</span></dt>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+                <dt><span class="Type">SiteEnumerated</span>&#160;<span class="Parameter">MinimalUrgency</span></dt>
+                <dt><span class="Type"><a href="obj.htm">Object</a></span>&#160;<span class="Parameter">Object</span></dt>
+                <dt><span class="Type"><a href="dept.htm">Department</a></span>&#160;<span class="Parameter">Department</span></dt>
+                <dt><span class="Type"><a href="sfn.htm">gp_SiteFunction</a></span>&#160;<span class="Parameter">FilterFunction</span></dt>
+                <dt><span class="Type">String</span>&#160;<span class="Parameter">CurrentFocus</span></dt>
+            </dl>
+        </div><a name="Q_SelectionsOfOrder"></a>
+        <h3 />
+        <div class="MemberHelp">
+            <p class="Synopsis"><b>SelectionsOfOrder</b> (<span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span>, <span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span>)</p>
+            <dl>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MinimalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+                <dt><span class="Type"><a href="bloodselectionstatus.htm">BloodSelectionStatus</a></span>&#160;<span class="Parameter">MaximalStatus</span></dt>
+                <dd>
+One of: <span class="Parameter">Initial, Reserved, Checked, Ready, Discontinued</span><br /></dd>
+            </dl>
+        </div><a name="Indexes"></a>
+        <h2>
+Indexes</h2>
+        <ul>
+            <li value="1"><span class="Properties">Unique </span><b>+ Id </b>
+            </li>
+            <li value="2"><span class="Properties">Externalization </span><b>+ BloodBag + Status - CreationTime </b>
+            </li>
+            <li value="3"><span class="Properties">Unique </span><b>+ CheckResult </b>
+            </li>
+            <li value="4"><b>+ CheckUser </b>
+            </li>
+            <li value="5"><b>+ DiscontinuationUser </b>
+            </li>
+            <li value="6"><b>+ Object + Status </b>
+            </li>
+            <li value="7"><b>+ Object - UtmostTransfusionTime </b>
+            </li>
+            <li value="8"><b>+ Order + SeqNo </b>
+            </li>
+            <li value="9"><span class="Properties">Unique </span><b>+ Predecessor </b>
+            </li>
+            <li value="10"><b>+ BloodProduct - CreationTime </b>
+            </li>
+            <li value="11"><b>+ ReadyUser </b>
+            </li>
+            <li value="12"><span class="Properties">Unique </span><b>+ ReportResult </b>
+            </li>
+            <li value="13"><b>+ SelectionUser </b>
+            </li>
+            <li value="14"><b>+ Status - CreationTime </b>
+            </li>
+        </ul><a name="Validations"></a>
+        <h2>
+Validations</h2>
+        <ul>
+            <li value="1">
+CheckResult.Object = Object</li>
+        </ul>
+        <hr width="100%" size="0" align="center" />
+        <p align="Right">
+Copyright © 2019 MIPS N.V.<br />
+All rights reserved.</p>
+    </body>
+</html>

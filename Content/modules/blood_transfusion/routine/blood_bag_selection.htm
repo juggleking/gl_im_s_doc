@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Blood transfusion|Assign blood bag to person">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>BTM - blood bag selection</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor784"></a>
+            <MadCap:concept term="Blood transfusion" />BTM - Blood bag selection</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Blood%20selection%20query%20and%20browser">Blood selection query and browser</a> - <a href="#Blood%20bag%20selection">Blood bag selection</a> - <a href="#Cross%20matching">Cross matching</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>After having <a href="blood_product_request.htm">requested a blood product in order entry</a>, you can now select a compatible blood bag for the automatically created blood selection(s).</p>
+        <h2><a name="Blood selection query and browser"></a>Blood selection query and browser</h2>
+        <h4>Blood selection query</h4>
+        <p>There are several ways to lookup the created blood selections. From the order browser, you can use the menu function <span class="ui_element">Requests</span> -&gt; <span class="ui_element">Blood selections</span>. Another possibility is to use the menu function <span class="ui_element">Start</span> -&gt;<span class="ui_element">Transfusion</span> -&gt; <span class="ui_element">Blood selection query</span>.</p>
+        <p>GLIMS also features a blood selection query available from the main menu via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Transfusion Management</span> -&gt; <span class="ui_element">Blood selections query</span>. The screen then displayed allows you to select blood selections. You could for instance ask all blood selections for a particular patient:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bsel_options.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1170" data-mc-height="327" src="bsel_options_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h4>Blood selection browser</h4>
+        <p>The returned blood selections  are listed in a browser.</p>
+        <p>The <span style="font-weight: bold;">information window</span> on the blood selection browser shows more details about the currently focused blood selection. The information shown can be customized by inserting a text module in the field <span class="ui_element">'Query blood selections' header</span> of the <a href="../configuration/blood_transfusion_general_options.htm">BTM general settings</a>.</p>
+        <p>If the <span class="ui_element">utmost transfusion date/time</span> of a blood selection is today, it is displayed in pink. If the utmost transfusion date/time is expired, it is displayed in red.</p>
+        <p>The <span class="ui_element">Positive screening</span> column indicates if a patient has ever been positive for <span style="font-weight: bold;">irregular antibody screening</span>. The list can be sorted on this column by clicking its header. This offers a quick overview of all patients with a positive screening requiring special attention when selecting a compatible blood bag.</p>
+        <h2><a name="Blood bag selection"></a>Blood bag selection</h2>
+        <p>You can now assign a blood bag to each blood selection. You can do this manually or have GLIMS select the most compatible bags from your blood bag stock.</p>
+        <h3>Semi-automatic blood bag selection</h3>
+        <p>The most common way to assign a blood bag is to let GLIMS produce a list of compatible bags. Use the blood selection menu function <span class="ui_element">Select compatible bags</span> to do so. All available and compatible blood bags will be displayed in a browser.</p>
+        <h4>Browser and ranking</h4>
+        <p>When looking for compatible blood bags, GLIMS will produce a compatibility score. The blood bags with the highest score will be shown on top of the list.</p>
+        <ul>
+            <li value="1">
+                <p>This compatibility score can be calculated by <a href="blood_bag_selection_ranking.htm">defining ranking rules</a>.</p>
+            </li>
+            <li value="2">
+                <p>If specified, the <a href="../configuration/blood_products.htm">ranking rule MISPL expression</a> defined for the requested blood product will be executed. This MISPL function can also calculate a compatibility score for the blood bags.</p>
+            </li>
+        </ul>
+        <p> In the compatible blood bag browser, the bags are sorted by ranking score and expiration date. The  browser displays the following information:</p>
+        <ul>
+            <li value="1"><span class="ui_element" data-mc-edit-date="2016-10-21T12:15:56.4219850+02:00" data-mc-editor="amelier" data-mc-comment="I don't see that" data-mc-initials="AM" data-mc-creator="amelier" data-mc-create-date="2016-10-21T12:15:53.1894613+02:00">Status</span>: status of the blood bag. For blood bags that have already been selected for another patient (only applicable if the option <span class="ui_element">Double cross allowed</span> is activated), the status is shown in red.</li>
+            <li value="2"><span class="ui_element">Ranking</span>: ranking as calculated by the <a href="blood_bag_selection_ranking.htm">defined ranking rules</a>. If there are directed or autologous blood bags for this patient, but for some reason their ranking score is 0, they still appear in the list (on top, with ranking 0 shown in red). For blood bags that have a ranking of 1, the ranking is shown in red.</li>
+            <li value="3"><span class="ui_element">Depot</span> (department): the Depot depends on how the <a href="../configuration/blood_transfusion_general_options.htm">Distinct departments</a> option in the BTM&#160;general settings is set. If it is set to:<ul><li value="1"><span class="ui_element">Yes</span>, only bags of the same department are shown. So the <span class="ui_element">Depot</span> column is not shown in that case.</li><li value="2"><span class="ui_element">No</span>, you will be able to select a blood bag from another department. </li><li value="3"><span class="ui_element">?</span>, GLIMS will still allow you to select blood bags from other departments (similar as setting it to <span class="ui_element">NO</span>), but the list of compatible blood bags will first show all compatible blood bags of the own department, and then beneath all compatible blood bags of other departments. If a blood bag is in another department, the department is always shown in red (even if <span class="ui_element">Distinct departments</span> is set to <span class="ui_element">No</span>).</li></ul></li>
+            <li value="4"><span class="ui_element">Internal</span> or <span class="ui_element">external id</span></li>
+            <li value="5">Blood product <span class="ui_element">specification</span> (and sub-product)</li>
+            <li value="6"><span class="ui_element">Blood group</span>
+            </li>
+            <li value="7"><span class="ui_element">Rhesus</span>
+            </li>
+            <li value="8">Antigen absence/presence: absence is shown by <span class="ui_element">-</span>, presence is shown by <span class="ui_element">+</span>, empty means it is unknown</li>
+            <li value="9"><span class="ui_element">Antigens</span>: shows available special antigens</li>
+            <li value="10"><span class="ui_element">Expires</span>: expiration date/time</li>
+        </ul>
+        <p>In order to make a clear distinction between blood bags with different compatibility scores, the background color for bags with another score changes from white to yellow and vice versa. The expiration date of blood bags that will expire on the very same day is shown in pink.</p>
+        <h4>Patient information</h4>
+        <p>Additional patient information that could be important for selecting the correct blood bags is shown at the bottom of the screen. The information depends on the patient and on the requested blood product. It is shown from the top to the bottom in the following order:</p>
+        <ul>
+            <li value="1">Active object attributes, if the patient has any. Object attributes without attribute rules are not shown.</li>
+            <li value="2">List of antibodies known to be present for the patient. Antibodies that are not checked by the <a href="../configuration/blood_products.htm">built-in antibody-antigen check</a> appear in brackets.</li>
+            <li value="3">
+                <p>List of all known (positive or negative) antigens for the patient. Antigens that are not checked by the <a href="../configuration/blood_products.htm">built-in antigen-antigen check</a> appear in brackets.</p>
+                <p>Possible causes for antigens or antibodies appearing in brackets are</p>
+                <ul>
+                    <li value="1">the check is disabled on the <a href="../configuration/blood_products.htm">blood product</a></li>
+                    <li value="2">the eligibility MISPL on the <a href="../configuration/blood_products.htm">blood product</a> returns NO for this patient;</li>
+                    <li value="3">the <a href="../configuration/antigens.htm">score factor defined on that antigen</a> is 100% (meaning 'no influence').</li>
+                </ul>
+            </li>
+        </ul>
+        <h4>Select a blood bag</h4>
+        <p>When selecting compatible blood bags, it is prevented that certain blood bags are selected if there are blood bags available that should be taken first. <span>If you select a normal blood bag for a patient while an autologous or directed unit is available for that patient, a warning message asks whether you really want to continue. The same applies when you want to select a directed blood bag while an autologous unit is available for that patient.</span></p>
+        <p>Select a blood bag and click <span class="ui_element">OK</span> to assign it to the blood selection. Both the blood bag and blood selection are now promoted to status <span class="ui_element">Reserved</span>.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                    </p>
+                    <p>When a blood bag is successfully selected and linked to a blood selection, the ranking score that was calculated at this time is saved into the <span class="ui_element">Compatibility score</span> field of the blood selection record. Afterwards this score can be viewed, used in triggers, and used in statistics (which have also been extended for this). The same applies to the warning message that is displayed when a blood bag with score 1 is selected. This warning text is also saved in the blood selection record, in the field <span class="ui_element">Compatibility warning</span>.</p>
+                </div>
+            </div>
+        </div>
+        <h3>Manual blood bag selection</h3>
+        <p>Using the blood selection menu function <span class="ui_element">Select blood bag manually</span>, you can manually assign a blood bag for the blood selection:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="bbagsel1.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="549" data-mc-height="203" src="bbagsel1_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><b style="font-weight: bold;">Patient information</b>
+        </p>
+        <div class="indented">Additional patient information that could be important for selecting the correct blood bags is shown at the bottom of the screen. The information depends on the patient and on the requested blood product. It is shown from the top to the bottom in the following order:
+        <ul><li value="1">Active object attributes, if the patient has any. Object attributes without attribute rules are not shown.</li><li value="2">List of antibodies known to be present for the patient. Antibodies that are not checked by the <a href="../configuration/blood_products.htm">built-in antibody-antigen check</a> appear in brackets.</li><li value="3"><p>List of all known (positive or negative) antigens for the patient. Antigens that are not checked by the <a href="../configuration/blood_products.htm">built-in antigen-antigen check</a> appear in brackets.</p><p>Possible causes for antigens or antibodies appearing in brackets are</p><ul><li value="1">the check is disabled on the <a href="../configuration/blood_products.htm">blood product</a></li><li value="2">the eligibility MISPL on the <a href="../configuration/blood_products.htm">blood product</a> returns NO for this patient</li><li value="3">the <a href="../configuration/antigens.htm">score factor defined on that antigen</a> is 100% (meaning 'no influence').</li></ul></li></ul></div>
+        <p>&#160;</p>
+        <p><b style="font-weight: bold;">Blood bag identification</b>
+        </p>
+        <div class="indented">Enter the <span class="ui_element">blood bag identification</span> of the blood bag that you would like to assign. The same compatibility rules as described in the semi-automatic blood bag selection above will be applied. The program will also verify if the chosen blood bag has the same blood product as the blood selection.</div>
+        <p><b style="font-weight: bold;">In the past</b>
+        </p>
+        <div class="indented">When using the manual blood bag selection function, it is possible to specify that in reality this was done on another day and/or time. This is useful when there was no time or opportunity to register everything in GLIMS at the very moment that the blood bag was selected and checked out. This is especially useful when the expiration date of the blood bag has been passed in the meantime, so that GLIMS would otherwise reject the blood bag because it is currently <span class="ui_element">Expired</span> (although in reality it has been transfused before it expired).</div>
+        <div class="indented">To perform a manual selection of a blood bag 'as if it were another date or time in the past', enable the option <span class="ui_element">In the past</span> and specify the date and time in the extra field that appears.<div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #616E14;" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Notes</a></span><div class="MCDropDownBody dropDownBody"><div class="text_box_notes"><p><span style="color: #616E14; font-weight: bold;">Note</span></p><ul><li value="1">After having done this, the selection time that is registered in the BloodSelection record is the date and time that you actually did this in GLIMS. This ensures correct tracing of the user's manipulations.<br /></li><li value="2">This feature does not exist for automatic selection of compatible bags, for obvious reasons.</li></ul></div></div></div></div>
+        <p>&#160;</p>
+        <p>Click <span class="ui_element">OK</span> to assign the blood bag. Both the blood bag and blood selection are now promoted to status <span class="ui_element">Reserved</span>.</p>
+        <h4><b style="font-weight: bold;">Multiple blood bag selections</b>
+        </h4>
+        <p>The manual blood bag selection function is also able to handle more than 1 blood selection at once. The only condition is that the selected blood selections are all for the same patient, the same order, and the same blood product. If so, you can select multiple blood selections and call the menu function <span class="ui_element">Select blood bag manually</span>.</p>
+        <p>The window that appears displays the number of blood selection records in the title bar and also the number of blood bags that have been entered already. After entering a blood bag number, the window will remain open until you have entered as many blood bags as you selected blood selections.</p>
+        <h3>Which actions are or can be taken on blood bag selection
+        </h3>
+        <ul>
+            <li value="1">As soon as you execute the (manual or semi-automatic) selection, the <a href="../configuration/blood_properties.htm">blood properties</a> linked to the blood product will be evaluated. The eligibility MISPL of the blood product allows to define conditions before even selecting an actual blood bag; e.g. is the blood group of the patient determined?</li>
+            <li value="2">GLIMS will execute the triggers <span class="ui_element">Before select</span> and <span class="ui_element">When selected</span> as specified in the <a href="../configuration/blood_products.htm">blood product</a> (can be used for automatic <a href="tranfusion_print_form.htm">printing of transfusion form</a> etc...)</li>
+            <li value="3">The <span class="ui_element">Utmost transfusion time</span> MISPL expression defined in the blood product will be executed.</li>
+            <li value="4">As soon as a blood bag is selected (and if configured as such), GLIMS will automatically request a <a href="#Cross%20matching">cross match</a>.</li>
+        </ul>
+        <h2><a name="Cross matching"></a>Cross matching and re-evaluation of compatibility</h2>
+        <p>When a blood bag is assigned to a blood selection, GLIMS will automatically request a cross match. This will be the default cross match request definition specified in the <a href="../configuration/blood_products.htm">blood product configuration</a>. Note that you can use the <span class="ui_element" data-mc-edit-date="2016-10-24T10:28:36.4856868+02:00" data-mc-editor="amelier" data-mc-comment="Not found" data-mc-initials="AM" data-mc-creator="amelier" data-mc-create-date="2016-10-24T10:28:29.3238756+02:00">Overrule 
+ default crossmatch</span> field to determine which cross match is to be executed under specific conditions. However, if no cross match is necessary, you can set the <span class="ui_element">Crossmatch not 
+ applicable</span> option of the <a href="../configuration/blood_products.htm">blood product</a> to indicate that the blood bag status can automatically be promoted to <span class="ui_element">Checked</span> after selection.</p>
+        <p>If a cross match is requested, its result will determine whether the selected blood bag is promoted to status <span class="ui_element">Checked</span> or whether it is demoted to status <span class="ui_element">Initial</span>. This decision can be automated by means of a MISPL expression in the property trigger of the cross match request.</p>
+        <p>When the blood selection has reached status <span class="ui_element">Checked</span>, either because the cross match was OK or because no cross match had to be done, the blood product trigger <span class="ui_element">When checked</span> will be executed. This can be useful e.g. to print a transfusion form. Caution: the result of this function (TRUE or FALSE) will be ignored.</p>
+        <p><b style="font-weight: bold;">Re-evaluation of compatibility</b>: whenever a blood bag is promoted to status <span class="ui_element">Checked</span>, GLIMS will verify if the blood bag is still compatible. If the blood bag is no longer suitable according to one of the GLIMS rules, the user will be warned with a message. Then the blood selection is automatically set to <span class="ui_element">discontinue-repeated</span> and another bag will have to be selected. In case the blood selection has an urgency higher than normal (and the promotion is not triggered by an analyzer connection), the user is first asked whether the bag has already physically left the lab. If it has, the promotion will continue (with a severe warning), despite the fact that the bag was no longer suitable...</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown"><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #003366" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />Example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_examples">
+                    <p><span style="color: #003366; font-weight: bold;">Example</span>
+                    </p>
+                    <p>Cross match property trigger:</p><pre>
+string Value;
+Bloodselection BSel;
+ BSel := .Result.GetBloodSelection();
+Value := .Result.Attribute("ExpandedValue");
+ IF Value = "Compatible" OR Value = "Cross-checked in BTC"THEN   /* promote the bloodselection to 'Checked' */
+   .Result.BloodselectionPromotion();    /* print 2 copies of the transfusion form */
+   BSel.PrintForm("transfusionform_ery", ?);
+   BSel.PrintForm("transfusionform_ery", ?);    /* print a label */
+   BSel.PrintTransfusionLabel();
+   IF BSel.UtmostTransfusionTime = .Result.Order.LowestObjectTime   THEN      /* 2 days starting from now */
+      BSel.SetUtmostTransfusionTime( .Result.AvailabilityTime + 2 );
+   ELSE      /* a due date was specified, so take 2 days starting from this due date */
+      BSel.SetUtmostTransfusionTime( BSel.UtmostTransfusionTime + 2 );
+   ENDIF; 
+ELSE
+   IF Value = "Incompatible"   THEN
+      .Result.BloodselectionDiscontinuation("Positive compatibility check");
+   ELSE
+      /* another answer was given; do nothing */ ;
+   ENDIF;
+ENDIF;
+ RETURN YES;
+</pre>
+                    <p>Note that this MISPL expression does more than just promote or discontinue the blood selection according to the result of the cross match. If the compatibility check is negative, the utmost transfusion time will be set and a transfusion form will be printed.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

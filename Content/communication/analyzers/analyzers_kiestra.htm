@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Connection with Kiestra (microbiology automation system)</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Synchronization between GLIMS microbiology screen and Kiestra</h1>
+        <p>Content: <a href="#Synchron2">Kiestra &gt; GLIMS</a>&#160;- <a href="#Synchron">GLIMS &gt; Kiestra</a></p>
+        <h2><a name="Synchron2"></a>Synchronization of GLIMS microbiology work screen with Kiestra  (Kiestra &gt; GLIMS)</h2>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Purpose</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The purpose of this functionality is to synchronize the  microbiology work screen with an application screen of the Kiestra system: when a specimen is inspected  on the Kiestra system, the GLIMS microbiology work screen needs to open with the information of the specimen being inspected.</p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Opening the microbiology work screen in "listen" mode</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The microbiology work screen can be launched in "listen" mode to ensure that it receives and responds to synchronization messages from the external application. The setup screen that is required for this purpose </p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">displays the IP address of the device GLIMS is currently running on and</li>
+            <li value="2"> requires the user to enter an unused port number.</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">Clicking <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">OK</span> in the setup screen opens an empty microbiology work screen with the host and entered port visible in the top right area of the screen. As long as this screen remains open, it will synchronize to the ASTM messages received from the external application on the entered port.</p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Accessing the setup screen</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">It is required to add a new <a href="../../user_interface/user_interface_ribbons_configuration_ribbon_item.htm" xmlns="http://www.w3.org/1999/xhtml">ribbon item</a> or <a href="../../user_interface/user_interface_start_menu_customization.htm" xmlns="http://www.w3.org/1999/xhtml">menu item</a> for a <a href="../../user_interface/user_interface_tools.htm" xmlns="http://www.w3.org/1999/xhtml">tool</a> that </p>
+        <ol xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">has its <span class="ui_element">Table</span> / <span class="ui_element">Function table</span> set to <span class="ui_element">gp_Site</span>,</li>
+            <li value="2"> has its <span class="ui_element">Function mnemonic</span> set to <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">RunProcedure</span>,</li>
+            <li value="3">has its <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Function parameter set</span> configuration set to <span class="ui_element">MicrobiologyScreenSync</span>.</li>
+        </ol>
+        <p xmlns="http://www.w3.org/1999/xhtml">Select the new ribbon or menu item to open the setup screen for the synchronization of the microbiology work screen.</p>
+        <h3 xmlns="http://www.w3.org/1999/xhtml">Example messages</h3>
+        <p xmlns="http://www.w3.org/1999/xhtml">The message sent by the external system includes the specimen ID used to synchronize both screens. This ID should always be found in the Q.3 or O.3 segment of the message.</p>
+        <div class="box_grey" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">H|\^&amp;|||LIS|||||KIESTRA</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">P|</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">O||20180315-0003202|</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">L|</p>
+        </div>
+        <p xmlns="http://www.w3.org/1999/xhtml">When the message includes a CLOSED instruction in the specimen ID's segment, all data will be removed from the microbiology work screen in GLIMS, and the screen will await a new message to synchronize to.</p>
+        <div class="box_grey" xmlns="">
+            <p xmlns="http://www.w3.org/1999/xhtml">H|\^&amp;|||LIS|||||KIESTRA</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">P|</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">O||20180315-0003202 ^CLOSED|</p>
+            <p xmlns="http://www.w3.org/1999/xhtml">L|</p>
+        </div>
+        <h2><a name="Synchron"></a>Synchronization of Kiestra  with GLIMS microbiology work screen (GLIMS &gt; Kiestra)</h2>
+        <h3>Description</h3>
+        <p>The purpose of this functionality is to synchronize an application screen on the Kiestra System (microbiology automation system) when a user opens the GLIMS <a href="../../modules/microbiology/routine/microbiology_work_screen.htm">microbiology work screen</a> or navigates between specimens in the GLIMS microbiology work screen.</p>
+        <h3>Configuration</h3>
+        <p>The synchronization consists of a message being sent to a TCP port of one of the workstations of the Kiestra system. </p>
+        <p>To define the Kiestra workstations in GLIMS, click <span class="ui_element">Start -&gt; Microbiology -&gt; Configuration -&gt; Micro screen sync devices -&gt; By number.</span></p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="micro_screen_sync_device.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="745" data-mc-height="634" src="micro_screen_sync_device_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Number</p>
+        <div class="indented">
+            <p>Number of the Kiestra workstation.</p>
+        </div>
+        <p class="fieldlabel">Name</p>
+        <div class="indented">
+            <p>Name of the Kiestra workstation.</p>
+        </div>
+        <p class="fieldlabel">Enabled</p>
+        <div class="indented">
+            <p>Only enabled workstations can be selected.</p>
+        </div>
+        <p class="fieldlabel">Host </p>
+        <div class="indented">
+            <p>TCP host of the Kiestra workstation.</p>
+        </div>
+        <p class="fieldlabel">Port</p>
+        <div class="indented">
+            <p>Port number of the Kiestra workstation.</p>
+        </div>
+        <p class="fieldlabel">Station</p>
+        <div class="indented">
+            <p>When specified, the synchronization program will use the station's settings to decide which id of the specimen is to be transmitted.</p>
+            <ol>
+                <li value="1">If the station has an <span class="ui_element">identification type</span>, GLIMS will search for a valid specimen identification code.</li>
+                <li value="2">If no station identification type is defined or the code is not found, GLIMS will check if the option <span class="ui_element">Use external id</span> is enabled.<ol><li value="1">If so, GLIMS will use the specimen external id.</li><li value="2">If the specimen external id is unknown or if the option <span class="ui_element">Use external id</span> is disabled, GLIMS checks if &#160;<span class="ui_element">Use internal id</span> is enabled. If so, GLIMS will use then the specimen internal id.</li></ol></li>
+            </ol>
+        </div>
+        <p class="fieldlabel">Coding system</p>
+        <div class="indented">
+            <p>Optional coding system with code set for microbiology procedures. This allows restricting the synchronization to specimens having at least one microbiology action with a code defined.</p>
+        </div>
+        <h3>Routine</h3>
+        <h4>Selecting the work station</h4>
+        <p>As soon as 1 enabled device is configured in GLIMS, the microbiology action browser will show a button <span class="ui_element">Screen sync select</span> which allows to select one of the configured devices.</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="mb_actions_screen_sync_select.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="1058" data-mc-height="421" src="mb_actions_screen_sync_select_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="micro_screen_sync_device_selection.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="472" data-mc-height="362" src="micro_screen_sync_device_selection_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p class="fieldlabel">Number</p>
+        <div class="indented">
+            <p>Select the Kiestra work station</p>
+        </div>
+        <p class="fieldlabel">Default</p>
+        <div class="indented">
+            <p>If set, the user's selection will be stored and used as default in a next GLIMS session.</p>
+        </div>
+        <h4>Activating the screen synchronization</h4>
+        <p>Opening the microbiology screen or navigating in it will result in synchronization towards the Kiestra work station, as long as the GLIMS session is active.</p>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>: The screen synchronization is only activated upon a "Double-click" or "Enter" on a record in the microbiology action browser. The <span class="ui_element">Microbiology screen</span> item in the contextual menu on a microbiology action for instance will not activate the synchronization.</p>
+        </div>
+        <p>The message bar at the bottom of the GLIMS screen will indicate if the connection was successful or not.</p>
+        <p>
+            <img src="kiestra_connection_status.png" style="border: none;" alt="" width="591" height="19" border="0" />
+        </p>
+    </body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns:o="http://UnknownNamespace.xsd" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Routine|Orders|Archiving" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="Online_archives_consultation">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Online archives consultation</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2928"></a>
+            <MadCap:concept term="System management" />Archiving - Online archives consultation</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Prerequisites">Prerequisites</a> 
+ - <a href="#Functional%20description">Functional description</a> - <a href="#Activation">Activation</a>
+- <a href="#Function%20parameters">Function parameters</a> - <a href="#Verifying%20proper%20operation">Verifying
+operation</a> - <a href="#Archie%20feedback" name="kanchor273">GLIMS Archive feedback</a> - <a href="#The%20viewer">The
+viewer</a> - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Introduction"></a>Introduction</h2>
+        <p>GLIMS contains on-line archive communication facilities. This 
+ means that it is not necessary to have a local GLIMS Archive installation in 
+ order to consult the archives. Archived orders can be fetched and viewed 
+ from within GLIMS. This feature is supported for Windows systems only.</p>
+        <h2><a name="Prerequisites"></a>Prerequisites</h2>
+        <p>Some prerequisites are to be satisfied in order to 
+ assure proper operation:</p>
+        <ol>
+            <li value="1">You need an "Archive 
+ Connection" license.</li>
+            <li value="2">There must be 
+ an operational GLIMS Archive web server (see GLIMS Archive documentation).</li>
+            <li value="3">
+                <p>You need to have 
+ Microsoft Internet Explorer installed on the client.</p>
+                <p>When the version of your Internet Explorer is older 
+ than 6, you also need to install the Microsoft® XML 3.0 parser to be able 
+ to view a document. The installation consists of two steps:</p>
+                <ol>
+                    <li value="1">Execute Bin\xmlparser\msxml.msi 
+ (installs msxml3.dll, msxml3a.dll and msxml3r.dll).</li>
+                    <li value="2">Execute Bin\xmlparser\xmlinst.exe 
+ (registers msxml3.dll).</li>
+                    <li value="3">Restart your 
+ computer in order to activate the XML 3.0 parser.</li>
+                </ol>
+                <p>For more info see <a href="http://msxml.com/msxml3.html" target="_blank">http://msxml.com/msxml3.html</a>.</p>
+            </li>
+        </ol>
+        <ol>
+            <li value="4">The "GLIMS" symbol is to be defined 
+ in the "MA section" of your Progress.ini. It should refer the 
+ GLIMS root directory (e.g. "D:\Glims6").</li>
+            <li value="5">Your Progress environment should be setup correctly. 
+ Check that your operating system environment variables refer the Progress 
+ version being used. Verify via "My Computer &gt; Properties 
+ &gt; Environment" (Windows NT4) or "My Computer &gt; Properties 
+ &gt; Advanced &gt; Environment variables" (Windows 2000) that:</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li class="kadov-p" value="1">The "DLC" variable refers the Progress 
+ root directory.</li>
+                <li class="kadov-p" value="2">The "Path" variable contains the %DLC% 
+ and %DLC%/bin directory.</li>
+            </ul>
+            <p>Check that the version of your executable (prowin32.exe or prwinr32.exe) 
+ matches the Progress version installed on your PC. You can find out the 
+ Progress version of your executable by means of the CTRL-ALT-SHIFT-F1 
+ combination.</p>
+            <p>If any changes are necessary, make sure to completely quit and restart 
+ your GLIMS session afterwards.</p>
+        </blockquote>
+        <ol>
+            <li value="6" class="kadov-p">For each document type exchanged with GLIMS Archive (like 
+ e.g. "ORU_R01"):</li>
+        </ol>
+        <blockquote>
+            <ul>
+                <li class="kadov-p" value="1">A unique external message should be found, with a 
+ root node label matching the document type. See below for more information.</li>
+                <li class="kadov-p" value="2">A "&lt;DocumentType&gt;.xsl" file should 
+ be found in the $GLIMSDAT directory or $GLIMS/dat if the former is not 
+ set (e.g. "D:\Glims6\Dat\ORU_R01.xsl").</li>
+            </ul>
+        </blockquote>
+        <h2><a name="Functional description"></a>Functional description</h2>
+        <p>Archive consultation 
+ is implemented by means of HTTP requests that are sent to an archive web 
+ server. The received reply is expected to be a HL7 batch (BHS) XML document, 
+ containing several (ORU_R01) sub-documents, being the archived orders. 
+ The received orders are stored in a temporary-table (w_ArchivedOrder) 
+ and presented to the user via a standard browser. From the browser, the 
+ documents can be viewed. The document viewer starts a windowed version 
+ of Internet Explorer to show the XML document and uses an XSL (Extensible 
+ Stylesheet Language) file to determine the layout. The XSL file transforms 
+ XML into HTML. There are three different layouts available: Compact, Default 
+ and Extended. The layout can be changed at run-time and is remembered 
+ per user. </p>
+        <h2><a name="Activation"></a>Activation</h2>
+        <p>On-line consultation 
+ can be activated via the Object.ArchivedOrders() menu function. Initially, 
+ an options dialog will follow. Any entered options are remembered in the 
+ user preferences, but actually the function is intended to be pre-parameterized. 
+ This avoids an extra confirmation on each consultation, and prevents end-users 
+ from being confronted with an options dialog they won't understand anyhow.</p>
+        <p>To pre-parameterize 
+ the function, edit the Object table menu via 'System management &gt; Scheme 
+ &gt; Tables'. Navigate to the Object table, and select the "Menu 
+ &gt; Edit" pop-up menu function. In the subsequent user interface, 
+ link a function parameter set to the ArchivedOrders() menu function.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="archiveconsultation_menu.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="515" data-mc-height="235" src="archiveconsultation_menu_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p align="left">In the
+Object.ResultOverview() browser, a button appears in the upper right corner for
+objects having archived orders (i.e. Object.LastArchiveTime &lt;&gt; ?). The
+button provides immediate access the Object.ArchivedOrders() function. If that
+function is pre-parameterized in the Object table menu, its function parameter
+set is inherited.</p>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="archiveconsultation_resultoverview.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="639" data-mc-height="134" src="archiveconsultation_resultoverview_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <h2><a name="Function parameters"></a>Function
+parameters</h2>
+        <p style="text-align: left;"><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="archiveconsultation_queryoptions.gif"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="382" data-mc-height="140" src="archiveconsultation_queryoptions_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>In the options dialog
+three parameters can be specified. All three determine how the archive HTTP
+request will be composed:
+</p>
+        <h3>Archive web server</h3>
+        <p>This is the host name
+or IP address of the archive web server. </p>
+        <div class="text_box_examples">
+            <p><span style="color: #003366; font-weight: bold;">Examples</span>
+            </p>
+            <p>"hyperion",
+"192.168.1.5" </p>
+            <p>The use of IP addresses is, however, discouraged.
+</p>
+        </div>
+        <h3>Archive web service</h3>
+        <p>This is the path of
+the service on the web server. The service is the application program running on
+the web server, processing the requests. The path is case-sensitive, should be
+relative to the root of the server, and start with a / (even an empty path).
+For standard installations, this should be:</p>
+        <ul>
+            <li class="kadov-p" value="1">For a Unix web server: /cgi-bin/CyberARCHIE</li>
+        </ul>
+        <ul>
+            <li class="kadov-p" value="1">For a Windows web server: /CyberARCHIE/bin/nph-cyberarchie.exe</li>
+        </ul>
+        <h3>Query parameters</h3>
+        <p>The semantics for an HTTP request is:
+</p><pre style="margin-top: 6.0pt;margin-right: 0in;margin-bottom: 6.0pt;margin-left: 0in;text-indent: .5in;">http://&lt;WebServer&gt;&lt;WebService&gt;?&lt;Query&gt;
+</pre>
+        <p>The standard &lt;Query&gt; component sent by GLIMS is
+composed of a fixed and a variable part. The fixed part is always:
+</p><pre style="margin-top: 6.0pt;margin-right: 0in;margin-bottom: 6.0pt;margin-left: 0in;text-indent: .5in;">“Command=Query&amp;Class=Document”
+</pre>
+        <p>For the variable part, there are two alternatives:
+either the hard-coded built-in is accepted, in which case this third option
+shouldn’t be specified; or it is composed by means of a site function.</p>
+        <p>The hard-coded built-in contains some parameter tags
+(“Sender”, “PIN”,…), ready to communicate with a standard GLIMS Archive
+(version 2.0 or higher). The tags correspond to the actual GLIMS Archive element
+mnemonics.
+</p>
+        <div class="indented">
+            <div class="text_box_examples" xmlns="http://www.w3.org/1999/xhtml">
+                <p xmlns="http://www.w3.org/1999/xhtml"><span style="color: #003366; font-weight: bold;">Example</span>
+                </p><pre>http://hyperion/cgi-bin/CyberARCHIE?Command=Query&amp;Class=Document&amp;
+Sender=GLIMS&amp;DocumentType=ORU_R01&amp;PIN=364&amp;PINProvider=GLIMS
+</pre>
+                <p>Which means that we want to retrieve all documents
+ (orders) of type ORU_R01, archived by GLIMS, for patient with PIN = “364”.
+ Because the PINProvider is GLIMS itself, this PIN corresponds to the Object.Id
+ field, which is guaranteed to be unique and invariant.
+  </p>
+            </div>
+            <p><![CDATA[  ]]></p>
+        </div>
+        <p>The optional site function must be Object-based
+and string-valued. It should adhere the following syntax:
+</p><pre style="margin-top: 6.0pt;margin-right: 0in;margin-bottom: 6.0pt;margin-left: 0in;text-indent: .5in;">Tag = Value [“&amp;” Tag = Value ]…
+</pre>
+        <p>A site-function returning the built-in default would
+look like:
+</p>
+        <blockquote><pre>CHARACTER PROGRAM
+RETURN "Sender=GLIMS&amp;DocumentType=ORU_R01&amp;PIN=" + IntegerToString(.Id, "%d") +
+    "&amp;PINProvider=GLIMS";</pre>
+        </blockquote>
+        <p>For sites where historical orders were imported in
+GLIMS Archive rather than in GLIMS, there is of course no PINProvider “GLIMS”
+contained in the archived orders. This could be a good reason for using a site
+function. In that case the site-function could look like:
+</p>
+        <blockquote><pre>CHARACTER PROGRAM
+RETURN "Sender=MIPSYS&amp;DocumentType=ORU_R01&amp;PIN=" +
+    IfKnownString(.Person.Correspondent.Identification("MIPS")) +
+    "&amp;PINProvider=MIPS";</pre>
+        </blockquote>
+        <p>Which would query the archives for orders of
+“MIPSYS”, and for the patient with its PIN assigned by “MIPS”.
+</p>
+        <p>For debugging purposes, the HTTP request is always shown
+in the status area at the bottom of the window.
+</p>
+        <h2><a name="Verifying proper operation"></a>Verifying proper operation of the
+GLIMS Archive web server</h2>
+        <p style="page-break-after: avoid;">Before testing the archive communication, verify that
+your archive web server is fully operational. This can easily be tested by
+entering the URL described above in the address line of a standard web browser.
+</p>
+        <p>To
+obtain the .Id of an object with archived orders, use the <span class="ui_element">Record &gt; Run
+MISPL function</span> main menu option from an Object browser. Specify an
+integer-valued site function with content: “RETURN .Id;”.
+</p>
+        <h2><a name="Archie feedback"></a>How GLIMS Archive's feedback is parsed</h2>
+        <p>As described above, the received reply is expected to be
+a HL7 batch (BHS) XML document, containing several sub-documents. The type of
+the sub-documents is determined by their root element labels (typically
+“ORU_R01”).
+</p>
+        <p>Via this label, a unique matching external message (io_Message
+record) is searched. So, it is imperative that the document type (e.g.
+"ORU_R01") is defined only once. If an unambiguous message structure
+is found, the location of some crucial fields is searched in the opposite
+direction as when archiving an order:
+</p>
+        <div class="indented">
+            <p> w_Order.ordr_InternalId<br /> w_Order.ordr_Department<br />  w_Order.ordr_IssuerLastName<br />  w_Order.ordr_IssuerInternalId<br />  w_Order.ordr_LowestObjectTime<br />  w_Order.ordr_Status
+  </p>
+        </div>
+        <p>According to the location of these fields in the message
+structure, GLIMS knows where to fetch the required information in the received
+XML document. The information contained in these fields will be shown in the
+subsequent browser in four columns:</p>
+        <ol>
+            <li value="1">
+                <p>Order internal id</p>
+            </li>
+            <li value="2">
+                <p>Issuer/Department identification</p>
+            </li>
+            <li value="3">
+                <p>Object time</p>
+            </li>
+            <li value="4">
+                <p>Order status
+  </p>
+            </li>
+        </ol>
+        <p>In the status area, the number of retrieved orders is
+displayed as: "Fetched &lt;Count&gt; orders". </p>
+        <p>If the returned XML document cannot be loaded for one or
+another reason, the raw response is shown in a standard explorer window.
+</p>
+        <h2><a name="The viewer"></a>The viewer</h2>
+        <p>From the temporary order browser, the documents can be
+viewed by means of:</p>
+        <ul>
+            <li value="1">
+                <p>RETURN or F6.</p>
+            </li>
+            <li value="2">
+                <p>The w_ArchivedOrder.Display() pop-up menu option.</p>
+            </li>
+            <li value="3">
+                <p>The "Record &gt; View" main menu option.  </p>
+            </li>
+        </ul>
+        <p>The document viewer starts a windowed version of
+Internet Explorer to show the XML document and uses an XSL (Extensible
+Stylesheet Language) file to determine the layout. The XSL file transforms XML
+into HTML. There are three different layouts available: Compact, Default and
+Extended. The layout can be changed at run-time and is remembered per user.
+</p>
+        <p>In
+the upper right corner of the document viewer there is a button allowing the
+user to switch between full and normal screen mode.
+</p>
+        <h3>The layout file</h3>
+        <p>The
+XSL layout file is stored in the “Dat” sub-directory (unless redefined by
+means of the GLIMSDAT environment variable), and has the same name as the
+document type. For order documents (type ORU_R01) the XSL file is named
+'ORU_R01.xsl'. This file enables MS Internet Explorer® to transform an XML
+document into an HTML document in three different manners. If you choose Compact
+as layout, ORU_R01.xsl will transform an ORU_R01 document into a rather small
+displayable HTML page. A lot of data that is considered as less important will
+be omitted. If you choose Extended layout, all data in the XML document is
+translated into HTML and the result will be a verbose document. The Default
+layout generates something between the two.
+</p>The XSL files are plain text files and can be edited to adapt the layout. When
+you want to edit the XSL files by hand, it might be useful to take a look at the
+XSL reference at <a href="http://www.w3.org/Style/XSL/" target="_blank">http://www.w3.org/Style/XSL/</a>.
+<h2><a name="Remarks"></a>Remarks</h2><p>Beware for caching of Internet Explorer! Although the standard caching of Internet Explorer is desirable in a routine environment, it may cause unexpected behavior during configuration and testing.
+In the following scenario:</p><ol><li value="1"> Ask for the archived orders of an object; none are found.</li><li value="2"> Archive some orders for that patient.</li><li value="3"> Again ask the archived orders of the same patient.</li></ol><p>The third operation will yield an empty browser, although some orders were archived meanwhile. To avoid this effect, you should delete your temporary Internet files between step 2 and 3 (via "Tools &gt; Internet Options..." in Internet Explorer).</p></body>
+</html>

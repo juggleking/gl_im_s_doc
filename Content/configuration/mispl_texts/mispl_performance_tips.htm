@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Configuration|Advanced|MISPL and texts|MISPL" data-mc-file-tags="Status.CheckedContent,Status.Restyled" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\mispl-text\performance_tips.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Optimizing
+the performance of MISPL functions</title>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1>Optimizing
+the performance of MISPL functions</h1>
+        <p>An important factor in MISPL performance is the amount of database access.&#160; Reducing this number can significantly improve the performance
+of your MISPL function.&#160; In order to do so, you should store reusable
+information in variables.</p>
+        <h4>Example of a label text with very low performance</h4>
+        <table border="1" width="75%" cellspacing="0">
+            <tr>
+                <td width="100%">{=IFknownstring(substr(.Specimen.Object.Person().Firstname,1,1))
+ +"."+<br />      &#160; (IF (.Specimen.Object.Person().SpouseLastName &lt;&gt; ""
+ and<br />      .Specimen.Object.Person().SpouseLastName &lt;&gt; ?)<br />      &#160;&#160; THEN substr(.Specimen.Object.Person().SpouseLastName
+ +"-"+<br />      IfKnownString(.Specimen.Object.Person().LastName),1,20)<br />      &#160;&#160; ELSE (IF .Specimen.Object.Person().LastName &lt;&gt; ?<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; THEN
+ substr(.Specimen.Object.Person().LastName,1,20)<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ELSE .Specimen.Object.InternalId<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160; )<br />      &#160; )<br />      }</td>
+            </tr>
+        </table>
+        <p>This MISPL function will fetch the same Specimen &amp; Object 7 times and
+will execute the Object.Person() function 7 times.</p>
+        <h4>Example of the same label text with high performance (using a variable)</h4>
+        <table border="1" width="75%" cellspacing="0">
+            <tr>
+                <td width="100%">{:<br />      &#160;&#160;&#160; Person ThePerson;<br />      &#160;&#160;&#160; ThePerson := .Specimen.Object.Person();
+      <p>&#160;&#160;&#160; Return IfKnownString(Substr(ThePerson.Firstname, 1, 1)) +
+ "."+<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160; (IF ThePerson.SpouseLastName
+ &lt;&gt; "" AND ThePerson.SpouseLastName &lt;&gt; ?<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; THEN
+ Substr(ThePerson.SpouseLastName + "-" +<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ IfKnownString(ThePerson.LastName),1,20)<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ELSE (IF
+ ThePerson.LastName &lt;&gt; ?<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ THEN Substr(ThePerson.LastName, 1, 20)<br />      &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+ ELSE .Specimen.Object.InternalId));<br />      }</p></td>
+            </tr>
+        </table>
+    </body>
+</html>

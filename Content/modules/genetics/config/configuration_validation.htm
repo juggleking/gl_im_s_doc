@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Genetics|Configuration">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta http_equiv="Content-Language" content="en-gb" /><title>Procedure and configuration validation</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor309"></a>
+            <MadCap:concept term="Genetics" />Procedure and configuration validation</h1>
+        <p>The Genetics module offers two validation functions:</p>
+        <ul>
+            <li value="1"><a href="#Procedur">Validate genetic procedure</a>
+            </li>
+            <li value="2"><a href="#Configur">Validate configuration</a>
+            </li>
+        </ul>
+        <h2><a name="Procedur"></a>Procedure validation</h2>
+        <p>The  procedure validation function can be executed using the menu/ribbon item <span class="ui_element">Validate genetic procedure</span> on a <a href="genetic_procedures.htm">genetic procedure</a> record. </p>
+        <p>This function checks if the selected genetic procedure has at least one</p>
+        <ul>
+            <li value="1">Material</li>
+            <li value="2">Request definition</li>
+        </ul>
+        <h2><a name="Configur"></a>Configuration validation</h2>
+        <p>Once the configuration for the  Genetics module is ready, it can be validated. This can be done via <span class="ui_element">Start</span> -&gt; <span class="ui_element">Genetics</span> -&gt; <span class="ui_element">Configuration</span> -&gt; <span class="ui_element">Validate configuration</span>.</p>
+        <p>The validation consists in checking if all currently active</p>
+        <ul>
+            <li value="1"><a href="genetic_procedures.htm">Genetic procedures</a> have at least one<ul><li value="1">Material</li><li value="2">Request definition</li></ul></li>
+            <li value="2">
+                <p><a href="approach_plans/a_p_introduction.htm">Approach plans</a> and their building blocks respect the following rules:</p>
+                <table border="1" cellspacing="1" bordercolor="#000000" cellpadding="7" width="537">
+                    <col />
+                    <tr>
+                        <td width="28%" valign="TOP"><strong>Approach plan</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">has at least one <a href="approach_plans/a_p_usages.htm">usage</a>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">contains exactly one <a href="approach_plans/a_p_screen.htm#Activiti">activity</a> of type <span class="ui_element">Start</span>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">contains no cycle: no path leads back to an incoming transition of an already encountered activity.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Approach plans on which <a href="approach_plans/a_p_screen.htm#Requeste">loci to be tested</a> are configured contain at least one activity of type <span class="ui_element">Procedure</span>. The procedure corresponding to this activity is of <a href="../../../configuration/procedures/procedures_configuration.htm#Genetics2">type</a> <span class="ui_element">Analytical</span> or <span class="ui_element">Post-analytical</span>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP"><strong>Activity</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities of type <span class="ui_element">Start</span> do not have any incoming <a href="approach_plans/a_p_screen.htm#Transiti">transition</a>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities of type <span class="ui_element">End</span> do not have any outgoing transition.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities with a type different from <span class="ui_element">Start</span> have at least one incoming transition.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities with a type different from <span class="ui_element">End</span> have at least one outgoing transition.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities having a <a href="approach_plans/a_p_screen.htm#Fallback">fallback</a> outgoing transition also have at least one outgoing transition with a <a href="approach_plans/a_p_screen.htm#Conditio">condition</a>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Activities for which <a href="approach_plans/a_p_screen.htm#Duplicat">Duplicate by specimen</a> is activated are linked to a procedure having at least one enabled input of <a href="../../../configuration/procedure_inputs/procedure_inputs.htm#Type">type</a> <span class="ui_element">Material</span>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP"><strong>Procedure linked to an activity</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">is <a href="../../../configuration/procedures/procedures_configuration.htm#Availabl">Available</a>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">has a defined <a href="../../../configuration/procedures/procedures_configuration.htm#Type">type</a> for the Genetics module.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">if it is linked to a station, the option <a href="../../../configuration/stations/stations.htm#Scheduli">Scheduling activity</a> on this station's editor is activated.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">
+                            <p width="28%" valign="TOP">has at least</p>
+                            <ul>
+                                <li width="28%" valign="TOP" value="1">one enabled output of type <span class="ui_element">Material</span> with a <a href="../../../configuration/procedure_outputs/procedure_outputs.htm#Number">Number of specimens to be auto requested</a>  superior or equal to "1", or</li>
+                                <li width="28%" valign="TOP" value="2">one enabled output of type <span class="ui_element">Property</span> for which the option <a href="../../../configuration/procedure_outputs/procedure_outputs.htm#Auto">Auto request when starting activity</a> is activated.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">also has an enabled input of type <span class="ui_element">Material</span> if it has an enabled <a href="approach_plans/a_p_screen.htm#Procedur">input</a> of type <span class="ui_element">Property</span>.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP"><strong>Transition</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">
+                            <p width="28%" valign="TOP">Among the outgoing transitions of an activity, at least one has no condition.</p>
+                            <p width="28%" valign="TOP">As a consequence, if an activity only has one outgoing transition, this transition has no condition.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">Among the outgoing transitions of an activity, at most one is a fallback transition.</td>
+                    </tr>
+                    <tr>
+                        <td width="28%" valign="TOP">
+                            <p width="28%" valign="TOP">Outgoing transitions of activities of type <span class="ui_element">Router</span>:</p>
+                            <ul>
+                                <li width="28%" valign="TOP" value="1">have each a different sequence number.</li>
+                                <li width="28%" valign="TOP" value="2">are not fallback and do not have a condition.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+            </p>
+            <ul>
+                <li value="1">Genetic procedures with a disabled request code (or all request codes disabled) are not "active", and are therefore not checked.</li>
+                <li value="2">An approach plan is "active" if the day on which the validation is executed lies within the <a href="approach_plans/a_p_browser_editor.htm#Period">Period in which the plan can be selected</a>. Inactive approach plans are not checked.</li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.9.7 - Prevent MISPL execution of Property output Value during result preview (GLIMS-13442)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor2847"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.9.7 - </MadCap:conditionalText>Prevent MISPL execution of Property output Value during result preview (GLIMS-13442)</h1>
+        <h2>Issue</h2>
+        <p>The <a href="../../configuration/procedure_outputs/procedure_outputs.htm#Value" xmlns="http://www.w3.org/1999/xhtml">Property output Value</a> field will  run during the preview of results during <a href="../../routine/confirmation_validation/confirmation_validation_order_review.htm" xmlns="http://www.w3.org/1999/xhtml">order review</a> or <a href="../../routine/consultation/consultation_result_overview_of_object.htm" xmlns="http://www.w3.org/1999/xhtml">result overview</a>. As a result, active MISPL code that was configured in the <a href="../../configuration/procedure_outputs/procedure_outputs.htm#Value" xmlns="http://www.w3.org/1999/xhtml">Property output Value</a> field could perform actions that the customer was not expecting, such as updating database records or sending an email.</p>
+        <h2>Configuration</h2>
+        <p>Create a calculation procedure with a MISPL in the <a href="../../configuration/procedure_outputs/procedure_outputs.htm#Value" xmlns="http://www.w3.org/1999/xhtml">Property output Value</a> field.</p>
+        <div class="MCDropDown MCDropDown_Closed dropDown" xmlns=""><span class="MCDropDownHead dropDownHead"><a style="font-weight: bold; color: #868686" href="javascript:void(0)" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_ MCHotSpotImage" aria-expanded="false"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="13" width="16" alt="Closed" data-mc-alt2="Open" />MISPL example</a></span>
+            <div class="MCDropDownBody dropDownBody">
+                <div class="text_box_code_snippet" xmlns="http://www.w3.org/1999/xhtml">
+                    <p>STRING Output;
+
+SendMail("test@mips.be", "test@mips.be", "MAIL", "Mailing this", 1);
+.Object.Person().SetMedicalRecord("DeterminationStatus", "1");
+.Object.Person().SetAntibody("K", YES);
+
+IF mips_calc_prop1.1 * mips_calc_prop1.2 &lt; 0 THEN
+    Output := "STOP";
+ELSE
+    Output := FractionalToString(mips_calc_prop1.1 + mips_calc_prop1.2, "%4.2f");
+ENDIF;
+
+Return Output;</p>
+                </div>
+            </div>
+        </div>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Scenario</h2>
+        <ol>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="1">Create an order with the calculated result.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="2">Enter a result.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="3">Open the <a href="../../routine/confirmation_validation/confirmation_validation_order_review.htm" xmlns="http://www.w3.org/1999/xhtml">Order review browser</a>.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="4">Enable <span class="ui_element">Preview calculations</span>.</li>
+            <li xmlns="http://www.w3.org/1999/xhtml" value="5">
+                <p xmlns="http://www.w3.org/1999/xhtml">Browse through the results till you get to the order of step 1.</p>
+                <p xmlns="http://www.w3.org/1999/xhtml">=&gt; The 'active' MISPL was executed and the email was sent.</p>
+            </li>
+        </ol>
+        <h2>Solution</h2>
+        <p>This issue has been corrected.</p>
+        <p>When the SendMail() function is used  in the Property output <span class="ui_element" xmlns="http://www.w3.org/1999/xhtml">Value</span> field during a preview, the MISPL code will NOT be executed, and the user will see an information message explaining why no MISPL was run. Other MISPL functions will be executed during the preview, but their changes will NOT be saved.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p> 'Active' MISPL functions should be configured in the <a href="../../configuration/properties/properties.htm#Triggers" xmlns="http://www.w3.org/1999/xhtml">Property Triggers</a>.</p>
+        </div>
+    </body>
+</html>

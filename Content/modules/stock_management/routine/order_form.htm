@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Stock management|Routine">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Stock management: Order forms</title>
+        <link href="../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor4007"></a>
+            <MadCap:concept term="Stock management" />Stock management: Order forms</h1>
+        <p>Contents: <a href="#Introduction">Introduction</a> - <a href="#Order_form_generation">Order form generation</a> - <a href="#send_order_form">Send order form</a> - <a href="#Order_form_types">Order 
+ form type and format</a> - <a href="#Order_form_structure">Order form 
+ structure and content</a> - <a href="#Remarks">Remarks</a></p>
+        <h2><a name="Introduction" id="Introduction"></a>Introduction</h2>
+        <p>Once you have ordered your products and the purchase order has been 
+ approved, the stock management module allows generating an order form 
+ to be sent to the supplier. The contents of this form is fully 
+ customizable.</p>
+        <h2><a name="Order_form_generation" id="Order_form_generation"></a>Order form 
+ generation</h2>
+        <h3>Interactively</h3>
+        <p>You can generate an order form for an approved purchase order by:</p>
+        <ol>
+            <li value="1">Clicking the order form generation button in the  <a href="product_ordering.htm">Purchase order</a> screen.</li>
+            <li value="2">Using the contextual function <span class="ui_element">Generate 
+	 order form</span> on purchase order.</li>
+        </ol>
+        <h3>As a background process</h3>
+        <p>The process of generating order forms can be automated using a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command 
+ and task</a>. The command consists of two parts:</p>
+        <ol>
+            <li value="1">A purchase order query retrieving all purchase 
+	 orders in status <span class="ui_element">Approved</span>.</li>
+            <li value="2">The function GenerateOrderForm on table 
+	 PurchaseOrder.</li>
+        </ol>
+        <div class="text_box_notes">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>In order to obtain a supplier specific purchase order form, you should leave the <span class="ui_element">Purchase order form type</span> parameter blank ("?") when defining the function parameter set.</p>
+        </div>
+        <div>
+            <h3>Options</h3>
+            <p class="fieldlabel">Purchase order form type</p>
+            <div class="indented">
+                <p> Three 
+		 types are supported: <span class="ui_element">Fax</span>, <span class="ui_element">Email</span> and <span class="ui_element">Paper</span>. Each supplier has its 
+		 specific type, but it can be overridden (see <span class="ui_element">Organization</span> field 
+		 <span class="ui_element">Purchase order form type</span>). For more information, please 
+		 check the chapter <a href="#Order_form_types">Order form 
+		 types</a>.</p>
+            </div>
+            <p class="fieldlabel">Purchase 
+		 order form destination</p>
+            <div class="indented">
+                <p>Order forms can be sent by email to 
+		 either the <span class="ui_element">Supplier</span>, the <span class="ui_element">Stock</span> (i.e. its <span class="ui_element">Delivery address</span>) 
+		 (email address 1) or to <span class="ui_element">Both</span>. The preferred 
+		 behaviour can be defined in the <a href="../configuration/stock_management_general_options.htm">general options</a>, but can be overridden 
+		 for each individual purchase order send/resend action.</p>
+            </div>
+            <p class="fieldlabel">Preview</p>
+            <div class="indented">
+                <p>Set to preview the form before 
+		 sending, saving or printing it. If set, you have the possibility 
+		 to cancel further processing. The preview screen 
+		 has a specific button with a label that depends on the form type.</p>
+            </div>
+            <p class="fieldlabel">Send / Resend</p>
+            <div class="indented">
+                <p>Allows to send 
+		 (<span class="ui_element">Status</span> = <span class="ui_element">Approved</span>) or resend (<span class="ui_element">Status</span> &gt;= <span class="ui_element">Sent</span>) the generated 
+		 order form to the supplier. See <a href="#send_order_form">Send 
+		 order form</a>.</p>
+                <div class="text_box_notes">
+                    <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                    </p>
+                    <ol>
+                        <li value="1">The <span class="ui_element">Send</span> option will be grayed out if the purchase order has a <span class="ui_element">Status</span> &lt; <span class="ui_element">Approved</span>. </li>
+                        <li value="2">If the purchase order has a <span class="ui_element">Status</span> &gt;= <span class="ui_element">Sent</span>, the label of the option will be <span class="ui_element">Resend</span>.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Notes</span>
+                </p>
+                <ol>
+                    <li value="1">In case of generation only (not sending), the 
+		 only enabled button in the <span class="ui_element">Output options</span> section 
+		 is <span class="ui_element">Preview</span>. The format and file name are adapted automatically 
+		 in function of the purchase order form type. A document 
+		 of any type can be generated and saved to the temp directory or 
+		 previewed.</li>
+                    <li value="2">In case of generation and sending (or resending), the name of the output file is enabled too. The specified 
+		 output file name will be used for both fax and email.</li>
+                    <li value="3">The other fields are enabled/disabled in function 
+		 of the chosen form type.</li>
+                </ol>
+            </div>
+            <h2><a name="send_order_form" id="send_order_form"></a>Send order form</h2>
+            <h3>How to send an order form</h3>
+            <h4>Interactively</h4>
+            <p>When generating the order form (see above), you 
+		 can enable the option <span class="ui_element">Send</span> or <span class="ui_element">Resend</span>.</p>
+            <h4>As a background process</h4>
+            <p>The process of sending order forms can also be automated (using a <a href="../../../configuration/generic/commands_tasks/commands_tasks.htm">command 
+ and task</a>) via the GenerateOrderForm function on table PurchaseOrder. When defining the function parameter set, the <span class="ui_element">Send</span> option can be enabled and the <span class="ui_element">Output options</span> can be customized.</p>
+            <div class="text_box_notes">
+                <p><span style="color: #616E14; font-weight: bold;">Note</span>
+                </p>
+                <p>In order to obtain a supplier specific purchase order form, you should leave the <span class="ui_element">Purchase order form type</span> parameter blank ("?") when defining the function parameter set.</p>
+            </div>
+            <h3>Attach the order form to the purchase order</h3>
+            <p>GLIMS allows attaching the order form to the purchase order. To 
+	 activate this mechanism you must enable the option <span class="ui_element">Support attachments</span> 
+	 in the <a href="../configuration/stock_management_general_options.htm">general options</a>.</p>
+            <h2><a name="Order_form_types" id="Order_form_types"></a>Order form type 
+	 and format</h2>
+            <h3>Order form types</h3>
+            <p>The order form type (paper, fax or email) can be chosen when generating 
+	 or sending an order form. By default, the supplier's <span class="ui_element">Purchase order 
+	 form type</span> will be selected (specified in the supplier's <span class="ui_element">Organization</span>).</p>
+            <p class="fieldlabel">Fax</p>
+            <div class="indented">
+                <p>If 
+	 this type is chosen, the purchase order form is stored as a file. 
+	 When this type of order form is generated for the first time, the 
+	 program will allow you to specify a file name. This value will be 
+	 stored in a preference with context "PurchaseOrderForm" 
+	 and name "FileName". The next time this order form is generated, 
+	 this preference value will be used. In fact the file name as such 
+	 is not used, only the directory name. The file name itself is generated 
+	 automatically.</p>
+            </div>
+            <p class="fieldlabel">Paper</p>
+            <div class="indented">
+                <p>If this type is chosen, 
+	 the purchase order form will be printed. <a href="../../../configuration/printers/set_devices.htm">Click here 
+	 for more information on the printer that will be used.</a></p>
+            </div>
+            <p class="fieldlabel">Email</p>
+            <div class="indented">
+                <p>If this type is chosen, an email containing 
+	 a request for purchase orders will be sent to the specified destination. The 
+	 purchase order form itself will be sent as attachment. The 
+	 email will be sent from the department's email address, or, if not 
+	 available, from the site email address.</p>
+            </div>
+            <h3>Order form format</h3>
+            <p>For each order form type 
+	 (fax, paper or email), you can define an order form format: <span class="ui_element">Text</span>, 
+	 <span class="ui_element">PDF</span> or <span class="ui_element">Microsoft Word</span> (deprecated).</p>
+            <p>This can be done in the <a href="../configuration/stock_management_general_options.htm">general options</a>  using the <span class="ui_element">Format</span> fields in the <span class="ui_element">Purchase order forms</span> tab.</p>
+            <h2><a name="Order_form_structure" id="Order_form_structure"></a>Order 
+	 form structure and content</h2>
+            <p>The content of the order form can be specified in the <a href="../configuration/stock_management_general_options.htm">general options</a>
+. For 
+	 each order form type (email, fax or paper), you can define a <span class="ui_element">Header</span>, 
+	 <span class="ui_element">Body</span> and <span class="ui_element">Footer</span> with dynamic text modules. In 
+	 case of order forms with type <span class="ui_element">Email</span>, you can also specify 
+	 the <span class="ui_element">Subject</span> and <span class="ui_element">Content</span> of the 
+	 email (as the order form is sent as attachment) and the <span class="ui_element">Destination</span>.</p>
+            <p>A purchase 
+	 order form consists of four sections:</p>
+            <p class="fieldlabel">Header</p>
+            <div class="indented">
+                <p>A  dynamic text with base table PurchaseOrder.</p>
+            </div>
+            <p class="fieldlabel">Body 1</p>
+            <div class="indented">
+                <p>A dynamic text with base table PurchaseItem. It 
+		 is repeated for each item of the purchase order. Two extra parameters 
+		 are passed to the dynamic text: FirstItem and LastItem. 
+		 These can be used to display the purchase item column headers 
+		 as first line (FirstItem) or the total price (as last line).</p>
+            </div>
+            <p class="fieldlabel">Body 2</p>
+            <div class="indented">
+                <p>A dynamic text with base table PurchaseOrderInvoice. It is repeated for each invoice of the purchase order.</p>
+            </div>
+            <p class="fieldlabel">Footer
+</p>
+            <div class="indented">
+                <p>A dynamic text with base table PurchaseOrder.</p>
+            </div>
+            <p>The form 
+	 is generated in the language of the supplier.</p>
+            <p>The definition of the dynamic text modules will differ according 
+	 to the order form format (text or MS Word).</p>
+            <h3>For text format</h3>
+            <p>The dynamic text will be expanded and used as is.</p>
+            <h3>For MS Word format</h3>
+            <p>MS Word reporting is deprecated and will be removed in a future 
+	 version.</p>
+            <h4>Template</h4>
+            <p>Multiple Word 
+	 template files are supported in a similar way as the PDF report templates, 
+	 i.e. the full file name can be specified on specific site and department 
+	 level. As default, the standard file &lt;GLIMS folder&gt;\dat\purchaseorder.dot 
+	 will still be used.</p>
+            <p class="fieldlabel">Department</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_stock_management_form_Word_template_dept.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="681" data-mc-height="845" src="RN_stock_management_form_Word_template_dept_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">Specific 
+	 site </p>
+            <p>(via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS Stock Management</span>)</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_stock_management_form_Word_template.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="605" data-mc-height="620" src="RN_stock_management_form_Word_template_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <h4>Default template</h4>
+            <p>GLIMS comes with a pre-defined template (in MS 
+	 Word format) for the generation of order forms. MS Word 
+	 forms use a .dot file "PurchaseOrder.dot" (must be located 
+	 in the "dat" folder), this configuration file is used as 
+	 a template and customized when the purchase order form is generated.</p>
+            <p>The MS Word template has a default purchase item 
+	 table with 5 columns, but it can be configured otherwise. Properties 
+	 for 10 columns are defined. The properties in the MS Word 
+	 template are substituted via a tagged parameter list; there is one 
+	 for the header, body and the footer. By default the following 
+	 parameter lists are passed: (target table purchase order)<br /></p>
+            <p class="fieldlabel">	Header</p>
+            <div class="indented">
+                <p>OrderId={.DocNo}\TargetName={=.Supplier.Correspondent.Name}\TargetAddress1={=.Supplier.Correspondent.AddressLine1}\TargetPostGem={=.Supplier.Correspondent.Municipality.Name} 
+	 {=.Supplier.Correspondent.Municipality.PostalCode}\TargetTel={=.Supplier.Correspondent.Phone} 
+	 \TargetFax={=.Supplier.Correspondent.Fax}\TargetEmail={=.Supplier.Correspondent.Email}\TargetRefNo={=.Supplier.CustomerNo}<br />	\Column1=Articleno\Column2=Name\Column3=Packing\Column4=Quantity\Column5=Price 
+	 </p>
+            </div>
+            <p class="fieldlabel">Body</p>
+            <div class="indented">
+                <p>\Column1={=.ProductSpecification.ArticleNo}\Column2={=.ProductSpecification.Name}\Column3=&lt;packing&gt; 
+	 (calculated) \Column4={=IntegerToString(.Quantity, "%d")}\Column5=&lt;quantity&gt; 
+	 * &lt;price&gt; (calculated)</p>
+            </div>
+            <p class="fieldlabel">Footer</p>
+            <div class="indented">
+                <p>Comment={.ExternalComment}\Stock={.Stock.Mnemonic}\WorkPlace={.WorkPlace.Mnemonic}\NumItems=&lt;number 
+	 of items&gt; (calculated)\TotalPrice=&lt;total price of all items&gt; 
+	 (calculated)</p>
+            </div>
+            <p>Those tags all map to a property in the purchase 
+	 order form template.</p>
+            <h4>Customized MS Word 
+	 template</h4>
+            <p>You can also customize the MS Word template using 
+	 the dynamic texts described above (header, body and footer). They 
+	 should contain a tagged parameter list. Tags can be substituted 
+	 or new tags can be added.</p>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Footer example</span> </p>
+                <p>I f the dynamic footer is defined 
+	 as \Comment={=.InternalComment}, then the purchase order's internal 
+	 comment will be displayed, instead of the external comment. For 
+	 the other tags the defaults will still be applied.</p>
+            </div>
+            <div class="text_box_examples">
+                <p><span style="color: #003366; font-weight: bold;">Body example</span>
+                </p>
+                <p>To add an extra column with the 
+	 lot no., do the following:</p>
+                <ol>
+                    <li value="1">
+                        <p>Adapt the Word template, 
+		 adding an extra column to the table with header "&lt;Column6&gt;"</p>
+                    </li>
+                    <li value="2">
+                        <p>Adapt the dynamic 
+		 header, adding an extra tag \Column6=Lot no</p>
+                    </li>
+                    <li value="3">
+                        <p>Define a dynamic body 
+		 as \Column1={=.ProductSpecification.ArticleNo}\Column2={=.ProductSpecification.Name}\Column3=&lt;packing&gt; 
+		 (calculated) \Column4=Column3={=IntegerToString(.Quantity, "%d")}\Column5=&lt;quantity&gt; 
+		 * &lt;price&gt; (calculated)\Column6={=.ProductLot.LotNo}</p>
+                    </li>
+                </ol>
+            </div>
+            <p>With this technique it is also possible to create 
+	 cells with multiple rows. This can be done by defining dynamic texts 
+	 with "~n" in it. Example: to display the product 
+	 specification name and lot no in the same column, add a tag to the 
+	 dynamic body like:</p>
+            <blockquote>
+                <p>\Column2={=.ProductSpecification.Name}~n{=.ProductLot.LotNo}</p>
+            </blockquote>
+            <h3>For PDF format</h3>
+            <h4>XML export</h4>
+            <p>The generated XML contains sufficient data to setup Jasper templates 
+	 with all required data (info for own organization header, all fields 
+	 of purchase order, all fields of product items and product specification 
+	 in subreport). However, the expansion to reagent, microbiology 
+	 material, reagent lot, etc. is not foreseen).</p>
+            <ol>
+                <li value="1">
+                    <p>The dynamic texts defined in the <a href="../configuration/stock_management_general_options.htm">general options</a> can be used to add custom 
+		 tags.</p>
+                </li>
+                <li value="2">
+                    <p>The <span class="ui_element">PurchaseOrder</span> tag will also contain 
+		 tags <span class="ui_element">ReportHeaderCustom</span> and <span class="ui_element">ReportFooterCustom</span>, 
+		 which contain strings set by the PurchaseOrder-based dynamic 
+		 texts <span class="ui_element">Header</span> and respectively <span class="ui_element">Footer</span>.</p>
+                </li>
+                <li value="3">
+                    <p>The <span class="ui_element">PurchaseItem</span> tag will also contain 
+		 a tag <span class="ui_element">ReportHeaderBody</span>, which contains strings set 
+		 by the PurchaseItem-based dynamic text <span class="ui_element">Body</span>.</p>
+                </li>
+            </ol>
+            <h4>Layout template</h4>
+            <p>A default Jasper template will be delivered in "&lt;GLIMS 
+	 folder&gt;\templates\examples\PurchaseOrder".</p>
+            <p>Fields are available to store the location and name of the report 
+	 template files on department and specific site level, for Unix and 
+	 Windows.</p>
+            <p class="fieldlabel">Department</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_stock_management_form_PDF_template_dept.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="681" data-mc-height="845" src="RN_stock_management_form_PDF_template_dept_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <p class="fieldlabel">Specific 
+	 site</p>
+            <p>(via <span class="ui_element">Start</span> -&gt; <span class="ui_element">System management</span> -&gt; <span class="ui_element">Customize</span> -&gt; <span class="ui_element">GLIMS Stock Management</span>)</p>
+            <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="RN_stock_management_form_PDF_template.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="605" data-mc-height="620" src="RN_stock_management_form_PDF_template_thumb_0_120.png" tabindex="" /></a>
+            </p>
+            <h2><a name="Remarks" id="Remarks"></a>Remarks</h2>
+            <p>The 
+	 <span class="ui_element">Generate order form</span> 
+	 function can be executed on multiple records simultaneously, but purchase 
+	 order forms are never merged. Even when sending purchase orders by 
+	 email, a separate email is sent for each processed purchase order.</p>
+        </div>
+    </body>
+</html>

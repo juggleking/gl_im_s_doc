@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" xmlns="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" /><title>Release notes 9.8.0 - Support "multi-level aliquoting" when communicating with a LAS working in slave mode (GLIMS_ANLZ-01200)</title>
+        <script type="text/javascript" src="../../Resources/hyperlink_target.js">
+        </script>
+        <link href="../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1226"></a>
+            <MadCap:concept term="Release notes" />
+            <MadCap:conditionalText data-mc-conditions="Primary.10_webhelp_only">Release notes 9.8.0 - </MadCap:conditionalText>Support "multi-level aliquoting" when communicating with a LAS working in slave mode (GLIMS_ANLZ-01200)</h1>
+        <h2>Introduction</h2>
+        <p>The purpose of this modification is to&#160;have GLIMS&#160;support "multi-level aliquoting" (i.e. specimen preparation consisting of more than 2 steps: primary tube - secondary tube - tertiary tube) when communicating with a <a href="../../communication/analyzers/analyzers_distributors_slave_mode.htm" xmlns="http://www.w3.org/1999/xhtml">LAS&#160;working in slave mode</a>.</p>
+        <h2>Use case</h2>
+        <p>The use case to be supported involves a laboratory consisting of several departments. A department receives a primary tube which is used for analyzing but also for creating a secondary tube to be sent to another department for analyzing. In the second department, the secondary tube may be aliquoted into a tertiary tube to be sent to a third department for analyzing.</p>
+        <h2>Issue</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">While GLIMS can handle the configuration for this use case and produces a correct scheduling, GLIMS&#160;does not identify the secondary specimen as the parent specimen of the tertiary specimen when communicating with a LAS&#160;working in slave mode. Instead, the primary specimen is  seen as the parent specimen of the tertiary specimen. Moreover, as the secondary specimen is marked as  aliquoted, the secondary specimen is not sorted.</p>
+        <h2 xmlns="http://www.w3.org/1999/xhtml">Solution</h2>
+        <p xmlns="http://www.w3.org/1999/xhtml">In order to support multi-level aliquoting use cases, the following changes have been made to the LAS in slave mode functionality:</p>
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+            <li value="1">When trying to sort a specimen, GLIMS will now make the following 2 assumptions:<ul><li value="1">The specimen being the subject of a sort query is always considered to be the "root specimen" during the processing of the current sort query, even if it is a sub specimen itself.</li><li value="2">Only the level of the queried specimen and one level further is taken into account (meaning that only the actions scheduled on the specimen being sorted and the actions scheduled on any sub specimen will be taken into account) in order for GLIMS to be able to determine to which zone the specimen being queried should go and to which zone any sub specimen should go.</li></ul></li>
+            <li value="2"><a href="../../configuration/specimens/specimens_size.htm" xmlns="http://www.w3.org/1999/xhtml">Specimen size calculation</a> now also takes into account the <a href="../../configuration/materials/materials.htm" xmlns="http://www.w3.org/1999/xhtml">Dead distribution size</a> for sub specimens (i.e. aliquots) being aliquoted. This is done:<ul xmlns="http://www.w3.org/1999/xhtml"><li value="1">during order post processing</li><li value="2">when moving actions from one specimen to another</li><li value="3">when discontinuing a result</li><li value="4">during specimen replacement</li></ul></li>
+        </ul>
+        <h2>Configuration tips</h2>
+        <p>The configuration could be as follows:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_ANLZ-01200.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="897" data-mc-height="507" src="GLIMS_ANLZ-01200_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p>A scenario where no tests are scheduled on the secondary specimen but where tests are scheduled on the tertiary specimen is also supported:</p>
+        <p><a class="MCPopupThumbnailLink MCPopupThumbnailPopup" href="GLIMS_ANLZ-01200_configuration_2.png"><img class="MCPopupThumbnail img imgLargeImage" data-mc-width="897" data-mc-height="507" src="GLIMS_ANLZ-01200_configuration_2_thumb_0_120.png" tabindex="" /></a>
+        </p>
+        <p xmlns="http://www.w3.org/1999/xhtml">In order for GLIMS&#160;to know where the secondary specimen (blue specimen) should be sorted to, you can configure a sorting target to an archive zone on the aliquoting procedure or revert to the event evaluation function of the <a href="../../communication/analyzers/analyzers_distributors_slave_mode.htm" xmlns="http://www.w3.org/1999/xhtml">LAS in slave mode</a> functionality. Otherwise, the sort query for the secondary specimen will result in an incomplete sort.</p>
+        <div class="text_box_notes" xmlns="http://www.w3.org/1999/xhtml">
+            <p><span style="color: #616E14; font-weight: bold;">Note</span>
+            </p>
+            <p>When using multiple LAS systems in this context:</p>
+            <ul>
+                <li value="1">The LAS systems should be in the same <span class="ui_element">Download group</span>.</li>
+                <li value="2">If you want to guarantee target selection of a "testing" procedure for the primary specimen (PT) and target selection for the secondary specimen (ST) in the first sort reply, an aliquoting procedure should not (unless deemed necessary) have a sorting target for a sorting zone of the   LAS processing the input specimen of the aliquoting procedure. E.g. in the image above, the "aliquot_red_to_blue" procedure does not target a red zone of the red LAS and the "aliquot_blue_to_green" procedure does not target a blue zone of the blue LAS.</li>
+                <li value="3">Via the sequence number of the sorting zones and/or sorting targets, it is possible to "prioritize"  sorting zones (and/or targets). Sorting zones (and/or targets) with a lower sequence number are taken into account first. E.g. if a target defined for a "testing procedure" of a sub specimen is selected first, before a target of the queried specimen is selected, then aliquoting will be done first.</li>
+            </ul>
+        </div>
+    </body>
+</html>

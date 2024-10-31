@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-gb" xml:lang="en-gb" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="Modules|Billing|Country-specific|France|Facturation" data-mc-priority="0" data-mc-time-estimate="0" data-mc-id="v55\english\tutorials\billing\country-specific\feuille de secu.htm">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../../../../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <meta name="ProgId" content="FrontPage.Editor.Document" /><title>Feuille de sécu</title>
+        <link href="../../../../../Resources/StyleSheets/shared.css" rel="stylesheet" type="text/css" />
+        <script src="../../../../../../Resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/require.config.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/foundation.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/plugins.min.js" defer="defer" type="text/javascript">
+        </script>
+        <script src="../../../../../../Resources/Scripts/MadCapAll.js" defer="defer" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1><a name="aanchor1002"></a>
+            <MadCap:concept term="Billing" />Feuille de sécu</h1>
+        <p>This document describes how you can print the French '<b><i>Feuille de sécu</i></b>'.&#160;&#160;The 'feuille d’honoraires d’actes de biologie medicale' can be printed by means of the <b><i>Print</i></b> function on the <b>fund’s invoice</b>.</p>
+        <p style="text-align: center;"><span style="font-size: x-small;"><img src="../feuillesecu1.gif" alt="" width="768" height="576" border="0" /></span>
+        </p>
+        <p>You must create a specific 'Feuille de sécu' billing document template in which you can use the OrderSet.BCData MISPL function to obtain the desired layout / contents for the 'Feuille de sécu'.</p>
+        <p>Below you will find an example text expression that can be specified in the <b><i>Header</i></b> field of the billing document template.&#160;&#160;The example makes use of the OrderSet.BCData MISPL function.&#160;&#160;</p>
+        <p>Note that we make use of the xprint program in this example.&#160;&#160;This is an external program which merely simplifies printing of the 'Feuille de sécu' but which is by no means indispensable.&#160;&#160;For more information on this external program, please check the Internet: <a href="http://www.4gl.fr/" target="_blank">http://www.4gl.fr</a>. The xprint program can be defined as a printer in GLIMS.</p>
+        <h3><b style="font-weight: bold;">Example text expression</b>
+        </h3>
+        <table style="border-collapse: separate;border-collapse: separate;" cellspacing="0" width="100%" border="1">
+            <tr>
+                <td style="vertical-align: TOP;padding-left: 2px;padding-top: 2px;padding-right: 2px;padding-bottom: 2px;">
+                    <p>&lt;preview&gt;&lt;FTimes New Roman&gt;&lt;P10&gt;&lt;CPI20&gt;<br />&lt;#1&gt;<br />&lt;C#1&gt;&lt;R1&gt;&lt;C20&gt;fEUILLE D'HONORAIRES D'ACTES DE BIOLOGIE MEDICALE &lt;C#1&gt;&lt;R1&gt;&lt;C120&gt;No de facture<br />&lt;C#1&gt;&lt;R2&gt;&lt;C120&gt;{=.Invoice.DocNo}<br />&lt;C#1&gt;&lt;R4&gt;&lt;C20&gt;RENSEIGNEMENTS CONCERNANT L'ASSURE(E) ET LE MALADIE (1)<br />&lt;C#1&gt;&lt;R4&gt;&lt;C0&gt;&lt;FROM&gt;&lt;R5&gt;&lt;C150&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R5&gt;&lt;C10&gt;&lt;I&gt;no matricule&lt;/I&gt;{=.Invoice.PaymentAgreement.Matriculation}<br />&lt;C#1&gt;&lt;R6&gt;&lt;C10&gt;&lt;FROM&gt;&lt;R9&gt;&lt;C80&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R6&gt;&lt;C10&gt;&lt;C10&gt;{=.Invoice.PaymentAgreement.Party.Name}</p>
+                    <p>&lt;C10&gt;{=IfKnownString(.Invoice.PaymentAgreement.Party.AddressLine1)}<br />&lt;C10&gt;{=IfKnownString(.Invoice.PaymentAgreement.Party.Municipality.Country.Code) + "-" + IfKnownString(.Invoice.PaymentAgreement.Party.Municipality.PostalCode) + " " + IfKnownString(.Invoice.PaymentAgreement.Party.Municipality.Name)}</p>
+                    <p>&lt;C#1&gt;&lt;R10&gt;&lt;C10&gt;&lt;I&gt;Si le malade n'est pas l'asssure&lt;/I&gt;:<br />&lt;C#1&gt;&lt;R11&gt;&lt;C10&gt;&lt;FROM&gt;&lt;R14&gt;&lt;C80&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R11&gt;&lt;C10&gt;{=IF EnumeratedToString("RelationType", .Invoice.PaymentAgreement.Relation) &lt;&gt; "Holder"<br />THEN .Invoice.Order.Object.Person().LastName ELSE ""}</p>
+                    <p>&lt;C30&gt;{=IF EnumeratedToString("RelationType", .Invoice.PaymentAgreement.Relation) &lt;&gt; "Holder" THEN DateToString(.Invoice.Order.Object.Person().BirthDate, "%d %m %y") ELSE ""}</p>
+                    <p>&lt;C#1&gt;&lt;R5&gt;&lt;C80&gt;CODE ORGANISME AFFILIATION<br />&lt;C#1&gt;&lt;R6&gt;&lt;C90&gt;&lt;FROM&gt;&lt;R8&gt;&lt;C150&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R6&gt;&lt;C90&gt;{=.Invoice.Payer.InternalId + " " + IfKnownString(.Invoice.Payer.Identification("RIZIV"))}</p>
+                    <p>&lt;C90&gt;{=IfKnownString(.Invoice.Payer.Name)}<br />&lt;C90&gt;{=IfKnownString(.Invoice.Payer.AddressLine1)}<br />&lt;C90&gt;{=IfKnownString(.Invoice.Payer.Municipality.Country.Code) +<br />"-" + IfKnownString(.Invoice.Payer.Municipality.PostalCode) + " " + IfKnownString(.Invoice.Payer.Municipality.Name)}</p>
+                    <p>&lt;C#1&gt;&lt;R10&gt;&lt;C80&gt;CODE ORGANISME COMPLEMENTAIRE<br />&lt;C#1&gt;&lt;R11&gt;&lt;C90&gt;&lt;FROM&gt;&lt;R14&gt;&lt;C150&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R11&gt;&lt;C90&gt;{=.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.InternalId + " " + IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.Identification("RIZIV"))}</p>
+                    <p>&lt;C90&gt;{=IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.Name)}<br />&lt;C90&gt;{=IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.AddressLine1)}<br />&lt;C90&gt;{=IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.Municipality.Country.Code) +<br />"-" + IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.Municipality.PostalCode) + " " + IfKnownString(.Invoice.OrderSet.LinkedFinance(2).PaymentAgreement.Fund.Correspondent.Municipality.Name)}</p>
+                    <p>&lt;C#1&gt;&lt;R16&gt;&lt;C40&gt;PARTIE RESERVE AU LABORATOIRE<br />&lt;C#1&gt;&lt;R16&gt;&lt;C0&gt;&lt;FROM&gt;&lt;R17&gt;&lt;C150&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R18&gt;&lt;C90&gt;&lt;I&gt;Prescripteur&lt;/I&gt;{=IfKnownString(.Invoice.Order.Issuer.Name) + " " +IfKnownString(.Invoice.Order.Issuer.Identification("RIZIV"))}<br />&lt;C#1&gt;&lt;R30&gt;&lt;C20&gt;ACTES DE PRELEVEMENTS &lt;C90&gt;FRAIS ACCESSOIRES<br />&lt;C#1&gt;&lt;R30&gt;&lt;C0&gt;&lt;FROM&gt;&lt;R31&gt;&lt;C150&gt;&lt;RECT&gt;</p>
+                    <p>&lt;R33&gt;&lt;C10&gt;(prelev 5)=&gt; {= .Invoice.OrderSet.BCData(?,?,"France_Prelev",?,"GrossAmountTotal")}<br />&lt;R33&gt;&lt;C35&gt;(IF,IFD 6)=&gt; {= .Invoice.OrderSet.BCData(?,?,?,"IF,IFD","GrossAmountTotal")}<br />&lt;R33&gt;&lt;C60&gt;(ID 7)=&gt; {= .Invoice.OrderSet.BCData(?,?,?,"ID","GrossAmountTotal")}<br />&lt;R33&gt;&lt;C85&gt;(IK 8)=&gt; {= .Invoice.OrderSet.BCData(?,?,?,"IK","Quantity")}<br />&lt;R33&gt;&lt;C110&gt;(IK 9)=&gt; {= .Invoice.OrderSet.BCData(?,?,?,"IK","GrossAmountTotal")}</p>
+                    <p>&lt;C#1&gt;&lt;R35&gt;&lt;C40&gt;ACTES DE BIOLOGIE MEDICALE<br />&lt;C#1&gt;&lt;R35&gt;&lt;C0&gt;&lt;FROM&gt;&lt;R36&gt;&lt;C150&gt;&lt;RECT&gt;<br />&lt;C#1&gt;&lt;R35&gt;&lt;C0&gt;&lt;FROM&gt;&lt;R50&gt;&lt;C150&gt;&lt;RECT&gt;</p>
+                    <p>&lt;R36&gt;&lt;C2&gt;&lt;I&gt;Actes effectues &lt;C40&gt;&lt;100% &lt;C50&gt;100% &lt;C60&gt;HN &lt;C80&gt;Montant des actes y compris supplements&lt;/I&gt;<br />&lt;R38&gt;&lt;C2&gt;{= .Invoice.OrderSet.BCData("ClasseFrN",?,?,?,"NomenclatureCodesAndBValues")} &lt;C40&gt;{= .Invoice.OrderSet.BCData("ClasseFrN",?,?,?,"GrossAmountTotal")}</p>
+                    <p>&lt;C2&gt;{= .Invoice.OrderSet.BCData("ClasseFr100%",?,?,?,"NomenclatureCodesAndBValues")} &lt;C50&gt;{= .Invoice.OrderSet.BCData("ClasseFr100%",?,?,?,"GrossAmountTotal")}<br />&lt;C2&gt;{= .Invoice.OrderSet.BCData("ClasseFrHN",?,?,?,"NomenclatureCodesAndBValues")} &lt;C60&gt;{= .Invoice.OrderSet.BCData("ClasseFrHN",?,?,?,"GrossAmountTotal")}</p>
+                    <p>&lt;R49&gt;&lt;C2&gt;&lt;I&gt;Total des coefficients&lt;/I&gt; &lt;C40&gt;{= .Invoice.OrderSet.BCData("ClasseFrN",?,?,?,"GrossAmountTotal")} &lt;C50&gt;{= .Invoice.OrderSet.BCData("ClasseFr100%",?,?,?,"GrossAmountTotal")} &lt;C60&gt;{= .Invoice.OrderSet.BCData("ClasseFrHN",?,?,?,"GrossAmountTotal")}</p>
+                    <p>&lt;C#1&gt;&lt;R38&gt;&lt;C80&gt;{=.Invoice.OrderSet.BCData(?,?,?,?,"GrossAmountTotal")}</p>
+                    <p>&lt;C80&gt;&lt;I&gt;Part organisme obligatoire:&lt;/I&gt;<br />&lt;C80&gt;{=.Invoice.OrderSet.BCData(?,"Fund",?,?,"GrossAmountTotal")}<br />&lt;C80&gt;&lt;I&gt;Part organisme complementaire:&lt;/I&gt;<br />&lt;C80&gt;{=.Invoice.OrderSet.BCData(?,"Fund 2",?,?,"GrossAmountTotal")}</p>
+                    <p>&lt;R48&gt;&lt;C80&gt;&lt;I&gt;Date de la prescription: &lt;C110&gt;execution&lt;/I&gt;<br />&lt;R49&gt;&lt;C80&gt;{=DateTimeToString(.Invoice.Order.PrescriptionTime, "%d/%m/%Y")}<br />&lt;R49&gt;&lt;C110&gt;{=DateTimeToString(.Invoice.OrderSet.TariffTime, "%d/%m/%Y")}</p>
+                    <p>&lt;C#1&gt;&lt;R55&gt;&lt;C5&gt;LABORATOIRE .....<br /><br />&lt;C5&gt;&lt;B&gt;REF No {=.Invoice.Order.Object.Person().Correspondent.InternalId} {=DateTimeToString(.Invoice.Order.ReceiptTime, "%d/%m/%Y")} - {=DateTimeToString(.Invoice.Order.ClosureTime, "%d/%m/%Y")}&lt;/B&gt;<br />&lt;C5&gt;Prelevements {=.Invoice.OrderSet.BCData(?,?,"France_Prelev",?,"GrossAmountTotal")}<br />&lt;C5&gt;Deplacement {=.Invoice.OrderSet.BCData(?,?,?,"IK","GrossAmountTotal")}<br />&lt;C5&gt;total analyses {=.Invoice.OrderSet.BCData(?,?,?,?,"GrossAmountTotal")}<br />&lt;C5&gt;part non rembourser {= .Invoice.OrderSet.BCData(?,"Object person",?,?,"GrossAmountTotal")}<br />&lt;C5&gt;part a regler exterier ???<br />&lt;C5&gt;&lt;B&gt;PART A REGLER {= .Invoice.OrderSet.BCData(?,?,?,?,"GrossAmountTotal")}&lt;/B&gt;<span style="font-size: x-small;">&#160;</span></p>
+                </td>
+            </tr>
+        </table>
+        <h3><b style="font-weight: bold;">Example output:</b>
+        </h3>
+        <p style="text-align: center;">
+            <img src="../feuillesecu_output.gif" style="border-width: 1px;border-style: solid;" alt="" width="528" height="736" border="1" />
+        </p>
+    </body>
+</html>
